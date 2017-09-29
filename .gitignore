@@ -3,6 +3,7 @@
 *.bat
 *.exe
 *.class
+*.iml
 
 # Directories #
 out
