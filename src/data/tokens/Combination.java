@@ -6,4 +6,8 @@ public class Combination
 {
     private ArrayList<Integer> bPins;
 
+    public Combination()
+    {
+
+    }
 }

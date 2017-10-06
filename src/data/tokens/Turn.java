@@ -6,4 +6,8 @@ public class Turn extends Combination
 {
     private ArrayList<Integer> sPins;
 
+    public Turn()
+    {
+
+    }
 }
