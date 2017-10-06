@@ -10,5 +10,5 @@ public class Board
 
     private Code code;
     private ArrayList<Turn> turnSet;
-
+    
 }
