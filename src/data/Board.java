@@ -22,10 +22,10 @@ public class Board
 
     public Board(Board board)
     {
-        setNColors(board.nColors);
-        setMaxAttempts(board.maxAttempts);
-        setCode(board.code);
-        setTurnSet(board.turnSet);
+        setNColors(board.getNColors());
+        setMaxAttempts(board.getMaxAttempts());
+        setCode(board.getCode());
+        setTurnSet(board.getTurnSet());
     }
 
     /* SET FUNCTIONS */
@@ -112,8 +112,8 @@ public class Board
     {
         Board board = (Board) super.clone();
 
-        board.setCode(this.code);
-        board.setTurnSet(this.turnSet);
+        board.setCode(this.getCode());
+        board.setTurnSet(this.getTurnSet());
 
         return board;
     }

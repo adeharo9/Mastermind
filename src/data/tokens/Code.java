@@ -11,6 +11,6 @@ public class Code extends Combination
 
     public Code(Code code)
     {
-        setBPins(code.bPins);
+        setBPins(code.getBPins());
     }
 }

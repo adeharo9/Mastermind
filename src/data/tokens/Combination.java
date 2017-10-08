@@ -17,7 +17,7 @@ public class Combination
 
     public Combination(Combination combination)
     {
-        setBPins(combination.bPins);
+        setBPins(combination.getBPins());
     }
 
     /* SET FUNCTIONS */
@@ -52,7 +52,7 @@ public class Combination
     {
         Combination combination = (Combination) super.clone();
 
-        combination.setBPins(this.bPins);
+        combination.setBPins(this.getBPins());
 
         return combination;
     }

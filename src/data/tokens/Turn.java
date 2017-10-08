@@ -17,8 +17,8 @@ public class Turn extends Combination
 
     public Turn(Turn turn)
     {
-        setBPins(turn.bPins);
-        setSPins(turn.sPins);
+        setBPins(turn.getBPins());
+        setSPins(turn.getSPins());
     }
 
     /* SET FUNCTIONS */
@@ -40,7 +40,7 @@ public class Turn extends Combination
 
     public ArrayList<Integer> getSPins()
     {
-        return getSPins();
+        return sPins;
     }
 
     /* SUPERCLASS OVERWRITTEN FUNCTIONS */
@@ -49,7 +49,7 @@ public class Turn extends Combination
     {
         Turn turn = (Turn) super.clone();
 
-        turn.setSPins(this.sPins);
+        turn.setSPins(this.getSPins());
 
         return turn;
     }
