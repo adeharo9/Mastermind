@@ -43,14 +43,10 @@ public class Turn extends Combination
         return sPins;
     }
 
-    /* SUPERCLASS OVERWRITTEN FUNCTIONS */
+    /* CLONING FUNCTIONS */
 
-    public Object clone() throws CloneNotSupportedException
+    public Turn cclone()
     {
-        Turn turn = (Turn) super.clone();
-
-        turn.setSPins(this.getSPins());
-
-        return turn;
+        return new Turn(this);
     }
 }

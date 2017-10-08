@@ -46,14 +46,10 @@ public class Combination
         return bPins.size() == 4;
     }
 
-    /* SUPERCLASS OVERWRITTEN FUNCTIONS */
+    /* CLONING FUNCTIONS */
 
-    public Object clone() throws CloneNotSupportedException
+    public Combination cclone()
     {
-        Combination combination = (Combination) super.clone();
-
-        combination.setBPins(this.getBPins());
-
-        return combination;
+        return new Combination(this);
     }
 }

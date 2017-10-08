@@ -106,15 +106,10 @@ public class Board
         return turnSet;
     }
 
-    /* SUPERCLASS OVERWRITTEN FUNCTIONS */
+    /* CLONING FUNCTIONS */
 
-    public Object clone() throws CloneNotSupportedException
+    public Board cclone()
     {
-        Board board = (Board) super.clone();
-
-        board.setCode(this.getCode());
-        board.setTurnSet(this.getTurnSet());
-
-        return board;
+        return new Board(this);
     }
 }

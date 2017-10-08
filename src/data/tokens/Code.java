@@ -13,4 +13,11 @@ public class Code extends Combination
     {
         setBPins(code.getBPins());
     }
+
+    /* CLONING FUNCTIONS */
+
+    public Code cclone()
+    {
+        return new Code(this);
+    }
 }
