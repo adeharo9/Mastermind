@@ -45,7 +45,7 @@ public class Turn extends Combination
 
     /* CLONING FUNCTIONS */
 
-    public Turn cclone()
+    public Turn cClone()
     {
         return new Turn(this);
     }

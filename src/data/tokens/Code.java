@@ -16,7 +16,7 @@ public class Code extends Combination
 
     /* CLONING FUNCTIONS */
 
-    public Code cclone()
+    public Code cClone()
     {
         return new Code(this);
     }

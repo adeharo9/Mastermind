@@ -108,7 +108,7 @@ public class Board
 
     /* CLONING FUNCTIONS */
 
-    public Board cclone()
+    public Board cClone()
     {
         return new Board(this);
     }

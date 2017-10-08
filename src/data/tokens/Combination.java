@@ -48,7 +48,7 @@ public class Combination
 
     /* CLONING FUNCTIONS */
 
-    public Combination cclone()
+    public Combination cClone()
     {
         return new Combination(this);
     }
