@@ -1,8 +1,9 @@
 package data.tokens;
 
+import util.*;
 import java.util.*;
 
-public class Turn extends Combination
+public class Turn extends Combination implements DeepCopyable
 {
     /* ATTRIBUTES */
 
@@ -19,13 +20,39 @@ public class Turn extends Combination
     public Turn(int n)
     {
         super(n);
-        sPins = new ArrayList<>(n);
+
+        try
+        {
+            if(n >= 0)
+            {
+                sPins = new ArrayList<>(n);
+            }
+            else
+            {
+                throw new Exception("Exception thrown on Turn(int n): n must be >= 0");
+            }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     public Turn(Turn turn)
     {
         super(turn);
-        setSPins(turn.getSPins());
+
+        boolean b;
+
+        try
+        {
+            b = setSPins(turn.getSPins());
+            if(!b) throw new Exception("Exception thrown on Turn(Turn turn): error when executing setSPins()");
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     /* SET FUNCTIONS */
@@ -64,24 +91,19 @@ public class Turn extends Combination
 
     /* TESTING FUNCTIONS */
 
-    public boolean isValid()
-    {
-        return isValid(sPins);
-    }
-
-    public boolean isValid(int n)
-    {
-        return super.size() == n;
-    }
-
     public boolean isValid(ArrayList<Integer> sPins)
     {
         return isValid(sPins.size());
     }
 
+    public boolean isValid()
+    {
+        return isValid(sPins);
+    }
+
     /* CLONING FUNCTIONS */
 
-    public Turn cClone()
+    public Turn deepCopy()
     {
         return new Turn(this);
     }

@@ -1,6 +1,8 @@
 package data.tokens;
 
-public class Code extends Combination
+import util.*;
+
+public class Code extends Combination implements DeepCopyable
 {
     /* CONSTRUCTION FUNCTIONS */
 
@@ -21,7 +23,7 @@ public class Code extends Combination
 
     /* CLONING FUNCTIONS */
 
-    public Code cClone()
+    public Code deepCopy()
     {
         return new Code(this);
     }

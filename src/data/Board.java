@@ -1,9 +1,10 @@
 package data;
 
+import util.*;
 import java.util.*;
 import data.tokens.*;
 
-public class Board
+public class Board implements DeepCopyable
 {
     /* ATTRIBUTES */
 
@@ -24,6 +25,7 @@ public class Board
     public Board()
     {
         nColors = 0;
+        nColumns = 0;
         maxAttempts = 0;
         code = new Code();
         turnSet = new ArrayList<>();
@@ -31,10 +33,25 @@ public class Board
 
     public Board(Board board)
     {
-        setNColors(board.getNColors());
-        setMaxAttempts(board.getMaxAttempts());
-        setCode(board.getCode());
-        setTurnSet(board.getTurnSet());
+        boolean b;
+        try
+        {
+            b = setNColors(board.getNColors());
+            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setNColors()");
+
+            b = setMaxAttempts(board.getMaxAttempts());
+            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setMaxAttempts()");
+
+            b = setCode(board.getCode());
+            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setCode()");
+
+            b = setTurnSet(board.getTurnSet());
+            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setTurnSet()");
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     /* SET FUNCTIONS */
@@ -77,17 +94,14 @@ public class Board
 
     public boolean setTurnSet(ArrayList<Turn> turnSet)
     {
-        boolean b = turnSet.size() >= 0;
+        boolean b = true;
 
-        if(b)
+        this.turnSet = new ArrayList<>(turnSet.size());
+
+        for(Turn turn : turnSet)
         {
-            this.turnSet = new ArrayList<>(turnSet.size());
-
-            for(Turn turn : turnSet)
-            {
-                this.turnSet.add(new Turn(turn));
-            }
-
+            b &= isValidComb(turn);
+            this.turnSet.add(new Turn(turn));
         }
 
         return b;
@@ -115,9 +129,9 @@ public class Board
         return turnSet;
     }
 
-    /* CLONING FUNCTIONS */
+    /* COPY FUNCTIONS */
 
-    public Board cClone()
+    public Board deepCopy()
     {
         return new Board(this);
     }

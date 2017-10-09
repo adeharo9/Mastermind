@@ -1,8 +1,9 @@
 package data.tokens;
 
+import util.*;
 import java.util.*;
 
-public class Combination
+public class Combination implements DeepCopyable
 {
     /* ATTRIBUTES */
 
@@ -17,12 +18,36 @@ public class Combination
 
     public Combination(int n)
     {
-        bPins = new ArrayList<>(n);
+        try
+        {
+            if(n >= 0)
+            {
+                bPins = new ArrayList<>(n);
+            }
+            else
+            {
+                throw new Exception("Exception thrown on Combination(int n): n must be >= 0");
+            }
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     public Combination(Combination combination)
     {
-        setBPins(combination.getBPins());
+        boolean b;
+        try
+        {
+            b = setBPins(combination.getBPins());
+
+            if(!b) throw new Exception("Exception thrown on Combination(Combination combination): error when executing setBPins()");
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     /* SET FUNCTIONS */
@@ -44,21 +69,23 @@ public class Combination
         return bPins;
     }
 
-    /* TEST FUNCTIONS */
-
-    /*public boolean isValid()
-    {
-        return bPins.size() == 4;
-    }*/
+    /* CONSULTING FUNCTIONS */
 
     public int size()
     {
         return bPins.size();
     }
 
+    /* TESTING FUNCTIONS */
+
+    public boolean isValid(int n)
+    {
+        return size() == n;
+    }
+
     /* CLONING FUNCTIONS */
 
-    public Combination cClone()
+    public Combination deepCopy()
     {
         return new Combination(this);
     }
