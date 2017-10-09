@@ -46,9 +46,14 @@ public class Combination
 
     /* TEST FUNCTIONS */
 
-    public boolean isValid()
+    /*public boolean isValid()
     {
         return bPins.size() == 4;
+    }*/
+
+    public int size()
+    {
+        return bPins.size();
     }
 
     /* CLONING FUNCTIONS */

@@ -17,7 +17,6 @@ public class Code extends Combination
     public Code(Code code)
     {
         super(code);
-        //setBPins(code.getBPins());
     }
 
     /* CLONING FUNCTIONS */

@@ -25,7 +25,6 @@ public class Turn extends Combination
     public Turn(Turn turn)
     {
         super(turn);
-        //setBPins(turn.getBPins());
         setSPins(turn.getSPins());
     }
 
@@ -33,7 +32,7 @@ public class Turn extends Combination
 
     public boolean setSPins(ArrayList<Integer> sPins)
     {
-        boolean b = sPins.size() == 4;
+        boolean b = isValid(sPins);
 
         if(b)
         {
@@ -48,7 +47,36 @@ public class Turn extends Combination
 
     public ArrayList<Integer> getSPins()
     {
+        ArrayList<Integer> sPins;
+        boolean b = isValid();
+
+        if(b)
+        {
+            sPins = this.sPins;
+        }
+        else
+        {
+            sPins = new ArrayList<>();
+        }
+
         return sPins;
+    }
+
+    /* TESTING FUNCTIONS */
+
+    public boolean isValid()
+    {
+        return isValid(sPins);
+    }
+
+    public boolean isValid(int n)
+    {
+        return super.size() == n;
+    }
+
+    public boolean isValid(ArrayList<Integer> sPins)
+    {
+        return isValid(sPins.size());
     }
 
     /* CLONING FUNCTIONS */

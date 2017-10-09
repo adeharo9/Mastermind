@@ -14,6 +14,11 @@ public class Board
     private Code code;
     private ArrayList<Turn> turnSet;
 
+    private boolean isValidComb(Combination combination)
+    {
+        return combination.size() == nColumns;
+    }
+
     /* CONSTRUCTION FUNCTIONS */
 
     public Board()
@@ -60,7 +65,7 @@ public class Board
 
     public boolean setCode(Code code)
     {
-        boolean b = code.isValid();
+        boolean b = isValidComb(code);
 
         if(b)
         {
