@@ -12,12 +12,20 @@ public class Turn extends Combination
 
     public Turn()
     {
+        super();
+        sPins = new ArrayList<>();
+    }
 
+    public Turn(int n)
+    {
+        super(n);
+        sPins = new ArrayList<>(n);
     }
 
     public Turn(Turn turn)
     {
-        setBPins(turn.getBPins());
+        super(turn);
+        //setBPins(turn.getBPins());
         setSPins(turn.getSPins());
     }
 

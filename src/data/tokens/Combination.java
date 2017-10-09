@@ -12,7 +12,12 @@ public class Combination
 
     public Combination()
     {
+        bPins = new ArrayList<>();
+    }
 
+    public Combination(int n)
+    {
+        bPins = new ArrayList<>(n);
     }
 
     public Combination(Combination combination)

@@ -8,6 +8,7 @@ public class Board
     /* ATTRIBUTES */
 
     private int nColors;
+    private int nColumns;
     private int maxAttempts;
 
     private Code code;
@@ -17,7 +18,10 @@ public class Board
 
     public Board()
     {
-
+        nColors = 0;
+        maxAttempts = 0;
+        code = new Code();
+        turnSet = new ArrayList<>();
     }
 
     public Board(Board board)

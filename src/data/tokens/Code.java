@@ -6,12 +6,18 @@ public class Code extends Combination
 
     public Code()
     {
+        super();
+    }
 
+    public Code(int n)
+    {
+        super(n);
     }
 
     public Code(Code code)
     {
-        setBPins(code.getBPins());
+        super(code);
+        //setBPins(code.getBPins());
     }
 
     /* CLONING FUNCTIONS */
