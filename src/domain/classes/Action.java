@@ -1,4 +1,4 @@
-package domini.classes;
+package domain.classes;
 
 public class Action {
     public java.util.Collection players = new java.util.TreeSet();

@@ -1,4 +1,4 @@
-package domini.classes;
+package domain.classes;
 
 public class Human extends Player
 {
