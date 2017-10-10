@@ -1,8 +1,7 @@
-package data;
+package domini.classes;
 
 import util.*;
 import java.util.*;
-import data.tokens.*;
 
 public class Board implements DeepCopyable
 {

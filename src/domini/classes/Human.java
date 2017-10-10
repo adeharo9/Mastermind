@@ -1,6 +1,4 @@
-package data.players;
-
-import java.util.*;
+package domini.classes;
 
 public class Human extends Player
 {
