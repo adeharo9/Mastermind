@@ -8,7 +8,6 @@ public class Board implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    private int nColors;
     private int nColumns;
     private int maxAttempts;
 
@@ -24,7 +23,7 @@ public class Board implements DeepCopyable
 
     public Board()
     {
-        nColors = 0;
+        nColumns = 0;
         nColumns = 0;
         maxAttempts = 0;
         code = new Code();
@@ -56,13 +55,13 @@ public class Board implements DeepCopyable
 
     /* SET FUNCTIONS */
 
-    public boolean setNColors(int nColors)
+    public boolean setNColors(int nColumns)
     {
-        boolean b = nColors > 0;
+        boolean b = nColumns > 0;
 
         if(b)
         {
-            this.nColors = nColors;
+            this.nColumns = nColumns;
         }
 
         return b;
@@ -111,7 +110,7 @@ public class Board implements DeepCopyable
 
     public int getNColors()
     {
-        return nColors;
+        return nColumns;
     }
 
     public int getMaxAttempts()
