@@ -6,19 +6,17 @@ public class MainController
 
     /* CONSTRUCTION METHODS */
     
-    public MainController()
+    public MainController ()
     {
 
     }
 
-    public void exe()
+    /* METHODS */
+
+    public void exe ()
     {
 
     }
-
-    /* SET METHODS */
-
-    /* GET METHODS */
 
     /* TESTING METHODS */
 

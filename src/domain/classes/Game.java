@@ -1,8 +1,9 @@
 package domain.classes;
 
+import util.*;
 import java.util.*;
 
-public class Game
+public class Game implements DeepCopyable
 {
     /* ATTRIBUTES */
 
@@ -12,6 +13,18 @@ public class Game
 
     /* CONSTRUCTION METHODS */
 
+    public Game()
+    {
+
+    }
+
+    public Game(Game game)
+    {
+        id = game.id;
+        difficulty = game.difficulty;
+        time = game.time;
+    }
+
     /* SET METHODS */
 
     /* GET METHODS */
@@ -20,4 +33,8 @@ public class Game
 
     /* CLONING METHODS */
 
+    public Game deepCopy()
+    {
+        return new Game(this);
+    }
 }

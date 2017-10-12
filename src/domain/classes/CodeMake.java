@@ -1,12 +1,23 @@
 package domain.classes;
 
+import util.*;
 import java.util.*;
 
-public class CodeMake extends Action
+public class CodeMake extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
     /* CONSTRUCTION METHODS */
+
+    public CodeMake()
+    {
+        super();
+    }
+
+    public CodeMake(CodeMake codeMake)
+    {
+        super(codeMake);
+    }
 
     /* SET METHODS */
 
@@ -16,4 +27,8 @@ public class CodeMake extends Action
 
     /* CLONING METHODS */
 
+    public CodeMake deepCopy()
+    {
+        return new CodeMake(this);
+    }
 }

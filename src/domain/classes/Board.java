@@ -13,52 +13,52 @@ public class Board implements DeepCopyable
     private Code code;
     private ArrayList<Turn> turnSet;
 
-    private boolean isValidComb(Combination combination)
+    private boolean isValidComb (Combination combination)
     {
-        return combination.size() == nColumns;
+        return combination.size () == nColumns;
     }
 
     /* CONSTRUCTION METHODS */
 
-    public Board()
+    public Board ()
     {
         nColumns = 0;
         nColumns = 0;
         maxAttempts = 0;
-        code = new Code();
-        turnSet = new ArrayList<>();
+        code = new Code ();
+        turnSet = new ArrayList<> ();
     }
 
-    public Board(Board board)
+    public Board (Board board)
     {
         boolean b;
         try
         {
-            b = setNColors(board.getNColors());
-            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setNColors()");
+            b = setNColors (board.getNColors ());
+            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setNColors ()");
 
-            b = setMaxAttempts(board.getMaxAttempts());
-            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setMaxAttempts()");
+            b = setMaxAttempts (board.getMaxAttempts ());
+            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setMaxAttempts ()");
 
-            b = setCode(board.getCode());
-            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setCode()");
+            b = setCode (board.getCode ());
+            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setCode ()");
 
-            b = setTurnSet(board.getTurnSet());
-            if(!b) throw new Exception("Exception thrown on Board(Board board): error executing setTurnSet()");
+            b = setTurnSet (board.getTurnSet ());
+            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setTurnSet ()");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.err.println (e.getMessage ());
         }
     }
 
     /* SET METHODS */
 
-    public boolean setNColors(int nColumns)
+    public boolean setNColors (int nColumns)
     {
         boolean b = nColumns > 0;
 
-        if(b)
+        if (b)
         {
             this.nColumns = nColumns;
         }
@@ -66,11 +66,11 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setMaxAttempts(int maxAttempts)
+    public boolean setMaxAttempts (int maxAttempts)
     {
         boolean b = maxAttempts > 0;
 
-        if(b)
+        if (b)
         {
             this.maxAttempts = maxAttempts;
         }
@@ -78,28 +78,28 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setCode(Code code)
+    public boolean setCode (Code code)
     {
-        boolean b = isValidComb(code);
+        boolean b = isValidComb (code);
 
-        if(b)
+        if (b)
         {
-            this.code = new Code(code);
+            this.code = new Code (code);
         }
 
         return b;
     }
 
-    public boolean setTurnSet(ArrayList<Turn> turnSet)
+    public boolean setTurnSet (ArrayList<Turn> turnSet)
     {
         boolean b = true;
 
-        this.turnSet = new ArrayList<>(turnSet.size());
+        this.turnSet = new ArrayList<> (turnSet.size ());
 
-        for(Turn turn : turnSet)
+        for (Turn turn : turnSet)
         {
-            b &= isValidComb(turn);
-            this.turnSet.add(new Turn(turn));
+            b &= isValidComb (turn);
+            this.turnSet.add (new Turn (turn));
         }
 
         return b;
@@ -107,30 +107,30 @@ public class Board implements DeepCopyable
 
     /* GET METHODS */
 
-    public int getNColors()
+    public int getNColors ()
     {
         return nColumns;
     }
 
-    public int getMaxAttempts()
+    public int getMaxAttempts ()
     {
         return maxAttempts;
     }
 
-    public Code getCode()
+    public Code getCode ()
     {
         return code;
     }
 
-    public ArrayList<Turn> getTurnSet()
+    public ArrayList<Turn> getTurnSet ()
     {
         return turnSet;
     }
 
     /* COPY METHODS */
 
-    public Board deepCopy()
+    public Board deepCopy ()
     {
-        return new Board(this);
+        return new Board (this);
     }
 }

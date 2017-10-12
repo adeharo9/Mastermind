@@ -1,14 +1,23 @@
 package domain.classes;
 
+import util.*;
 import java.util.*;
 
-public class CodeCorrect extends Action
+public class CodeCorrect extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    public Turn turn;
-
     /* CONSTRUCTION METHODS */
+
+    public CodeCorrect()
+    {
+        super();
+    }
+
+    public CodeCorrect(CodeCorrect codeCorrect)
+    {
+        super(codeCorrect);
+    }
 
     /* SET METHODS */
 
@@ -18,4 +27,8 @@ public class CodeCorrect extends Action
 
     /* CLONING METHODS */
 
+    public CodeCorrect deepCopy()
+    {
+        return new CodeCorrect(this);
+    }
 }

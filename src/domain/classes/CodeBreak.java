@@ -1,21 +1,22 @@
 package domain.classes;
 
+import util.*;
 import java.util.*;
 
-public class CodeBreak extends Action
+public class CodeBreak extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
     /* CONSTRUCTION METHODS */
 
-    CodeBreak()
+    public CodeBreak()
     {
-
+        super();
     }
 
-    CodeBreak(CodeBreak codeBreak)
+    public CodeBreak(CodeBreak codeBreak)
     {
-
+        super(codeBreak);
     }
 
     /* SET METHODS */
@@ -26,4 +27,8 @@ public class CodeBreak extends Action
 
     /* CLONING METHODS */
 
+    public CodeBreak deepCopy()
+    {
+        return new CodeBreak(this);
+    }
 }

@@ -1,12 +1,23 @@
 package domain.classes;
 
+import util.*;
 import java.util.*;
 
-public class Ranking
+public class Ranking implements DeepCopyable
 {
     /* ATTRIBUTES */
 
     /* CONSTRUCTION METHODS */
+
+    public Ranking ()
+    {
+
+    }
+
+    public Ranking (Ranking ranking)
+    {
+
+    }
 
     /* SET METHODS */
 
@@ -16,4 +27,8 @@ public class Ranking
 
     /* CLONING METHODS */
 
+    public Ranking deepCopy ()
+    {
+        return new Ranking (this);
+    }
 }

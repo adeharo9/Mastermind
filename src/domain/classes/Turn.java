@@ -11,60 +11,60 @@ public class Turn extends Combination implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
-    public Turn()
+    public Turn ()
     {
-        super();
-        sPins = new ArrayList<>();
+        super ();
+        sPins = new ArrayList<> ();
     }
 
-    public Turn(int n)
+    public Turn (int n)
     {
-        super(n);
+        super (n);
 
         try
         {
-            if(n >= 0)
+            if (n >= 0)
             {
-                sPins = new ArrayList<>(n);
+                sPins = new ArrayList<> (n);
             }
             else
             {
-                throw new Exception("Exception thrown on Turn(int n): n must be >= 0");
+                throw new Exception ("Exception thrown on Turn (int n): n must be >= 0");
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.err.println (e.getMessage ());
         }
     }
 
-    public Turn(Turn turn)
+    public Turn (Turn turn)
     {
-        super(turn);
+        super (turn);
 
         boolean b;
 
         try
         {
-            b = setSPins(turn.getSPins());
-            if(!b) throw new Exception("Exception thrown on Turn(Turn turn): error when executing setSPins()");
+            b = setSPins (turn.getSPins ());
+            if (!b) throw new Exception ("Exception thrown on Turn (Turn turn): error when executing setSPins ()");
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.err.println (e.getMessage ());
         }
     }
 
     /* SET METHODS */
 
-    public boolean setSPins(ArrayList<Integer> sPins)
+    public boolean setSPins (ArrayList<Integer> sPins)
     {
-        boolean b = isValid(sPins);
+        boolean b = isValid (sPins);
 
-        if(b)
+        if (b)
         {
-            this.sPins = new ArrayList<>(sPins.size());
-            this.sPins.addAll(sPins);
+            this.sPins = new ArrayList<> (sPins.size ());
+            this.sPins.addAll (sPins);
         }
 
         return b;
@@ -72,18 +72,18 @@ public class Turn extends Combination implements DeepCopyable
 
     /* GET METHODS */
 
-    public ArrayList<Integer> getSPins()
+    public ArrayList<Integer> getSPins ()
     {
         ArrayList<Integer> sPins;
-        boolean b = isValid();
+        boolean b = isValid ();
 
-        if(b)
+        if (b)
         {
             sPins = this.sPins;
         }
         else
         {
-            sPins = new ArrayList<>();
+            sPins = new ArrayList<> ();
         }
 
         return sPins;
@@ -91,20 +91,20 @@ public class Turn extends Combination implements DeepCopyable
 
     /* TESTING METHODS */
 
-    public boolean isValid(ArrayList<Integer> sPins)
+    public boolean isValid (ArrayList<Integer> sPins)
     {
-        return isValid(sPins.size());
+        return isValid (sPins.size ());
     }
 
-    public boolean isValid()
+    public boolean isValid ()
     {
-        return isValid(sPins);
+        return isValid (sPins);
     }
 
     /* CLONING METHODS */
 
-    public Turn deepCopy()
+    public Turn deepCopy ()
     {
-        return new Turn(this);
+        return new Turn (this);
     }
 }
