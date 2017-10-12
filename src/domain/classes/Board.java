@@ -18,7 +18,7 @@ public class Board implements DeepCopyable
         return combination.size() == nColumns;
     }
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
     public Board()
     {
@@ -52,7 +52,7 @@ public class Board implements DeepCopyable
         }
     }
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
     public boolean setNColors(int nColumns)
     {
@@ -105,7 +105,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
     public int getNColors()
     {
@@ -127,7 +127,7 @@ public class Board implements DeepCopyable
         return turnSet;
     }
 
-    /* COPY FUNCTIONS */
+    /* COPY METHODS */
 
     public Board deepCopy()
     {

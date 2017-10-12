@@ -10,14 +10,14 @@ public class Game
     private int difficulty;
     private int time;
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
 }

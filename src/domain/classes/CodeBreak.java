@@ -6,7 +6,7 @@ public class CodeBreak extends Action
 {
     /* ATTRIBUTES */
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
     CodeBreak()
     {
@@ -18,12 +18,12 @@ public class CodeBreak extends Action
 
     }
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
 }

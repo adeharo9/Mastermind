@@ -8,14 +8,14 @@ public class CodeCorrect extends Action
 
     public Turn turn;
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
 }

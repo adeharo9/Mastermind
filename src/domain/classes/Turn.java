@@ -9,7 +9,7 @@ public class Turn extends Combination implements DeepCopyable
 
     private ArrayList<Integer> sPins;
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
     public Turn()
     {
@@ -55,7 +55,7 @@ public class Turn extends Combination implements DeepCopyable
         }
     }
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
     public boolean setSPins(ArrayList<Integer> sPins)
     {
@@ -70,7 +70,7 @@ public class Turn extends Combination implements DeepCopyable
         return b;
     }
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
     public ArrayList<Integer> getSPins()
     {
@@ -89,7 +89,7 @@ public class Turn extends Combination implements DeepCopyable
         return sPins;
     }
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
     public boolean isValid(ArrayList<Integer> sPins)
     {
@@ -101,7 +101,7 @@ public class Turn extends Combination implements DeepCopyable
         return isValid(sPins);
     }
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
     public Turn deepCopy()
     {

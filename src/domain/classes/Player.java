@@ -10,14 +10,14 @@ public class Player
     private int points;
     private String role;
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
 }

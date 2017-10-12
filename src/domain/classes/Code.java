@@ -4,7 +4,7 @@ import util.*;
 
 public class Code extends Combination implements DeepCopyable
 {
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
     public Code()
     {
@@ -21,7 +21,7 @@ public class Code extends Combination implements DeepCopyable
         super(code);
     }
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
     public Code deepCopy()
     {

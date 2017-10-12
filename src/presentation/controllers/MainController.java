@@ -2,6 +2,10 @@ package presentation.controllers;
 
 public class MainController
 {
+    /* ATTRIBUTES */
+
+    /* CONSTRUCTION METHODS */
+    
     public MainController()
     {
 
@@ -11,4 +15,13 @@ public class MainController
     {
 
     }
+
+    /* SET METHODS */
+
+    /* GET METHODS */
+
+    /* TESTING METHODS */
+
+    /* CLONING METHODS */
+
 }

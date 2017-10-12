@@ -9,7 +9,7 @@ public class Combination implements DeepCopyable
 
     protected ArrayList<Integer> bPins;
 
-    /* CONSTRUCTION FUNCTIONS */
+    /* CONSTRUCTION METHODS */
 
     public Combination()
     {
@@ -50,7 +50,7 @@ public class Combination implements DeepCopyable
         }
     }
 
-    /* SET FUNCTIONS */
+    /* SET METHODS */
 
     public boolean setBPins(ArrayList<Integer> bPins)
     {
@@ -62,28 +62,28 @@ public class Combination implements DeepCopyable
         return b;
     }
 
-    /* GET FUNCTIONS */
+    /* GET METHODS */
 
     public ArrayList<Integer> getBPins()
     {
         return bPins;
     }
 
-    /* CONSULTING FUNCTIONS */
+    /* CONSULTING METHODS */
 
     public int size()
     {
         return bPins.size();
     }
 
-    /* TESTING FUNCTIONS */
+    /* TESTING METHODS */
 
     public boolean isValid(int n)
     {
         return size() == n;
     }
 
-    /* CLONING FUNCTIONS */
+    /* CLONING METHODS */
 
     public Combination deepCopy()
     {
