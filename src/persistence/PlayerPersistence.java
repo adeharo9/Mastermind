@@ -2,7 +2,7 @@ package persistence;
 
 import domain.classes.Player;
 
-public class PlayerPersistence
+public class PlayerPersistence extends AbstractPersistence
 {
     public PlayerPersistence()
     {
