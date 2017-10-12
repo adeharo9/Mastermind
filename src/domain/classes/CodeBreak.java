@@ -1,5 +1,8 @@
 package domain.classes;
 
-public class CodeBreak extends Action {
-    public java.util.Collection turn = new java.util.TreeSet();
+import java.util.*;
+
+public class CodeBreak extends Action
+{
+
 }

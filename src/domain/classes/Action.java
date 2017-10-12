@@ -1,5 +1,8 @@
 package domain.classes;
 
-public class Action {
-    public java.util.Collection players = new java.util.TreeSet();
+import java.util.*;
+
+public class Action
+{
+
 }
