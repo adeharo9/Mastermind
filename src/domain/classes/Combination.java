@@ -54,7 +54,7 @@ public class Combination implements DeepCopyable
 
     public boolean setBPins(ArrayList<Integer> bPins)
     {
-        boolean b = bPins.size() == 4;
+        boolean b = bPins.size() > 0;
 
         bPins = new ArrayList<>(bPins.size());
         this.bPins.addAll(bPins);
@@ -73,7 +73,18 @@ public class Combination implements DeepCopyable
 
     public int size()
     {
-        return bPins.size();
+        int size;
+
+        if(bPins != null)
+        {
+            size = bPins.size();
+        }
+        else
+        {
+            size = 0;
+        }
+
+        return size;
     }
 
     /* TESTING METHODS */

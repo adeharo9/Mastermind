@@ -14,7 +14,7 @@ public class Turn extends Combination implements DeepCopyable
     public Turn()
     {
         super();
-        sPins = new ArrayList<>();
+        sPins = new ArrayList<>(super.size());
     }
 
     public Turn(int n)
@@ -89,16 +89,48 @@ public class Turn extends Combination implements DeepCopyable
         return sPins;
     }
 
+    /* CONSULTING METHODS */
+
+    public int size()
+    {
+        int size;
+
+        if(isValid())
+        {
+            size = sPins.size();
+        }
+        else
+        {
+            size = 0;
+        }
+
+        return size;
+    }
+
     /* TESTING METHODS */
 
     public boolean isValid(ArrayList<Integer> sPins)
     {
-        return isValid(sPins.size());
+        boolean b = sPins != null;
+
+        if(b)
+        {
+            b = isValid(sPins.size());
+        }
+
+        return b;
     }
 
     public boolean isValid()
     {
-        return isValid(sPins);
+        boolean b = sPins != null;
+
+        if(b)
+        {
+            b = isValid(sPins);
+        }
+
+        return b;
     }
 
     /* CLONING METHODS */

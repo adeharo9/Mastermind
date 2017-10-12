@@ -6,25 +6,25 @@ public class Code extends Combination implements DeepCopyable
 {
     /* CONSTRUCTION METHODS */
 
-    public Code ()
+    public Code()
     {
-        super ();
+        super();
     }
 
-    public Code (int n)
+    public Code(int n)
     {
-        super (n);
+        super(n);
     }
 
-    public Code (Code code)
+    public Code(Code code)
     {
-        super (code);
+        super(code);
     }
 
     /* CLONING METHODS */
 
-    public Code deepCopy ()
+    public Code deepCopy()
     {
-        return new Code (this);
+        return new Code(this);
     }
 }
