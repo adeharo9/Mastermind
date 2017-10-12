@@ -1,5 +1,7 @@
 package persistence;
 
+import domain.classes.Ranking;
+
 public class RankingPersistence extends AbstractPersistence
 {
     public RankingPersistence()
@@ -7,12 +9,12 @@ public class RankingPersistence extends AbstractPersistence
 
     }
 
-    public boolean load()
+    public Ranking load()
     {
-        return true;
+        return new Ranking();
     }
 
-    public boolean save()
+    public boolean save(Object ranking)
     {
         return true;
     }

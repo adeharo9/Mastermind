@@ -9,12 +9,12 @@ public class Ranking implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
-    public Ranking ()
+    public Ranking()
     {
 
     }
 
-    public Ranking (Ranking ranking)
+    public Ranking(Ranking ranking)
     {
 
     }
@@ -27,8 +27,8 @@ public class Ranking implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Ranking deepCopy ()
+    public Ranking deepCopy()
     {
-        return new Ranking (this);
+        return new Ranking(this);
     }
 }

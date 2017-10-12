@@ -9,12 +9,12 @@ public class GamePersistence extends AbstractPersistence
 
     }
 
-    public boolean load()
+    public Game load()
     {
-        return true;
+        return new Game();
     }
 
-    public boolean save()
+    public boolean save(Object game)
     {
         return true;
     }
