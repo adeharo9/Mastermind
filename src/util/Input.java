@@ -6,13 +6,25 @@ import java.util.Scanner;
 
 public class Input
 {
+    private static Input input = new Input();
+
     private Scanner scanner;
     private ArrayList<String> buffer;
 
-    public Input()
+    public static Input getInstance()
+    {
+        return input;
+    }
+
+    private Input()
     {
         scanner = new Scanner(System.in);
         buffer = new ArrayList<>();
+    }
+
+    private boolean isEmpty()
+    {
+        return buffer.isEmpty();
     }
 
     public String next()
@@ -28,10 +40,5 @@ public class Input
         buffer.remove(0);
 
         return next;
-    }
-
-    public boolean isEmpty()
-    {
-        return buffer.isEmpty();
     }
 }

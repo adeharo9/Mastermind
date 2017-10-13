@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ioUtils
 {
-    public static Input in = new Input();
+    public static Input in = Input.getInstance();
 
     public static String input()
     {
