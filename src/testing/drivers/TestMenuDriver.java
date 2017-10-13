@@ -1,40 +1,129 @@
 package testing.drivers;
 
+import domain.classes.*;
+import testing.AbstractTesting;
 import util.*;
 
-public class TestMenuDriver
+import java.util.ArrayList;
+
+public class TestMenuDriver extends AbstractTesting
 {
-
+    private String state;
     private String msg;
-
-    public void exe()
-    {
-        showMenu();
-        userInput();
-        driverStateMachine();
-    }
-
-    public static void showMenu()
-    {
-        ioUtils.printOut("Testing Interface Menu");
-        ioUtils.endLine();
-        ioUtils.printOut("1. Turn Testing");
-        ioUtils.endLine();
-    }
+    private Turn turn;
 
     public void userInput()
     {
         msg = ioUtils.input();
     }
 
-    public void driverStateMachine()
+    public TestMenuDriver()
     {
-        switch(msg)
+        state = "init";
+    }
+
+    public void exe()
+    {
+        while(!driverStateMachine());
+        while(!driverStateMachine());
+        while(!driverStateMachine());
+    }
+
+    public void menu()
+    {
+        showMenu();
+        userInput();
+    }
+
+    public static void showMenu()
+    {
+        ioUtils.printOutLn("Testing Interface Menu");
+        ioUtils.endLine();
+        ioUtils.printOutLn("1. Turn Testing");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+    }
+
+    public void turnMenu()
+    {
+        showTurnMenu();
+        userInput();
+    }
+
+    public static void showTurnMenu()
+    {
+        ioUtils.printOutLn("Turn Testing Menu");
+        ioUtils.endLine();
+        ioUtils.printOutLn("1. Manual Turn Input");
+        ioUtils.printOutLn("2. Test Games");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+    }
+
+    public void manualTurn()
+    {
+        ioUtils.printOut("Introduce number of colors: ");
+        userInput();
+        int n = Integer.parseInt(msg);
+        turn  = new Turn(n);
+
+        ArrayList<Integer> colors = new ArrayList<>(n);
+        ioUtils.printOutLn("Introduce color sequence: ");
+        for(int i = 0; i < n; ++i)
         {
-            case "1":
-                break;
-            default:
-                ioUtils.printErr("Error. Not a valid option");
+            userInput();
+            colors.add(Integer.parseInt(msg));
         }
+    }
+
+    public boolean driverStateMachine()
+    {
+        boolean b = true;
+
+        switch(state)
+        {
+            case "init":
+                menu();
+
+                switch(msg)
+                {
+                    case "1":
+                        state = "turn";
+                        break;
+                    default:
+                        b = false;
+                }
+                break;
+
+            case "turn":
+                turnMenu();
+
+                switch(msg)
+                {
+                    case "1":
+                        state = "manualTurn";
+                        break;
+                    case "2":
+                        state = "autoTurn";
+                        break;
+                    default:
+                        b = false;
+                }
+
+                break;
+
+            case "manualTurn":
+                manualTurn();
+                break;
+
+            case "autoTurn":
+                //autoTurn();
+                break;
+
+            default:
+
+        }
+
+        return b;
     }
 }

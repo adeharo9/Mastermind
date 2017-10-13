@@ -1,5 +1,6 @@
 import presentation.controllers.MainController;
 import testing.MainTestController;
+import util.Input;
 
 public class Mastermind
 {
@@ -10,10 +11,10 @@ public class Mastermind
             case "-T":
             case "--TESTING":
                 MainTestController mainTestController = new MainTestController();
+                mainTestController.exe();
                 break;
             default:
                 MainController mainController = new MainController();
-
                 mainController.exe();
         }
     }
