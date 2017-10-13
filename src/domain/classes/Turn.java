@@ -115,7 +115,7 @@ public class Turn extends Combination implements DeepCopyable
 
         if(b)
         {
-            b = isValid(sPins.size());
+            b = super.isValid(sPins.size());
         }
 
         return b;

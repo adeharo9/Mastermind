@@ -12,5 +12,11 @@ public class Visualize
             ioUtils.print(Integer.toString(i));
             ioUtils.print(" ");
         }
+        ioUtils.endLine();
+        /*for(int i : turn.getSPins())
+        {
+            ioUtils.print(Integer.toString(i));
+            ioUtils.print(" ");
+        }*/
     }
 }

@@ -25,10 +25,10 @@ public class TestMenuDriver extends AbstractTesting
 
     public void exe()
     {
-        while(!driverStateMachine());
-        while(!driverStateMachine());
-        while(!driverStateMachine());
-        while(!driverStateMachine());
+        while(!state.equals("end"))
+        {
+            while (!driverStateMachine()) ;
+        }
     }
 
     public void menu()
@@ -64,17 +64,24 @@ public class TestMenuDriver extends AbstractTesting
 
     public void manualTurn()
     {
-        ioUtils.printOut("Introduce number of colors: ");
+        ioUtils.printOut("Introduce number of pins: ");
         userInput();
         int n = Integer.parseInt(msg);
         turn  = new Turn(n);
 
-        ioUtils.printOutLn("Introduce color sequence: ");
+        ioUtils.printOutLn("Introduce bPin color sequence: ");
         for(int i = 0; i < n; ++i)
         {
             userInput();
             turn.getBPins().add(Integer.parseInt(msg));
         }
+
+        /*ioUtils.printOut("Introduce sPin color sequence: ");
+        for(int i = 0; i < n; ++i)
+        {
+            userInput();
+            turn.getSPins().add(Integer.parseInt(msg));
+        }*/
     }
 
     public boolean driverStateMachine()
@@ -128,7 +135,7 @@ public class TestMenuDriver extends AbstractTesting
             case "visualize":
                 Visualize.visualizeTurn(turn);
 
-                state = "init";
+                state = "end";
                 break;
 
             default:
