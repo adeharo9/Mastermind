@@ -35,6 +35,7 @@ public class TestMenuDriver extends AbstractTesting
     {
         showMenu();
         userInput();
+        ioUtils.endLine();
     }
 
     public static void showMenu()
@@ -50,6 +51,7 @@ public class TestMenuDriver extends AbstractTesting
     {
         showTurnMenu();
         userInput();
+        ioUtils.endLine();
     }
 
     public static void showTurnMenu()
@@ -76,12 +78,13 @@ public class TestMenuDriver extends AbstractTesting
             turn.getBPins().add(Integer.parseInt(msg));
         }
 
-        /*ioUtils.printOut("Introduce sPin color sequence: ");
+        ioUtils.printOutLn("Introduce sPin color sequence: ");
         for(int i = 0; i < n; ++i)
         {
             userInput();
             turn.getSPins().add(Integer.parseInt(msg));
-        }*/
+        }
+        ioUtils.endLine();
     }
 
     public boolean driverStateMachine()

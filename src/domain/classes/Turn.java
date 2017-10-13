@@ -109,13 +109,18 @@ public class Turn extends Combination implements DeepCopyable
 
     /* TESTING METHODS */
 
+    public boolean isValid(int n)
+    {
+        return super.size() == n;
+    }
+
     public boolean isValid(ArrayList<Integer> sPins)
     {
         boolean b = sPins != null;
 
         if(b)
         {
-            b = super.isValid(sPins.size());
+            b = isValid(sPins.size());
         }
 
         return b;
