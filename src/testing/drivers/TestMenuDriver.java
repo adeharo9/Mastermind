@@ -2,6 +2,7 @@ package testing.drivers;
 
 import domain.classes.*;
 import testing.AbstractTesting;
+import testing.stubs.Visualize;
 import util.*;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class TestMenuDriver extends AbstractTesting
 
     public void exe()
     {
+        while(!driverStateMachine());
         while(!driverStateMachine());
         while(!driverStateMachine());
         while(!driverStateMachine());
@@ -67,12 +69,11 @@ public class TestMenuDriver extends AbstractTesting
         int n = Integer.parseInt(msg);
         turn  = new Turn(n);
 
-        ArrayList<Integer> colors = new ArrayList<>(n);
         ioUtils.printOutLn("Introduce color sequence: ");
         for(int i = 0; i < n; ++i)
         {
             userInput();
-            colors.add(Integer.parseInt(msg));
+            turn.getBPins().add(Integer.parseInt(msg));
         }
     }
 
@@ -114,10 +115,20 @@ public class TestMenuDriver extends AbstractTesting
 
             case "manualTurn":
                 manualTurn();
+
+                state = "visualize";
                 break;
 
             case "autoTurn":
                 //autoTurn();
+
+                state = "visualize";
+                break;
+
+            case "visualize":
+                Visualize.visualizeTurn(turn);
+
+                state = "init";
                 break;
 
             default:
