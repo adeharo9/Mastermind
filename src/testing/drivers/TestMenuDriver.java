@@ -7,7 +7,7 @@ public class TestMenuDriver
 
     private String msg;
 
-    public void menu()
+    public void exe()
     {
         showMenu();
         userInput();
