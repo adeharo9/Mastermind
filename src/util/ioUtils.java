@@ -2,7 +2,7 @@ package util;
 
 import java.util.Scanner;
 
-public class ioUtils
+public abstract class ioUtils
 {
     public static Input in = Input.getInstance();
 
