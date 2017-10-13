@@ -1,14 +1,10 @@
 package util;
 
-import java.util.Scanner;
-
 public abstract class ioUtils
 {
-    public static Input in = Input.getInstance();
-
     public static String input()
     {
-        return in.next();
+        return Input.next();
     }
 
     public static void print(String msg, int channel)

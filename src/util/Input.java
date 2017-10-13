@@ -8,8 +8,8 @@ public class Input
 {
     private static Input input = new Input();
 
-    private Scanner scanner;
-    private ArrayList<String> buffer;
+    private static Scanner scanner;
+    private static ArrayList<String> buffer;
 
     public static Input getInstance()
     {
@@ -22,12 +22,12 @@ public class Input
         buffer = new ArrayList<>();
     }
 
-    private boolean isEmpty()
+    private static boolean isEmpty()
     {
         return buffer.isEmpty();
     }
 
-    public String next()
+    public static String next()
     {
         String next;
 
