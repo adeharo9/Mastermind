@@ -2,7 +2,7 @@ package util;
 
 import java.util.*;
 
-public class Utils
+public abstract class Utils
 {
     public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1)
     {
