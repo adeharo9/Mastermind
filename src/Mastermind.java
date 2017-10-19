@@ -1,6 +1,5 @@
-import presentation.controllers.MainController;
+import presentation.controllers.PresentationController;
 import testing.MainTestController;
-import util.Input;
 
 public class Mastermind
 {
@@ -14,8 +13,8 @@ public class Mastermind
                 mainTestController.exe();
                 break;
             default:
-                MainController mainController = new MainController();
-                mainController.exe();
+                PresentationController presentationController = new PresentationController();
+                presentationController.exe();
         }
     }
 }

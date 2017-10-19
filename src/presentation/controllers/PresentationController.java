@@ -1,12 +1,12 @@
 package presentation.controllers;
 
-public class MainController
+public class PresentationController
 {
     /* ATTRIBUTES */
 
     /* CONSTRUCTION METHODS */
     
-    public MainController ()
+    public PresentationController()
     {
 
     }

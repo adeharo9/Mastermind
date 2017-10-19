@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Input
+public abstract class Input
 {
-    private static Input input = new Input();
-
     private static Scanner scanner;
     private static ArrayList<String> buffer;
-
-    public static Input getInstance()
-    {
-        return input;
-    }
 
     private Input()
     {
