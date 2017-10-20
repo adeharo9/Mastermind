@@ -84,7 +84,7 @@ public class Board implements DeepCopyable
 
         if (b)
         {
-            this.code = new Code (code);
+            this.code = code.deepCopy();
         }
 
         return b;

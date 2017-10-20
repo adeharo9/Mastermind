@@ -9,13 +9,18 @@ public class BoardPersistence extends AbstractPersistence
 
     }
 
-    public Board load()
+    public Board load(Object key)
     {
         return new Board();
     }
 
-    public boolean save(Object board)
+    private boolean saveBoard(Board board)
     {
         return true;
+    }
+
+    public boolean save(Object board)
+    {
+        return saveBoard((Board) board);
     }
 }

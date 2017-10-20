@@ -9,7 +9,7 @@ public class GamePersistence extends AbstractPersistence
 
     }
 
-    public Game load()
+    public Game load(Object id)
     {
         return new Game();
     }
