@@ -1,13 +1,12 @@
 package domain.classes;
 
 import util.*;
-import java.util.*;
 
 public class Human extends Player implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    private String name;
+    private String username;
     private String password;
 
     /* CONSTRUCTION METHODS */
@@ -17,15 +16,35 @@ public class Human extends Player implements DeepCopyable
         super();
     }
 
+    public Human(String username, String password)
+    {
+        setUsername(username);
+        setPassword(password);
+    }
+
     public Human(Human human)
     {
         super(human);
 
-        name = human.name;
+        username = human.username;
         password = human.password;
     }
 
     /* SET METHODS */
+
+    public boolean setUsername(String username)
+    {
+        this.username = username;
+
+        return true;
+    }
+
+    public boolean setPassword(String password)
+    {
+        this.password = password;
+
+        return true;
+    }
 
     /* GET METHODS */
 

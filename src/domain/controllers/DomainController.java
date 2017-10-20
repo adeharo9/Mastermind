@@ -3,19 +3,32 @@ package domain.controllers;
 import domain.classes.Player;
 import domain.classes.Turn;
 import domain.classes.Game;
+import persistence.BoardPersistence;
 import persistence.GamePersistence;
+import persistence.PlayerPersistence;
+import persistence.RankingPersistence;
+
+import java.util.ArrayList;
 
 public class DomainController
 {
-    private PlayerController player1;
-    private PlayerController player2;
+    private BoardController boardController;
+    private ArrayList<PlayerController> playerControllers;
+
+    private BoardPersistence boardPersistence;
     private GamePersistence gamePersistence;
+    private PlayerPersistence playerPersistence;
+    private RankingPersistence rankingPersistence;
 
     public DomainController()
     {
-        player1 = new HumanController();
-        player2 = new CPUController();
+        playerControllers = new ArrayList<>();
+        boardController = new BoardController();
+
+        boardPersistence = new BoardPersistence();
         gamePersistence = new GamePersistence();
+        playerPersistence = new PlayerPersistence();
+        rankingPersistence = new RankingPersistence();
     }
 
     /* EXECUTE */
@@ -27,6 +40,7 @@ public class DomainController
 
     public boolean logIn(String username, String password)
     {
+        PlayerController playerController = new HumanController(username, password);
         return true;
     }
 
