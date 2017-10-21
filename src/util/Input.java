@@ -6,14 +6,8 @@ import java.util.Scanner;
 
 public abstract class Input
 {
-    private static Scanner scanner;
-    private static ArrayList<String> buffer;
-
-    private Input()
-    {
-        scanner = new Scanner(System.in);
-        buffer = new ArrayList<>();
-    }
+    private static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<String> buffer = new ArrayList<>();
 
     private static boolean isEmpty()
     {

@@ -9,7 +9,7 @@ public class RankingPersistence extends AbstractPersistence
 
     }
 
-    public Ranking load()
+    public Ranking load(Object object)
     {
         return new Ranking();
     }

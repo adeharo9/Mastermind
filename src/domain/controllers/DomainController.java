@@ -28,6 +28,8 @@ public class DomainController
     {
         state = State.initProgram;
 
+        presentationController = new PresentationController();
+
         playerController1 = new HumanController();
         playerController2 = new CPUController();
         boardController = new BoardController();
@@ -156,7 +158,7 @@ public class DomainController
                     break;
 
                 case newGame:
-                    
+
                     break;
 
                 case loadGame:
