@@ -2,14 +2,30 @@ package util;
 
 public enum State
 {
+    askForClue,
+
+    checkInfo,
+    checkRanking,
+
+    endProgram,
+    exitGameWithoutSaving,
+
+    gamePause,
+    gameSelection,
+
     initProgram,
     initSession,
-    registerUser,
-    logInUser,
-    gameSelection,
-    newGame,
+
     loadGame,
-    checkRanking,
-    checkInfo,
-    endProgram;
+    logInUser,
+
+    newGame,
+
+    playSelection,
+    playTurn,
+
+    registerUser,
+
+    saveGameAndContinue,
+    saveGameAndExit;
 }

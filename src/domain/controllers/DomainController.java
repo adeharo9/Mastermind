@@ -52,12 +52,14 @@ public class DomainController
         return playerController1.logIn(username, password);
     }
 
-    public void newGame(int gameMode, int difficulty)
+    //public void newGame(int gameMode, int difficulty)
+    public void newGame()
     {
         // Initialize Game, Board, Player structures
     }
 
-    public void loadGame(String id)
+//    public void loadGame(String id)
+    public void loadGame()
     {
         // Load persistence data structures
         //gamePersistence.load(id);
@@ -81,6 +83,11 @@ public class DomainController
     public boolean checkTurn(Turn turn)
     {
         return true;
+    }
+
+    public void giveClue()
+    {
+
     }
 
     public void exe()
@@ -158,10 +165,26 @@ public class DomainController
                     break;
 
                 case newGame:
+                    newGame();
+                    state = State.playSelection;
 
                     break;
 
                 case loadGame:
+                    loadGame();
+                    state = State.playSelection;
+
+                    break;
+
+                case saveGameAndContinue:
+                    saveGame();
+                    state = State.playSelection;
+
+                    break;
+
+                case saveGameAndExit:
+                    saveGame();
+                    state = State.gameSelection;
 
                     break;
 
@@ -170,6 +193,67 @@ public class DomainController
                     break;
 
                 case checkInfo:
+
+                    break;
+
+                case playSelection:
+                    returnState = presentationController.inGameMenu();
+
+                    switch(returnState)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            state = State.playTurn;
+                            break;
+                        case 2:
+                            state = State.gamePause;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    break;
+
+                case playTurn:
+                    playTurn();
+                    state = State.playSelection;
+
+                    break;
+
+                case gamePause:
+                    returnState = presentationController.pauseMenu();
+
+                    switch(returnState)
+                    {
+                        case 0:
+                            state = State.playSelection;
+                            break;
+                        case 1:
+                            state = State.saveGameAndContinue;
+                            break;
+                        case 2:
+                            state = State.saveGameAndExit;
+                            break;
+                        case 3:
+                            state = State.exitGameWithoutSaving;
+                            break;
+                        case 4:
+                            state = State.askForClue;
+                        default:
+                            break;
+                    }
+
+                    break;
+
+                case askForClue:
+                    giveClue();
+                    state = State.playSelection;
+
+                    break;
+
+                case exitGameWithoutSaving:
+                    state = State.gameSelection;
 
                     break;
 

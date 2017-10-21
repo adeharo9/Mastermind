@@ -30,6 +30,11 @@ public class PresentationController
         return 0;
     }
 
+    public int pauseMenu()
+    {
+        return 0;
+    }
+
     public Pair<String, String> logInMenu()
     {
         return new Pair<>("", "");
