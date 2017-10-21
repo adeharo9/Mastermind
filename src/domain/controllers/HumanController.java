@@ -19,4 +19,26 @@ public class HumanController extends PlayerController
     {
         return new Action();
     }
+
+    public boolean loadPlayer(String username)
+    {
+        player = playerPersistence.load(username);
+
+        return player != null;
+    }
+
+    public boolean logIn(String username, String password)
+    {
+        boolean b;
+
+        b = loadPlayer(username);
+
+        if(b)
+        {
+            Human human = (Human)player;
+            b = human.checkPassword(password);
+        }
+
+        return b;
+    }
 }

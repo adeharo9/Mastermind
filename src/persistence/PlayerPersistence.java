@@ -9,7 +9,7 @@ public class PlayerPersistence extends AbstractPersistence
 
     }
 
-    public Player load()
+    public Player load(Object object)
     {
         return new Player();
     }

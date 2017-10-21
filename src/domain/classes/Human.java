@@ -50,6 +50,11 @@ public class Human extends Player implements DeepCopyable
 
     /* TESTING METHODS */
 
+    public boolean checkPassword(String password)
+    {
+        return this.password.equals(password);
+    }
+
     /* CLONING METHODS */
 
     public Human deepCopy()

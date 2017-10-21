@@ -1,3 +1,4 @@
+import domain.controllers.DomainController;
 import presentation.controllers.PresentationController;
 import testing.MainTestController;
 
@@ -13,8 +14,8 @@ public class Mastermind
                 mainTestController.exe();
                 break;
             default:
-                PresentationController presentationController = new PresentationController();
-                presentationController.exe();
+                DomainController domainController = new DomainController();
+                domainController.exe();
         }
     }
 }
