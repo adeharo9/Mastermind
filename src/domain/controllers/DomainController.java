@@ -240,6 +240,7 @@ public class DomainController
                             break;
                         case 4:
                             state = State.askForClue;
+                            break;
                         default:
                             break;
                     }
