@@ -2,6 +2,9 @@ package persistence;
 
 import domain.classes.Game;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class GamePersistence extends AbstractPersistence
 {
@@ -15,22 +18,33 @@ public class GamePersistence extends AbstractPersistence
         return new Game();
     }
 
-    public boolean save(Object game)
-    {
-        String idGame, path;
-        idGame = Integer.toString(((Game)game).getId()) + "/";
+    public boolean save(Object game) {
+        String idGame, difficulty, time, path;
+        boolean create = false;
+        idGame = Integer.toString(((Game) game).getId());
         path = basePath + gamesPath + idGame;
-        File gameDir;
-        gameDir = new File(path);
-        try
-        {
-            boolean create;
+        difficulty = path + "/difficulty.gm";
+        time = path + "/time.gm";
+        File gameDir = new File(path);
+        try {
             create = gameDir.mkdirs();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        if (create) {
+            try {
+                File dif = new File(difficulty);
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(dif));
+                bw.write(Integer.toString(((Game) game).getDifficulty()));
+                File t = new File(time);
+                bw = new BufferedWriter(new FileWriter(t));
+                bw.write(Integer.toString(((Game) game).getTime()));
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return create;
     }
 }

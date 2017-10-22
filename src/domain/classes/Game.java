@@ -32,7 +32,16 @@ public class Game implements DeepCopyable
     public int getId() {
         return id;
     }
-/* TESTING METHODS */
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    /* TESTING METHODS */
 
     /* CLONING METHODS */
 
