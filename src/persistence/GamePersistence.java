@@ -3,7 +3,9 @@ package persistence;
 import domain.classes.Game;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.IOException;
 
 public class GamePersistence extends AbstractPersistence
@@ -15,6 +17,8 @@ public class GamePersistence extends AbstractPersistence
 
     public Game load(Object id)
     {
+
+
         return new Game();
     }
 
@@ -25,8 +29,8 @@ public class GamePersistence extends AbstractPersistence
         path = basePath + gamesPath + idGame;
         difficulty = path + "/difficulty.gm";
         time = path + "/time.gm";
-        File gameDir = new File(path);
         try {
+            File gameDir = new File(path);
             create = gameDir.mkdirs();
         } catch (Exception e) {
             e.printStackTrace();
