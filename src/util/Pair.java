@@ -10,4 +10,9 @@ public class Pair<T1, T2>
         this.first = first;
         this.second = second;
     }
+
+    public boolean hasNull()
+    {
+        return first == null || second == null;
+    }
 }

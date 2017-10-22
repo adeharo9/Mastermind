@@ -36,6 +36,12 @@ public class Game implements DeepCopyable
 
             b = setTime(game.getTime());
             if(!b) throw new Exception("");
+
+            b = setBoard(game.getBoard());
+            if(!b) throw new Exception("");
+
+            b = setPlayersAndRoles(game.getPlayersAndRoles());
+            if(!b) throw new Exception("");
         }
         catch(Exception e)
         {
@@ -92,14 +98,42 @@ public class Game implements DeepCopyable
 
     public boolean setPlayersAndRoles(ArrayList<Pair<Player, Role>> playersAndRoles)
     {
+        boolean b = true;
+
         this.playersAndRoles = new ArrayList<>(playersAndRoles.size());
 
         for(Pair<Player, Role> playerAndRole : playersAndRoles)
         {
-            //this.playersAndRoles.add(playerAndRole.deepCopy());
+            b &= addPlayerAndRole(playerAndRole);
         }
 
-        return true;
+        return b;
+    }
+
+    public boolean addPlayerAndRole(Pair<Player, Role> playerAndRole)
+    {
+        boolean b = playerAndRole != null && playerAndRole.first != null && playerAndRole.second != null;
+
+        if(b)
+        {
+            Pair<Player, Role> aux = new Pair<>(playerAndRole.first.deepCopy(), playerAndRole.second);
+            this.playersAndRoles.add(aux);
+        }
+
+        return b;
+    }
+
+    public boolean relatePlayerAndRole(Pair<Player, Role> playerAndRole)
+    {
+        boolean b = playerAndRole != null && playerAndRole.first != null && playerAndRole.second != null;
+
+        if(b)
+        {
+            Pair<Player, Role> aux = new Pair<>(playerAndRole.first.deepCopy(), playerAndRole.second);
+            this.playersAndRoles.add(aux);
+        }
+
+        return b;
     }
 
     /* GET METHODS */
