@@ -15,4 +15,9 @@ public abstract class Utils
 
         return arrayList2;
     }
+
+    public static boolean isNull(Object object)
+    {
+        return object == null;
+    }
 }

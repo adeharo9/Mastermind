@@ -27,7 +27,7 @@ public class Game implements DeepCopyable
         return time >= 0 && time <= System.currentTimeMillis();
     }
 
-    private boolean isValidPlayersAndRoles()
+    /*private boolean isValidPlayersAndRoles()
     {
         boolean b;
 
@@ -39,11 +39,17 @@ public class Game implements DeepCopyable
             {
                 b = !playerRolePair.hasNull();
                 if(!b) return b;
+
+                b = playerRolePair.first.isValid();
+                if(!b) return b;
+
+                b = Role.isValid(playerRolePair.second);
+                if(!b) return b;
             }
         }
 
         return b;
-    }
+    }*/
 
     /* CONSTRUCTION METHODS */
 
@@ -71,7 +77,7 @@ public class Game implements DeepCopyable
             b = setBoard(game.getBoard());
             if(!b) throw new Exception("");
 
-            b = setPlayersRolePair(game.getPlayerRolePairs());
+            b = setPlayerRolePairs(game.getPlayerRolePairs());
             if(!b) throw new Exception("");
         }
         catch(Exception e)
@@ -137,15 +143,17 @@ public class Game implements DeepCopyable
         return b;
     }
 
-    public boolean setPlayersRolePair(ArrayList<Pair<Player, Role>> playerRolePairs)
+    public boolean setPlayerRolePairs(ArrayList<Pair<Player, Role>> playerRolePairs)
     {
-        boolean b = true;
+        boolean b = playerRolePairs != null;
 
-        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
-
-        for(Pair<Player, Role> playerRolePair : playerRolePairs)
+        if(b)
         {
-            b &= addPlayerRolePair(playerRolePair);
+            this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
+
+            for (Pair<Player, Role> playerRolePair : playerRolePairs) {
+                b &= addPlayerRolePair(playerRolePair);
+            }
         }
 
         return b;
@@ -153,7 +161,7 @@ public class Game implements DeepCopyable
 
     public boolean addPlayerRolePair(Pair<Player, Role> playerRolePair)
     {
-        boolean b = playerRolePair != null && !playerRolePair.hasNull();
+        boolean b = playerRolePair != null && !playerRolePair.hasNull() && playerRolePair.first.isValid();
 
         if(b)
         {
@@ -166,7 +174,7 @@ public class Game implements DeepCopyable
 
     public boolean addPlayerRolePairNoCopy(Pair<Player, Role> playerRolePair)
     {
-        boolean b = playerRolePair != null && !playerRolePair.hasNull();
+        boolean b = playerRolePair != null && !playerRolePair.hasNull() && playerRolePair.first.isValid();
 
         if(b)
         {
@@ -225,9 +233,9 @@ public class Game implements DeepCopyable
         if(!b) return b;
         b = isValidTime(time);
         if(!b) return b;
-        b = board.isValid();
+        b = board != null;
         if(!b) return b;
-        b = isValidPlayersAndRoles();
+        b = playerRolePairs != null;
 
         return b;
     }

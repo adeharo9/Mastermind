@@ -13,9 +13,38 @@ public class Board implements DeepCopyable
     private Code code;
     private ArrayList<Turn> turnSet;
 
+    private static boolean isValidNColumns(int nColumns)
+    {
+        return nColumns > 0;
+    }
+
+    private static boolean isValidMaxAttempts(int maxAttempts)
+    {
+        return maxAttempts > 0;
+    }
+
+    private boolean isValidTurnSet()
+    {
+        boolean b = turnSet != null;
+
+        if(b)
+        {
+            if(!turnSet.isEmpty())
+            {
+                for(Turn turn : turnSet)
+                {
+                    b = turn.isValid();
+                    if(!b) return b;
+                }
+            }
+        }
+
+        return b;
+    }
+
     private boolean isValidComb (Combination combination)
     {
-        return combination.size () == nColumns;
+        return combination != null && combination.size () == nColumns;
     }
 
     /* CONSTRUCTION METHODS */
@@ -55,7 +84,7 @@ public class Board implements DeepCopyable
 
     public boolean setNColors (int nColumns)
     {
-        boolean b = nColumns > 0;
+        boolean b = isValidNColumns(nColumns);
 
         if (b)
         {
@@ -67,7 +96,7 @@ public class Board implements DeepCopyable
 
     public boolean setMaxAttempts (int maxAttempts)
     {
-        boolean b = maxAttempts > 0;
+        boolean b = isValidMaxAttempts(maxAttempts);
 
         if (b)
         {
@@ -79,7 +108,7 @@ public class Board implements DeepCopyable
 
     public boolean setCode (Code code)
     {
-        boolean b = isValidComb (code);
+        boolean b = isValidComb(code);
 
         if (b)
         {
@@ -91,14 +120,18 @@ public class Board implements DeepCopyable
 
     public boolean setTurnSet(ArrayList<Turn> turnSet)
     {
-        boolean b = true;
+        boolean b = turnSet != null;
 
-        this.turnSet = new ArrayList<>(turnSet.size ());
-
-        for (Turn turn : turnSet)
+        if(b)
         {
-            b &= isValidComb(turn);
-            this.turnSet.add(turn.deepCopy());
+            this.turnSet = new ArrayList<>(turnSet.size());
+
+            for (Turn turn : turnSet) {
+                b = isValidComb(turn);
+                if(!b) return b;
+
+                this.turnSet.add(turn.deepCopy());
+            }
         }
 
         return b;
@@ -126,11 +159,37 @@ public class Board implements DeepCopyable
         return turnSet;
     }
 
+    public Turn getTurn(int i)
+    {
+        Turn turn = null;
+        boolean b = turnSet != null && i >= 0 && i < turnSet.size();
+
+        if(b)
+        {
+            turn = turnSet.get(i);
+        }
+
+        return turn;
+    }
+
     /* TESTING METHODS */
 
     public boolean isValid()
     {
-        return true;
+        boolean b;
+
+        b = isValidNColumns(nColumns);
+        if(!b) return b;
+
+        b = isValidMaxAttempts(maxAttempts);
+        if(!b) return b;
+
+        b = code != null;
+        if(!b) return b;
+
+        b = turnSet != null;
+
+        return b;
     }
 
     /* COPY METHODS */
