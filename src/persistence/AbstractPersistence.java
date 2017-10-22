@@ -3,8 +3,9 @@ package persistence;
 public abstract class AbstractPersistence
 {
 
-    private static String basePath = "./Mastermind/";
-    private static String usersPath = "/users/";
+    public static String basePath = "./Mastermind/";
+    public static String usersPath = "users/";
+    public static String gamesPath = "games/";
 
     public abstract Object load(Object object);
 

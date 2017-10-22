@@ -29,7 +29,10 @@ public class Game implements DeepCopyable
 
     /* GET METHODS */
 
-    /* TESTING METHODS */
+    public int getId() {
+        return id;
+    }
+/* TESTING METHODS */
 
     /* CLONING METHODS */
 
