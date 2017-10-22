@@ -14,45 +14,91 @@ public class Human extends Player implements DeepCopyable
     public Human()
     {
         super();
+
+        username = null;
+        password = null;
     }
 
     public Human(String username, String password)
     {
-        setUsername(username);
-        setPassword(password);
+        boolean b;
+
+        try {
+            b = setUsername(username);
+            if(!b) throw new Exception("");
+
+            b = setPassword(password);
+            if(!b) throw new Exception("");
+        }
+        catch(Exception e)
+        {
+            ioUtils.printErrLn(e.getMessage());
+        }
     }
 
     public Human(Human human)
     {
         super(human);
 
-        username = human.username;
-        password = human.password;
+        boolean b;
+
+        try
+        {
+            b = setUsername(human.getUsername());
+            if(!b) throw new Exception("");
+
+            b = setPassword(human.getPassword());
+            if(!b) throw new Exception("");
+        }
+        catch(Exception e)
+        {
+            ioUtils.printErrLn(e.getMessage());
+        }
     }
 
     /* SET METHODS */
 
     public boolean setUsername(String username)
     {
-        this.username = username;
+        boolean b = username != null && !username.isEmpty();
 
-        return true;
+        if(b)
+        {
+            this.username = username;
+        }
+
+        return b;
     }
 
     public boolean setPassword(String password)
     {
-        this.password = password;
+        boolean b = password != null && !password.isEmpty();
 
-        return true;
+        if(b)
+        {
+            this.password = password;
+        }
+
+        return b;
     }
 
     /* GET METHODS */
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
 
     /* TESTING METHODS */
 
     public boolean checkPassword(String password)
     {
-        return this.password.equals(password);
+        return this.password != null && this.password.equals(password);
     }
 
     /* CLONING METHODS */

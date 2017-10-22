@@ -23,7 +23,7 @@ public class Board implements DeepCopyable
         return maxAttempts > 0;
     }
 
-    private boolean isValidTurnSet()
+    /*private boolean isValidTurnSet()
     {
         boolean b = turnSet != null;
 
@@ -40,7 +40,7 @@ public class Board implements DeepCopyable
         }
 
         return b;
-    }
+    }*/
 
     private boolean isValidComb (Combination combination)
     {
@@ -51,10 +51,10 @@ public class Board implements DeepCopyable
 
     public Board ()
     {
-        nColumns = 0;
-        maxAttempts = 0;
-        code = new Code ();
-        turnSet = new ArrayList<> ();
+        nColumns = -1;
+        maxAttempts = -1;
+        code = null;
+        turnSet = null;
     }
 
     public Board (Board board)
@@ -62,7 +62,7 @@ public class Board implements DeepCopyable
         boolean b;
         try
         {
-            b = setNColors (board.getNColors ());
+            b = setNColors (board.getNColumns());
             if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setNColors ()");
 
             b = setMaxAttempts (board.getMaxAttempts ());
@@ -127,11 +127,26 @@ public class Board implements DeepCopyable
             this.turnSet = new ArrayList<>(turnSet.size());
 
             for (Turn turn : turnSet) {
-                b = isValidComb(turn);
+                b = addTurn(turn);
                 if(!b) return b;
-
-                this.turnSet.add(turn.deepCopy());
             }
+        }
+
+        return b;
+    }
+
+    public boolean addTurn(Turn turn)
+    {
+        boolean b = turn != null && isValidComb(turn);
+
+        if(b)
+        {
+            if(turnSet == null)
+            {
+                turnSet = new ArrayList<>();
+            }
+
+            turnSet.add(turn.deepCopy());
         }
 
         return b;
@@ -139,7 +154,7 @@ public class Board implements DeepCopyable
 
     /* GET METHODS */
 
-    public int getNColors ()
+    public int getNColumns()
     {
         return nColumns;
     }
