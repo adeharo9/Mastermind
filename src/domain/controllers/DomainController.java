@@ -9,6 +9,8 @@ import presentation.controllers.PresentationController;
 import util.Pair;
 import util.State;
 
+import java.util.ArrayList;
+
 public class DomainController
 {
     private State state;
@@ -16,8 +18,8 @@ public class DomainController
     private PresentationController presentationController;
 
     private BoardController boardController;
-    private PlayerController playerController1;
-    private PlayerController playerController2;
+    private PlayerController loggedPlayerController;
+    private ArrayList<PlayerController> playingPlayerControllers;
 
     private BoardPersistence boardPersistence;
     private GamePersistence gamePersistence;
@@ -30,8 +32,8 @@ public class DomainController
 
         presentationController = new PresentationController();
 
-        playerController1 = new HumanController();
-        playerController2 = new CPUController();
+        loggedPlayerController = new HumanController();
+        playingPlayerControllers = new ArrayList<>();
         boardController = new BoardController();
 
         boardPersistence = new BoardPersistence();
@@ -42,20 +44,42 @@ public class DomainController
 
     /* EXECUTE */
 
-    public boolean registerUser(String username, String password)
-    {
-        return true;
-    }
-
     public boolean logIn(String username, String password)
     {
-        return playerController1.logIn(username, password);
+        return loggedPlayerController.logIn(username, password);
+    }
+
+    public boolean logIn()
+    {
+        Pair<String, String> userInfo;
+
+        userInfo = presentationController.logInMenu();
+        return logIn(userInfo.first, userInfo.second);
+    }
+
+    public boolean registerUser(String username, String password)
+    {
+        return loggedPlayerController.registerUser(username, password);
+    }
+
+    public boolean registerUser()
+    {
+        Pair<String, String> userInfo;
+
+        userInfo = presentationController.registerUserMenu();
+        return registerUser(userInfo.first, userInfo.second);
     }
 
     //public void newGame(int gameMode, int difficulty)
     public void newGame()
     {
         // Initialize Game, Board, Player structures
+        int gameMode, gameDifficulty;
+
+        gameMode = presentationController.gameModeSelectionMenu();
+        gameDifficulty = presentationController.gameDifficultySelectionMenu();
+
+
     }
 
 //    public void loadGame(String id)
@@ -92,7 +116,6 @@ public class DomainController
 
     public void exe()
     {
-        Pair<String, String> userInfo;
         int returnState;
 
         while(!state.equals(State.endProgram))
@@ -125,15 +148,13 @@ public class DomainController
                     break;
 
                 case registerUser:
-                    userInfo = presentationController.registerUserMenu();
-                    registerUser(userInfo.first, userInfo.second);
+                    registerUser();
                     state = State.gameSelection;
 
                     break;
 
                 case logInUser:
-                    userInfo = presentationController.logInMenu();
-                    logIn(userInfo.first, userInfo.second);
+                    logIn();
                     state = State.gameSelection;
 
                     break;

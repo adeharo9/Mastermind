@@ -27,6 +27,18 @@ public class PresentationController
         return 0;
     }
 
+    public int gameModeSelectionMenu()
+    {
+        // Menú de selección de modo de juego: codebreaker, codemaker, etc.
+        return 0;
+    }
+
+    public int gameDifficultySelectionMenu()
+    {
+        // Menú de selección de dificultad de juego: fácil, medio, difícil, etc.
+        return 0;
+    }
+
     public int inGameMenu()
     {
         // Menu de seleccion de accion en el juego: tirar turno o bien pausa

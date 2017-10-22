@@ -11,12 +11,17 @@ public abstract class PlayerController
 
     public abstract Action play();
 
-    public boolean loadPlayer(String username)
+    public boolean load(String username)
     {
         return true;
     }
 
     public boolean logIn(String username, String password)
+    {
+        return true;
+    }
+
+    public boolean registerUser(String username, String password)
     {
         return true;
     }

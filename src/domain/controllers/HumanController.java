@@ -20,7 +20,7 @@ public class HumanController extends PlayerController
         return new Action();
     }
 
-    public boolean loadPlayer(String username)
+    public boolean load(String username)
     {
         player = playerPersistence.load(username);
 
@@ -31,12 +31,26 @@ public class HumanController extends PlayerController
     {
         boolean b;
 
-        b = loadPlayer(username);
+        b = load(username);
 
         if(b)
         {
-            Human human = (Human)player;
-            b = human.checkPassword(password);
+            b = ((Human)player).checkPassword(password);
+        }
+
+        return b;
+    }
+
+    public boolean registerUser(String username, String password)
+    {
+        boolean b;
+
+        b = load(username);
+
+        if(!b)
+        {
+            player = new Human(username, password);
+            b = playerPersistence.save(player);
         }
 
         return b;

@@ -23,7 +23,6 @@ public class Board implements DeepCopyable
     public Board ()
     {
         nColumns = 0;
-        nColumns = 0;
         maxAttempts = 0;
         code = new Code ();
         turnSet = new ArrayList<> ();
@@ -90,16 +89,16 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setTurnSet (ArrayList<Turn> turnSet)
+    public boolean setTurnSet(ArrayList<Turn> turnSet)
     {
         boolean b = true;
 
-        this.turnSet = new ArrayList<> (turnSet.size ());
+        this.turnSet = new ArrayList<>(turnSet.size ());
 
         for (Turn turn : turnSet)
         {
-            b &= isValidComb (turn);
-            this.turnSet.add (new Turn (turn));
+            b &= isValidComb(turn);
+            this.turnSet.add(turn.deepCopy());
         }
 
         return b;
