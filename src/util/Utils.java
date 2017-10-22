@@ -20,4 +20,9 @@ public abstract class Utils
     {
         return object == null;
     }
+
+    public static <T> boolean isValidIndex(ArrayList<T> arrayList, int i)
+    {
+        return arrayList != null && i >= 0 && i < arrayList.size();
+    }
 }
