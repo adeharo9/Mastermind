@@ -28,4 +28,9 @@ public enum State
 
     saveGameAndContinue,
     saveGameAndExit;
+
+    public static boolean isValid(State state)
+    {
+        return state != null;
+    }
 }

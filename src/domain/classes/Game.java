@@ -2,7 +2,6 @@ package domain.classes;
 
 import util.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Game implements DeepCopyable
@@ -14,13 +13,45 @@ public class Game implements DeepCopyable
     private long time;
 
     private Board board;
-    private ArrayList<Pair<Player, Role>> playersAndRoles;
+    private ArrayList<Pair<Player, Role>> playerRolePairs;
+
+    /* PRIVATE METHODS */
+
+    private static boolean isValidId(int id)
+    {
+        return id >= 0;
+    }
+
+    private static boolean isValidTime(long time)
+    {
+        return time >= 0 && time <= System.currentTimeMillis();
+    }
+
+    private boolean isValidPlayersAndRoles()
+    {
+        boolean b;
+
+        b = playerRolePairs != null && !playerRolePairs.isEmpty();
+
+        if(b)
+        {
+            for(Pair<Player, Role> playerRolePair : playerRolePairs)
+            {
+                b = !playerRolePair.hasNull();
+                if(!b) return b;
+            }
+        }
+
+        return b;
+    }
 
     /* CONSTRUCTION METHODS */
 
     public Game()
     {
-        playersAndRoles = new ArrayList<>();
+        id = -1;
+        time = -1;
+        playerRolePairs = new ArrayList<>();
     }
 
     public Game(Game game)
@@ -40,7 +71,7 @@ public class Game implements DeepCopyable
             b = setBoard(game.getBoard());
             if(!b) throw new Exception("");
 
-            b = setPlayersAndRoles(game.getPlayersAndRoles());
+            b = setPlayersRolePair(game.getPlayerRolePairs());
             if(!b) throw new Exception("");
         }
         catch(Exception e)
@@ -53,7 +84,7 @@ public class Game implements DeepCopyable
 
     public boolean setId(int id)
     {
-        boolean b = id >= 0;
+        boolean b = isValidId(id);
 
         if(b)
         {
@@ -65,9 +96,14 @@ public class Game implements DeepCopyable
 
     public boolean setDifficulty(Difficulty difficulty)
     {
-        this.difficulty = difficulty;
+        boolean b = Difficulty.isValid(difficulty);
 
-        return true;
+        if(b)
+        {
+            this.difficulty = difficulty;
+        }
+
+        return b;
     }
 
     public boolean setTime()
@@ -79,7 +115,7 @@ public class Game implements DeepCopyable
 
     public boolean setTime(long time)
     {
-        boolean b = time > 0 && time <= System.currentTimeMillis();
+        boolean b = isValidTime(time);
 
         if(b)
         {
@@ -91,45 +127,50 @@ public class Game implements DeepCopyable
 
     public boolean setBoard(Board board)
     {
-        this.board = board.deepCopy();
+        boolean b = board.isValid();
 
-        return true;
+        if(b)
+        {
+            this.board = board.deepCopy();
+        }
+
+        return b;
     }
 
-    public boolean setPlayersAndRoles(ArrayList<Pair<Player, Role>> playersAndRoles)
+    public boolean setPlayersRolePair(ArrayList<Pair<Player, Role>> playerRolePairs)
     {
         boolean b = true;
 
-        this.playersAndRoles = new ArrayList<>(playersAndRoles.size());
+        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
 
-        for(Pair<Player, Role> playerAndRole : playersAndRoles)
+        for(Pair<Player, Role> playerRolePair : playerRolePairs)
         {
-            b &= addPlayerAndRole(playerAndRole);
+            b &= addPlayerRolePair(playerRolePair);
         }
 
         return b;
     }
 
-    public boolean addPlayerAndRole(Pair<Player, Role> playerAndRole)
+    public boolean addPlayerRolePair(Pair<Player, Role> playerRolePair)
     {
-        boolean b = playerAndRole != null && !playerAndRole.hasNull();
+        boolean b = playerRolePair != null && !playerRolePair.hasNull();
 
         if(b)
         {
-            Pair<Player, Role> aux = new Pair<>(playerAndRole.first.deepCopy(), playerAndRole.second);
-            this.playersAndRoles.add(aux);
+            Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
+            this.playerRolePairs.add(aux);
         }
 
         return b;
     }
 
-    public boolean addPlayerAndRoleNoCopy(Pair<Player, Role> playerAndRole)
+    public boolean addPlayerRolePairNoCopy(Pair<Player, Role> playerRolePair)
     {
-        boolean b = playerAndRole != null && !playerAndRole.hasNull();
+        boolean b = playerRolePair != null && !playerRolePair.hasNull();
 
         if(b)
         {
-            this.playersAndRoles.add(playerAndRole);
+            this.playerRolePairs.add(playerRolePair);
         }
 
         return b;
@@ -157,22 +198,39 @@ public class Game implements DeepCopyable
         return board;
     }
 
-    public ArrayList<Pair<Player, Role>> getPlayersAndRoles()
+    public ArrayList<Pair<Player, Role>> getPlayerRolePairs()
     {
-        return playersAndRoles;
+        return playerRolePairs;
     }
 
     public Player getPlayer(int i)
     {
-        return playersAndRoles.get(i).first;
+        return playerRolePairs.get(i).first;
     }
 
     public Role getRole(int i)
     {
-        return playersAndRoles.get(i).second;
+        return playerRolePairs.get(i).second;
     }
 
     /* TESTING METHODS */
+
+    public boolean isValid()
+    {
+        boolean b;
+
+        b = isValidId(id);
+        if(!b) return b;
+        b = Difficulty.isValid(difficulty);
+        if(!b) return b;
+        b = isValidTime(time);
+        if(!b) return b;
+        b = board.isValid();
+        if(!b) return b;
+        b = isValidPlayersAndRoles();
+
+        return b;
+    }
 
     /* CLONING METHODS */
 

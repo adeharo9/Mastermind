@@ -126,6 +126,13 @@ public class Board implements DeepCopyable
         return turnSet;
     }
 
+    /* TESTING METHODS */
+
+    public boolean isValid()
+    {
+        return true;
+    }
+
     /* COPY METHODS */
 
     public Board deepCopy ()

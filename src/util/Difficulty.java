@@ -4,5 +4,10 @@ public enum Difficulty
 {
     easy,
     medium,
-    hard
+    hard;
+
+    public static boolean isValid(Difficulty difficulty)
+    {
+        return difficulty != null;
+    }
 }

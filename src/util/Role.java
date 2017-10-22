@@ -4,5 +4,10 @@ public enum Role
 {
     codeMaker,
     codeBreaker,
-    watcher
+    watcher;
+
+    public static boolean isValid(Role role)
+    {
+        return role != null;
+    }
 }

@@ -13,11 +13,12 @@ public class GameController
 
     public GameController()
     {
-
+        game = new Game();
     }
 
     public boolean newGame(String difficulty, Pair<Player, Role> playerAndRole)
     {
+
         return true;
     }
 }
