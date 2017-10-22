@@ -123,14 +123,13 @@ public class Game implements DeepCopyable
         return b;
     }
 
-    public boolean relatePlayerAndRole(Pair<Player, Role> playerAndRole)
+    public boolean addPlayerAndRoleNoCopy(Pair<Player, Role> playerAndRole)
     {
         boolean b = playerAndRole != null && !playerAndRole.hasNull();
 
         if(b)
         {
-            Pair<Player, Role> aux = new Pair<>(playerAndRole.first.deepCopy(), playerAndRole.second);
-            this.playersAndRoles.add(aux);
+            this.playersAndRoles.add(playerAndRole);
         }
 
         return b;
