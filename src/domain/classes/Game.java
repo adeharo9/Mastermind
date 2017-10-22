@@ -112,7 +112,7 @@ public class Game implements DeepCopyable
 
     public boolean addPlayerAndRole(Pair<Player, Role> playerAndRole)
     {
-        boolean b = playerAndRole != null && playerAndRole.first != null && playerAndRole.second != null;
+        boolean b = playerAndRole != null && !playerAndRole.hasNull();
 
         if(b)
         {
@@ -125,7 +125,7 @@ public class Game implements DeepCopyable
 
     public boolean relatePlayerAndRole(Pair<Player, Role> playerAndRole)
     {
-        boolean b = playerAndRole != null && playerAndRole.first != null && playerAndRole.second != null;
+        boolean b = playerAndRole != null && !playerAndRole.hasNull();
 
         if(b)
         {
