@@ -3,7 +3,7 @@ package domain.classes;
 import util.*;
 import java.util.*;
 
-public class Player implements DeepCopyable
+public abstract class Player implements DeepCopyable
 {
     /* ATTRIBUTES */
 
@@ -89,8 +89,5 @@ public class Player implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Player deepCopy ()
-    {
-        return new Player (this);
-    }
+    public abstract Player deepCopy ();
 }
