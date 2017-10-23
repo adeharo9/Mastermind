@@ -1,13 +1,15 @@
 package domain.controllers;
 
+import domain.classes.Board;
+import domain.classes.Game;
+import domain.classes.Player;
 import domain.classes.Turn;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.PresentationController;
-import util.Pair;
-import util.State;
+import util.*;
 
 import java.util.ArrayList;
 
@@ -72,17 +74,44 @@ public class DomainController
         return registerUser(userInfo.first, userInfo.second);
     }
 
-    //public void newGame(int gameMode, int difficulty)
     public void newGame()
     {
-        // Initialize Game, Board, Player structures
-        int gameMode, gameDifficulty;
+        int gameMode = presentationController.gameModeSelectionMenu();
+        int gameDifficulty = presentationController.gameDifficultySelectionMenu();
 
-        gameMode = presentationController.gameModeSelectionMenu();
-        gameDifficulty = presentationController.gameDifficultySelectionMenu();
+        Role role = Translate.int2Role(gameMode);
+        Difficulty difficulty = Translate.int2Difficulty(gameDifficulty);
 
-        //boardController.newBoard();
-        //gameController.newGame();
+        ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
+
+        PlayerController playerController = new CPUController();
+        Player player = playerController.newPlayer();
+
+        switch(role)
+        {
+            case codeMaker:
+                playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
+                break;
+
+            case codeBreaker:
+                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                break;
+
+            case watcher:
+                PlayerController playerController1 = new CPUController();
+                Player player1 = playerController1.newPlayer();
+
+                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
+                break;
+
+            default:
+                break;
+        }
+
+        Board board = boardController.newBoard(difficulty);
+
+        Game game = gameController.newGame(0, difficulty, board, playerRolePairs);
     }
 
 //    public void loadGame(String id)
