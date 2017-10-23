@@ -23,9 +23,11 @@ public class BoardController
 
     /* INITIALIZATION METHODS */
 
-    public void newBoard(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    public Board newBoard(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
         board = new Board(difficulty);
+
+        return board;
     }
 
     /* SET METHODS */
