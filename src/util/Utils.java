@@ -4,7 +4,7 @@ import java.util.*;
 
 public abstract class Utils
 {
-    public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1)
+    public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1) throws Exception
     {
         ArrayList<T> arrayList2 = new ArrayList<>(arrayList1.size());
 
@@ -24,5 +24,18 @@ public abstract class Utils
     public static <T> boolean isValidIndex(ArrayList<T> arrayList, int i)
     {
         return arrayList != null && i >= 0 && i < arrayList.size();
+    }
+
+    public static <T> boolean isValidArrayList(ArrayList<T> arrayList) throws NullPointerException
+    {
+        boolean b = true;
+
+        for(T element : arrayList)
+        {
+            b = element != null;
+            if(!b) return b;
+        }
+
+        return b;
     }
 }
