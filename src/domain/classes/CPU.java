@@ -14,7 +14,7 @@ public class CPU extends Player implements DeepCopyable
         super();
     }
 
-    public CPU(CPU cpu)
+    public CPU(CPU cpu) throws IllegalArgumentException, NullPointerException
     {
         super(cpu);
     }
@@ -27,7 +27,7 @@ public class CPU extends Player implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CPU deepCopy()
+    public CPU deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CPU(this);
     }

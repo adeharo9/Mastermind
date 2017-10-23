@@ -25,34 +25,25 @@ public abstract class Player implements DeepCopyable
         points = 0;
     }
 
-    public Player (Player player) throws Exception
+    public Player (Player player) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = setId(player.getId());
-        if (!b) throw new IllegalArgumentException();
-
-        b = setPoints(player.getPoints());
-        if (!b) throw new IllegalArgumentException();
+        setId(player.getId());
+        setPoints(player.getPoints());
     }
 
     /* SET METHODS */
 
-    public boolean setId(int id)
+    public void setId(int id) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidId(id);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.id = id;
-        }
-
-        return b;
+        this.id = id;
     }
 
-    public boolean setPoints(int points)
+    public void setPoints(int points) throws NullPointerException
     {
         this.points = points;
-
-        return true;
     }
 
     /* GET METHODS */
@@ -71,11 +62,7 @@ public abstract class Player implements DeepCopyable
 
     public boolean isValid()
     {
-        boolean b;
-
-        b = isValidId(id);
-
-        return b;
+        return isValidId(id);
     }
 
     /* CLONING METHODS */

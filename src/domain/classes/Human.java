@@ -14,72 +14,38 @@ public class Human extends Player implements DeepCopyable
     public Human()
     {
         super();
-
-        username = null;
-        password = null;
     }
 
-    public Human(String username, String password)
+    public Human(String username, String password) throws IllegalArgumentException, NullPointerException
     {
-        boolean b;
-
-        try {
-            b = setUsername(username);
-            if(!b) throw new Exception("");
-
-            b = setPassword(password);
-            if(!b) throw new Exception("");
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        setUsername(username);
+        setPassword(password);
     }
 
-    public Human(Human human)
+    public Human(Human human) throws IllegalArgumentException, NullPointerException
     {
         super(human);
 
-        boolean b;
-
-        try
-        {
-            b = setUsername(human.getUsername());
-            if(!b) throw new Exception("");
-
-            b = setPassword(human.getPassword());
-            if(!b) throw new Exception("");
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        setUsername(human.getUsername());
+        setPassword(human.getPassword());
     }
 
     /* SET METHODS */
 
-    public boolean setUsername(String username)
+    public void setUsername(String username) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = username != null && !username.isEmpty();
+        boolean b = !username.isEmpty();
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.username = username;
-        }
-
-        return b;
+        this.username = username;
     }
 
-    public boolean setPassword(String password)
+    public void setPassword(String password) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = password != null && !password.isEmpty();
+        boolean b = !password.isEmpty();
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.password = password;
-        }
-
-        return b;
+        this.password = password;
     }
 
     /* GET METHODS */
@@ -96,14 +62,14 @@ public class Human extends Player implements DeepCopyable
 
     /* TESTING METHODS */
 
-    public boolean checkPassword(String password)
+    public boolean checkPassword(String password) throws NullPointerException
     {
-        return this.password != null && this.password.equals(password);
+        return this.password.equals(password);
     }
 
     /* CLONING METHODS */
 
-    public Human deepCopy()
+    public Human deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Human(this);
     }
