@@ -25,6 +25,11 @@ public abstract class Player implements DeepCopyable
         points = 0;
     }
 
+    public Player(int id)
+    {
+        setId(id);
+    }
+
     public Player (Player player) throws IllegalArgumentException, NullPointerException
     {
         setId(player.getId());
