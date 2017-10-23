@@ -85,7 +85,7 @@ public class DomainController
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
 
         PlayerController playerController = new CPUController();
-        Player player = playerController.newPlayer();
+        Player player = playerController.newPlayer(Utils.autoID());
 
         switch(role)
         {
@@ -99,7 +99,7 @@ public class DomainController
 
             case watcher:
                 PlayerController playerController1 = new CPUController();
-                Player player1 = playerController1.newPlayer();
+                Player player1 = playerController1.newPlayer(Utils.autoID());
 
                 playerRolePairs.add(new Pair<>(player, Role.codeMaker));
                 playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
@@ -111,7 +111,7 @@ public class DomainController
 
         Board board = boardController.newBoard(difficulty);
 
-        Game game = gameController.newGame(0, difficulty, board, playerRolePairs);
+        Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
     }
 
 //    public void loadGame(String id)
