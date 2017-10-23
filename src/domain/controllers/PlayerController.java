@@ -13,6 +13,10 @@ public abstract class PlayerController
 
     /* CONSTRUCTION METHODS */
 
+    /* INSTANTIATION METHODS */
+
+    public abstract Player newPlayer(int id);
+
     /* SET METHODS */
 
     /* GET METHODS */

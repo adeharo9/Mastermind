@@ -2,16 +2,30 @@ package domain.controllers;
 
 import domain.classes.Action;
 import domain.classes.CPU;
+import domain.classes.CodeBreak;
+import domain.classes.Player;
 
 public class CPUController extends PlayerController
 {
+    /* CONSTRUCTION METHODS */
+
     public CPUController()
     {
         player = new CPU();
     }
 
+    /* INSTANTIATION METHODS */
+
+    public Player newPlayer(int id)
+    {
+        player = new CPU(id);
+        return player;
+    }
+
+    /* OTHER METHODS */
+
     public Action play()
     {
-        return new Action();
+        return new CodeBreak();
     }
 }

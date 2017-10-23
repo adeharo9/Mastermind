@@ -14,6 +14,11 @@ public class CPU extends Player implements DeepCopyable
         super();
     }
 
+    public CPU(int id) throws IllegalArgumentException
+    {
+        super(id);
+    }
+
     public CPU(CPU cpu) throws IllegalArgumentException, NullPointerException
     {
         super(cpu);

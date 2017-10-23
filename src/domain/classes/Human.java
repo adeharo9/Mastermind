@@ -16,6 +16,11 @@ public class Human extends Player implements DeepCopyable
         super();
     }
 
+    public Human(int id) throws IllegalArgumentException
+    {
+        super(id);
+    }
+
     public Human(String username, String password) throws IllegalArgumentException, NullPointerException
     {
         setUsername(username);
