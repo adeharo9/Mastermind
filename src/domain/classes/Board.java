@@ -33,6 +33,29 @@ public class Board implements DeepCopyable
         return nColumns;
     }
 
+    public static int getMaxAttemptsByDifficulty(Difficulty difficulty)
+    {
+        int maxAttempts;
+
+        switch(difficulty)
+        {
+            case easy:
+                maxAttempts = 30;
+                break;
+            case medium:
+                maxAttempts = 25;
+                break;
+            case hard:
+                maxAttempts = 20;
+                break;
+            default:
+                maxAttempts = -1;
+                break;
+        }
+
+        return maxAttempts;
+    }
+
     private Code code;
     private ArrayList<Turn> turnSet;
 
