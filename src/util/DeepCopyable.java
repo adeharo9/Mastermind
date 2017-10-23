@@ -2,5 +2,5 @@ package util;
 
 public interface DeepCopyable<T>
 {
-    T deepCopy();
+    T deepCopy() throws Exception;
 }

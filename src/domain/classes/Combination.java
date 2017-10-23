@@ -16,29 +16,15 @@ public class Combination implements DeepCopyable
         bPins = null;
     }
 
-    public Combination(int n)
+    public Combination(int n) throws IllegalArgumentException
     {
-        try
-        {
-            bPins = new ArrayList<>(n);
-        }
-        catch(IllegalArgumentException e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        bPins = new ArrayList<>(n);
     }
 
-    public Combination(Combination combination)
+    public Combination(Combination combination) throws Exception
     {
-        try
-        {
-            boolean b = setBPins(combination.getBPins());
-            if(!b) throw new IllegalArgumentException("");
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        boolean b = setBPins(combination.getBPins());
+        if(!b) throw new IllegalArgumentException();
     }
 
     /* SET METHODS */
@@ -95,7 +81,7 @@ public class Combination implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Combination deepCopy()
+    public Combination deepCopy() throws Exception
     {
         return new Combination(this);
     }

@@ -17,42 +17,18 @@ public class Turn extends Combination implements DeepCopyable
         sPins = null;
     }
 
-    public Turn(int n)
+    public Turn(int n) throws IllegalArgumentException
     {
         super(n);
-
-        try
-        {
-            if(n >= 0)
-            {
-                sPins = new ArrayList<>(n);
-            }
-            else
-            {
-                throw new Exception("Exception thrown on Turn(int n): n must be >= 0");
-            }
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        sPins = new ArrayList<>(n);
     }
 
-    public Turn(Turn turn)
+    public Turn(Turn turn) throws Exception
     {
         super(turn);
 
-        boolean b;
-
-        try
-        {
-            b = setSPins(turn.getSPins());
-            if(!b) throw new Exception("Exception thrown on Turn(Turn turn): error when executing setSPins()");
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+        boolean b = setSPins(turn.getSPins());
+        if(!b) throw new IllegalArgumentException();
     }
 
     /* SET METHODS */
@@ -140,7 +116,7 @@ public class Turn extends Combination implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Turn deepCopy()
+    public Turn deepCopy() throws Exception
     {
         return new Turn(this);
     }
