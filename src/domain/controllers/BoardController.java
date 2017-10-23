@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.Board;
+import util.Difficulty;
 
 import java.util.ArrayList;
 
@@ -20,12 +21,12 @@ public class BoardController
         return true;
     }
 
-    public boolean newBoard(int nColumns, int maxAttempts) throws Exception
+    public boolean newBoard(Difficulty difficulty) throws Exception
     {
         board = new Board();
 
-        board.setNColumns(nColumns);
-        board.setMaxAttempts(maxAttempts);
+        board.setNColumns(Board.getNColumnsByDifficulty(difficulty));
+        board.setMaxAttempts(Board.getMaxAttemptsByDifficulty(difficulty));
 
         board.setTurnSet(new ArrayList<>());
 
