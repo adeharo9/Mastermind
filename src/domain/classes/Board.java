@@ -1,5 +1,6 @@
 package domain.classes;
 
+import sun.reflect.annotation.ExceptionProxy;
 import util.*;
 import java.util.*;
 
@@ -57,27 +58,19 @@ public class Board implements DeepCopyable
         turnSet = null;
     }
 
-    public Board (Board board)
+    public Board (Board board) throws Exception
     {
-        boolean b;
-        try
-        {
-            b = setNColors (board.getNColumns());
-            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setNColors ()");
+        boolean b = setNColors (board.getNColumns());
+        if (!b) throw new IllegalArgumentException();
 
-            b = setMaxAttempts (board.getMaxAttempts ());
-            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setMaxAttempts ()");
+        b = setMaxAttempts (board.getMaxAttempts());
+        if (!b) throw new IllegalArgumentException();
 
-            b = setCode (board.getCode ());
-            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setCode ()");
+        b = setCode (board.getCode());
+        if (!b) throw new IllegalArgumentException();
 
-            b = setTurnSet (board.getTurnSet ());
-            if (!b) throw new Exception ("Exception thrown on Board (Board board): error executing setTurnSet ()");
-        }
-        catch (Exception e)
-        {
-            System.err.println (e.getMessage ());
-        }
+        b = setTurnSet (board.getTurnSet());
+        if (!b) throw new IllegalArgumentException();
     }
 
     /* SET METHODS */
@@ -209,7 +202,7 @@ public class Board implements DeepCopyable
 
     /* COPY METHODS */
 
-    public Board deepCopy ()
+    public Board deepCopy () throws Exception
     {
         return new Board (this);
     }
