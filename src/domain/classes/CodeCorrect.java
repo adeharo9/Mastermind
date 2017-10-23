@@ -11,10 +11,10 @@ public class CodeCorrect extends Action implements DeepCopyable
 
     public CodeCorrect()
     {
-        super();
+        combination = new Turn();
     }
 
-    public CodeCorrect(CodeCorrect codeCorrect) throws Exception
+    public CodeCorrect(CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
     {
         super(codeCorrect);
     }
@@ -27,7 +27,7 @@ public class CodeCorrect extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeCorrect deepCopy() throws Exception
+    public CodeCorrect deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CodeCorrect(this);
     }

@@ -3,11 +3,11 @@ package domain.classes;
 import util.*;
 import java.util.*;
 
-public class Action implements DeepCopyable
+public abstract class Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    private Combination combination;
+    protected Combination combination;
 
     /* CONSTRUCTION METHODS */
 
@@ -16,24 +16,19 @@ public class Action implements DeepCopyable
 
     }
 
-    public Action(Action action) throws Exception
+    public Action(Action action) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = setCombination(action.getCombination());
-        if(!b) throw new IllegalArgumentException();
+        setCombination(action.getCombination());
     }
 
     /* SET METHODS */
 
-    public boolean setCombination(Combination combination) throws Exception
+    public void setCombination(Combination combination) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = combination != null && combination.isValid();
+        boolean b = combination.isValid();
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.combination = combination.deepCopy();
-        }
-
-        return b;
+        this.combination = combination.deepCopy();
     }
 
     /* GET METHODS */
@@ -52,8 +47,5 @@ public class Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Action deepCopy() throws Exception
-    {
-        return new Action(this);
-    }
+    public abstract Action deepCopy();
 }

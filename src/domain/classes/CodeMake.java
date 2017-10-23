@@ -11,10 +11,10 @@ public class CodeMake extends Action implements DeepCopyable
 
     public CodeMake()
     {
-        super();
+        combination = new Code();
     }
 
-    public CodeMake(CodeMake codeMake) throws Exception
+    public CodeMake(CodeMake codeMake) throws IllegalArgumentException, NullPointerException
     {
         super(codeMake);
     }
@@ -27,7 +27,7 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeMake deepCopy() throws Exception
+    public CodeMake deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CodeMake(this);
     }

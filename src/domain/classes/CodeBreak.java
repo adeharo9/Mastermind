@@ -11,10 +11,10 @@ public class CodeBreak extends Action implements DeepCopyable
 
     public CodeBreak()
     {
-        super();
+        combination = new Turn();
     }
 
-    public CodeBreak(CodeBreak codeBreak) throws Exception
+    public CodeBreak(CodeBreak codeBreak) throws IllegalArgumentException, NullPointerException
     {
         super(codeBreak);
     }
@@ -27,7 +27,7 @@ public class CodeBreak extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeBreak deepCopy() throws Exception
+    public CodeBreak deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CodeBreak(this);
     }
