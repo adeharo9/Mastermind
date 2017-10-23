@@ -4,7 +4,7 @@ public abstract class Translate
 {
     /* DIFFICULTY METHODS */
 
-    public static Difficulty int2Difficulty(int diff)
+    public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException
     {
         Difficulty difficulty;
 
@@ -20,8 +20,7 @@ public abstract class Translate
                 difficulty = Difficulty.hard;
                 break;
             default:
-                difficulty = null;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return difficulty;
@@ -29,7 +28,7 @@ public abstract class Translate
 
     /* ROLE METHODS */
 
-    public static int difficulty2Int(Difficulty difficulty)
+    public static int difficulty2Int(Difficulty difficulty) throws IllegalArgumentException
     {
         int diff;
 
@@ -45,14 +44,13 @@ public abstract class Translate
                 diff = 2;
                 break;
             default:
-                diff = -1;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return diff;
     }
 
-    public static Role int2Role(int rol)
+    public static Role int2Role(int rol) throws IllegalArgumentException
     {
         Role role;
 
@@ -68,14 +66,13 @@ public abstract class Translate
                 role = Role.watcher;
                 break;
             default:
-                role = null;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return role;
     }
 
-    public static int role2Int(Role role)
+    public static int role2Int(Role role) throws IllegalArgumentException
     {
         int rol;
 
@@ -91,8 +88,7 @@ public abstract class Translate
                 rol = 2;
                 break;
             default:
-                rol = -1;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return rol;
