@@ -18,15 +18,11 @@ public class Combination implements DeepCopyable
 
     public Combination(int n)
     {
-        boolean b = n >= 0;
-
         try
         {
-            if(!b) throw new IndexOutOfBoundsException();
-
             bPins = new ArrayList<>(n);
         }
-        catch(IndexOutOfBoundsException e)
+        catch(IllegalArgumentException e)
         {
             ioUtils.printErrLn(e.getMessage());
         }
@@ -36,12 +32,8 @@ public class Combination implements DeepCopyable
     {
         try
         {
-            boolean b = combination != null;
-            if(!b) throw new NullPointerException();
-
-            b = setBPins(combination.getBPins());
-
-            if(!b) throw new Exception("Exception thrown on Combination(Combination combination): error when executing setBPins()");
+            boolean b = setBPins(combination.getBPins());
+            if(!b) throw new IllegalArgumentException("");
         }
         catch(Exception e)
         {
