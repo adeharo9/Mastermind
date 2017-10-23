@@ -69,9 +69,11 @@ public class Game implements DeepCopyable
 
     public Game(Game game)
     {
-        boolean b;
         try
         {
+            boolean b = game != null;
+            if(!b) throw new Exception("");
+
             b = setId(game.getId());
             if(!b) throw new Exception("");
 
