@@ -2,6 +2,7 @@ package domain.controllers;
 
 import domain.classes.Board;
 import util.Difficulty;
+import util.Translate;
 
 import java.util.ArrayList;
 
@@ -13,29 +14,6 @@ public class BoardController
 
     /* PRIVATE METHODS */
 
-    private static Difficulty getDifficultyByInt(int diff)
-    {
-        Difficulty difficulty;
-
-        switch(diff)
-        {
-            case 0:
-                difficulty = Difficulty.easy;
-                break;
-            case 1:
-                difficulty = Difficulty.medium;
-                break;
-            case 2:
-                difficulty = Difficulty.hard;
-                break;
-            default:
-                difficulty = null;
-                break;
-        }
-
-        return difficulty;
-    }
-
     /* CONSTRUCTION METHODS */
 
     public BoardController()
@@ -45,9 +23,8 @@ public class BoardController
 
     /* INITIALIZATION METHODS */
 
-    public void newBoard(int diff) throws IllegalArgumentException, NullPointerException
+    public void newBoard(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
-        Difficulty difficulty = getDifficultyByInt(diff);
         board = new Board(difficulty);
     }
 
