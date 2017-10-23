@@ -13,7 +13,7 @@ public class Board implements DeepCopyable
     private Code code;
     private ArrayList<Turn> turnSet;
 
-    public static int getNColumnsByDifficulty(Difficulty difficulty)
+    private static int getNColumnsByDifficulty(Difficulty difficulty)
     {
         int nColumns;
 
@@ -36,7 +36,7 @@ public class Board implements DeepCopyable
         return nColumns;
     }
 
-    public static int getMaxAttemptsByDifficulty(Difficulty difficulty)
+    private static int getMaxAttemptsByDifficulty(Difficulty difficulty)
     {
         int maxAttempts;
 
@@ -96,8 +96,18 @@ public class Board implements DeepCopyable
     {
         nColumns = -1;
         maxAttempts = -1;
+
         code = null;
-        turnSet = null;
+        turnSet = new ArrayList<>();
+    }
+
+    public Board(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    {
+        setNColumns(getNColumnsByDifficulty(difficulty));
+        setMaxAttempts(getMaxAttemptsByDifficulty(difficulty));
+
+        code = null;
+        turnSet = new ArrayList<>();
     }
 
     public Board (Board board) throws IllegalArgumentException, NullPointerException
@@ -197,9 +207,6 @@ public class Board implements DeepCopyable
         if(!b) return b;
 
         b = isValidMaxAttempts(maxAttempts);
-        if(!b) return b;
-
-        b = code != null;
         if(!b) return b;
 
         b = turnSet != null;
