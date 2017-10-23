@@ -14,7 +14,7 @@ public class Turn extends Combination implements DeepCopyable
     public Turn()
     {
         super();
-        sPins = null;
+        sPins = new ArrayList<>();
     }
 
     public Turn(int n) throws IllegalArgumentException
@@ -23,100 +23,53 @@ public class Turn extends Combination implements DeepCopyable
         sPins = new ArrayList<>(n);
     }
 
-    public Turn(Turn turn) throws Exception
+    public Turn(Turn turn) throws IllegalArgumentException, NullPointerException
     {
         super(turn);
 
-        boolean b = setSPins(turn.getSPins());
-        if(!b) throw new IllegalArgumentException();
+        setSPins(turn.getSPins());
     }
 
     /* SET METHODS */
 
-    public boolean setSPins(ArrayList<Integer> sPins)
+    public void setSPins(ArrayList<Integer> sPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(sPins);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.sPins = new ArrayList<>(sPins.size());
-            this.sPins.addAll(sPins);
-        }
-
-        return b;
+        this.sPins = new ArrayList<>(sPins.size());
+        this.sPins.addAll(sPins);
     }
 
     /* GET METHODS */
 
     public ArrayList<Integer> getSPins()
     {
-        ArrayList<Integer> sPins;
-        boolean b = isValid();
-
-        if(b)
-        {
-            sPins = this.sPins;
-        }
-        else
-        {
-            sPins = new ArrayList<>();
-        }
-
         return sPins;
     }
 
     /* CONSULTING METHODS */
 
-    public int size()
+    public int size() throws NullPointerException
     {
-        int size;
-
-        if(isValid())
-        {
-            size = sPins.size();
-        }
-        else
-        {
-            size = 0;
-        }
-
-        return size;
+        return sPins.size();
     }
 
     /* TESTING METHODS */
 
-    public boolean isValid(int n)
+    public boolean isValid(ArrayList<Integer> sPins) throws NullPointerException
     {
-        return super.size() == n;
+        return super.size() == sPins.size();
     }
 
-    public boolean isValid(ArrayList<Integer> sPins)
+    public boolean isValid() throws NullPointerException
     {
-        boolean b = sPins != null;
-
-        if(b)
-        {
-            b = isValid(sPins.size());
-        }
-
-        return b;
-    }
-
-    public boolean isValid()
-    {
-        boolean b = sPins != null;
-
-        if(b)
-        {
-            b = isValid(sPins);
-        }
-
-        return b;
+        return isValid(sPins);
     }
 
     /* CLONING METHODS */
 
-    public Turn deepCopy() throws Exception
+    public Turn deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Turn(this);
     }

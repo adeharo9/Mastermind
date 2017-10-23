@@ -16,14 +16,14 @@ public class Code extends Combination implements DeepCopyable
         super(n);
     }
 
-    public Code(Code code) throws Exception
+    public Code(Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
     }
 
     /* CLONING METHODS */
 
-    public Code deepCopy() throws Exception
+    public Code deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Code(this);
     }

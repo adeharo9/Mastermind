@@ -9,11 +9,24 @@ public class Combination implements DeepCopyable
 
     protected ArrayList<Integer> bPins;
 
+    private static boolean isValidPins(ArrayList<Integer> pins) throws NullPointerException
+    {
+        boolean b = true;
+
+        for(Integer pin : pins)
+        {
+            b = pin != null;
+            if(!b) return b;
+        }
+
+        return b;
+    }
+
     /* CONSTRUCTION METHODS */
 
     public Combination()
     {
-        bPins = null;
+        bPins = new ArrayList<>();
     }
 
     public Combination(int n) throws IllegalArgumentException
@@ -21,25 +34,20 @@ public class Combination implements DeepCopyable
         bPins = new ArrayList<>(n);
     }
 
-    public Combination(Combination combination) throws Exception
+    public Combination(Combination combination) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = setBPins(combination.getBPins());
-        if(!b) throw new IllegalArgumentException();
+        setBPins(combination.getBPins());
     }
 
     /* SET METHODS */
 
-    public boolean setBPins(ArrayList<Integer> bPins)
+    public void setBPins(ArrayList<Integer> bPins) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = bPins != null && bPins.size() > 0;
+        boolean b = isValidPins(bPins);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            bPins = new ArrayList<>(bPins.size());
-            this.bPins.addAll(bPins);
-        }
-
-        return b;
+        bPins = new ArrayList<>(bPins.size());
+        this.bPins.addAll(bPins);
     }
 
     /* GET METHODS */
@@ -51,20 +59,9 @@ public class Combination implements DeepCopyable
 
     /* CONSULTING METHODS */
 
-    public int size()
+    public int size() throws NullPointerException
     {
-        int size;
-
-        if(bPins != null)
-        {
-            size = bPins.size();
-        }
-        else
-        {
-            size = 0;
-        }
-
-        return size;
+        return bPins.size();
     }
 
     /* TESTING METHODS */
@@ -81,7 +78,7 @@ public class Combination implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Combination deepCopy() throws Exception
+    public Combination deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Combination(this);
     }
