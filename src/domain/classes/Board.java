@@ -118,7 +118,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setTurnSet(ArrayList<Turn> turnSet)
+    public boolean setTurnSet(ArrayList<Turn> turnSet) throws Exception
     {
         boolean b = turnSet != null;
 
