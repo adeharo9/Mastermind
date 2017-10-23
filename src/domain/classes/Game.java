@@ -27,34 +27,26 @@ public class Game implements DeepCopyable
         return time >= 0 && time <= System.currentTimeMillis();
     }
 
-    private static boolean isValidPlayerRolePair(Pair<Player, Role> playerRolePair)
+    private static boolean isValidPlayerRolePair(Pair<Player, Role> playerRolePair) throws NullPointerException
     {
-        return Pair.isValid(playerRolePair)&& playerRolePair.first.isValid();
+        return playerRolePair.first.isValid();
     }
 
-    /*private boolean isValidPlayersAndRoles()
+    private static boolean isValidPlayerRolePairs(ArrayList<Pair<Player, Role>> playerRolePairs) throws NullPointerException
     {
-        boolean b;
+        boolean b = true;
 
-        b = playerRolePairs != null && !playerRolePairs.isEmpty();
-
-        if(b)
+        for(Pair<Player, Role> playerRolePair : playerRolePairs)
         {
-            for(Pair<Player, Role> playerRolePair : playerRolePairs)
-            {
-                b = !playerRolePair.hasNull();
-                if(!b) return b;
+            b = !playerRolePair.hasNull();
+            if(!b) return b;
 
-                b = playerRolePair.first.isValid();
-                if(!b) return b;
-
-                b = Role.isValid(playerRolePair.second);
-                if(!b) return b;
-            }
+            b = playerRolePair.first.isValid();
+            if(!b) return b;
         }
 
         return b;
-    }*/
+    }
 
     /* CONSTRUCTION METHODS */
 
@@ -63,145 +55,96 @@ public class Game implements DeepCopyable
         id = -1;
         difficulty = null;
         time = -1;
+
         board = null;
-        playerRolePairs = null;
+        playerRolePairs = new ArrayList<>();
     }
 
-    public Game(Game game)
+    public Game(Game game) throws IllegalArgumentException, NullPointerException
     {
-        try
-        {
-            boolean b = game != null;
-            if(!b) throw new NullPointerException("");
-
-            b = setId(game.getId());
-            if(!b) throw new Exception("");
-
-            b = setDifficulty(game.getDifficulty());
-            if(!b) throw new Exception("");
-
-            b = setTime(game.getTime());
-            if(!b) throw new Exception("");
-
-            b = setBoard(game.getBoard());
-            if(!b) throw new Exception("");
-
-            b = setPlayerRolePairs(game.getPlayerRolePairs());
-            if(!b) throw new Exception("");
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        setId(game.getId());
+        setDifficulty(game.getDifficulty());
+        setTime(game.getTime());
+        setBoard(game.getBoard());
+        setPlayerRolePairs(game.getPlayerRolePairs());
     }
 
     /* SET METHODS */
 
-    public boolean setId(int id)
+    public void setId(int id) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidId(id);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.id = id;
-        }
-
-        return b;
+        this.id = id;
     }
 
-    public boolean setDifficulty(Difficulty difficulty)
+    public void setDifficulty(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
         boolean b = Difficulty.isValid(difficulty);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.difficulty = difficulty;
-        }
-
-        return b;
+        this.difficulty = difficulty;
     }
 
-    public boolean setTime()
+    public void setTime()
     {
         this.time = System.currentTimeMillis();
-
-        return true;
     }
 
-    public boolean setTime(long time)
+    public void setTime(long time) throws IllegalArgumentException
     {
         boolean b = isValidTime(time);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.time = time;
-        }
-
-        return b;
+        this.time = time;
     }
 
-    public boolean setBoard(Board board) throws Exception
+    public void setBoard(Board board) throws IllegalArgumentException, NullPointerException
     {
         boolean b = board.isValid();
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.board = board.deepCopy();
-        }
-
-        return b;
+        this.board = board.deepCopy();
     }
 
-    public boolean setPlayerRolePairs(ArrayList<Pair<Player, Role>> playerRolePairs)
+    public void setPlayerRolePairs(ArrayList<Pair<Player, Role>> playerRolePairs) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = playerRolePairs != null;
+        boolean b = isValidPlayerRolePairs(playerRolePairs);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
-        {
-            this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
+        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
 
-            for (Pair<Player, Role> playerRolePair : playerRolePairs) {
-                b = addPlayerRolePair(playerRolePair);
-                if(!b) return b;
-            }
+        for (Pair<Player, Role> playerRolePair : playerRolePairs) {
+            addPlayerRolePair(playerRolePair);
         }
-
-        return b;
     }
 
-    public boolean addPlayerRolePair(Pair<Player, Role> playerRolePair)
+    public void addPlayerRolePair(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPlayerRolePair(playerRolePair);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
+        if(playerRolePairs == null)
         {
-            if(playerRolePairs == null)
-            {
-                playerRolePairs = new ArrayList<>();
-            }
-
-            Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
-            this.playerRolePairs.add(aux);
+            playerRolePairs = new ArrayList<>();
         }
 
-        return b;
+        Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
+        this.playerRolePairs.add(aux);
     }
 
-    public boolean addPlayerRolePairNoCopy(Pair<Player, Role> playerRolePair)
+    public void addPlayerRolePairByReference(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPlayerRolePair(playerRolePair);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
+        if(playerRolePairs == null)
         {
-            if(playerRolePairs == null)
-            {
-                playerRolePairs = new ArrayList<>();
-            }
-
-            this.playerRolePairs.add(playerRolePair);
+            playerRolePairs = new ArrayList<>();
         }
 
-        return b;
+        this.playerRolePairs.add(playerRolePair);
     }
 
     /* GET METHODS */
@@ -231,30 +174,14 @@ public class Game implements DeepCopyable
         return playerRolePairs;
     }
 
-    public Player getPlayer(int i)
+    public Player getPlayer(int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        Player player = null;
-        boolean b = Utils.isValidIndex(playerRolePairs, i);
-
-        if(b)
-        {
-            player = playerRolePairs.get(i).first;
-        }
-
-        return player;
+        return playerRolePairs.get(i).first;
     }
 
-    public Role getRole(int i)
+    public Role getRole(int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        Role role = null;
-        boolean b = Utils.isValidIndex(playerRolePairs, i);
-
-        if(b)
-        {
-            role = playerRolePairs.get(i).second;
-        }
-
-        return role;
+        return playerRolePairs.get(i).second;
     }
 
     /* TESTING METHODS */
@@ -282,7 +209,7 @@ public class Game implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Game deepCopy()
+    public Game deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Game(this);
     }
