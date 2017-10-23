@@ -87,7 +87,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setMaxAttempts (int maxAttempts)
+    public boolean setMaxAttempts(int maxAttempts)
     {
         boolean b = isValidMaxAttempts(maxAttempts);
 
@@ -99,7 +99,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setCode (Code code) throws Exception
+    public boolean setCode(Code code) throws Exception
     {
         boolean b = isValidComb(code);
 
