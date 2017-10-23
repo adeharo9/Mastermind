@@ -10,6 +10,9 @@ public class Board implements DeepCopyable
     private int nColumns;
     private int maxAttempts;
 
+    private Code code;
+    private ArrayList<Turn> turnSet;
+
     public static int getNColumnsByDifficulty(Difficulty difficulty)
     {
         int nColumns;
@@ -56,9 +59,6 @@ public class Board implements DeepCopyable
         return maxAttempts;
     }
 
-    private Code code;
-    private ArrayList<Turn> turnSet;
-
     private static boolean isValidNColumns(int nColumns)
     {
         return nColumns > 0;
@@ -69,28 +69,25 @@ public class Board implements DeepCopyable
         return maxAttempts > 0;
     }
 
-    /*private boolean isValidTurnSet()
+    private static boolean isValidTurnSet(ArrayList<Turn> turnSet) throws NullPointerException
     {
-        boolean b = turnSet != null;
+        boolean b = turnSet.isEmpty();
 
-        if(b)
+        if(!b)
         {
-            if(!turnSet.isEmpty())
+            for(Turn turn : turnSet)
             {
-                for(Turn turn : turnSet)
-                {
-                    b = turn.isValid();
-                    if(!b) return b;
-                }
+                b = turn.isValid();
+                if(!b) return b;
             }
         }
 
         return b;
-    }*/
+    }
 
-    private boolean isValidComb (Combination combination)
+    private boolean isValidComb (Combination combination) throws NullPointerException
     {
-        return combination != null && combination.size () == nColumns;
+        return combination.size () == nColumns;
     }
 
     /* CONSTRUCTION METHODS */
@@ -103,91 +100,64 @@ public class Board implements DeepCopyable
         turnSet = null;
     }
 
-    public Board (Board board) throws Exception
+    public Board (Board board) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = setNColumns(board.getNColumns());
-        if (!b) throw new IllegalArgumentException();
-
-        b = setMaxAttempts (board.getMaxAttempts());
-        if (!b) throw new IllegalArgumentException();
-
-        b = setCode (board.getCode());
-        if (!b) throw new IllegalArgumentException();
-
-        b = setTurnSet (board.getTurnSet());
-        if (!b) throw new IllegalArgumentException();
+        setNColumns(board.getNColumns());
+        setMaxAttempts (board.getMaxAttempts());
+        setCode(board.getCode());
+        setTurnSet(board.getTurnSet());
     }
 
     /* SET METHODS */
 
-    public boolean setNColumns(int nColumns)
+    public void setNColumns(int nColumns) throws IllegalArgumentException
     {
         boolean b = isValidNColumns(nColumns);
+        if(!b) throw new IllegalArgumentException();
 
-        if (b)
-        {
-            this.nColumns = nColumns;
-        }
-
-        return b;
+        this.nColumns = nColumns;
     }
 
-    public boolean setMaxAttempts(int maxAttempts)
+    public void setMaxAttempts(int maxAttempts) throws IllegalArgumentException
     {
         boolean b = isValidMaxAttempts(maxAttempts);
+        if(!b) throw new IllegalArgumentException();
 
-        if (b)
-        {
-            this.maxAttempts = maxAttempts;
-        }
-
-        return b;
+        this.maxAttempts = maxAttempts;
     }
 
-    public boolean setCode(Code code) throws Exception
+    public void setCode(Code code) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidComb(code);
+        if(!b) throw new IllegalArgumentException();
 
-        if (b)
-        {
-            this.code = code.deepCopy();
-        }
-
-        return b;
+        this.code = code.deepCopy();
     }
 
-    public boolean setTurnSet(ArrayList<Turn> turnSet) throws Exception
+    public void setTurnSet(ArrayList<Turn> turnSet) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = turnSet != null;
+        boolean b = isValidTurnSet(turnSet);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
+        this.turnSet = new ArrayList<>(turnSet.size());
+
+        for(Turn turn : turnSet)
         {
-            this.turnSet = new ArrayList<>(turnSet.size());
-
-            for (Turn turn : turnSet) {
-                b = addTurn(turn);
-                if(!b) return b;
-            }
+            addTurn(turn);
         }
-
-        return b;
     }
 
-    public boolean addTurn(Turn turn) throws Exception
+    public void addTurn(Turn turn) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = turn != null && isValidComb(turn);
+        boolean b = isValidComb(turn);
+        if(!b) throw new IllegalArgumentException();
 
-        if(b)
+        if(turnSet == null)
         {
-            if(turnSet == null)
-            {
-                turnSet = new ArrayList<>();
-            }
-
-            turnSet.add(turn.deepCopy());
+            turnSet = new ArrayList<>();
         }
 
-        return b;
+        turnSet.add(turn.deepCopy());
     }
 
     /* GET METHODS */
@@ -212,17 +182,9 @@ public class Board implements DeepCopyable
         return turnSet;
     }
 
-    public Turn getTurn(int i)
+    public Turn getTurn(int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        Turn turn = null;
-        boolean b = turnSet != null && i >= 0 && i < turnSet.size();
-
-        if(b)
-        {
-            turn = turnSet.get(i);
-        }
-
-        return turn;
+        return turnSet.get(i);
     }
 
     /* TESTING METHODS */
@@ -247,7 +209,7 @@ public class Board implements DeepCopyable
 
     /* COPY METHODS */
 
-    public Board deepCopy () throws Exception
+    public Board deepCopy () throws IllegalArgumentException, NullPointerException
     {
         return new Board (this);
     }
