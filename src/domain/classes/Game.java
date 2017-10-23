@@ -72,7 +72,7 @@ public class Game implements DeepCopyable
         try
         {
             boolean b = game != null;
-            if(!b) throw new Exception("");
+            if(!b) throw new NullPointerException("");
 
             b = setId(game.getId());
             if(!b) throw new Exception("");
