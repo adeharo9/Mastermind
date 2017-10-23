@@ -1,5 +1,6 @@
 package persistence;
 
+import domain.classes.Human;
 import domain.classes.Player;
 
 public class PlayerPersistence extends AbstractPersistence
@@ -11,7 +12,8 @@ public class PlayerPersistence extends AbstractPersistence
 
     public Player load(Object object)
     {
-        return new Player();
+        Player player = new Human();
+        return player;
     }
 
     public boolean save(Object player)
