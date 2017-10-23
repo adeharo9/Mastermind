@@ -106,7 +106,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean setCode (Code code)
+    public boolean setCode (Code code) throws Exception
     {
         boolean b = isValidComb(code);
 
@@ -135,7 +135,7 @@ public class Board implements DeepCopyable
         return b;
     }
 
-    public boolean addTurn(Turn turn)
+    public boolean addTurn(Turn turn) throws Exception
     {
         boolean b = turn != null && isValidComb(turn);
 

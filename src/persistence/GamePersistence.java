@@ -41,7 +41,7 @@ public class GamePersistence extends AbstractPersistence
                 bw.write(Integer.toString(((Game) game).getDifficulty()));
                 File t = new File(time);
                 bw = new BufferedWriter(new FileWriter(t));
-                bw.write(Integer.toString(((Game) game).getTime()));
+                bw.write(Long.toString(((Game) game).getTime()));
                 bw.close();
             } catch (IOException e) {
                 e.printStackTrace();
