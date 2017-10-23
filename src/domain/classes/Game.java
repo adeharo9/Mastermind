@@ -135,6 +135,18 @@ public class Game implements DeepCopyable
         }
     }
 
+    public void setPlayerRolePairsByReference(ArrayList<Pair<Player, Role>> playerRolePairs) throws IllegalArgumentException, NullPointerException
+    {
+        boolean b = isValidPlayerRolePairs(playerRolePairs);
+        if(!b) throw new IllegalArgumentException();
+
+        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
+
+        for (Pair<Player, Role> playerRolePair : playerRolePairs) {
+            addPlayerRolePairByReference(playerRolePair);
+        }
+    }
+
     public void addPlayerRolePair(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPlayerRolePair(playerRolePair);
