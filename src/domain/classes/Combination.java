@@ -13,40 +13,39 @@ public class Combination implements DeepCopyable
 
     public Combination()
     {
-        bPins = new ArrayList<>();
+        bPins = null;
     }
 
     public Combination(int n)
     {
+        boolean b = n >= 0;
+
         try
         {
-            if(n >= 0)
-            {
-                bPins = new ArrayList<>(n);
-            }
-            else
-            {
-                throw new Exception("Exception thrown on Combination(int n): n must be >= 0");
-            }
+            if(!b) throw new IndexOutOfBoundsException();
+
+            bPins = new ArrayList<>(n);
         }
-        catch(Exception e)
+        catch(IndexOutOfBoundsException e)
         {
-            System.err.println(e.getMessage());
+            ioUtils.printErrLn(e.getMessage());
         }
     }
 
     public Combination(Combination combination)
     {
-        boolean b;
         try
         {
+            boolean b = combination != null;
+            if(!b) throw new NullPointerException();
+
             b = setBPins(combination.getBPins());
 
             if(!b) throw new Exception("Exception thrown on Combination(Combination combination): error when executing setBPins()");
         }
         catch(Exception e)
         {
-            System.err.println(e.getMessage());
+            ioUtils.printErrLn(e.getMessage());
         }
     }
 
@@ -54,10 +53,13 @@ public class Combination implements DeepCopyable
 
     public boolean setBPins(ArrayList<Integer> bPins)
     {
-        boolean b = bPins.size() > 0;
+        boolean b = bPins != null && bPins.size() > 0;
 
-        bPins = new ArrayList<>(bPins.size());
-        this.bPins.addAll(bPins);
+        if(b)
+        {
+            bPins = new ArrayList<>(bPins.size());
+            this.bPins.addAll(bPins);
+        }
 
         return b;
     }
@@ -88,6 +90,11 @@ public class Combination implements DeepCopyable
     }
 
     /* TESTING METHODS */
+
+    public boolean isValid()
+    {
+        return bPins != null;
+    }
 
     public boolean isValid(int n)
     {

@@ -14,7 +14,7 @@ public class Turn extends Combination implements DeepCopyable
     public Turn()
     {
         super();
-        sPins = new ArrayList<>(super.size());
+        sPins = null;
     }
 
     public Turn(int n)
@@ -34,7 +34,7 @@ public class Turn extends Combination implements DeepCopyable
         }
         catch(Exception e)
         {
-            System.err.println(e.getMessage());
+            ioUtils.printErrLn(e.getMessage());
         }
     }
 
