@@ -18,17 +18,13 @@ public class GameController
         game = null;
     }
 
-    public boolean newGame(Difficulty difficulty, Board board, Pair<Player, Role> playerRolePair)
+    public Game newGame(int id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
     {
-        game = new Game();
-
-        game.setId(0);
-        game.setDifficulty(difficulty);
-        game.setTime();
+        game = new Game(id, difficulty);
 
         game.setBoardByReference(board);
-        game.addPlayerRolePairByReference(playerRolePair);
+        game.setPlayerRolePairsByReference(playerRolePair);
 
-        return game.isValid();
+        return game;
     }
 }
