@@ -48,22 +48,11 @@ public class DomainController
 
     /* EXECUTE */
 
-    public boolean logIn(String username, String password)
-    {
-        return loggedPlayerController.logIn(username, password);
-    }
-
     public boolean logIn()
     {
-        Pair<String, String> userInfo;
+        Pair<String, String> userInfo = presentationController.logInMenu();
 
-        userInfo = presentationController.logInMenu();
-        return logIn(userInfo.first, userInfo.second);
-    }
-
-    public boolean registerUser(String username, String password)
-    {
-        return loggedPlayerController.registerUser(username, password);
+        return loggedPlayerController.logIn(userInfo.first, userInfo.second);
     }
 
     public boolean registerUser()
@@ -71,7 +60,7 @@ public class DomainController
         Pair<String, String> userInfo;
 
         userInfo = presentationController.registerUserMenu();
-        return registerUser(userInfo.first, userInfo.second);
+        return loggedPlayerController.registerUser(userInfo.first, userInfo.second);
     }
 
     public void newGame()
