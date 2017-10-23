@@ -9,19 +9,6 @@ public class Combination implements DeepCopyable
 
     protected ArrayList<Integer> bPins;
 
-    private static boolean isValidPins(ArrayList<Integer> pins) throws NullPointerException
-    {
-        boolean b = true;
-
-        for(Integer pin : pins)
-        {
-            b = pin != null;
-            if(!b) return b;
-        }
-
-        return b;
-    }
-
     /* CONSTRUCTION METHODS */
 
     public Combination()
@@ -43,7 +30,7 @@ public class Combination implements DeepCopyable
 
     public void setBPins(ArrayList<Integer> bPins) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidPins(bPins);
+        boolean b = Utils.isValidArrayList(bPins);
         if(!b) throw new IllegalArgumentException();
 
         bPins = new ArrayList<>(bPins.size());
