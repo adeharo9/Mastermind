@@ -1,9 +1,8 @@
 package domain.controllers;
 
-import domain.classes.Board;
-import domain.classes.Game;
-import domain.classes.Player;
-import domain.classes.Turn;
+import domain.classes.*;
+import exceptions.WrongPassword;
+import exceptions.WrongUsername;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -50,7 +49,26 @@ public class DomainController
 
     public boolean logIn()
     {
+        boolean b;
         Pair<String, String> userInfo = presentationController.logInMenu();
+        Player player = playerPersistence.load(userInfo.first);
+
+        try
+        {
+            b = player.isValid();
+            if (!b) throw new WrongUsername();
+
+            b = ((Human) player).checkPassword(userInfo.second);
+            if (!b) throw new WrongPassword();
+        }
+        catch(WrongUsername wU)
+        {
+
+        }
+        catch(WrongPassword wP)
+        {
+
+        }
 
         return loggedPlayerController.logIn(userInfo.first, userInfo.second);
     }
