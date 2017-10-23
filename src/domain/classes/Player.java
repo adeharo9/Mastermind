@@ -25,22 +25,13 @@ public abstract class Player implements DeepCopyable
         points = 0;
     }
 
-    public Player (Player player)
+    public Player (Player player) throws Exception
     {
-        boolean b;
+        boolean b = setId(player.getId());
+        if (!b) throw new IllegalArgumentException();
 
-        try
-        {
-            b = setId(player.getId());
-            if (!b) throw new Exception("");
-
-            b = setPoints(player.getPoints());
-            if (!b) throw new Exception("");
-        }
-        catch(Exception e)
-        {
-            ioUtils.printErrLn(e.getMessage());
-        }
+        b = setPoints(player.getPoints());
+        if (!b) throw new IllegalArgumentException();
     }
 
     /* SET METHODS */
