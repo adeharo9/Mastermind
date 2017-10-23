@@ -1,6 +1,7 @@
 package util;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Utils
 {
@@ -37,5 +38,10 @@ public abstract class Utils
         }
 
         return b;
+    }
+
+    public static int autoID()
+    {
+        return ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
     }
 }
