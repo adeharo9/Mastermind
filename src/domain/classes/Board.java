@@ -1,6 +1,5 @@
 package domain.classes;
 
-import sun.reflect.annotation.ExceptionProxy;
 import util.*;
 import java.util.*;
 
@@ -10,6 +9,29 @@ public class Board implements DeepCopyable
 
     private int nColumns;
     private int maxAttempts;
+
+    public static int getNColumnsByDifficulty(Difficulty difficulty)
+    {
+        int nColumns;
+
+        switch(difficulty)
+        {
+            case easy:
+                nColumns = 4;
+                break;
+            case medium:
+                nColumns = 4;
+                break;
+            case hard:
+                nColumns = 6;
+                break;
+            default:
+                nColumns = -1;
+                break;
+        }
+
+        return nColumns;
+    }
 
     private Code code;
     private ArrayList<Turn> turnSet;
@@ -60,7 +82,7 @@ public class Board implements DeepCopyable
 
     public Board (Board board) throws Exception
     {
-        boolean b = setNColors (board.getNColumns());
+        boolean b = setNColumns(board.getNColumns());
         if (!b) throw new IllegalArgumentException();
 
         b = setMaxAttempts (board.getMaxAttempts());
@@ -75,7 +97,7 @@ public class Board implements DeepCopyable
 
     /* SET METHODS */
 
-    public boolean setNColors (int nColumns)
+    public boolean setNColumns(int nColumns)
     {
         boolean b = isValidNColumns(nColumns);
 

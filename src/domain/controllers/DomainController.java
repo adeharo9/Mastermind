@@ -18,6 +18,7 @@ public class DomainController
     private PresentationController presentationController;
 
     private BoardController boardController;
+    private GameController gameController;
     private PlayerController loggedPlayerController;
     private ArrayList<PlayerController> playingPlayerControllers;
 
@@ -32,9 +33,10 @@ public class DomainController
 
         presentationController = new PresentationController();
 
+        boardController = new BoardController();
+        gameController = new GameController();
         loggedPlayerController = new HumanController();
         playingPlayerControllers = new ArrayList<>();
-        boardController = new BoardController();
 
         boardPersistence = new BoardPersistence();
         gamePersistence = new GamePersistence();
@@ -79,7 +81,8 @@ public class DomainController
         gameMode = presentationController.gameModeSelectionMenu();
         gameDifficulty = presentationController.gameDifficultySelectionMenu();
 
-
+        //boardController.newBoard();
+        //gameController.newGame();
     }
 
 //    public void loadGame(String id)

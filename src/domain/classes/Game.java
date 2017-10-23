@@ -140,7 +140,7 @@ public class Game implements DeepCopyable
         return b;
     }
 
-    public boolean setBoard(Board board)
+    public boolean setBoard(Board board) throws Exception
     {
         boolean b = board.isValid();
 

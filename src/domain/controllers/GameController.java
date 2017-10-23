@@ -2,6 +2,7 @@ package domain.controllers;
 
 import domain.classes.Game;
 import domain.classes.Player;
+import util.Difficulty;
 import util.Pair;
 import util.Role;
 
@@ -13,12 +14,19 @@ public class GameController
 
     public GameController()
     {
-        game = new Game();
+        game = null;
     }
 
-    public boolean newGame(String difficulty, Pair<Player, Role> playerAndRole)
+    public boolean newGame(Difficulty difficulty, Pair<Player, Role> playerRolePair)
     {
+        game = new Game();
 
-        return true;
+        game.setId(0);
+        game.setDifficulty(difficulty);
+        game.setTime();
+
+        game.addPlayerRolePair(playerRolePair);
+
+        return game.isValid();
     }
 }
