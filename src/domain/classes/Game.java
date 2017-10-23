@@ -60,6 +60,13 @@ public class Game implements DeepCopyable
         playerRolePairs = new ArrayList<>();
     }
 
+    public Game(int id, Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    {
+        setId(id);
+        setDifficulty(difficulty);
+        setTime();
+    }
+
     public Game(Game game) throws IllegalArgumentException, NullPointerException
     {
         setId(game.getId());
