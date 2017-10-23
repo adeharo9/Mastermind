@@ -6,8 +6,23 @@ import persistence.PlayerPersistence;
 
 public abstract class PlayerController
 {
+    /* ATTRIBUTES */
+
     protected Player player;
     protected PlayerPersistence playerPersistence;
+
+    /* CONSTRUCTION METHODS */
+
+    /* SET METHODS */
+
+    /* GET METHODS */
+
+    public Player getPlayer()
+    {
+        return player;
+    }
+
+    /* OTHER METHODS */
 
     public abstract Action play();
 
