@@ -1,6 +1,9 @@
 package persistence;
 
 import domain.classes.Game;
+import util.Translate;
+import util.Utils;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -38,7 +41,7 @@ public class GamePersistence extends AbstractPersistence
                 File dif = new File(difficulty);
                 BufferedWriter bw;
                 bw = new BufferedWriter(new FileWriter(dif));
-                bw.write(Integer.toString(((Game) game).getDifficulty()));
+                bw.write(Integer.toString(Translate.difficulty2Int(((Game) game).getDifficulty())));
                 File t = new File(time);
                 bw = new BufferedWriter(new FileWriter(t));
                 bw.write(Long.toString(((Game) game).getTime()));
