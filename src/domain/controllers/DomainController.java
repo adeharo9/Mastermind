@@ -77,15 +77,18 @@ public class DomainController
     public void newGame()
     {
         int gameMode = presentationController.gameModeSelectionMenu();
-        int gameDifficulty = presentationController.gameDifficultySelectionMenu();
-
         Role role = Translate.int2Role(gameMode);
+
+        int gameDifficulty = presentationController.gameDifficultySelectionMenu();
         Difficulty difficulty = Translate.int2Difficulty(gameDifficulty);
 
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
+        playingPlayerControllers.add(loggedPlayerController);
+        playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
 
         PlayerController playerController = new CPUController();
         Player player = playerController.newPlayer(Utils.autoID());
+        playingPlayerControllers.add(playerController);
 
         switch(role)
         {
@@ -101,6 +104,7 @@ public class DomainController
                 PlayerController playerController1 = new CPUController();
                 Player player1 = playerController1.newPlayer(Utils.autoID());
 
+                playingPlayerControllers.add(playerController1);
                 playerRolePairs.add(new Pair<>(player, Role.codeMaker));
                 playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
                 break;
