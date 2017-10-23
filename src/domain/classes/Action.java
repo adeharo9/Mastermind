@@ -27,6 +27,11 @@ public class Action implements DeepCopyable
 
     /* TESTING METHODS */
 
+    public boolean isValid()
+    {
+        return combination != null;
+    }
+
     /* CLONING METHODS */
 
     public Action deepCopy()
