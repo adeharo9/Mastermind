@@ -108,6 +108,14 @@ public class Game implements DeepCopyable
         this.board = board.deepCopy();
     }
 
+    public void setBoardByReference(Board board) throws IllegalArgumentException, NullPointerException
+    {
+        boolean b = board.isValid();
+        if(!b) throw new IllegalArgumentException();
+
+        this.board = board;
+    }
+
     public void setPlayerRolePairs(ArrayList<Pair<Player, Role>> playerRolePairs) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPlayerRolePairs(playerRolePairs);
