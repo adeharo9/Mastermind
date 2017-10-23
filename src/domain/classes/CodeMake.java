@@ -14,7 +14,7 @@ public class CodeMake extends Action implements DeepCopyable
         super();
     }
 
-    public CodeMake(CodeMake codeMake)
+    public CodeMake(CodeMake codeMake) throws Exception
     {
         super(codeMake);
     }
@@ -27,7 +27,7 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeMake deepCopy()
+    public CodeMake deepCopy() throws Exception
     {
         return new CodeMake(this);
     }

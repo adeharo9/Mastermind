@@ -16,14 +16,32 @@ public class Action implements DeepCopyable
 
     }
 
-    public Action(Action action)
+    public Action(Action action) throws Exception
     {
-        combination = action.combination.deepCopy();
+        boolean b = setCombination(action.getCombination());
+        if(!b) throw new IllegalArgumentException();
     }
 
     /* SET METHODS */
 
+    public boolean setCombination(Combination combination) throws Exception
+    {
+        boolean b = combination != null && combination.isValid();
+
+        if(b)
+        {
+            this.combination = combination.deepCopy();
+        }
+
+        return b;
+    }
+
     /* GET METHODS */
+
+    public Combination getCombination()
+    {
+        return combination;
+    }
 
     /* TESTING METHODS */
 
@@ -34,7 +52,7 @@ public class Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public Action deepCopy()
+    public Action deepCopy() throws Exception
     {
         return new Action(this);
     }

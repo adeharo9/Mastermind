@@ -14,7 +14,7 @@ public class CodeCorrect extends Action implements DeepCopyable
         super();
     }
 
-    public CodeCorrect(CodeCorrect codeCorrect)
+    public CodeCorrect(CodeCorrect codeCorrect) throws Exception
     {
         super(codeCorrect);
     }
@@ -27,7 +27,7 @@ public class CodeCorrect extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeCorrect deepCopy()
+    public CodeCorrect deepCopy() throws Exception
     {
         return new CodeCorrect(this);
     }

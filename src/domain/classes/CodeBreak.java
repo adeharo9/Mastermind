@@ -14,7 +14,7 @@ public class CodeBreak extends Action implements DeepCopyable
         super();
     }
 
-    public CodeBreak(CodeBreak codeBreak)
+    public CodeBreak(CodeBreak codeBreak) throws Exception
     {
         super(codeBreak);
     }
@@ -27,7 +27,7 @@ public class CodeBreak extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
-    public CodeBreak deepCopy()
+    public CodeBreak deepCopy() throws Exception
     {
         return new CodeBreak(this);
     }
