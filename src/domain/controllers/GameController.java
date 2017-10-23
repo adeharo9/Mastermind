@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import domain.classes.Board;
 import domain.classes.Game;
 import domain.classes.Player;
 import util.Difficulty;
@@ -17,7 +18,7 @@ public class GameController
         game = null;
     }
 
-    public boolean newGame(Difficulty difficulty, Pair<Player, Role> playerRolePair)
+    public boolean newGame(Difficulty difficulty, Board board, Pair<Player, Role> playerRolePair)
     {
         game = new Game();
 
@@ -25,7 +26,8 @@ public class GameController
         game.setDifficulty(difficulty);
         game.setTime();
 
-        game.addPlayerRolePair(playerRolePair);
+        game.setBoardByReference(board);
+        game.addPlayerRolePairByReference(playerRolePair);
 
         return game.isValid();
     }
