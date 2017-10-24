@@ -1,9 +1,10 @@
 package domain.controllers;
 
 import domain.classes.*;
-import exceptions.UsernameAlreadyExists;
+import exceptions.CorruptedData;
+import exceptions.FileAlreadyExists;
 import exceptions.WrongPassword;
-import exceptions.UsernameDoesNotExist;
+import exceptions.FileDoesNotExist;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -48,26 +49,28 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logIn() throws UsernameDoesNotExist, WrongPassword
+    public void logIn() throws CorruptedData, FileDoesNotExist, WrongPassword
     {
-        boolean b;
         Pair<String, String> userInfo = presentationController.logInMenu();
+
         Player player = playerPersistence.load(userInfo.first);
 
-        b = player.isValid();
-        if (!b) throw new UsernameDoesNotExist();
+        boolean b = player.isValid();
+        if (!b) throw new CorruptedData();
 
         b = ((Human) player).checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
     }
 
-    public void registerUser() throws UsernameAlreadyExists
+    public void registerUser() throws FileAlreadyExists
     {
         Pair<String, String> userInfo = presentationController.registerUserMenu();
+
         boolean b = playerPersistence.exists(userInfo.first);
-        if(b) throw new UsernameAlreadyExists();
+        if(b) throw new FileAlreadyExists();
 
-
+        Player player = loggedPlayerController.newPlayer(Utils.autoID());
+        playerPersistence.save(player);
     }
 
     public void newGame()
@@ -146,7 +149,7 @@ public class DomainController
 
     }
 
-    public void exe()
+    public void exe() throws CorruptedData
     {
         int returnState;
 
@@ -185,7 +188,7 @@ public class DomainController
                         registerUser();
                         state = State.gameSelection;
                     }
-                    catch(UsernameAlreadyExists e){}
+                    catch(FileAlreadyExists e){}
 
                     break;
 
@@ -195,7 +198,7 @@ public class DomainController
                         logIn();
                         state = State.gameSelection;
                     }
-                    catch(UsernameDoesNotExist | WrongPassword e){}
+                    catch(FileDoesNotExist | WrongPassword e){}
 
                     break;
 
