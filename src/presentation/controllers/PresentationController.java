@@ -16,6 +16,13 @@ public class PresentationController
 
     /* METHODS */
 
+    public void wrongOption()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong option number.");
+        ioUtils.endLine();
+    }
+
     public int initialMenu () throws NumberFormatException
     {
         // Menu inicial: iniciar sesion/registrar jugador
