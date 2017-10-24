@@ -51,26 +51,40 @@ public class DomainController
 
     public void logIn() throws IntegrityCorruption, FileDoesNotExist, WrongPassword
     {
-        Pair<String, String> userInfo = presentationController.logInMenu();
+        try
+        {
+            Pair<String, String> userInfo = presentationController.logInMenu();
 
-        Player player = playerPersistence.load(userInfo.first);
+            Player player = playerPersistence.load(userInfo.first);
 
-        boolean b = player.isValid();
-        if (!b) throw new IntegrityCorruption();
+            boolean b = player.isValid();
+            if (!b) throw new IntegrityCorruption();
 
-        b = ((Human) player).checkPassword(userInfo.second);
-        if (!b) throw new WrongPassword();
+            b = ((Human) player).checkPassword(userInfo.second);
+            if (!b) throw new WrongPassword();
+        }
+        catch(NumberFormatException e)
+        {
+            presentationController.wrongOption();
+        }
     }
 
     public void registerUser() throws FileAlreadyExists
     {
-        Pair<String, String> userInfo = presentationController.registerUserMenu();
+        try
+        {
+            Pair<String, String> userInfo = presentationController.registerUserMenu();
 
-        boolean b = playerPersistence.exists(userInfo.first);
-        if(b) throw new FileAlreadyExists();
+            boolean b = playerPersistence.exists(userInfo.first);
+            if(b) throw new FileAlreadyExists();
 
-        Player player = loggedPlayerController.newPlayer(Utils.autoID());
-        playerPersistence.save(player);
+            Player player = loggedPlayerController.newPlayer(Utils.autoID());
+            playerPersistence.save(player);
+        }
+        catch(NumberFormatException e)
+        {
+            presentationController.wrongOption();
+        }
     }
 
     public void newGame()
@@ -163,21 +177,28 @@ public class DomainController
                     break;
 
                 case initSession:
-                    returnState = presentationController.initialMenu();
-
-                    switch(returnState)
+                    try
                     {
-                        case 0:
-                            state = State.endProgram;
-                            break;
-                        case 1:
-                            state = State.registerUser;
-                            break;
-                        case 2:
-                            state = State.logInUser;
-                            break;
-                        default:
-                            break;
+                        returnState = presentationController.initialMenu();
+
+                        switch(returnState)
+                        {
+                            case 0:
+                                state = State.endProgram;
+                                break;
+                            case 1:
+                                state = State.registerUser;
+                                break;
+                            case 2:
+                                state = State.logInUser;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        presentationController.wrongOption();
                     }
 
                     break;
