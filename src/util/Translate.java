@@ -93,4 +93,101 @@ public abstract class Translate
 
         return rol;
     }
+
+    public static State int2StateInitSession(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch(stat)
+        {
+            case 0:
+                state = State.endProgram;
+                break;
+            case 1:
+                state = State.registerUser;
+                break;
+            case 2:
+                state = State.logInUser;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateGameSelection(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch(stat)
+        {
+            case 0:
+                state = State.initSession;
+                break;
+            case 1:
+                state = State.newGame;
+                break;
+            case 2:
+                state = State.loadGame;
+                break;
+            case 3:
+                state = State.checkRanking;
+                break;
+            case 4:
+                state = State.checkInfo;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StatePlaySelection(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch(stat)
+        {
+            case 0:
+                state = State.playTurn;
+                break;
+            case 1:
+                state = State.gamePause;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateGamePause(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch(stat)
+        {
+            case 0:
+                state = State.playSelection;
+                break;
+            case 1:
+                state = State.saveGameAndContinue;
+                break;
+            case 2:
+                state = State.saveGameAndExit;
+                break;
+            case 3:
+                state = State.exitGameWithoutSaving;
+                break;
+            case 4:
+                state = State.askForClue;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
 }
