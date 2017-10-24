@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import util.Pair;
+import util.ioUtils;
 
 public class PresentationController
 {
@@ -15,7 +16,7 @@ public class PresentationController
 
     /* METHODS */
 
-    public int initialMenu ()
+    public int initialMenu () throws NumberFormatException
     {
         // Menu inicial: iniciar sesion/registrar jugador
         ioUtils.printOutLn ("1.- Register user");
@@ -23,10 +24,10 @@ public class PresentationController
         ioUtils.printOutLn ("0.- Close");
         ioUtils.endLine();
         ioUtils.printOut("Select an option: ");
-        return ioUtils.input();
+        return Integer.parseInt(ioUtils.input());
     }
 
-    public int gameSelectionMenu()
+    public int gameSelectionMenu() throws NumberFormatException
     {
         // Menú de seleccion: cargar partida, partida nueva, etc.
         ioUtils.printOutLn ("1.- New game");
@@ -36,10 +37,10 @@ public class PresentationController
         ioUtils.printOutLn ("0.- Log out");
         ioUtils.endLine();
         ioUtils.printOut("Select an option: ");
-        return ioUtils.input();
+        return Integer.parseInt(ioUtils.input());
     }
 
-    public int gameModeSelectionMenu()
+    public int gameModeSelectionMenu() throws NumberFormatException
     {
         // Menú de selección de modo de juego: codebreaker, codemaker, etc.
         ioUtils.endLine();
@@ -48,10 +49,10 @@ public class PresentationController
         ioUtils.printOutLn ("0.- Back");
         ioUtils.endLine();
         ioUtils.printOut("Select game mode: ");
-        return ioUtils.input();
+        return Integer.parseInt(ioUtils.input());
     }
 
-    public int gameDifficultySelectionMenu()
+    public int gameDifficultySelectionMenu() throws NumberFormatException
     {
         // Menú de selección de dificultad de juego: fácil, medio, difícil, etc.
         ioUtils.endLine();
@@ -61,7 +62,7 @@ public class PresentationController
         ioUtils.printOutLn ("0.- Back");
         ioUtils.endLine();
         ioUtils.printOut("Select difficulty: ");
-        return ioUtils.input();
+        return Integer.parseInt(ioUtils.input());
     }
 
     public int inGameMenu()
