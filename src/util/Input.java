@@ -23,8 +23,15 @@ public abstract class Input
             buffer = new ArrayList<>(Arrays.asList(scanner.nextLine().split(" ")));
         }
 
-        next = buffer.get(0);
-        buffer.remove(0);
+        if(!isEmpty())
+        {
+            next = buffer.get(0);
+            buffer.remove(0);
+        }
+        else
+        {
+            next = "";
+        }
 
         return next;
     }
