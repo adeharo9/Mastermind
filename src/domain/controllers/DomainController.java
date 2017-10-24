@@ -1,7 +1,7 @@
 package domain.controllers;
 
 import domain.classes.*;
-import exceptions.CorruptedData;
+import exceptions.IntegrityCorruption;
 import exceptions.FileAlreadyExists;
 import exceptions.WrongPassword;
 import exceptions.FileDoesNotExist;
@@ -49,14 +49,14 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logIn() throws CorruptedData, FileDoesNotExist, WrongPassword
+    public void logIn() throws IntegrityCorruption, FileDoesNotExist, WrongPassword
     {
         Pair<String, String> userInfo = presentationController.logInMenu();
 
         Player player = playerPersistence.load(userInfo.first);
 
         boolean b = player.isValid();
-        if (!b) throw new CorruptedData();
+        if (!b) throw new IntegrityCorruption();
 
         b = ((Human) player).checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
@@ -149,7 +149,7 @@ public class DomainController
 
     }
 
-    public void exe() throws CorruptedData
+    public void exe() throws IntegrityCorruption
     {
         int returnState;
 

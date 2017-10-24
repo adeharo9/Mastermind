@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.classes.Board;
+import exceptions.IntegrityCorruption;
 
 public class BoardPersistence extends AbstractPersistence
 {
@@ -27,5 +28,10 @@ public class BoardPersistence extends AbstractPersistence
     public boolean save(Object board)
     {
         return saveBoard((Board) board);
+    }
+
+    public void checkIntegrity() throws IntegrityCorruption
+    {
+
     }
 }

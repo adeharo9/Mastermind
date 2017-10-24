@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.classes.Game;
+import exceptions.IntegrityCorruption;
 import util.Translate;
 import util.Utils;
 
@@ -20,9 +21,17 @@ public class GamePersistence extends AbstractPersistence
 
     public Game load(String id)
     {
-
-
-        return new Game();
+        File fileGame = new File(basePath + gamesPath + id);
+        Game load = new Game();
+        try {
+            FileInputStream in = new FileInputStream(fileGame);
+            ObjectInputStream s = new ObjectInputStream(in);
+            load = (Game)s.readObject();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return load;
     }
 
     private void firstTime(File f){
@@ -35,7 +44,7 @@ public class GamePersistence extends AbstractPersistence
     }
 
     public boolean save(Object game) {
-        String nameFile = Integer.toString(((Game) game).getId());
+        String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
         File fileGame = new File(basePath + gamesPath + nameFile);
         if(!fileGame.exists()) firstTime(fileGame);
         try {
@@ -48,5 +57,10 @@ public class GamePersistence extends AbstractPersistence
 
         }
         return fileGame.exists();
+    }
+
+    public void checkIntegrity() throws IntegrityCorruption
+    {
+
     }
 }
