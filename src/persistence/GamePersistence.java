@@ -16,6 +16,11 @@ public class GamePersistence extends AbstractPersistence
 
     }
 
+    public boolean exists(String key)
+    {
+        return true;
+    }
+
     public Game load(Object id)
     {
 

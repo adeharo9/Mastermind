@@ -9,6 +9,11 @@ public class BoardPersistence extends AbstractPersistence
 
     }
 
+    public boolean exists(String key)
+    {
+        return true;
+    }
+
     public Board load(Object key)
     {
         return new Board();

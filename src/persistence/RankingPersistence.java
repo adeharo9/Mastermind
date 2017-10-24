@@ -9,6 +9,11 @@ public class RankingPersistence extends AbstractPersistence
 
     }
 
+    public boolean exists(String key)
+    {
+        return true;
+    }
+
     public Ranking load(Object object)
     {
         return new Ranking();

@@ -10,6 +10,11 @@ public class PlayerPersistence extends AbstractPersistence
 
     }
 
+    public boolean exists(String key)
+    {
+        return true;
+    }
+
     public Player load(Object object)
     {
         Player player = new Human();
