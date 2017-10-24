@@ -61,12 +61,13 @@ public class DomainController
         if (!b) throw new WrongPassword();
     }
 
-    public boolean registerUser() throws UsernameAlreadyExists
+    public void registerUser() throws UsernameAlreadyExists
     {
-        Pair<String, String> userInfo;
+        Pair<String, String> userInfo = presentationController.registerUserMenu();
+        boolean b = playerPersistence.exists(userInfo.first);
+        if(b) throw new UsernameAlreadyExists();
 
-        userInfo = presentationController.registerUserMenu();
-        return loggedPlayerController.registerUser(userInfo.first, userInfo.second);
+
     }
 
     public void newGame()
