@@ -4,7 +4,6 @@ import domain.classes.Action;
 import domain.classes.CodeBreak;
 import domain.classes.Human;
 import domain.classes.Player;
-import exceptions.UsernameDoesNotExist;
 
 public class HumanController extends PlayerController
 {
