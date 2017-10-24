@@ -89,46 +89,53 @@ public class DomainController
 
     public void newGame()
     {
-        int gameMode = presentationController.gameModeSelectionMenu();
-        Role role = Translate.int2Role(gameMode);
-
-        int gameDifficulty = presentationController.gameDifficultySelectionMenu();
-        Difficulty difficulty = Translate.int2Difficulty(gameDifficulty);
-
-        ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
-        playingPlayerControllers.add(loggedPlayerController);
-        playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
-
-        PlayerController playerController = new CPUController();
-        Player player = playerController.newPlayer(Utils.autoID());
-        playingPlayerControllers.add(playerController);
-
-        switch(role)
+        try
         {
-            case codeMaker:
-                playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
-                break;
+            int gameMode = presentationController.gameModeSelectionMenu();
+            Role role = Translate.int2Role(gameMode);
 
-            case codeBreaker:
-                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
-                break;
+            int gameDifficulty = presentationController.gameDifficultySelectionMenu();
+            Difficulty difficulty = Translate.int2Difficulty(gameDifficulty);
 
-            case watcher:
-                PlayerController playerController1 = new CPUController();
-                Player player1 = playerController1.newPlayer(Utils.autoID());
+            ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
+            playingPlayerControllers.add(loggedPlayerController);
+            playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
 
-                playingPlayerControllers.add(playerController1);
-                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
-                playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
-                break;
+            PlayerController playerController = new CPUController();
+            Player player = playerController.newPlayer(Utils.autoID());
+            playingPlayerControllers.add(playerController);
 
-            default:
-                break;
+            switch(role)
+            {
+                case codeMaker:
+                    playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
+                    break;
+
+                case codeBreaker:
+                    playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                    break;
+
+                case watcher:
+                    PlayerController playerController1 = new CPUController();
+                    Player player1 = playerController1.newPlayer(Utils.autoID());
+
+                    playingPlayerControllers.add(playerController1);
+                    playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                    playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
+                    break;
+
+                default:
+                    break;
+            }
+
+            Board board = boardController.newBoard(difficulty);
+
+            Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
         }
-
-        Board board = boardController.newBoard(difficulty);
-
-        Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
+        catch(NumberFormatException e)
+        {
+            presentationController.wrongOption();
+        }
     }
 
 //    public void loadGame(String id)
@@ -180,23 +187,9 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.initialMenu();
-
-                        switch(returnState)
-                        {
-                            case 0:
-                                state = State.endProgram;
-                                break;
-                            case 1:
-                                state = State.registerUser;
-                                break;
-                            case 2:
-                                state = State.logInUser;
-                                break;
-                            default:
-                                break;
-                        }
+                        state = Translate.int2StateInitSession(returnState);
                     }
-                    catch(NumberFormatException e)
+                    catch(IllegalArgumentException e)
                     {
                         presentationController.wrongOption();
                     }
@@ -224,27 +217,14 @@ public class DomainController
                     break;
 
                 case gameSelection:
-                    returnState = presentationController.gameSelectionMenu();
-
-                    switch(returnState)
+                    try
                     {
-                        case 0:
-                            state = State.initSession;
-                            break;
-                        case 1:
-                            state = State.newGame;
-                            break;
-                        case 2:
-                            state = State.loadGame;
-                            break;
-                        case 3:
-                            state = State.checkRanking;
-                            break;
-                        case 4:
-                            state = State.checkInfo;
-                            break;
-                        default:
-                            break;
+                        returnState = presentationController.gameSelectionMenu();
+                        state = Translate.int2StateGameSelection(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.wrongOption();
                     }
 
                     break;
@@ -282,20 +262,14 @@ public class DomainController
                     break;
 
                 case playSelection:
-                    returnState = presentationController.inGameMenu();
-
-                    switch(returnState)
+                    try
                     {
-                        case 0:
-                            break;
-                        case 1:
-                            state = State.playTurn;
-                            break;
-                        case 2:
-                            state = State.gamePause;
-                            break;
-                        default:
-                            break;
+                        returnState = presentationController.inGameMenu();
+                        state = Translate.int2StatePlaySelection(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.wrongOption();
                     }
 
                     break;
@@ -307,27 +281,14 @@ public class DomainController
                     break;
 
                 case gamePause:
-                    returnState = presentationController.pauseMenu();
-
-                    switch(returnState)
+                    try
                     {
-                        case 0:
-                            state = State.playSelection;
-                            break;
-                        case 1:
-                            state = State.saveGameAndContinue;
-                            break;
-                        case 2:
-                            state = State.saveGameAndExit;
-                            break;
-                        case 3:
-                            state = State.exitGameWithoutSaving;
-                            break;
-                        case 4:
-                            state = State.askForClue;
-                            break;
-                        default:
-                            break;
+                        returnState = presentationController.pauseMenu();
+                        state = Translate.int2StateGamePause(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.wrongOption();
                     }
 
                     break;
