@@ -1,8 +1,9 @@
 package domain.controllers;
 
 import domain.classes.*;
+import exceptions.UsernameAlreadyExists;
 import exceptions.WrongPassword;
-import exceptions.WrongUsername;
+import exceptions.UsernameDoesNotExist;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -47,33 +48,20 @@ public class DomainController
 
     /* EXECUTE */
 
-    public boolean logIn()
+    public void logIn() throws UsernameDoesNotExist, WrongPassword
     {
         boolean b;
         Pair<String, String> userInfo = presentationController.logInMenu();
         Player player = playerPersistence.load(userInfo.first);
 
-        try
-        {
-            b = player.isValid();
-            if (!b) throw new WrongUsername();
+        b = player.isValid();
+        if (!b) throw new UsernameDoesNotExist();
 
-            b = ((Human) player).checkPassword(userInfo.second);
-            if (!b) throw new WrongPassword();
-        }
-        catch(WrongUsername wU)
-        {
-
-        }
-        catch(WrongPassword wP)
-        {
-
-        }
-
-        return loggedPlayerController.logIn(userInfo.first, userInfo.second);
+        b = ((Human) player).checkPassword(userInfo.second);
+        if (!b) throw new WrongPassword();
     }
 
-    public boolean registerUser()
+    public boolean registerUser() throws UsernameAlreadyExists
     {
         Pair<String, String> userInfo;
 
@@ -191,14 +179,22 @@ public class DomainController
                     break;
 
                 case registerUser:
-                    registerUser();
-                    state = State.gameSelection;
+                    try
+                    {
+                        registerUser();
+                        state = State.gameSelection;
+                    }
+                    catch(UsernameAlreadyExists e){}
 
                     break;
 
                 case logInUser:
-                    logIn();
-                    state = State.gameSelection;
+                    try
+                    {
+                        logIn();
+                        state = State.gameSelection;
+                    }
+                    catch(UsernameDoesNotExist | WrongPassword e){}
 
                     break;
 
