@@ -3,6 +3,7 @@ package persistence;
 import domain.classes.Human;
 import domain.classes.Player;
 import exceptions.FileDoesNotExist;
+import exceptions.IntegrityCorruption;
 
 public class PlayerPersistence extends AbstractPersistence
 {
@@ -28,5 +29,10 @@ public class PlayerPersistence extends AbstractPersistence
     public boolean save(Object player)
     {
         return true;
+    }
+
+    public void checkIntegrity() throws IntegrityCorruption
+    {
+
     }
 }
