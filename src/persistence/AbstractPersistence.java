@@ -17,6 +17,8 @@ public abstract class AbstractPersistence
 
     public abstract boolean save(Object object) throws FileAlreadyExists;
 
+    public abstract void delete(String key) throws FileDoesNotExist;
+
     public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
     {
 

@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.classes.Ranking;
+import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
 
 public class RankingPersistence extends AbstractPersistence
@@ -23,6 +24,11 @@ public class RankingPersistence extends AbstractPersistence
     public boolean save(Object ranking)
     {
         return true;
+    }
+
+    public void delete(String key) throws FileDoesNotExist
+    {
+
     }
 
     public void checkIntegrity() throws IntegrityCorruption

@@ -30,6 +30,11 @@ public class PlayerPersistence extends AbstractPersistence
         return true;
     }
 
+    public void delete(String key) throws FileDoesNotExist
+    {
+
+    }
+
     public void checkIntegrity() throws IntegrityCorruption
     {
 

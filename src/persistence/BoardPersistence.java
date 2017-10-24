@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.classes.Board;
+import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
 
 public class BoardPersistence extends AbstractPersistence
@@ -28,6 +29,11 @@ public class BoardPersistence extends AbstractPersistence
     public boolean save(Object board)
     {
         return saveBoard((Board) board);
+    }
+
+    public void delete(String key) throws FileDoesNotExist
+    {
+
     }
 
     public void checkIntegrity() throws IntegrityCorruption
