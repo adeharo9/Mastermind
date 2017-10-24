@@ -22,8 +22,7 @@ public class PlayerPersistence extends AbstractPersistence
         boolean b = exists(key);
         if(!b) throw new FileDoesNotExist();
 
-        int id = Integer.parseInt(key);
-        return new Human(id);
+        return new Human();
     }
 
     public boolean save(Object player)
