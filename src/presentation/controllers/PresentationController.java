@@ -65,24 +65,24 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public int inGameMenu()
+    public int inGameMenu() throws NumberFormatException
     {
         // Menu de seleccion de accion en el juego: tirar turno o bien pausa
         return 0;
     }
 
-    public int pauseMenu()
+    public int pauseMenu() throws NumberFormatException
     {
         // Menu de pausa del juego: guardar partida, salir, etc
         return 0;
     }
 
-    public Pair<String, String> logInMenu()
+    public Pair<String, String> logInMenu() throws NumberFormatException
     {
         return new Pair<>("", "");
     }
 
-    public Pair<String, String> registerUserMenu()
+    public Pair<String, String> registerUserMenu() throws NumberFormatException
     {
         return new Pair<>("", "");
     }
