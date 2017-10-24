@@ -21,9 +21,16 @@ public class GamePersistence extends AbstractPersistence
     public Game load(String id)
     {
         File fileGame = new File(basePath + gamesPath + id);
-        FileInputStream in = new FileInputStream(fileGame);
-        ObjectInputStream s = new ObjectInputStream(in);
-        return (Game)s.readObject();;
+        Game load = new Game();
+        try {
+            FileInputStream in = new FileInputStream(fileGame);
+            ObjectInputStream s = new ObjectInputStream(in);
+            load = (Game)s.readObject();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return load;
     }
 
     private void firstTime(File f){
