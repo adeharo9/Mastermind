@@ -2,6 +2,7 @@ package persistence;
 
 import exceptions.FileAlreadyExists;
 import exceptions.FileDoesNotExist;
+import exceptions.IntegrityCorruption;
 
 public abstract class AbstractPersistence
 {
@@ -15,4 +16,9 @@ public abstract class AbstractPersistence
     public abstract Object load(String key) throws FileDoesNotExist;
 
     public abstract boolean save(Object object) throws FileAlreadyExists;
+
+    public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
+    {
+
+    }
 }

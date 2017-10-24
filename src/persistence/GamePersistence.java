@@ -1,6 +1,7 @@
 package persistence;
 
 import domain.classes.Game;
+import exceptions.IntegrityCorruption;
 import util.Translate;
 import util.Utils;
 
@@ -56,5 +57,10 @@ public class GamePersistence extends AbstractPersistence
 
         }
         return fileGame.exists();
+    }
+
+    public void checkIntegrity() throws IntegrityCorruption
+    {
+
     }
 }
