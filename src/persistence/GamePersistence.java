@@ -20,9 +20,10 @@ public class GamePersistence extends AbstractPersistence
 
     public Game load(String id)
     {
-
-
-        return new Game();
+        File fileGame = new File(basePath + gamesPath + id);
+        FileInputStream in = new FileInputStream(fileGame);
+        ObjectInputStream s = new ObjectInputStream(in);
+        return (Game)s.readObject();;
     }
 
     private void firstTime(File f){
@@ -35,7 +36,7 @@ public class GamePersistence extends AbstractPersistence
     }
 
     public boolean save(Object game) {
-        String nameFile = Integer.toString(((Game) game).getId());
+        String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
         File fileGame = new File(basePath + gamesPath + nameFile);
         if(!fileGame.exists()) firstTime(fileGame);
         try {
