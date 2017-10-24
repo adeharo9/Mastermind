@@ -18,25 +18,50 @@ public class PresentationController
     public int initialMenu ()
     {
         // Menu inicial: iniciar sesion/registrar jugador
-        return 0;
+        ioUtils.printOutLn ("1.- Register user");
+        ioUtils.printOutLn ("2.- Log in");
+        ioUtils.printOutLn ("0.- Close");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+        return ioUtils.input();
     }
 
     public int gameSelectionMenu()
     {
         // Menú de seleccion: cargar partida, partida nueva, etc.
-        return 0;
+        ioUtils.printOutLn ("1.- New game");
+        ioUtils.printOutLn ("2.- Load game");
+        ioUtils.printOutLn ("3.- Ranking");
+        ioUtils.printOutLn ("4.- Info");
+        ioUtils.printOutLn ("0.- Log out");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+        return ioUtils.input();
     }
 
     public int gameModeSelectionMenu()
     {
         // Menú de selección de modo de juego: codebreaker, codemaker, etc.
-        return 0;
+        ioUtils.endLine();
+        ioUtils.printOutLn ("1.- Codemaker");
+        ioUtils.printOutLn ("2.- Codebreaker");
+        ioUtils.printOutLn ("0.- Back");
+        ioUtils.endLine();
+        ioUtils.printOut("Select game mode: ");
+        return ioUtils.input();
     }
 
     public int gameDifficultySelectionMenu()
     {
         // Menú de selección de dificultad de juego: fácil, medio, difícil, etc.
-        return 0;
+        ioUtils.endLine();
+        ioUtils.printOutLn ("1.- Easy");
+        ioUtils.printOutLn ("2.- Medium");
+        ioUtils.printOutLn ("3.- Hard");
+        ioUtils.printOutLn ("0.- Back");
+        ioUtils.endLine();
+        ioUtils.printOut("Select difficulty: ");
+        return ioUtils.input();
     }
 
     public int inGameMenu()
