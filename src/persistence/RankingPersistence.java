@@ -14,7 +14,7 @@ public class RankingPersistence extends AbstractPersistence
         return true;
     }
 
-    public Ranking load(Object object)
+    public Ranking load(String key)
     {
         return new Ranking();
     }

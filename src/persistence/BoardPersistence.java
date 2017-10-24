@@ -14,7 +14,7 @@ public class BoardPersistence extends AbstractPersistence
         return true;
     }
 
-    public Board load(Object key)
+    public Board load(String key)
     {
         return new Board();
     }

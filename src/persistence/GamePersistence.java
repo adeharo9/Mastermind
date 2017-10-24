@@ -21,7 +21,7 @@ public class GamePersistence extends AbstractPersistence
         return true;
     }
 
-    public Game load(Object id)
+    public Game load(String id)
     {
 
 

@@ -2,6 +2,7 @@ package persistence;
 
 import domain.classes.Human;
 import domain.classes.Player;
+import exceptions.FileDoesNotExist;
 
 public class PlayerPersistence extends AbstractPersistence
 {
@@ -15,10 +16,13 @@ public class PlayerPersistence extends AbstractPersistence
         return true;
     }
 
-    public Player load(Object object)
+    public Player load(String key) throws FileDoesNotExist
     {
-        Player player = new Human();
-        return player;
+        boolean b = exists(key);
+        if(!b) throw new FileDoesNotExist();
+
+        int id = Integer.parseInt(key);
+        return new Human(id);
     }
 
     public boolean save(Object player)

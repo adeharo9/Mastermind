@@ -1,5 +1,8 @@
 package persistence;
 
+import exceptions.FileAlreadyExists;
+import exceptions.FileDoesNotExist;
+
 public abstract class AbstractPersistence
 {
 
@@ -9,7 +12,7 @@ public abstract class AbstractPersistence
 
     public abstract boolean exists(String key);
 
-    public abstract Object load(Object object);
+    public abstract Object load(String key) throws FileDoesNotExist;
 
-    public abstract boolean save(Object object);
+    public abstract boolean save(Object object) throws FileAlreadyExists;
 }
