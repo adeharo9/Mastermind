@@ -75,6 +75,13 @@ public class PresentationController
     public int inGameMenu() throws NumberFormatException
     {
         // Menu de seleccion de accion en el juego: tirar turno o bien pausa
+
+        return Integer.parseInt(ioUtils.input());
+    }
+
+    public int pauseMenu() throws NumberFormatException
+    {
+        // Menu de pausa del juego: guardar partida, salir, etc
         ioUtils.endLine();
         ioUtils.printOutLn ("1.- Save and leave");
         ioUtils.printOutLn ("2.- Leave without saving");
@@ -82,13 +89,6 @@ public class PresentationController
         ioUtils.printOutLn ("0.- Continue game");
         ioUtils.endLine();
         ioUtils.printOut("Select an option: ");
-        return Integer.parseInt(ioUtils.input());
-    }
-
-    public int pauseMenu() throws NumberFormatException
-    {
-        // Menu de pausa del juego: guardar partida, salir, etc
-
         return Integer.parseInt(ioUtils.input());
     }
 
