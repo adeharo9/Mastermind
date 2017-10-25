@@ -14,7 +14,7 @@ public class CPU extends Player implements DeepCopyable
         super();
     }
 
-    public CPU(int id) throws IllegalArgumentException
+    public CPU(String id) throws IllegalArgumentException
     {
         super(id);
     }

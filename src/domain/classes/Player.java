@@ -7,25 +7,25 @@ public abstract class Player implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    private int id;
-    private int points;
+    protected String id;
+    protected int points;
 
     /* PRIVATE METHODS */
 
-    private static boolean isValidId(int id)
+    private static boolean isValidId(String id)
     {
-        return id >= 0;
+        return !id.isEmpty();
     }
 
     /* CONSTRUCTION METHODS */
 
     public Player ()
     {
-        id = -1;
+        id = "-1";
         points = 0;
     }
 
-    public Player(int id) throws IllegalArgumentException
+    public Player(String id) throws IllegalArgumentException
     {
         setId(id);
         setPoints(0);
@@ -39,7 +39,7 @@ public abstract class Player implements DeepCopyable
 
     /* SET METHODS */
 
-    public void setId(int id) throws IllegalArgumentException
+    public void setId(String id) throws IllegalArgumentException
     {
         boolean b = isValidId(id);
         if(!b) throw new IllegalArgumentException();
@@ -54,7 +54,7 @@ public abstract class Player implements DeepCopyable
 
     /* GET METHODS */
 
-    public int getId()
+    public String getId()
     {
         return id;
     }

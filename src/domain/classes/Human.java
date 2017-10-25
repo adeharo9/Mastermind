@@ -6,7 +6,6 @@ public class Human extends Player implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    private String username;
     private String password;
 
     /* CONSTRUCTION METHODS */
@@ -16,7 +15,7 @@ public class Human extends Player implements DeepCopyable
         super();
     }
 
-    public Human(int id) throws IllegalArgumentException
+    public Human(String id) throws IllegalArgumentException
     {
         super(id);
     }
@@ -37,12 +36,13 @@ public class Human extends Player implements DeepCopyable
 
     /* SET METHODS */
 
+    @Deprecated
     public void setUsername(String username) throws IllegalArgumentException, NullPointerException
     {
         boolean b = !username.isEmpty();
         if(!b) throw new IllegalArgumentException();
 
-        this.username = username;
+        this.id = username;
     }
 
     public void setPassword(String password) throws IllegalArgumentException, NullPointerException
@@ -55,9 +55,10 @@ public class Human extends Player implements DeepCopyable
 
     /* GET METHODS */
 
+    @Deprecated
     public String getUsername()
     {
-        return username;
+        return id;
     }
 
     public String getPassword()
