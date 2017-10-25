@@ -20,7 +20,7 @@ public class HumanController extends PlayerController
 
     /* INSTANTIATION METHODS */
 
-    public Player newPlayer(int id)
+    public Player newPlayer(String id)
     {
         player = new Human(id);
         return player;

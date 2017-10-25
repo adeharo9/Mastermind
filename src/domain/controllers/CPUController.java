@@ -16,7 +16,7 @@ public class CPUController extends PlayerController
 
     /* INSTANTIATION METHODS */
 
-    public Player newPlayer(int id)
+    public Player newPlayer(String id)
     {
         player = new CPU(id);
         return player;
