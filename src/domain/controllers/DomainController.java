@@ -2,7 +2,6 @@ package domain.controllers;
 
 import domain.classes.*;
 import exceptions.IntegrityCorruption;
-import exceptions.FileAlreadyExists;
 import exceptions.WrongPassword;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
@@ -12,6 +11,7 @@ import presentation.controllers.PresentationController;
 import util.*;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 
 public class DomainController
@@ -69,14 +69,14 @@ public class DomainController
         }
     }
 
-    public void registerUser() throws FileAlreadyExists
+    public void registerUser() throws FileAlreadyExistsException
     {
         try
         {
             Pair<String, String> userInfo = presentationController.registerUserMenu();
 
             boolean b = playerPersistence.exists(userInfo.first);
-            if(b) throw new FileAlreadyExists();
+            if(b) throw new FileAlreadyExistsException("");
 
             Player player = loggedPlayerController.newPlayer(Utils.autoID());
             playerPersistence.save(player);
@@ -202,7 +202,7 @@ public class DomainController
                         registerUser();
                         state = State.gameSelection;
                     }
-                    catch(FileAlreadyExists e){}
+                    catch(FileAlreadyExistsException e){}
 
                     break;
 
