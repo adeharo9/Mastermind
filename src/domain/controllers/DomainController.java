@@ -4,7 +4,6 @@ import domain.classes.*;
 import exceptions.IntegrityCorruption;
 import exceptions.FileAlreadyExists;
 import exceptions.WrongPassword;
-import exceptions.FileDoesNotExist;
 import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -12,6 +11,7 @@ import persistence.RankingPersistence;
 import presentation.controllers.PresentationController;
 import util.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DomainController
@@ -49,7 +49,7 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logIn() throws IntegrityCorruption, FileDoesNotExist, WrongPassword
+    public void logIn() throws IntegrityCorruption, IOException, WrongPassword
     {
         try
         {
@@ -212,7 +212,7 @@ public class DomainController
                         logIn();
                         state = State.gameSelection;
                     }
-                    catch(FileDoesNotExist | WrongPassword e){}
+                    catch(IOException | WrongPassword e){}
 
                     break;
 
