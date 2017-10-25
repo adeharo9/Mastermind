@@ -75,13 +75,21 @@ public class PresentationController
     public int inGameMenu() throws NumberFormatException
     {
         // Menu de seleccion de accion en el juego: tirar turno o bien pausa
-        return 0;
+        ioUtils.endLine();
+        ioUtils.printOutLn ("1.- Save and leave");
+        ioUtils.printOutLn ("2.- Leave without saving");
+        ioUtils.printOutLn ("3.- Ask for clue");
+        ioUtils.printOutLn ("0.- Continue game");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+        return Integer.parseInt(ioUtils.input());
     }
 
     public int pauseMenu() throws NumberFormatException
     {
         // Menu de pausa del juego: guardar partida, salir, etc
-        return 0;
+
+        return Integer.parseInt(ioUtils.input());
     }
 
     public Pair<String, String> logInMenu() throws NumberFormatException
