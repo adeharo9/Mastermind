@@ -1,8 +1,8 @@
 package persistence;
 
-import exceptions.FileAlreadyExists;
-import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
+
+import java.io.IOException;
 
 public abstract class AbstractPersistence
 {
@@ -13,11 +13,11 @@ public abstract class AbstractPersistence
 
     public abstract boolean exists(String key);
 
-    public abstract Object load(String key) throws FileDoesNotExist;
+    public abstract Object load(String key) throws IOException;
 
-    public abstract boolean save(Object object) throws FileAlreadyExists;
+    public abstract void save(Object object) throws IOException;
 
-    public abstract void delete(String key) throws FileDoesNotExist;
+    public abstract void delete(String key) throws IOException;
 
     public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
     {

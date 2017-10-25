@@ -1,10 +1,7 @@
 package persistence;
 
 import domain.classes.Game;
-import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
-import util.Translate;
-import util.Utils;
 
 import java.io.*;
 
@@ -44,30 +41,24 @@ public class GamePersistence extends AbstractPersistence
         }
     }
 
-    public boolean save(Object game) {
+    public void save(Object game) throws IOException
+    {
         String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
         File fileGame = new File(basePath + gamesPath + nameFile);
+        boolean b = fileGame.mkdirs();
+        if(!b) throw new FileNotFoundException();
 
         if(!fileGame.exists())
         {
             firstTime(fileGame);
         }
 
-        try
-        {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileGame));
-            oos.writeObject(game);
-            oos.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return fileGame.exists();
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileGame));
+        oos.writeObject(game);
+        oos.close();
     }
 
-    public void delete(String key) throws FileDoesNotExist
+    public void delete(String key) throws FileNotFoundException
     {
 
     }

@@ -1,8 +1,9 @@
 package persistence;
 
 import domain.classes.Ranking;
-import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
+
+import java.io.FileNotFoundException;
 
 public class RankingPersistence extends AbstractPersistence
 {
@@ -21,12 +22,11 @@ public class RankingPersistence extends AbstractPersistence
         return new Ranking();
     }
 
-    public boolean save(Object ranking)
+    public void save(Object ranking)
     {
-        return true;
     }
 
-    public void delete(String key) throws FileDoesNotExist
+    public void delete(String key) throws FileNotFoundException
     {
 
     }

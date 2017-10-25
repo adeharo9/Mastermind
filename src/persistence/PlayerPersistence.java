@@ -2,8 +2,9 @@ package persistence;
 
 import domain.classes.Human;
 import domain.classes.Player;
-import exceptions.FileDoesNotExist;
 import exceptions.IntegrityCorruption;
+
+import java.io.FileNotFoundException;
 
 public class PlayerPersistence extends AbstractPersistence
 {
@@ -17,20 +18,19 @@ public class PlayerPersistence extends AbstractPersistence
         return true;
     }
 
-    public Player load(String key) throws FileDoesNotExist
+    public Player load(String key) throws FileNotFoundException
     {
         boolean b = exists(key);
-        if(!b) throw new FileDoesNotExist();
+        if(!b) throw new FileNotFoundException();
 
         return new Human();
     }
 
-    public boolean save(Object player)
+    public void save(Object player)
     {
-        return true;
     }
 
-    public void delete(String key) throws FileDoesNotExist
+    public void delete(String key) throws FileNotFoundException
     {
 
     }
