@@ -70,6 +70,6 @@ public abstract class Utils
 
     public static int autoIDInt()
     {
-        return Integer.parseInt(autoID(numeric));
+        return ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
     }
 }
