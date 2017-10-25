@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Utils
 {
+
     public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1) throws Exception
     {
         ArrayList<T> arrayList2 = new ArrayList<>(arrayList1.size());
@@ -40,8 +41,35 @@ public abstract class Utils
         return b;
     }
 
-    public static int autoID()
+    private final static int idSize = 32;
+    private final static String alphaMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final static String alphaMinus = alphaMayus.toLowerCase();
+    private final static String numeric = "0123456789";
+    private final static String alphanumeric = alphaMayus + alphaMinus + numeric;
+
+    public static String autoID(String charSet)
     {
-        return ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
+        int rand;
+        String randChar;
+        String id = "";
+
+        for(int i = 0; i < idSize; ++i)
+        {
+            rand = ThreadLocalRandom.current().nextInt(0, charSet.length());
+            randChar = Character.toString(charSet.charAt(rand));
+            id = id.concat(randChar);
+        }
+
+        return id;
+    }
+
+    public static String autoID()
+    {
+        return autoID(alphanumeric);
+    }
+
+    public static int autoIDInt()
+    {
+        return Integer.parseInt(autoID(numeric));
     }
 }

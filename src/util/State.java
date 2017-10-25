@@ -10,6 +10,8 @@ public enum State
     endProgram,
     exitGameWithoutSaving,
 
+    gameDifficultySelection,
+    gameModeSelection,
     gamePause,
     gameSelection,
 

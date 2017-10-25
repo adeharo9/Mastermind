@@ -126,7 +126,7 @@ public abstract class Translate
                 state = State.initSession;
                 break;
             case 1:
-                state = State.newGame;
+                state = State.gameModeSelection;
                 break;
             case 2:
                 state = State.loadGame;
