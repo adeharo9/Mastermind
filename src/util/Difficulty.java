@@ -1,6 +1,8 @@
 package util;
 
-public enum Difficulty
+import java.io.Serializable;
+
+public enum Difficulty implements Serializable
 {
     easy,
     medium,
