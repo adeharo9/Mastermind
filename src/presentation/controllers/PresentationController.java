@@ -7,6 +7,21 @@ public class PresentationController
 {
     /* ATTRIBUTES */
 
+    /* PRIVATE METHODS */
+
+    private Pair<String, String> getInfoUser() throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Write your username: ");
+        String username = ioUtils.input();
+
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Write your password: ");
+        String password = ioUtils.input();
+
+        return new Pair<>(username, password);
+    }
+
     /* CONSTRUCTION METHODS */
     
     public PresentationController()
@@ -110,25 +125,14 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    @Deprecated public Pair<String, String> logInMenu() throws NumberFormatException
+    public Pair<String, String> logInMenu() throws NumberFormatException
     {
         return getInfoUser();
     }
 
-    @Deprecated public Pair<String, String> registerUserMenu() throws NumberFormatException
+    public Pair<String, String> registerUserMenu() throws NumberFormatException
     {
         return getInfoUser();
-    }
-
-    public Pair<String, String> getInfoUser() throws NumberFormatException
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn ("Write your username: ");
-        String username = ioUtils.input();
-        ioUtils.endLine();
-        ioUtils.printOutLn ("Write your password: ");
-        String password = ioUtils.input();
-        return new Pair<>(username, password);
     }
     /* TESTING METHODS */
 
