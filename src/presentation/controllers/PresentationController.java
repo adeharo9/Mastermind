@@ -98,7 +98,13 @@ public class PresentationController
 
     public Pair<String, String> logInMenu() throws NumberFormatException
     {
-        return new Pair<>("", "");
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Write your username: ");
+        String username = ioUtils.input();
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Write your password: ");
+        String password = ioUtils.input();
+        return new Pair<>(username, password);
     }
 
     public Pair<String, String> registerUserMenu() throws NumberFormatException
