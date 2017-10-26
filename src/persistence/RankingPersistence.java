@@ -5,7 +5,7 @@ import exceptions.IntegrityCorruption;
 
 import java.io.FileNotFoundException;
 
-public class RankingPersistence extends AbstractPersistence
+public abstract class RankingPersistence extends AbstractPersistence
 {
     public RankingPersistence()
     {

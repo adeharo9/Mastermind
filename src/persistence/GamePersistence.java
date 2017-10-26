@@ -4,6 +4,7 @@ import domain.classes.Game;
 import exceptions.IntegrityCorruption;
 
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 
 public class GamePersistence extends AbstractPersistence
 {
@@ -31,12 +32,14 @@ public class GamePersistence extends AbstractPersistence
         }
     }
 
-    public void save(Object game) throws IOException
+    public void save(Object game) throws IOException, FileAlreadyExistsException
     {
         String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
+        File directoryGame = new File(basePath + gamesPath);
         File fileGame = new File(basePath + gamesPath + nameFile);
-        boolean b = fileGame.mkdirs();
-        if(!b) throw new FileNotFoundException();
+        directoryGame.mkdirs();
+        if(fileGame.exists()) throw new FileAlreadyExistsException(basePath + gamesPath + nameFile);
+        else fileGame.createNewFile();
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileGame));
         oos.writeObject((Game) game);
         oos.close();

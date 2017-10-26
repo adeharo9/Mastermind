@@ -5,7 +5,7 @@ import exceptions.IntegrityCorruption;
 
 import java.io.FileNotFoundException;
 
-public class BoardPersistence extends AbstractPersistence
+public abstract class BoardPersistence extends AbstractPersistence
 {
     public BoardPersistence()
     {
