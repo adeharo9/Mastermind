@@ -1,13 +1,17 @@
 # Compiler outputs #
 *.a
 *.bat
-*.exe
 *.class
+*.exe
 *.iml
 
+# Program files
+*.mm
+
 # Directories #
-out
 .idea
+games
+out
 
 # Packages #
 *.gz
