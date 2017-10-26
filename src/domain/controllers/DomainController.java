@@ -92,16 +92,10 @@ public class DomainController
         }
     }
 
-    public void newGame()
+    public void newGame(Role role, Difficulty difficulty)
     {
         try
         {
-            int gameMode = presentationController.gameModeSelectionMenu();
-            Role role = Translate.int2Role(gameMode);
-
-            int gameDifficulty = presentationController.gameDifficultySelectionMenu();
-            Difficulty difficulty = Translate.int2Difficulty(gameDifficulty);
-
             ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
             playingPlayerControllers.add(loggedPlayerController);
             playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
@@ -178,6 +172,8 @@ public class DomainController
     public void exe() throws IntegrityCorruption
     {
         int returnState;
+        Role role = null;
+        Difficulty difficulty = null;
 
         while(!state.equals(State.endProgram))
         {
@@ -241,17 +237,23 @@ public class DomainController
                     break;
 
                 case gameDifficultySelection:
+                    returnState = presentationController.gameDifficultySelectionMenu();
+                    difficulty = Translate.int2Difficulty(returnState);
+
                     state = State.newGame;
 
                     break;
 
                 case gameModeSelection:
+                    returnState = presentationController.gameModeSelectionMenu();
+                    role = Translate.int2Role(returnState);
+
                     state = State.gameDifficultySelection;
 
                     break;
 
                 case newGame:
-                    newGame();
+                    newGame(role, difficulty);
                     state = State.playSelection;
 
                     break;
