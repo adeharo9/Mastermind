@@ -15,7 +15,7 @@ public class GamePersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        File fileGame = new File(basePath + gamesPath + key + ".gm");
+        File fileGame = new File(basePath + gamesPath + key + ".txt");
         return fileGame.exists();
     }
 
@@ -23,18 +23,17 @@ public class GamePersistence extends AbstractPersistence
     {
         if(!exists(id)) throw new FileNotFoundException();
         else {
-            File fileGame = new File(basePath + gamesPath + id + ".gm");
-            Game load = new Game();
+            File fileGame = new File(basePath + gamesPath + id + ".txt");
             FileInputStream in = new FileInputStream(fileGame);
             ObjectInputStream s = new ObjectInputStream(in);
-            load = (Game) s.readObject();
+            Game load = (Game) s.readObject();
             return load;
         }
     }
 
     public void save(Object game) throws IOException
     {
-        String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
+        String nameFile = Integer.toString(((Game) game).getId()) + ".txt";
         File directoryGame = new File(basePath + gamesPath);
         File fileGame = new File(basePath + gamesPath + nameFile);
         directoryGame.mkdirs();
@@ -47,7 +46,7 @@ public class GamePersistence extends AbstractPersistence
 
     public String getPath(String key)
     {
-        return basePath + gamesPath + key +".gm";
+        return basePath + gamesPath + key +".txt";
     }
 
     public void checkIntegrity() throws IntegrityCorruption

@@ -1,9 +1,11 @@
 package domain.classes;
 
 import util.*;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Turn extends Combination implements DeepCopyable
+public class Turn extends Combination implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

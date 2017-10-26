@@ -2,7 +2,9 @@ package domain.classes;
 
 import util.*;
 
-public class Code extends Combination implements DeepCopyable
+import java.io.Serializable;
+
+public class Code extends Combination implements DeepCopyable, Serializable
 {
     /* CONSTRUCTION METHODS */
 
