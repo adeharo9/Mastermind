@@ -14,30 +14,20 @@ public class GamePersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        return true;
+        File fileGame = new File(basePath + gamesPath + key + ".gm");
+        return fileGame.exists();
     }
 
-    public Game load(String id)
+    public Game load(String id) throws IOException, ClassNotFoundException
     {
-        File fileGame = new File(basePath + gamesPath + id);
-        Game load = new Game();
-        try {
+        if(!exists(id)) throw new FileNotFoundException();
+        else {
+            File fileGame = new File(basePath + gamesPath + id + ".gm");
+            Game load = new Game();
             FileInputStream in = new FileInputStream(fileGame);
             ObjectInputStream s = new ObjectInputStream(in);
-            load = (Game)s.readObject();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return load;
-    }
-
-    private void firstTime(File f){
-        try{
-            f.mkdirs();
-        }
-        catch (Exception e){
-            e.printStackTrace();
+            load = (Game) s.readObject();
+            return load;
         }
     }
 
@@ -47,20 +37,14 @@ public class GamePersistence extends AbstractPersistence
         File fileGame = new File(basePath + gamesPath + nameFile);
         boolean b = fileGame.mkdirs();
         if(!b) throw new FileNotFoundException();
-
-        if(!fileGame.exists())
-        {
-            firstTime(fileGame);
-        }
-
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileGame));
-        oos.writeObject(game);
+        oos.writeObject((Game) game);
         oos.close();
     }
 
-    public void delete(String key) throws FileNotFoundException
+    public String getPath(String key)
     {
-
+        return basePath + gamesPath + key +".gm";
     }
 
     public void checkIntegrity() throws IntegrityCorruption

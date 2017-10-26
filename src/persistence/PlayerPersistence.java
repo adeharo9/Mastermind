@@ -1,10 +1,11 @@
 package persistence;
 
+import domain.classes.Game;
 import domain.classes.Human;
 import domain.classes.Player;
 import exceptions.IntegrityCorruption;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class PlayerPersistence extends AbstractPersistence
 {
@@ -15,24 +16,37 @@ public class PlayerPersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        return true;
+        File filePlayer = new File(basePath + playerPath + key + ".gm");
+        return filePlayer.exists();
     }
 
-    public Player load(String key) throws FileNotFoundException
+    public Player load(String id) throws IOException, ClassNotFoundException
     {
-        boolean b = exists(key);
+        if(!exists(id)) throw new FileNotFoundException();
+        else {
+            File filePlayer = new File(basePath + playerPath + id + ".gm");
+            Human load = new Human();
+            FileInputStream in = new FileInputStream(filePlayer);
+            ObjectInputStream s = new ObjectInputStream(in);
+            load = (Human) s.readObject();
+            return load;
+        }
+    }
+
+    public void save(Object player) throws IOException
+    {
+        String nameFile = ((Human) player).getId() + ".gm";
+        File filePlayer = new File(basePath + playerPath + nameFile);
+        boolean b = filePlayer.mkdirs();
         if(!b) throw new FileNotFoundException();
-
-        return new Human();
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePlayer));
+        oos.writeObject((Human) player);
+        oos.close();
     }
 
-    public void save(Object player)
+    public String getPath(String key)
     {
-    }
-
-    public void delete(String key) throws FileNotFoundException
-    {
-
+        return basePath + playerPath + key +".gm";
     }
 
     public void checkIntegrity() throws IntegrityCorruption
