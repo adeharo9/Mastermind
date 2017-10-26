@@ -6,6 +6,7 @@ import util.Difficulty;
 public class TestPersistence {
     public static void main(String args[]) {
         Game test = new Game(10, Difficulty.easy);
+        Game result = new Game();
         GamePersistence bd = new GamePersistence();
         try{
             bd.save(test);
@@ -15,11 +16,12 @@ public class TestPersistence {
         }
 
         try{
-            bd.load(Integer.toString(10));
+            result = bd.load(Integer.toString(10));
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        System.out.println(Integer.toString(result.getId()));
     }
 }
 
