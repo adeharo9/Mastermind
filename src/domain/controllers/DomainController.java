@@ -207,7 +207,10 @@ public class DomainController
                         registerUser();
                         state = State.gameSelection;
                     }
-                    catch(FileAlreadyExistsException e){}
+                    catch(FileAlreadyExistsException e)
+                    {
+
+                    }
 
                     break;
 
@@ -217,7 +220,10 @@ public class DomainController
                         logIn();
                         state = State.gameSelection;
                     }
-                    catch(IOException | ClassNotFoundException | WrongPassword e){e.printStackTrace();} //Momentaneo
+                    catch(IOException | ClassNotFoundException | WrongPassword e)
+                    {
+                        e.printStackTrace();
+                    } //Momentáneo
 
                     break;
 
