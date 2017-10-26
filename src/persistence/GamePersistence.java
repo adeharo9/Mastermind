@@ -8,6 +8,26 @@ import java.nio.file.FileAlreadyExistsException;
 
 public class GamePersistence extends AbstractPersistence
 {
+    private void saveGame(Game game) throws IOException
+    {
+        boolean b;
+        String fileName = Integer.toString((game).getId());
+
+        File gameDirectory = new File(getDirPath());
+        File gameFile = new File(getFilePath(fileName));
+
+        b = gameDirectory.mkdirs();
+
+        b = gameFile.exists();
+        if(b) throw new FileAlreadyExistsException(getFilePath(fileName));
+
+        b = gameFile.createNewFile();
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
+        oos.writeObject(game);
+        oos.close();
+    }
+
     public GamePersistence()
     {
 
@@ -15,38 +35,31 @@ public class GamePersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        File fileGame = new File(basePath + gamesPath + key + ".txt");
+        File fileGame = new File(getFilePath(key));
         return fileGame.exists();
+    }
+
+    public String getDirPath()
+    {
+        return basePath + gamePath;
     }
 
     public Game load(String id) throws IOException, ClassNotFoundException
     {
-        if(!exists(id)) throw new FileNotFoundException();
-        else {
-            File fileGame = new File(basePath + gamesPath + id + ".txt");
-            FileInputStream in = new FileInputStream(fileGame);
-            ObjectInputStream s = new ObjectInputStream(in);
-            Game load = (Game) s.readObject();
-            return load;
-        }
+        boolean b = exists(id);
+        if(!b) throw new FileNotFoundException();
+
+        File gameFile = new File(getFilePath(id));
+
+        FileInputStream in = new FileInputStream(gameFile);
+        ObjectInputStream s = new ObjectInputStream(in);
+
+        return (Game) s.readObject();
     }
 
     public void save(Object game) throws IOException
     {
-        String nameFile = Integer.toString(((Game) game).getId()) + ".txt";
-        File directoryGame = new File(basePath + gamesPath);
-        File fileGame = new File(basePath + gamesPath + nameFile);
-        directoryGame.mkdirs();
-        if(fileGame.exists()) throw new FileAlreadyExistsException(basePath + gamesPath + nameFile);
-        else fileGame.createNewFile();
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileGame));
-        oos.writeObject((Game) game);
-        oos.close();
-    }
-
-    public String getPath(String key)
-    {
-        return basePath + gamesPath + key +".txt";
+        saveGame((Game) game);
     }
 
     public void checkIntegrity() throws IntegrityCorruption
