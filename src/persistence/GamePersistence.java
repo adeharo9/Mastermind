@@ -32,7 +32,7 @@ public class GamePersistence extends AbstractPersistence
         }
     }
 
-    public void save(Object game) throws IOException, FileAlreadyExistsException
+    public void save(Object game) throws IOException
     {
         String nameFile = Integer.toString(((Game) game).getId()) + ".gm";
         File directoryGame = new File(basePath + gamesPath);

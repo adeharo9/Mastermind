@@ -5,7 +5,6 @@ import exceptions.IntegrityCorruption;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 
 public abstract class AbstractPersistence
 {
@@ -19,7 +18,7 @@ public abstract class AbstractPersistence
 
     public abstract Object load(String key) throws IOException, ClassNotFoundException;
 
-    public abstract void save(Object object) throws IOException, FileAlreadyExistsException;
+    public abstract void save(Object object) throws IOException;
 
     public abstract String getPath(String key);
 

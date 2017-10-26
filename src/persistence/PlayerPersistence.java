@@ -8,7 +8,6 @@ import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 
 
-
 public class PlayerPersistence extends AbstractPersistence
 {
     public PlayerPersistence()
@@ -35,7 +34,7 @@ public class PlayerPersistence extends AbstractPersistence
         }
     }
 
-    public void save(Object player) throws IOException, FileAlreadyExistsException
+    public void save(Object player) throws IOException
     {
         String nameFile = ((Human) player).getId() + ".gm";
         File directoryPlayer = new File(basePath + playerPath);
