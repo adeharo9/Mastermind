@@ -2,7 +2,9 @@ package domain.classes;
 
 import util.*;
 
-public class Human extends Player implements DeepCopyable
+import java.io.Serializable;
+
+public class Human extends Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

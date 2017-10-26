@@ -1,9 +1,11 @@
 package domain.classes;
 
 import util.*;
+
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Player implements DeepCopyable
+public abstract class Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

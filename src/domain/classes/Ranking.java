@@ -1,9 +1,11 @@
 package domain.classes;
 
 import util.*;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Ranking implements DeepCopyable
+public class Ranking implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

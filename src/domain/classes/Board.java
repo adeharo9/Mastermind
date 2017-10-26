@@ -1,9 +1,11 @@
 package domain.classes;
 
 import util.*;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Board implements DeepCopyable
+public class Board implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

@@ -2,9 +2,10 @@ package domain.classes;
 
 import util.*;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Game implements DeepCopyable
+public class Game implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
