@@ -40,7 +40,7 @@ public class PlayerPersistence extends AbstractPersistence
         String nameFile = ((Human) player).getId() + ".gm";
         File directoryPlayer = new File(basePath + playerPath);
         File filePlayer = new File(basePath + playerPath + nameFile);
-        filePlayer.mkdirs();
+        directoryPlayer.mkdirs();
         if(filePlayer.exists()) throw new FileAlreadyExistsException(basePath + playerPath + nameFile);
         else filePlayer.createNewFile();
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePlayer));

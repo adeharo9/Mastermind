@@ -41,15 +41,15 @@ public class DomainController
         loggedPlayerController = new HumanController();
         playingPlayerControllers = new ArrayList<>();
 
-        boardPersistence = new BoardPersistence();
+        //boardPersistence = new BoardPersistence();
         gamePersistence = new GamePersistence();
         playerPersistence = new PlayerPersistence();
-        rankingPersistence = new RankingPersistence();
+        //rankingPersistence = new RankingPersistence();
     }
 
     /* EXECUTE */
 
-    public void logIn() throws IntegrityCorruption, IOException, WrongPassword
+    public void logIn() throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
         try
         {
@@ -79,7 +79,12 @@ public class DomainController
             if(b) throw new FileAlreadyExistsException("");
 
             Player player = loggedPlayerController.newPlayer(Utils.autoID());
-            playerPersistence.save(player);
+            try{
+                playerPersistence.save(player);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         catch(NumberFormatException e)
         {
@@ -212,7 +217,7 @@ public class DomainController
                         logIn();
                         state = State.gameSelection;
                     }
-                    catch(IOException | WrongPassword e){}
+                    catch(IOException | ClassNotFoundException | WrongPassword e){e.printStackTrace();} //Momentaneo
 
                     break;
 
