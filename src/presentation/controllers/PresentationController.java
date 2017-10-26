@@ -23,6 +23,13 @@ public class PresentationController
         ioUtils.endLine();
     }
 
+    public void wrongLogIn()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong username or password");
+        ioUtils.endLine();
+    }
+
     public int initialMenu () throws NumberFormatException
     {
         // Menu inicial: iniciar sesion/registrar jugador
