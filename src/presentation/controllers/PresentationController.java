@@ -29,6 +29,13 @@ public class PresentationController
         ioUtils.printOutLn("Wrong username or password");
         ioUtils.endLine();
     }
+    
+    public void wrongRegister()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Username is already used");
+        ioUtils.endLine();
+    }
 
     public int initialMenu () throws NumberFormatException
     {
