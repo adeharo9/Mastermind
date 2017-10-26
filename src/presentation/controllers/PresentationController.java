@@ -23,6 +23,20 @@ public class PresentationController
         ioUtils.endLine();
     }
 
+    public void wrongLogIn()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong username or password");
+        ioUtils.endLine();
+    }
+    
+    public void wrongRegister()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Username is already used");
+        ioUtils.endLine();
+    }
+
     public int initialMenu () throws NumberFormatException
     {
         // Menu inicial: iniciar sesion/registrar jugador
@@ -96,7 +110,17 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public Pair<String, String> logInMenu() throws NumberFormatException
+    @Deprecated public Pair<String, String> logInMenu() throws NumberFormatException
+    {
+        return getInfoUser();
+    }
+
+    @Deprecated public Pair<String, String> registerUserMenu() throws NumberFormatException
+    {
+        return getInfoUser();
+    }
+
+    public Pair<String, String> getInfoUser() throws NumberFormatException
     {
         ioUtils.endLine();
         ioUtils.printOutLn ("Write your username: ");
@@ -106,12 +130,6 @@ public class PresentationController
         String password = ioUtils.input();
         return new Pair<>(username, password);
     }
-
-    public Pair<String, String> registerUserMenu() throws NumberFormatException
-    {
-        return new Pair<>("", "");
-    }
-
     /* TESTING METHODS */
 
     /* CLONING METHODS */
