@@ -8,25 +8,6 @@ import java.nio.file.FileAlreadyExistsException;
 
 public class GamePersistence extends AbstractPersistence
 {
-    private void saveGame(Game game) throws IOException
-    {
-        boolean b;
-        String fileName = Integer.toString((game).getId());
-
-        File gameDirectory = new File(getDirPath());
-        File gameFile = new File(getFilePath(fileName));
-
-        b = gameDirectory.mkdirs();
-
-        b = gameFile.exists();
-        if(b) throw new FileAlreadyExistsException(getFilePath(fileName));
-
-        b = gameFile.createNewFile();
-
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
-        oos.writeObject(game);
-        oos.close();
-    }
 
     public GamePersistence()
     {
@@ -46,20 +27,13 @@ public class GamePersistence extends AbstractPersistence
 
     public Game load(String id) throws IOException, ClassNotFoundException
     {
-        boolean b = exists(id);
-        if(!b) throw new FileNotFoundException();
-
-        File gameFile = new File(getFilePath(id));
-
-        FileInputStream in = new FileInputStream(gameFile);
-        ObjectInputStream s = new ObjectInputStream(in);
-
-        return (Game) s.readObject();
+        return (Game) super.load(id);
     }
 
     public void save(Object game) throws IOException
     {
-        saveGame((Game) game);
+        String id = Integer.toString(((Game) game).getId());
+        super.save(id, game);
     }
 
     public void checkIntegrity() throws IntegrityCorruption

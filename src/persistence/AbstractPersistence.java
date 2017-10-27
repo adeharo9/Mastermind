@@ -1,10 +1,10 @@
 package persistence;
 
+import domain.classes.Game;
 import exceptions.IntegrityCorruption;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 
 public abstract class AbstractPersistence
 {
@@ -25,9 +25,37 @@ public abstract class AbstractPersistence
         return getDirPath() + key + GAME_EXTENSION;
     }
 
-    public abstract Object load(String key) throws IOException, ClassNotFoundException;
+    public Object load(String key) throws IOException, ClassNotFoundException
+    {
+        boolean b = exists(key);
+        if(!b) throw new FileNotFoundException();
 
-    public abstract void save(Object object) throws IOException;
+        File gameFile = new File(getFilePath(key));
+
+        FileInputStream in = new FileInputStream(gameFile);
+        ObjectInputStream s = new ObjectInputStream(in);
+
+        return s.readObject();
+    }
+
+    public void save(String objectName, Object object) throws IOException
+    {
+        boolean b;
+
+        File gameDirectory = new File(getDirPath());
+        File gameFile = new File(getFilePath(objectName));
+
+        b = gameDirectory.mkdirs();
+
+        b = gameFile.exists();
+        if(b) throw new FileAlreadyExistsException(getFilePath(objectName));
+
+        b = gameFile.createNewFile();
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
+        oos.writeObject(object);
+        oos.close();
+    }
 
     public void delete(String key) throws IOException
     {
