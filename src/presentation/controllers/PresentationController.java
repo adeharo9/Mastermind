@@ -117,9 +117,10 @@ public class PresentationController
     {
         // Menu de pausa del juego: guardar partida, salir, etc
         ioUtils.endLine();
-        ioUtils.printOutLn ("1.- Save and leave");
-        ioUtils.printOutLn ("2.- Leave without saving");
-        ioUtils.printOutLn ("3.- Ask for clue");
+        ioUtils.printOutLn ("1.- Save and continue");
+        ioUtils.printOutLn ("2.- Save and leave");
+        ioUtils.printOutLn ("3.- Leave without saving");
+        ioUtils.printOutLn ("4.- Ask for clue");
         ioUtils.printOutLn ("0.- Continue game");
         ioUtils.endLine();
         ioUtils.printOut("Select an option: ");
