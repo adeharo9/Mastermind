@@ -28,6 +28,7 @@ public enum State
     playTurn,
 
     registerUser,
+    registerUserInput,
 
     saveGameAndContinue,
     saveGameAndExit;

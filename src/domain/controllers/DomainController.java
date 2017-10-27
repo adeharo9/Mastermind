@@ -70,73 +70,57 @@ public class DomainController
         }
     }
 
-    public void registerUser() throws FileAlreadyExistsException
+    public void registerUser(Pair<String, String> userInfo) throws FileAlreadyExistsException
     {
+        boolean b = playerPersistence.exists(userInfo.first);
+        if(b) throw new FileAlreadyExistsException("");
+
+        Player player = loggedPlayerController.newPlayer(userInfo.first);
         try
         {
-            Pair<String, String> userInfo = presentationController.registerUserMenu();
-
-            boolean b = playerPersistence.exists(userInfo.first);
-            if(b) throw new FileAlreadyExistsException("");
-
-            Player player = loggedPlayerController.newPlayer(userInfo.first);
-            try
-            {
-                playerPersistence.save(player);
-            }
-            catch(Exception e) {
-                e.printStackTrace();
-            }
+            playerPersistence.save(player);
         }
-        catch(NumberFormatException e)
-        {
-            presentationController.wrongOption();
+        catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void newGame(Role role, Difficulty difficulty)
     {
-        try
+        ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
+        playingPlayerControllers.add(loggedPlayerController);
+        playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
+
+        PlayerController playerController = new CPUController();
+        Player player = playerController.newPlayer(Utils.autoID());
+        playingPlayerControllers.add(playerController);
+
+        switch(role)
         {
-            ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
-            playingPlayerControllers.add(loggedPlayerController);
-            playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
+            case codeMaker:
+                playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
+                break;
 
-            PlayerController playerController = new CPUController();
-            Player player = playerController.newPlayer(Utils.autoID());
-            playingPlayerControllers.add(playerController);
+            case codeBreaker:
+                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                break;
 
-            switch(role)
-            {
-                case codeMaker:
-                    playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
-                    break;
+            case watcher:
+                PlayerController playerController1 = new CPUController();
+                Player player1 = playerController1.newPlayer(Utils.autoID());
 
-                case codeBreaker:
-                    playerRolePairs.add(new Pair<>(player, Role.codeMaker));
-                    break;
+                playingPlayerControllers.add(playerController1);
+                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+                playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
+                break;
 
-                case watcher:
-                    PlayerController playerController1 = new CPUController();
-                    Player player1 = playerController1.newPlayer(Utils.autoID());
-
-                    playingPlayerControllers.add(playerController1);
-                    playerRolePairs.add(new Pair<>(player, Role.codeMaker));
-                    playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
-                    break;
-
-                default:
-                    break;
-            }
-
-            Board board = boardController.newBoard(difficulty);
-
-            Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
+            default:
+                break;
         }
-        catch(NumberFormatException e)
-        {
-            presentationController.wrongOption();
-        }
+
+        Board board = boardController.newBoard(difficulty);
+
+        Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
     }
 
     public void loadGame(String id)
@@ -175,6 +159,7 @@ public class DomainController
         int returnState;
         Role role = null;
         Difficulty difficulty = null;
+        Pair<String, String> userInfo = null;
 
         while(!state.equals(State.endProgram))
         {
@@ -198,10 +183,23 @@ public class DomainController
 
                     break;
 
+                case registerUserInput:
+                    try
+                    {
+                        userInfo = presentationController.registerUserMenu();
+                        state = State.registerUser;
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        presentationController.wrongOption();
+                    }
+
+                    break;
+
                 case registerUser:
                     try
                     {
-                        registerUser();
+                        registerUser(userInfo);
                         state = State.gameInProgressSelection;
                     }
                     catch(FileAlreadyExistsException e)
@@ -250,6 +248,10 @@ public class DomainController
                     {
                         state = State.gameModeSelection;
                     }
+                    catch(NumberFormatException e)
+                    {
+                        presentationController.wrongOption();
+                    }
 
                     break;
 
@@ -265,6 +267,10 @@ public class DomainController
                     catch(RollbackException e)
                     {
                         state = State.gameInProgressSelection;
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        presentationController.wrongOption();
                     }
 
                     break;

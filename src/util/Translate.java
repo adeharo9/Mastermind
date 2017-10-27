@@ -113,7 +113,7 @@ public abstract class Translate
                 state = State.endProgram;
                 break;
             case 1:
-                state = State.registerUser;
+                state = State.registerUserInput;
                 break;
             case 2:
                 state = State.logInUser;
