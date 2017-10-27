@@ -138,14 +138,13 @@ public class DomainController
         }
     }
 
-//    public void loadGame(String id)
-    public void loadGame()
+    public void loadGame(String id)
     {
         // Load persistence data structures
         //gamePersistence.load(id);
     }
 
-    public boolean saveGame()
+    public boolean saveGame(String id)
     {
         return true;
     }
@@ -260,19 +259,19 @@ public class DomainController
                     break;
 
                 case loadGame:
-                    loadGame();
+                    loadGame("");
                     state = State.playSelection;
 
                     break;
 
                 case saveGameAndContinue:
-                    saveGame();
+                    saveGame("");
                     state = State.playSelection;
 
                     break;
 
                 case saveGameAndExit:
-                    saveGame();
+                    saveGame("");
                     state = State.gameSelection;
 
                     break;
