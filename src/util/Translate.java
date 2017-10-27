@@ -1,5 +1,7 @@
 package util;
 
+import domain.classes.Code;
+
 public abstract class Translate
 {
     /* DIFFICULTY METHODS */
@@ -189,5 +191,10 @@ public abstract class Translate
         }
 
         return state;
+    }
+
+    public static String code2String(Code code)
+    {
+        return "";
     }
 }
