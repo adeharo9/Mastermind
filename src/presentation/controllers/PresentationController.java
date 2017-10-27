@@ -125,6 +125,18 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    public int savegame() throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Do you want to change the name of the game?");
+        ioUtils.endLine();
+        ioUtils.printOutLn ("1.- Yes");
+        ioUtils.printOutLn ("0.- No");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
     public Pair<String, String> logInMenu() throws NumberFormatException
     {
         return getInfoUser();
