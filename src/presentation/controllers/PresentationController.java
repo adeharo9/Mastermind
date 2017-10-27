@@ -44,7 +44,7 @@ public class PresentationController
         ioUtils.printOutLn("Wrong username or password");
         ioUtils.endLine();
     }
-    
+
     public void wrongRegister()
     {
         ioUtils.endLine();
@@ -120,6 +120,18 @@ public class PresentationController
         ioUtils.printOutLn ("2.- Leave without saving");
         ioUtils.printOutLn ("3.- Ask for clue");
         ioUtils.printOutLn ("0.- Continue game");
+        ioUtils.endLine();
+        ioUtils.printOut("Select an option: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
+    public int savegame() throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Do you want to change the name of the game?");
+        ioUtils.endLine();
+        ioUtils.printOutLn ("1.- Yes");
+        ioUtils.printOutLn ("0.- No");
         ioUtils.endLine();
         ioUtils.printOut("Select an option: ");
         return Integer.parseInt(ioUtils.input());
