@@ -1,6 +1,7 @@
 package util;
 
 import domain.classes.Code;
+import exceptions.RollbackException;
 
 public abstract class Translate
 {
@@ -52,19 +53,21 @@ public abstract class Translate
         return diff;
     }
 
-    public static Role int2Role(int rol) throws IllegalArgumentException
+    public static Role int2Role(int rol) throws RollbackException, IllegalArgumentException
     {
         Role role;
 
         switch(rol)
         {
             case 0:
+                throw new RollbackException();
+            case 1:
                 role = Role.codeMaker;
                 break;
-            case 1:
+            case 2:
                 role = Role.codeBreaker;
                 break;
-            case 2:
+            case 3:
                 role = Role.watcher;
                 break;
             default:
