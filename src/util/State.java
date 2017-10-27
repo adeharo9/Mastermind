@@ -6,6 +6,7 @@ public enum State
 
     checkInfo,
     checkRanking,
+    continueGame,
 
     endProgram,
     exitGameWithoutSaving,
@@ -13,7 +14,7 @@ public enum State
     gameDifficultySelection,
     gameModeSelection,
     gamePause,
-    gameSelection,
+    gameInProgressSelection,
 
     initProgram,
     initSession,

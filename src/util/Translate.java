@@ -7,19 +7,21 @@ public abstract class Translate
 {
     /* DIFFICULTY METHODS */
 
-    public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException
+    public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException, RollbackException
     {
         Difficulty difficulty;
 
         switch(diff)
         {
             case 0:
+                throw new RollbackException();
+            case 1:
                 difficulty = Difficulty.easy;
                 break;
-            case 1:
+            case 2:
                 difficulty = Difficulty.medium;
                 break;
-            case 2:
+            case 3:
                 difficulty = Difficulty.hard;
                 break;
             default:
@@ -31,6 +33,7 @@ public abstract class Translate
 
     /* ROLE METHODS */
 
+    @Deprecated
     public static int difficulty2Int(Difficulty difficulty) throws IllegalArgumentException
     {
         int diff;
@@ -38,13 +41,13 @@ public abstract class Translate
         switch(difficulty)
         {
             case easy:
-                diff = 0;
-                break;
-            case medium:
                 diff = 1;
                 break;
-            case hard:
+            case medium:
                 diff = 2;
+                break;
+            case hard:
+                diff = 3;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -53,7 +56,7 @@ public abstract class Translate
         return diff;
     }
 
-    public static Role int2Role(int rol) throws RollbackException, IllegalArgumentException
+    public static Role int2Role(int rol) throws IllegalArgumentException, RollbackException
     {
         Role role;
 
@@ -77,6 +80,7 @@ public abstract class Translate
         return role;
     }
 
+    @Deprecated
     public static int role2Int(Role role) throws IllegalArgumentException
     {
         int rol;
@@ -84,13 +88,13 @@ public abstract class Translate
         switch(role)
         {
             case codeMaker:
-                rol = 0;
-                break;
-            case codeBreaker:
                 rol = 1;
                 break;
-            case watcher:
+            case codeBreaker:
                 rol = 2;
+                break;
+            case watcher:
+                rol = 3;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -156,10 +160,10 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.playTurn;
+                state = State.gamePause;
                 break;
             case 1:
-                state = State.gamePause;
+                state = State.playTurn;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -175,7 +179,7 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.playSelection;
+                state = State.continueGame;
                 break;
             case 1:
                 state = State.saveGameAndContinue;

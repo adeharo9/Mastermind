@@ -202,7 +202,7 @@ public class DomainController
                     try
                     {
                         registerUser();
-                        state = State.gameSelection;
+                        state = State.gameInProgressSelection;
                     }
                     catch(FileAlreadyExistsException e)
                     {
@@ -215,7 +215,7 @@ public class DomainController
                     try
                     {
                         logIn();
-                        state = State.gameSelection;
+                        state = State.gameInProgressSelection;
                     }
                     catch(IOException | ClassNotFoundException | WrongPassword e)
                     {
@@ -224,7 +224,7 @@ public class DomainController
 
                     break;
 
-                case gameSelection:
+                case gameInProgressSelection:
                     try
                     {
                         returnState = presentationController.gameSelectionMenu();
@@ -239,9 +239,17 @@ public class DomainController
 
                 case gameDifficultySelection:
                     returnState = presentationController.gameDifficultySelectionMenu();
-                    difficulty = Translate.int2Difficulty(returnState);
 
-                    state = State.newGame;
+                    try
+                    {
+                        difficulty = Translate.int2Difficulty(returnState);
+
+                        state = State.newGame;
+                    }
+                    catch(RollbackException e)
+                    {
+                        state = State.gameModeSelection;
+                    }
 
                     break;
 
@@ -251,13 +259,13 @@ public class DomainController
                     try
                     {
                         role = Translate.int2Role(returnState);
+
+                        state = State.gameDifficultySelection;
                     }
                     catch(RollbackException e)
                     {
-                        state = State.gameSelection;
+                        state = State.gameInProgressSelection;
                     }
-
-                    state = State.gameDifficultySelection;
 
                     break;
 
@@ -281,7 +289,7 @@ public class DomainController
 
                 case saveGameAndExit:
                     saveGame("");
-                    state = State.gameSelection;
+                    state = State.gameInProgressSelection;
 
                     break;
 
@@ -290,6 +298,11 @@ public class DomainController
                     break;
 
                 case checkInfo:
+
+                    break;
+
+                case continueGame:
+                    state = State.playSelection;
 
                     break;
 
@@ -332,7 +345,7 @@ public class DomainController
                     break;
 
                 case exitGameWithoutSaving:
-                    state = State.gameSelection;
+                    state = State.gameInProgressSelection;
 
                     break;
 
