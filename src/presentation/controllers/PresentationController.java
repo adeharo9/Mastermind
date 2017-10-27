@@ -82,6 +82,7 @@ public class PresentationController
         ioUtils.endLine();
         ioUtils.printOutLn ("1.- Codemaker");
         ioUtils.printOutLn ("2.- Codebreaker");
+        //ioUtils.printOutLn ("3.- Watch");
         ioUtils.printOutLn ("0.- Back");
         ioUtils.endLine();
         ioUtils.printOut("Select game mode: ");

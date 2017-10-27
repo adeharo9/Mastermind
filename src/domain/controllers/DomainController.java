@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.*;
+import exceptions.RollbackException;
 import exceptions.IntegrityCorruption;
 import exceptions.WrongPassword;
 import persistence.BoardPersistence;
@@ -246,7 +247,15 @@ public class DomainController
 
                 case gameModeSelection:
                     returnState = presentationController.gameModeSelectionMenu();
-                    role = Translate.int2Role(returnState);
+
+                    try
+                    {
+                        role = Translate.int2Role(returnState);
+                    }
+                    catch(RollbackException e)
+                    {
+                        state = State.gameSelection;
+                    }
 
                     state = State.gameDifficultySelection;
 
