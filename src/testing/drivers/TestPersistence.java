@@ -7,7 +7,7 @@ import util.ioUtils;
 
 public class TestPersistence
 {
-    private static final int gameID = Utils.autoIDInt();
+    private static final String gameID = Utils.autoID();
 
     public static void main(String args[])
     {
@@ -26,13 +26,14 @@ public class TestPersistence
 
         try
         {
-            result = gP.load(Integer.toString(gameID));
+            result = gP.load(gameID);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        ioUtils.printOutLn(Integer.toString(result.getId()));
+
+        ioUtils.printOutLn(result.getId());
     }
 }
 

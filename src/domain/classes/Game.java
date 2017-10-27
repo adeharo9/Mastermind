@@ -9,7 +9,7 @@ public class Game implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    private int id;
+    private String id;
     private Difficulty difficulty;
     private long time;
 
@@ -18,9 +18,9 @@ public class Game implements DeepCopyable, Serializable
 
     /* PRIVATE METHODS */
 
-    private static boolean isValidId(int id)
+    private static boolean isValidId(String id)
     {
-        return id >= 0;
+        return true;
     }
 
     private static boolean isValidTime(long time)
@@ -53,7 +53,7 @@ public class Game implements DeepCopyable, Serializable
 
     public Game()
     {
-        id = -1;
+        id = "-1";
         difficulty = null;
         time = -1;
 
@@ -61,7 +61,7 @@ public class Game implements DeepCopyable, Serializable
         playerRolePairs = new ArrayList<>();
     }
 
-    public Game(int id, Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    public Game(String id, Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
         setId(id);
         setDifficulty(difficulty);
@@ -79,7 +79,7 @@ public class Game implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setId(int id) throws IllegalArgumentException, NullPointerException
+    public void setId(String id) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidId(id);
         if(!b) throw new IllegalArgumentException();
@@ -177,7 +177,7 @@ public class Game implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public int getId()
+    public String getId()
     {
         return id;
     }
