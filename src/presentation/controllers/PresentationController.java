@@ -29,7 +29,7 @@ public class PresentationController
         ioUtils.printOutLn("Wrong username or password");
         ioUtils.endLine();
     }
-    
+
     public void wrongRegister()
     {
         ioUtils.endLine();
