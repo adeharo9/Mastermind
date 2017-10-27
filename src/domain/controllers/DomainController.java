@@ -78,8 +78,9 @@ public class DomainController
             boolean b = playerPersistence.exists(userInfo.first);
             if(b) throw new FileAlreadyExistsException("");
 
-            Player player = loggedPlayerController.newPlayer(Utils.autoID());
-            try{
+            Player player = loggedPlayerController.newPlayer(userInfo.first);
+            try
+            {
                 playerPersistence.save(player);
             }
             catch(Exception e) {

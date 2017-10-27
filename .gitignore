@@ -12,6 +12,7 @@
 .idea
 games
 out
+players
 
 # Packages #
 *.gz
