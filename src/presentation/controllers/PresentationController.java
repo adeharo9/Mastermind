@@ -137,6 +137,13 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    public String setGameName()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn ("Enter a name for the game:");
+        return ioUtils.input();
+    }
+
     public Pair<String, String> logInMenu() throws NumberFormatException
     {
         return getInfoUser();
