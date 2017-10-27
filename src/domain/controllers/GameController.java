@@ -18,7 +18,7 @@ public class GameController
         game = null;
     }
 
-    public Game newGame(int id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
+    public Game newGame(String id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
     {
         game = new Game(id, difficulty);
 

@@ -32,7 +32,7 @@ public class GamePersistence extends AbstractPersistence
 
     public void save(Object game) throws IOException
     {
-        String id = Integer.toString(((Game) game).getId());
+        String id = ((Game) game).getId();
         super.save(id, game);
     }
 

@@ -130,7 +130,7 @@ public class DomainController
 
             Board board = boardController.newBoard(difficulty);
 
-            Game game = gameController.newGame(Utils.autoIDInt(), difficulty, board, playerRolePairs);
+            Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
         }
         catch(NumberFormatException e)
         {
