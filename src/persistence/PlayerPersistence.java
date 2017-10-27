@@ -35,13 +35,13 @@ public class PlayerPersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        File filePlayer = new File(basePath + playerPath + key + fileExtension);
+        File filePlayer = new File(BASE_PATH + PLAYER_PATH + key + GAME_EXTENSION);
         return filePlayer.exists();
     }
 
     public String getDirPath()
     {
-        return basePath + playerPath;
+        return BASE_PATH + PLAYER_PATH;
     }
 
     public Player load(String id) throws IOException, ClassNotFoundException

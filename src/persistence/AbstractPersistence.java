@@ -9,11 +9,12 @@ import java.io.IOException;
 public abstract class AbstractPersistence
 {
 
-    protected final static String basePath = "./";
-    protected final static String usersPath = "users/";
-    protected final static String gamePath = "games/";
-    protected final static String playerPath = "players/";
-    protected final static String fileExtension = ".mm";
+    protected final static String BASE_PATH = "./";
+    protected final static String USERS_PATH = "users/";
+    protected final static String GAME_PATH = "games/";
+    protected final static String PLAYER_PATH = "players/";
+    protected final static String GAME_EXTENSION = ".mm";
+    protected final static String CONF_EXTENSION = ".cfg";
 
     public abstract boolean exists(String key);
 
@@ -21,7 +22,7 @@ public abstract class AbstractPersistence
 
     public String getFilePath(String key)
     {
-        return getDirPath() + key + fileExtension;
+        return getDirPath() + key + GAME_EXTENSION;
     }
 
     public abstract Object load(String key) throws IOException, ClassNotFoundException;

@@ -41,7 +41,7 @@ public class GamePersistence extends AbstractPersistence
 
     public String getDirPath()
     {
-        return basePath + gamePath;
+        return BASE_PATH + GAME_PATH;
     }
 
     public Game load(String id) throws IOException, ClassNotFoundException
