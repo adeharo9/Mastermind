@@ -5,11 +5,16 @@ import exceptions.IntegrityCorruption;
 
 import java.io.FileNotFoundException;
 
-public abstract class BoardPersistence extends AbstractPersistence
+public class BoardPersistence extends AbstractPersistence
 {
     public BoardPersistence()
     {
 
+    }
+
+    public String getDirPath()
+    {
+        return "";
     }
 
     public boolean exists(String key)
@@ -29,11 +34,6 @@ public abstract class BoardPersistence extends AbstractPersistence
     public void save(Object board)
     {
         saveBoard((Board) board);
-    }
-
-    public void delete(String key) throws FileNotFoundException
-    {
-
     }
 
     public void checkIntegrity() throws IntegrityCorruption

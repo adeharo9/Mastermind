@@ -2,7 +2,7 @@ package util;
 
 import java.io.Serializable;
 
-public class Pair<T1, T2> implements Serializable
+public class Pair<T1 extends Serializable, T2 extends Serializable> implements Serializable
 {
     public T1 first;
     public T2 second;
@@ -24,7 +24,7 @@ public class Pair<T1, T2> implements Serializable
         return first == null || second == null;
     }
 
-    public static <T1, T2> boolean isValid(Pair<T1, T2> pair)
+    public static <T1 extends Serializable, T2 extends Serializable> boolean isValid(Pair<T1, T2> pair)
     {
         return pair != null && !pair.hasNull();
     }
