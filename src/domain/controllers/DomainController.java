@@ -148,6 +148,7 @@ public class DomainController
     public void exe() throws IntegrityCorruption
     {
         int returnState;
+        Mode mode = null;
         Role role = null;
         Difficulty difficulty = null;
         Pair<String, String> userInfo = null;
@@ -247,23 +248,36 @@ public class DomainController
                     break;
 
                 case GAME_MODE_SELECTION_MENU:
-                    state = State.GAME_ROLE_SELECTION_MENU;
+                    try
+                    {
+                        returnState = presentationController.gameModeSelectionMenu();
+                        mode = Translate.int2Mode(returnState);
+
+                        state = State.GAME_ROLE_SELECTION_MENU;
+                    }
+                    catch (RollbackException e)
+                    {
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
                     break;
 
                 case GAME_ROLE_SELECTION_MENU:
-                    returnState = presentationController.gameRoleSelectionMenu();
-
                     try
                     {
+                        returnState = presentationController.gameRoleSelectionMenu();
                         role = Translate.int2Role(returnState);
 
                         state = State.GAME_DIFFICULTY_SELECTION_MENU;
                     }
                     catch(RollbackException e)
                     {
-                        state = State.MAIN_GAME_MENU;
+                        state = State.GAME_MODE_SELECTION_MENU;
                     }
-                    catch(NumberFormatException e)
+                    catch(IllegalArgumentException e)
                     {
                         presentationController.optionError();
                     }
@@ -271,10 +285,9 @@ public class DomainController
                     break;
 
                 case GAME_DIFFICULTY_SELECTION_MENU:
-                    returnState = presentationController.gameDifficultySelectionMenu();
-
                     try
                     {
+                        returnState = presentationController.gameDifficultySelectionMenu();
                         difficulty = Translate.int2Difficulty(returnState);
 
                         state = State.NEW_GAME;
@@ -283,7 +296,7 @@ public class DomainController
                     {
                         state = State.GAME_ROLE_SELECTION_MENU;
                     }
-                    catch(NumberFormatException e)
+                    catch(IllegalArgumentException e)
                     {
                         presentationController.optionError();
                     }
