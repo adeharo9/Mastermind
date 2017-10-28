@@ -21,13 +21,13 @@ public class Board implements DeepCopyable, Serializable
 
         switch(difficulty)
         {
-            case easy:
+            case EASY:
                 nColumns = 4;
                 break;
-            case medium:
+            case MEDIUM:
                 nColumns = 4;
                 break;
-            case hard:
+            case HARD:
                 nColumns = 6;
                 break;
             default:
@@ -44,13 +44,13 @@ public class Board implements DeepCopyable, Serializable
 
         switch(difficulty)
         {
-            case easy:
+            case EASY:
                 maxAttempts = 30;
                 break;
-            case medium:
+            case MEDIUM:
                 maxAttempts = 25;
                 break;
-            case hard:
+            case HARD:
                 maxAttempts = 20;
                 break;
             default:

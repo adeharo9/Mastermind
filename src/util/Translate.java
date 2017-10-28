@@ -40,13 +40,13 @@ public abstract class Translate
             case 0:
                 throw new RollbackException();
             case 1:
-                difficulty = Difficulty.easy;
+                difficulty = Difficulty.EASY;
                 break;
             case 2:
-                difficulty = Difficulty.medium;
+                difficulty = Difficulty.MEDIUM;
                 break;
             case 3:
-                difficulty = Difficulty.hard;
+                difficulty = Difficulty.HARD;
                 break;
             default:
                 throw new IllegalArgumentException();

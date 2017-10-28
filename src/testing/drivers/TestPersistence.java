@@ -11,7 +11,7 @@ public class TestPersistence
 
     public static void main(String args[])
     {
-        Game test = new Game(gameID, Difficulty.easy);
+        Game test = new Game(gameID, Difficulty.EASY);
         Game result = new Game();
         GamePersistence gP = new GamePersistence();
 

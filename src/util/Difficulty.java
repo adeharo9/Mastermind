@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public enum Difficulty implements Serializable
 {
-    easy,
-    medium,
-    hard;
+    EASY,
+    MEDIUM,
+    HARD;
 
     @Deprecated
     public static boolean isValid(Difficulty difficulty)
