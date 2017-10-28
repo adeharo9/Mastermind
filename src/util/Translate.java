@@ -7,6 +7,30 @@ public abstract class Translate
 {
     /* DIFFICULTY METHODS */
 
+    public static Mode int2Mode(int mod) throws IllegalArgumentException, RollbackException
+    {
+        Mode mode;
+
+        switch(mod)
+        {
+            case 0:
+                throw new RollbackException();
+            case 1:
+                mode = Mode.HUMAN_VS_HUMAN;
+                break;
+            case 2:
+                mode = Mode.HUMAN_VS_CPU;
+                break;
+            case 3:
+                mode = Mode.CPU_VS_CPU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return mode;
+    }
+
     public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException, RollbackException
     {
         Difficulty difficulty;
