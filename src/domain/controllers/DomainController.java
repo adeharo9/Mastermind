@@ -50,12 +50,8 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logIn() throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
+    public void logIn(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
-        try
-        {
-            Pair<String, String> userInfo = presentationController.logInMenu();
-
             Player player = playerPersistence.load(userInfo.first);
 
             boolean b = player.isValid();
@@ -63,11 +59,6 @@ public class DomainController
 
             b = ((Human) player).checkPassword(userInfo.second);
             if (!b) throw new WrongPassword();
-        }
-        catch(NumberFormatException e)
-        {
-            presentationController.wrongOption();
-        }
     }
 
     public void registerUser(Pair<String, String> userInfo) throws FileAlreadyExistsException
@@ -105,7 +96,7 @@ public class DomainController
                 playerRolePairs.add(new Pair<>(player, Role.CODE_MAKER));
                 break;
 
-            case watcher:
+            case WATCHER:
                 PlayerController playerController1 = new CPUController();
                 Player player1 = playerController1.newPlayer(Utils.autoID());
 
@@ -178,7 +169,7 @@ public class DomainController
                     }
                     catch(IllegalArgumentException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -186,12 +177,12 @@ public class DomainController
                 case REGISTER_USER_MENU:
                     try
                     {
-                        userInfo = presentationController.registerUserMenu();
+                        userInfo = presentationController.registerMenu();
                         state = State.REGISTER_USER;
                     }
                     catch (NumberFormatException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -210,13 +201,21 @@ public class DomainController
                     break;
 
                 case LOG_IN_USER_MENU:
-                    state = State.LOG_IN_USER;
+                    try
+                    {
+                        userInfo = presentationController.logInMenu();
+                        state = State.LOG_IN_USER;
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        presentationController.optionError();
+                    }
                     break;
 
                 case LOG_IN_USER:
                     try
                     {
-                        logIn();
+                        logIn(userInfo);
                         state = State.MAIN_GAME_MENU;
                     }
                     catch(IOException | ClassNotFoundException | WrongPassword e)
@@ -234,7 +233,7 @@ public class DomainController
                     }
                     catch(IllegalArgumentException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -266,7 +265,7 @@ public class DomainController
                     }
                     catch(NumberFormatException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -286,7 +285,7 @@ public class DomainController
                     }
                     catch(NumberFormatException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -333,7 +332,7 @@ public class DomainController
                     }
                     catch(IllegalArgumentException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
@@ -352,7 +351,7 @@ public class DomainController
                     }
                     catch(IllegalArgumentException e)
                     {
-                        presentationController.wrongOption();
+                        presentationController.optionError();
                     }
 
                     break;
