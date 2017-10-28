@@ -57,29 +57,6 @@ public abstract class Translate
 
     /* ROLE METHODS */
 
-    @Deprecated
-    public static int difficulty2Int(Difficulty difficulty) throws IllegalArgumentException
-    {
-        int diff;
-
-        switch(difficulty)
-        {
-            case easy:
-                diff = 1;
-                break;
-            case medium:
-                diff = 2;
-                break;
-            case hard:
-                diff = 3;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return diff;
-    }
-
     public static Role int2Role(int rol) throws IllegalArgumentException, RollbackException
     {
         Role role;
@@ -99,29 +76,6 @@ public abstract class Translate
         }
 
         return role;
-    }
-
-    @Deprecated
-    public static int role2Int(Role role) throws IllegalArgumentException
-    {
-        int rol;
-
-        switch(role)
-        {
-            case CODE_MAKER:
-                rol = 1;
-                break;
-            case CODE_BREAKER:
-                rol = 2;
-                break;
-            case WATCHER:
-                rol = 3;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return rol;
     }
 
     public static State int2StateInitSession(int stat) throws IllegalArgumentException
