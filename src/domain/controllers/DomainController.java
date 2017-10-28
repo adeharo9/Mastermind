@@ -76,38 +76,45 @@ public class DomainController
         }
     }
 
-    public void newGame(Role role, Difficulty difficulty)
+    public void newGame(Mode mode, Role role, Difficulty difficulty)
     {
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
-        playingPlayerControllers.add(loggedPlayerController);
-        playerRolePairs.add(new Pair<>(loggedPlayerController.getPlayer(), role));
 
-        PlayerController playerController = new CPUController();
-        Player player = playerController.newPlayer(Utils.autoID());
-        playingPlayerControllers.add(playerController);
+        PlayerController playerController1 = null;
+        PlayerController playerController2 = null;
 
-        switch(role)
+        switch(mode)
         {
-            case CODE_MAKER:
-                playerRolePairs.add(new Pair<>(player, Role.CODE_BREAKER));
+            case HUMAN_VS_HUMAN:
+                playerController1 = loggedPlayerController;
+                playerController2 = new HumanController();
                 break;
 
-            case CODE_BREAKER:
-                playerRolePairs.add(new Pair<>(player, Role.CODE_MAKER));
+            case HUMAN_VS_CPU:
+                playerController1 = loggedPlayerController;
+                playerController2 = new CPUController();
                 break;
 
-            case WATCHER:
-                PlayerController playerController1 = new CPUController();
-                Player player1 = playerController1.newPlayer(Utils.autoID());
+            case CPU_VS_CPU:
+                role = Role.autoRole();
 
-                playingPlayerControllers.add(playerController1);
-                playerRolePairs.add(new Pair<>(player, Role.CODE_MAKER));
-                playerRolePairs.add(new Pair<>(player1, Role.CODE_BREAKER));
+                playerController1 = new CPUController();
+                playerController2 = new CPUController();
+
+                playerController1.newPlayer(Utils.autoID());
                 break;
 
             default:
                 break;
         }
+
+        playerController2.newPlayer(Utils.autoID());
+
+        playingPlayerControllers.add(playerController1);
+        playingPlayerControllers.add(playerController2);
+
+        playerRolePairs.add(new Pair<>(playerController1.getPlayer(), role));
+        playerRolePairs.add(new Pair<>(playerController2.getPlayer(), Role.complementaryRole(role)));
 
         Board board = boardController.newBoard(difficulty);
 
@@ -304,7 +311,7 @@ public class DomainController
                     break;
 
                 case NEW_GAME:
-                    newGame(role, difficulty);
+                    newGame(mode, role, difficulty);
                     state = State.IN_GAME_MENU;
 
                     break;
