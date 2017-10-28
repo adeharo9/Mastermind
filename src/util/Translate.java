@@ -65,13 +65,10 @@ public abstract class Translate
             case 0:
                 throw new RollbackException();
             case 1:
-                role = Role.codeMaker;
+                role = Role.CODE_MAKER;
                 break;
             case 2:
-                role = Role.codeBreaker;
-                break;
-            case 3:
-                role = Role.watcher;
+                role = Role.CODE_BREAKER;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -87,10 +84,10 @@ public abstract class Translate
 
         switch(role)
         {
-            case codeMaker:
+            case CODE_MAKER:
                 rol = 1;
                 break;
-            case codeBreaker:
+            case CODE_BREAKER:
                 rol = 2;
                 break;
             case watcher:
@@ -110,13 +107,13 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.endProgram;
+                state = State.END_PROGRAM;
                 break;
             case 1:
-                state = State.registerUserInput;
+                state = State.REGISTER_USER_MENU;
                 break;
             case 2:
-                state = State.logInUser;
+                state = State.LOG_IN_USER_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -125,26 +122,26 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateGameSelection(int stat) throws IllegalArgumentException
+    public static State int2StateMainGameMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
         switch(stat)
         {
             case 0:
-                state = State.initSession;
+                state = State.INIT_SESSION_MENU;
                 break;
             case 1:
-                state = State.gameModeSelection;
+                state = State.GAME_MODE_SELECTION_MENU;
                 break;
             case 2:
-                state = State.loadGame;
+                state = State.LOAD_GAME_MENU;
                 break;
             case 3:
-                state = State.checkRanking;
+                state = State.CHECK_RANKING;
                 break;
             case 4:
-                state = State.checkInfo;
+                state = State.CHECK_INFO;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -160,10 +157,10 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.gamePause;
+                state = State.GAME_PAUSE_MENU;
                 break;
             case 1:
-                state = State.playTurn;
+                state = State.PLAY_TURN;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -179,19 +176,19 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.continueGame;
+                state = State.CONTINUE_GAME;
                 break;
             case 1:
-                state = State.saveGameAndContinue;
+                state = State.SAVE_GAME_AND_CONTINUE;
                 break;
             case 2:
-                state = State.saveGameAndExit;
+                state = State.SAVE_GAME_AND_EXIT;
                 break;
             case 3:
-                state = State.exitGameWithoutSaving;
+                state = State.EXIT_GAME_WITHOUT_SAVING;
                 break;
             case 4:
-                state = State.askForClue;
+                state = State.ASK_FOR_CLUE;
                 break;
             default:
                 throw new IllegalArgumentException();
