@@ -55,8 +55,6 @@ public abstract class Translate
         return difficulty;
     }
 
-    /* ROLE METHODS */
-
     public static Role int2Role(int rol) throws IllegalArgumentException, RollbackException
     {
         Role role;
