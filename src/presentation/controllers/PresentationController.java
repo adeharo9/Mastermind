@@ -22,6 +22,18 @@ public class PresentationController
         return new Pair<>(username, password);
     }
 
+    private int genericWarning(String action)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Are you sure you want to " + action + "?");
+        ioUtils.endLine();
+        ioUtils.printOutLn("1.- Yes");
+        ioUtils.printOutLn("0.- No");
+        ioUtils.endLine();
+        ioUtils.printOut("Select option number: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
     /* CONSTRUCTION METHODS */
     
     public PresentationController()
@@ -31,26 +43,7 @@ public class PresentationController
 
     /* METHODS */
 
-    public void wrongOption()
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn("Wrong option number");
-        ioUtils.endLine();
-    }
-
-    public void wrongLogIn()
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn("Wrong username or password");
-        ioUtils.endLine();
-    }
-
-    public void wrongRegister()
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn("Username is already used");
-        ioUtils.endLine();
-    }
+    /* MENUS */
 
     public int initSessionMenu() throws NumberFormatException
     {
@@ -159,6 +152,46 @@ public class PresentationController
         ioUtils.endLine();
         ioUtils.printOutLn ("Enter a name for the game:");
         return ioUtils.input();
+    }
+
+    public void wrongOption()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong option number");
+        ioUtils.endLine();
+    }
+
+    /* WARNING MESSAGES */
+
+    public int exitGameWarning() throws NumberFormatException
+    {
+        return genericWarning("exit");
+    }
+
+    public int logOutWarning() throws NumberFormatException
+    {
+        return genericWarning("log out");
+    }
+
+    public int closeProgramWarning() throws NumberFormatException
+    {
+        return genericWarning("close Mastermind");
+    }
+
+    /* ERROR MESSAGES */
+
+    public void logInError()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong username or password");
+        ioUtils.endLine();
+    }
+
+    public void registerError()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Username is already used");
+        ioUtils.endLine();
     }
     /* TESTING METHODS */
 
