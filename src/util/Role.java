@@ -6,7 +6,7 @@ public enum Role implements Serializable
 {
     CODE_MAKER,
     CODE_BREAKER,
-    watcher;
+    WATCHER;
 
     @Deprecated
     public static boolean isValid(Role role)

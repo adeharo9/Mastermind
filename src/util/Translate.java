@@ -90,7 +90,7 @@ public abstract class Translate
             case CODE_BREAKER:
                 rol = 2;
                 break;
-            case watcher:
+            case WATCHER:
                 rol = 3;
                 break;
             default:
