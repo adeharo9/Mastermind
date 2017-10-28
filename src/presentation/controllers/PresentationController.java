@@ -34,6 +34,20 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    public void genericLoadError(String loadedElement)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Error while loading " + loadedElement);
+        ioUtils.endLine();
+    }
+
+    public void genericSaveError(String savedElement)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Error while saving " + savedElement);
+        ioUtils.endLine();
+    }
+
     /* CONSTRUCTION METHODS */
     
     public PresentationController()
@@ -60,7 +74,7 @@ public class PresentationController
         return getInfoUser();
     }
 
-    public Pair<String, String> registerUserMenu() throws NumberFormatException
+    public Pair<String, String> registerMenu() throws NumberFormatException
     {
         return getInfoUser();
     }
@@ -154,13 +168,6 @@ public class PresentationController
         return ioUtils.input();
     }
 
-    public void wrongOption()
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn("Wrong option number");
-        ioUtils.endLine();
-    }
-
     /* WARNING MESSAGES */
 
     public int exitGameWarning() throws NumberFormatException
@@ -180,6 +187,13 @@ public class PresentationController
 
     /* ERROR MESSAGES */
 
+    public void optionError()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Wrong option number");
+        ioUtils.endLine();
+    }
+
     public void logInError()
     {
         ioUtils.endLine();
@@ -193,6 +207,27 @@ public class PresentationController
         ioUtils.printOutLn("Username is already used");
         ioUtils.endLine();
     }
+
+    public void gameLoadError()
+    {
+        genericLoadError("game");
+    }
+
+    public void playerLoadError()
+    {
+        genericLoadError("player");
+    }
+
+    public void gameSaveError()
+    {
+        genericSaveError("game");
+    }
+
+    public void playerSaveError()
+    {
+        genericSaveError("player");
+    }
+
     /* TESTING METHODS */
 
     /* CLONING METHODS */
