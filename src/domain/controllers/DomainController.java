@@ -33,7 +33,7 @@ public class DomainController
 
     public DomainController()
     {
-        state = State.initProgram;
+        state = State.INIT_PROGRAM;
 
         presentationController = new PresentationController();
 
@@ -97,12 +97,12 @@ public class DomainController
 
         switch(role)
         {
-            case codeMaker:
-                playerRolePairs.add(new Pair<>(player, Role.codeBreaker));
+            case CODE_MAKER:
+                playerRolePairs.add(new Pair<>(player, Role.CODE_BREAKER));
                 break;
 
-            case codeBreaker:
-                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
+            case CODE_BREAKER:
+                playerRolePairs.add(new Pair<>(player, Role.CODE_MAKER));
                 break;
 
             case watcher:
@@ -110,8 +110,8 @@ public class DomainController
                 Player player1 = playerController1.newPlayer(Utils.autoID());
 
                 playingPlayerControllers.add(playerController1);
-                playerRolePairs.add(new Pair<>(player, Role.codeMaker));
-                playerRolePairs.add(new Pair<>(player1, Role.codeBreaker));
+                playerRolePairs.add(new Pair<>(player, Role.CODE_MAKER));
+                playerRolePairs.add(new Pair<>(player1, Role.CODE_BREAKER));
                 break;
 
             default:
@@ -161,19 +161,19 @@ public class DomainController
         Difficulty difficulty = null;
         Pair<String, String> userInfo = null;
 
-        while(!state.equals(State.endProgram))
+        while(!state.equals(State.END_PROGRAM))
         {
             switch(state)
             {
-                case initProgram:
-                    state = State.initSession;
+                case INIT_PROGRAM:
+                    state = State.INIT_SESSION_MENU;
 
                     break;
 
-                case initSession:
+                case INIT_SESSION_MENU:
                     try
                     {
-                        returnState = presentationController.initialMenu();
+                        returnState = presentationController.initSessionMenu();
                         state = Translate.int2StateInitSession(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -183,11 +183,11 @@ public class DomainController
 
                     break;
 
-                case registerUserInput:
+                case REGISTER_USER_MENU:
                     try
                     {
                         userInfo = presentationController.registerUserMenu();
-                        state = State.registerUser;
+                        state = State.REGISTER_USER;
                     }
                     catch (NumberFormatException e)
                     {
@@ -196,11 +196,11 @@ public class DomainController
 
                     break;
 
-                case registerUser:
+                case REGISTER_USER:
                     try
                     {
                         registerUser(userInfo);
-                        state = State.gameInProgressSelection;
+                        state = State.MAIN_GAME_MENU;
                     }
                     catch(FileAlreadyExistsException e)
                     {
@@ -209,11 +209,15 @@ public class DomainController
 
                     break;
 
-                case logInUser:
+                case LOG_IN_USER_MENU:
+                    state = State.LOG_IN_USER;
+                    break;
+
+                case LOG_IN_USER:
                     try
                     {
                         logIn();
-                        state = State.gameInProgressSelection;
+                        state = State.MAIN_GAME_MENU;
                     }
                     catch(IOException | ClassNotFoundException | WrongPassword e)
                     {
@@ -222,11 +226,11 @@ public class DomainController
 
                     break;
 
-                case gameInProgressSelection:
+                case MAIN_GAME_MENU:
                     try
                     {
-                        returnState = presentationController.gameSelectionMenu();
-                        state = Translate.int2StateGameSelection(returnState);
+                        returnState = presentationController.mainGameMenu();
+                        state = Translate.int2StateMainGameMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -235,18 +239,50 @@ public class DomainController
 
                     break;
 
-                case gameDifficultySelection:
+                case CHECK_RANKING:
+
+                    break;
+
+                case CHECK_INFO:
+
+                    break;
+
+                case GAME_MODE_SELECTION_MENU:
+                    state = State.GAME_ROLE_SELECTION_MENU;
+                    break;
+
+                case GAME_ROLE_SELECTION_MENU:
+                    returnState = presentationController.gameRoleSelectionMenu();
+
+                    try
+                    {
+                        role = Translate.int2Role(returnState);
+
+                        state = State.GAME_DIFFICULTY_SELECTION_MENU;
+                    }
+                    catch(RollbackException e)
+                    {
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        presentationController.wrongOption();
+                    }
+
+                    break;
+
+                case GAME_DIFFICULTY_SELECTION_MENU:
                     returnState = presentationController.gameDifficultySelectionMenu();
 
                     try
                     {
                         difficulty = Translate.int2Difficulty(returnState);
 
-                        state = State.newGame;
+                        state = State.NEW_GAME;
                     }
                     catch(RollbackException e)
                     {
-                        state = State.gameModeSelection;
+                        state = State.GAME_ROLE_SELECTION_MENU;
                     }
                     catch(NumberFormatException e)
                     {
@@ -255,64 +291,41 @@ public class DomainController
 
                     break;
 
-                case gameModeSelection:
-                    returnState = presentationController.gameModeSelectionMenu();
-
-                    try
-                    {
-                        role = Translate.int2Role(returnState);
-
-                        state = State.gameDifficultySelection;
-                    }
-                    catch(RollbackException e)
-                    {
-                        state = State.gameInProgressSelection;
-                    }
-                    catch(NumberFormatException e)
-                    {
-                        presentationController.wrongOption();
-                    }
-
-                    break;
-
-                case newGame:
+                case NEW_GAME:
                     newGame(role, difficulty);
-                    state = State.playSelection;
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case loadGame:
+                case LOAD_GAME_MENU:
                     loadGame("");
-                    state = State.playSelection;
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case saveGameAndContinue:
+                case SAVE_GAME_AND_CONTINUE:
                     saveGame("");
-                    state = State.playSelection;
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case saveGameAndExit:
+                case SAVE_GAME_AND_EXIT:
                     saveGame("");
-                    state = State.gameInProgressSelection;
+                    state = State.MAIN_GAME_MENU;
 
                     break;
 
-                case checkRanking:
+                case EXIT_GAME_WITHOUT_SAVING:
+                    state = State.MAIN_GAME_MENU;
 
                     break;
 
-                case checkInfo:
+                case CONTINUE_GAME:
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case continueGame:
-                    state = State.playSelection;
-
-                    break;
-
-                case playSelection:
+                case IN_GAME_MENU:
                     try
                     {
                         returnState = presentationController.inGameMenu();
@@ -325,13 +338,13 @@ public class DomainController
 
                     break;
 
-                case playTurn:
+                case PLAY_TURN:
                     playTurn();
-                    state = State.playSelection;
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case gamePause:
+                case GAME_PAUSE_MENU:
                     try
                     {
                         returnState = presentationController.pauseMenu();
@@ -344,18 +357,13 @@ public class DomainController
 
                     break;
 
-                case askForClue:
+                case ASK_FOR_CLUE:
                     giveClue();
-                    state = State.playSelection;
+                    state = State.IN_GAME_MENU;
 
                     break;
 
-                case exitGameWithoutSaving:
-                    state = State.gameInProgressSelection;
-
-                    break;
-
-                case endProgram:
+                case END_PROGRAM:
 
                     break;
 
