@@ -2,37 +2,41 @@ package util;
 
 public enum State
 {
-    askForClue,
+    ASK_FOR_CLUE,
 
-    checkInfo,
-    checkRanking,
-    continueGame,
+    CHECK_INFO,
+    CHECK_RANKING,
+    CONTINUE_GAME,
 
-    endProgram,
-    exitGameWithoutSaving,
+    END_PROGRAM,
+    EXIT_GAME_WITHOUT_SAVING,
 
-    gameDifficultySelection,
-    gameModeSelection,
-    gamePause,
-    gameInProgressSelection,
+    GAME_DIFFICULTY_SELECTION_MENU,
+    GAME_MODE_SELECTION_MENU,
+    GAME_ROLE_SELECTION_MENU,
+    GAME_PAUSE_MENU,
 
-    initProgram,
-    initSession,
+    INIT_PROGRAM,
+    INIT_SESSION_MENU,
 
-    loadGame,
-    logInUser,
+    LOAD_GAME_MENU,
+    LOG_IN_USER,
+    LOG_IN_USER_MENU,
 
-    newGame,
+    MAIN_GAME_MENU,
 
-    playSelection,
-    playTurn,
+    NEW_GAME,
 
-    registerUser,
-    registerUserInput,
+    IN_GAME_MENU,
+    PLAY_TURN,
 
-    saveGameAndContinue,
-    saveGameAndExit;
+    REGISTER_USER,
+    REGISTER_USER_MENU,
 
+    SAVE_GAME_AND_CONTINUE,
+    SAVE_GAME_AND_EXIT;
+
+    @Deprecated
     public static boolean isValid(State state)
     {
         return state != null;

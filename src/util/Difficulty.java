@@ -8,6 +8,7 @@ public enum Difficulty implements Serializable
     medium,
     hard;
 
+    @Deprecated
     public static boolean isValid(Difficulty difficulty)
     {
         return difficulty != null;
