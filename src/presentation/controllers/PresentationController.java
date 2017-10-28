@@ -34,14 +34,14 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public void genericLoadError(String loadedElement)
+    private void genericLoadError(String loadedElement)
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Error while loading " + loadedElement);
         ioUtils.endLine();
     }
 
-    public void genericSaveError(String savedElement)
+    private void genericSaveError(String savedElement)
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Error while saving " + savedElement);
