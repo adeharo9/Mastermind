@@ -58,6 +58,7 @@ public abstract class Translate
         {
             case 0:
                 mode = null;
+                break;
             case 1:
                 mode = Mode.HUMAN_VS_HUMAN;
                 break;
@@ -82,6 +83,7 @@ public abstract class Translate
         {
             case 0:
                 role = null;
+                break;
             case 1:
                 role = Role.CODE_MAKER;
                 break;
@@ -103,6 +105,7 @@ public abstract class Translate
         {
             case 0:
                 difficulty = null;
+                break;
             case 1:
                 difficulty = Difficulty.EASY;
                 break;
