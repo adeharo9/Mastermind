@@ -33,7 +33,6 @@ public class PlayerPersistence extends AbstractPersistence
 
     public void save(Object player) throws IOException
     {
-        //savePlayer((Player) player);
         String id = ((Player) player).getId();
         super.save(id, player);
     }
