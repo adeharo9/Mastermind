@@ -125,9 +125,6 @@ public class DomainController
     public void saveGame(String id)
     {
         try {
-            boolean b = gamePersistence.exists(id);
-            if(b) throw new FileAlreadyExistsException("");
-
             Game game = gameController.getGame();
             gamePersistence.save(game);
         }
