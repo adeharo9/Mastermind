@@ -129,25 +129,16 @@ public class DomainController
         gameController.setGameByReference(game);
     }
 
-    private void saveGame()
+    private void saveGame() throws IOException
     {
-        try
-        {
-            Game game = gameController.getGame();
-            gamePersistence.save(game);
-            String idPlayer = loggedPlayerController.getPlayer().getId();
-            playerPersistence.savePlayerGame(game.getId(), idPlayer);
-        }
-        catch(IOException e)
-        {
-            presentationController.gameSaveError();
-        }
-    }
+        Game game = gameController.getGame();
+        gamePersistence.save(game);
 
-    /*public boolean endGame()
-    {
-        return true;
-    }*/
+        String gameId = game.getId();
+        String playerId = loggedPlayerController.getPlayer().getId();
+
+        playerPersistence.savePlayerGame(gameId, playerId);
+    }
 
     private void playTurn()
     {
@@ -178,7 +169,7 @@ public class DomainController
         Difficulty difficulty = null;
         Pair<String, String> userInfo = null;
 
-        while(!state.equals(State.END_PROGRAM))
+        while(!state.equals(State.CLOSE_PROGRAM))
         {
             switch(state)
             {
@@ -248,7 +239,7 @@ public class DomainController
                     catch(IOException | ClassNotFoundException | WrongPassword e)
                     {
                         presentationController.logInError();
-                    } //Momentáneo
+                    }
 
                     break;
 
@@ -257,6 +248,19 @@ public class DomainController
                     {
                         returnState = presentationController.mainGameMenu();
                         state = Translate.int2StateMainGameMenu(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
+
+                    break;
+
+                case LOG_OUT_WARNING:
+                    try
+                    {
+                        returnState = presentationController.logOutWarning();
+                        state = Translate.int2StateLogOutWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -367,14 +371,43 @@ public class DomainController
                     break;
 
                 case SAVE_GAME_AND_CONTINUE:
-                    saveGame();
-                    state = State.IN_GAME_MENU;
+                    try
+                    {
+                        saveGame();
+                        state = State.IN_GAME_MENU;
+                    }
+                    catch(IOException e)
+                    {
+                        presentationController.gameSaveError();
+                        state = State.GAME_PAUSE_MENU;
+                    }
 
                     break;
 
                 case SAVE_GAME_AND_EXIT:
-                    saveGame();
-                    state = State.MAIN_GAME_MENU;
+                    try
+                    {
+                        saveGame();
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    catch(IOException e)
+                    {
+                        presentationController.gameSaveError();
+                        state = State.GAME_PAUSE_MENU;
+                    }
+
+                    break;
+
+                case EXIT_GAME_WITHOUT_SAVING_WARNING:
+                    try
+                    {
+                        returnState = presentationController.exitGameWarning();
+                        state = Translate.int2StateExitGameWarning(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
 
                     break;
 
@@ -426,7 +459,20 @@ public class DomainController
 
                     break;
 
-                case END_PROGRAM:
+                case CLOSE_PROGRAM_WARNING:
+                    try
+                    {
+                        returnState = presentationController.closeProgramWarning();
+                        state = Translate.int2StateCloseProgramWarning(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
+
+                    break;
+
+                case CLOSE_PROGRAM:
 
                     break;
 
