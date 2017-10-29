@@ -119,7 +119,14 @@ public class DomainController
 
     private void loadSavedGamesList()
     {
-        savedGames = new ArrayList<>();
+
+        try{
+            Player loggedPlayer = loggedPlayerController.getPlayer();
+            savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
+        }
+        catch (IOException e){
+            presentationController.gameLoadError();
+        }
     }
 
     private void loadGame(String id) throws IOException, ClassNotFoundException
@@ -134,6 +141,8 @@ public class DomainController
         {
             Game game = gameController.getGame();
             gamePersistence.save(game);
+            String idPlayer = loggedPlayerController.getPlayer().getId();
+            playerPersistence.savePlayerGame(game.getId(), idPlayer);
         }
         catch(IOException e)
         {

@@ -4,7 +4,9 @@ import domain.classes.Game;
 import exceptions.IntegrityCorruption;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.ArrayList;
 
 public abstract class AbstractPersistence
 {
@@ -14,7 +16,7 @@ public abstract class AbstractPersistence
     protected final static String GAME_PATH = "games/";
     protected final static String PLAYER_PATH = "players/";
     protected final static String GAME_EXTENSION = ".mm";
-    protected final static String CONF_EXTENSION = ".cfg";
+    protected final static String CONFIG_FILE = "config.cfg";
 
     public abstract boolean exists(String key);
 
@@ -68,6 +70,10 @@ public abstract class AbstractPersistence
         b = file.delete();
         if (!b) throw new IOException();
     }
+
+    public void savePlayerGame(String idGame, String idPlayer ) throws IOException{}
+
+    public ArrayList<String> loadSavedGames(String id) throws IOException{return null;}
 
     public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
     {
