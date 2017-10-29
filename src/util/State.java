@@ -19,7 +19,9 @@ public enum State
     INIT_PROGRAM,
     INIT_SESSION_MENU,
 
+    LOAD_GAME,
     LOAD_GAME_MENU,
+    LOAD_SAVED_GAMES_LIST,
     LOG_IN_USER,
     LOG_IN_USER_MENU,
 
