@@ -1,20 +1,42 @@
 package util;
 
 import domain.classes.Code;
-import exceptions.RollbackException;
 
 public abstract class Translate
 {
-    /* DIFFICULTY METHODS */
+    /* PRIVATE METHODS */
 
-    public static Mode int2Mode(int mod) throws IllegalArgumentException, RollbackException
+    private static State int2StateGameDifficultySelectionMenu(int stat, State state0) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = state0;
+                break;
+            case 1:
+            case 2:
+            case 3:
+                state = State.NEW_GAME;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    /* PUBLIC METHODS */
+
+    public static Mode int2Mode(int mod) throws IllegalArgumentException
     {
         Mode mode;
 
         switch(mod)
         {
             case 0:
-                throw new RollbackException();
+                mode = null;
             case 1:
                 mode = Mode.HUMAN_VS_HUMAN;
                 break;
@@ -31,14 +53,35 @@ public abstract class Translate
         return mode;
     }
 
-    public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException, RollbackException
+    public static Role int2Role(int rol) throws IllegalArgumentException
+    {
+        Role role;
+
+        switch(rol)
+        {
+            case 0:
+                role = null;
+            case 1:
+                role = Role.CODE_MAKER;
+                break;
+            case 2:
+                role = Role.CODE_BREAKER;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return role;
+    }
+
+    public static Difficulty int2Difficulty(int diff) throws IllegalArgumentException
     {
         Difficulty difficulty;
 
         switch(diff)
         {
             case 0:
-                throw new RollbackException();
+                difficulty = null;
             case 1:
                 difficulty = Difficulty.EASY;
                 break;
@@ -53,27 +96,6 @@ public abstract class Translate
         }
 
         return difficulty;
-    }
-
-    public static Role int2Role(int rol) throws IllegalArgumentException, RollbackException
-    {
-        Role role;
-
-        switch(rol)
-        {
-            case 0:
-                throw new RollbackException();
-            case 1:
-                role = Role.CODE_MAKER;
-                break;
-            case 2:
-                role = Role.CODE_BREAKER;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return role;
     }
 
     public static State int2StateInitSession(int stat) throws IllegalArgumentException
@@ -171,6 +193,59 @@ public abstract class Translate
         }
 
         return state;
+    }
+
+    public static State int2StateGameModeSelectionMenu(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.MAIN_GAME_MENU;
+                break;
+            case 1:
+            case 2:
+                state = State.GAME_ROLE_SELECTION_MENU;
+                break;
+            case 3:
+                state = State.GAME_DIFFICULTY_SELECTION_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateGameRoleSelectionMenu(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.GAME_MODE_SELECTION_MENU;
+                break;
+            case 1:
+            case 2:
+                state = State.GAME_DIFFICULTY_SELECTION_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateGameDifficultySelectionMenuHuman(int state) throws IllegalArgumentException
+    {
+        return int2StateGameDifficultySelectionMenu(state, State.GAME_ROLE_SELECTION_MENU);
+    }
+
+    public static State int2StateGameDifficultySelectionMenuCPU(int state) throws IllegalArgumentException
+    {
+        return int2StateGameDifficultySelectionMenu(state, State.GAME_MODE_SELECTION_MENU);
     }
 
     public static String code2String(Code code)
