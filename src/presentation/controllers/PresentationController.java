@@ -3,6 +3,8 @@ package presentation.controllers;
 import util.Pair;
 import util.ioUtils;
 
+import java.util.ArrayList;
+
 public class PresentationController
 {
     /* ATTRIBUTES */
@@ -149,7 +151,25 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public int saveGame() throws NumberFormatException
+    public int loadGameMenu(ArrayList<String> savedGames) throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Currently saved games:");
+        ioUtils.endLine();
+
+        for(int i = 0; i < savedGames.size(); ++i)
+        {
+            ioUtils.printOut(i + 1 + ".- ");
+            ioUtils.printOutLn(savedGames.get(i));
+        }
+
+        ioUtils.printOutLn("0.- Back");
+        ioUtils.endLine();
+        ioUtils.printOut("Select option number: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
+    public int saveGameMenu() throws NumberFormatException
     {
         ioUtils.endLine();
         ioUtils.printOutLn ("Do you want to change the name of the game?");
@@ -208,7 +228,10 @@ public class PresentationController
         ioUtils.endLine();
     }
 
-    public void gameLoadError() { genericLoadError("game"); }
+    public void gameLoadError()
+    {
+        genericLoadError("game");
+    }
 
     public void playerLoadError()
     {

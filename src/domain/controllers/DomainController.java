@@ -3,10 +3,10 @@ package domain.controllers;
 import domain.classes.*;
 import exceptions.IntegrityCorruption;
 import exceptions.WrongPassword;
-import persistence.BoardPersistence;
+//import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
-import persistence.RankingPersistence;
+//import persistence.RankingPersistence;
 import presentation.controllers.PresentationController;
 import util.*;
 
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class DomainController
 {
     private State state;
+    private ArrayList<String> savedGames;
 
     private PresentationController presentationController;
 
@@ -25,14 +26,15 @@ public class DomainController
     private PlayerController loggedPlayerController;
     private ArrayList<PlayerController> playingPlayerControllers;
 
-    private BoardPersistence boardPersistence;
+    //private BoardPersistence boardPersistence;
     private GamePersistence gamePersistence;
     private PlayerPersistence playerPersistence;
-    private RankingPersistence rankingPersistence;
+    //private RankingPersistence rankingPersistence;
 
     public DomainController()
     {
         state = State.INIT_PROGRAM;
+        savedGames = new ArrayList<>();
 
         presentationController = new PresentationController();
 
@@ -112,26 +114,29 @@ public class DomainController
 
         Board board = boardController.newBoard(difficulty);
 
-        Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
+        gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
     }
 
-    private void loadGame(String id)
+    private void loadSavedGamesList()
     {
-        try{
-            gamePersistence.load(id);
-        }
-        catch (IOException | ClassNotFoundException e){
-            presentationController.gameLoadError();
-        }
+        savedGames = new ArrayList<>();
     }
 
-    private void saveGame(String id)
+    private void loadGame(String id) throws IOException, ClassNotFoundException
     {
-        try {
+        Game game = gamePersistence.load(id);
+        gameController.setGameByReference(game);
+    }
+
+    private void saveGame()
+    {
+        try
+        {
             Game game = gameController.getGame();
             gamePersistence.save(game);
         }
-        catch(IOException e){
+        catch(IOException e)
+        {
             presentationController.gameSaveError();
         }
     }
@@ -164,6 +169,7 @@ public class DomainController
     public void exe() throws IntegrityCorruption
     {
         int returnState;
+        String str = null;
         Mode mode = null;
         Role role = null;
         Difficulty difficulty = null;
@@ -322,20 +328,41 @@ public class DomainController
 
                     break;
 
+                case LOAD_SAVED_GAMES_LIST:
+                    loadSavedGamesList();
+                    state = State.LOAD_GAME_MENU;
+
+                    break;
+
                 case LOAD_GAME_MENU:
-                    loadGame("");
-                    state = State.IN_GAME_MENU;
+                    returnState = presentationController.loadGameMenu(savedGames);
+
+                    str = Translate.int2SavedGameId(savedGames, returnState);
+                    state = Translate.int2StateLoadGameMenu(returnState);
+
+                    break;
+
+                case LOAD_GAME:
+                    try
+                    {
+                        loadGame(str);
+                        state = State.IN_GAME_MENU;
+                    }
+                    catch (IOException | ClassNotFoundException e)
+                    {
+                        presentationController.gameLoadError();
+                    }
 
                     break;
 
                 case SAVE_GAME_AND_CONTINUE:
-                    saveGame("");
+                    saveGame();
                     state = State.IN_GAME_MENU;
 
                     break;
 
                 case SAVE_GAME_AND_EXIT:
-                    saveGame("");
+                    saveGame();
                     state = State.MAIN_GAME_MENU;
 
                     break;
