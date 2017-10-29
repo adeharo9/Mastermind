@@ -28,6 +28,14 @@ public class GameController
         return game;
     }
 
+    public void setGameByReference(Game game) throws IllegalArgumentException
+    {
+        boolean b = game.isValid();
+        if(!b) throw new IllegalArgumentException();
+
+        this.game = game;
+    }
+
     public Game getGame() {
         return game;
     }
