@@ -24,7 +24,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     public Human(String username, String password) throws IllegalArgumentException, NullPointerException
     {
-        setUsername(username);
+        setId(username);
         setPassword(password);
     }
 
@@ -32,20 +32,11 @@ public class Human extends Player implements DeepCopyable, Serializable
     {
         super(human);
 
-        setUsername(human.getUsername());
+        setId(human.getId());
         setPassword(human.getPassword());
     }
 
     /* SET METHODS */
-
-    @Deprecated
-    public void setUsername(String username) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = !username.isEmpty();
-        if(!b) throw new IllegalArgumentException();
-
-        this.id = username;
-    }
 
     public void setPassword(String password) throws IllegalArgumentException, NullPointerException
     {
