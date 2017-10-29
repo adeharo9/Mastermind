@@ -49,15 +49,18 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
+    private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
         Player player = playerPersistence.load(userInfo.first);
+        PlayerController playerController = new HumanController(player);
 
-        boolean b = ((Human) player).checkPassword(userInfo.second);
+        boolean b = ((HumanController) playerController).checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
+
+        loggedPlayerController = playerController;
     }
 
-    public void registerUser(Pair<String, String> userInfo) throws IOException
+    private void registerUser(Pair<String, String> userInfo) throws IOException
     {
         boolean b = playerPersistence.exists(userInfo.first);
         if(b) throw new FileAlreadyExistsException("");
@@ -67,7 +70,7 @@ public class DomainController
         playerPersistence.save(player);
     }
 
-    public void newGame(Mode mode, Role role, Difficulty difficulty)
+    private void newGame(Mode mode, Role role, Difficulty difficulty)
     {
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
 
@@ -112,7 +115,7 @@ public class DomainController
         Game game = gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
     }
 
-    public void loadGame(String id)
+    private void loadGame(String id)
     {
         try{
             gamePersistence.load(id);
@@ -122,7 +125,7 @@ public class DomainController
         }
     }
 
-    public void saveGame(String id)
+    private void saveGame(String id)
     {
         try {
             Game game = gameController.getGame();
@@ -138,7 +141,7 @@ public class DomainController
         return true;
     }*/
 
-    public void playTurn()
+    private void playTurn()
     {
         Action action;
 
@@ -148,12 +151,12 @@ public class DomainController
         }
     }
 
-    public boolean checkTurn(Turn turn)
+    private boolean checkTurn(Turn turn)
     {
         return true;
     }
 
-    public void giveClue()
+    private void giveClue()
     {
 
     }
