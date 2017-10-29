@@ -13,9 +13,9 @@ public class HumanController extends PlayerController
         player = new Human();
     }
 
-    public HumanController(String username, String password)
+    public HumanController(Player player)
     {
-        player = new Human(username, password);
+        super((Human) player);
     }
 
     /* INSTANTIATION METHODS */
@@ -24,6 +24,11 @@ public class HumanController extends PlayerController
     {
         player = new Human(id);
         return player;
+    }
+
+    public HumanController(String id, String password)
+    {
+        player = new Human(id, password);
     }
 
     public Player newPlayer(String id, String password)
@@ -37,5 +42,10 @@ public class HumanController extends PlayerController
     public Action play()
     {
         return new CodeBreak();
+    }
+
+    public boolean checkPassword(String password)
+    {
+        return ((Human) player).checkPassword(password);
     }
 }

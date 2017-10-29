@@ -12,11 +12,29 @@ public abstract class PlayerController
 
     /* CONSTRUCTION METHODS */
 
+    public PlayerController()
+    {
+
+    }
+
+    public PlayerController(Player player)
+    {
+        setPlayerByReference(player);
+    }
+
     /* INSTANTIATION METHODS */
 
     public abstract Player newPlayer(String id);
 
     /* SET METHODS */
+
+    public void setPlayerByReference(Player player) throws IllegalArgumentException
+    {
+        boolean b = player.isValid();
+        if(!b) throw new IllegalArgumentException();
+
+        this.player = player;
+    }
 
     /* GET METHODS */
 

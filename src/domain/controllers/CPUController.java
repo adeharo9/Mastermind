@@ -14,6 +14,11 @@ public class CPUController extends PlayerController
         player = new CPU();
     }
 
+    public CPUController(Player player)
+    {
+        super((CPU) player);
+    }
+
     /* INSTANTIATION METHODS */
 
     public Player newPlayer(String id)
