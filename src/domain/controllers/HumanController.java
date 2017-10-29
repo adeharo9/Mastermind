@@ -26,6 +26,12 @@ public class HumanController extends PlayerController
         return player;
     }
 
+    public Player newPlayer(String id, String password)
+    {
+        player = new Human(id, password);
+        return player;
+    }
+
     /* OTHER METHODS */
 
     public Action play()
