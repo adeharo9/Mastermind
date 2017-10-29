@@ -119,12 +119,13 @@ public class DomainController
 
     private void loadSavedGamesList()
     {
-
-        try{
+        try
+        {
             Player loggedPlayer = loggedPlayerController.getPlayer();
             savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
         }
-        catch (IOException e){
+        catch (IOException e)
+        {
             presentationController.gameLoadError();
         }
     }

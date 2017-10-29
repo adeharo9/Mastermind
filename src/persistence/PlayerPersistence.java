@@ -1,6 +1,5 @@
 package persistence;
 
-import domain.classes.Human;
 import domain.classes.Player;
 import exceptions.IntegrityCorruption;
 import java.io.*;
@@ -10,6 +9,10 @@ import java.util.ArrayList;
 
 public class PlayerPersistence extends AbstractPersistence
 {
+    protected String getConfigFilePath(String playerId)
+    {
+        return getDirPath() + playerId + "/" + CONFIG_FILE;
+    }
 
     public PlayerPersistence()
     {
@@ -38,36 +41,40 @@ public class PlayerPersistence extends AbstractPersistence
         super.save(id, player);
     }
 
-    public void savePlayerGame(String idGame, String idPlayer) throws IOException
+    public void savePlayerGame(String gameId, String playerId) throws IOException
     {
-        boolean b;
-
-        String filePath = getDirPath() + idPlayer + CONFIG_FILE;
+        String filePath = getConfigFilePath(playerId);
         File configFile = new File(filePath);
 
-        b = configFile.exists();
-        if(!b) configFile.createNewFile();
+        boolean b = configFile.exists();
+        if(!b) b = configFile.createNewFile();
+        if(!b) throw new FileAlreadyExistsException("");
 
         BufferedWriter out = new BufferedWriter(new FileWriter(filePath, true));
-        out.write(idGame);
-        if(out != null) out.close();
+        out.write(gameId);
+        out.close();
     }
 
-    public ArrayList<String> loadSavedGames(String id) throws IOException{
-        boolean b;
-        ArrayList<String> savedGames = null;
-        String playerGame;
+    public ArrayList<String> loadSavedGames(String playerId) throws IOException
+    {
+        String savedGame;
+        ArrayList<String> savedGames = new ArrayList<>();
 
-        String filePath = getDirPath() + id + CONFIG_FILE;
+        String filePath = getConfigFilePath(playerId);
         File configFile = new File(filePath);
 
-        b = configFile.exists();
+        boolean b = configFile.exists();
         if(!b) throw new FileNotFoundException();
 
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-        while((playerGame = br.readLine()) != null) {
-            savedGames.add(playerGame);
+
+        savedGame = br.readLine();
+        while(savedGame != null)
+        {
+            savedGames.add(savedGame);
+            savedGame = br.readLine();
         }
+
         return savedGames;
     }
 
