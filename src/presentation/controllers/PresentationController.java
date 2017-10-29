@@ -208,10 +208,7 @@ public class PresentationController
         ioUtils.endLine();
     }
 
-    public void gameLoadError()
-    {
-        genericLoadError("game");
-    }
+    public void gameLoadError() { genericLoadError("game"); }
 
     public void playerLoadError()
     {

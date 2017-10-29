@@ -27,4 +27,8 @@ public class GameController
 
         return game;
     }
+
+    public Game getGame() {
+        return game;
+    }
 }

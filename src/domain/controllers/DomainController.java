@@ -114,13 +114,26 @@ public class DomainController
 
     public void loadGame(String id)
     {
-        // Load persistence data structures
-        //gamePersistence.load(id);
+        try{
+            gamePersistence.load(id);
+        }
+        catch (IOException | ClassNotFoundException e){
+            presentationController.gameLoadError();
+        }
     }
 
-    public boolean saveGame(String id)
+    public void saveGame(String id)
     {
-        return true;
+        try {
+            boolean b = gamePersistence.exists(id);
+            if(b) throw new FileAlreadyExistsException("");
+
+            Game game = gameController.getGame();
+            gamePersistence.save(game);
+        }
+        catch(IOException e){
+            presentationController.gameSaveError();
+        }
     }
 
     /*public boolean endGame()
