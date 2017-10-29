@@ -2,6 +2,8 @@ package util;
 
 import domain.classes.Code;
 
+import java.util.ArrayList;
+
 public abstract class Translate
 {
     /* PRIVATE METHODS */
@@ -133,7 +135,7 @@ public abstract class Translate
                 state = State.GAME_MODE_SELECTION_MENU;
                 break;
             case 2:
-                state = State.LOAD_GAME_MENU;
+                state = State.LOAD_SAVED_GAMES_LIST;
                 break;
             case 3:
                 state = State.CHECK_RANKING;
@@ -246,6 +248,43 @@ public abstract class Translate
     public static State int2StateGameDifficultySelectionMenuCPU(int state) throws IllegalArgumentException
     {
         return int2StateGameDifficultySelectionMenu(state, State.GAME_MODE_SELECTION_MENU);
+    }
+
+    public static String int2SavedGameId(ArrayList<String> savedGames, int index) throws IllegalArgumentException
+    {
+        String savedGameId;
+
+        if(index == 0)
+        {
+            savedGameId = null;
+        }
+        else if(index <= savedGames.size())
+        {
+            savedGameId = savedGames.get(index - 1);
+        }
+        else
+        {
+            throw new IllegalArgumentException();
+        }
+
+        return savedGameId;
+    }
+
+    public static State int2StateLoadGameMenu(int stat)
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.MAIN_GAME_MENU;
+                break;
+            default:
+                state = State.LOAD_GAME;
+                break;
+        }
+
+        return state;
     }
 
     public static String code2String(Code code)
