@@ -29,6 +29,25 @@ public abstract class Translate
         return state;
     }
 
+    private static State int2StateYesNo(int stat, State stateYes, State stateNo) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = stateNo;
+                break;
+            case 1:
+                state = stateYes;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
     /* PUBLIC METHODS */
 
     public static Mode int2Mode(int mod) throws IllegalArgumentException
@@ -107,7 +126,7 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.END_PROGRAM;
+                state = State.CLOSE_PROGRAM_WARNING;
                 break;
             case 1:
                 state = State.REGISTER_USER_MENU;
@@ -129,7 +148,7 @@ public abstract class Translate
         switch(stat)
         {
             case 0:
-                state = State.INIT_SESSION_MENU;
+                state = State.LOG_OUT_WARNING;
                 break;
             case 1:
                 state = State.GAME_MODE_SELECTION_MENU;
@@ -185,7 +204,7 @@ public abstract class Translate
                 state = State.SAVE_GAME_AND_EXIT;
                 break;
             case 3:
-                state = State.EXIT_GAME_WITHOUT_SAVING;
+                state = State.EXIT_GAME_WITHOUT_SAVING_WARNING;
                 break;
             case 4:
                 state = State.ASK_FOR_CLUE;
@@ -290,5 +309,20 @@ public abstract class Translate
     public static String code2String(Code code)
     {
         return "";
+    }
+
+    public static State int2StateExitGameWarning(int state) throws IllegalArgumentException
+    {
+        return int2StateYesNo(state, State.EXIT_GAME_WITHOUT_SAVING, State.GAME_PAUSE_MENU);
+    }
+
+    public static State int2StateCloseProgramWarning(int state) throws IllegalArgumentException
+    {
+        return int2StateYesNo(state, State.CLOSE_PROGRAM, State.INIT_SESSION_MENU);
+    }
+
+    public static State int2StateLogOutWarning(int state) throws IllegalArgumentException
+    {
+        return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
     }
 }
