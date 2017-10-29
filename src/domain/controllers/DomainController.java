@@ -49,12 +49,12 @@ public class DomainController
 
     /* EXECUTE */
 
-    public void logIn(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
+    public void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
-            Player player = playerPersistence.load(userInfo.first);
+        Player player = playerPersistence.load(userInfo.first);
 
-            boolean b = ((Human) player).checkPassword(userInfo.second);
-            if (!b) throw new WrongPassword();
+        boolean b = ((Human) player).checkPassword(userInfo.second);
+        if (!b) throw new WrongPassword();
     }
 
     public void registerUser(Pair<String, String> userInfo) throws IOException
@@ -199,6 +199,7 @@ public class DomainController
                     }
                     catch(IOException e)
                     {
+                        presentationController.registerError();
                         state = State.REGISTER_USER_MENU;
                     }
 
@@ -219,12 +220,12 @@ public class DomainController
                 case LOG_IN_USER:
                     try
                     {
-                        logIn(userInfo);
+                        logInUser(userInfo);
                         state = State.MAIN_GAME_MENU;
                     }
                     catch(IOException | ClassNotFoundException | WrongPassword e)
                     {
-                        e.printStackTrace();
+                        presentationController.logInError();
                     } //Momentáneo
 
                     break;
