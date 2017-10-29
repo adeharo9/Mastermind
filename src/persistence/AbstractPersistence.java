@@ -71,10 +71,6 @@ public abstract class AbstractPersistence
         if (!b) throw new IOException();
     }
 
-    //public void savePlayerGame(String idGame, String idPlayer ) throws IOException{}
-
-    //public ArrayList<String> loadSavedGames(String id) throws IOException{return null;}
-
     public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
     {
 
