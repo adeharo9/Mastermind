@@ -117,17 +117,10 @@ public class DomainController
         gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
     }
 
-    private void loadSavedGamesList()
+    private void loadSavedGamesList() throws IOException
     {
-        try
-        {
-            Player loggedPlayer = loggedPlayerController.getPlayer();
-            savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
-        }
-        catch (IOException e)
-        {
-            presentationController.gameLoadError();
-        }
+        Player loggedPlayer = loggedPlayerController.getPlayer();
+        savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
     }
 
     private void loadGame(String id) throws IOException, ClassNotFoundException
@@ -339,8 +332,16 @@ public class DomainController
                     break;
 
                 case LOAD_SAVED_GAMES_LIST:
-                    loadSavedGamesList();
-                    state = State.LOAD_GAME_MENU;
+                    try
+                    {
+                        loadSavedGamesList();
+                        state = State.LOAD_GAME_MENU;
+                    }
+                    catch (IOException e)
+                    {
+                        presentationController.savedGamesListLoadError();
+                        state = State.MAIN_GAME_MENU;
+                    }
 
                     break;
 

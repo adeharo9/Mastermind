@@ -228,6 +228,11 @@ public class PresentationController
         ioUtils.endLine();
     }
 
+    public void savedGamesListLoadError()
+    {
+        genericLoadError("saved games list");
+    }
+
     public void gameLoadError()
     {
         genericLoadError("game");
