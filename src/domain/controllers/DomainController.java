@@ -1,7 +1,6 @@
 package domain.controllers;
 
 import domain.classes.*;
-import exceptions.RollbackException;
 import exceptions.IntegrityCorruption;
 import exceptions.WrongPassword;
 import persistence.BoardPersistence;
@@ -54,26 +53,18 @@ public class DomainController
     {
             Player player = playerPersistence.load(userInfo.first);
 
-            boolean b = player.isValid();
-            if (!b) throw new IntegrityCorruption();
-
-            b = ((Human) player).checkPassword(userInfo.second);
+            boolean b = ((Human) player).checkPassword(userInfo.second);
             if (!b) throw new WrongPassword();
     }
 
-    public void registerUser(Pair<String, String> userInfo) throws FileAlreadyExistsException
+    public void registerUser(Pair<String, String> userInfo) throws IOException
     {
         boolean b = playerPersistence.exists(userInfo.first);
         if(b) throw new FileAlreadyExistsException("");
 
-        Player player = loggedPlayerController.newPlayer(userInfo.first);
-        try
-        {
-            playerPersistence.save(player);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+        Player player = ((HumanController)loggedPlayerController).newPlayer(userInfo.first, userInfo.second);
+
+        playerPersistence.save(player);
     }
 
     public void newGame(Mode mode, Role role, Difficulty difficulty)
@@ -139,7 +130,12 @@ public class DomainController
 
     public void playTurn()
     {
+        Action action;
 
+        for(PlayerController playerController : playingPlayerControllers)
+        {
+            action = playerController.play();
+        }
     }
 
     public boolean checkTurn(Turn turn)
@@ -201,9 +197,9 @@ public class DomainController
                         registerUser(userInfo);
                         state = State.MAIN_GAME_MENU;
                     }
-                    catch(FileAlreadyExistsException e)
+                    catch(IOException e)
                     {
-
+                        state = State.REGISTER_USER_MENU;
                     }
 
                     break;
@@ -258,13 +254,9 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.gameModeSelectionMenu();
-                        mode = Translate.int2Mode(returnState);
 
-                        state = State.GAME_ROLE_SELECTION_MENU;
-                    }
-                    catch (RollbackException e)
-                    {
-                        state = State.MAIN_GAME_MENU;
+                        mode = Translate.int2Mode(returnState);
+                        state = Translate.int2StateGameModeSelectionMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
                     {
@@ -276,13 +268,9 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.gameRoleSelectionMenu();
-                        role = Translate.int2Role(returnState);
 
-                        state = State.GAME_DIFFICULTY_SELECTION_MENU;
-                    }
-                    catch(RollbackException e)
-                    {
-                        state = State.GAME_MODE_SELECTION_MENU;
+                        role = Translate.int2Role(returnState);
+                        state = Translate.int2StateGameRoleSelectionMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -295,13 +283,17 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.gameDifficultySelectionMenu();
+
                         difficulty = Translate.int2Difficulty(returnState);
 
-                        state = State.NEW_GAME;
-                    }
-                    catch(RollbackException e)
-                    {
-                        state = State.GAME_ROLE_SELECTION_MENU;
+                        if(mode == Mode.CPU_VS_CPU)
+                        {
+                            state = Translate.int2StateGameDifficultySelectionMenuCPU(returnState);
+                        }
+                        else
+                        {
+                            state = Translate.int2StateGameDifficultySelectionMenuHuman(returnState);
+                        }
                     }
                     catch(IllegalArgumentException e)
                     {
