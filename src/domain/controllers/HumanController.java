@@ -1,9 +1,6 @@
 package domain.controllers;
 
-import domain.classes.Action;
-import domain.classes.CodeBreak;
-import domain.classes.Human;
-import domain.classes.Player;
+import domain.classes.*;
 
 public class HumanController extends PlayerController
 {
@@ -49,7 +46,7 @@ public class HumanController extends PlayerController
         return null;
     }
 
-    protected Action codeCorrect()
+    protected Action codeCorrect(Combination combination)
     {
         return null;
     }
