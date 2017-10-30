@@ -41,10 +41,4 @@ public enum State
 
     SAVE_GAME_AND_CONTINUE,
     SAVE_GAME_AND_EXIT;
-
-    @Deprecated
-    public static boolean isValid(State state)
-    {
-        return state != null;
-    }
 }

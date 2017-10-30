@@ -47,10 +47,4 @@ public enum Role implements Serializable
 
         return compRole;
     }
-
-    @Deprecated
-    public static boolean isValid(Role role)
-    {
-        return role != null;
-    }
 }

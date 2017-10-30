@@ -89,7 +89,7 @@ public class Game implements DeepCopyable, Serializable
 
     public void setDifficulty(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = Difficulty.isValid(difficulty);
+        boolean b = difficulty != null;
         if(!b) throw new IllegalArgumentException();
 
         this.difficulty = difficulty;
@@ -221,7 +221,7 @@ public class Game implements DeepCopyable, Serializable
         b = isValidId(id);
         if(!b) return b;
 
-        b = Difficulty.isValid(difficulty);
+        b = difficulty != null;
         if(!b) return b;
 
         b = isValidTime(time);
