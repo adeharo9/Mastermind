@@ -42,5 +42,5 @@ public enum State
     RESTART_GAME,
 
     SAVE_GAME_AND_CONTINUE,
-    SAVE_GAME_AND_EXIT
+    SAVE_GAME_AND_EXIT,
 }

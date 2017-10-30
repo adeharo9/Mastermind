@@ -11,5 +11,5 @@ public enum Color
     TRANSPARENT,
     VIOLET,
     WHITE,
-    YELLOW
+    YELLOW,
 }
