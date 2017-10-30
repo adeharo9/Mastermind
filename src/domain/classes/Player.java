@@ -1,9 +1,9 @@
 package domain.classes;
 
-import util.*;
+import util.DeepCopyable;
+import util.Utils;
 
 import java.io.Serializable;
-import java.util.*;
 
 public abstract class Player implements DeepCopyable, Serializable
 {

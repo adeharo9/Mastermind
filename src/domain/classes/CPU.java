@@ -1,9 +1,8 @@
 package domain.classes;
 
-import util.*;
+import util.DeepCopyable;
 
 import java.io.Serializable;
-import java.util.*;
 
 public class CPU extends Player implements DeepCopyable, Serializable
 {
