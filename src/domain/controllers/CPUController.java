@@ -1,9 +1,6 @@
 package domain.controllers;
 
-import domain.classes.Action;
-import domain.classes.CPU;
-import domain.classes.CodeBreak;
-import domain.classes.Player;
+import domain.classes.*;
 
 public class CPUController extends PlayerController
 {
@@ -39,7 +36,7 @@ public class CPUController extends PlayerController
         return null;
     }
 
-    protected Action codeCorrect()
+    protected Action codeCorrect(Combination combination)
     {
 
         return null;

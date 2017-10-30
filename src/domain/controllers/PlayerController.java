@@ -11,6 +11,7 @@ public abstract class PlayerController
 
     protected Role role;
     protected Player player;
+    protected DomainController domainController;
 
     /* CONSTRUCTION METHODS */
 
