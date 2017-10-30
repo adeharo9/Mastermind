@@ -217,6 +217,11 @@ public class Game implements DeepCopyable, Serializable
         return playerRolePairs;
     }
 
+    public Pair<Player, Role> getPlayerRolePair(int i) throws IndexOutOfBoundsException, NullPointerException
+    {
+        return playerRolePairs.get(i);
+    }
+
     public Player getPlayer(int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return playerRolePairs.get(i).first;
@@ -234,16 +239,16 @@ public class Game implements DeepCopyable, Serializable
         boolean b;
 
         b = isValidId(id);
-        if(!b) return b;
+        if(!b) return false;
 
         b = isValidTime(time);
-        if(!b) return b;
+        if(!b) return false;
 
         b = difficulty != null;
-        if(!b) return b;
+        if(!b) return false;
 
         b = board != null;
-        if(!b) return b;
+        if(!b) return false;
 
         b = playerRolePairs != null;
 
