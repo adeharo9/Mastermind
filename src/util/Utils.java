@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public abstract class Utils
 {
 
+    @Deprecated
     public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1) throws Exception
     {
         ArrayList<T> arrayList2 = new ArrayList<>(arrayList1.size());
@@ -18,11 +19,13 @@ public abstract class Utils
         return arrayList2;
     }
 
+    @Deprecated
     public static boolean isNull(Object object)
     {
         return object == null;
     }
 
+    @Deprecated
     public static <T> boolean isValidIndex(ArrayList<T> arrayList, int i)
     {
         return arrayList != null && i >= 0 && i < arrayList.size();
@@ -35,7 +38,7 @@ public abstract class Utils
         for(T element : arrayList)
         {
             b = element != null;
-            if(!b) return b;
+            if(!b) break;
         }
 
         return b;
@@ -47,7 +50,7 @@ public abstract class Utils
     private final static String numeric = "0123456789";
     private final static String alphanumeric = alphaMayus + alphaMinus + numeric;
 
-    public static String autoID(String charSet)
+    private static String autoID(String charSet)
     {
         int rand;
         String randChar;
@@ -68,6 +71,7 @@ public abstract class Utils
         return autoID(alphanumeric);
     }
 
+    @Deprecated
     public static int autoIDInt()
     {
         return ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
