@@ -39,9 +39,19 @@ public class HumanController extends PlayerController
 
     /* OTHER METHODS */
 
-    public Action play()
+    protected Action codeMake()
     {
-        return new CodeBreak();
+        return null;
+    }
+
+    protected Action codeBreak()
+    {
+        return null;
+    }
+
+    protected Action codeCorrect()
+    {
+        return null;
     }
 
     public boolean checkPassword(String password)

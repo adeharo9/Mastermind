@@ -143,7 +143,7 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void playTurn()
+    private void playTurn() throws IllegalArgumentException
     {
         Action action;
 

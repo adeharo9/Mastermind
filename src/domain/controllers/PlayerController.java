@@ -64,5 +64,30 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public abstract Action play();
+    public final Action play() throws IllegalArgumentException
+    {
+        Action action;
+
+        switch (role) {
+            case CODE_MAKER:
+                action = codeMake();
+                break;
+            case CODE_BREAKER:
+                action = codeBreak();
+                break;
+            case WATCHER:
+                action = null;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return action;
+    }
+
+    protected abstract Action codeMake();
+
+    protected abstract Action codeBreak();
+
+    protected abstract Action codeCorrect();
 }

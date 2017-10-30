@@ -29,8 +29,18 @@ public class CPUController extends PlayerController
 
     /* OTHER METHODS */
 
-    public Action play()
+    protected Action codeMake()
     {
-        return new CodeBreak();
+        return null;
+    }
+
+    protected Action codeBreak()
+    {
+        return null;
+    }
+
+    protected Action codeCorrect()
+    {
+        return null;
     }
 }
