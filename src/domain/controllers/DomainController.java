@@ -191,7 +191,7 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.initSessionMenu();
-                        state = Translate.int2StateInitSession(returnState);
+                        state = Translate.int2StateInitSessionMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -436,7 +436,7 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.inGameMenu();
-                        state = Translate.int2StatePlaySelection(returnState);
+                        state = Translate.int2StateInGameMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -455,7 +455,7 @@ public class DomainController
                     try
                     {
                         returnState = presentationController.pauseMenu();
-                        state = Translate.int2StateGamePause(returnState);
+                        state = Translate.int2StateGamePauseMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {

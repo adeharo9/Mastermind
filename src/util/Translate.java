@@ -50,6 +50,8 @@ public abstract class Translate
 
     /* PUBLIC METHODS */
 
+    /* ENUM TRANSLATE METHODS */
+
     public static Mode int2Mode(int mod) throws IllegalArgumentException
     {
         Mode mode;
@@ -122,7 +124,9 @@ public abstract class Translate
         return difficulty;
     }
 
-    public static State int2StateInitSession(int stat) throws IllegalArgumentException
+    /* STATE TRANSLATION METHODS */
+
+    public static State int2StateInitSessionMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -172,7 +176,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StatePlaySelection(int stat) throws IllegalArgumentException
+    public static State int2StateInGameMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -191,7 +195,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateGamePause(int stat) throws IllegalArgumentException
+    public static State int2StateGamePauseMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -309,11 +313,6 @@ public abstract class Translate
         return state;
     }
 
-    public static String code2String(Code code)
-    {
-        return "";
-    }
-
     public static State int2StateExitGameWarning(int state) throws IllegalArgumentException
     {
         return int2StateYesNo(state, State.EXIT_GAME_WITHOUT_SAVING, State.GAME_PAUSE_MENU);
@@ -327,5 +326,10 @@ public abstract class Translate
     public static State int2StateLogOutWarning(int state) throws IllegalArgumentException
     {
         return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
+    }
+
+    public static String code2String(Code code)
+    {
+        return "";
     }
 }
