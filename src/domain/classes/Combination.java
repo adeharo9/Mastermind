@@ -9,7 +9,7 @@ public class Combination implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    protected ArrayList<Integer> bPins;
+    protected ArrayList<Color> bPins;
 
     /* CONSTRUCTION METHODS */
 
@@ -30,7 +30,7 @@ public class Combination implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setBPins(ArrayList<Integer> bPins) throws IllegalArgumentException, NullPointerException
+    public void setBPins(ArrayList<Color> bPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = Utils.isValidArrayList(bPins);
         if(!b) throw new IllegalArgumentException();
@@ -41,7 +41,7 @@ public class Combination implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public ArrayList<Integer> getBPins()
+    public ArrayList<Color> getBPins()
     {
         return bPins;
     }
