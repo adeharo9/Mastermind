@@ -3,9 +3,9 @@ package domain.controllers;
 import domain.classes.Board;
 import domain.classes.Game;
 import domain.classes.Player;
-import util.Difficulty;
+import enums.Difficulty;
 import util.Pair;
-import util.Role;
+import enums.Role;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 package testing.drivers;
 import domain.classes.Game;
 import persistence.GamePersistence;
-import util.Difficulty;
+import enums.Difficulty;
 import util.Utils;
 import util.ioUtils;
 

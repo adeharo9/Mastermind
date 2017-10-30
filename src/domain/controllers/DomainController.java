@@ -1,6 +1,10 @@
 package domain.controllers;
 
 import domain.classes.*;
+import enums.Difficulty;
+import enums.Mode;
+import enums.Role;
+import enums.State;
 import exceptions.IntegrityCorruption;
 import exceptions.WrongPassword;
 //import persistence.BoardPersistence;

@@ -1,5 +1,7 @@
 package domain.classes;
 
+import enums.Difficulty;
+import enums.Role;
 import util.*;
 
 import java.io.Serializable;

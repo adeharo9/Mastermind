@@ -1,6 +1,10 @@
 package util;
 
 import domain.classes.Code;
+import enums.Difficulty;
+import enums.Mode;
+import enums.Role;
+import enums.State;
 
 import java.util.ArrayList;
 

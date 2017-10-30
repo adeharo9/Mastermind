@@ -2,7 +2,7 @@ package domain.controllers;
 
 import domain.classes.Action;
 import domain.classes.Player;
-import util.Role;
+import enums.Role;
 
 public abstract class PlayerController
 {

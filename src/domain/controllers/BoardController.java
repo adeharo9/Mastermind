@@ -1,11 +1,7 @@
 package domain.controllers;
 
 import domain.classes.Board;
-import util.Difficulty;
-import util.Translate;
-
-import java.util.ArrayList;
-import java.util.TooManyListenersException;
+import enums.Difficulty;
 
 public class BoardController
 {
