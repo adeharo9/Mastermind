@@ -22,8 +22,8 @@ public class GameController
     {
         game = new Game(id, difficulty);
 
-        game.setBoardByReference(board);
-        game.setPlayerRolePairsByReference(playerRolePair);
+        game.setBoard(board);
+        game.setPlayerRolePairs(playerRolePair);
 
         return game;
     }
