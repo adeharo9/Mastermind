@@ -10,16 +10,24 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     private String password;
 
+    /* PRIVATE METHODS */
+
+    private static boolean isValidPassword(String password)
+    {
+        return !password.isEmpty();
+    }
+
     /* CONSTRUCTION METHODS */
 
     public Human()
     {
         super();
+        password = "";
     }
 
-    public Human(String id) throws IllegalArgumentException
+    public Human(String username) throws IllegalArgumentException
     {
-        super(id);
+        super(username);
     }
 
     public Human(String username, String password) throws IllegalArgumentException, NullPointerException
@@ -32,7 +40,6 @@ public class Human extends Player implements DeepCopyable, Serializable
     {
         super(human);
 
-        setId(human.getId());
         setPassword(human.getPassword());
     }
 
@@ -40,7 +47,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     public void setPassword(String password) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = !password.isEmpty();
+        boolean b = isValidPassword(password);
         if(!b) throw new IllegalArgumentException();
 
         this.password = password;
@@ -51,7 +58,7 @@ public class Human extends Player implements DeepCopyable, Serializable
     @Deprecated
     public String getUsername()
     {
-        return id;
+        return super.getId();
     }
 
     public String getPassword()
