@@ -18,6 +18,7 @@ public class Game implements DeepCopyable, Serializable
 
     /* PRIVATE METHODS */
 
+    @Deprecated
     private static boolean isValidId(String id)
     {
         return true;
