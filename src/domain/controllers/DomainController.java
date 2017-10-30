@@ -149,11 +149,11 @@ public class DomainController
 
     private void playTurn() throws IllegalArgumentException
     {
-        Action action;
+        Action action = null;
 
         for(PlayerController playerController : playingPlayerControllers)
         {
-            action = playerController.play();
+            action = playerController.play(action);
             //processAction(action);
         }
     }

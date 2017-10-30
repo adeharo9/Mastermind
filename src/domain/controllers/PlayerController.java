@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.Action;
+import domain.classes.Combination;
 import domain.classes.Player;
 import enums.Role;
 
@@ -64,13 +65,20 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play() throws IllegalArgumentException
+    public final Action play(Action inAction) throws IllegalArgumentException
     {
         Action action;
 
         switch (role) {
             case CODE_MAKER:
-                action = codeMake();
+                if(inAction == null)
+                {
+                    action = codeMake();
+                }
+                else
+                {
+                    action = codeCorrect(inAction.getCombination());
+                }
                 break;
             case CODE_BREAKER:
                 action = codeBreak();
@@ -89,5 +97,5 @@ public abstract class PlayerController
 
     protected abstract Action codeBreak();
 
-    protected abstract Action codeCorrect();
+    protected abstract Action codeCorrect(Combination combination);
 }
