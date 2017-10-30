@@ -80,7 +80,7 @@ public class Board implements DeepCopyable, Serializable
             for(Turn turn : turnSet)
             {
                 b = turn.isValid();
-                if(!b) return b;
+                if(!b) break;
             }
         }
 

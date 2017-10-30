@@ -40,10 +40,10 @@ public class Game implements DeepCopyable, Serializable
         for(Pair<Player, Role> playerRolePair : playerRolePairs)
         {
             b = !playerRolePair.hasNull();
-            if(!b) return b;
+            if(!b) break;
 
             b = playerRolePair.first.isValid();
-            if(!b) return b;
+            if(!b) break;
         }
 
         return b;
