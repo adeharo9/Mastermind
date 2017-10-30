@@ -20,11 +20,10 @@ public abstract class Player implements DeepCopyable, Serializable
     }
 
     /* CONSTRUCTION METHODS */
-
     public Player ()
     {
-        id = "-1";
-        points = 0;
+        setId(Utils.autoID());
+        setPoints(0);
     }
 
     public Player(String id) throws IllegalArgumentException
