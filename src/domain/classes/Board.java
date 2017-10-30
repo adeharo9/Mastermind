@@ -16,7 +16,7 @@ public class Board implements DeepCopyable, Serializable
     private Code code;
     private ArrayList<Turn> turnSet;
 
-    private static int getNColumnsByDifficulty(Difficulty difficulty)
+    private static int getNColumnsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         int nColumns;
 
@@ -32,8 +32,7 @@ public class Board implements DeepCopyable, Serializable
                 nColumns = 6;
                 break;
             default:
-                nColumns = -1;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return nColumns;
