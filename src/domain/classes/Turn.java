@@ -60,6 +60,11 @@ public class Turn extends Combination implements DeepCopyable, Serializable
         return sPins;
     }
 
+    public Color getSPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
+    {
+        return sPins.get(i);
+    }
+
     /* CONSULTING METHODS */
 
     public int size() throws NullPointerException
@@ -69,11 +74,13 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 
     /* TESTING METHODS */
 
-    public boolean isValid(ArrayList<Color> sPins) throws NullPointerException
+    @Deprecated
+    private boolean isValid(ArrayList<Color> sPins) throws NullPointerException
     {
         return super.size() == sPins.size();
     }
 
+    @Deprecated
     public boolean isValid() throws NullPointerException
     {
         return isValid(sPins);

@@ -55,6 +55,11 @@ public class Combination implements DeepCopyable, Serializable
         return bPins;
     }
 
+    public Color getBPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
+    {
+        return bPins.get(i);
+    }
+
     /* CONSULTING METHODS */
 
     public int size() throws NullPointerException
@@ -69,6 +74,7 @@ public class Combination implements DeepCopyable, Serializable
         return bPins != null;
     }
 
+    @Deprecated
     public boolean isValid(int n)
     {
         return size() == n;
