@@ -1,6 +1,7 @@
 package domain.classes;
 
 import enums.Color;
+import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
@@ -14,16 +15,24 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    @Deprecated
     public Turn()
     {
         super();
         sPins = new ArrayList<>();
     }
 
+    @Deprecated
     public Turn(int n) throws IllegalArgumentException
     {
         super(n);
         sPins = new ArrayList<>(n);
+    }
+
+    public Turn(Difficulty difficulty)
+    {
+        super(difficulty);
+        sPins = new ArrayList<>();
     }
 
     public Turn(Turn turn) throws IllegalArgumentException, NullPointerException

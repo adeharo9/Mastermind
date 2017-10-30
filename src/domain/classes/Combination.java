@@ -1,6 +1,7 @@
 package domain.classes;
 
 import enums.Color;
+import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
@@ -14,14 +15,21 @@ public class Combination implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    @Deprecated
     public Combination()
     {
         bPins = new ArrayList<>();
     }
 
+    @Deprecated
     public Combination(int n) throws IllegalArgumentException
     {
         bPins = new ArrayList<>(n);
+    }
+
+    public Combination(Difficulty difficulty) throws IllegalArgumentException
+    {
+        bPins = new ArrayList<>();
     }
 
     public Combination(Combination combination) throws IllegalArgumentException, NullPointerException
