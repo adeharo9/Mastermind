@@ -9,7 +9,7 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    private ArrayList<Integer> sPins;
+    private ArrayList<Color> sPins;
 
     /* CONSTRUCTION METHODS */
 
@@ -34,7 +34,7 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setSPins(ArrayList<Integer> sPins) throws IllegalArgumentException, NullPointerException
+    public void setSPins(ArrayList<Color> sPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(sPins);
         if(!b) throw new IllegalArgumentException();
@@ -45,7 +45,7 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public ArrayList<Integer> getSPins()
+    public ArrayList<Color> getSPins()
     {
         return sPins;
     }
@@ -59,7 +59,7 @@ public class Turn extends Combination implements DeepCopyable, Serializable
 
     /* TESTING METHODS */
 
-    public boolean isValid(ArrayList<Integer> sPins) throws NullPointerException
+    public boolean isValid(ArrayList<Color> sPins) throws NullPointerException
     {
         return super.size() == sPins.size();
     }
