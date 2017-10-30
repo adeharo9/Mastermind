@@ -2,12 +2,13 @@ package domain.controllers;
 
 import domain.classes.Action;
 import domain.classes.Player;
-import persistence.PlayerPersistence;
+import util.Role;
 
 public abstract class PlayerController
 {
     /* ATTRIBUTES */
 
+    protected Role role;
     protected Player player;
 
     /* CONSTRUCTION METHODS */
@@ -15,6 +16,11 @@ public abstract class PlayerController
     public PlayerController()
     {
 
+    }
+
+    public PlayerController(Role role)
+    {
+        setRole(role);
     }
 
     public PlayerController(Player player)
@@ -28,6 +34,14 @@ public abstract class PlayerController
 
     /* SET METHODS */
 
+    public void setRole(Role role) throws IllegalArgumentException
+    {
+        boolean b = role != null;
+        if(!b) throw new IllegalArgumentException();
+
+        this.role = role;
+    }
+
     public void setPlayerByReference(Player player) throws IllegalArgumentException
     {
         boolean b = player.isValid();
@@ -37,6 +51,11 @@ public abstract class PlayerController
     }
 
     /* GET METHODS */
+
+    public Role getRole()
+    {
+        return role;
+    }
 
     public Player getPlayer()
     {

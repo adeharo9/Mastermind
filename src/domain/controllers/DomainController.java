@@ -106,11 +106,14 @@ public class DomainController
 
         playerController2.newPlayer(Utils.autoID());
 
+        playerController1.setRole(role);
+        playerController2.setRole(Role.complementaryRole(role));
+
         playingPlayerControllers.add(playerController1);
         playingPlayerControllers.add(playerController2);
 
-        playerRolePairs.add(new Pair<>(playerController1.getPlayer(), role));
-        playerRolePairs.add(new Pair<>(playerController2.getPlayer(), Role.complementaryRole(role)));
+        playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
+        playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
 
         Board board = boardController.newBoard(difficulty);
 
@@ -147,8 +150,14 @@ public class DomainController
         for(PlayerController playerController : playingPlayerControllers)
         {
             action = playerController.play();
+            //processAction(action);
         }
     }
+
+    /*private void processAction(Action action)
+    {
+
+    }*/
 
     private boolean checkTurn(Turn turn)
     {
@@ -270,10 +279,12 @@ public class DomainController
                     break;
 
                 case CHECK_RANKING:
+                    state = State.MAIN_GAME_MENU;
 
                     break;
 
                 case CHECK_INFO:
+                    state = State.MAIN_GAME_MENU;
 
                     break;
 
