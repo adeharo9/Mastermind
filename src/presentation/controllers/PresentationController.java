@@ -151,6 +151,20 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    public void showClue(int type, String number, String color)
+    {
+        ioUtils.endLine();
+        switch(type)
+        {
+            case 1:
+                ioUtils.printOutLn ("Token in position"+number+"is"+color);
+                break;
+            case 2:
+                ioUtils.printOutLn ("There is/are"+number+color+"tokens");
+                break;
+        }
+    }
+
     public int loadGameMenu(ArrayList<String> savedGames) throws NumberFormatException
     {
         ioUtils.endLine();
