@@ -5,6 +5,7 @@ import util.Difficulty;
 import util.Translate;
 
 import java.util.ArrayList;
+import java.util.TooManyListenersException;
 
 public class BoardController
 {
@@ -44,5 +45,10 @@ public class BoardController
     public Board getBoard()
     {
         return board;
+    }
+
+    public boolean finished() throws NullPointerException
+    {
+        return board.finished();
     }
 }

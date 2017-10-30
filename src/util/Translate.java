@@ -186,7 +186,7 @@ public abstract class Translate
                 state = State.GAME_PAUSE_MENU;
                 break;
             case 1:
-                state = State.PLAY_TURN;
+                state = State.CHECK_TURN_NUMBER;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -308,6 +308,28 @@ public abstract class Translate
             default:
                 state = State.LOAD_GAME;
                 break;
+        }
+
+        return state;
+    }
+
+    public static State int2StateGameOverMenu(int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.MAIN_GAME_MENU;
+                break;
+            case 1:
+                state = State.RESTART_GAME;
+                break;
+            case 2:
+                state = State.GAME_MODE_SELECTION_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
         return state;

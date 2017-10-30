@@ -181,6 +181,19 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    public int gameOverMenu() throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Game over");
+        ioUtils.endLine();
+        ioUtils.printOutLn("1.- Restart this game");
+        ioUtils.printOutLn("2.- Start new game");
+        ioUtils.printOutLn("0.- Main menu");
+        ioUtils.endLine();
+        ioUtils.printOut("Select option number: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
     public String setGameName()
     {
         ioUtils.endLine();
