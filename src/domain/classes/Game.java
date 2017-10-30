@@ -56,6 +56,33 @@ public class Game implements DeepCopyable, Serializable
         this.time = time;
     }
 
+    private void addPlayerRolePair(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
+    {
+        boolean b = isValidPlayerRolePair(playerRolePair);
+        if(!b) throw new IllegalArgumentException();
+
+        if(playerRolePairs == null)
+        {
+            playerRolePairs = new ArrayList<>();
+        }
+
+        this.playerRolePairs.add(playerRolePair);
+    }
+
+    private void addPlayerRolePairByCopy(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
+    {
+        boolean b = isValidPlayerRolePair(playerRolePair);
+        if(!b) throw new IllegalArgumentException();
+
+        if(playerRolePairs == null)
+        {
+            playerRolePairs = new ArrayList<>();
+        }
+
+        Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
+        this.playerRolePairs.add(aux);
+    }
+
     /* CONSTRUCTION METHODS */
 
     @Deprecated
@@ -161,33 +188,6 @@ public class Game implements DeepCopyable, Serializable
         {
             addPlayerRolePairByCopy(playerRolePair);
         }
-    }
-
-    public void addPlayerRolePair(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = isValidPlayerRolePair(playerRolePair);
-        if(!b) throw new IllegalArgumentException();
-
-        if(playerRolePairs == null)
-        {
-            playerRolePairs = new ArrayList<>();
-        }
-
-        this.playerRolePairs.add(playerRolePair);
-    }
-
-    public void addPlayerRolePairByCopy(Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = isValidPlayerRolePair(playerRolePair);
-        if(!b) throw new IllegalArgumentException();
-
-        if(playerRolePairs == null)
-        {
-            playerRolePairs = new ArrayList<>();
-        }
-
-        Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
-        this.playerRolePairs.add(aux);
     }
 
     /* GET METHODS */
