@@ -41,6 +41,7 @@ public class CPUController extends PlayerController
 
     protected Action codeCorrect()
     {
+
         return null;
     }
 }
