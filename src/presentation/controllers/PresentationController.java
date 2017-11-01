@@ -138,6 +138,16 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    /*public void printBoard()
+    {
+        ioUtils.printOutLn ("╔════════════════╦══════════╗");
+        for(int i=0;i<codes.size();++i){
+            ioUtils.printOutLn("║ "+ +"  "+ +"  "+ +"  "+ +"    "+ +" "+ +" "+ +" "+ +" ║");
+            if((i+1)<codes.size()) ioUtils.printOutLn ("╚════════════════╩══════════╝");
+            else ioUtils.printOutLn ("╠════════════════╬══════════╣");
+        }
+    }*/
+
     public int pauseMenu() throws NumberFormatException
     {
         ioUtils.endLine();
