@@ -138,15 +138,37 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    /*public void printBoard()
+    public void printBoard(String[][] codes)
     {
-        ioUtils.printOutLn ("╔════════════════╦══════════╗");
-        for(int i=0;i<codes.size();++i){
-            ioUtils.printOutLn("║ "+ +"  "+ +"  "+ +"  "+ +"    "+ +" "+ +" "+ +" "+ +" ║");
-            if((i+1)<codes.size()) ioUtils.printOutLn ("╚════════════════╩══════════╝");
-            else ioUtils.printOutLn ("╠════════════════╬══════════╣");
+        ioUtils.endLine();
+        ioUtils.printOut ("╔═");
+        for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+        ioUtils.printOut ("═╦═");
+        for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+        ioUtils.printOutLn ("═╗");
+        for(int i=0;i<codes.length;++i){
+            ioUtils.printOut("║");
+            for(int j=0;j<codes[0].length;++j) {
+                ioUtils.printOut(" ");
+                ioUtils.printOut(codes[i][j]);
+                ioUtils.printOut(" ");
+            }
+            if ((i + 1) == codes.length) {
+                ioUtils.printOut ("╚═");
+                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                ioUtils.printOut ("═╩═");
+                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                ioUtils.printOutLn ("═╝");
+            }
+            else {
+                ioUtils.printOut ("╠═");
+                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                ioUtils.printOut ("═╬═");
+                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                ioUtils.printOutLn ("═╣");
+            }
         }
-    }*/
+    }
 
     public int pauseMenu() throws NumberFormatException
     {
