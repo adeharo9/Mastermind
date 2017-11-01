@@ -138,7 +138,7 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public void printBoard(String[][] codes)
+    public static void printBoard(String[][] codes)
     {
         ioUtils.endLine();
         ioUtils.printOut ("╔═");
@@ -153,6 +153,7 @@ public class PresentationController
                 ioUtils.printOut(codes[i][j]);
                 ioUtils.printOut(" ");
             }
+            ioUtils.printOutLn("║");
             if ((i + 1) == codes.length) {
                 ioUtils.printOut ("╚═");
                 for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
