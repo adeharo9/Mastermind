@@ -38,7 +38,7 @@ public class Board implements DeepCopyable, Serializable
         return nColumns;
     }
 
-    private static int getMaxAttemptsByDifficulty(Difficulty difficulty)
+    private static int getMaxAttemptsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         int maxAttempts;
 
@@ -54,8 +54,7 @@ public class Board implements DeepCopyable, Serializable
                 maxAttempts = 20;
                 break;
             default:
-                maxAttempts = -1;
-                break;
+                throw new IllegalArgumentException();
         }
 
         return maxAttempts;
