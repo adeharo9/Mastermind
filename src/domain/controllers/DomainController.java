@@ -170,7 +170,20 @@ public class DomainController
 
     private void giveClue()
     {
+        int type;
+        type = (int) (Math.random()*2)+1;
+        switch(type)
+        {
+            case 1:
+                int num;
+                num = (int) (Math.random()*Code.getBPins().size())
+                break;
+            case 2:
 
+                break;
+        }
+
+        PresentationController.showClue(type,number,color);
     }
 
     public void exe() throws IntegrityCorruption

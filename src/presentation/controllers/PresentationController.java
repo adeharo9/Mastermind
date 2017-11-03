@@ -183,7 +183,7 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public void showClue(int type, String number, String color)
+    public static void showClue(int type, String number, String color)
     {
         ioUtils.endLine();
         switch(type)
