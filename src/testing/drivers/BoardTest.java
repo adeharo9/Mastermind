@@ -20,8 +20,12 @@ public class BoardTest
             code.add("G");
             code.add("B");
             code.add("Y");
+            code.add("R");
+            code.add("G");
             code.add("■");
             code.add("Ø");
+            code.add("o");
+            code.add("o");
             code.add("o");
             code.add("o");
     }
