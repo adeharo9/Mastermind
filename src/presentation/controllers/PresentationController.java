@@ -138,34 +138,34 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public static void printBoard(String[][] codes)
+    public static void printBoard(ArrayList<ArrayList<String>> codes)
     {
         ioUtils.endLine();
         ioUtils.printOut ("╔═");
-        for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+        for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
         ioUtils.printOut ("═╦═");
-        for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+        for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
         ioUtils.printOutLn ("═╗");
-        for(int i=0;i<codes.length;++i){
+        for(int i=0;i<codes.size();++i){
             ioUtils.printOut("║");
-            for(int j=0;j<codes[0].length;++j) {
+            for(int j=0;j<codes.get(0).size();++j) {
                 ioUtils.printOut(" ");
-                ioUtils.printOut(codes[i][j]);
+                ioUtils.printOut(codes.get(i).get(j));
                 ioUtils.printOut(" ");
             }
             ioUtils.printOutLn("║");
-            if ((i + 1) == codes.length) {
+            if ((i + 1) == codes.size()) {
                 ioUtils.printOut ("╚═");
-                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
                 ioUtils.printOut ("═╩═");
-                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
                 ioUtils.printOutLn ("═╝");
             }
             else {
                 ioUtils.printOut ("╠═");
-                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
                 ioUtils.printOut ("═╬═");
-                for(int k=0;k<(codes[0].length/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
                 ioUtils.printOutLn ("═╣");
             }
         }
