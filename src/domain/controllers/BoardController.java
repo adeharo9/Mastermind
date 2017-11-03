@@ -36,6 +36,14 @@ public class BoardController
         return true;
     }
 
+    public void setBoardByReference(Board board) throws IllegalArgumentException
+    {
+        boolean b = board.isValid();
+        if(!b) throw new IllegalArgumentException();
+
+        this.board = board;
+    }
+
     /* GET METHODS */
 
     public Board getBoard()

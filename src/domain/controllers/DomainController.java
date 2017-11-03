@@ -134,6 +134,7 @@ public class DomainController
     {
         Game game = gamePersistence.load(id);
         gameController.setGameByReference(game);
+        boardController.setBoardByReference(game.getBoard());
     }
 
     private void saveGame() throws IOException
