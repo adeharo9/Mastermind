@@ -142,30 +142,29 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOut ("╔═");
-        for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
-        ioUtils.printOut ("═╦═");
-        for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
+        for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
         ioUtils.printOutLn ("═╗");
         for(int i=0;i<codes.size();++i){
-            ioUtils.printOut("║");
-            for(int j=0;j<codes.get(0).size();++j) {
+            for(int j=0;j<codes.get(0).size()/2;++j) {
                 ioUtils.printOut(" ");
                 ioUtils.printOut(codes.get(i).get(j));
                 ioUtils.printOut(" ");
             }
-            ioUtils.printOutLn("║");
+            ioUtils.printOut("║");
+            for(int j=codes.get(0).size()/2;j<codes.get(0).size();++j) {
+                ioUtils.printOut(" ");
+                ioUtils.printOut(codes.get(i).get(j));
+                ioUtils.printOut(" ");
+            }
+            ioUtils.endLine();
             if ((i + 1) == codes.size()) {
                 ioUtils.printOut ("╚═");
-                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
-                ioUtils.printOut ("═╩═");
-                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
                 ioUtils.printOutLn ("═╝");
             }
             else {
                 ioUtils.printOut ("╠═");
-                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
-                ioUtils.printOut ("═╬═");
-                for(int k=0;k<(codes.get(0).size()/2);++k) ioUtils.printOut ("═══");
+                for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
                 ioUtils.printOutLn ("═╣");
             }
         }
