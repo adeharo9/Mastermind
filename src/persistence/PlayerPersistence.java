@@ -9,9 +9,21 @@ import java.util.ArrayList;
 
 public class PlayerPersistence extends AbstractPersistence
 {
+    protected String playerPath;
+
     protected String getConfigFilePath(String playerId)
     {
-        return getDirPath() + playerId + "/" + CONFIG_FILE;
+        return  getDirPath() + CONFIG_FILE;
+    }
+
+    public void setPlayerPath(String playerPath)
+    {
+        this.playerPath = playerPath;
+    }
+
+    public String getDirPath()
+    {
+        return BASE_PATH + PLAYERS_PATH + playerPath;
     }
 
     public PlayerPersistence()
@@ -21,28 +33,27 @@ public class PlayerPersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        File filePlayer = new File(BASE_PATH + PLAYER_PATH + key + GAME_EXTENSION);
+        File filePlayer = new File(getDirPath() + key + GAME_EXTENSION);
         return filePlayer.exists();
     }
 
-    public String getDirPath()
+    public Player load(String playerId) throws IOException, ClassNotFoundException
     {
-        return BASE_PATH + PLAYER_PATH;
-    }
-
-    public Player load(String id) throws IOException, ClassNotFoundException
-    {
-        return (Player) super.load(id);
+        setPlayerPath(playerId + "/");
+        return (Player) super.load(playerId);
     }
 
     public void save(Object player) throws IOException
     {
-        String id = ((Player) player).getId();
-        super.save(id, player);
+        String playerId = ((Player) player).getId();
+        setPlayerPath(playerId + "/");
+
+        super.save(playerId, player);
     }
 
     public void savePlayerGame(String gameId, String playerId) throws IOException
     {
+        setPlayerPath(playerId + "/");
         String filePath = getConfigFilePath(playerId);
         File configFile = new File(filePath);
 
@@ -52,6 +63,7 @@ public class PlayerPersistence extends AbstractPersistence
 
         BufferedWriter out = new BufferedWriter(new FileWriter(filePath, true));
         out.write(gameId);
+        out.write("\n");
         out.close();
     }
 

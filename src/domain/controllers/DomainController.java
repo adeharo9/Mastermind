@@ -480,6 +480,10 @@ public class DomainController
                         saveGame();
                         state = State.MAIN_GAME_MENU;
                     }
+                    catch (FileAlreadyExistsException e)
+                    {
+                        ioUtils.printOutLn("Hola");
+                    }
                     catch(IOException e)
                     {
                         presentationController.gameSaveError();
