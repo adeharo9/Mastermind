@@ -185,7 +185,11 @@ public class DomainController
         {
             case 1:
                 int num;
-                num = (int) (Math.random()*Code.getBPins().size())
+                Board b;
+                Code c;
+                b = BoardController.getBoard();
+                c = b.getCode();
+                num = (int) (Math.random()*c.size());
                 break;
             case 2:
 
