@@ -135,6 +135,14 @@ public class DomainController
         Game game = gamePersistence.load(id);
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
+
+        ArrayList<Pair<Player, Role>> playerRolePairs = game.getPlayerRolePairs();
+        String idPlayer;
+        Player loggedPlayer = loggedPlayerController.getPlayer();
+        for(Pair<Player, Role> players : playerRolePairs) {
+            idPlayer = players.first.getId();
+            if(idPlayer == loggedPlayer.getId()) players.first = loggedPlayer;
+        }
     }
 
     private void saveGame() throws IOException
