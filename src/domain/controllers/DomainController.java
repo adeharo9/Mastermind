@@ -1,10 +1,7 @@
 package domain.controllers;
 
 import domain.classes.*;
-import enums.Difficulty;
-import enums.Mode;
-import enums.Role;
-import enums.State;
+import enums.*;
 import exceptions.IntegrityCorruption;
 import exceptions.WrongPassword;
 //import persistence.BoardPersistence;
@@ -179,24 +176,28 @@ public class DomainController
 
     private void giveClue()
     {
-        int type;
+        /*int type;
         type = (int) (Math.random()*2)+1;
+        int num;
+        Color color;
+        Board b;
+        Code c;
+        b = BoardController.getBoard();
+        c = b.getCode();
         switch(type)
         {
             case 1:
-                int num;
-                Board b;
-                Code c;
-                b = BoardController.getBoard();
-                c = b.getCode();
                 num = (int) (Math.random()*c.size());
+
                 break;
             case 2:
+                num = 0;
 
                 break;
         }
-
-        PresentationController.showClue(type,number,color);
+        String number;
+        number = String.valueOf(num);
+        PresentationController.showClue(type,number,color);*/
     }
 
     public void exe() throws IntegrityCorruption
