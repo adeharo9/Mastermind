@@ -39,4 +39,6 @@ public class GameController
     public Game getGame() {
         return game;
     }
+
+    public String getId() { return game.getId(); }
 }

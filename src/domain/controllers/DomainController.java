@@ -154,7 +154,7 @@ public class DomainController
         Game game = gameController.getGame();
         gamePersistence.save(game);
 
-        String gameId = game.getId();
+        String gameId = gameController.getId();
         String playerId = loggedPlayerController.getPlayer().getId();
 
         playerPersistence.savePlayerGame(gameId, playerId);
