@@ -71,12 +71,12 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public Pair<String, String> logInMenu() throws NumberFormatException
+    public Pair<String, String> logInMenu()
     {
         return getInfoUser();
     }
 
-    public Pair<String, String> registerMenu() throws NumberFormatException
+    public Pair<String, String> registerMenu()
     {
         return getInfoUser();
     }
