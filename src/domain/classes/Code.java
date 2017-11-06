@@ -5,6 +5,7 @@ import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Code extends Combination implements DeepCopyable, Serializable
 {
@@ -30,6 +31,10 @@ public class Code extends Combination implements DeepCopyable, Serializable
     public Code(Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
+    }
+
+    public Code(ArrayList<Color> bPins) {
+        super(bPins);
     }
 
     /* OTHER METHODS */

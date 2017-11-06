@@ -69,7 +69,7 @@ public class CPUController extends PlayerController
         if(difficulty != Difficulty.EASY) {
             Collections.shuffle(pins);
         }
-        
+
         Combination feedback = new Combination(pins);
         Action result = new CodeCorrect(feedback);
 
