@@ -183,7 +183,7 @@ public class PresentationController
                 ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
-                //ioUtils.printOutLn("N: None");
+                ioUtils.printOutLn("N: None");
                 ioUtils.endLine();
                 ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();

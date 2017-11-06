@@ -31,6 +31,13 @@ public class Code extends Combination implements DeepCopyable, Serializable
         super(code);
     }
 
+    /* OTHER METHODS */
+
+    public Code getRandomCode(int n)
+    {
+
+    }
+
     /* CLONING METHODS */
 
     public Code deepCopy() throws IllegalArgumentException, NullPointerException

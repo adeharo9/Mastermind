@@ -4,34 +4,26 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
 {
-    BLACK,
-    BLUE,
+    RED,
     GREEN,
+    BLUE,
     ORANGE,
     PURPLE,
-    RED,
-    WHITE,
-    YELLOW;
+    YELLOW,
+    NONE,
+    BROWN,
+    PINK,
 
-    public Color getRandomColor(Difficulty difficulty) throws IllegalArgumentException
+    BLACK,
+    WHITE;
+
+    public Color getRandomColor(int upperBound) throws IllegalArgumentException
     {
-        int bound;
+        if(upperBound < 1) throw new IllegalArgumentException();
+
         Color randColor;
 
-        switch(difficulty)
-        {
-            case EASY:
-            case MEDIUM:
-                bound = 4;
-                break;
-            case HARD:
-                bound  = 6;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        int rand = ThreadLocalRandom.current().nextInt(0, bound);
+        int rand = ThreadLocalRandom.current().nextInt(0, upperBound);
 
         switch (rand)
         {
@@ -45,13 +37,28 @@ public enum Color
                 randColor = BLUE;
                 break;
             case 3:
-                randColor = YELLOW;
+                randColor = ORANGE;
                 break;
             case 4:
                 randColor = PURPLE;
                 break;
             case 5:
-                randColor = ORANGE;
+                randColor = YELLOW;
+                break;
+            case 6:
+                randColor = NONE;
+                break;
+            case 7:
+                randColor = BLACK;
+                break;
+            case 8:
+                randColor = WHITE;
+                break;
+            case 9:
+                randColor = BROWN;
+                break;
+            case 10:
+                randColor = PINK;
                 break;
             default:
                 throw new IllegalArgumentException();
