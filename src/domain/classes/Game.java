@@ -14,6 +14,7 @@ public class Game implements DeepCopyable, Serializable
     private String id;
     private long time;
     private Difficulty difficulty;
+    protected int points;
 
     private Board board;
     private ArrayList<Pair<Player, Role>> playerRolePairs;
@@ -91,6 +92,7 @@ public class Game implements DeepCopyable, Serializable
         setId(Utils.autoID());
         setTime();
         difficulty = null;
+        setPoints(0);
 
         board = null;
         playerRolePairs = new ArrayList<>();
@@ -101,6 +103,7 @@ public class Game implements DeepCopyable, Serializable
         setId(Utils.autoID());
         setTime();
         setDifficulty(difficulty);
+        setPoints(0);
 
         board = null;
         playerRolePairs = new ArrayList<>();
@@ -112,6 +115,7 @@ public class Game implements DeepCopyable, Serializable
         setId(id);
         setTime();
         setDifficulty(difficulty);
+        setPoints(0);
 
         board = null;
         playerRolePairs = new ArrayList<>();
@@ -123,6 +127,7 @@ public class Game implements DeepCopyable, Serializable
         setTime(game.getTime());
         setDifficulty(game.getDifficulty());
         setBoardByCopy(game.getBoard());
+        setPoints(game.getPoints());
         setPlayerRolePairsByCopy(game.getPlayerRolePairs());
     }
 
@@ -190,6 +195,11 @@ public class Game implements DeepCopyable, Serializable
         }
     }
 
+    public void setPoints(int points)
+    {
+        this.points = points;
+    }
+
     /* GET METHODS */
 
     public String getId()
@@ -230,6 +240,11 @@ public class Game implements DeepCopyable, Serializable
     public Role getRole(int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return playerRolePairs.get(i).second;
+    }
+
+    public int getPoints()
+    {
+        return points;
     }
 
     /* TESTING METHODS */
