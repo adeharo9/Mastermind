@@ -160,7 +160,7 @@ public class PresentationController
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
                 ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here:");
+                ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
                 break;
             case MEDIUM:
@@ -172,7 +172,7 @@ public class PresentationController
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
                 ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here:");
+                ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
                 break;
             case HARD:
@@ -185,7 +185,7 @@ public class PresentationController
                 ioUtils.printOutLn("P: Purple");
                 ioUtils.printOutLn("V: Void");
                 ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here:");
+                ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
                 break;
         }
