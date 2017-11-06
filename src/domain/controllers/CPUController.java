@@ -42,13 +42,13 @@ public class CPUController extends PlayerController
 
     protected Action codeCorrect(Combination combination, Code solution, Difficulty difficulty)
     {
-        ArrayList<Color> pins = new ArrayList<>();
-        ArrayList<Color> proposedSolution = new ArrayList<>();
-        ArrayList<Color> sol = new ArrayList<>();
+        int size = combination.size();
+        ArrayList<Color> pins = new ArrayList<>(size);
+        ArrayList<Color> proposedSolution = new ArrayList<>(size);
+        ArrayList<Color> sol = new ArrayList<>(size);
 
         proposedSolution = combination.getBPins();
         sol = solution.getBPins();
-        int size = combination.size();
         boolean find;
 
         for(int i = 0; i < size; ++i) {
@@ -64,6 +64,10 @@ public class CPUController extends PlayerController
                 }
                 if(!find) pins.add(Color.NONE);
             }
+        }
+
+        if(difficulty != Difficulty.EASY) {
+            Collections.shuffle(pins);
         }
         Combination feedback = new Combination(pins);
         Action result = new CodeCorrect(feedback);
