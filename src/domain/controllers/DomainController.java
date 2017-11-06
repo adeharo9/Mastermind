@@ -163,11 +163,11 @@ public class DomainController
     {
         Action action = null;
 
-        for(PlayerController playerController : playingPlayerControllers)
+        /*for(PlayerController playerController : playingPlayerControllers)
         {
             action = playerController.play(action);
             //processAction(action);
-        }
+        }*/
     }
 
     /*private void processAction(Action action)

@@ -17,7 +17,7 @@ public enum Color
     BLACK,
     WHITE;
 
-    public Color getRandomColor(int upperBound) throws IllegalArgumentException
+    public static Color getRandomColor(int upperBound) throws IllegalArgumentException
     {
         if(upperBound < 1) throw new IllegalArgumentException();
 
