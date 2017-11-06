@@ -19,6 +19,10 @@ public class CodeCorrect extends Action implements DeepCopyable
         super(codeCorrect);
     }
 
+    public CodeCorrect(Combination combination) {
+        super(combination);
+    }
+
     /* SET METHODS */
 
     /* GET METHODS */

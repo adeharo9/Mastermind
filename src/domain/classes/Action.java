@@ -16,6 +16,10 @@ public abstract class Action implements DeepCopyable
 
     }
 
+    public Action(Combination combination) {
+        this.combination = combination;
+    }
+
     public Action(Action action) throws IllegalArgumentException, NullPointerException
     {
         setCombination(action.getCombination());

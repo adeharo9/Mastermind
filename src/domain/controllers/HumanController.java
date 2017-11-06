@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.*;
+import enums.Difficulty;
 
 public class HumanController extends PlayerController
 {
@@ -49,7 +50,7 @@ public class HumanController extends PlayerController
         return null;
     }
 
-    protected Action codeCorrect(Combination combination)
+    protected Action codeCorrect(Combination combination, Code solution, Difficulty difficulty)
     {
         return null;
     }

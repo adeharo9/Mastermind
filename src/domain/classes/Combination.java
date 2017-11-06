@@ -30,6 +30,11 @@ public class Combination implements DeepCopyable, Serializable
         bPins = new ArrayList<>(n);
     }
 
+    public Combination(ArrayList<Color> bPins) {
+        this.size = bPins.size();
+        this.bPins = bPins;
+    }
+
     public Combination(Difficulty difficulty) throws IllegalArgumentException
     {
         size = 0;

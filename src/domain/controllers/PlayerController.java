@@ -2,7 +2,9 @@ package domain.controllers;
 
 import domain.classes.Action;
 import domain.classes.Combination;
+import domain.classes.Code;
 import domain.classes.Player;
+import enums.Difficulty;
 import enums.Role;
 
 public abstract class PlayerController
@@ -66,7 +68,7 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(Action inAction) throws IllegalArgumentException
+    public final Action play(Action inAction, Code solution, Difficulty difficulty) throws IllegalArgumentException
     {
         Action action;
 
@@ -78,7 +80,7 @@ public abstract class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(inAction.getCombination());
+                    action = codeCorrect(inAction.getCombination(), solution, difficulty);
                 }
                 break;
             case CODE_BREAKER:
@@ -98,5 +100,5 @@ public abstract class PlayerController
 
     protected abstract Action codeBreak();
 
-    protected abstract Action codeCorrect(Combination combination);
+    protected abstract Action codeCorrect(Combination combination, Code solution, Difficulty difficulty);
 }
