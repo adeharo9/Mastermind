@@ -12,6 +12,7 @@ public class Board implements DeepCopyable, Serializable
 
     private int nColumns;
     private int maxAttempts;
+    //private int difficulty;
 
     private Code code;
     private ArrayList<Turn> turnSet;
