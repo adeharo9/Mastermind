@@ -1,5 +1,7 @@
 package enums;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public enum Color
 {
     BLACK,
@@ -11,5 +13,11 @@ public enum Color
     TRANSPARENT,
     VIOLET,
     WHITE,
-    YELLOW,
+    YELLOW;
+
+    /*public Color getRandomColor()
+    {
+        int rand = ThreadLocalRandom.current().nextInt(0, 2);
+        return ;
+    }*/
 }
