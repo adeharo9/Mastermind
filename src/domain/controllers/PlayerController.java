@@ -66,6 +66,8 @@ public abstract class PlayerController
         return player;
     }
 
+    public String getId() { return player.getId(); }
+
     /* OTHER METHODS */
 
     public final Action play(Action inAction, Code solution, Difficulty difficulty) throws IllegalArgumentException
