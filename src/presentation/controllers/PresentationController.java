@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import enums.Difficulty;
+import exceptions.ReservedKeywordException;
 import util.Pair;
 import util.ioUtils;
 
@@ -12,15 +13,19 @@ public class PresentationController
 
     /* PRIVATE METHODS */
 
-    private Pair<String, String> getInfoUser()
+    private Pair<String, String> getInfoUser() throws ReservedKeywordException
     {
         ioUtils.endLine();
-        ioUtils.printOutLn("Write your username: ");
+        ioUtils.printOutLn("Write your username(or 0 to go back): ");
         String username = ioUtils.input();
 
+        if (username.equals("0")) throw new ReservedKeywordException();
+
         ioUtils.endLine();
-        ioUtils.printOutLn("Write your password: ");
+        ioUtils.printOutLn("Write your password(or 0 to go back): ");
         String password = ioUtils.input();
+
+        if (username.equals("0")) throw new ReservedKeywordException();
 
         return new Pair<>(username, password);
     }
@@ -64,6 +69,7 @@ public class PresentationController
 
     public int initSessionMenu() throws NumberFormatException
     {
+        ioUtils.endLine();
         ioUtils.printOutLn ("1.- Register user");
         ioUtils.printOutLn ("2.- Log in");
         ioUtils.printOutLn ("0.- Close");
@@ -72,12 +78,12 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public Pair<String, String> logInMenu()
+    public Pair<String, String> logInMenu() throws ReservedKeywordException
     {
         return getInfoUser();
     }
 
-    public Pair<String, String> registerMenu()
+    public Pair<String, String> registerMenu() throws ReservedKeywordException
     {
         return getInfoUser();
     }
