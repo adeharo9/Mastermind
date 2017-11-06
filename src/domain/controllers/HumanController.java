@@ -5,8 +5,11 @@ import domain.classes.*;
 public class HumanController extends PlayerController
 {
     /* CONSTRUCTION METHODS */
-    public HumanController()
+    private DomainController domainController;
+
+    public HumanController(DomainController domainController)
     {
+        this.domainController = domainController;
         player = new Human();
     }
 

@@ -41,7 +41,7 @@ public class DomainController
 
         boardController = new BoardController();
         gameController = new GameController();
-        loggedPlayerController = new HumanController();
+        loggedPlayerController = new HumanController(this);
         playingPlayerControllers = new ArrayList<>();
 
         //boardPersistence = new BoardPersistence();
@@ -84,7 +84,7 @@ public class DomainController
         {
             case HUMAN_VS_HUMAN:
                 playerController1 = loggedPlayerController;
-                playerController2 = new HumanController();
+                playerController2 = new HumanController(this);
                 break;
 
             case HUMAN_VS_CPU:
