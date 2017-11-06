@@ -180,10 +180,8 @@ public class DomainController
         type = (int) (Math.random()*2)+1;
         int num;
         Color color;
-        Board b;
         Code c;
-        b = BoardController.getBoard();
-        c = b.getCode();
+        c = BoardController.getCode();
         switch(type)
         {
             case 1:

@@ -12,4 +12,6 @@ public enum Color
     VIOLET,
     WHITE,
     YELLOW,
+    VOID,
+    PURPLE,
 }
