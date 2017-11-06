@@ -161,8 +161,8 @@ public class PresentationController
                 ioUtils.printOutLn("Write a code of 4 non-repeated colors using the following letters (Input example: R G Y B):");
                 ioUtils.printOutLn("R: Red");
                 ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
                 ioUtils.endLine();
@@ -173,8 +173,8 @@ public class PresentationController
                 ioUtils.printOutLn("Write a 4-color code using the following letters (Input example: R G G B):");
                 ioUtils.printOutLn("R: Red");
                 ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
                 ioUtils.endLine();
@@ -182,14 +182,14 @@ public class PresentationController
                 code = ioUtils.input();
                 break;
             case HARD:
-                ioUtils.printOutLn("Write a 6-color code using the following letters (Input example: R G G B V P):");
+                ioUtils.printOutLn("Write a 6-color code using the following letters (Input example: R G G B Y P):");
                 ioUtils.printOutLn("R: Red");
                 ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("Y: Yellow");
                 ioUtils.printOutLn("O: Orange");
                 ioUtils.printOutLn("P: Purple");
-                ioUtils.printOutLn("V: Void");
+                ioUtils.printOutLn("N: None");
                 ioUtils.endLine();
                 ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();

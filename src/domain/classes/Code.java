@@ -1,5 +1,6 @@
 package domain.classes;
 
+import enums.Color;
 import enums.Difficulty;
 import util.*;
 
@@ -29,6 +30,20 @@ public class Code extends Combination implements DeepCopyable, Serializable
     public Code(Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
+    }
+
+    /* OTHER METHODS */
+
+    public void setRandomCode()
+    {
+        Color color;
+        int n = this.size();
+
+        for(int i = 0; i < n; ++i)
+        {
+            color = Color.getRandomColor(n + 2);
+            addBPin(color);
+        }
     }
 
     /* CLONING METHODS */

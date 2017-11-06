@@ -11,6 +11,7 @@ public class Combination implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
+    protected final int size;
     protected ArrayList<Color> bPins;
 
     /* CONSTRUCTION METHODS */
@@ -18,22 +19,26 @@ public class Combination implements DeepCopyable, Serializable
     @Deprecated
     public Combination()
     {
+        size = 0;
         bPins = new ArrayList<>();
     }
 
     @Deprecated
     public Combination(int n) throws IllegalArgumentException
     {
+        size = n;
         bPins = new ArrayList<>(n);
     }
 
     public Combination(Difficulty difficulty) throws IllegalArgumentException
     {
+        size = 0;
         bPins = new ArrayList<>();
     }
 
     public Combination(Combination combination) throws IllegalArgumentException, NullPointerException
     {
+        size = combination.size();
         setBPins(combination.getBPins());
     }
 
@@ -46,6 +51,18 @@ public class Combination implements DeepCopyable, Serializable
 
         bPins = new ArrayList<>(bPins.size());
         this.bPins.addAll(bPins);
+    }
+
+    public void addBPin(Color bPin) throws IndexOutOfBoundsException
+    {
+        if(this.bPins.size() >= this.size()) throw new IndexOutOfBoundsException();
+
+        if(this.bPins == null)
+        {
+            this.bPins = new ArrayList<>();
+        }
+
+        this.bPins.add(bPin);
     }
 
     /* GET METHODS */
@@ -64,7 +81,14 @@ public class Combination implements DeepCopyable, Serializable
 
     public int size() throws NullPointerException
     {
-        return bPins.size();
+        return size;
+    }
+
+    /* MODIFYING METHODS */
+
+    public void clear()
+    {
+        bPins.clear();
     }
 
     /* TESTING METHODS */
