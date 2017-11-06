@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import enums.Difficulty;
 import util.Pair;
 import util.ioUtils;
 
@@ -83,6 +84,7 @@ public class PresentationController
 
     public int mainGameMenu() throws NumberFormatException
     {
+        ioUtils.endLine();
         ioUtils.printOutLn ("1.- New game");
         ioUtils.printOutLn ("2.- Load game");
         ioUtils.printOutLn ("3.- Ranking");
@@ -91,6 +93,12 @@ public class PresentationController
         ioUtils.endLine();
         ioUtils.printOut("Select option number: ");
         return Integer.parseInt(ioUtils.input());
+    }
+
+    public void showInfo()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("");
     }
 
     public int gameModeSelectionMenu() throws NumberFormatException
@@ -136,6 +144,52 @@ public class PresentationController
         ioUtils.endLine();
         ioUtils.printOut("Select option number: ");
         return Integer.parseInt(ioUtils.input());
+    }
+
+    public String readCode(Difficulty difficulty)
+    {
+        String code = null;
+        ioUtils.endLine();
+        switch(difficulty){
+            case EASY:
+                ioUtils.printOutLn("Write a code of 4 non-repeated colors using the following letters (Input example: R G Y B):");
+                ioUtils.printOutLn("R: Red");
+                ioUtils.printOutLn("G: Green");
+                ioUtils.printOutLn("Y: Yellow");
+                ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("O: Orange");
+                ioUtils.printOutLn("P: Purple");
+                ioUtils.endLine();
+                ioUtils.printOutLn("Write your code here:");
+                code = ioUtils.input();
+                break;
+            case MEDIUM:
+                ioUtils.printOutLn("Write a 4-color code using the following letters (Input example: R G G B):");
+                ioUtils.printOutLn("R: Red");
+                ioUtils.printOutLn("G: Green");
+                ioUtils.printOutLn("Y: Yellow");
+                ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("O: Orange");
+                ioUtils.printOutLn("P: Purple");
+                ioUtils.endLine();
+                ioUtils.printOutLn("Write your code here:");
+                code = ioUtils.input();
+                break;
+            case HARD:
+                ioUtils.printOutLn("Write a 6-color code using the following letters (Input example: R G G B V P):");
+                ioUtils.printOutLn("R: Red");
+                ioUtils.printOutLn("G: Green");
+                ioUtils.printOutLn("Y: Yellow");
+                ioUtils.printOutLn("B: Blue");
+                ioUtils.printOutLn("O: Orange");
+                ioUtils.printOutLn("P: Purple");
+                ioUtils.printOutLn("V: Void");
+                ioUtils.endLine();
+                ioUtils.printOutLn("Write your code here:");
+                code = ioUtils.input();
+                break;
+        }
+        return code;
     }
 
     public static void printBoard(ArrayList<ArrayList<String>> codes)
