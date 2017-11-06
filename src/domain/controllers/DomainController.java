@@ -384,6 +384,7 @@ public class DomainController
                     catch (IOException | ClassNotFoundException e)
                     {
                         presentationController.gameLoadError();
+                        state = State.LOAD_GAME_MENU;
                     }
                     break;
 
@@ -416,19 +417,14 @@ public class DomainController
                     catch(IOException | ClassNotFoundException | WrongPassword e)
                     {
                         presentationController.logInError();
+                        state = State.LOG_IN_USER_MENU;
                     }
                     break;
 
                 case LOG_IN_USER_MENU:
-                    try
-                    {
-                        userInfo = presentationController.logInMenu();
-                        state = State.LOG_IN_USER;
-                    }
-                    catch (NumberFormatException e)
-                    {
-                        presentationController.optionError();
-                    }
+                    userInfo = presentationController.logInMenu();
+                    state = State.LOG_IN_USER;
+
                     break;
 
                 case LOG_OUT_WARNING:
@@ -479,15 +475,9 @@ public class DomainController
                     break;
 
                 case REGISTER_USER_MENU:
-                    try
-                    {
-                        userInfo = presentationController.registerMenu();
-                        state = State.REGISTER_USER;
-                    }
-                    catch (NumberFormatException e)
-                    {
-                        presentationController.optionError();
-                    }
+                    userInfo = presentationController.registerMenu();
+                    state = State.REGISTER_USER;
+
                     break;
 
                 case RESTART_GAME:
