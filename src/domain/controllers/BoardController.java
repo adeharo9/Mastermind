@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.Board;
+import domain.classes.Code;
 import enums.Difficulty;
 
 public class BoardController
@@ -49,6 +50,11 @@ public class BoardController
     public Board getBoard()
     {
         return board;
+    }
+
+    public Code getCode()
+    {
+        return board.getCode();
     }
 
     public boolean finished() throws NullPointerException
