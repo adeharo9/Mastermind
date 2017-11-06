@@ -3,6 +3,7 @@ package domain.controllers;
 import domain.classes.*;
 import enums.*;
 import exceptions.IntegrityCorruption;
+import exceptions.ReservedKeywordException;
 import exceptions.WrongPassword;
 //import persistence.BoardPersistence;
 import persistence.GamePersistence;
@@ -204,7 +205,7 @@ public class DomainController
         PresentationController.showClue(type,number,color);*/
     }
 
-    public void exe() throws IntegrityCorruption
+    public void exe() throws IntegrityCorruption, ReservedKeywordException
     {
         int returnState;
         String str = null;
