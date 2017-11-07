@@ -29,7 +29,7 @@ public class CPUController extends PlayerController
 
     /* OTHER METHODS */
 
-    protected Action codeMake()
+    protected Action codeMake(Difficulty difficulty)
     {
 
         return null;
