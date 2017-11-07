@@ -330,21 +330,18 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Wrong option number");
-        ioUtils.endLine();
     }
 
     public void logInError()
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Wrong username or password");
-        ioUtils.endLine();
     }
 
     public void registerError()
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Username is already used");
-        ioUtils.endLine();
     }
 
     public void savedGamesListLoadError()
