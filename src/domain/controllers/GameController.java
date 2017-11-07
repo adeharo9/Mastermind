@@ -41,4 +41,6 @@ public class GameController
     }
 
     public String getId() { return game.getId(); }
+
+    public Difficulty getDifficulty() { return game.getDifficulty();}
 }

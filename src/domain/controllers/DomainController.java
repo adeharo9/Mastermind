@@ -15,6 +15,7 @@ import util.*;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DomainController
 {
@@ -184,25 +185,42 @@ public class DomainController
     private void giveClue()
     {
         /*int type;
-        type = (int) (Math.random()*2)+1;
-        int num;
-        Color color;
-        Code c;
-        c = BoardController.getCode();
+        type = ThreadLocalRandom.current().nextInt(1, 2);;
+        int num = 0;
+        Code c = BoardController.getCode();
+        Color color = null;
+        String name = "";
+        ArrayList<Color> pins = c.getBPins();
         switch(type)
         {
             case 1:
                 num = (int) (Math.random()*c.size());
-
+                color = pins.get(num);
+                name = String.valueOf(color);
                 break;
             case 2:
-                num = 0;
-
+                Difficulty dif = GameController.getDifficulty();
+                switch(dif)
+                {
+                    case EASY:
+                        color = Color.getRandomColor(5);
+                        break;
+                    case MEDIUM:
+                        color = Color.getRandomColor(5);
+                        break;
+                    case HARD:
+                        color = Color.getRandomColor(7);
+                        break;
+                }
+                for(int i = 0; i<c.size();++i){
+                    if(pins.get(i) == color) ++num;
+                }
+                name = String.valueOf(color);
                 break;
         }
         String number;
         number = String.valueOf(num);
-        PresentationController.showClue(type,number,color);*/
+        PresentationController.showClue(type,number,name);*/
     }
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException
