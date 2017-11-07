@@ -78,7 +78,7 @@ public abstract class PlayerController
             case CODE_MAKER:
                 if(inAction == null)
                 {
-                    action = codeMake();
+                    action = codeMake(difficulty);
                 }
                 else
                 {
@@ -98,9 +98,10 @@ public abstract class PlayerController
         return action;
     }
 
-    protected abstract Action codeMake();
+    protected abstract Action codeMake(Difficulty difficulty);
 
     protected abstract Action codeBreak();
 
     protected abstract Action codeCorrect(Combination combination, Code solution, Difficulty difficulty);
 }
+
