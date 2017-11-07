@@ -53,6 +53,7 @@ public class CPUController extends PlayerController
                 while(i < 6) {
                     Color color = Color.getRandomColor(5); //o 6
                     code.add(color);
+                    ++i;
                 }
                 break;
 
@@ -60,6 +61,7 @@ public class CPUController extends PlayerController
                 while(i < 8) {
                     Color color = Color.getRandomColor(7); //o 8
                     code.add(color);
+                    ++i;
                 }
                 break;
         }
