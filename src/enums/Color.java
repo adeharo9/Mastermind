@@ -43,19 +43,19 @@ public enum Color
                 randColor = PURPLE;
                 break;
             case 5:
-                randColor = YELLOW;
-                break;
-            case 6:
                 randColor = NONE;
                 break;
+            case 6:
+                randColor = YELLOW;
+                break;
             case 7:
-                randColor = BLACK;
+                randColor = BROWN;
                 break;
             case 8:
                 randColor = WHITE;
                 break;
             case 9:
-                randColor = BROWN;
+                randColor = BLACK;
                 break;
             case 10:
                 randColor = PINK;

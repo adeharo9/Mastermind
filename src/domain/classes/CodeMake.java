@@ -14,6 +14,10 @@ public class CodeMake extends Action implements DeepCopyable
         combination = new Code();
     }
 
+    public CodeMake(Combination combination) {
+        super(combination);
+    }
+
     public CodeMake(CodeMake codeMake) throws IllegalArgumentException, NullPointerException
     {
         super(codeMake);

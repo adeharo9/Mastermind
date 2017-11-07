@@ -31,8 +31,48 @@ public class CPUController extends PlayerController
 
     protected Action codeMake(Difficulty difficulty)
     {
+        ArrayList<Color> code = new ArrayList<>();
 
-        return null;
+        int i = 0;
+        switch(difficulty) {
+            case EASY:
+                ArrayList<Color> usedColors = new ArrayList<>();
+
+                while(i < 4) {
+                    Color color = Color.getRandomColor(3); //o 4
+                    usedColors.add(color);
+
+                    if(!repeatedColor(usedColors, color)) {
+                        code.add(color);
+                        ++i;
+                    }
+                }
+                break;
+
+            case MEDIUM:
+                while(i < 6) {
+                    Color color = Color.getRandomColor(5); //o 6
+                    code.add(color);
+                }
+                break;
+
+            case HARD:
+                while(i < 8) {
+                    Color color = Color.getRandomColor(7); //o 8
+                    code.add(color);
+                }
+                break;
+        }
+        Combination solution = new Combination(code);
+        return new CodeMake(solution);
+    }
+
+    private boolean repeatedColor(ArrayList<Color> usedColors, Color color) {
+        for(Color col : usedColors) {
+            if(col == color) return true;
+        }
+        usedColors.remove(usedColors.size()-1);
+        return false;
     }
 
     protected Action codeBreak()
@@ -71,8 +111,6 @@ public class CPUController extends PlayerController
         }
 
         Combination feedback = new Combination(pins);
-        Action result = new CodeCorrect(feedback);
-
-        return result;
+        return new CodeCorrect(feedback);
     }
 }
