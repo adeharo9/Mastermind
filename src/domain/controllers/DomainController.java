@@ -439,8 +439,13 @@ public class DomainController
                     break;
 
                 case LOG_IN_USER_MENU:
-                    userInfo = presentationController.logInMenu();
-                    state = State.LOG_IN_USER;
+                    try{
+                        userInfo = presentationController.logInMenu();
+                        state = State.LOG_IN_USER;
+                    }
+                    catch (ReservedKeywordException e){
+                        state = State.INIT_PROGRAM;
+                    }
 
                     break;
 
@@ -492,8 +497,13 @@ public class DomainController
                     break;
 
                 case REGISTER_USER_MENU:
-                    userInfo = presentationController.registerMenu();
-                    state = State.REGISTER_USER;
+                    try{
+                        userInfo = presentationController.registerMenu();
+                        state = State.REGISTER_USER;
+                    }
+                    catch(ReservedKeywordException e){
+                        state = State.INIT_PROGRAM;
+                    }
 
                     break;
 

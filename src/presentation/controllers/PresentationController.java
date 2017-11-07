@@ -25,7 +25,7 @@ public class PresentationController
         ioUtils.printOutLn("Write your password(or 0 to go back): ");
         String password = ioUtils.input();
 
-        if (username.equals("0")) throw new ReservedKeywordException();
+        if (password.equals("0")) throw new ReservedKeywordException();
 
         return new Pair<>(username, password);
     }
