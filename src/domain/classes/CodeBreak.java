@@ -18,6 +18,10 @@ public class CodeBreak extends Action implements DeepCopyable
         super(codeBreak);
     }
 
+    public CodeBreak(Code code) {
+        super(code);
+    }
+
     /* SET METHODS */
 
     /* GET METHODS */

@@ -165,7 +165,8 @@ public class CPUController extends PlayerController
 
     protected Action codeBreak(Difficulty difficulty, Turn lastTurn)
     {
-
+        Code proposedSolutionByCPU = getCodeBreak(difficulty, lastTurn);
+        return new CodeBreak(proposedSolutionByCPU);
     }
 
     private void generatePermutations(Difficulty difficulty)
