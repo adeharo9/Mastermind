@@ -50,7 +50,7 @@ public class HumanController extends PlayerController
         return null;
     }
 
-    protected Action codeCorrect(Combination combination, Code solution, Difficulty difficulty)
+    protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
     {
         return null;
     }

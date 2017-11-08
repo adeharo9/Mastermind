@@ -21,12 +21,12 @@ public class CPUcodeCorrectTest {
             solution.add(Color.getRandomColor(4));
         }
 
-        Combination combination = new Combination(proposedSolution);
+        Code code = new Code(proposedSolution);
         Code sol = new Code(solution);
         Difficulty dif = Difficulty.MEDIUM;
 
         Action result = new CodeCorrect();
 
-        //result = cpuController.codeCorrect(combination, sol, dif);
+        //result = cpuController.codeCorrect(code, sol, dif);
     }
 }

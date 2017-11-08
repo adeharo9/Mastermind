@@ -5,51 +5,109 @@ import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.*;
 
-public class Code extends Combination implements DeepCopyable, Serializable
+public class Code implements DeepCopyable, Serializable
 {
+    /* ATTRIBUTES */
+
+    protected final int size;
+    protected ArrayList<Color> bPins;
+
     /* CONSTRUCTION METHODS */
 
     @Deprecated
     public Code()
     {
-        super();
+        size = 0;
+        bPins = new ArrayList<>();
     }
 
     @Deprecated
     public Code(int n) throws IllegalArgumentException
     {
-        super(n);
+        size = n;
+        bPins = new ArrayList<>(n);
     }
 
-    public Code(Difficulty difficulty)
+    public Code(ArrayList<Color> bPins) {
+        this.size = bPins.size();
+        setBPins(bPins);
+    }
+
+    public Code(Difficulty difficulty) throws IllegalArgumentException
     {
-        super(difficulty);
+        size = 0;
+        bPins = new ArrayList<>();
     }
 
     public Code(Code code) throws IllegalArgumentException, NullPointerException
     {
-        super(code);
+        size = code.size();
+        setBPins(code.getBPins());
     }
 
-    public Code(ArrayList<Color> bPins) {
-        super(bPins);
-    }
+    /* SET METHODS */
 
-    /* OTHER METHODS */
-
-    /*public void setRandomCode()
+    public void setBPins(ArrayList<Color> bPins) throws IllegalArgumentException, NullPointerException
     {
-        Color color;
-        int n = this.size();
+        boolean b = Utils.isValidArrayList(bPins);
+        if(!b) throw new IllegalArgumentException();
 
-        for(int i = 0; i < n; ++i)
+        bPins = new ArrayList<>(bPins.size());
+        this.bPins.addAll(bPins);
+    }
+
+    public void addBPin(Color bPin) throws IndexOutOfBoundsException
+    {
+        if(this.bPins.size() >= this.size()) throw new IndexOutOfBoundsException();
+
+        if(this.bPins == null)
         {
-            color = Color.getRandomColor(n + 2);
-            addBPin(color);
+            this.bPins = new ArrayList<>();
         }
-    }*/
+
+        this.bPins.add(bPin);
+    }
+
+    /* GET METHODS */
+
+    public ArrayList<Color> getBPins()
+    {
+        return bPins;
+    }
+
+    public Color getBPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
+    {
+        return bPins.get(i);
+    }
+
+    /* CONSULTING METHODS */
+
+    public int size() throws NullPointerException
+    {
+        return size;
+    }
+
+    /* MODIFYING METHODS */
+
+    public void clear()
+    {
+        bPins.clear();
+    }
+
+    /* TESTING METHODS */
+
+    public boolean isValid()
+    {
+        return bPins != null;
+    }
+
+    @Deprecated
+    public boolean isValid(int n)
+    {
+        return size() == n;
+    }
 
     /* CLONING METHODS */
 

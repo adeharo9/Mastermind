@@ -7,7 +7,7 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
-public class Turn extends Combination implements DeepCopyable, Serializable
+public class Turn extends Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 

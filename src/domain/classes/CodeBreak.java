@@ -1,7 +1,6 @@
 package domain.classes;
 
 import util.*;
-import java.util.*;
 
 public class CodeBreak extends Action implements DeepCopyable
 {
@@ -11,7 +10,7 @@ public class CodeBreak extends Action implements DeepCopyable
 
     public CodeBreak()
     {
-        combination = new Turn();
+        code = new Turn();
     }
 
     public CodeBreak(CodeBreak codeBreak) throws IllegalArgumentException, NullPointerException

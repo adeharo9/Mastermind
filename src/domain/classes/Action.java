@@ -1,13 +1,12 @@
 package domain.classes;
 
 import util.*;
-import java.util.*;
 
 public abstract class Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
-    protected Combination combination;
+    protected Code code;
 
     /* CONSTRUCTION METHODS */
 
@@ -16,37 +15,37 @@ public abstract class Action implements DeepCopyable
 
     }
 
-    public Action(Combination combination) {
-        this.combination = combination;
+    public Action(Code code) {
+        this.code = code;
     }
 
     public Action(Action action) throws IllegalArgumentException, NullPointerException
     {
-        setCombination(action.getCombination());
+        setCode(action.getCode());
     }
 
     /* SET METHODS */
 
-    public void setCombination(Combination combination) throws IllegalArgumentException, NullPointerException
+    public void setCode(Code code) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = combination.isValid();
+        boolean b = code.isValid();
         if(!b) throw new IllegalArgumentException();
 
-        this.combination = combination.deepCopy();
+        this.code = code.deepCopy();
     }
 
     /* GET METHODS */
 
-    public Combination getCombination()
+    public Code getCode()
     {
-        return combination;
+        return code;
     }
 
     /* TESTING METHODS */
 
     public boolean isValid()
     {
-        return combination != null;
+        return code != null;
     }
 
     /* CLONING METHODS */

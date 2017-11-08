@@ -88,9 +88,9 @@ public class Board implements DeepCopyable, Serializable
     }
 
     @Deprecated
-    private boolean isValidComb (Combination combination) throws NullPointerException
+    private boolean isValidComb (Code code) throws NullPointerException
     {
-        return combination.size () == nColumns;
+        return code.size () == nColumns;
     }
 
     /* CONSTRUCTION METHODS */

@@ -71,7 +71,7 @@ public class CPUController extends PlayerController
                 }
                 break;
         }
-        Combination solution = new Combination(code);
+        Code solution = new Code(code);
         return new CodeMake(solution);
     }
 
@@ -173,19 +173,19 @@ public class CPUController extends PlayerController
 
     }
 
-    protected Code getCodeCorrect(Combination combination, Code solution, Difficulty difficulty)
+    protected Code getCodeCorrect(Code code, Code solution, Difficulty difficulty)
     {
 
     }
 
-    protected Action codeCorrect(Combination combination, Code solution, Difficulty difficulty)
+    protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
     {
-        int size = combination.size();
+        int size = code.size();
         ArrayList<Color> pins = new ArrayList<>(size);
         ArrayList<Color> proposedSolution = new ArrayList<>(size);
         ArrayList<Color> sol = new ArrayList<>(size);
 
-        proposedSolution = combination.getBPins();
+        proposedSolution = code.getBPins();
         sol = solution.getBPins();
         boolean find;
 
@@ -208,7 +208,7 @@ public class CPUController extends PlayerController
             Collections.shuffle(pins);
         }
 
-        Combination feedback = new Combination(pins);
+        Code feedback = new Code(pins);
         return new CodeCorrect(feedback);
     }
 }

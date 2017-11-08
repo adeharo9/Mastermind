@@ -1,7 +1,6 @@
 package domain.classes;
 
 import util.*;
-import java.util.*;
 
 public class CodeMake extends Action implements DeepCopyable
 {
@@ -11,11 +10,11 @@ public class CodeMake extends Action implements DeepCopyable
 
     public CodeMake()
     {
-        combination = new Code();
+        code = new Code();
     }
 
-    public CodeMake(Combination combination) {
-        super(combination);
+    public CodeMake(Code code) {
+        super(code);
     }
 
     public CodeMake(CodeMake codeMake) throws IllegalArgumentException, NullPointerException

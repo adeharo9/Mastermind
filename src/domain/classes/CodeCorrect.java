@@ -1,7 +1,6 @@
 package domain.classes;
 
 import util.*;
-import java.util.*;
 
 public class CodeCorrect extends Action implements DeepCopyable
 {
@@ -11,7 +10,7 @@ public class CodeCorrect extends Action implements DeepCopyable
 
     public CodeCorrect()
     {
-        combination = new Turn();
+        code = new Turn();
     }
 
     public CodeCorrect(CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
@@ -19,8 +18,8 @@ public class CodeCorrect extends Action implements DeepCopyable
         super(codeCorrect);
     }
 
-    public CodeCorrect(Combination combination) {
-        super(combination);
+    public CodeCorrect(Code code) {
+        super(code);
     }
 
     /* SET METHODS */
