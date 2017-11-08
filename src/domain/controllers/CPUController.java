@@ -9,9 +9,15 @@ public class CPUController extends PlayerController
 {
     /* CONSTRUCTION METHODS */
 
+    private boolean firstTurn;
+    private Code currentGuess;
+    private HashSet<Code> solutions;
+    private HashSet<Code> guesses;
+
     public CPUController()
     {
         player = new CPU();
+        firstTurn = true;
     }
 
     public CPUController(Player player)
@@ -39,7 +45,7 @@ public class CPUController extends PlayerController
                 ArrayList<Color> usedColors = new ArrayList<>();
 
                 while(i < 4) {
-                    Color color = Color.getRandomColor(3); //o 4
+                    Color color = Color.getRandomColor(6); //o 4
                     usedColors.add(color);
 
                     if(!repeatedColor(usedColors, color)) {
@@ -51,7 +57,7 @@ public class CPUController extends PlayerController
 
             case MEDIUM:
                 while(i < 6) {
-                    Color color = Color.getRandomColor(5); //o 6
+                    Color color = Color.getRandomColor(6); //o 6
                     code.add(color);
                     ++i;
                 }
@@ -59,7 +65,7 @@ public class CPUController extends PlayerController
 
             case HARD:
                 while(i < 8) {
-                    Color color = Color.getRandomColor(7); //o 8
+                    Color color = Color.getRandomColor(8); //o 8
                     code.add(color);
                     ++i;
                 }
@@ -77,9 +83,99 @@ public class CPUController extends PlayerController
         return false;
     }
 
-    protected Action codeBreak()
+    protected Code getCodeBreak(Difficulty difficulty, Turn lastTurn)
     {
-        return null;
+        int minCoincidences;
+        int maxCoincidences;
+        Code correction;
+        HashMap<Code, Integer> coincidencesByCorrection = new HashMap<>();
+        HashMap<Code, Integer> maxNotEliminatedByGuess = new HashMap<>();
+
+        if(firstTurn)
+        {
+            firstTurn = false;
+
+            generatePermutations(difficulty);
+            ArrayList<Color> colors = new ArrayList<>(Arrays.asList(Color.RED, Color.RED, Color.GREEN, Color.GREEN));
+            currentGuess = new Code(colors);
+
+            guesses.remove(currentGuess);
+        }
+        else
+        {
+            Code lastCorrection = new Code(lastTurn.getSPins());
+            solutions.remove(currentGuess);
+
+            for(Code solution : solutions)
+            {
+                correction = getCodeCorrect(solution, currentGuess, difficulty);
+
+                if(!correction.deepEquals(lastCorrection))
+                {
+                    solutions.remove(solution);     // WARNING: COMPROBAR QUE NO HACE LO MISMO QUE C++ CON LOS RANGE-BASED LOOPS
+                }
+            }
+
+            for(Code guess : guesses)
+            {
+                coincidencesByCorrection.clear();
+
+                for (Code solution : solutions) {
+                    correction = getCodeCorrect(solution, guess, difficulty);
+
+                    if (coincidencesByCorrection.containsKey(correction))
+                    {
+                        coincidencesByCorrection.put(correction, coincidencesByCorrection.get(correction) + 1);
+                    }
+                    else
+                    {
+                        coincidencesByCorrection.put(correction, 1);
+                    }
+                }
+
+                maxCoincidences = 0;
+
+                for(Map.Entry<Code, Integer> entry : coincidencesByCorrection.entrySet())
+                {
+                    if(entry.getValue() > maxCoincidences)
+                    {
+                        maxCoincidences = entry.getValue();
+                    }
+                }
+
+                maxNotEliminatedByGuess.put(guess, maxCoincidences);
+            }
+
+            minCoincidences = Integer.MAX_VALUE;
+
+            for(Map.Entry<Code, Integer> entry : maxNotEliminatedByGuess.entrySet())
+            {
+                if(entry.getValue() < minCoincidences)
+                {
+                    minCoincidences = entry.getValue();
+                    currentGuess = entry.getKey();
+                }
+            }
+
+            guesses.remove(currentGuess);
+        }
+
+        return currentGuess;
+    }
+
+    protected Action codeBreak(Difficulty difficulty, Turn lastTurn)
+    {
+
+    }
+
+    private void generatePermutations(Difficulty difficulty)
+    {
+
+    }
+
+    protected Code getCodeCorrect(Combination combination, Code solution, Difficulty difficulty)
+    {
+
     }
 
     protected Action codeCorrect(Combination combination, Code solution, Difficulty difficulty)
