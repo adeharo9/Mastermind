@@ -18,8 +18,8 @@ public enum Color
     BLACK(9, "K"),
     WHITE(10, "W");
 
-    private int id;
-    private String strId;
+    private final int id;
+    private final String strId;
 
     private static HashMap<Integer, Color> int2Color;
     private static HashMap<String, Color> str2Color;
@@ -53,8 +53,7 @@ public enum Color
 
     public static Color getColor(String strId) throws IllegalArgumentException
     {
-        Color color;
-        color =  str2Color.get(strId);
+        Color color =  str2Color.get(strId);
 
         if(color == null) throw new IllegalArgumentException();
 
