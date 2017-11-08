@@ -73,7 +73,7 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(Action inAction, Code solution, Difficulty difficulty, Turn lastTurn) throws IllegalArgumentException
+    public final Action play(Turn lastTurn, Code solution, Difficulty difficulty) throws IllegalArgumentException
     {
         Action action;
 
@@ -85,7 +85,10 @@ public abstract class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(inAction.getCode(), solution, difficulty);
+                    action = codeCorrect(new Code(lastTurn.getBPins()), solution, difficulty);
+                    /* WARNING: APAÑO
+                    CAMBIAR EL new Code(cosas) POR ALGUNA FUNCIÓN ESPECÍFICA (getCode() Y TAL)
+                     */
                 }
                 break;
             case CODE_BREAKER:
