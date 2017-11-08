@@ -23,7 +23,7 @@ public enum Color
 
         Color randColor;
 
-        int rand = ThreadLocalRandom.current().nextInt(0, upperBound);
+        int rand = ThreadLocalRandom.current().nextInt(0, upperBound);      // [0, uppedBound)
 
         switch (rand)
         {
