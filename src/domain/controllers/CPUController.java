@@ -106,7 +106,7 @@ public class CPUController extends PlayerController
             {
                 correction = getCodeCorrect(solution, currentGuess, difficulty);
 
-                if(!correction.deepEquals(lastCorrection))
+                if(!correction.equivalents(lastCorrection))
                 {
                     solutions.remove(solution);     // WARNING: COMPROBAR QUE NO HACE LO MISMO QUE C++ CON LOS RANGE-BASED LOOPS
                 }
