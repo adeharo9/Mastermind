@@ -195,7 +195,7 @@ public class DomainController
         int type;
         type = ThreadLocalRandom.current().nextInt(1, 3);;
         int num = 0;
-        Code c = boardController.getCode();
+        Code c = boardController.getSolution();
         Color color = null;
         String name = "";
         ArrayList<Color> pins = c.getBPins();

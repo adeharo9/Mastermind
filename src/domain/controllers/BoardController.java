@@ -1,7 +1,9 @@
 package domain.controllers;
 
+import domain.classes.Action;
 import domain.classes.Board;
 import domain.classes.Code;
+import domain.classes.Turn;
 import enums.Difficulty;
 
 public class BoardController
@@ -52,9 +54,9 @@ public class BoardController
         return board;
     }
 
-    public Code getCode()
+    public Code getSolution()
     {
-        return board.getCode();
+        return board.getSolution();
     }
 
     public Difficulty getDifficulty()
@@ -62,8 +64,24 @@ public class BoardController
         return board.getDifficulty();
     }
 
+    public Turn getLastTurn()
+    {
+        return board.getLastTurn();
+    }
+
     public boolean finished() throws NullPointerException
     {
         return board.finished();
+    }
+
+    public void checkAction(Action action)
+    {
+
+    }
+
+    public void addAction(Action action)
+    {
+        Turn turn = (Turn) action.getCode();
+        board.addTurn(turn);
     }
 }

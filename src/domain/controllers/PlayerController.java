@@ -87,7 +87,7 @@ public abstract class PlayerController
                 {
                     action = codeCorrect(new Code(lastTurn.getBPins()), solution, difficulty);
                     /* WARNING: APAÑO
-                    CAMBIAR EL new Code(cosas) POR ALGUNA FUNCIÓN ESPECÍFICA (getCode() Y TAL)
+                    CAMBIAR EL new Code(cosas) POR ALGUNA FUNCIÓN ESPECÍFICA (getSolution() Y TAL)
                      */
                 }
                 break;

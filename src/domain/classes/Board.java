@@ -14,9 +14,10 @@ public class Board implements DeepCopyable, Serializable
     private int maxAttempts;
     private Difficulty difficulty;
 
-    private Code code;
+    private Code solution;
     private ArrayList<Turn> turnSet;
 
+    @Deprecated
     private static int getNColumnsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         int nColumns;
@@ -39,6 +40,7 @@ public class Board implements DeepCopyable, Serializable
         return nColumns;
     }
 
+    @Deprecated
     private static int getMaxAttemptsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         int maxAttempts;
@@ -102,7 +104,7 @@ public class Board implements DeepCopyable, Serializable
         maxAttempts = -1;
         difficulty = null;
 
-        code = null;
+        solution = null;
         turnSet = new ArrayList<>();
     }
 
@@ -112,7 +114,7 @@ public class Board implements DeepCopyable, Serializable
         setMaxAttempts(getMaxAttemptsByDifficulty(difficulty));
         setDifficulty(difficulty);
 
-        code = null;
+        solution = null;
         turnSet = new ArrayList<>();
     }
 
@@ -121,7 +123,7 @@ public class Board implements DeepCopyable, Serializable
         setNColumns(board.getNColumns());
         setMaxAttempts (board.getMaxAttempts());
         setDifficulty(board.getDifficulty());
-        setCode(board.getCode());
+        setSolution(board.getSolution());
         setTurnSet(board.getTurnSet());
     }
 
@@ -151,12 +153,12 @@ public class Board implements DeepCopyable, Serializable
         this.difficulty = difficulty;
     }
 
-    public void setCode(Code code) throws IllegalArgumentException, NullPointerException
+    public void setSolution(Code solution) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidComb(code);
+        boolean b = isValidComb(solution);
         if(!b) throw new IllegalArgumentException();
 
-        this.code = code.deepCopy();
+        this.solution = solution.deepCopy();
     }
 
     public void setTurnSet(ArrayList<Turn> turnSet) throws IllegalArgumentException, NullPointerException
@@ -202,9 +204,9 @@ public class Board implements DeepCopyable, Serializable
         return difficulty;
     }
 
-    public Code getCode ()
+    public Code getSolution()
     {
-        return code;
+        return solution;
     }
 
     public ArrayList<Turn> getTurnSet ()
@@ -215,6 +217,21 @@ public class Board implements DeepCopyable, Serializable
     public Turn getTurn(int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return turnSet.get(i);
+    }
+
+    public Turn getLastTurn()
+    {
+        Turn turn;
+
+        if(turnSet.isEmpty())
+        {
+            turn = null;
+        }
+        else
+        {
+            turn = getTurn(turnSet.size() - 1);
+        }
+        return turn;
     }
 
     public boolean finished() throws NullPointerException
