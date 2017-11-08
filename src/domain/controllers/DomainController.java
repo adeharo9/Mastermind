@@ -199,7 +199,7 @@ public class DomainController
                 name = String.valueOf(color);
                 break;
             case 2:
-                Difficulty dif = gameController.getDifficulty();
+                Difficulty dif = boardController.getDifficulty();
                 switch(dif)
                 {
                     case EASY:

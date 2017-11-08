@@ -12,7 +12,7 @@ public class Board implements DeepCopyable, Serializable
 
     private int nColumns;
     private int maxAttempts;
-    //private int difficulty;
+    private Difficulty difficulty;
 
     private Code code;
     private ArrayList<Turn> turnSet;
@@ -100,6 +100,7 @@ public class Board implements DeepCopyable, Serializable
     {
         nColumns = -1;
         maxAttempts = -1;
+        difficulty = null;
 
         code = null;
         turnSet = new ArrayList<>();
@@ -109,6 +110,7 @@ public class Board implements DeepCopyable, Serializable
     {
         setNColumns(getNColumnsByDifficulty(difficulty));
         setMaxAttempts(getMaxAttemptsByDifficulty(difficulty));
+        setDifficulty(difficulty);
 
         code = null;
         turnSet = new ArrayList<>();
@@ -118,6 +120,7 @@ public class Board implements DeepCopyable, Serializable
     {
         setNColumns(board.getNColumns());
         setMaxAttempts (board.getMaxAttempts());
+        setDifficulty(board.getDifficulty());
         setCode(board.getCode());
         setTurnSet(board.getTurnSet());
     }
@@ -138,6 +141,14 @@ public class Board implements DeepCopyable, Serializable
         if(!b) throw new IllegalArgumentException();
 
         this.maxAttempts = maxAttempts;
+    }
+
+    public void setDifficulty(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    {
+        boolean b = difficulty != null;
+        if(!b) throw new IllegalArgumentException();
+
+        this.difficulty = difficulty;
     }
 
     public void setCode(Code code) throws IllegalArgumentException, NullPointerException
@@ -186,6 +197,11 @@ public class Board implements DeepCopyable, Serializable
         return maxAttempts;
     }
 
+    public Difficulty getDifficulty()
+    {
+        return difficulty;
+    }
+
     public Code getCode ()
     {
         return code;
@@ -216,6 +232,9 @@ public class Board implements DeepCopyable, Serializable
         if(!b) return b;
 
         b = isValidMaxAttempts(maxAttempts);
+        if(!b) return b;
+
+        b = difficulty != null;
         if(!b) return b;
 
         b = turnSet != null;

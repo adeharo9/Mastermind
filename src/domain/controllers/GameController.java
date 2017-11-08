@@ -18,14 +18,14 @@ public class GameController
         game = null;
     }
 
-    public Game newGame(String id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
+    public void newGame(String id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
     {
         game = new Game(id, difficulty);
 
         game.setBoard(board);
         game.setPlayerRolePairs(playerRolePair);
 
-        return game;
+        //return game;
     }
 
     public void setGameByReference(Game game) throws IllegalArgumentException
@@ -36,11 +36,13 @@ public class GameController
         this.game = game;
     }
 
-    public Game getGame() {
+    public Game getGame()
+    {
         return game;
     }
 
-    public String getId() { return game.getId(); }
-
-    public Difficulty getDifficulty() { return game.getDifficulty();}
+    public String getId()
+    {
+        return game.getId();
+    }
 }

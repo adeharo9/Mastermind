@@ -11,6 +11,7 @@ public abstract class PlayerController
 {
     /* ATTRIBUTES */
 
+    protected boolean firstTurn;
     protected Role role;
     protected Player player;
     //protected DomainController domainController;
@@ -19,16 +20,18 @@ public abstract class PlayerController
 
     public PlayerController()
     {
-
+        firstTurn = true;
     }
 
     public PlayerController(Role role)
     {
+        firstTurn = true;
         setRole(role);
     }
 
     public PlayerController(Player player)
     {
+        firstTurn = true;
         setPlayerByReference(player);
     }
 
