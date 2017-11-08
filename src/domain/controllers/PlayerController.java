@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.classes.Action;
+import domain.classes.Turn;
 import domain.classes.Code;
 import domain.classes.Player;
 import enums.Difficulty;
@@ -69,7 +70,7 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(Action inAction, Code solution, Difficulty difficulty) throws IllegalArgumentException
+    public final Action play(Action inAction, Code solution, Difficulty difficulty, Turn lastTurn) throws IllegalArgumentException
     {
         Action action;
 
@@ -85,7 +86,7 @@ public abstract class PlayerController
                 }
                 break;
             case CODE_BREAKER:
-                action = codeBreak();
+                action = codeBreak(difficulty, lastTurn);
                 break;
             case WATCHER:
                 action = null;
@@ -99,7 +100,7 @@ public abstract class PlayerController
 
     protected abstract Action codeMake(Difficulty difficulty);
 
-    protected abstract Action codeBreak();
+    protected abstract Action codeBreak(Difficulty difficulty, Turn lastTurn);
 
     protected abstract Action codeCorrect(Code code, Code solution, Difficulty difficulty);
 }
