@@ -184,10 +184,10 @@ public class DomainController
 
     private void giveClue()
     {
-        /*int type;
-        type = ThreadLocalRandom.current().nextInt(1, 2);;
+        int type;
+        type = ThreadLocalRandom.current().nextInt(1, 3);;
         int num = 0;
-        Code c = BoardController.getCode();
+        Code c = boardController.getCode();
         Color color = null;
         String name = "";
         ArrayList<Color> pins = c.getBPins();
@@ -199,17 +199,17 @@ public class DomainController
                 name = String.valueOf(color);
                 break;
             case 2:
-                Difficulty dif = GameController.getDifficulty();
+                Difficulty dif = gameController.getDifficulty();
                 switch(dif)
                 {
                     case EASY:
-                        color = Color.getRandomColor(5);
+                        color = Color.getRandomColor(6);
                         break;
                     case MEDIUM:
-                        color = Color.getRandomColor(5);
+                        color = Color.getRandomColor(6);
                         break;
                     case HARD:
-                        color = Color.getRandomColor(6);
+                        color = Color.getRandomColor(8);
                         break;
                 }
                 for(int i = 0; i<c.size();++i){
@@ -220,7 +220,7 @@ public class DomainController
         }
         String number;
         number = String.valueOf(num);
-        PresentationController.showClue(type,number,name);*/
+        PresentationController.showClue(type,number,name);
     }
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException
@@ -439,7 +439,8 @@ public class DomainController
                     break;
 
                 case LOG_IN_USER_MENU:
-                    try{
+                    try
+                    {
                         userInfo = presentationController.logInMenu();
                         state = State.LOG_IN_USER;
                     }

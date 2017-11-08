@@ -32,7 +32,7 @@ public class Combination implements DeepCopyable, Serializable
 
     public Combination(ArrayList<Color> bPins) {
         this.size = bPins.size();
-        this.bPins = bPins;
+        setBPins(bPins);
     }
 
     public Combination(Difficulty difficulty) throws IllegalArgumentException

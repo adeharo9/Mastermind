@@ -37,16 +37,16 @@ public enum Color
                 randColor = BLUE;
                 break;
             case 3:
-                randColor = ORANGE;
+                randColor = YELLOW;
                 break;
             case 4:
-                randColor = PURPLE;
+                randColor = ORANGE;
                 break;
             case 5:
-                randColor = NONE;
+                randColor = PURPLE;
                 break;
             case 6:
-                randColor = YELLOW;
+                randColor = NONE;
                 break;
             case 7:
                 randColor = BROWN;

@@ -39,7 +39,7 @@ public class Code extends Combination implements DeepCopyable, Serializable
 
     /* OTHER METHODS */
 
-    public void setRandomCode()
+    /*public void setRandomCode()
     {
         Color color;
         int n = this.size();
@@ -49,7 +49,7 @@ public class Code extends Combination implements DeepCopyable, Serializable
             color = Color.getRandomColor(n + 2);
             addBPin(color);
         }
-    }
+    }*/
 
     /* CLONING METHODS */
 
