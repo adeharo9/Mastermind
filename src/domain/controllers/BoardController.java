@@ -57,6 +57,11 @@ public class BoardController
         return board.getCode();
     }
 
+    public Difficulty getDifficulty()
+    {
+        return board.getDifficulty();
+    }
+
     public boolean finished() throws NullPointerException
     {
         return board.finished();

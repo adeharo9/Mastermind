@@ -13,7 +13,6 @@ public class Game implements DeepCopyable, Serializable
 
     private String id;
     private long time;
-    private Difficulty difficulty;
     protected int points;
 
     private Board board;
@@ -91,7 +90,6 @@ public class Game implements DeepCopyable, Serializable
     {
         setId(Utils.autoID());
         setTime();
-        difficulty = null;
         setPoints(0);
 
         board = null;
@@ -102,7 +100,6 @@ public class Game implements DeepCopyable, Serializable
     {
         setId(Utils.autoID());
         setTime();
-        setDifficulty(difficulty);
         setPoints(0);
 
         board = null;
@@ -114,10 +111,9 @@ public class Game implements DeepCopyable, Serializable
     {
         setId(id);
         setTime();
-        setDifficulty(difficulty);
         setPoints(0);
 
-        board = null;
+        board = new Board(difficulty);
         playerRolePairs = new ArrayList<>();
     }
 
@@ -125,7 +121,6 @@ public class Game implements DeepCopyable, Serializable
     {
         setId(game.getId());
         setTime(game.getTime());
-        setDifficulty(game.getDifficulty());
         setBoardByCopy(game.getBoard());
         setPoints(game.getPoints());
         setPlayerRolePairsByCopy(game.getPlayerRolePairs());
@@ -144,14 +139,6 @@ public class Game implements DeepCopyable, Serializable
     public void setTime()
     {
         this.time = System.currentTimeMillis();
-    }
-
-    public void setDifficulty(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = difficulty != null;
-        if(!b) throw new IllegalArgumentException();
-
-        this.difficulty = difficulty;
     }
 
     public void setBoard(Board board) throws IllegalArgumentException, NullPointerException
@@ -212,11 +199,6 @@ public class Game implements DeepCopyable, Serializable
         return time;
     }
 
-    public Difficulty getDifficulty()
-    {
-        return difficulty;
-    }
-
     public Board getBoard()
     {
         return board;
@@ -257,9 +239,6 @@ public class Game implements DeepCopyable, Serializable
         if(!b) return false;
 
         b = isValidTime(time);
-        if(!b) return false;
-
-        b = difficulty != null;
         if(!b) return false;
 
         b = board != null;
