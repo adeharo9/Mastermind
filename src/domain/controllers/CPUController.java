@@ -9,7 +9,6 @@ public class CPUController extends PlayerController
 {
     /* CONSTRUCTION METHODS */
 
-    private boolean firstTurn;
     private Code currentGuess;
     private HashSet<Code> solutions;
     private HashSet<Code> guesses;
@@ -17,7 +16,6 @@ public class CPUController extends PlayerController
     public CPUController()
     {
         player = new CPU();
-        firstTurn = true;
     }
 
     public CPUController(Player player)
