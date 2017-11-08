@@ -207,15 +207,12 @@ public class CPUController extends PlayerController
             {
                 for(int j = 0; j < size; ++j)
                 {
-                    if(!processed.get(i))
+                    if(!processed.get(i) && playerProposedSolution.get(i) == sol.get(j))
                     {
-                        if(playerProposedSolution.get(i) == sol.get(j))
-                        {
-                            match.add(i, true);
-                            processed.add(j, true);
-                            pins.add(Color.WHITE);
-                            break;
-                        }
+                        match.add(i, true);
+                        processed.add(j, true);
+                        pins.add(Color.WHITE);
+                        break;
                     }
                 }
             }
@@ -226,8 +223,7 @@ public class CPUController extends PlayerController
             Collections.shuffle(pins);
         }
 
-        Code correction = new Code(pins);
-        return correction;
+        return new Code(pins);
     }
 
     protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
