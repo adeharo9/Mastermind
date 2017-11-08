@@ -181,7 +181,7 @@ public class CPUController extends PlayerController
         Collections.fill(match, Boolean.FALSE);
 
         ArrayList<Boolean> processed = new ArrayList<Boolean>(size);
-        Collections.fill(match, Boolean.FALSE);
+        Collections.fill(processed, Boolean.FALSE);
 
         ArrayList<Color> pins = new ArrayList<>(size);
         ArrayList<Color> playerProposedSolution = new ArrayList<>(size);
