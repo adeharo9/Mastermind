@@ -91,8 +91,6 @@ public class CPUController extends PlayerController
 
         if(firstTurn)
         {
-            firstTurn = false;
-
             generatePermutations(difficulty);
             ArrayList<Color> colors = new ArrayList<>(Arrays.asList(Color.RED, Color.RED, Color.GREEN, Color.GREEN));
             currentGuess = new Code(colors);

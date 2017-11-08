@@ -72,13 +72,13 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(Action inAction, Code solution, Difficulty difficulty) throws IllegalArgumentException
+    public final Action play(Code solution, Difficulty difficulty) throws IllegalArgumentException
     {
         Action action;
 
         switch (role) {
             case CODE_MAKER:
-                if(inAction == null)
+                if(firstTurn)
                 {
                     action = codeMake(difficulty);
                 }
@@ -96,6 +96,8 @@ public abstract class PlayerController
             default:
                 throw new IllegalArgumentException();
         }
+
+        firstTurn = false;
 
         return action;
     }
