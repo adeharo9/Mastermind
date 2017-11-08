@@ -163,13 +163,21 @@ public class DomainController
 
     private void playTurn() throws IllegalArgumentException
     {
-        Action action = null;
+        Action action;
+        Turn lastTurn;
 
-        /*for(PlayerController playerController : playingPlayerControllers)
+        Code code = boardController.getSolution();
+        Difficulty difficulty = boardController.getDifficulty();
+
+        for(PlayerController playerController : playingPlayerControllers)
         {
-            action = playerController.play(action);
-            //processAction(action);
-        }*/
+            lastTurn = boardController.getLastTurn();
+
+            action = playerController.play(lastTurn, code, difficulty);
+
+            boardController.checkAction(action);
+            boardController.addAction(action);
+        }
     }
 
     /*private void processAction(Action action)
