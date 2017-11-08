@@ -2,7 +2,6 @@ package enums;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
@@ -23,8 +22,8 @@ public enum Color
     private final int id;
     private final String strId;
 
-    private static HashMap<Integer, Color> int2Color;
-    private static HashMap<String, Color> str2Color;
+    private static HashMap<Integer, Color> int2Color = new HashMap<>();
+    private static HashMap<String, Color> str2Color = new HashMap<>();
 
     static
     {
