@@ -1,6 +1,8 @@
 package enums;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
@@ -68,6 +70,15 @@ public enum Color
     public String getStrId()
     {
         return strId;
+    }
+
+    public static Color getRandomColor(ArrayList<Color> colorSet) throws IllegalArgumentException
+    {
+        if(colorSet.isEmpty()) throw new IllegalArgumentException();
+
+        int rand = ThreadLocalRandom.current().nextInt(0, colorSet.size());      // [0, uppedBound)
+
+        return colorSet.get(rand);
     }
 
     public static Color getRandomColor(int upperBound) throws IllegalArgumentException
