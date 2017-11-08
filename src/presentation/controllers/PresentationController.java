@@ -104,7 +104,9 @@ public class PresentationController
     public void showInfo()
     {
         ioUtils.endLine();
-        ioUtils.printOutLn("");
+        ioUtils.printOutLn("Correction rules:");
+        ioUtils.printOutLn("EASY MODE: correction tokens are placed in the order of the response tokens.");
+        ioUtils.printOutLn("MEDIUM and HARD MODE: correction tokens are placed in random order.");
     }
 
     public int gameModeSelectionMenu() throws NumberFormatException

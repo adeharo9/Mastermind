@@ -209,7 +209,7 @@ public class DomainController
                         color = Color.getRandomColor(5);
                         break;
                     case HARD:
-                        color = Color.getRandomColor(7);
+                        color = Color.getRandomColor(6);
                         break;
                 }
                 for(int i = 0; i<c.size();++i){
