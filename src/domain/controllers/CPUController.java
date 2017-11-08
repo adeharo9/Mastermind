@@ -175,40 +175,63 @@ public class CPUController extends PlayerController
 
     protected Code getCodeCorrect(Code code, Code solution, Difficulty difficulty)
     {
+        int size = code.size();
 
+        ArrayList<Boolean> match = new ArrayList<Boolean>(size);
+        Collections.fill(match, Boolean.FALSE);
+
+        ArrayList<Boolean> processed = new ArrayList<Boolean>(size);
+        Collections.fill(match, Boolean.FALSE);
+
+        ArrayList<Color> pins = new ArrayList<>(size);
+        ArrayList<Color> playerProposedSolution = new ArrayList<>(size);
+        ArrayList<Color> sol = new ArrayList<>(size);
+
+        playerProposedSolution = code.getBPins();
+        sol = solution.getBPins();
+
+        for(int i = 0; i < size; ++i)
+        {
+            if(playerProposedSolution.get(i) == sol.get(i))
+            {
+                match.add(i, true);
+                processed.add(i, true);
+                pins.add(Color.BLACK);
+            }
+        }
+
+        for(int i = 0; i < size; ++i)
+        {
+            if(!match.get(i))
+            {
+                for(int j = 0; j < size; ++j)
+                {
+                    if(!processed.get(i))
+                    {
+                        if(playerProposedSolution.get(i) == sol.get(j))
+                        {
+                            match.add(i, true);
+                            processed.add(j, true);
+                            pins.add(Color.WHITE);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(difficulty != Difficulty.EASY)
+        {
+            Collections.shuffle(pins);
+        }
+
+        Code correction = new Code(pins);
+        return correction;
     }
 
     protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
     {
-        int size = code.size();
-        ArrayList<Color> pins = new ArrayList<>(size);
-        ArrayList<Color> proposedSolution = new ArrayList<>(size);
-        ArrayList<Color> sol = new ArrayList<>(size);
-
-        proposedSolution = code.getBPins();
-        sol = solution.getBPins();
-        boolean find;
-
-        for(int i = 0; i < size; ++i) {
-            if(proposedSolution.get(i) == sol.get(i)) pins.add(Color.BLACK);
-            else{
-                find = false;
-                for(Color col : sol) {
-                    if(col == proposedSolution.get(i)) {
-                        pins.add(Color.WHITE);
-                        find = true;
-                        break;
-                    }
-                }
-                if(!find) pins.add(Color.NONE);
-            }
-        }
-
-        if(difficulty != Difficulty.EASY) {
-            Collections.shuffle(pins);
-        }
-
-        Code feedback = new Code(pins);
-        return new CodeCorrect(feedback);
+        Code correction = getCodeCorrect(code, solution, difficulty);
+        return new CodeCorrect(correction);
     }
 }
