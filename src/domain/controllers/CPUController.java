@@ -4,7 +4,6 @@ import domain.classes.*;
 import enums.Difficulty;
 import enums.Color;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class CPUController extends PlayerController
@@ -211,8 +210,8 @@ public class CPUController extends PlayerController
         List<Color> playerProposedSolution = new ArrayList<>(size);
         List<Color> sol = new ArrayList<>(size);
 
-        playerProposedSolution = code.getBPins();
-        sol = solution.getBPins();
+        playerProposedSolution = code.getPins();
+        sol = solution.getPins();
 
         for(int i = 0; i < size; ++i)
         {

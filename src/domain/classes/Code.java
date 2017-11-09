@@ -12,7 +12,7 @@ public class Code implements DeepCopyable, Serializable
     /* ATTRIBUTES */
 
     protected final int size;
-    protected ArrayList<Color> bPins;
+    protected ArrayList<Color> pins;
 
     /* CONSTRUCTION METHODS */
 
@@ -20,7 +20,7 @@ public class Code implements DeepCopyable, Serializable
     public Code()
     {
         size = 0;
-        bPins = new ArrayList<>();
+        pins = new ArrayList<>();
     }
 
     @Deprecated
@@ -30,62 +30,62 @@ public class Code implements DeepCopyable, Serializable
         if(!b) throw new IllegalArgumentException();
 
         this.size = size;
-        bPins = new ArrayList<>(size);
+        pins = new ArrayList<>(size);
     }
 
-    public <C extends List<Color>> Code(C bPins)
+    public <C extends List<Color>> Code(C pins)
     {
-        this.size = bPins.size();
-        setBPins(bPins);
+        this.size = pins.size();
+        setPins(pins);
     }
 
     public Code(Difficulty difficulty) throws IllegalArgumentException
     {
         size = 0;
-        bPins = new ArrayList<>();
+        pins = new ArrayList<>();
     }
 
     public Code(Code code) throws IllegalArgumentException, NullPointerException
     {
         size = code.size();
-        setBPins(code.getBPins());
+        setPins(code.getPins());
     }
 
     /* SET METHODS */
 
-    public <C extends  Collection<Color>> void setBPins(C bPins) throws IllegalArgumentException, NullPointerException
+    public <C extends  Collection<Color>> void setPins(C bPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = Utils.isValidCollection(bPins);
         if(!b) throw new IllegalArgumentException();
 
-        this.bPins = new ArrayList<>(bPins.size());
-        this.bPins.addAll(bPins);
+        this.pins = new ArrayList<>(bPins.size());
+        this.pins.addAll(bPins);
     }
 
     @Deprecated
-    public void addBPin(Color bPin) throws IndexOutOfBoundsException
+    public void addPin(Color bPin) throws IndexOutOfBoundsException
     {
-        if(this.bPins.size() >= this.size()) throw new IndexOutOfBoundsException();
+        if(this.pins.size() >= this.size()) throw new IndexOutOfBoundsException();
 
-        if(this.bPins == null)
+        if(this.pins == null)
         {
-            this.bPins = new ArrayList<>();
+            this.pins = new ArrayList<>();
         }
 
-        this.bPins.add(bPin);
+        this.pins.add(bPin);
     }
 
     /* GET METHODS */
 
-    public List<Color> getBPins()
+    public List<Color> getPins()
     {
-        return bPins;
+        return pins;
     }
 
     @Deprecated
-    public Color getBPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
+    public Color getPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        return bPins.get(i);
+        return pins.get(i);
     }
 
     /* CONSULTING METHODS */
@@ -101,7 +101,7 @@ public class Code implements DeepCopyable, Serializable
         {
             for(int i = 0; i < this.size; ++i)
             {
-                if(this.bPins.get(i) != code.getBPins().get(i)) return false;
+                if(this.pins.get(i) != code.getPins().get(i)) return false;
             }
             return true;
         }
@@ -113,14 +113,14 @@ public class Code implements DeepCopyable, Serializable
 
     public void clear()
     {
-        bPins.clear();
+        pins.clear();
     }
 
     /* VALIDITY METHODS */
 
     public boolean isValid()
     {
-        return bPins != null;
+        return pins != null;
     }
 
     /* CLONING METHODS */

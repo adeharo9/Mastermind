@@ -15,7 +15,6 @@ import util.*;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -200,7 +199,7 @@ public class DomainController
         Code c = boardController.getSolution();
         Color color = null;
         String name = "";
-        List<Color> pins = c.getBPins();
+        List<Color> pins = c.getPins();
         switch(type)
         {
             case 1:
