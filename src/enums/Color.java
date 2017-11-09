@@ -74,13 +74,13 @@ public enum Color
         return strId;
     }
 
-    public static <T extends Set<Color>> Color getRandomColor(T colorSet) throws IllegalArgumentException
+    public static <T extends Set<S>, S> S getRandomColor(T colorSet) throws IllegalArgumentException
     {
         if(colorSet.isEmpty()) throw new IllegalArgumentException();
 
         int rand = ThreadLocalRandom.current().nextInt(colorSet.size());
 
-        ArrayList<Color> colorArray = new ArrayList<>(colorSet);
+        ArrayList<S> colorArray = new ArrayList<>(colorSet);
 
         return colorArray.get(rand);
     }
