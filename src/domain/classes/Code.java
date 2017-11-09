@@ -62,6 +62,7 @@ public class Code implements DeepCopyable, Serializable
         this.bPins.addAll(bPins);
     }
 
+    @Deprecated
     public void addBPin(Color bPin) throws IndexOutOfBoundsException
     {
         if(this.bPins.size() >= this.size()) throw new IndexOutOfBoundsException();
@@ -76,11 +77,12 @@ public class Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public ArrayList<Color> getBPins()
+    public Collection<Color> getBPins()
     {
         return bPins;
     }
 
+    @Deprecated
     public Color getBPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return bPins.get(i);
