@@ -35,6 +35,11 @@ public class Turn extends Code implements DeepCopyable, Serializable
         sPins = new ArrayList<>();
     }
 
+    public Turn(Code code) throws IllegalArgumentException, NullPointerException
+    {
+        super(code);
+    }
+
     public Turn(Turn turn) throws IllegalArgumentException, NullPointerException
     {
         super(turn);

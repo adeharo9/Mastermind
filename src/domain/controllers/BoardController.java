@@ -81,7 +81,7 @@ public class BoardController
 
     public void addAction(Action action)
     {
-        Turn turn = (Turn) action.getCode();
+        Turn turn = new Turn(action.getCode());
         board.addTurn(turn);
     }
 }
