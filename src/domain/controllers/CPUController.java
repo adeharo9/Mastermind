@@ -3,6 +3,8 @@ package domain.controllers;
 import domain.classes.*;
 import enums.Difficulty;
 import enums.Color;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class CPUController extends PlayerController
@@ -15,6 +17,9 @@ public class CPUController extends PlayerController
 
     public CPUController()
     {
+        solutions = new HashSet<>();
+        guesses = new HashSet<>();
+
         player = new CPU();
     }
 
@@ -168,9 +173,28 @@ public class CPUController extends PlayerController
         return new CodeBreak(proposedSolutionByCPU);
     }
 
-    private void generatePermutations(Difficulty difficulty)
+    private <T extends Collection<Color>> void permute(int currDepth, final int maxDepth, final T elementSet, ArrayList<Color> aux)
     {
+        if(currDepth >= maxDepth)
+        {
+            Code code = new Code(aux);
+            solutions.add(code);
+        }
+        else
+        {
+            for(Color element : elementSet)
+            {
+                aux.add(element);
+                permute(currDepth + 1, maxDepth, elementSet, aux);
+                aux.remove(element);
+            }
+        }
+    }
 
+    protected void generatePermutations(Difficulty difficulty)
+    {
+        Collection<Color> colorCollection = Color.getValues(difficulty);
+        permute(0, 4, colorCollection, new ArrayList<>());
     }
 
     protected Code getCodeCorrect(Code code, Code solution, Difficulty difficulty)
@@ -229,5 +253,12 @@ public class CPUController extends PlayerController
     {
         Code correction = getCodeCorrect(code, solution, difficulty);
         return new CodeCorrect(correction);
+    }
+
+    /* TESTING FUNCTIONS*/
+
+    protected HashSet<Code> getSolutions()
+    {
+        return solutions;
     }
 }
