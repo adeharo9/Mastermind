@@ -1,10 +1,7 @@
 package enums;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
@@ -72,6 +69,33 @@ public enum Color
     public String getStrId()
     {
         return strId;
+    }
+
+    public static Collection<Color> getValues(Difficulty difficulty) throws IllegalArgumentException
+    {
+        int n;
+
+        switch (difficulty)
+        {
+            case EASY:
+            case MEDIUM:
+                n = 6;
+                break;
+            case HARD:
+                n = 8;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        Collection<Color> colorCollection = new HashSet<>(n);
+
+        for(int i = 0; i < n; ++i)
+        {
+            colorCollection.add(getColor(i));
+        }
+
+        return colorCollection;
     }
 
     public static <T extends Set<S>, S> S getRandomColor(T colorSet) throws IllegalArgumentException
