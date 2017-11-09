@@ -73,7 +73,7 @@ public class Board implements DeepCopyable, Serializable
         return maxAttempts > 0;
     }
 
-    private static boolean isValidTurnSet(ArrayList<Turn> turnSet) throws NullPointerException
+    private static boolean isValidTurnSet(Collection<Turn> turnSet) throws NullPointerException
     {
         boolean b = turnSet.isEmpty();
 
@@ -90,7 +90,7 @@ public class Board implements DeepCopyable, Serializable
     }
 
     @Deprecated
-    private boolean isValidComb (Code code) throws NullPointerException
+    private boolean isValidCode(Code code) throws NullPointerException
     {
         return code.size () == nColumns;
     }
@@ -155,13 +155,13 @@ public class Board implements DeepCopyable, Serializable
 
     public void setSolution(Code solution) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidComb(solution);
+        boolean b = isValidCode(solution);
         if(!b) throw new IllegalArgumentException();
 
         this.solution = solution.deepCopy();
     }
 
-    public void setTurnSet(ArrayList<Turn> turnSet) throws IllegalArgumentException, NullPointerException
+    public void setTurnSet(Collection<Turn> turnSet) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidTurnSet(turnSet);
         if(!b) throw new IllegalArgumentException();
@@ -176,7 +176,7 @@ public class Board implements DeepCopyable, Serializable
 
     public void addTurn(Turn turn) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidComb(turn);
+        boolean b = isValidCode(turn);
         if(!b) throw new IllegalArgumentException();
 
         if(turnSet == null)
@@ -231,6 +231,7 @@ public class Board implements DeepCopyable, Serializable
         {
             turn = getTurn(turnSet.size() - 1);
         }
+
         return turn;
     }
 
