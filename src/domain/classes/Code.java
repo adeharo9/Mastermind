@@ -89,13 +89,9 @@ public class Code implements DeepCopyable, Serializable
         return size;
     }
 
-    public boolean equivalents(Code code) {
-        if(this.size == code.size() && this.bPins == code.getBPins())
-        {
-            return true;
-        }
-
-        return false;
+    public boolean equivalents(Code code)
+    {
+        return ((this.size == code.size()) && (this.bPins == code.getBPins()));
     }
 
     /* MODIFYING METHODS */
