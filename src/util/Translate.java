@@ -190,7 +190,7 @@ public abstract class Translate
                 state = State.GAME_PAUSE_MENU;
                 break;
             case 1:
-                state = State.CHECK_TURN_NUMBER;
+                state = State.PLAY_TURN;
                 break;
             default:
                 throw new IllegalArgumentException();

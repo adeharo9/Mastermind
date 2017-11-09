@@ -15,6 +15,8 @@ import util.*;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DomainController
@@ -198,7 +200,7 @@ public class DomainController
         Code c = boardController.getSolution();
         Color color = null;
         String name = "";
-        ArrayList<Color> pins = c.getBPins();
+        List<Color> pins = c.getBPins();
         switch(type)
         {
             case 1:
@@ -228,16 +230,18 @@ public class DomainController
         }
         String number;
         number = String.valueOf(num);
-        PresentationController.showClue(type,number,name);
+        presentationController.showClue(type,number,name);
     }
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException
     {
         int returnState;
         String str = null;
+
         Mode mode = null;
         Role role = null;
         Difficulty difficulty = null;
+
         Pair<String, String> userInfo = null;
 
         while(!state.equals(State.CLOSE_PROGRAM))
@@ -266,7 +270,7 @@ public class DomainController
                     }
                     else
                     {
-                        state = State.PLAY_TURN;
+                        state = State.IN_GAME_MENU;
                     }
                     break;
 
@@ -404,7 +408,7 @@ public class DomainController
                     try
                     {
                         loadGame(str);
-                        state = State.IN_GAME_MENU;
+                        state = State.CHECK_TURN_NUMBER;
                     }
                     catch (IOException | ClassNotFoundException e)
                     {
@@ -484,12 +488,12 @@ public class DomainController
 
                 case NEW_GAME:
                     newGame(mode, role, difficulty);
-                    state = State.IN_GAME_MENU;
+                    state = State.CHECK_TURN_NUMBER;
                     break;
 
                 case PLAY_TURN:
                     playTurn();
-                    state = State.IN_GAME_MENU;
+                    state = State.CHECK_TURN_NUMBER;
                     break;
 
                 case REGISTER_USER:

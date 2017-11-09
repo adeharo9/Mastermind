@@ -33,7 +33,7 @@ public class Code implements DeepCopyable, Serializable
         bPins = new ArrayList<>(size);
     }
 
-    public <C extends Collection<Color>> Code(C bPins)
+    public <C extends List<Color>> Code(C bPins)
     {
         this.size = bPins.size();
         setBPins(bPins);
@@ -77,7 +77,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public Collection<Color> getBPins()
+    public List<Color> getBPins()
     {
         return bPins;
     }
@@ -97,7 +97,16 @@ public class Code implements DeepCopyable, Serializable
 
     public boolean equivalents(Code code)
     {
-        return ((this.size == code.size()) && (this.bPins == code.getBPins()));
+        if(this.size == code.size())
+        {
+            for(int i = 0; i < this.size; ++i)
+            {
+                if(this.bPins.get(i) != code.getBPins().get(i)) return false;
+            }
+            return true;
+        }
+
+        return false;
     }
 
     /* MODIFYING METHODS */

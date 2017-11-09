@@ -49,7 +49,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setSPins(ArrayList<Color> sPins) throws IllegalArgumentException, NullPointerException
+    public void setSPins(List<Color> sPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(sPins);
         if(!b) throw new IllegalArgumentException();
@@ -60,7 +60,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public ArrayList<Color> getSPins()
+    public List<Color> getSPins()
     {
         return sPins;
     }
@@ -72,15 +72,10 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* CONSULTING METHODS */
 
-    public int size() throws NullPointerException
-    {
-        return sPins.size();
-    }
-
     /* TESTING METHODS */
 
     @Deprecated
-    private boolean isValid(ArrayList<Color> sPins) throws NullPointerException
+    private boolean isValid(List<Color> sPins) throws NullPointerException
     {
         return super.size() == sPins.size();
     }
