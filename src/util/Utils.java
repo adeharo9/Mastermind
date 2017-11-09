@@ -31,7 +31,7 @@ public abstract class Utils
         return arrayList != null && i >= 0 && i < arrayList.size();
     }
 
-    public static <T> boolean isValidArrayList(ArrayList<T> arrayList) throws NullPointerException
+    public static <T> boolean isValidCollection(Collection<T> arrayList) throws NullPointerException
     {
         boolean b = true;
 
