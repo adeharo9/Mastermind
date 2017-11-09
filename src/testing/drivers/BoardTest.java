@@ -22,12 +22,12 @@ public class BoardTest
             code.add("Y");
             code.add("R");
             code.add("G");
-            code.add("■");
-            code.add("Ø");
-            code.add("o");
-            code.add("o");
-            code.add("o");
-            code.add("o");
+            code.add("B");
+            code.add("W");
+            code.add(" ");
+            code.add(" ");
+            code.add(" ");
+            code.add(" ");
     }
         PresentationController.printBoard(codes);
     }

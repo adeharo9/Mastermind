@@ -104,9 +104,26 @@ public class PresentationController
     public void showInfo()
     {
         ioUtils.endLine();
+        ioUtils.printOutLn("Player modes:");
+        ioUtils.printOutLn("   Human vs Human: play against other human");
+        ioUtils.printOutLn("   Human vs CPU: play against our algorithm");
+        ioUtils.printOutLn("   CPU vs CPU: see how our algorithm plays against himself");
+        ioUtils.endLine();
+        ioUtils.printOutLn("Game modes:");
+        ioUtils.printOutLn("  CODEMAKER: Make a code and CPU will try to solve it");
+        ioUtils.printOutLn("  CODEBREAKER: CPU makes a code with specific rules and you should solve it");
+        ioUtils.endLine();
+        ioUtils.printOutLn("Difficulty modes:");
+        ioUtils.printOutLn("  EASY MODE: Code of 4 non-repeated colors, 6 possible colors");
+        ioUtils.printOutLn("  MEDIUM MODE: Code of 4 colors, 6 possible colors");
+        ioUtils.printOutLn("  HARD MODE: Code of 6 colors, 8 possible colors");
+        ioUtils.endLine();
         ioUtils.printOutLn("Correction rules:");
-        ioUtils.printOutLn("EASY MODE: correction tokens are placed in the order of the response tokens.");
-        ioUtils.printOutLn("MEDIUM and HARD MODE: correction tokens are placed in random order.");
+        ioUtils.printOutLn("  Black tokens: The color and the position of a token coincide");
+        ioUtils.printOutLn("  White tokens: The color of a token coincide");
+        ioUtils.printOutLn("  None tokens: The color of a token don't coincide");
+        ioUtils.printOutLn("  EASY MODE: correction tokens are placed in the order of the response tokens.");
+        ioUtils.printOutLn("  MEDIUM and HARD MODE: correction tokens are placed in random order.");
     }
 
     public int gameModeSelectionMenu() throws NumberFormatException
