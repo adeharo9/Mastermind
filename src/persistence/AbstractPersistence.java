@@ -15,6 +15,7 @@ public abstract class AbstractPersistence
     protected final static String USERS_PATH = "users/";
     protected final static String GAME_PATH = "games/";
     protected final static String PLAYERS_PATH = "players/";
+    protected final static String RANKING_PATH = "ranking/";
     protected final static String GAME_EXTENSION = ".mm";
     protected final static String CONFIG_FILE = "config.cfg";
 
