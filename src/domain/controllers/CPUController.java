@@ -43,7 +43,6 @@ public class CPUController extends PlayerController
             case EASY:
 
                 HashSet<Color> possibleColors = new HashSet<>(Arrays.asList(Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE));
-                ArrayList<Color> aux;
                 boolean firstTime = true;
 
                 for(int i = 0; i < 4; ++i)
@@ -58,8 +57,7 @@ public class CPUController extends PlayerController
                         possibleColors.remove(color);
                     }
 
-                    aux = new ArrayList<>(possibleColors);
-                    color = Color.getRandomColor(aux);
+                    color = Color.getRandomColor(possibleColors);
                     code.add(color);
                 }
                 break;

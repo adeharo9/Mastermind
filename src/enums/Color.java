@@ -1,7 +1,10 @@
 package enums;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
@@ -71,20 +74,22 @@ public enum Color
         return strId;
     }
 
-    public static Color getRandomColor(ArrayList<Color> colorSet) throws IllegalArgumentException
+    public static <T extends Set<Color>> Color getRandomColor(T colorSet) throws IllegalArgumentException
     {
         if(colorSet.isEmpty()) throw new IllegalArgumentException();
 
-        int rand = ThreadLocalRandom.current().nextInt(0, colorSet.size());      // [0, uppedBound)
+        int rand = ThreadLocalRandom.current().nextInt(colorSet.size());
 
-        return colorSet.get(rand);
+        ArrayList<Color> colorArray = new ArrayList<>(colorSet);
+
+        return colorArray.get(rand);
     }
 
     public static Color getRandomColor(int upperBound) throws IllegalArgumentException
     {
         if(upperBound < 1) throw new IllegalArgumentException();
 
-        int rand = ThreadLocalRandom.current().nextInt(0, upperBound);      // [0, uppedBound)
+        int rand = ThreadLocalRandom.current().nextInt(upperBound);      // [0, uppedBound)
 
         return Color.getColor(rand);
     }
