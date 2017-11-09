@@ -33,7 +33,7 @@ public class Code implements DeepCopyable, Serializable
         bPins = new ArrayList<>(size);
     }
 
-    public <C extends Collection<Color>> Code(C bPins)
+    public <C extends List<Color>> Code(C bPins)
     {
         this.size = bPins.size();
         setBPins(bPins);
@@ -77,7 +77,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public Collection<Color> getBPins()
+    public List<Color> getBPins()
     {
         return bPins;
     }
