@@ -3,7 +3,9 @@ package persistence;
 import domain.classes.Ranking;
 import exceptions.IntegrityCorruption;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public abstract class RankingPersistence extends AbstractPersistence
 {
@@ -14,16 +16,23 @@ public abstract class RankingPersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        return true;
+        File fileRanking = new File(getDirPath() + RANKING_PATH + "ranking.mm");
+        return fileRanking.exists();
     }
 
-    public Ranking load(String key)
+    public String getDirPath()
     {
-        return new Ranking();
+        return BASE_PATH + RANKING_PATH;
     }
 
-    public void save(Object ranking)
+    public Ranking load(String key) throws IOException, ClassNotFoundException
     {
+        return (Ranking) super.load("ranking");
+    }
+
+    public void save(Object ranking) throws IOException
+    {
+        super.save("ranking", ranking);
     }
 
     public void delete(String key) throws FileNotFoundException
