@@ -100,7 +100,7 @@ public class CPUController extends PlayerController
         if(firstTurn)
         {
             generatePermutations(difficulty);
-            Collection<Color> colors = new ArrayList<>(Arrays.asList(Color.RED, Color.RED, Color.GREEN, Color.GREEN));
+            List<Color> colors = new ArrayList<>(Arrays.asList(Color.RED, Color.RED, Color.GREEN, Color.GREEN));
             currentGuess = new Code(colors);
 
             guesses.remove(currentGuess);
@@ -207,9 +207,9 @@ public class CPUController extends PlayerController
         ArrayList<Boolean> processed = new ArrayList<Boolean>(size);
         Collections.fill(processed, Boolean.FALSE);
 
-        ArrayList<Color> pins = new ArrayList<>(size);
-        ArrayList<Color> playerProposedSolution = new ArrayList<>(size);
-        ArrayList<Color> sol = new ArrayList<>(size);
+        List<Color> pins = new ArrayList<>(size);
+        List<Color> playerProposedSolution = new ArrayList<>(size);
+        List<Color> sol = new ArrayList<>(size);
 
         playerProposedSolution = code.getBPins();
         sol = solution.getBPins();
