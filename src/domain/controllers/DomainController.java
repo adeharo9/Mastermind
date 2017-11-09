@@ -230,7 +230,7 @@ public class DomainController
         }
         String number;
         number = String.valueOf(num);
-        PresentationController.showClue(type,number,name);
+        presentationController.showClue(type,number,name);
     }
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException

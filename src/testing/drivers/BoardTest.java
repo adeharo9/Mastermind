@@ -8,6 +8,7 @@ public class BoardTest
 {
     public static void main(String args[])
     {
+        PresentationController presentationController = new PresentationController();
         ArrayList<ArrayList<String>> codes = new ArrayList<>(4);
 
         for(int i = 0; i < 4; ++i)
@@ -29,6 +30,6 @@ public class BoardTest
             code.add(" ");
             code.add(" ");
     }
-        PresentationController.printBoard(codes);
+        PresentationController.printBoard4(codes);
     }
 }
