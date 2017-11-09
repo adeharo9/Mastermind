@@ -7,7 +7,7 @@ public abstract class ioUtils
         return Input.next();
     }
 
-    public static void print(String msg, int channel)
+    public static void print(final String msg, final int channel)
     {
         try
         {
@@ -29,18 +29,18 @@ public abstract class ioUtils
         }
     }
 
-    public static void print(String msg)
+    public static void print(final String msg)
     {
         print(msg, 1);
     }
 
-    public static void println(String msg)
+    public static void println(final String msg)
     {
         print(msg, 1);
         endLine();
     }
 
-    public static void endLine(int channel)
+    public static void endLine(final int channel)
     {
         switch(channel)
         {
@@ -58,23 +58,23 @@ public abstract class ioUtils
         endLine(1);
     }
 
-    public static void printOut(String msg)
+    public static void printOut(final String msg)
     {
         print(msg, 1);
     }
 
-    public static void printErr(String msg)
+    public static void printErr(final String msg)
     {
         print(msg, 2);
     }
 
-    public static void printOutLn(String msg)
+    public static void printOutLn(final String msg)
     {
         printOut(msg);
         endLine(1);
     }
 
-    public static void printErrLn(String msg)
+    public static void printErrLn(final String msg)
     {
         printErr(msg);
         endLine(2);
