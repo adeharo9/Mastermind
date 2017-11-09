@@ -59,12 +59,13 @@ public class Ranking implements DeepCopyable, Serializable
             Integer midVal = topTen.get(mid).second;
             cmp = midVal.compareTo(points);
 
-            if (cmp < 0)
+            if (cmp > 0)
             {
                 left = mid + 1;
             }
 
-            else if (cmp > 0) {
+            else if (cmp < 0)
+            {
                 right = mid - 1;
             }
 
