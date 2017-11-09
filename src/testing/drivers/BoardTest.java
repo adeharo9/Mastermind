@@ -30,6 +30,6 @@ public class BoardTest
             code.add(" ");
             code.add(" ");
     }
-        PresentationController.printBoard4(codes);
+        PresentationController.printBoard(codes);
     }
 }
