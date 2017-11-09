@@ -1,5 +1,6 @@
 package testing.drivers;
 import presentation.controllers.PresentationController;
+import util.ioUtils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,15 +22,12 @@ public class BoardTest
             code.add("G");
             code.add("B");
             code.add("Y");
-            code.add("R");
-            code.add("G");
-            code.add("B");
             code.add("W");
-            code.add(" ");
-            code.add(" ");
-            code.add(" ");
-            code.add(" ");
+            code.add("W");
+            code.add("W");
+            code.add("W");
     }
         PresentationController.printBoard(codes);
+        ioUtils.printOutLn(Integer.toString(codes.get(0).size()));
     }
 }

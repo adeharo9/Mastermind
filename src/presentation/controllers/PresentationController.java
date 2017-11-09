@@ -240,8 +240,8 @@ public class PresentationController
     public static void printBoard(ArrayList<ArrayList<String>> codes)
     {
         ioUtils.endLine();
-        if(codes.size()==8) ioUtils.printOut ("╔══════════════╦══════════════╗");
-        else ioUtils.printOut ("╔═══════════════════════════════════════════╗");
+        if(codes.get(0).size()==8) ioUtils.printOutLn ("╔══════════════╦══════════════╗");
+        else ioUtils.printOutLn ("╔═══════════════════════════════════════════╗");
         for(int i=0;i<codes.size();++i){
             ioUtils.printOut (" ");
             for(int j=0;j<codes.get(0).size();++j) {
@@ -252,12 +252,12 @@ public class PresentationController
             ioUtils.printOut(" ");
             ioUtils.endLine();
             if ((i + 1) == codes.size()) {
-                if(codes.size()==8) ioUtils.printOut ("╚═════════════════════════════╝");
-                else ioUtils.printOut ("╚═══════════════════════════════════════════╝");
+                if(codes.get(0).size()==8) ioUtils.printOutLn ("╚═════════════════════════════╝");
+                else ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
             }
             else {
-                if(codes.size()==8) ioUtils.printOut ("╠══════════════╬══════════════╣");
-                else ioUtils.printOut ("╠═════════════════════╬═════════════════════╣");
+                if(codes.get(0).size()==8) ioUtils.printOutLn ("╠══════════════╬══════════════╣");
+                else ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
             }
         }
     }
