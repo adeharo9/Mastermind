@@ -237,9 +237,11 @@ public class DomainController
     {
         int returnState;
         String str = null;
+
         Mode mode = null;
         Role role = null;
         Difficulty difficulty = null;
+
         Pair<String, String> userInfo = null;
 
         while(!state.equals(State.CLOSE_PROGRAM))
@@ -268,7 +270,7 @@ public class DomainController
                     }
                     else
                     {
-                        state = State.PLAY_TURN;
+                        state = State.IN_GAME_MENU;
                     }
                     break;
 
@@ -406,7 +408,7 @@ public class DomainController
                     try
                     {
                         loadGame(str);
-                        state = State.IN_GAME_MENU;
+                        state = State.CHECK_TURN_NUMBER;
                     }
                     catch (IOException | ClassNotFoundException e)
                     {
@@ -486,12 +488,12 @@ public class DomainController
 
                 case NEW_GAME:
                     newGame(mode, role, difficulty);
-                    state = State.IN_GAME_MENU;
+                    state = State.CHECK_TURN_NUMBER;
                     break;
 
                 case PLAY_TURN:
                     playTurn();
-                    state = State.IN_GAME_MENU;
+                    state = State.CHECK_TURN_NUMBER;
                     break;
 
                 case REGISTER_USER:
