@@ -262,16 +262,18 @@ public class DomainController
                     break;
 
                 case CHECK_TURN_NUMBER:
-                    boolean b = boardController.finished();
+                    boolean finished = boardController.finished();
 
-                    if(b)
+                    state = Translate.booleanModeToStateCheckTurnNumber(finished, mode);
+
+                    /*if(finished)
                     {
                         state = State.GAME_OVER_MENU;
                     }
                     else
                     {
                         state = State.IN_GAME_MENU;
-                    }
+                    }*/
                     break;
 
                 case CLOSE_PROGRAM:

@@ -358,4 +358,31 @@ public abstract class Translate
     {
         return "";
     }
+
+    public static State booleanModeToStateCheckTurnNumber(boolean finished, Mode mode) throws IllegalArgumentException
+    {
+        State state;
+
+        if(finished)
+        {
+            state = State.GAME_OVER_MENU;
+        }
+        else
+        {
+            switch (mode)
+            {
+                case HUMAN_VS_HUMAN:
+                case HUMAN_VS_CPU:
+                    state = State.IN_GAME_MENU;
+                    break;
+                case CPU_VS_CPU:
+                    state = State.PLAY_TURN;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
+
+        return state;
+    }
 }
