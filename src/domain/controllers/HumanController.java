@@ -45,7 +45,7 @@ public class HumanController extends PlayerController
         return null;
     }
 
-    protected Action codeBreak()
+    protected Action codeBreak(Difficulty difficulty, Turn lastTurn)
     {
         return null;
     }
