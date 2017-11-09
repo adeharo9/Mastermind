@@ -237,10 +237,11 @@ public class PresentationController
         return ioUtils.input();
     }
 
-    public static void printBoard4(ArrayList<ArrayList<String>> codes)
+    public static void printBoard(ArrayList<ArrayList<String>> codes)
     {
         ioUtils.endLine();
-        ioUtils.printOut ("╔══════════════╦══════════════╗");
+        if(codes.size()==8) ioUtils.printOut ("╔══════════════╦══════════════╗");
+        else ioUtils.printOut ("╔═══════════════════════════════════════════╗");
         for(int i=0;i<codes.size();++i){
             ioUtils.printOut (" ");
             for(int j=0;j<codes.get(0).size();++j) {
@@ -251,32 +252,12 @@ public class PresentationController
             ioUtils.printOut(" ");
             ioUtils.endLine();
             if ((i + 1) == codes.size()) {
-                ioUtils.printOut ("╚═════════════════════════════╝");
+                if(codes.size()==8) ioUtils.printOut ("╚═════════════════════════════╝");
+                else ioUtils.printOut ("╚═══════════════════════════════════════════╝");
             }
             else {
-                ioUtils.printOut ("╠══════════════╬══════════════╣");
-            }
-        }
-    }
-
-    public static void printBoard6(ArrayList<ArrayList<String>> codes)
-    {
-        ioUtils.endLine();
-        ioUtils.printOut ("╔═══════════════════════════════════════════╗");
-        for(int i=0;i<codes.size();++i){
-            ioUtils.printOut (" ");
-            for(int j=0;j<codes.get(0).size();++j) {
-                ioUtils.printOut(" ");
-                ioUtils.printOut(codes.get(i).get(j));
-                ioUtils.printOut(" ");
-            }
-            ioUtils.printOut(" ");
-            ioUtils.endLine();
-            if ((i + 1) == codes.size()) {
-                ioUtils.printOut ("╚═══════════════════════════════════════════╝");
-            }
-            else {
-                ioUtils.printOut ("╠═════════════════════╬═════════════════════╣");
+                if(codes.size()==8) ioUtils.printOut ("╠══════════════╬══════════════╣");
+                else ioUtils.printOut ("╠═════════════════════╬═════════════════════╣");
             }
         }
     }
