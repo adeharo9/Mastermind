@@ -35,50 +35,55 @@ public class CPUController extends PlayerController
 
     protected Action codeMake(Difficulty difficulty)
     {
+        Color color = null;
         ArrayList<Color> code = new ArrayList<>();
 
-        int i = 0;
         switch(difficulty) {
+
             case EASY:
-                ArrayList<Color> usedColors = new ArrayList<>();
 
-                while(i < 4) {
-                    Color color = Color.getRandomColor(6); //o 4
-                    usedColors.add(color);
+                HashSet<Color> possibleColors = new HashSet<>(Arrays.asList(Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE));
+                ArrayList<Color> aux;
+                boolean firstTime = true;
 
-                    if(!repeatedColor(usedColors, color)) {
-                        code.add(color);
-                        ++i;
+                for(int i = 0; i < 4; ++i)
+                {
+                    if(firstTime)
+                    {
+                        firstTime = false;
                     }
+
+                    else
+                    {
+                        possibleColors.remove(color);
+                    }
+
+                    aux = new ArrayList<>(possibleColors);
+                    color = Color.getRandomColor(aux);
+                    code.add(color);
                 }
                 break;
 
             case MEDIUM:
-                while(i < 6) {
-                    Color color = Color.getRandomColor(6); //o 6
+
+                for(int i = 0; i < 4; ++i)
+                {
+                    color = Color.getRandomColor(6);
                     code.add(color);
-                    ++i;
                 }
                 break;
 
             case HARD:
-                while(i < 8) {
-                    Color color = Color.getRandomColor(8); //o 8
+                for(int i = 0; i < 6; ++i)
+                {
+                    color = Color.getRandomColor(8);
                     code.add(color);
-                    ++i;
                 }
                 break;
         }
+
         Code solution = new Code(code);
         return new CodeMake(solution);
-    }
-
-    private boolean repeatedColor(ArrayList<Color> usedColors, Color color) {
-        for(Color col : usedColors) {
-            if(col == color) return true;
-        }
-        usedColors.remove(usedColors.size()-1);
-        return false;
     }
 
     protected Code getCodeBreak(Difficulty difficulty, Turn lastTurn)
