@@ -24,13 +24,17 @@ public class Code implements DeepCopyable, Serializable
     }
 
     @Deprecated
-    public Code(int n) throws IllegalArgumentException
+    public Code(int size) throws IllegalArgumentException
     {
-        size = n;
-        bPins = new ArrayList<>(n);
+        boolean b = size >= 0;
+        if(!b) throw new IllegalArgumentException();
+
+        this.size = size;
+        bPins = new ArrayList<>(size);
     }
 
-    public <C extends Collection<Color>> Code(C bPins) {
+    public <C extends Collection<Color>> Code(C bPins)
+    {
         this.size = bPins.size();
         setBPins(bPins);
     }
@@ -58,6 +62,7 @@ public class Code implements DeepCopyable, Serializable
         this.bPins.addAll(bPins);
     }
 
+    @Deprecated
     public void addBPin(Color bPin) throws IndexOutOfBoundsException
     {
         if(this.bPins.size() >= this.size()) throw new IndexOutOfBoundsException();
@@ -72,11 +77,12 @@ public class Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public ArrayList<Color> getBPins()
+    public Collection<Color> getBPins()
     {
         return bPins;
     }
 
+    @Deprecated
     public Color getBPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return bPins.get(i);
@@ -84,7 +90,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* CONSULTING METHODS */
 
-    public int size() throws NullPointerException
+    public int size()
     {
         return size;
     }
@@ -101,17 +107,11 @@ public class Code implements DeepCopyable, Serializable
         bPins.clear();
     }
 
-    /* TESTING METHODS */
+    /* VALIDITY METHODS */
 
     public boolean isValid()
     {
         return bPins != null;
-    }
-
-    @Deprecated
-    public boolean isValid(int n)
-    {
-        return size() == n;
     }
 
     /* CLONING METHODS */

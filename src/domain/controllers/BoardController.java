@@ -69,6 +69,8 @@ public class BoardController
         return board.getLastTurn();
     }
 
+    /* VALIDATION METHODS */
+
     public boolean finished() throws NullPointerException
     {
         return board.finished();
