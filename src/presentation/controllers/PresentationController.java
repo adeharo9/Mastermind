@@ -105,9 +105,9 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Player modes:");
-        ioUtils.printOutLn("   Human vs Human: play against other human");
-        ioUtils.printOutLn("   Human vs CPU: play against our algorithm");
-        ioUtils.printOutLn("   CPU vs CPU: see how our algorithm plays against himself");
+        ioUtils.printOutLn("   Human vs. Human: play against other human");
+        ioUtils.printOutLn("   Human vs. CPU: play against our algorithm");
+        ioUtils.printOutLn("   CPU vs. CPU: see how our algorithm plays against himself");
         ioUtils.endLine();
         ioUtils.printOutLn("Game modes:");
         ioUtils.printOutLn("  CODEMAKER: Make a code and CPU will try to solve it");
@@ -173,9 +173,10 @@ public class PresentationController
 
     public String readCode(Difficulty difficulty)
     {
-        String code = null;
+        String code = "";
         ioUtils.endLine();
-        switch(difficulty){
+        switch(difficulty)
+        {
             case EASY:
                 ioUtils.printOutLn("Write a code of 4 non-repeated colors using the following letters (Input example: R G Y B):");
                 ioUtils.printOutLn("R: Red");
@@ -217,36 +218,72 @@ public class PresentationController
         return code;
     }
 
-    public static void printBoard(ArrayList<ArrayList<String>> codes)
+    public String readCorrectionCode (Difficulty difficulty)
     {
         ioUtils.endLine();
-        ioUtils.printOut ("╔═");
-        for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
-        ioUtils.printOutLn ("═╗");
+        String n = "4";
+        String example = "B B W N";
+        if(difficulty==Difficulty.HARD)
+        {
+            n = "6";
+            example = "B B W N N N";
+        }
+        ioUtils.printOutLn("Write a "+n+"-sized code using the following letters (Input example: "+example+"):");
+        ioUtils.printOutLn("B: Black");
+        ioUtils.printOutLn("W: White");
+        ioUtils.printOutLn("N: None");
+        ioUtils.endLine();
+        ioUtils.printOutLn("Write your code here(or 0 to pause):");
+        return ioUtils.input();
+    }
+
+    public static void printBoard4(ArrayList<ArrayList<String>> codes)
+    {
+        ioUtils.endLine();
+        ioUtils.printOut ("╔══════════════╦══════════════╗");
         for(int i=0;i<codes.size();++i){
-            for(int j=0;j<codes.get(0).size()/2;++j) {
+            ioUtils.printOut (" ");
+            for(int j=0;j<codes.get(0).size();++j) {
                 ioUtils.printOut(" ");
                 ioUtils.printOut(codes.get(i).get(j));
                 ioUtils.printOut(" ");
             }
-            ioUtils.printOut("║");
-            for(int j=codes.get(0).size()/2;j<codes.get(0).size();++j) {
-                ioUtils.printOut(" ");
-                ioUtils.printOut(codes.get(i).get(j));
-                ioUtils.printOut(" ");
-            }
+            ioUtils.printOut(" ");
             ioUtils.endLine();
             if ((i + 1) == codes.size()) {
-                ioUtils.printOut ("╚═");
-                for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
-                ioUtils.printOutLn ("═╝");
+                ioUtils.printOut ("╚═════════════════════════════╝");
             }
             else {
-                ioUtils.printOut ("╠═");
-                for(int k=0;k<=(codes.get(0).size());++k) ioUtils.printOut ("═══");
-                ioUtils.printOutLn ("═╣");
+                ioUtils.printOut ("╠══════════════╬══════════════╣");
             }
         }
+    }
+
+    public static void printBoard6(ArrayList<ArrayList<String>> codes)
+    {
+        ioUtils.endLine();
+        ioUtils.printOut ("╔═══════════════════════════════════════════╗");
+        for(int i=0;i<codes.size();++i){
+            ioUtils.printOut (" ");
+            for(int j=0;j<codes.get(0).size();++j) {
+                ioUtils.printOut(" ");
+                ioUtils.printOut(codes.get(i).get(j));
+                ioUtils.printOut(" ");
+            }
+            ioUtils.printOut(" ");
+            ioUtils.endLine();
+            if ((i + 1) == codes.size()) {
+                ioUtils.printOut ("╚═══════════════════════════════════════════╝");
+            }
+            else {
+                ioUtils.printOut ("╠═════════════════════╬═════════════════════╣");
+            }
+        }
+    }
+
+    public void printCode(ArrayList<String> code)
+    {
+
     }
 
     public int pauseMenu() throws NumberFormatException
@@ -262,7 +299,7 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public static void showClue(int type, String number, String color)
+    public void showClue(int type, String number, String color)
     {
         ioUtils.endLine();
         switch(type)
