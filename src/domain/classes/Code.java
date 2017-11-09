@@ -30,7 +30,7 @@ public class Code implements DeepCopyable, Serializable
         bPins = new ArrayList<>(n);
     }
 
-    public Code(ArrayList<Color> bPins) {
+    public <C extends Collection<Color>> Code(C bPins) {
         this.size = bPins.size();
         setBPins(bPins);
     }
@@ -49,12 +49,12 @@ public class Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setBPins(ArrayList<Color> bPins) throws IllegalArgumentException, NullPointerException
+    public <C extends  Collection<Color>> void setBPins(C bPins) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = Utils.isValidArrayList(bPins);
+        boolean b = Utils.isValidCollection(bPins);
         if(!b) throw new IllegalArgumentException();
 
-        bPins = new ArrayList<>(bPins.size());
+        this.bPins = new ArrayList<>(bPins.size());
         this.bPins.addAll(bPins);
     }
 
