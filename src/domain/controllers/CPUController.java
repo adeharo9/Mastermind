@@ -118,7 +118,6 @@ public class CPUController extends PlayerController
                 if(!correction.equals(lastCorrection))
                 {
                     codeIterator.remove();
-                    //solutions.remove(solution);     // WARNING: COMPROBAR QUE NO HACE LO MISMO QUE C++ CON LOS RANGE-BASED LOOPS
                 }
             }
 
