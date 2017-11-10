@@ -44,7 +44,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
     {
         super(turn);
 
-        setCorrection(turn.getSPins());
+        setCorrection(turn.getCorrection());
     }
 
     /* SET METHODS */
@@ -58,9 +58,14 @@ public class Turn extends Code implements DeepCopyable, Serializable
         this.correction.addAll(sPins);
     }
 
+    public void setCorrection(Code code) throws IllegalArgumentException
+    {
+        setCorrection(code.getPins());
+    }
+
     /* GET METHODS */
 
-    public List<Color> getSPins()
+    public List<Color> getCorrection()
     {
         return correction;
     }
