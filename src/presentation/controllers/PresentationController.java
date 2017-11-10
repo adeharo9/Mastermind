@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;
 import util.Pair;
@@ -179,37 +180,38 @@ public class PresentationController
         {
             case EASY:
                 ioUtils.printOutLn("Write a code of 4 non-repeated colors using the following letters (Input example: R G Y B):");
-                ioUtils.printOutLn("R: Red");
-                ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("B: Blue");
-                ioUtils.printOutLn("Y: Yellow");
-                ioUtils.printOutLn("O: Orange");
-                ioUtils.printOutLn("P: Purple");
+                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
+                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
+                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
+                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
+                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
+                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
                 ioUtils.endLine();
                 ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
                 break;
             case MEDIUM:
                 ioUtils.printOutLn("Write a 4-color code using the following letters (Input example: R G G B):");
-                ioUtils.printOutLn("R: Red");
-                ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("B: Blue");
-                ioUtils.printOutLn("Y: Yellow");
-                ioUtils.printOutLn("O: Orange");
-                ioUtils.printOutLn("P: Purple");
+                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
+                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
+                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
+                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
+                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
+                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
                 ioUtils.endLine();
                 ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
                 break;
             case HARD:
                 ioUtils.printOutLn("Write a 6-color code using the following letters (Input example: R G G B Y P):");
-                ioUtils.printOutLn("R: Red");
-                ioUtils.printOutLn("G: Green");
-                ioUtils.printOutLn("B: Blue");
-                ioUtils.printOutLn("Y: Yellow");
-                ioUtils.printOutLn("O: Orange");
-                ioUtils.printOutLn("P: Purple");
-                ioUtils.printOutLn("N: None");
+                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
+                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
+                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
+                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
+                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
+                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
+                ioUtils.printOutLn(Color.CYAN.getStrId()+": Cyan");
+                ioUtils.printOutLn(Color.MAGENTA.getStrId()+": Magenta");
                 ioUtils.endLine();
                 ioUtils.printOutLn("Write your code here(or 0 to pause):");
                 code = ioUtils.input();
@@ -237,11 +239,11 @@ public class PresentationController
         return ioUtils.input();
     }
 
-    public static void printBoard(ArrayList<ArrayList<String>> codes)
+    public void printBoard(ArrayList<ArrayList<String>> codes)
     {
         ioUtils.endLine();
         if(codes.get(0).size()==8) ioUtils.printOutLn ("╔══════════════╦══════════════╗");
-        else ioUtils.printOutLn ("╔═══════════════════════════════════════════╗");
+        else if(codes.get(0).size()==12)ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
         for(int i=0;i<codes.size();++i){
             ioUtils.printOut (" ");
             for(int j=0;j<codes.get(0).size();++j) {
@@ -253,18 +255,27 @@ public class PresentationController
             ioUtils.endLine();
             if ((i + 1) == codes.size()) {
                 if(codes.get(0).size()==8) ioUtils.printOutLn ("╚═════════════════════════════╝");
-                else ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
+                else if(codes.get(0).size()==12)ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
             }
             else {
                 if(codes.get(0).size()==8) ioUtils.printOutLn ("╠══════════════╬══════════════╣");
-                else ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
+                else if(codes.get(0).size()==12)ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
             }
         }
     }
 
     public void printCode(ArrayList<String> code)
     {
-
+        ioUtils.printOut (" ");
+        for(int j=0;j<code.size();++j) {
+            ioUtils.printOut(" ");
+            ioUtils.printOut(code.get(j));
+            ioUtils.printOut(" ");
+        }
+        ioUtils.printOut(" ");
+        ioUtils.endLine();
+        if(code.size()==4) ioUtils.printOutLn ("╚══════════════╝");
+        else ioUtils.printOutLn ("╚═════════════════════╝");
     }
 
     public int pauseMenu() throws NumberFormatException

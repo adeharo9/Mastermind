@@ -12,10 +12,10 @@ public enum Color
     ORANGE(3, "O"),
     PURPLE(4, "P"),
     YELLOW(5, "Y"),
-    NONE(6, "N"),
-    BROWN(7, "R"),
-    PINK(8, "I"),
+    CYAN(6, "C"),
+    MAGENTA(7, "M"),
 
+    NONE(8, "N"),
     BLACK(9, "K"),
     WHITE(10, "W");
 
