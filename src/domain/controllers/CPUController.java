@@ -106,24 +106,27 @@ public class CPUController extends PlayerController
         }
         else
         {
-            Code lastCorrection = new Code(lastTurn.getSPins());
+            Code lastCorrection = new Code(lastTurn.getCorrection());
             solutions.remove(currentGuess);
 
-            for(Code solution : solutions)
+            for(Iterator<Code> codeIterator = solutions.iterator(); codeIterator.hasNext();)
             {
+                Code solution = codeIterator.next();
+
                 correction = getCodeCorrect(solution, currentGuess, difficulty);
 
-                if(!correction.equivalents(lastCorrection))
+                if(!correction.equals(lastCorrection))
                 {
-                    solutions.remove(solution);     // WARNING: COMPROBAR QUE NO HACE LO MISMO QUE C++ CON LOS RANGE-BASED LOOPS
+                    codeIterator.remove();
+                    //solutions.remove(solution);     // WARNING: COMPROBAR QUE NO HACE LO MISMO QUE C++ CON LOS RANGE-BASED LOOPS
                 }
             }
 
-            for(Code guess : guesses)
+            for(final Code guess : guesses)
             {
                 coincidencesByCorrection.clear();
 
-                for (Code solution : solutions) {
+                for (final Code solution : solutions) {
                     correction = getCodeCorrect(solution, guess, difficulty);
 
                     if (coincidencesByCorrection.containsKey(correction))
@@ -138,7 +141,7 @@ public class CPUController extends PlayerController
 
                 maxCoincidences = 0;
 
-                for(Map.Entry<Code, Integer> entry : coincidencesByCorrection.entrySet())
+                for(final Map.Entry<Code, Integer> entry : coincidencesByCorrection.entrySet())
                 {
                     if(entry.getValue() > maxCoincidences)
                     {
@@ -151,7 +154,7 @@ public class CPUController extends PlayerController
 
             minCoincidences = Integer.MAX_VALUE;
 
-            for(Map.Entry<Code, Integer> entry : maxNotEliminatedByGuess.entrySet())
+            for(final Map.Entry<Code, Integer> entry : maxNotEliminatedByGuess.entrySet())
             {
                 if(entry.getValue() < minCoincidences)
                 {
@@ -176,16 +179,17 @@ public class CPUController extends PlayerController
     {
         if(currDepth >= maxDepth)
         {
-            Code code = new Code(aux);
+            final Code code = new Code(aux);
             solutions.add(code);
+            guesses.add(code);
         }
         else
         {
-            for(Color element : elementSet)
+            for(final Color element : elementSet)
             {
                 aux.add(element);
                 permute(currDepth + 1, maxDepth, elementSet, aux);
-                aux.remove(element);
+                aux.remove(aux.size() - 1);
             }
         }
     }
@@ -196,29 +200,24 @@ public class CPUController extends PlayerController
         permute(0, 4, colorCollection, new ArrayList<>());
     }
 
-    protected Code getCodeCorrect(Code code, Code solution, Difficulty difficulty)
+    protected Code getCodeCorrect(final Code code, final Code solution, final Difficulty difficulty)
     {
         int size = code.size();
 
-        ArrayList<Boolean> match = new ArrayList<Boolean>(size);
-        Collections.fill(match, Boolean.FALSE);
+        ArrayList<Boolean> match = new ArrayList<>(Collections.nCopies(size, Boolean.FALSE));
 
-        ArrayList<Boolean> processed = new ArrayList<Boolean>(size);
-        Collections.fill(processed, Boolean.FALSE);
+        ArrayList<Boolean> processed = new ArrayList<>(Collections.nCopies(size, Boolean.FALSE));
 
         List<Color> pins = new ArrayList<>(size);
-        List<Color> playerProposedSolution = new ArrayList<>(size);
-        List<Color> sol = new ArrayList<>(size);
-
-        playerProposedSolution = code.getPins();
-        sol = solution.getPins();
+        final List<Color> playerProposedSolution = code.getPins();
+        final List<Color> sol = solution.getPins();
 
         for(int i = 0; i < size; ++i)
         {
             if(playerProposedSolution.get(i) == sol.get(i))
             {
-                match.add(i, true);
-                processed.add(i, true);
+                match.set(i, true);
+                processed.set(i, true);
                 pins.add(Color.BLACK);
             }
         }
@@ -229,10 +228,10 @@ public class CPUController extends PlayerController
             {
                 for(int j = 0; j < size; ++j)
                 {
-                    if(!processed.get(i) && playerProposedSolution.get(i) == sol.get(j))
+                    if(!processed.get(j) && playerProposedSolution.get(i) == sol.get(j))
                     {
-                        match.add(i, true);
-                        processed.add(j, true);
+                        match.set(i, true);
+                        processed.set(j, true);
                         pins.add(Color.WHITE);
                         break;
                     }
@@ -240,9 +239,14 @@ public class CPUController extends PlayerController
             }
         }
 
-        if(difficulty != Difficulty.EASY)
+        /*if(difficulty != Difficulty.EASY)
         {
             Collections.shuffle(pins);
+        }*/
+
+        for(int i = pins.size(); i < size; ++i)
+        {
+            pins.add(Color.NONE);
         }
 
         return new Code(pins);
