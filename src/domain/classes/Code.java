@@ -115,21 +115,6 @@ public class Code implements DeepCopyable, Serializable
         return result;
     }
 
-    @Deprecated
-    public boolean equivalents(Code code)
-    {
-        if(this.size == code.size())
-        {
-            for(int i = 0; i < this.size; ++i)
-            {
-                if(this.pins.get(i) != code.getPins().get(i)) return false;
-            }
-            return true;
-        }
-
-        return false;
-    }
-
     /* MODIFYING METHODS */
 
     public void clear()
