@@ -122,11 +122,14 @@ public class CPUController extends PlayerController
                 }
             }
 
+            minCoincidences = Integer.MAX_VALUE;
+
             for(final Code guess : guesses)
             {
                 coincidencesByCorrection.clear();
 
-                for (final Code solution : solutions) {
+                for (final Code solution : solutions)
+                {
                     correction = getCodeCorrect(solution, guess, difficulty);
 
                     if (coincidencesByCorrection.containsKey(correction))
@@ -150,16 +153,20 @@ public class CPUController extends PlayerController
                 }
 
                 maxNotEliminatedByGuess.put(guess, maxCoincidences);
-            }
 
-            minCoincidences = Integer.MAX_VALUE;
+                if(maxCoincidences < minCoincidences)
+                {
+                    minCoincidences = maxCoincidences;
+                }
+            }
 
             for(final Map.Entry<Code, Integer> entry : maxNotEliminatedByGuess.entrySet())
             {
-                if(entry.getValue() < minCoincidences)
+                if(entry.getValue() == minCoincidences)
                 {
-                    minCoincidences = entry.getValue();
                     currentGuess = entry.getKey();
+
+                    if(solutions.contains(entry.getKey())) break;
                 }
             }
 
