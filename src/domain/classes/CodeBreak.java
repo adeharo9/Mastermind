@@ -28,6 +28,14 @@ public class CodeBreak extends Action implements DeepCopyable
 
     /* TESTING METHODS */
 
+    /* OTHER METHODS */
+
+    @Override
+    public void addSelfToBoard(Board board)
+    {
+        board.addCode(getCode());
+    }
+
     /* CLONING METHODS */
 
     public CodeBreak deepCopy() throws IllegalArgumentException, NullPointerException

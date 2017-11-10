@@ -41,7 +41,11 @@ public abstract class Action implements DeepCopyable
         return code;
     }
 
-    /* TESTING METHODS */
+    /* OTHER METHODS */
+
+    public abstract void addSelfToBoard(Board board);
+
+    /* VALIDATION METHODS */
 
     public boolean isValid()
     {

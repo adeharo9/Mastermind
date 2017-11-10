@@ -28,6 +28,14 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* TESTING METHODS */
 
+    /* OTHER METHODS */
+
+    @Override
+    public void addSelfToBoard(Board board)
+    {
+        board.setSolution(getCode());
+    }
+
     /* CLONING METHODS */
 
     public CodeMake deepCopy() throws IllegalArgumentException, NullPointerException

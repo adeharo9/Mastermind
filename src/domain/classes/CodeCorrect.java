@@ -10,7 +10,7 @@ public class CodeCorrect extends Action implements DeepCopyable
 
     public CodeCorrect()
     {
-        code = new Turn();
+        super();
     }
 
     public CodeCorrect(CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
@@ -18,7 +18,8 @@ public class CodeCorrect extends Action implements DeepCopyable
         super(codeCorrect);
     }
 
-    public CodeCorrect(Code code) {
+    public CodeCorrect(Code code)
+    {
         super(code);
     }
 
@@ -27,6 +28,14 @@ public class CodeCorrect extends Action implements DeepCopyable
     /* GET METHODS */
 
     /* TESTING METHODS */
+
+    /* OTHER METHODS */
+
+    @Override
+    public void addSelfToBoard(Board board)
+    {
+        board.addCorrection(getCode());
+    }
 
     /* CLONING METHODS */
 
