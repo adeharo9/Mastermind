@@ -172,7 +172,7 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public String readCode(Difficulty difficulty)
+    public String readCode(Difficulty difficulty) throws ReservedKeywordException
     {
         String code = "";
         ioUtils.endLine();
@@ -217,12 +217,14 @@ public class PresentationController
                 code = ioUtils.input();
                 break;
         }
+        if (code.equals("0")) throw new ReservedKeywordException();
         return code;
     }
 
-    public String readCorrectionCode (Difficulty difficulty)
+    public String readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
         ioUtils.endLine();
+        String code ="";
         String n = "4";
         String example = "B B W N";
         if(difficulty==Difficulty.HARD)
@@ -236,7 +238,9 @@ public class PresentationController
         ioUtils.printOutLn("N: None");
         ioUtils.endLine();
         ioUtils.printOutLn("Write your code here(or 0 to pause):");
-        return ioUtils.input();
+        code = ioUtils.input();
+        if (code.equals("0")) throw new ReservedKeywordException();
+        return code;
     }
 
     public void printBoard(ArrayList<ArrayList<String>> codes)
@@ -275,7 +279,7 @@ public class PresentationController
         ioUtils.printOut(" ");
         ioUtils.endLine();
         if(code.size()==4) ioUtils.printOutLn ("╚══════════════╝");
-        else ioUtils.printOutLn ("╚═════════════════════╝");
+        else if(code.size()==6)ioUtils.printOutLn ("╚═════════════════════╝");
     }
 
     public int pauseMenu() throws NumberFormatException

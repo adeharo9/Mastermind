@@ -253,6 +253,7 @@ public class DomainController
                     break;
 
                 case CHECK_INFO:
+                    presentationController.showInfo();
                     state = State.MAIN_GAME_MENU;
                     break;
 
