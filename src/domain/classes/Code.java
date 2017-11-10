@@ -95,6 +95,27 @@ public class Code implements DeepCopyable, Serializable
         return size;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Code code = (Code) o;
+
+        if (this.size != code.size) return false;
+        return getPins() != null ? getPins().equals(code.getPins()) : code.getPins() == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = size;
+        result = 31 * result + (getPins() != null ? getPins().hashCode() : 0);
+        return result;
+    }
+
+    @Deprecated
     public boolean equivalents(Code code)
     {
         if(this.size == code.size())
