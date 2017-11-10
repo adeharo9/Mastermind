@@ -187,6 +187,22 @@ public class Board implements DeepCopyable, Serializable
         turnSet.add(turn.deepCopy());
     }
 
+    public void addCode(Code code) throws IllegalArgumentException
+    {
+        boolean b = isValidCode(code);
+        if(!b) throw new IllegalArgumentException();
+
+        turnSet.add(new Turn(code));
+    }
+
+    public void addCorrection(Code code)
+    {
+        boolean b = isValidCode(code);
+        if(!b) throw new IllegalArgumentException();
+
+        getLastTurn().setCorrection(code);
+    }
+
     /* GET METHODS */
 
     public int getNColumns()
