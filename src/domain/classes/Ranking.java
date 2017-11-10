@@ -1,9 +1,7 @@
 package domain.classes;
 
-import sun.reflect.generics.tree.Tree;
 import util.*;
 
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -45,6 +43,7 @@ public class Ranking implements DeepCopyable, Serializable
         int i = correctPosition(points);
         Pair<String, Integer> toAdd = new Pair<>(idPlayer, points);
         topTen.add(i, toAdd);
+        if(topTen.size() > 10) topTen.pop();
     }
 
     private int correctPosition(Integer points)
