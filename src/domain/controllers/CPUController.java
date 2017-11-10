@@ -90,6 +90,7 @@ public class CPUController extends PlayerController
 
     protected Code getCodeBreak(Difficulty difficulty, Turn lastTurn)
     {
+        int coincidences;
         int minCoincidences;
         int maxCoincidences;
         Code correction;
@@ -121,6 +122,7 @@ public class CPUController extends PlayerController
                 }
             }
 
+            maxCoincidences = 0;
             minCoincidences = Integer.MAX_VALUE;
 
             for(final Code guess : guesses)
@@ -133,15 +135,22 @@ public class CPUController extends PlayerController
 
                     if (coincidencesByCorrection.containsKey(correction))
                     {
-                        coincidencesByCorrection.put(correction, coincidencesByCorrection.get(correction) + 1);
+                        coincidences = coincidencesByCorrection.get(correction) + 1;
                     }
                     else
                     {
-                        coincidencesByCorrection.put(correction, 1);
+                        coincidences = 1;
+                    }
+
+                    coincidencesByCorrection.put(correction, coincidences);
+
+                    if(coincidences > maxCoincidences)
+                    {
+                        maxCoincidences = coincidences;
                     }
                 }
 
-                maxCoincidences = 0;
+                /*maxCoincidences = 0;
 
                 for(final Map.Entry<Code, Integer> entry : coincidencesByCorrection.entrySet())
                 {
@@ -149,7 +158,7 @@ public class CPUController extends PlayerController
                     {
                         maxCoincidences = entry.getValue();
                     }
-                }
+                }*/
 
                 maxNotEliminatedByGuess.put(guess, maxCoincidences);
 
@@ -159,13 +168,22 @@ public class CPUController extends PlayerController
                 }
             }
 
+            boolean firstTime = true;
+
             for(final Map.Entry<Code, Integer> entry : maxNotEliminatedByGuess.entrySet())
             {
                 if(entry.getValue() == minCoincidences)
                 {
-                    currentGuess = entry.getKey();
-
-                    if(solutions.contains(entry.getKey())) break;
+                    if(solutions.contains(entry.getKey()))
+                    {
+                        currentGuess = entry.getKey();
+                        break;
+                    }
+                    else if(firstTime)
+                    {
+                        currentGuess = entry.getKey();
+                        firstTime = false;
+                    }
                 }
             }
 
