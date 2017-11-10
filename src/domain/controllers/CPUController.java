@@ -24,7 +24,7 @@ public class CPUController extends PlayerController
 
     public CPUController(Player player)
     {
-        super((CPU) player);
+        super(player);
     }
 
     /* INSTANTIATION METHODS */
