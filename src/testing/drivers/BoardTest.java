@@ -11,7 +11,7 @@ public class BoardTest
     {
         PresentationController presentationController = new PresentationController();
         ArrayList<ArrayList<String>> codes = new ArrayList<>(4);
-
+        ArrayList<String> code1 = new ArrayList<>();
         for(int i = 0; i < 4; ++i)
         {
             codes.add(new ArrayList<>());
@@ -27,7 +27,14 @@ public class BoardTest
             code.add("W");
             code.add("W");
     }
-        PresentationController.printBoard(codes);
-        ioUtils.printOutLn(Integer.toString(codes.get(0).size()));
+
+            code1.add("R");
+            code1.add("G");
+            code1.add("B");
+            code1.add("Y");
+
+
+        presentationController.printBoard(codes);
+        presentationController.printCode(code1);
     }
 }
