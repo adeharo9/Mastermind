@@ -78,12 +78,11 @@ public class BoardController
 
     public void checkAction(Action action)
     {
-        
+
     }
 
     public void addAction(Action action)
     {
-        Turn turn = new Turn(action.getCode());
-        board.addTurn(turn);
+        action.addSelfToBoard(board);
     }
 }
