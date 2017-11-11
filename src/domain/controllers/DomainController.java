@@ -459,7 +459,7 @@ public class DomainController
                         state = State.LOG_IN_USER;
                     }
                     catch (ReservedKeywordException e){
-                        state = State.INIT_PROGRAM;
+                        state = State.INIT_SESSION_MENU;
                     }
 
                     break;
@@ -517,7 +517,7 @@ public class DomainController
                         state = State.REGISTER_USER;
                     }
                     catch(ReservedKeywordException e){
-                        state = State.INIT_PROGRAM;
+                        state = State.INIT_SESSION_MENU;
                     }
 
                     break;
