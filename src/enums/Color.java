@@ -1,5 +1,7 @@
 package enums;
 
+import util.Constants;
+
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -71,24 +73,11 @@ public enum Color
         return strId;
     }
 
-    public static Collection<Color> getValues(Difficulty difficulty) throws IllegalArgumentException
+    public static Set<Color> getValues(Difficulty difficulty) throws IllegalArgumentException
     {
-        int n;
+        int n = Constants.getNumColorsByDifficulty(difficulty);
 
-        switch (difficulty)
-        {
-            case EASY:
-            case MEDIUM:
-                n = 6;
-                break;
-            case HARD:
-                n = 8;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        Collection<Color> colorCollection = new HashSet<>(n);
+        Set<Color> colorCollection = new HashSet<>(n);
 
         for(int i = 0; i < n; ++i)
         {

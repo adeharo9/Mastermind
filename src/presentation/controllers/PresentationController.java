@@ -3,6 +3,7 @@ package presentation.controllers;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;
+import util.Constants;
 import util.Pair;
 import util.ioUtils;
 
@@ -224,18 +225,23 @@ public class PresentationController
     public String readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
         ioUtils.endLine();
-        String code ="";
-        String n = "4";
-        String example = "B B W N";
-        if(difficulty==Difficulty.HARD)
+        String code = "";
+
+        int numColors = Constants.getNumColorsByDifficulty(difficulty);
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+
+        String n = Integer.toString(numPins);
+        String example = "";
+
+        for(int i = 0; i < numPins; ++i)
         {
-            n = "6";
-            example = "B B W N N N";
+            example = example.concat(Color.getRandomColor(numColors).getStrId() + " ");
         }
-        ioUtils.printOutLn("Write a "+n+"-sized code using the following letters (Input example: "+example+"):");
-        ioUtils.printOutLn("B: Black");
-        ioUtils.printOutLn("W: White");
-        ioUtils.printOutLn("N: None");
+
+        ioUtils.printOutLn("Write a " + n + "-sized code using the following letters (Input example: " + example + "):");
+        ioUtils.printOutLn(Color.BLACK.getStrId() + ": Black");
+        ioUtils.printOutLn(Color.WHITE.getStrId() + ": White");
+        ioUtils.printOutLn(Color.NONE.getStrId() + ": None");
         ioUtils.endLine();
         ioUtils.printOutLn("Write your code here(or 0 to pause):");
         code = ioUtils.input();
@@ -295,17 +301,19 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public void showClue(int type, String number, String color)
+    public void showClue(int type, String number, String color) throws IllegalArgumentException
     {
         ioUtils.endLine();
         switch(type)
         {
             case 1:
-                ioUtils.printOutLn ("Token in position"+number+"is"+color);
+                ioUtils.printOutLn ("Token in position" + number + "is" + color);
                 break;
             case 2:
-                ioUtils.printOutLn ("There is/are"+number+color+"tokens");
+                ioUtils.printOutLn ("There is/are" + number + color + "tokens");
                 break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 

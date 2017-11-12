@@ -9,7 +9,7 @@ public class Ranking implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    LinkedList<Pair<String, Integer>> topTen;
+    private LinkedList<Pair<String, Integer>> topTen;
 
     /* CONSTRUCTION METHODS */
 
@@ -23,7 +23,8 @@ public class Ranking implements DeepCopyable, Serializable
 
     }
 
-    public Ranking(LinkedList<Pair<String, Integer>> topTen) {
+    public Ranking(LinkedList<Pair<String, Integer>> topTen)
+    {
         this.topTen = topTen;
     }
 
@@ -35,7 +36,7 @@ public class Ranking implements DeepCopyable, Serializable
 
     public boolean inTopTen(String idPlayer, Integer points)
     {
-        return ((topTen.getLast().second < points) || (topTen.size() < 10));
+        return ((topTen.getLast().second < points) || (topTen.size() < Constants.RANKING_SIZE));
     }
 
     public void addInTopTen(String idPlayer, Integer points)
@@ -43,7 +44,7 @@ public class Ranking implements DeepCopyable, Serializable
         int i = correctPosition(points);
         Pair<String, Integer> toAdd = new Pair<>(idPlayer, points);
         topTen.add(i, toAdd);
-        if(topTen.size() > 10) topTen.pop();
+        if(topTen.size() > Constants.RANKING_SIZE) topTen.pop();
     }
 
     private int correctPosition(Integer points)

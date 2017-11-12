@@ -24,6 +24,10 @@ public final class Constants
     public static final boolean REPETITIONS_MEDIUM = true;
     public static final boolean REPETITIONS_HARD = true;
 
+    /* RANKING SYSTEM */
+
+    public static final int RANKING_SIZE = 10;
+
     /* POINT SYSTEM */
     public static final int POINTS_WHITE = 5;
     public static final int POINTS_BLACK = 20;

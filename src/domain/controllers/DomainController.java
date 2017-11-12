@@ -208,19 +208,9 @@ public class DomainController
                 name = String.valueOf(color);
                 break;
             case 2:
-                Difficulty dif = boardController.getDifficulty();
-                switch(dif)
-                {
-                    case EASY:
-                        color = Color.getRandomColor(6);
-                        break;
-                    case MEDIUM:
-                        color = Color.getRandomColor(6);
-                        break;
-                    case HARD:
-                        color = Color.getRandomColor(8);
-                        break;
-                }
+                Difficulty difficulty = boardController.getDifficulty();
+                int numColors = Constants.getNumColorsByDifficulty(difficulty);
+                color = Color.getRandomColor(numColors);
                 for(int i = 0; i<c.size();++i){
                     if(pins.get(i) == color) ++num;
                 }
