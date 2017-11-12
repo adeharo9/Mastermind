@@ -6,7 +6,7 @@ import enums.Difficulty;
 public class HumanController extends PlayerController
 {
     /* CONSTRUCTION METHODS */
-    private DomainController domainController;
+    private final DomainController domainController;
 
     public HumanController(DomainController domainController)
     {
@@ -14,9 +14,10 @@ public class HumanController extends PlayerController
         player = new Human();
     }
 
-    public HumanController(Player player)
+    public HumanController(DomainController domainController, Player player)
     {
         super((Human) player);
+        this.domainController = domainController;
     }
 
     /* INSTANTIATION METHODS */
@@ -25,11 +26,6 @@ public class HumanController extends PlayerController
     {
         player = new Human(id);
         return player;
-    }
-
-    public HumanController(String id, String password)
-    {
-        player = new Human(id, password);
     }
 
     public Player newPlayer(String id, String password)
