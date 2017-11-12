@@ -33,6 +33,7 @@ public final class Constants
     public static final int POINTS_BLACK = 50;
     public static final int POINTS_ROUND = -10;
     public static final int POINTS_TIME = -1;
+    public static final int POINTS_CLUE = -50;
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
