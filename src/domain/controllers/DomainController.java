@@ -191,33 +191,42 @@ public class DomainController
 
     private void giveClue()
     {
-        int type;
-        type = ThreadLocalRandom.current().nextInt(1, 3);;
+        int type = ThreadLocalRandom.current().nextInt(1, 3);
         int num = 0;
+
         Code c = boardController.getSolution();
-        Color color = null;
-        String name = "";
+        Color color;
+        String name;
         List<Color> pins = c.getPins();
+
         switch(type)
         {
             case 1:
-                num = (int) (Math.random()*c.size());
+                num = (int) (Math.random() * c.size());
                 color = pins.get(num);
                 name = String.valueOf(color);
                 break;
+
             case 2:
                 Difficulty difficulty = boardController.getDifficulty();
                 int numColors = Constants.getNumColorsByDifficulty(difficulty);
                 color = Color.getRandomColor(numColors);
-                for(int i = 0; i<c.size();++i){
-                    if(pins.get(i) == color) ++num;
+
+                for(int i = 0; i < c.size(); ++i){
+                    if(pins.get(i) == color)
+                    {
+                        ++num;
+                    }
                 }
+
                 name = String.valueOf(color);
                 break;
+
+            default:
+                throw new IllegalArgumentException();
         }
-        String number;
-        number = String.valueOf(num);
-        presentationController.showClue(type,number,name);
+
+        presentationController.showClue(type,String.valueOf(num),name);
     }
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException
