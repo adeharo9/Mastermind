@@ -205,6 +205,11 @@ public class Board implements DeepCopyable, Serializable
         return turn;
     }
 
+    public int getCurrentTurnNumber()
+    {
+        return turnSet.size() + 1;
+    }
+
     public boolean finished() throws NullPointerException
     {
         return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().equals(solution));
