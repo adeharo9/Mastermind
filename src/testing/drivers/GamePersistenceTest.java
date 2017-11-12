@@ -12,7 +12,7 @@ public class GamePersistenceTest
     public static void main(String args[])
     {
         Game test = new Game(gameID, Difficulty.EASY);
-        Game result = new Game();
+        Game result;
         GamePersistence gP = new GamePersistence();
 
         try
@@ -27,13 +27,12 @@ public class GamePersistenceTest
         try
         {
             result = gP.load(gameID);
+            ioUtils.printOutLn(result.getId());
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        ioUtils.printOutLn(result.getId());
     }
 }
 
