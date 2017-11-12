@@ -8,21 +8,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
 {
-    RED(0, "R"),
-    GREEN(1, "G"),
-    BLUE(2, "B"),
-    ORANGE(3, "O"),
-    PURPLE(4, "P"),
-    YELLOW(5, "Y"),
-    CYAN(6, "C"),
-    MAGENTA(7, "M"),
+    RED(0, "R", "Red"),
+    GREEN(1, "G", "Green"),
+    BLUE(2, "B", "Blue"),
+    ORANGE(3, "O", "Orange"),
+    PURPLE(4, "P", "Purple"),
+    YELLOW(5, "Y", "Yellow"),
+    CYAN(6, "C", "Cyan"),
+    MAGENTA(7, "M", "Magenta"),
 
-    NONE(8, "N"),
-    BLACK(9, "K"),
-    WHITE(10, "W");
+    NONE(8, "N", "None"),
+    BLACK(9, "K", "Black"),
+    WHITE(10, "W", "White");
 
     private final int id;
     private final String strId;
+    private final String strDescription;
 
     private static HashMap<Integer, Color> int2Color = new HashMap<>();
     private static HashMap<String, Color> str2Color = new HashMap<>();
@@ -36,27 +37,25 @@ public enum Color
         }
     }
 
-    private Color(int id, String strId)
+    private Color(final int id, final String strId, final String strDescription)
     {
         this.id = id;
         this.strId = strId;
-
+        this.strDescription = strDescription;
     }
 
-    public static Color getColor(int id) throws IllegalArgumentException
+    public static Color getColor(final int id) throws IllegalArgumentException
     {
-        Color color;
-
-        color = int2Color.get(id);
+        Color color = int2Color.get(id);
 
         if(color == null) throw new IllegalArgumentException();
 
         return color;
     }
 
-    public static Color getColor(String strId) throws IllegalArgumentException
+    public static Color getColor(final String strId) throws IllegalArgumentException
     {
-        Color color =  str2Color.get(strId);
+        Color color = str2Color.get(strId);
 
         if(color == null) throw new IllegalArgumentException();
 
@@ -73,7 +72,12 @@ public enum Color
         return strId;
     }
 
-    public static Set<Color> getValues(Difficulty difficulty) throws IllegalArgumentException
+    public String getStrDescription()
+    {
+        return strDescription;
+    }
+
+    public static Set<Color> getValues(final Difficulty difficulty) throws IllegalArgumentException
     {
         int n = Constants.getNumColorsByDifficulty(difficulty);
 
@@ -87,7 +91,7 @@ public enum Color
         return colorCollection;
     }
 
-    public static <T extends Set<S>, S> S getRandomColor(T colorSet) throws IllegalArgumentException
+    public static <T extends Set<S>, S> S getRandomColor(final T colorSet) throws IllegalArgumentException
     {
         if(colorSet.isEmpty()) throw new IllegalArgumentException();
 
@@ -98,7 +102,7 @@ public enum Color
         return colorArray.get(rand);
     }
 
-    public static Color getRandomColor(int upperBound) throws IllegalArgumentException
+    public static Color getRandomColor(final int upperBound) throws IllegalArgumentException
     {
         if(upperBound < 1) throw new IllegalArgumentException();
 
