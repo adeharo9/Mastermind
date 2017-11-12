@@ -56,7 +56,7 @@ public class DomainController
     private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
         Player player = playerPersistence.load(userInfo.first);
-        PlayerController playerController = new HumanController(player);
+        PlayerController playerController = new HumanController(this, player);
 
         boolean b = ((HumanController) playerController).checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
