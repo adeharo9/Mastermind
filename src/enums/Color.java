@@ -9,17 +9,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public enum Color
 {
     RED(0, "R", "Red"),
-    GREEN(1, "G", "Green"),
-    BLUE(2, "B", "Blue"),
-    ORANGE(3, "O", "Orange"),
-    PURPLE(4, "P", "Purple"),
-    YELLOW(5, "Y", "Yellow"),
-    CYAN(6, "C", "Cyan"),
-    MAGENTA(7, "M", "Magenta"),
+    GREEN(RED.getId() + 1, "G", "Green"),
+    BLUE(GREEN.getId() + 1, "B", "Blue"),
+    ORANGE(BLUE.getId() + 1, "O", "Orange"),
+    PURPLE(ORANGE.getId() + 1, "P", "Purple"),
+    YELLOW(PURPLE.getId() + 1, "Y", "Yellow"),
+    CYAN(YELLOW.getId() + 1, "C", "Cyan"),
+    MAGENTA(CYAN.getId() + 1, "M", "Magenta"),
 
-    NONE(8, "N", "None"),
-    BLACK(9, "K", "Black"),
-    WHITE(10, "W", "White");
+    NONE(MAGENTA.getId() + 1, "N", "None"),
+    BLACK(NONE.getId() + 1, "K", "Black"),
+    WHITE(BLACK.getId() + 1, "W", "White");
 
     private final int id;
     private final String strId;
@@ -81,14 +81,26 @@ public enum Color
     {
         int n = Constants.getNumColorsByDifficulty(difficulty);
 
-        Set<Color> colorCollection = new HashSet<>(n);
+        Set<Color> colorSet = new HashSet<>(n);
 
         for(int i = 0; i < n; ++i)
         {
-            colorCollection.add(getColor(i));
+            colorSet.add(getColor(i));
         }
 
-        return colorCollection;
+        return colorSet;
+    }
+
+    public static Set<Color> getCorrectionValues()
+    {
+        Set<Color> colorSet = new HashSet<>();
+
+        for(int i = NONE.getId(); i < WHITE.getId(); ++i)
+        {
+            colorSet.add(getColor(i));
+        }
+
+        return colorSet;
     }
 
     public static <T extends Set<S>, S> S getRandomColor(final T colorSet) throws IllegalArgumentException
