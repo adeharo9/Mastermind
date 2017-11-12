@@ -29,8 +29,8 @@ public final class Constants
     public static final int RANKING_SIZE = 10;
 
     /* POINT SYSTEM */
-    public static final int POINTS_WHITE = 5;
-    public static final int POINTS_BLACK = 20;
+    public static final int POINTS_WHITE = 25;
+    public static final int POINTS_BLACK = 50;
     public static final int POINTS_ROUND = -10;
     public static final int POINTS_TIME = -1;
 
