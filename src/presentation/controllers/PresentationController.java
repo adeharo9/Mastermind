@@ -8,6 +8,7 @@ import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class PresentationController
@@ -174,13 +175,14 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public String readCode(Difficulty difficulty) throws ReservedKeywordException
+    public List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {
-        String code;
         boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
+
         Set<Color> colorSet = Color.getValues(difficulty);
+        List<String> code = new ArrayList<>(numPins);
 
         ioUtils.endLine();
         ioUtils.printOut("Write a code of " + numPins + (repetitionsPolicy ? " " : " non-repeated ") + "colors using the following letters (Input example:");
@@ -199,23 +201,30 @@ public class PresentationController
 
         ioUtils.endLine();
         ioUtils.printOutLn("Write your code here (or 0 to pause):");
-        code = ioUtils.input();
 
-        if (code.equals("0")) throw new ReservedKeywordException();
+        String read;
+
+        for(int i = 0; i < numPins; ++i)
+        {
+            read = ioUtils.input();
+            if (read.equals("0")) throw new ReservedKeywordException();
+
+            code.add(read);
+        }
 
         return code;
     }
 
-    public String readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
+    public List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
-        String code;
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
         Set<Color> correctionSet = Color.getCorrectionValues();
+        List<String> code = new ArrayList<>(numPins);
 
         ioUtils.endLine();
 
-        ioUtils.printOutLn("Write a " + numPins + "-sized code using the following letters (Input example:");
+        ioUtils.printOut("Write a " + numPins + "-sized code using the following letters (Input example:");
 
         for(int i = 0; i < numPins; ++i)
         {
@@ -231,9 +240,16 @@ public class PresentationController
         ioUtils.endLine();
 
         ioUtils.printOutLn("Write your code here(or 0 to pause):");
-        code = ioUtils.input();
 
-        if (code.equals("0")) throw new ReservedKeywordException();
+        String read;
+
+        for(int i = 0; i < numPins; ++i)
+        {
+            read = ioUtils.input();
+            if (read.equals("0")) throw new ReservedKeywordException();
+
+            code.add(read);
+        }
 
         return code;
     }
@@ -241,24 +257,51 @@ public class PresentationController
     public void printBoard(ArrayList<ArrayList<String>> codes)
     {
         ioUtils.endLine();
-        if(codes.get(0).size()==8) ioUtils.printOutLn ("╔══════════════╦══════════════╗");
-        else if(codes.get(0).size()==12)ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
-        for(int i=0;i<codes.size();++i){
+
+        if(codes.get(0).size() == 8)
+        {
+            ioUtils.printOutLn ("╔══════════════╦══════════════╗");
+        }
+        else if(codes.get(0).size() == 12)
+        {
+            ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
+        }
+
+        for(int i = 0; i < codes.size(); ++i)
+        {
             ioUtils.printOut (" ");
-            for(int j=0;j<codes.get(0).size();++j) {
+
+            for(int j = 0; j < codes.get(0).size(); ++j)
+            {
                 ioUtils.printOut(" ");
                 ioUtils.printOut(codes.get(i).get(j));
                 ioUtils.printOut(" ");
             }
+
             ioUtils.printOut(" ");
             ioUtils.endLine();
-            if ((i + 1) == codes.size()) {
-                if(codes.get(0).size()==8) ioUtils.printOutLn ("╚═════════════════════════════╝");
-                else if(codes.get(0).size()==12)ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
+
+            if((i + 1) == codes.size())
+            {
+                if(codes.get(0).size() == 8)
+                {
+                    ioUtils.printOutLn ("╚═════════════════════════════╝");
+                }
+                else if(codes.get(0).size() == 12)
+                {
+                    ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
+                }
             }
-            else {
-                if(codes.get(0).size()==8) ioUtils.printOutLn ("╠══════════════╬══════════════╣");
-                else if(codes.get(0).size()==12)ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
+            else
+            {
+                if(codes.get(0).size() == 8)
+                {
+                    ioUtils.printOutLn ("╠══════════════╬══════════════╣");
+                }
+                else if(codes.get(0).size()==12)
+                {
+                    ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
+                }
             }
         }
     }

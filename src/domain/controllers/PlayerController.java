@@ -6,6 +6,7 @@ import domain.classes.Code;
 import domain.classes.Player;
 import enums.Difficulty;
 import enums.Role;
+import exceptions.ReservedKeywordException;
 
 public abstract class PlayerController
 {
@@ -73,7 +74,7 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(Turn lastTurn, Code solution, Difficulty difficulty) throws IllegalArgumentException
+    public final Action play(Turn lastTurn, Code solution, Difficulty difficulty) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
@@ -106,10 +107,10 @@ public abstract class PlayerController
         return action;
     }
 
-    protected abstract Action codeMake(Difficulty difficulty);
+    protected abstract Action codeMake(Difficulty difficulty) throws ReservedKeywordException;
 
-    protected abstract Action codeBreak(Difficulty difficulty, Turn lastTurn);
+    protected abstract Action codeBreak(Difficulty difficulty, Turn lastTurn) throws ReservedKeywordException;
 
-    protected abstract Action codeCorrect(Code code, Code solution, Difficulty difficulty);
+    protected abstract Action codeCorrect(Code code, Code solution, Difficulty difficulty) throws ReservedKeywordException;
 }
 

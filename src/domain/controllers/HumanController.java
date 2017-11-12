@@ -1,7 +1,11 @@
 package domain.controllers;
 
 import domain.classes.*;
+import enums.Color;
 import enums.Difficulty;
+import exceptions.ReservedKeywordException;
+
+import java.util.List;
 
 public class HumanController extends PlayerController
 {
@@ -36,19 +40,28 @@ public class HumanController extends PlayerController
 
     /* OTHER METHODS */
 
-    protected Action codeMake(Difficulty difficulty)
+    protected Action codeMake(Difficulty difficulty) throws ReservedKeywordException
     {
-        return null;
+        List<Color> colorList = domainController.codeInputByUser(difficulty);
+        Code code = new Code(colorList);
+
+        return new CodeMake(code);
     }
 
-    protected Action codeBreak(Difficulty difficulty, Turn lastTurn)
+    protected Action codeBreak(Difficulty difficulty, Turn lastTurn) throws ReservedKeywordException
     {
-        return null;
+        List<Color> colorList = domainController.codeInputByUser(difficulty);
+        Code code = new Code(colorList);
+
+        return new CodeBreak(code);
     }
 
-    protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
+    protected Action codeCorrect(Code c, Code s, Difficulty difficulty) throws ReservedKeywordException
     {
-        return null;
+        List<Color> colorList = domainController.correctionInputByUser(difficulty);
+        Code code = new Code(colorList);
+
+        return new CodeCorrect(code);
     }
 
     public boolean checkPassword(String password)

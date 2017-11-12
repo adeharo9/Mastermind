@@ -160,7 +160,7 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void playTurn() throws IllegalArgumentException
+    private void playTurn() throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
         Turn lastTurn;
@@ -189,7 +189,7 @@ public class DomainController
         return true;
     }
 
-    private void giveClue()
+    private void giveClue() throws IllegalArgumentException
     {
         int type = ThreadLocalRandom.current().nextInt(1, 3);
         int num = 0;
@@ -228,6 +228,36 @@ public class DomainController
 
         presentationController.showClue(type,String.valueOf(num),name);
     }
+
+    /* USER INTERACTION METHODS */
+
+    public List<Color> codeInputByUser(Difficulty difficulty) throws ReservedKeywordException
+    {
+        List<String> code = presentationController.readCode(difficulty);
+        List<Color> colorList = new ArrayList<>(code.size());
+
+        for(final String str : code)
+        {
+            colorList.add(Color.getColor(str));
+        }
+
+        return colorList;
+    }
+
+    public List<Color> correctionInputByUser(Difficulty difficulty) throws ReservedKeywordException
+    {
+        List<String> correction = presentationController.readCorrectionCode(difficulty);
+        List<Color> colorList = new ArrayList<>(correction.size());
+
+        for(final String str : correction)
+        {
+            colorList.add(Color.getColor(str));
+        }
+
+        return colorList;
+    }
+
+    /* MAIN STATE MACHINE */
 
     public void exe() throws IntegrityCorruption, ReservedKeywordException
     {
@@ -493,8 +523,15 @@ public class DomainController
                     break;
 
                 case PLAY_TURN:
-                    playTurn();
-                    state = State.CHECK_TURN_NUMBER;
+                    try
+                    {
+                        playTurn();
+                        state = State.CHECK_TURN_NUMBER;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.IN_GAME_MENU;
+                    }
                     break;
 
                 case REGISTER_USER:
