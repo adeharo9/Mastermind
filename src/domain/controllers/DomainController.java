@@ -30,7 +30,6 @@ public class DomainController
     private PlayerController loggedPlayerController;
     private ArrayList<PlayerController> playingPlayerControllers;
 
-    //private BoardPersistence boardPersistence;
     private GamePersistence gamePersistence;
     private PlayerPersistence playerPersistence;
     //private RankingPersistence rankingPersistence;
