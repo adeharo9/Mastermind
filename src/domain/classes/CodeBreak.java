@@ -8,11 +8,6 @@ public class CodeBreak extends Action implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
-    public CodeBreak()
-    {
-        code = new Turn();
-    }
-
     public CodeBreak(final CodeBreak codeBreak) throws IllegalArgumentException, NullPointerException
     {
         super(codeBreak);

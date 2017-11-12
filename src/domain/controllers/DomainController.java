@@ -23,7 +23,7 @@ public class DomainController
     private State state;
     private ArrayList<String> savedGames;
 
-    private PresentationController presentationController;
+    private final PresentationController presentationController;
 
     private BoardController boardController;
     private GameController gameController;
@@ -47,7 +47,6 @@ public class DomainController
         loggedPlayerController = new HumanController(this);
         playingPlayerControllers = new ArrayList<>();
 
-        //boardPersistence = new BoardPersistence();
         gamePersistence = new GamePersistence();
         playerPersistence = new PlayerPersistence();
         //rankingPersistence = new RankingPersistence();

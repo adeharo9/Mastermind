@@ -8,11 +8,6 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
-    public CodeMake()
-    {
-        code = new Code();
-    }
-
     public CodeMake(final Code code) {
         super(code);
     }

@@ -16,13 +16,6 @@ public class Turn extends Code implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
 
     @Deprecated
-    public Turn()
-    {
-        super();
-        correction = new ArrayList<>();
-    }
-
-    @Deprecated
     public Turn(final int n) throws IllegalArgumentException
     {
         super(n);

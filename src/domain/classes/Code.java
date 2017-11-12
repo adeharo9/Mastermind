@@ -17,13 +17,6 @@ public class Code implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
 
     @Deprecated
-    public Code()
-    {
-        size = 0;
-        pins = new ArrayList<>();
-    }
-
-    @Deprecated
     public Code(final int size) throws IllegalArgumentException
     {
         boolean b = size >= 0;

@@ -56,7 +56,6 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    @Deprecated
     public final String getUsername()
     {
         return super.getId();

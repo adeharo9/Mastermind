@@ -5,32 +5,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Utils
 {
-
-    @Deprecated
-    public static <T extends DeepCopyable<T>> ArrayList<T> deepCopy(ArrayList<T> arrayList1) throws Exception
-    {
-        ArrayList<T> arrayList2 = new ArrayList<>(arrayList1.size());
-
-        for(T element : arrayList1)
-        {
-            arrayList2.add(element.deepCopy());
-        }
-
-        return arrayList2;
-    }
-
-    @Deprecated
-    public static boolean isNull(Object object)
-    {
-        return object == null;
-    }
-
-    @Deprecated
-    public static <T> boolean isValidIndex(ArrayList<T> arrayList, int i)
-    {
-        return arrayList != null && i >= 0 && i < arrayList.size();
-    }
-
     public static <T> boolean isValidCollection(Collection<T> arrayList) throws NullPointerException
     {
         boolean b = true;
@@ -69,11 +43,5 @@ public abstract class Utils
     public static String autoID()
     {
         return autoID(alphanumeric);
-    }
-
-    @Deprecated
-    public static int autoIDInt()
-    {
-        return ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE);
     }
 }
