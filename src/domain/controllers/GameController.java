@@ -45,4 +45,11 @@ public class GameController
     {
         return game.getId();
     }
+
+    public void pointsEndTurn()
+    {
+        int newpoints = game.getPoints();
+
+        game.setPoints(newpoints);
+    }
 }
