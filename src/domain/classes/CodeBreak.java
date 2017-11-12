@@ -13,12 +13,12 @@ public class CodeBreak extends Action implements DeepCopyable
         code = new Turn();
     }
 
-    public CodeBreak(CodeBreak codeBreak) throws IllegalArgumentException, NullPointerException
+    public CodeBreak(final CodeBreak codeBreak) throws IllegalArgumentException, NullPointerException
     {
         super(codeBreak);
     }
 
-    public CodeBreak(Code code) {
+    public CodeBreak(final Code code) {
         super(code);
     }
 
@@ -31,7 +31,7 @@ public class CodeBreak extends Action implements DeepCopyable
     /* OTHER METHODS */
 
     @Override
-    public void addSelfToBoard(Board board)
+    public void addSelfToBoard(final Board board)
     {
         board.addCode(getCode());
     }

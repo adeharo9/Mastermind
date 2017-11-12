@@ -9,12 +9,12 @@ public abstract class Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    protected String id;
+    protected final String id;
 
 
     /* PRIVATE METHODS */
 
-    private static boolean isValidId(String id) throws NullPointerException
+    private static boolean isValidId(final String id) throws NullPointerException
     {
         return !id.isEmpty();
     }
@@ -22,32 +22,24 @@ public abstract class Player implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
     public Player ()
     {
-        setId(Utils.autoID());
+        this.id = Utils.autoID();
     }
 
-    public Player(String id) throws IllegalArgumentException
+    public Player(final String id) throws IllegalArgumentException
     {
-        setId(id);
+        this.id = id;
     }
 
-    public Player (Player player) throws IllegalArgumentException, NullPointerException
+    public Player(final Player player) throws IllegalArgumentException, NullPointerException
     {
-        setId(player.getId());
+        this.id = player.getId();
     }
 
     /* SET METHODS */
 
-    public void setId(String id) throws IllegalArgumentException
-    {
-        boolean b = isValidId(id);
-        if(!b) throw new IllegalArgumentException();
-
-        this.id = id;
-    }
-
     /* GET METHODS */
 
-    public String getId()
+    public final String getId()
     {
         return id;
     }

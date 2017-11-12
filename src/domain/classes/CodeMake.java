@@ -13,11 +13,11 @@ public class CodeMake extends Action implements DeepCopyable
         code = new Code();
     }
 
-    public CodeMake(Code code) {
+    public CodeMake(final Code code) {
         super(code);
     }
 
-    public CodeMake(CodeMake codeMake) throws IllegalArgumentException, NullPointerException
+    public CodeMake(final CodeMake codeMake) throws IllegalArgumentException, NullPointerException
     {
         super(codeMake);
     }
@@ -31,7 +31,7 @@ public class CodeMake extends Action implements DeepCopyable
     /* OTHER METHODS */
 
     @Override
-    public void addSelfToBoard(Board board)
+    public void addSelfToBoard(final Board board)
     {
         board.setSolution(getCode());
     }

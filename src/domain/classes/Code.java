@@ -24,7 +24,7 @@ public class Code implements DeepCopyable, Serializable
     }
 
     @Deprecated
-    public Code(int size) throws IllegalArgumentException
+    public Code(final int size) throws IllegalArgumentException
     {
         boolean b = size >= 0;
         if(!b) throw new IllegalArgumentException();
@@ -33,19 +33,19 @@ public class Code implements DeepCopyable, Serializable
         pins = new ArrayList<>(size);
     }
 
-    public <C extends List<Color>> Code(C pins)
+    public <C extends List<Color>> Code(final C pins)
     {
         this.size = pins.size();
         setPins(pins);
     }
 
-    public Code(Difficulty difficulty) throws IllegalArgumentException
+    public Code(final Difficulty difficulty) throws IllegalArgumentException
     {
         size = 0;
         pins = new ArrayList<>();
     }
 
-    public Code(Code code) throws IllegalArgumentException, NullPointerException
+    public Code(final Code code) throws IllegalArgumentException, NullPointerException
     {
         size = code.size();
         setPins(code.getPins());
@@ -53,7 +53,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public <C extends  Collection<Color>> void setPins(C bPins) throws IllegalArgumentException, NullPointerException
+    public final <C extends  Collection<Color>> void setPins(final C bPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = Utils.isValidCollection(bPins);
         if(!b) throw new IllegalArgumentException();
@@ -64,25 +64,25 @@ public class Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public List<Color> getPins()
+    public final List<Color> getPins()
     {
         return pins;
     }
 
     /* CONSULTING METHODS */
 
-    public int size()
+    public final int size()
     {
         return size;
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(final Object o)
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Code code = (Code) o;
+        final Code code = (Code) o;
 
         if (this.size != code.size) return false;
         return getPins() != null ? getPins().equals(code.getPins()) : code.getPins() == null;

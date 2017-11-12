@@ -18,12 +18,12 @@ public class Ranking implements DeepCopyable, Serializable
 
     }
 
-    public Ranking(Ranking ranking)
+    public Ranking(final Ranking ranking)
     {
 
     }
 
-    public Ranking(LinkedList<Pair<String, Integer>> topTen)
+    public Ranking(final LinkedList<Pair<String, Integer>> topTen)
     {
         this.topTen = topTen;
     }
@@ -34,20 +34,22 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* TESTING METHODS */
 
-    public boolean inTopTen(String idPlayer, Integer points)
+    public boolean inTopTen(final String idPlayer, final Integer points)
     {
         return ((topTen.getLast().second < points) || (topTen.size() < Constants.RANKING_SIZE));
     }
 
-    public void addInTopTen(String idPlayer, Integer points)
+    public void addInTopTen(final String idPlayer, final Integer points)
     {
         int i = correctPosition(points);
+
         Pair<String, Integer> toAdd = new Pair<>(idPlayer, points);
         topTen.add(i, toAdd);
+
         if(topTen.size() > Constants.RANKING_SIZE) topTen.pop();
     }
 
-    private int correctPosition(Integer points)
+    private int correctPosition(final Integer points)
     {
         int left = 0;
         int right = topTen.size() - 1;

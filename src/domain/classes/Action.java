@@ -15,18 +15,18 @@ public abstract class Action implements DeepCopyable
 
     }
 
-    public Action(Code code) {
+    public Action(final Code code) {
         this.code = code;
     }
 
-    public Action(Action action) throws IllegalArgumentException, NullPointerException
+    public Action(final Action action) throws IllegalArgumentException, NullPointerException
     {
         setCode(action.getCode());
     }
 
     /* SET METHODS */
 
-    public void setCode(Code code) throws IllegalArgumentException, NullPointerException
+    public final void setCode(final Code code) throws IllegalArgumentException, NullPointerException
     {
         boolean b = code.isValid();
         if(!b) throw new IllegalArgumentException();
@@ -36,7 +36,7 @@ public abstract class Action implements DeepCopyable
 
     /* GET METHODS */
 
-    public Code getCode()
+    public final Code getCode()
     {
         return code;
     }

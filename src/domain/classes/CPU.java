@@ -15,12 +15,12 @@ public class CPU extends Player implements DeepCopyable, Serializable
         super();
     }
 
-    public CPU(String id) throws IllegalArgumentException
+    public CPU(final String id) throws IllegalArgumentException
     {
         super(id);
     }
 
-    public CPU(CPU cpu) throws IllegalArgumentException, NullPointerException
+    public CPU(final CPU cpu) throws IllegalArgumentException, NullPointerException
     {
         super(cpu);
     }

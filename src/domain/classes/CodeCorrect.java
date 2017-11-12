@@ -13,12 +13,12 @@ public class CodeCorrect extends Action implements DeepCopyable
         super();
     }
 
-    public CodeCorrect(CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
+    public CodeCorrect(final CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
     {
         super(codeCorrect);
     }
 
-    public CodeCorrect(Code code)
+    public CodeCorrect(final Code code)
     {
         super(code);
     }
@@ -32,7 +32,7 @@ public class CodeCorrect extends Action implements DeepCopyable
     /* OTHER METHODS */
 
     @Override
-    public void addSelfToBoard(Board board)
+    public void addSelfToBoard(final Board board)
     {
         board.addCorrection(getCode());
     }

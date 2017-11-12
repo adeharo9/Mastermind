@@ -23,24 +23,24 @@ public class Turn extends Code implements DeepCopyable, Serializable
     }
 
     @Deprecated
-    public Turn(int n) throws IllegalArgumentException
+    public Turn(final int n) throws IllegalArgumentException
     {
         super(n);
         correction = new ArrayList<>(n);
     }
 
-    public Turn(Difficulty difficulty)
+    public Turn(final Difficulty difficulty)
     {
         super(difficulty);
         correction = new ArrayList<>();
     }
 
-    public Turn(Code code) throws IllegalArgumentException, NullPointerException
+    public Turn(final Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
     }
 
-    public Turn(Turn turn) throws IllegalArgumentException, NullPointerException
+    public Turn(final Turn turn) throws IllegalArgumentException, NullPointerException
     {
         super(turn);
 
@@ -49,7 +49,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setCorrection(List<Color> sPins) throws IllegalArgumentException, NullPointerException
+    public void setCorrection(final List<Color> sPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(sPins);
         if(!b) throw new IllegalArgumentException();
@@ -58,19 +58,19 @@ public class Turn extends Code implements DeepCopyable, Serializable
         this.correction.addAll(sPins);
     }
 
-    public void setCorrection(Code code) throws IllegalArgumentException
+    public void setCorrection(final Code code) throws IllegalArgumentException
     {
         setCorrection(code.getPins());
     }
 
     /* GET METHODS */
 
-    public List<Color> getCorrection()
+    public final List<Color> getCorrection()
     {
         return correction;
     }
 
-    public Color getCorrectionAt(int i) throws IndexOutOfBoundsException, NullPointerException
+    public final Color getCorrectionAt(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return correction.get(i);
     }
@@ -80,7 +80,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
     /* TESTING METHODS */
 
     @Deprecated
-    private boolean isValid(List<Color> sPins) throws NullPointerException
+    private boolean isValid(final List<Color> sPins) throws NullPointerException
     {
         return super.size() == sPins.size();
     }

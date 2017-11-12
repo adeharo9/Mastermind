@@ -12,7 +12,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* PRIVATE METHODS */
 
-    private static boolean isValidPassword(String password)
+    private static boolean isValidPassword(final String password)
     {
         return !password.isEmpty();
     }
@@ -25,18 +25,19 @@ public class Human extends Player implements DeepCopyable, Serializable
         password = "";
     }
 
-    public Human(String username) throws IllegalArgumentException
+    public Human(final String username) throws IllegalArgumentException
     {
         super(username);
     }
 
-    public Human(String username, String password) throws IllegalArgumentException, NullPointerException
+    public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
     {
-        setId(username);
+        super(username);
+
         setPassword(password);
     }
 
-    public Human(Human human) throws IllegalArgumentException, NullPointerException
+    public Human(final Human human) throws IllegalArgumentException, NullPointerException
     {
         super(human);
 
@@ -45,7 +46,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setPassword(String password) throws IllegalArgumentException, NullPointerException
+    public void setPassword(final String password) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPassword(password);
         if(!b) throw new IllegalArgumentException();
@@ -56,19 +57,19 @@ public class Human extends Player implements DeepCopyable, Serializable
     /* GET METHODS */
 
     @Deprecated
-    public String getUsername()
+    public final String getUsername()
     {
         return super.getId();
     }
 
-    public String getPassword()
+    public final String getPassword()
     {
         return password;
     }
 
     /* TESTING METHODS */
 
-    public boolean checkPassword(String password) throws NullPointerException
+    public final boolean checkPassword(final String password) throws NullPointerException
     {
         return this.password.equals(password);
     }
