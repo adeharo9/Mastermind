@@ -254,7 +254,7 @@ public class PresentationController
         return code;
     }
 
-    public void printBoard(ArrayList<ArrayList<String>> codes)
+    public void printBoard(List<List<Color>> codes)
     {
         ioUtils.endLine();
 
@@ -274,7 +274,7 @@ public class PresentationController
             for(int j = 0; j < codes.get(0).size(); ++j)
             {
                 ioUtils.printOut(" ");
-                ioUtils.printOut(codes.get(i).get(j));
+                ioUtils.printOut(codes.get(i).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
 

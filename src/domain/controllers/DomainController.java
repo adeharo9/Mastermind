@@ -176,6 +176,8 @@ public class DomainController
 
             boardController.checkAction(action);
             boardController.addAction(action);
+
+            printBoard();
         }
     }
 
@@ -255,6 +257,19 @@ public class DomainController
         }
 
         return colorList;
+    }
+
+    private void printBoard()
+    {
+        List<Turn> turnSet = boardController.getTurnSet();
+        List<List<Color>> codeList = new ArrayList<>(turnSet.size());
+
+        for(final Turn turn : turnSet)
+        {
+            codeList.add(turn.toList());
+        }
+
+        presentationController.printBoard(codeList);
     }
 
     /* MAIN STATE MACHINE */

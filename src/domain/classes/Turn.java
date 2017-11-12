@@ -70,6 +70,18 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* CONSULTING METHODS */
 
+    /* CONVERSION METHODS */
+
+    public List<Color> toList()
+    {
+        List<Color> colorList = new ArrayList<>(pins.size() + correction.size());
+
+        colorList.addAll(pins);
+        colorList.addAll(correction);
+
+        return colorList;
+    }
+
     /* TESTING METHODS */
 
     @Deprecated

@@ -6,6 +6,8 @@ import domain.classes.Code;
 import domain.classes.Turn;
 import enums.Difficulty;
 
+import java.util.List;
+
 public class BoardController
 {
     /* ATTRIBUTES */
@@ -63,6 +65,11 @@ public class BoardController
     public Difficulty getDifficulty()
     {
         return board.getDifficulty();
+    }
+
+    public List<Turn> getTurnSet()
+    {
+        return board.getTurnSet();
     }
 
     public Turn getLastTurn()

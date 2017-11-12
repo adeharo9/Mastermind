@@ -34,7 +34,7 @@ public class BoardTest
             code1.add("Y");
 
 
-        presentationController.printBoard(codes);
+        //presentationController.printBoard(codes);
         presentationController.printCode(code1);
     }
 }
