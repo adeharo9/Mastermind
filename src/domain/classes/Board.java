@@ -17,52 +17,6 @@ public class Board implements DeepCopyable, Serializable
     private Code solution;
     private ArrayList<Turn> turnSet;
 
-    @Deprecated
-    private static int getNColumnsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
-    {
-        int nColumns;
-
-        switch(difficulty)
-        {
-            case EASY:
-                nColumns = 4;
-                break;
-            case MEDIUM:
-                nColumns = 4;
-                break;
-            case HARD:
-                nColumns = 6;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return nColumns;
-    }
-
-    @Deprecated
-    private static int getMaxAttemptsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
-    {
-        int maxAttempts;
-
-        switch(difficulty)
-        {
-            case EASY:
-                maxAttempts = 30;
-                break;
-            case MEDIUM:
-                maxAttempts = 25;
-                break;
-            case HARD:
-                maxAttempts = 20;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return maxAttempts;
-    }
-
     private static boolean isValidNColumns(int nColumns)
     {
         return nColumns > 0;
@@ -110,8 +64,8 @@ public class Board implements DeepCopyable, Serializable
 
     public Board(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
-        setNColumns(getNColumnsByDifficulty(difficulty));
-        setMaxAttempts(getMaxAttemptsByDifficulty(difficulty));
+        setNColumns(Constants.getNumPinsByDifficulty(difficulty));
+        setMaxAttempts(Constants.getMaxRoundsByDifficulty(difficulty));
         setDifficulty(difficulty);
 
         solution = null;

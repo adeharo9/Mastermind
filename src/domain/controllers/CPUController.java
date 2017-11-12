@@ -3,6 +3,7 @@ package domain.controllers;
 import domain.classes.*;
 import enums.Difficulty;
 import enums.Color;
+import util.Constants;
 
 import java.util.*;
 
@@ -39,49 +40,28 @@ public class CPUController extends PlayerController
 
     protected Action codeMake(Difficulty difficulty)
     {
-        Color color = null;
+        Color color;
         ArrayList<Color> code = new ArrayList<>();
 
-        switch(difficulty) {
+        Set<Color> possibleColors = Color.getValues(difficulty);
 
-            case EASY:
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        int numColors = Constants.getNumColorsByDifficulty(difficulty);
 
-                HashSet<Color> possibleColors = new HashSet<>(Arrays.asList(Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE));
-                boolean firstTime = true;
 
-                for(int i = 0; i < 4; ++i)
-                {
-                    if(firstTime)
-                    {
-                        firstTime = false;
-                    }
+        for(int i = 0; i < numPins; ++i)
+        {
+            if(difficulty == Difficulty.EASY)
+            {
+                color = Color.getRandomColor(possibleColors);
+                possibleColors.remove(color);
+            }
+            else
+            {
+                color = Color.getRandomColor(numColors);
+            }
 
-                    else
-                    {
-                        possibleColors.remove(color);
-                    }
-
-                    color = Color.getRandomColor(possibleColors);
-                    code.add(color);
-                }
-                break;
-
-            case MEDIUM:
-
-                for(int i = 0; i < 4; ++i)
-                {
-                    color = Color.getRandomColor(6);
-                    code.add(color);
-                }
-                break;
-
-            case HARD:
-                for(int i = 0; i < 6; ++i)
-                {
-                    color = Color.getRandomColor(8);
-                    code.add(color);
-                }
-                break;
+            code.add(color);
         }
 
         Code solution = new Code(code);
@@ -220,8 +200,10 @@ public class CPUController extends PlayerController
 
     protected void generatePermutations(Difficulty difficulty)
     {
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
         Collection<Color> colorCollection = Color.getValues(difficulty);
-        permute(0, 4, colorCollection, new ArrayList<>());
+
+        permute(0, numPins, colorCollection, new ArrayList<>());
     }
 
     protected Code getCodeCorrect(final Code code, final Code solution, final Difficulty difficulty)

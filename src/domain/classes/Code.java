@@ -62,30 +62,11 @@ public class Code implements DeepCopyable, Serializable
         this.pins.addAll(bPins);
     }
 
-    @Deprecated
-    public void addPin(Color bPin) throws IndexOutOfBoundsException
-    {
-        if(this.pins.size() >= this.size()) throw new IndexOutOfBoundsException();
-
-        if(this.pins == null)
-        {
-            this.pins = new ArrayList<>();
-        }
-
-        this.pins.add(bPin);
-    }
-
     /* GET METHODS */
 
     public List<Color> getPins()
     {
         return pins;
-    }
-
-    @Deprecated
-    public Color getPinAt(int i) throws IndexOutOfBoundsException, NullPointerException
-    {
-        return pins.get(i);
     }
 
     /* CONSULTING METHODS */

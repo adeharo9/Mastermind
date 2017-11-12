@@ -16,6 +16,7 @@ public class BoardController
 
     /* CONSTRUCTION METHODS */
 
+    @Deprecated
     public BoardController()
     {
         board = new Board();
