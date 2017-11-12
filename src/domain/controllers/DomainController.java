@@ -239,6 +239,7 @@ public class DomainController
             {
                 case ASK_FOR_CLUE:
                     giveClue();
+                    gameController.pointsClue();
                     state = State.IN_GAME_MENU;
                     break;
 
@@ -338,6 +339,7 @@ public class DomainController
                     break;
 
                 case GAME_OVER_MENU:
+                    gameController.pointsEndGame();
                     returnState = presentationController.gameOverMenu();
                     state = Translate.int2StateGameOverMenu(returnState);
                     break;
