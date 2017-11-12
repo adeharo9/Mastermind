@@ -95,7 +95,7 @@ public enum Color
     {
         Set<Color> colorSet = new HashSet<>();
 
-        for(int i = NONE.getId(); i < WHITE.getId(); ++i)
+        for(int i = NONE.getId(); i <= WHITE.getId(); ++i)
         {
             colorSet.add(getColor(i));
         }
