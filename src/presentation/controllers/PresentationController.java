@@ -8,6 +8,7 @@ import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class PresentationController
 {
@@ -175,77 +176,65 @@ public class PresentationController
 
     public String readCode(Difficulty difficulty) throws ReservedKeywordException
     {
-        String code = "";
+        String code;
+        boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
+        int numColors = Constants.getNumColorsByDifficulty(difficulty);
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        Set<Color> colorSet = Color.getValues(difficulty);
+
         ioUtils.endLine();
-        switch(difficulty)
+        ioUtils.printOut("Write a code of " + numPins + (repetitionsPolicy ? " " : " non-repeated ") + "colors using the following letters (Input example:");
+
+        for(int i = 0; i < numPins; ++i)
         {
-            case EASY:
-                ioUtils.printOutLn("Write a code of 4 non-repeated colors using the following letters (Input example: R G Y B):");
-                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
-                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
-                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
-                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
-                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
-                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
-                ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here(or 0 to pause):");
-                code = ioUtils.input();
-                break;
-            case MEDIUM:
-                ioUtils.printOutLn("Write a 4-color code using the following letters (Input example: R G G B):");
-                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
-                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
-                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
-                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
-                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
-                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
-                ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here(or 0 to pause):");
-                code = ioUtils.input();
-                break;
-            case HARD:
-                ioUtils.printOutLn("Write a 6-color code using the following letters (Input example: R G G B Y P):");
-                ioUtils.printOutLn(Color.RED.getStrId()+": Red");
-                ioUtils.printOutLn(Color.GREEN.getStrId()+": Green");
-                ioUtils.printOutLn(Color.BLUE.getStrId()+": Blue");
-                ioUtils.printOutLn(Color.ORANGE.getStrId()+": Orange");
-                ioUtils.printOutLn(Color.PURPLE.getStrId()+": Purple");
-                ioUtils.printOutLn(Color.YELLOW.getStrId()+": Yellow");
-                ioUtils.printOutLn(Color.CYAN.getStrId()+": Cyan");
-                ioUtils.printOutLn(Color.MAGENTA.getStrId()+": Magenta");
-                ioUtils.endLine();
-                ioUtils.printOutLn("Write your code here(or 0 to pause):");
-                code = ioUtils.input();
-                break;
+            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
         }
+
+        ioUtils.printOutLn("):");
+
+        for(final Color color : colorSet)
+        {
+            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
+        }
+
+        ioUtils.endLine();
+        ioUtils.printOutLn("Write your code here (or 0 to pause):");
+        code = ioUtils.input();
+
         if (code.equals("0")) throw new ReservedKeywordException();
+
         return code;
     }
 
     public String readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
-        ioUtils.endLine();
-        String code = "";
-
+        String code;
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        Set<Color> correctionSet = Color.getCorrectionValues();
 
-        String n = Integer.toString(numPins);
-        String example = "";
+        ioUtils.endLine();
+
+        ioUtils.printOutLn("Write a " + numPins + "-sized code using the following letters (Input example:");
 
         for(int i = 0; i < numPins; ++i)
         {
-            example = example.concat(Color.getRandomColor(numColors).getStrId() + " ");
+            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
         }
 
-        ioUtils.printOutLn("Write a " + n + "-sized code using the following letters (Input example: " + example + "):");
-        ioUtils.printOutLn(Color.BLACK.getStrId() + ": Black");
-        ioUtils.printOutLn(Color.WHITE.getStrId() + ": White");
-        ioUtils.printOutLn(Color.NONE.getStrId() + ": None");
+        ioUtils.printOutLn("):");
+
+        for(final Color color : correctionSet)
+        {
+            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
+        }
         ioUtils.endLine();
+
         ioUtils.printOutLn("Write your code here(or 0 to pause):");
         code = ioUtils.input();
+
         if (code.equals("0")) throw new ReservedKeywordException();
+
         return code;
     }
 
