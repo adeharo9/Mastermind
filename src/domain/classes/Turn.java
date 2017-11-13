@@ -36,13 +36,13 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public void setCorrectionPins(final List<Color> sPins) throws IllegalArgumentException, NullPointerException
+    public void setCorrectionPins(final List<Color> correctionPins) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValid(sPins);
+        boolean b = isValid(correctionPins);
         if(!b) throw new IllegalArgumentException();
 
-        this.correctionPins = new ArrayList<>(sPins.size());
-        this.correctionPins.addAll(sPins);
+        this.correctionPins = new ArrayList<>(correctionPins.size());
+        this.correctionPins.addAll(correctionPins);
     }
 
     public void setCorrection(final Code code) throws IllegalArgumentException
@@ -67,7 +67,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
         return correctionPins;
     }
 
-    public final Color getCorrectionAt(final int i) throws IndexOutOfBoundsException, NullPointerException
+    public final Color getCorrectionPinAt(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return correctionPins.get(i);
     }

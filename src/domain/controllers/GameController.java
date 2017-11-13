@@ -57,7 +57,7 @@ public class GameController
         Turn lt = game.getBoard().getLastTurn();
         for (int i = 0; i<lt.getCorrectionPins().size(); ++i)
         {
-            Color c = lt.getCorrectionAt(i);
+            Color c = lt.getCorrectionPinAt(i);
             switch (c) {
                 case BLACK:
                     newpoints = newpoints + Constants.POINTS_BLACK;
