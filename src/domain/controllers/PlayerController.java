@@ -12,25 +12,24 @@ public abstract class PlayerController
 {
     /* ATTRIBUTES */
 
-    protected boolean firstTurn;
+    protected boolean firstTurn = true;
     protected Role role;
     protected Player player;
-    //protected DomainController domainController;
 
     /* CONSTRUCTION METHODS */
 
-    public PlayerController()
+    protected PlayerController()
     {
-        firstTurn = true;
+
     }
 
-    public PlayerController(final Role role)
+    protected PlayerController(final Role role)
     {
         firstTurn = true;
         setRole(role);
     }
 
-    public PlayerController(final Player player)
+    protected PlayerController(final Player player)
     {
         firstTurn = true;
         setPlayerByReference(player);
