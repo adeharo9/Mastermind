@@ -9,7 +9,7 @@ public abstract class Utils
     {
         boolean b = true;
 
-        for(T element : arrayList)
+        for(final T element : arrayList)
         {
             b = element != null;
             if(!b) break;

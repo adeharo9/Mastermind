@@ -140,7 +140,7 @@ public class DomainController
 
         String playerId;
 
-        for(Pair<Player, Role> playerRolePair : playerRolePairs)
+        for(final Pair<Player, Role> playerRolePair : playerRolePairs)
         {
             playerId = playerRolePair.first.getId();
             if(playerId.equals(loggedPlayer.getId()))
@@ -169,7 +169,7 @@ public class DomainController
         Code code = boardController.getSolution();
         Difficulty difficulty = boardController.getDifficulty();
 
-        for(PlayerController playerController : playingPlayerControllers)
+        for(final PlayerController playerController : playingPlayerControllers)
         {
             lastTurn = boardController.getLastTurn();
 

@@ -24,13 +24,13 @@ public class PresentationBoardTest
             corrections.add(new ArrayList<>());
         }
 
-        for (List<Color> code : codes){
+        for (final List<Color> code : codes){
             code.add(Color.getRandomColor(6));
             code.add(Color.getRandomColor(6));
             code.add(Color.getRandomColor(6));
             code.add(Color.getRandomColor(6));
     }
-        for (List<Color> code : corrections){
+        for (final List<Color> code : corrections){
             code.add(Color.BLACK);
             code.add(Color.WHITE);
             code.add(Color.NONE);

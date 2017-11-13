@@ -39,7 +39,7 @@ public class Game implements DeepCopyable, Serializable
     {
         boolean b = true;
 
-        for(Pair<Player, Role> playerRolePair : playerRolePairs)
+        for(final Pair<Player, Role> playerRolePair : playerRolePairs)
         {
             b = isValidPlayerRolePair(playerRolePair);
             if(!b) break;
