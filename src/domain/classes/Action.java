@@ -10,16 +10,16 @@ public abstract class Action implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
-    public Action()
+    protected Action()
     {
 
     }
 
-    public Action(final Code code) {
+    protected Action(final Code code) {
         this.code = code;
     }
 
-    public Action(final Action action) throws IllegalArgumentException, NullPointerException
+    protected Action(final Action action) throws IllegalArgumentException, NullPointerException
     {
         setCode(action.getCode());
     }

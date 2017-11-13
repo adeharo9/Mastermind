@@ -27,7 +27,7 @@ public class CPUControllerTest extends CPUController
 
         for(final Code code : getSolutions())
         {
-            for (final Color color : code.getPins())
+            for (final Color color : code.getCodePins())
             {
                 ioUtils.printOut(color.getStrId());
                 ioUtils.printOut(" ");

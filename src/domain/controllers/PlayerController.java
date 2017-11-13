@@ -12,25 +12,24 @@ public abstract class PlayerController
 {
     /* ATTRIBUTES */
 
-    protected boolean firstTurn;
+    protected boolean firstTurn = true;
     protected Role role;
     protected Player player;
-    //protected DomainController domainController;
 
     /* CONSTRUCTION METHODS */
 
-    public PlayerController()
+    protected PlayerController()
     {
-        firstTurn = true;
+
     }
 
-    public PlayerController(Role role)
+    protected PlayerController(final Role role)
     {
         firstTurn = true;
         setRole(role);
     }
 
-    public PlayerController(Player player)
+    protected PlayerController(final Player player)
     {
         firstTurn = true;
         setPlayerByReference(player);
@@ -38,11 +37,11 @@ public abstract class PlayerController
 
     /* INSTANTIATION METHODS */
 
-    public abstract Player newPlayer(String id);
+    public abstract Player newPlayer(final String id);
 
     /* SET METHODS */
 
-    public void setRole(Role role) throws IllegalArgumentException
+    public void setRole(final Role role) throws IllegalArgumentException
     {
         boolean b = role != null;
         if(!b) throw new IllegalArgumentException();
@@ -50,7 +49,7 @@ public abstract class PlayerController
         this.role = role;
     }
 
-    public void setPlayerByReference(Player player) throws IllegalArgumentException
+    public void setPlayerByReference(final Player player) throws IllegalArgumentException
     {
         boolean b = player.isValid();
         if(!b) throw new IllegalArgumentException();
@@ -70,11 +69,14 @@ public abstract class PlayerController
         return player;
     }
 
-    public String getId() { return player.getId(); }
+    public String getId()
+    {
+        return player.getId();
+    }
 
     /* OTHER METHODS */
 
-    public final Action play(Turn lastTurn, Code solution, Difficulty difficulty) throws IllegalArgumentException, ReservedKeywordException
+    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
@@ -86,10 +88,7 @@ public abstract class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(new Code(lastTurn.getPins()), solution, difficulty);
-                    /* WARNING: APAÑO
-                    CAMBIAR EL new Code(cosas) POR ALGUNA FUNCIÓN ESPECÍFICA (getSolution() Y TAL)
-                     */
+                    action = codeCorrect(difficulty, lastTurn.getCode(), solution);
                 }
                 break;
             case CODE_BREAKER:
@@ -107,10 +106,10 @@ public abstract class PlayerController
         return action;
     }
 
-    protected abstract Action codeMake(Difficulty difficulty) throws ReservedKeywordException;
+    protected abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException;
 
-    protected abstract Action codeBreak(Difficulty difficulty, Turn lastTurn) throws ReservedKeywordException;
+    protected abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException;
 
-    protected abstract Action codeCorrect(Code code, Code solution, Difficulty difficulty) throws ReservedKeywordException;
+    protected abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
 }
 

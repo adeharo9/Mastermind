@@ -11,7 +11,6 @@ import util.Pair;
 import enums.Role;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameController
 {
@@ -56,7 +55,7 @@ public class GameController
         int modify = game.getBoard().getCurrentTurnNumber();
         newpoints = newpoints + modify * Constants.POINTS_ROUND;
         Turn lt = game.getBoard().getLastTurn();
-        for (int i = 0; i<lt.getCorrection().size();++i)
+        for (int i = 0; i<lt.getCorrectionPins().size(); ++i)
         {
             Color c = lt.getCorrectionAt(i);
             switch (c) {

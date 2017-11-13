@@ -172,12 +172,15 @@ public class DomainController
         {
             lastTurn = boardController.getLastTurn();
 
-            action = playerController.play(lastTurn, code, difficulty);
+            action = playerController.play(difficulty, lastTurn, code);
 
-            boardController.checkAction(action);
-            boardController.addAction(action);
+            if(action != null)
+            {
+                boardController.checkAction(action);
+                boardController.addAction(action);
 
-            printBoard();
+                printBoard();
+            }
         }
     }
 
@@ -199,7 +202,7 @@ public class DomainController
         Code c = boardController.getSolution();
         Color color;
         String name;
-        List<Color> pins = c.getPins();
+        List<Color> pins = c.getCodePins();
 
         switch(type)
         {

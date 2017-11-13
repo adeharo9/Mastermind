@@ -11,7 +11,6 @@ public abstract class Player implements DeepCopyable, Serializable
 
     protected final String id;
 
-
     /* PRIVATE METHODS */
 
     private static boolean isValidId(final String id) throws NullPointerException
@@ -20,22 +19,20 @@ public abstract class Player implements DeepCopyable, Serializable
     }
 
     /* CONSTRUCTION METHODS */
-    public Player ()
+    protected Player ()
     {
         this.id = Utils.autoID();
     }
 
-    public Player(final String id) throws IllegalArgumentException
+    protected Player(final String id) throws IllegalArgumentException
     {
         this.id = id;
     }
 
-    public Player(final Player player) throws IllegalArgumentException, NullPointerException
+    protected Player(final Player player) throws IllegalArgumentException, NullPointerException
     {
         this.id = player.getId();
     }
-
-    /* SET METHODS */
 
     /* GET METHODS */
 
@@ -44,7 +41,7 @@ public abstract class Player implements DeepCopyable, Serializable
         return id;
     }
 
-    /* TESTING METHODS */
+    /* VALIDATION METHODS */
 
     public boolean isValid()
     {

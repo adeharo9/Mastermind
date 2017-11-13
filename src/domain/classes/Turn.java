@@ -1,7 +1,6 @@
 package domain.classes;
 
 import enums.Color;
-import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
@@ -11,7 +10,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    private ArrayList<Color> correction;
+    private ArrayList<Color> correctionPins;
 
     /* CONSTRUCTION METHODS */
 
@@ -19,53 +18,58 @@ public class Turn extends Code implements DeepCopyable, Serializable
     public Turn(final int n) throws IllegalArgumentException
     {
         super(n);
-        correction = new ArrayList<>(n);
-    }
-
-    public Turn(final Difficulty difficulty)
-    {
-        super(difficulty);
-        correction = new ArrayList<>();
+        correctionPins = new ArrayList<>(n);
     }
 
     public Turn(final Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
+        correctionPins = new ArrayList<>();
     }
 
     public Turn(final Turn turn) throws IllegalArgumentException, NullPointerException
     {
         super(turn);
 
-        setCorrection(turn.getCorrection());
+        setCorrectionPins(turn.getCorrectionPins());
     }
 
     /* SET METHODS */
 
-    public void setCorrection(final List<Color> sPins) throws IllegalArgumentException, NullPointerException
+    public void setCorrectionPins(final List<Color> sPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(sPins);
         if(!b) throw new IllegalArgumentException();
 
-        this.correction = new ArrayList<>(sPins.size());
-        this.correction.addAll(sPins);
+        this.correctionPins = new ArrayList<>(sPins.size());
+        this.correctionPins.addAll(sPins);
     }
 
     public void setCorrection(final Code code) throws IllegalArgumentException
     {
-        setCorrection(code.getPins());
+        setCorrectionPins(code.getCodePins());
     }
 
     /* GET METHODS */
 
-    public final List<Color> getCorrection()
+    public final Code getCode()
     {
-        return correction;
+        return new Code(codePins);
+    }
+
+    public final Code getCorrectionCode()
+    {
+        return new Code(correctionPins);
+    }
+
+    public final List<Color> getCorrectionPins()
+    {
+        return correctionPins;
     }
 
     public final Color getCorrectionAt(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        return correction.get(i);
+        return correctionPins.get(i);
     }
 
     /* CONSULTING METHODS */
@@ -74,10 +78,10 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     public List<Color> toList()
     {
-        List<Color> colorList = new ArrayList<>(pins.size() + correction.size());
+        List<Color> colorList = new ArrayList<>(codePins.size() + correctionPins.size());
 
-        colorList.addAll(pins);
-        colorList.addAll(correction);
+        colorList.addAll(codePins);
+        colorList.addAll(correctionPins);
 
         return colorList;
     }
@@ -93,7 +97,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
     @Deprecated
     public boolean isValid() throws NullPointerException
     {
-        return isValid(correction);
+        return isValid(correctionPins);
     }
 
     /* CLONING METHODS */
