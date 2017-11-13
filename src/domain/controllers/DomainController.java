@@ -174,10 +174,13 @@ public class DomainController
 
             action = playerController.play(difficulty, lastTurn, code);
 
-            boardController.checkAction(action);
-            boardController.addAction(action);
+            if(action != null)
+            {
+                boardController.checkAction(action);
+                boardController.addAction(action);
 
-            printBoard();
+                printBoard();
+            }
         }
     }
 
