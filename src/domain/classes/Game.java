@@ -90,7 +90,7 @@ public class Game implements DeepCopyable, Serializable
     {
         this.id = Utils.autoID();
         setTime();
-        setPoints(0);
+        setPoints(Constants.POINTS_INIT);
 
         board = null;
         playerRolePairs = new ArrayList<>();
@@ -100,7 +100,7 @@ public class Game implements DeepCopyable, Serializable
     {
         this.id = Utils.autoID();
         setTime();
-        setPoints(0);
+        setPoints(Constants.POINTS_INIT);
 
         board = null;
         playerRolePairs = new ArrayList<>();
@@ -111,7 +111,7 @@ public class Game implements DeepCopyable, Serializable
     {
         this.id = id;
         setTime();
-        setPoints(0);
+        setPoints(Constants.POINTS_INIT);
 
         board = new Board(difficulty);
         playerRolePairs = new ArrayList<>();
