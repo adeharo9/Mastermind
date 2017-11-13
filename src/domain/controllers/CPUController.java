@@ -9,11 +9,11 @@ import java.util.*;
 
 public class CPUController extends PlayerController
 {
-    /* CONSTRUCTION METHODS */
-
     private Code currentGuess;
     private HashSet<Code> solutions;
     private HashSet<Code> guesses;
+
+    /* CONSTRUCTION METHODS */
 
     public CPUController()
     {

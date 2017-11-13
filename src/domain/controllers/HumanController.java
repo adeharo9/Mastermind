@@ -12,6 +12,7 @@ public class HumanController extends PlayerController
     /* CONSTRUCTION METHODS */
     private final DomainController domainController;
 
+    @Deprecated
     public HumanController(final DomainController domainController)
     {
         this.domainController = domainController;
@@ -20,7 +21,7 @@ public class HumanController extends PlayerController
 
     public HumanController(final DomainController domainController, final Player player)
     {
-        super((Human) player);
+        super(player);
         this.domainController = domainController;
     }
 

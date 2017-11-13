@@ -18,14 +18,10 @@ public abstract class PlayerController
 
     /* CONSTRUCTION METHODS */
 
+    @Deprecated
     protected PlayerController()
     {
 
-    }
-
-    protected PlayerController(final Role role)
-    {
-        setRole(role);
     }
 
     protected PlayerController(final Player player)
