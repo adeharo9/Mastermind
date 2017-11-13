@@ -12,13 +12,13 @@ public class HumanController extends PlayerController
     /* CONSTRUCTION METHODS */
     private final DomainController domainController;
 
-    public HumanController(DomainController domainController)
+    public HumanController(final DomainController domainController)
     {
         this.domainController = domainController;
         player = new Human();
     }
 
-    public HumanController(DomainController domainController, Player player)
+    public HumanController(final DomainController domainController, final Player player)
     {
         super((Human) player);
         this.domainController = domainController;
@@ -26,13 +26,13 @@ public class HumanController extends PlayerController
 
     /* INSTANTIATION METHODS */
 
-    public Player newPlayer(String id)
+    public Player newPlayer(final String id)
     {
         player = new Human(id);
         return player;
     }
 
-    public Player newPlayer(String id, String password)
+    public Player newPlayer(final String id, final String password)
     {
         player = new Human(id, password);
         return player;
@@ -40,7 +40,7 @@ public class HumanController extends PlayerController
 
     /* OTHER METHODS */
 
-    protected Action codeMake(Difficulty difficulty) throws ReservedKeywordException
+    protected Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
         List<Color> colorList = domainController.codeInputByUser(difficulty);
         Code code = new Code(colorList);
@@ -48,7 +48,7 @@ public class HumanController extends PlayerController
         return new CodeMake(code);
     }
 
-    protected Action codeBreak(Difficulty difficulty, Turn lastTurn) throws ReservedKeywordException
+    protected Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException
     {
         List<Color> colorList = domainController.codeInputByUser(difficulty);
         Code code = new Code(colorList);
@@ -56,7 +56,7 @@ public class HumanController extends PlayerController
         return new CodeBreak(code);
     }
 
-    protected Action codeCorrect(Code c, Code s, Difficulty difficulty) throws ReservedKeywordException
+    protected Action codeCorrect(final Code c, final Code s, final Difficulty difficulty) throws ReservedKeywordException
     {
         List<Color> colorList = domainController.correctionInputByUser(difficulty);
         Code code = new Code(colorList);
@@ -64,7 +64,7 @@ public class HumanController extends PlayerController
         return new CodeCorrect(code);
     }
 
-    public boolean checkPassword(String password)
+    public boolean checkPassword(final String password)
     {
         return ((Human) player).checkPassword(password);
     }

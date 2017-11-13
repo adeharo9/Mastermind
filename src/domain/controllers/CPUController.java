@@ -23,14 +23,14 @@ public class CPUController extends PlayerController
         player = new CPU();
     }
 
-    public CPUController(Player player)
+    public CPUController(final Player player)
     {
         super(player);
     }
 
     /* INSTANTIATION METHODS */
 
-    public Player newPlayer(String id)
+    public Player newPlayer(final String id)
     {
         player = new CPU(id);
         return player;
@@ -38,7 +38,7 @@ public class CPUController extends PlayerController
 
     /* OTHER METHODS */
 
-    protected Action codeMake(Difficulty difficulty)
+    protected Action codeMake(final Difficulty difficulty)
     {
         Color color;
         ArrayList<Color> code = new ArrayList<>();
@@ -68,7 +68,7 @@ public class CPUController extends PlayerController
         return new CodeMake(solution);
     }
 
-    protected Code getCodeBreak(Difficulty difficulty, Turn lastTurn)
+    protected Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn)
     {
         int coincidences;
         int minCoincidences;
@@ -90,7 +90,7 @@ public class CPUController extends PlayerController
             Code lastCorrection = new Code(lastTurn.getCorrection());
             solutions.remove(currentGuess);
 
-            for(Iterator<Code> codeIterator = solutions.iterator(); codeIterator.hasNext();)
+            for(final Iterator<Code> codeIterator = solutions.iterator(); codeIterator.hasNext();)
             {
                 Code solution = codeIterator.next();
 
@@ -130,16 +130,6 @@ public class CPUController extends PlayerController
                     }
                 }
 
-                /*maxCoincidences = 0;
-
-                for(final Map.Entry<Code, Integer> entry : coincidencesByCorrection.entrySet())
-                {
-                    if(entry.getValue() > maxCoincidences)
-                    {
-                        maxCoincidences = entry.getValue();
-                    }
-                }*/
-
                 maxNotEliminatedByGuess.put(guess, maxCoincidences);
 
                 if(maxCoincidences < minCoincidences)
@@ -173,13 +163,13 @@ public class CPUController extends PlayerController
         return currentGuess;
     }
 
-    protected Action codeBreak(Difficulty difficulty, Turn lastTurn)
+    protected Action codeBreak(final Difficulty difficulty, final Turn lastTurn)
     {
         Code proposedSolutionByCPU = getCodeBreak(difficulty, lastTurn);
         return new CodeBreak(proposedSolutionByCPU);
     }
 
-    private <T extends Collection<Color>> void permute(int currDepth, final int maxDepth, final T elementSet, ArrayList<Color> aux)
+    private <T extends Collection<Color>> void permute(final int currDepth, final int maxDepth, final T elementSet, ArrayList<Color> aux)
     {
         if(currDepth >= maxDepth)
         {
@@ -198,7 +188,7 @@ public class CPUController extends PlayerController
         }
     }
 
-    protected void generatePermutations(Difficulty difficulty)
+    protected void generatePermutations(final Difficulty difficulty)
     {
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
         Collection<Color> colorCollection = Color.getValues(difficulty);
@@ -245,11 +235,6 @@ public class CPUController extends PlayerController
             }
         }
 
-        /*if(difficulty != Difficulty.EASY)
-        {
-            Collections.shuffle(pins);
-        }*/
-
         for(int i = pins.size(); i < size; ++i)
         {
             pins.add(Color.NONE);
@@ -258,7 +243,7 @@ public class CPUController extends PlayerController
         return new Code(pins);
     }
 
-    protected Action codeCorrect(Code code, Code solution, Difficulty difficulty)
+    protected Action codeCorrect(final Code code, final Code solution, final Difficulty difficulty)
     {
         Code correction = getCodeCorrect(code, solution, difficulty);
         return new CodeCorrect(correction);
