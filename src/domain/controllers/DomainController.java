@@ -172,7 +172,7 @@ public class DomainController
         {
             lastTurn = boardController.getLastTurn();
 
-            action = playerController.play(lastTurn, code, difficulty);
+            action = playerController.play(difficulty, lastTurn, code);
 
             boardController.checkAction(action);
             boardController.addAction(action);

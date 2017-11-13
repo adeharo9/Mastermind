@@ -94,7 +94,7 @@ public class CPUController extends PlayerController
             {
                 Code solution = codeIterator.next();
 
-                correction = getCodeCorrect(solution, currentGuess, difficulty);
+                correction = getCodeCorrect(difficulty, solution, currentGuess);
 
                 if(!correction.equals(lastCorrection))
                 {
@@ -111,7 +111,7 @@ public class CPUController extends PlayerController
 
                 for (final Code solution : solutions)
                 {
-                    correction = getCodeCorrect(solution, guess, difficulty);
+                    correction = getCodeCorrect(difficulty, solution, guess);
 
                     if (coincidencesByCorrection.containsKey(correction))
                     {
@@ -196,7 +196,7 @@ public class CPUController extends PlayerController
         permute(0, numPins, colorCollection, new ArrayList<>());
     }
 
-    protected Code getCodeCorrect(final Code code, final Code solution, final Difficulty difficulty)
+    protected Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
         int size = code.size();
 
@@ -243,9 +243,9 @@ public class CPUController extends PlayerController
         return new Code(pins);
     }
 
-    protected Action codeCorrect(final Code code, final Code solution, final Difficulty difficulty)
+    protected Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
-        Code correction = getCodeCorrect(code, solution, difficulty);
+        Code correction = getCodeCorrect(difficulty, code, solution);
         return new CodeCorrect(correction);
     }
 

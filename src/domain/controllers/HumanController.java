@@ -56,7 +56,7 @@ public class HumanController extends PlayerController
         return new CodeBreak(code);
     }
 
-    protected Action codeCorrect(final Code c, final Code s, final Difficulty difficulty) throws ReservedKeywordException
+    protected Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException
     {
         List<Color> colorList = domainController.correctionInputByUser(difficulty);
         Code code = new Code(colorList);

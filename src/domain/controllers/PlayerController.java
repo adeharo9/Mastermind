@@ -77,7 +77,7 @@ public abstract class PlayerController
 
     /* OTHER METHODS */
 
-    public final Action play(final Turn lastTurn, final Code solution, final Difficulty difficulty) throws IllegalArgumentException, ReservedKeywordException
+    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
@@ -89,7 +89,7 @@ public abstract class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(lastTurn.getCode(), solution, difficulty);
+                    action = codeCorrect(difficulty, lastTurn.getCode(), solution);
                 }
                 break;
             case CODE_BREAKER:
@@ -111,6 +111,6 @@ public abstract class PlayerController
 
     protected abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException;
 
-    protected abstract Action codeCorrect(final Code code, final Code solution, final Difficulty difficulty) throws ReservedKeywordException;
+    protected abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
 }
 
