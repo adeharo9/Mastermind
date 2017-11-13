@@ -16,9 +16,9 @@ public class PresentationController
 {
     /* ATTRIBUTES */
 
-    List<Color> solution;
-    List<List<Color>> codes = new ArrayList<>();
-    List<List<Color>> corrections = new ArrayList<>();
+    private List<Color> solution;
+    private List<List<Color>> codes = new ArrayList<>();
+    private List<List<Color>> corrections = new ArrayList<>();
 
     /* PRIVATE METHODS */
 
@@ -55,14 +55,12 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Error while loading " + loadedElement);
-        ioUtils.endLine();
     }
 
     private void genericSaveError(String savedElement)
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Error while saving " + savedElement);
-        ioUtils.endLine();
     }
 
     /* CONSTRUCTION METHODS */
@@ -303,7 +301,7 @@ public class PresentationController
 
         for(int i = codes.size() - 1; i > 0; --i)
         {
-            ioUtils.printOut (" ");
+            ioUtils.printOut ("║");
 
             for(int j = 0; j < codes.get(i).size(); ++j)
             {
@@ -311,7 +309,7 @@ public class PresentationController
                 ioUtils.printOut(codes.get(i).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
-            ioUtils.printOut(" ");
+            ioUtils.printOut("║");
 
             if(i < corrections.size())
             {
@@ -320,7 +318,7 @@ public class PresentationController
                     ioUtils.printOut(corrections.get(i).get(j).getStrId());
                     ioUtils.printOut(" ");
                 }
-                ioUtils.printOut(" ");
+                ioUtils.printOut("║");
             }
             ioUtils.endLine();
 
@@ -333,7 +331,8 @@ public class PresentationController
                 ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
             }
         }
-        ioUtils.printOut (" ");
+
+        ioUtils.printOut ("║");
 
         for(int j = 0; j < codes.get(0).size(); ++j)
         {
@@ -341,32 +340,33 @@ public class PresentationController
             ioUtils.printOut(codes.get(0).get(j).getStrId());
             ioUtils.printOut(" ");
         }
+        ioUtils.printOut ("║");
 
         if(0 < corrections.size())
         {
-            ioUtils.printOut (" ");
             for(int j = 0; j < corrections.get(0).size(); ++j)
             {
                 ioUtils.printOut(" ");
                 ioUtils.printOut(corrections.get(0).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
+            ioUtils.printOut ("║");
         }
         ioUtils.endLine();
 
         if(codes.get(0).size() == 4)
         {
-            ioUtils.printOutLn ("╚═════════════════════════════╝");
+            ioUtils.printOutLn ("╚══════════════╩══════════════╝");
         }
         else if(codes.get(0).size() == 6)
         {
-            ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
+            ioUtils.printOutLn ("╚═════════════════════╩═════════════════════╝");
         }
     }
 
     private void printSolution()
     {
-        ioUtils.printOut (" ");
+        ioUtils.printOut ("║");
 
         for(int j = 0; j < solution.size(); ++j)
         {
@@ -375,7 +375,7 @@ public class PresentationController
             ioUtils.printOut(" ");
         }
 
-        ioUtils.printOut(" ");
+        ioUtils.printOut("║");
         ioUtils.endLine();
 
         if(solution.size()==4)
@@ -417,7 +417,7 @@ public class PresentationController
         }
     }
 
-    public int loadGameMenu(ArrayList<String> savedGames) throws NumberFormatException
+    public int loadGameMenu(List<String> savedGames) throws NumberFormatException
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Currently saved games:");
@@ -463,7 +463,7 @@ public class PresentationController
     public String setGameName()
     {
         ioUtils.endLine();
-        ioUtils.printOutLn ("Enter a name for the game:");
+        ioUtils.printOutLn ("Enter a name for the game: ");
         return ioUtils.input();
     }
 
@@ -504,6 +504,12 @@ public class PresentationController
         ioUtils.printOutLn("Username is already used");
     }
 
+    public void savedGamesListNotExistError()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("There are no saved games for this player.");
+    }
+
     public void savedGamesListLoadError()
     {
         genericLoadError("saved games list");
@@ -528,9 +534,4 @@ public class PresentationController
     {
         genericSaveError("player");
     }
-
-    /* TESTING METHODS */
-
-    /* CLONING METHODS */
-
 }

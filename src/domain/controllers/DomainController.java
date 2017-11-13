@@ -12,6 +12,7 @@ import persistence.PlayerPersistence;
 import presentation.controllers.PresentationController;
 import util.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.file.FileAlreadyExistsException;
@@ -101,6 +102,8 @@ public class DomainController
                 playerController2 = new CPUController();
 
                 playerController1.newPlayer(Utils.autoID());
+
+                loggedPlayerController.setRole(Role.WATCHER);
                 break;
 
             default:
@@ -112,11 +115,25 @@ public class DomainController
         playerController1.setRole(role);
         playerController2.setRole(Role.complementaryRole(role));
 
-        playingPlayerControllers.add(playerController1);
-        playingPlayerControllers.add(playerController2);
+        switch (role)
+        {
+            case CODE_MAKER:
+                playingPlayerControllers.add(playerController1);
+                playingPlayerControllers.add(playerController2);
 
-        playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
-        playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
+                playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
+                playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
+                break;
+            case CODE_BREAKER:
+                playingPlayerControllers.add(playerController2);
+                playingPlayerControllers.add(playerController1);
+
+                playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
+                playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
 
         Board board = boardController.newBoard(difficulty);
 
@@ -134,6 +151,7 @@ public class DomainController
         Game game = gamePersistence.load(id);
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
+        playingPlayerControllers.clear();
 
         ArrayList<Pair<Player, Role>> playerRolePairs = game.getPlayerRolePairs();
         Player loggedPlayer = loggedPlayerController.getPlayer();
@@ -147,6 +165,7 @@ public class DomainController
             {
                 playerRolePair.first = loggedPlayer;
             }
+            // PERSISTENCIA DE CONTROLADORES
         }
     }
 
@@ -180,15 +199,10 @@ public class DomainController
                 boardController.checkAction(action);
                 boardController.addAction(action);
 
-                printBoard();
+                printBoard(playerController.getRole());
             }
         }
     }
-
-    /*private void processAction(Action action)
-    {
-
-    }*/
 
     private boolean checkTurn(Turn turn)
     {
@@ -263,7 +277,7 @@ public class DomainController
         return colorList;
     }
 
-    private void printBoard()
+    private void printBoard(Role role)
     {
         Turn lastTurn = boardController.getLastTurn();
 
@@ -287,7 +301,7 @@ public class DomainController
             }
         }
 
-        presentationController.printBoard(loggedPlayerController.getRole());
+        presentationController.printBoard(role);
     }
 
     /* MAIN STATE MACHINE */
@@ -327,14 +341,6 @@ public class DomainController
 
                     state = Translate.booleanModeToStateCheckTurnNumber(finished, mode);
 
-                    /*if(finished)
-                    {
-                        state = State.GAME_OVER_MENU;
-                    }
-                    else
-                    {
-                        state = State.IN_GAME_MENU;
-                    }*/
                     break;
 
                 case CLOSE_PROGRAM:
@@ -494,6 +500,11 @@ public class DomainController
                         loadSavedGamesList();
                         state = State.LOAD_GAME_MENU;
                     }
+                    catch (FileNotFoundException e)
+                    {
+                        presentationController.savedGamesListNotExistError();
+                        state = State.MAIN_GAME_MENU;
+                    }
                     catch (IOException e)
                     {
                         presentationController.savedGamesListLoadError();
@@ -520,7 +531,8 @@ public class DomainController
                         userInfo = presentationController.logInMenu();
                         state = State.LOG_IN_USER;
                     }
-                    catch (ReservedKeywordException e){
+                    catch (ReservedKeywordException e)
+                    {
                         state = State.INIT_SESSION_MENU;
                     }
 
@@ -565,6 +577,11 @@ public class DomainController
                     {
                         state = State.IN_GAME_MENU;
                     }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                        state = State.IN_GAME_MENU;
+                    }
                     break;
 
                 case REGISTER_USER:
@@ -576,16 +593,18 @@ public class DomainController
                     catch(IOException e)
                     {
                         presentationController.registerError();
-                        state = State.REGISTER_USER_MENU;
+                        state = State.INIT_SESSION_MENU;
                     }
                     break;
 
                 case REGISTER_USER_MENU:
-                    try{
+                    try
+                    {
                         userInfo = presentationController.registerMenu();
                         state = State.REGISTER_USER;
                     }
-                    catch(ReservedKeywordException e){
+                    catch(ReservedKeywordException e)
+                    {
                         state = State.INIT_SESSION_MENU;
                     }
 
