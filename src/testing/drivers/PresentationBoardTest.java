@@ -41,7 +41,7 @@ public class PresentationBoardTest
         code1.add(Color.getRandomColor(6));
         code1.add(Color.getRandomColor(6));
 
-        presentationController.printBoard(codes,corrections);
-        presentationController.printCode(code1);
+        //presentationController.printBoard(codes,corrections);
+        //presentationController.printCode(code1);
     }
 }

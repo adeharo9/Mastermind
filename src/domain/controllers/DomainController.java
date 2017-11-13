@@ -265,15 +265,29 @@ public class DomainController
 
     private void printBoard()
     {
-        List<Turn> turnSet = boardController.getTurnSet();
-        List<List<Color>> codeList = new ArrayList<>(turnSet.size());
-        List<List<Color>> correctionList = new ArrayList<>(turnSet.size());
-        for(final Turn turn : turnSet)
+        Turn lastTurn = boardController.getLastTurn();
+
+        if(lastTurn == null)
         {
-            codeList.add(turn.toList());
+            Code solution = boardController.getSolution();
+            presentationController.setSolution(solution.getCodePins());
+        }
+        else
+        {
+            Code code = lastTurn.getCode();
+            Code correction = lastTurn.getCorrectionCode();
+
+            if(correction.getCodePins().isEmpty())
+            {
+                presentationController.addCode(code.getCodePins());
+            }
+            else
+            {
+                presentationController.addCorrection(correction.getCodePins());
+            }
         }
 
-        presentationController.printBoard(codeList, correctionList);
+        presentationController.printBoard(loggedPlayerController.getRole());
     }
 
     /* MAIN STATE MACHINE */
