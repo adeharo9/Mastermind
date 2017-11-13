@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import enums.Color;
 import enums.Difficulty;
+import enums.Role;
 import exceptions.ReservedKeywordException;
 import util.Constants;
 import util.Pair;
@@ -14,6 +15,10 @@ import java.util.Set;
 public class PresentationController
 {
     /* ATTRIBUTES */
+
+    List<Color> solution;
+    List<List<Color>> codes = new ArrayList<>();
+    List<List<Color>> corrections = new ArrayList<>();
 
     /* PRIVATE METHODS */
 
@@ -237,6 +242,7 @@ public class PresentationController
         {
             ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
         }
+
         ioUtils.endLine();
 
         ioUtils.printOutLn("Write your code here(or 0 to pause):");
@@ -254,7 +260,35 @@ public class PresentationController
         return code;
     }
 
-    public void printBoard(List<List<Color>> codes, List<List<Color>> corrections)
+    public void setSolution(List<Color> solution)
+    {
+        this.solution = solution;
+    }
+
+    public void addCode(List<Color> code)
+    {
+        this.codes.add(code);
+    }
+
+    public void addCorrection(List<Color> correction)
+    {
+        this.corrections.add(correction);
+    }
+
+    public void printBoard(Role role)
+    {
+        if(!codes.isEmpty())
+        {
+            printCodes();
+        }
+
+        if((role == Role.CODE_MAKER || role == Role.WATCHER) && !solution.isEmpty())
+        {
+            printSolution();
+        }
+    }
+
+    private void printCodes()
     {
         ioUtils.endLine();
 
@@ -267,50 +301,54 @@ public class PresentationController
             ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
         }
 
-        for(int i = 0; i < codes.size()-1; ++i)
+        for(int i = codes.size() - 1; i > 0; --i)
         {
             ioUtils.printOut (" ");
 
-            for(int j = 0; j < codes.get(0).size(); ++j)
+            for(int j = 0; j < codes.get(i).size(); ++j)
             {
                 ioUtils.printOut(" ");
                 ioUtils.printOut(codes.get(i).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
             ioUtils.printOut(" ");
-            for(int j = 0; j < corrections.get(0).size(); ++j)
+
+            if(i < corrections.size())
             {
-                ioUtils.printOut(" ");
-                ioUtils.printOut(corrections.get(i).get(j).getStrId());
+                for (int j = 0; j < corrections.get(i).size(); ++j) {
+                    ioUtils.printOut(" ");
+                    ioUtils.printOut(corrections.get(i).get(j).getStrId());
+                    ioUtils.printOut(" ");
+                }
                 ioUtils.printOut(" ");
             }
-
-            ioUtils.printOut(" ");
             ioUtils.endLine();
 
-                if(codes.get(0).size() == 4)
-                {
-                    ioUtils.printOutLn ("╠══════════════╬══════════════╣");
-                }
-                else if(codes.get(0).size()==6)
-                {
-                    ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
-                }
-
+            if(codes.get(i).size() == 4)
+            {
+                ioUtils.printOutLn ("╠══════════════╬══════════════╣");
+            }
+            else if(codes.get(i).size()==6)
+            {
+                ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
+            }
         }
         ioUtils.printOut (" ");
+
         for(int j = 0; j < codes.get(0).size(); ++j)
         {
             ioUtils.printOut(" ");
-            ioUtils.printOut(codes.get(codes.size()-1).get(j).getStrId());
+            ioUtils.printOut(codes.get(0).get(j).getStrId());
             ioUtils.printOut(" ");
         }
-        if(codes.size()==corrections.size()){
+
+        if(0 < corrections.size())
+        {
             ioUtils.printOut (" ");
             for(int j = 0; j < corrections.get(0).size(); ++j)
             {
                 ioUtils.printOut(" ");
-                ioUtils.printOut(codes.get(corrections.size()-1).get(j).getStrId());
+                ioUtils.printOut(corrections.get(0).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
         }
@@ -326,18 +364,28 @@ public class PresentationController
         }
     }
 
-    public void printCode(List<Color> code)
+    private void printSolution()
     {
         ioUtils.printOut (" ");
-        for(int j=0;j<code.size();++j) {
+
+        for(int j = 0; j < solution.size(); ++j)
+        {
             ioUtils.printOut(" ");
-            ioUtils.printOut(code.get(j).getStrId());
+            ioUtils.printOut(solution.get(j).getStrId());
             ioUtils.printOut(" ");
         }
+
         ioUtils.printOut(" ");
         ioUtils.endLine();
-        if(code.size()==4) ioUtils.printOutLn ("╚══════════════╝");
-        else if(code.size()==6)ioUtils.printOutLn ("╚═════════════════════╝");
+
+        if(solution.size()==4)
+        {
+            ioUtils.printOutLn ("╚══════════════╝");
+        }
+        else if(solution.size()==6)
+        {
+            ioUtils.printOutLn ("╚═════════════════════╝");
+        }
     }
 
     public int pauseMenu() throws NumberFormatException

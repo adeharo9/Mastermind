@@ -57,14 +57,14 @@ public class BoardController
         return board;
     }
 
-    public Code getSolution()
-    {
-        return board.getSolution();
-    }
-
     public Difficulty getDifficulty()
     {
         return board.getDifficulty();
+    }
+
+    public Code getSolution()
+    {
+        return board.getSolution();
     }
 
     public List<Turn> getTurnSet()
