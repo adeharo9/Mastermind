@@ -15,10 +15,6 @@ public class PresentationController
 {
     /* ATTRIBUTES */
 
-    private List<Color> code;
-    private List<List<Color>> pinSet;
-    private List<List<Color>> correctionSet;
-
     /* PRIVATE METHODS */
 
     private Pair<String, String> getInfoUser() throws ReservedKeywordException
@@ -68,8 +64,7 @@ public class PresentationController
     
     public PresentationController()
     {
-        code = new ArrayList<>();
-        pinSet = new ArrayList<>();
+
     }
 
     /* METHODS */
@@ -259,87 +254,84 @@ public class PresentationController
         return code;
     }
 
-    public void addTurn(List<Color> turn)
-    {
-        pinSet.add(turn);
-    }
-
-    public void printBoard(List<List<Color>> colorList)
-    {
-        if(!code.isEmpty())
-        {
-            printCode();
-        }
-
-        if(!colorList.isEmpty())
-        {
-            printTurnSet(colorList);
-        }
-    }
-
-    private void printCode()
-    {
-
-    }
-
-    private void printTurnSet(List<List<Color>> turnSet)
+    public void printBoard(List<List<Color>> codes, List<List<Color>> corrections)
     {
         ioUtils.endLine();
 
-        if(turnSet.get(0).size() == 8)
+        if(codes.get(0).size() == 4)
         {
             ioUtils.printOutLn ("╔══════════════╦══════════════╗");
         }
-        else if(turnSet.get(0).size() == 12)
+        else if(codes.get(0).size() == 6)
         {
             ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
         }
 
-        for(int i = 0; i < turnSet.size(); ++i)
+        for(int i = 0; i < codes.size()-1; ++i)
         {
             ioUtils.printOut (" ");
 
-            for(int j = 0; j < turnSet.get(0).size(); ++j)
+            for(int j = 0; j < codes.get(0).size(); ++j)
             {
                 ioUtils.printOut(" ");
-                ioUtils.printOut(turnSet.get(i).get(j).getStrId());
+                ioUtils.printOut(codes.get(i).get(j).getStrId());
+                ioUtils.printOut(" ");
+            }
+            ioUtils.printOut(" ");
+            for(int j = 0; j < corrections.get(0).size(); ++j)
+            {
+                ioUtils.printOut(" ");
+                ioUtils.printOut(corrections.get(i).get(j).getStrId());
                 ioUtils.printOut(" ");
             }
 
             ioUtils.printOut(" ");
             ioUtils.endLine();
 
-            if((i + 1) == turnSet.size())
-            {
-                if(turnSet.get(0).size() == 8)
-                {
-                    ioUtils.printOutLn ("╚═════════════════════════════╝");
-                }
-                else if(turnSet.get(0).size() == 12)
-                {
-                    ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
-                }
-            }
-            else
-            {
-                if(turnSet.get(0).size() == 8)
+                if(codes.get(0).size() == 4)
                 {
                     ioUtils.printOutLn ("╠══════════════╬══════════════╣");
                 }
-                else if(turnSet.get(0).size()==12)
+                else if(codes.get(0).size()==6)
                 {
                     ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
                 }
+
+        }
+        ioUtils.printOut (" ");
+        for(int j = 0; j < codes.get(0).size(); ++j)
+        {
+            ioUtils.printOut(" ");
+            ioUtils.printOut(codes.get(codes.size()-1).get(j).getStrId());
+            ioUtils.printOut(" ");
+        }
+        if(codes.size()==corrections.size()){
+            ioUtils.printOut (" ");
+            for(int j = 0; j < corrections.get(0).size(); ++j)
+            {
+                ioUtils.printOut(" ");
+                ioUtils.printOut(codes.get(corrections.size()-1).get(j).getStrId());
+                ioUtils.printOut(" ");
             }
+        }
+        ioUtils.endLine();
+
+        if(codes.get(0).size() == 4)
+        {
+            ioUtils.printOutLn ("╚═════════════════════════════╝");
+        }
+        else if(codes.get(0).size() == 6)
+        {
+            ioUtils.printOutLn ("╚═══════════════════════════════════════════╝");
         }
     }
 
-    public void printCode(ArrayList<String> code)
+    public void printCode(List<Color> code)
     {
         ioUtils.printOut (" ");
         for(int j=0;j<code.size();++j) {
             ioUtils.printOut(" ");
-            ioUtils.printOut(code.get(j));
+            ioUtils.printOut(code.get(j).getStrId());
             ioUtils.printOut(" ");
         }
         ioUtils.printOut(" ");

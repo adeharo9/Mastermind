@@ -13,6 +13,7 @@ import presentation.controllers.PresentationController;
 import util.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
@@ -266,13 +267,13 @@ public class DomainController
     {
         List<Turn> turnSet = boardController.getTurnSet();
         List<List<Color>> codeList = new ArrayList<>(turnSet.size());
-
+        List<List<Color>> correctionList = new ArrayList<>(turnSet.size());
         for(final Turn turn : turnSet)
         {
             codeList.add(turn.toList());
         }
 
-        presentationController.printBoard(codeList);
+        presentationController.printBoard(codeList, correctionList);
     }
 
     /* MAIN STATE MACHINE */
