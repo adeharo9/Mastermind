@@ -25,13 +25,11 @@ public abstract class PlayerController
 
     protected PlayerController(final Role role)
     {
-        firstTurn = true;
         setRole(role);
     }
 
     protected PlayerController(final Player player)
     {
-        firstTurn = true;
         setPlayerByReference(player);
     }
 
