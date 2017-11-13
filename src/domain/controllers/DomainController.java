@@ -199,7 +199,7 @@ public class DomainController
         Code c = boardController.getSolution();
         Color color;
         String name;
-        List<Color> pins = c.getPins();
+        List<Color> pins = c.getCodePins();
 
         switch(type)
         {

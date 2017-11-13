@@ -1,7 +1,6 @@
 package domain.classes;
 
 import enums.Color;
-import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
@@ -12,7 +11,7 @@ public class Code implements DeepCopyable, Serializable
     /* ATTRIBUTES */
 
     protected final int size;
-    protected ArrayList<Color> pins;
+    protected ArrayList<Color> codePins;
 
     /* CONSTRUCTION METHODS */
 
@@ -23,43 +22,37 @@ public class Code implements DeepCopyable, Serializable
         if(!b) throw new IllegalArgumentException();
 
         this.size = size;
-        pins = new ArrayList<>(size);
+        codePins = new ArrayList<>(size);
     }
 
-    public <C extends List<Color>> Code(final C pins)
+    public <C extends List<Color>> Code(final C codePins)
     {
-        this.size = pins.size();
-        setPins(pins);
-    }
-
-    public Code(final Difficulty difficulty) throws IllegalArgumentException
-    {
-        size = 0;
-        pins = new ArrayList<>();
+        this.size = codePins.size();
+        setCodePins(codePins);
     }
 
     public Code(final Code code) throws IllegalArgumentException, NullPointerException
     {
         size = code.size();
-        setPins(code.getPins());
+        setCodePins(code.getCodePins());
     }
 
     /* SET METHODS */
 
-    public final <C extends  Collection<Color>> void setPins(final C bPins) throws IllegalArgumentException, NullPointerException
+    public final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = Utils.isValidCollection(bPins);
+        boolean b = Utils.isValidCollection(codePins);
         if(!b) throw new IllegalArgumentException();
 
-        this.pins = new ArrayList<>(bPins.size());
-        this.pins.addAll(bPins);
+        this.codePins = new ArrayList<>(codePins.size());
+        this.codePins.addAll(codePins);
     }
 
     /* GET METHODS */
 
-    public final List<Color> getPins()
+    public final List<Color> getCodePins()
     {
-        return pins;
+        return codePins;
     }
 
     /* CONSULTING METHODS */
@@ -68,6 +61,29 @@ public class Code implements DeepCopyable, Serializable
     {
         return size;
     }
+
+    /* MODIFYING METHODS */
+
+    public void clear()
+    {
+        codePins.clear();
+    }
+
+    /* VALIDITY METHODS */
+
+    public boolean isValid()
+    {
+        return codePins != null;
+    }
+
+    /* CLONING METHODS */
+
+    public Code deepCopy() throws IllegalArgumentException, NullPointerException
+    {
+        return new Code(this);
+    }
+
+    /* HASHING METHODS */
 
     @Override
     public boolean equals(final Object o)
@@ -78,35 +94,14 @@ public class Code implements DeepCopyable, Serializable
         final Code code = (Code) o;
 
         if (this.size != code.size) return false;
-        return getPins() != null ? getPins().equals(code.getPins()) : code.getPins() == null;
+        return getCodePins() != null ? getCodePins().equals(code.getCodePins()) : code.getCodePins() == null;
     }
 
     @Override
     public int hashCode()
     {
         int result = size;
-        result = 31 * result + (getPins() != null ? getPins().hashCode() : 0);
+        result = 31 * result + (getCodePins() != null ? getCodePins().hashCode() : 0);
         return result;
-    }
-
-    /* MODIFYING METHODS */
-
-    public void clear()
-    {
-        pins.clear();
-    }
-
-    /* VALIDITY METHODS */
-
-    public boolean isValid()
-    {
-        return pins != null;
-    }
-
-    /* CLONING METHODS */
-
-    public Code deepCopy() throws IllegalArgumentException, NullPointerException
-    {
-        return new Code(this);
     }
 }

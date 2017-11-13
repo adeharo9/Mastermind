@@ -87,7 +87,7 @@ public class CPUController extends PlayerController
         }
         else
         {
-            Code lastCorrection = new Code(lastTurn.getCorrection());
+            Code lastCorrection = new Code(lastTurn.getCorrectionPins());
             solutions.remove(currentGuess);
 
             for(final Iterator<Code> codeIterator = solutions.iterator(); codeIterator.hasNext();)
@@ -205,8 +205,8 @@ public class CPUController extends PlayerController
         ArrayList<Boolean> processed = new ArrayList<>(Collections.nCopies(size, Boolean.FALSE));
 
         List<Color> pins = new ArrayList<>(size);
-        final List<Color> playerProposedSolution = code.getPins();
-        final List<Color> sol = solution.getPins();
+        final List<Color> playerProposedSolution = code.getCodePins();
+        final List<Color> sol = solution.getCodePins();
 
         for(int i = 0; i < size; ++i)
         {

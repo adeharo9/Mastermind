@@ -89,10 +89,7 @@ public abstract class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(new Code(lastTurn.getPins()), solution, difficulty);
-                    /* WARNING: APAÑO
-                    CAMBIAR EL new Code(cosas) POR ALGUNA FUNCIÓN ESPECÍFICA (getSolution() Y TAL)
-                     */
+                    action = codeCorrect(lastTurn.getCode(), solution, difficulty);
                 }
                 break;
             case CODE_BREAKER:
