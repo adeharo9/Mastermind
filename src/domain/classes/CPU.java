@@ -102,8 +102,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         if(firstTurn)
         {
             generatePermutations(difficulty);
-            List<Color> colors = new ArrayList<>(Arrays.asList(Color.RED, Color.RED, Color.GREEN, Color.GREEN));
-            currentGuess = new Code(colors);
+            currentGuess = getInitialGuess(difficulty);
 
             guesses.remove(currentGuess);
         }
@@ -257,6 +256,41 @@ public class CPU extends Player implements DeepCopyable, Serializable
         }
 
         return new Code(pins);
+    }
+
+    private Code getInitialGuess(Difficulty difficulty) throws IllegalArgumentException
+    {
+        Set<Color> colorSet = Color.getValues(difficulty);
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        boolean repetitionPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
+        boolean first = true;
+
+        List<Color> colorList = new ArrayList<>(numPins);
+        Color lastColor = null;
+
+        for(int i = 0; i < numPins; ++i)
+        {
+            Color color = Color.getRandomColor(colorSet);
+
+            if(!repetitionPolicy)
+            {
+                colorSet.remove(color);
+            }
+            else if(first)
+            {
+                lastColor = color;
+                first = false;
+            }
+            else
+            {
+                color = lastColor;
+                first = true;
+            }
+
+            colorList.add(color);
+        }
+
+        return new Code(colorList);
     }
 
     /* TESTING FUNCTIONS*/
