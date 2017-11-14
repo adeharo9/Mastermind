@@ -14,7 +14,6 @@ import util.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,8 @@ public class DomainController
     private BoardController boardController;
     private GameController gameController;
     private PlayerController loggedPlayerController;
-    private ArrayList<PlayerController> playingPlayerControllers;
+    private PlayerController codeMakerController;
+    private PlayerController codeBreakerController;
 
     private GamePersistence gamePersistence;
     private PlayerPersistence playerPersistence;
@@ -45,8 +45,7 @@ public class DomainController
 
         boardController = new BoardController();
         gameController = new GameController();
-        loggedPlayerController = new HumanController(this);
-        playingPlayerControllers = new ArrayList<>();
+        loggedPlayerController = new PlayerController();
 
         gamePersistence = new GamePersistence();
         playerPersistence = new PlayerPersistence();
@@ -58,9 +57,9 @@ public class DomainController
     private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
         Player player = playerPersistence.load(userInfo.first);
-        PlayerController playerController = new HumanController(this, (Human) player);
+        PlayerController playerController = new PlayerController(player);
 
-        boolean b = ((HumanController) playerController).checkPassword(userInfo.second);
+        boolean b = playerController.checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
 
         loggedPlayerController = playerController;
@@ -71,7 +70,7 @@ public class DomainController
         boolean b = playerPersistence.exists(userInfo.first);
         if(b) throw new FileAlreadyExistsException("");
 
-        Player player = ((HumanController)loggedPlayerController).newPlayer(userInfo.first, userInfo.second);
+        Player player = loggedPlayerController.newHuman(userInfo.first, userInfo.second);
 
         playerPersistence.save(player);
     }
@@ -79,7 +78,6 @@ public class DomainController
     private void newGame(Mode mode, Role role, Difficulty difficulty)
     {
         loggedPlayerController.restart();
-        playingPlayerControllers.clear();
         presentationController.clear();
 
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
@@ -91,21 +89,26 @@ public class DomainController
         {
             case HUMAN_VS_HUMAN:
                 playerController1 = loggedPlayerController;
-                playerController2 = new HumanController(this);
+                playerController2 = new PlayerController();
+
+                playerController2.newHuman(Utils.autoID());
                 break;
 
             case HUMAN_VS_CPU:
                 playerController1 = loggedPlayerController;
-                playerController2 = new CPUController();
+                playerController2 = new PlayerController();
+
+                playerController2.newCPU(Utils.autoID());
                 break;
 
             case CPU_VS_CPU:
                 role = Role.autoRole();
 
-                playerController1 = new CPUController();
-                playerController2 = new CPUController();
+                playerController1 = new PlayerController();
+                playerController2 = new PlayerController();
 
-                playerController1.newPlayer(Utils.autoID());
+                playerController1.newCPU(Utils.autoID());
+                playerController2.newCPU(Utils.autoID());
 
                 loggedPlayerController.setRole(Role.WATCHER);
                 break;
@@ -114,23 +117,21 @@ public class DomainController
                 break;
         }
 
-        playerController2.newPlayer(Utils.autoID());
-
         playerController1.setRole(role);
         playerController2.setRole(Role.complementaryRole(role));
 
         switch (role)
         {
             case CODE_MAKER:
-                playingPlayerControllers.add(playerController1);
-                playingPlayerControllers.add(playerController2);
+                codeMakerController = playerController1;
+                codeBreakerController = playerController2;
 
                 playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
                 playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
                 break;
             case CODE_BREAKER:
-                playingPlayerControllers.add(playerController2);
-                playingPlayerControllers.add(playerController1);
+                codeMakerController = playerController2;
+                codeBreakerController = playerController1;
 
                 playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
                 playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
@@ -155,21 +156,40 @@ public class DomainController
         Game game = gamePersistence.load(id);
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
-        playingPlayerControllers.clear();
 
         ArrayList<Pair<Player, Role>> playerRolePairs = game.getPlayerRolePairs();
-        Player loggedPlayer = loggedPlayerController.getPlayer();
-
-        String playerId;
 
         for(final Pair<Player, Role> playerRolePair : playerRolePairs)
         {
-            playerId = playerRolePair.first.getId();
-            if(playerId.equals(loggedPlayer.getId()))
+            PlayerController playerController;
+
+            String playerId = playerRolePair.first.getId();
+
+            if(playerId.equals(loggedPlayerController.getId()))
             {
-                playerRolePair.first = loggedPlayer;
+                playerRolePair.first = loggedPlayerController.getPlayer();
+                playerController = loggedPlayerController;
             }
-            // PERSISTENCIA DE CONTROLADORES
+            else
+            {
+                playerController = new PlayerController(playerRolePair.first);
+            }
+
+            Role role = playerRolePair.second;
+
+            switch (role)
+            {
+                case CODE_MAKER:
+                    codeMakerController = playerController;
+                    break;
+                case CODE_BREAKER:
+                    codeBreakerController = playerController;
+                    break;
+                case WATCHER:
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -192,19 +212,26 @@ public class DomainController
         Code code = boardController.getSolution();
         Difficulty difficulty = boardController.getDifficulty();
 
-        for(final PlayerController playerController : playingPlayerControllers)
+        lastTurn = boardController.getLastTurn();
+
+        action = codeMakerController.play(difficulty, lastTurn, code);
+
+        if(action != null)
         {
-            lastTurn = boardController.getLastTurn();
+            boardController.checkAction(action);
+            boardController.addAction(action);
 
-            action = playerController.play(difficulty, lastTurn, code);
+            printBoard(codeMakerController.getRole());
+        }
 
-            if(action != null)
-            {
-                boardController.checkAction(action);
-                boardController.addAction(action);
+        action = codeBreakerController.play(difficulty, lastTurn, code);
 
-                printBoard(playerController.getRole());
-            }
+        if(action != null)
+        {
+            boardController.checkAction(action);
+            boardController.addAction(action);
+
+            printBoard(codeBreakerController.getRole());
         }
     }
 

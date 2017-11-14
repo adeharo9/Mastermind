@@ -1,6 +1,5 @@
 package domain.classes;
 
-import domain.controllers.HumanController;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;

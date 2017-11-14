@@ -7,6 +7,7 @@ import util.Constants;
 
 import java.util.*;
 
+@Deprecated
 public class CPUController extends PlayerController
 {
 

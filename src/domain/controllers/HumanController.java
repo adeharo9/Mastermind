@@ -7,26 +7,20 @@ import exceptions.ReservedKeywordException;
 
 import java.util.List;
 
+@Deprecated
 public class HumanController extends PlayerController
 {
-    @Deprecated
-    public HumanController(final DomainController domainController)
+    public HumanController()
     {
         player = new Human();
     }
 
-    public HumanController(final DomainController domainController, final Human human)
+    public HumanController(final Human human)
     {
         super(human);
     }
 
     /* INSTANTIATION METHODS */
-
-    public Player newPlayer(final String id)
-    {
-        player = new Human(id);
-        return player;
-    }
 
     public Player newPlayer(final String id, final String password)
     {

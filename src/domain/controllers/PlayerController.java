@@ -1,14 +1,11 @@
 package domain.controllers;
 
-import domain.classes.Action;
-import domain.classes.Turn;
-import domain.classes.Code;
-import domain.classes.Player;
+import domain.classes.*;
 import enums.Difficulty;
 import enums.Role;
 import exceptions.ReservedKeywordException;
 
-public abstract class PlayerController
+public class PlayerController
 {
     /* ATTRIBUTES */
 
@@ -16,20 +13,48 @@ public abstract class PlayerController
 
     /* CONSTRUCTION METHODS */
 
-    @Deprecated
-    protected PlayerController()
+    public PlayerController()
     {
 
     }
 
-    protected PlayerController(final Player player)
+    public PlayerController(final Player player)
     {
         setPlayerByReference(player);
     }
 
+    @Deprecated
+    public PlayerController(final Human human)
+    {
+        setPlayerByReference(human);
+    }
+
+    @Deprecated
+    public PlayerController(final CPU cpu)
+    {
+        setPlayerByReference(cpu);
+    }
+
     /* INSTANTIATION METHODS */
 
-    public abstract Player newPlayer(final String id);
+    //public abstract Player newPlayer(final String id);
+
+    public Player newHuman(final String id)
+    {
+        return newHuman(id, "");
+    }
+
+    public Player newHuman(final String id, final String password)
+    {
+        player = new Human(id, password);
+        return player;
+    }
+
+    public Player newCPU(final String id)
+    {
+        player = new CPU(id);
+        return player;
+    }
 
     /* INSTANCE CONTROL METHODS */
 
@@ -70,7 +95,7 @@ public abstract class PlayerController
         return player.getRole();
     }
 
-    /* OTHER METHODS */
+    /* PLAYING METHODS */
 
     public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution) throws IllegalArgumentException, ReservedKeywordException
     {
@@ -119,6 +144,13 @@ public abstract class PlayerController
     private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException
     {
         return player.codeCorrect(difficulty, code, solution);
+    }
+
+    /* VALIDATION METHODS */
+
+    public boolean checkPassword(final String password)
+    {
+        return player.checkPassword(password);
     }
 }
 

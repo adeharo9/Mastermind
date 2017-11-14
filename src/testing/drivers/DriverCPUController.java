@@ -4,9 +4,10 @@ import domain.classes.Action;
 import domain.classes.CPU;
 import domain.classes.Code;
 import domain.classes.CodeCorrect;
-import domain.controllers.CPUController;
+import domain.controllers.PlayerController;
 import enums.Color;
 import enums.Difficulty;
+import util.Utils;
 import util.ioUtils;
 
 import java.util.ArrayList;
@@ -46,7 +47,9 @@ public class DriverCPUController extends CPU
     {
         ArrayList<Color> proposedSolution = new ArrayList<>();
         ArrayList<Color> solution = new ArrayList<>();
-        CPUController cpuController = new CPUController();
+        PlayerController cpuController = new PlayerController();
+
+        cpuController.newCPU(Utils.autoID());
 
         for(int i = 0; i < 4; ++i) {
             proposedSolution.add(Color.getRandomColor(4));

@@ -18,7 +18,6 @@ public class BoardController
 
     /* CONSTRUCTION METHODS */
 
-    @Deprecated
     public BoardController()
     {
         //this.board = new Board();

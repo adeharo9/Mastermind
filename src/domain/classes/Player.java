@@ -93,6 +93,11 @@ public abstract class Player implements DeepCopyable, Serializable
         return isValidId(id);
     }
 
+    public boolean checkPassword(final String password)
+    {
+        return true;
+    }
+
     /* CLONING METHODS */
 
     public abstract Player deepCopy ();
