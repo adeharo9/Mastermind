@@ -96,7 +96,7 @@ public class CPUController extends PlayerController
 
                 correction = getCodeCorrect(difficulty, solution, currentGuess);
 
-                if(!correction.equals(lastCorrection))
+                if(!correction.unorderedEquals(lastCorrection))
                 {
                     codeIterator.remove();
                 }

@@ -10,29 +10,47 @@ public class Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
+    protected final long unorderedHash;
     protected final int size;
     protected ArrayList<Color> codePins;
+
+    private static long calcUnorderedHash(Collection<Color> code)
+    {
+        int k;
+        int n = code.size();
+        long unorderedHash = 0;
+
+        for(Color color : code)
+        {
+            k = color.getId();
+            unorderedHash += (Math.pow(n, k) - 1) / (n - 1);
+        }
+
+        return unorderedHash;
+    }
 
     /* CONSTRUCTION METHODS */
 
     @Deprecated
-    public Code(final int size) throws IllegalArgumentException
+    /*public Code(final int size) throws IllegalArgumentException
     {
         boolean b = size >= 0;
         if(!b) throw new IllegalArgumentException();
 
         this.size = size;
         codePins = new ArrayList<>(size);
-    }
+    }*/
 
     public <C extends List<Color>> Code(final C codePins)
     {
+        this.unorderedHash = calcUnorderedHash(codePins);
         this.size = codePins.size();
         setCodePins(codePins);
     }
 
     public Code(final Code code) throws IllegalArgumentException, NullPointerException
     {
+        this.unorderedHash = code.unorderedHash;
         size = code.size();
         setCodePins(code.getCodePins());
     }
@@ -84,6 +102,15 @@ public class Code implements DeepCopyable, Serializable
     }
 
     /* HASHING METHODS */
+
+    public boolean unorderedEquals(final Object o)
+    {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Code code = (Code) o;
+
+        return this.unorderedHash == code.unorderedHash;
+    }
 
     @Override
     public boolean equals(final Object o)

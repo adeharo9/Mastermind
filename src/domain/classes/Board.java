@@ -212,7 +212,7 @@ public class Board implements DeepCopyable, Serializable
 
     public boolean finished() throws NullPointerException
     {
-        return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().equals(solution));
+        return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCode().equals(solution));
     }
 
     /* TESTING METHODS */
