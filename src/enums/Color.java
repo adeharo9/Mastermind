@@ -25,6 +25,8 @@ public enum Color
     private final String strId;
     private final String strDescription;
 
+    public static final int SIZE = WHITE.getId() + 1;
+
     private static HashMap<Integer, Color> int2Color = new HashMap<>();
     private static HashMap<String, Color> str2Color = new HashMap<>();
 

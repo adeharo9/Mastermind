@@ -10,9 +10,23 @@ public class Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
+    protected final long orderedHash;
     protected final long unorderedHash;
     protected final int size;
     protected ArrayList<Color> codePins;
+
+    private static long calcOrderedHash(List<Color> code)
+    {
+        int k = Color.SIZE;
+        long orderedHash = 0;
+
+        for(int i = 0; i < code.size(); ++i)
+        {
+            orderedHash += code.get(i).getId() * Math.pow((k), i);
+        }
+
+        return orderedHash;
+    }
 
     private static long calcUnorderedHash(Collection<Color> code)
     {
@@ -31,8 +45,8 @@ public class Code implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
-    @Deprecated
-    /*public Code(final int size) throws IllegalArgumentException
+    /*@Deprecated
+    public Code(final int size) throws IllegalArgumentException
     {
         boolean b = size >= 0;
         if(!b) throw new IllegalArgumentException();
@@ -43,6 +57,7 @@ public class Code implements DeepCopyable, Serializable
 
     public <C extends List<Color>> Code(final C codePins)
     {
+        this.orderedHash = calcOrderedHash(codePins);
         this.unorderedHash = calcUnorderedHash(codePins);
         this.size = codePins.size();
         setCodePins(codePins);
@@ -50,6 +65,7 @@ public class Code implements DeepCopyable, Serializable
 
     public Code(final Code code) throws IllegalArgumentException, NullPointerException
     {
+        this.orderedHash = code.orderedHash;
         this.unorderedHash = code.unorderedHash;
         size = code.size();
         setCodePins(code.getCodePins());
@@ -57,7 +73,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    public final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
+    protected final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = Utils.isValidCollection(codePins);
         if(!b) throw new IllegalArgumentException();
@@ -102,6 +118,15 @@ public class Code implements DeepCopyable, Serializable
     }
 
     /* HASHING METHODS */
+
+    public boolean orderedEquals(final Object o)
+    {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Code code = (Code) o;
+
+        return this.orderedHash == code.orderedHash;
+    }
 
     public boolean unorderedEquals(final Object o)
     {
