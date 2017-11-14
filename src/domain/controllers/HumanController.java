@@ -12,7 +12,7 @@ public class HumanController extends PlayerController
     @Deprecated
     public HumanController(final DomainController domainController)
     {
-        player = new Human(this);
+        player = new Human();
     }
 
     public HumanController(final DomainController domainController, final Human human)
@@ -24,13 +24,13 @@ public class HumanController extends PlayerController
 
     public Player newPlayer(final String id)
     {
-        player = new Human(id, this);
+        player = new Human(id);
         return player;
     }
 
     public Player newPlayer(final String id, final String password)
     {
-        player = new Human(id, password, this);
+        player = new Human(id, password);
         return player;
     }
 

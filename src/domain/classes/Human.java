@@ -26,18 +26,18 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
-    public Human(final HumanController humanController)
+    public Human()
     {
         super();
         this.password = "";
     }
 
-    public Human(final String username, final HumanController humanController) throws IllegalArgumentException
+    public Human(final String username) throws IllegalArgumentException
     {
         super(username);
     }
 
-    public Human(final String username, final String password, final HumanController humanController) throws IllegalArgumentException, NullPointerException
+    public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
     {
         super(username);
 
