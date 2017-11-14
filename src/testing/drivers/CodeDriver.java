@@ -18,16 +18,17 @@ public class CodeDriver
 
     }
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
         CodeDriver codeDriver = new CodeDriver();
 
         codeDriver.exe();
     }
 
-    public void exe()
+    public void exe() throws Exception
     {
         testCodeUnorderedEquals();
+        testCodeOrderedEquals();
     }
 
     private void testCodeUnorderedEquals()
@@ -44,6 +45,8 @@ public class CodeDriver
 
         Collections.shuffle(codeList);
 
+        ioUtils.printOutLn("UNORDERED HASH TESTING");
+
         for(int i = 0; i < n; ++i)
         {
             Code code1 = codeList.get(i);
@@ -58,6 +61,41 @@ public class CodeDriver
                 }
             }
         }
+    }
+
+    private void testCodeOrderedEquals() throws Exception
+    {
+        int n = NUM_TESTS / 2;
+        List<Code> codeList = new ArrayList<>(n);
+
+        for(int i = 0; i < n; ++i)
+        {
+            Code code = randomCode(DIFFICULTY);
+            codeList.add(code);
+            codeList.add(code);
+        }
+
+        Collections.shuffle(codeList);
+
+        ioUtils.printOutLn("ORDERED HASH TESTING");
+
+        for(int i = 0; i < n; ++i)
+        {
+            Code code1 = codeList.get(i);
+            for(int j = i; j < n; ++j)
+            {
+                Code code2 = codeList.get(j);
+                if(code1.orderedEquals(code2))
+                {
+                    printCode(code1);
+                    printCode(code2);
+                    ioUtils.endLine();
+
+                    if(!code1.equals(code2)) throw new Exception("Error on test.");
+                }
+            }
+        }
+        ioUtils.printOutLn("Success!");
     }
 
     private Code randomCode(Difficulty difficulty)
