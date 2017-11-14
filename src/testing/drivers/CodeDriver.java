@@ -11,7 +11,7 @@ import java.util.*;
 public class CodeDriver
 {
     private static final int NUM_TESTS = 1000;
-    private static final Difficulty DIFFICULTY = Difficulty.EASY;
+    private static final Difficulty DIFFICULTY = Difficulty.HARD;
 
     public CodeDriver()
     {
