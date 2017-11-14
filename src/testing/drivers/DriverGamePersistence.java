@@ -5,7 +5,7 @@ import enums.Difficulty;
 import util.Utils;
 import util.ioUtils;
 
-public class GamePersistenceTest
+public class DriverGamePersistence
 {
     private static final String gameID = Utils.autoID();
 
