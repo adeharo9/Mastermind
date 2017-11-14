@@ -13,7 +13,7 @@ public class CodeDriver
     private static final int NUM_TESTS = 1000;
     private static final Difficulty DIFFICULTY = Difficulty.HARD;
 
-    public CodeDriver()
+    private CodeDriver()
     {
 
     }
@@ -25,7 +25,7 @@ public class CodeDriver
         codeDriver.exe();
     }
 
-    public void exe() throws Exception
+    private void exe() throws Exception
     {
         testCodeUnorderedEquals();
         testCodeOrderedEquals();
@@ -98,7 +98,7 @@ public class CodeDriver
         ioUtils.printOutLn("Success!");
     }
 
-    private Code randomCode(Difficulty difficulty)
+    private Code randomCode(final Difficulty difficulty)
     {
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
@@ -120,7 +120,7 @@ public class CodeDriver
     {
         List<Color> colorList = code.getCodePins();
 
-        for(Color color : colorList)
+        for(final Color color : colorList)
         {
             ioUtils.printOut(color.getStrId() + " ");
         }
