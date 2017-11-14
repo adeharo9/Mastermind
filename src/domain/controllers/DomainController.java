@@ -58,7 +58,7 @@ public class DomainController
     private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
     {
         Player player = playerPersistence.load(userInfo.first);
-        PlayerController playerController = new HumanController(this, player);
+        PlayerController playerController = new HumanController(this, (Human) player);
 
         boolean b = ((HumanController) playerController).checkPassword(userInfo.second);
         if (!b) throw new WrongPassword();
@@ -253,32 +253,6 @@ public class DomainController
     }
 
     /* USER INTERACTION METHODS */
-
-    public List<Color> codeInputByUser(Difficulty difficulty) throws ReservedKeywordException
-    {
-        List<String> code = presentationController.readCode(difficulty);
-        List<Color> colorList = new ArrayList<>(code.size());
-
-        for(final String str : code)
-        {
-            colorList.add(Color.getColor(str));
-        }
-
-        return colorList;
-    }
-
-    public List<Color> correctionInputByUser(Difficulty difficulty) throws ReservedKeywordException
-    {
-        List<String> correction = presentationController.readCorrectionCode(difficulty);
-        List<Color> colorList = new ArrayList<>(correction.size());
-
-        for(final String str : correction)
-        {
-            colorList.add(Color.getColor(str));
-        }
-
-        return colorList;
-    }
 
     private void printBoard(Role role)
     {

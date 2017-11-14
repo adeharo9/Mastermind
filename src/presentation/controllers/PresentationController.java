@@ -178,6 +178,7 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
+    /*@Deprecated
     public List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {
         boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
@@ -216,8 +217,9 @@ public class PresentationController
         }
 
         return code;
-    }
+    }*/
 
+    /*@Deprecated
     public List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
@@ -256,7 +258,7 @@ public class PresentationController
         }
 
         return code;
-    }
+    }*/
 
     public void setSolution(List<Color> solution)
     {

@@ -1,6 +1,7 @@
 package testing.drivers;
 
 import domain.classes.Action;
+import domain.classes.CPU;
 import domain.classes.Code;
 import domain.classes.CodeCorrect;
 import domain.controllers.CPUController;
@@ -10,7 +11,7 @@ import util.ioUtils;
 
 import java.util.ArrayList;
 
-public class DriverCPUController extends CPUController
+public class DriverCPUController extends CPU
 {
     public static void main(String args[])
     {

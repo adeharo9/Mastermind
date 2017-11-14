@@ -38,7 +38,7 @@ public class DriverPlayerPersistence {
 
     private boolean savePlayerTest()
     {
-        Player player = new Human("lsd", "1234");
+        Player player = new Human("lsd", "1234", null);
         PlayerPersistence playerPersistence = new PlayerPersistence();
         try
         {

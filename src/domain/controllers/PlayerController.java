@@ -12,8 +12,6 @@ public abstract class PlayerController
 {
     /* ATTRIBUTES */
 
-    protected boolean firstTurn = true;
-    protected Role role;
     protected Player player;
 
     /* CONSTRUCTION METHODS */
@@ -37,18 +35,10 @@ public abstract class PlayerController
 
     public void restart()
     {
-        firstTurn = true;
+        player.restart();
     }
 
     /* SET METHODS */
-
-    public void setRole(final Role role) throws IllegalArgumentException
-    {
-        boolean b = role != null;
-        if(!b) throw new IllegalArgumentException();
-
-        this.role = role;
-    }
 
     public void setPlayerByReference(final Player player) throws IllegalArgumentException
     {
@@ -58,12 +48,12 @@ public abstract class PlayerController
         this.player = player;
     }
 
-    /* GET METHODS */
-
-    public Role getRole()
+    public void setRole(final Role role) throws IllegalArgumentException
     {
-        return role;
+        player.setRole(role);
     }
+
+    /* GET METHODS */
 
     public Player getPlayer()
     {
@@ -75,15 +65,20 @@ public abstract class PlayerController
         return player.getId();
     }
 
+    public Role getRole()
+    {
+        return player.getRole();
+    }
+
     /* OTHER METHODS */
 
     public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
-        switch (role) {
+        switch (player.getRole()) {
             case CODE_MAKER:
-                if(firstTurn)
+                if(player.isFirstTurn())
                 {
                     action = codeMake(difficulty);
                 }
@@ -106,15 +101,24 @@ public abstract class PlayerController
                 throw new IllegalArgumentException();
         }
 
-        firstTurn = false;
+        player.passFirstTurn();
 
         return action;
     }
 
-    protected abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException;
+    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
+    {
+        return player.codeMake(difficulty);
+    }
 
-    protected abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException;
+    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException
+    {
+        return player.codeBreak(difficulty, lastTurn);
+    }
 
-    protected abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
+    private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException
+    {
+        return player.codeCorrect(difficulty, code, solution);
+    }
 }
 
