@@ -21,26 +21,19 @@ public class BoardController
     @Deprecated
     public BoardController()
     {
-        board = new Board();
+        this.board = new Board();
     }
 
     /* INITIALIZATION METHODS */
 
     public Board newBoard(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
     {
-        board = new Board(difficulty);
+        this.board = new Board(difficulty);
 
-        return board;
+        return this.board;
     }
 
     /* SET METHODS */
-
-    public boolean setTurn()
-    {
-        // Check turn validity
-        //Board.setTurn();
-        return true;
-    }
 
     public void setBoardByReference(Board board) throws IllegalArgumentException
     {

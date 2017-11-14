@@ -78,13 +78,14 @@ public class DomainController
 
     private void newGame(Mode mode, Role role, Difficulty difficulty)
     {
+        loggedPlayerController.restart();
+        playingPlayerControllers.clear();
+        presentationController.clear();
+
         ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
 
         PlayerController playerController1 = null;
         PlayerController playerController2 = null;
-
-        loggedPlayerController.restart();
-        playingPlayerControllers.clear();
 
         switch(mode)
         {
@@ -394,7 +395,16 @@ public class DomainController
                 case GAME_OVER_MENU:
                     gameController.pointsEndGame();
                     returnState = presentationController.gameOverMenu();
-                    state = Translate.int2StateGameOverMenu(returnState);
+
+                    try
+                    {
+                        state = Translate.int2StateGameOverMenu(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
+
                     break;
 
                 case GAME_PAUSE_MENU:

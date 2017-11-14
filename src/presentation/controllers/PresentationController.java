@@ -16,7 +16,7 @@ public class PresentationController
 {
     /* ATTRIBUTES */
 
-    private List<Color> solution;
+    private List<Color> solution = new ArrayList<>();
     private List<List<Color>> codes = new ArrayList<>();
     private List<List<Color>> corrections = new ArrayList<>();
 
@@ -178,88 +178,6 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    /*@Deprecated
-    public List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
-    {
-        boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
-        int numColors = Constants.getNumColorsByDifficulty(difficulty);
-        int numPins = Constants.getNumPinsByDifficulty(difficulty);
-
-        Set<Color> colorSet = Color.getValues(difficulty);
-        List<String> code = new ArrayList<>(numPins);
-
-        ioUtils.endLine();
-        ioUtils.printOut("Write a code of " + numPins + (repetitionsPolicy ? " " : " non-repeated ") + "colors using the following letters (Input example:");
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
-        }
-
-        ioUtils.printOutLn("):");
-
-        for(final Color color : colorSet)
-        {
-            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
-        }
-
-        ioUtils.endLine();
-        ioUtils.printOutLn("Write your code here (or 0 to pause):");
-
-        String read;
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            read = ioUtils.input();
-            if (read.equals("0")) throw new ReservedKeywordException();
-
-            code.add(read);
-        }
-
-        return code;
-    }*/
-
-    /*@Deprecated
-    public List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
-    {
-        int numColors = Constants.getNumColorsByDifficulty(difficulty);
-        int numPins = Constants.getNumPinsByDifficulty(difficulty);
-        Set<Color> correctionSet = Color.getCorrectionValues();
-        List<String> code = new ArrayList<>(numPins);
-
-        ioUtils.endLine();
-
-        ioUtils.printOut("Write a " + numPins + "-sized code using the following letters (Input example:");
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
-        }
-
-        ioUtils.printOutLn("):");
-
-        for(final Color color : correctionSet)
-        {
-            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
-        }
-
-        ioUtils.endLine();
-
-        ioUtils.printOutLn("Write your code here(or 0 to pause):");
-
-        String read;
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            read = ioUtils.input();
-            if (read.equals("0")) throw new ReservedKeywordException();
-
-            code.add(read);
-        }
-
-        return code;
-    }*/
-
     public void setSolution(List<Color> solution)
     {
         this.solution = solution;
@@ -273,6 +191,13 @@ public class PresentationController
     public void addCorrection(List<Color> correction)
     {
         this.corrections.add(correction);
+    }
+
+    public void clear()
+    {
+        solution.clear();
+        codes.clear();
+        corrections.clear();
     }
 
     public void printBoard(Role role)
