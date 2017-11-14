@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public abstract class RankingPersistence extends AbstractPersistence
+public class RankingPersistence extends AbstractPersistence
 {
     public RankingPersistence()
     {
@@ -16,7 +16,7 @@ public abstract class RankingPersistence extends AbstractPersistence
 
     public boolean exists(String key)
     {
-        File fileRanking = new File(getDirPath() + RANKING_PATH + "ranking.mm");
+        File fileRanking = new File(getDirPath() + "ranking.mm");
         return fileRanking.exists();
     }
 
