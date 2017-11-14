@@ -33,6 +33,13 @@ public abstract class PlayerController
 
     public abstract Player newPlayer(final String id);
 
+    /* INSTANCE CONTROL METHODS */
+
+    public void restart()
+    {
+        firstTurn = true;
+    }
+
     /* SET METHODS */
 
     public void setRole(final Role role) throws IllegalArgumentException
@@ -82,6 +89,10 @@ public abstract class PlayerController
                 }
                 else
                 {
+                    if(lastTurn == null)
+                    {
+                        int i = 0;
+                    }
                     action = codeCorrect(difficulty, lastTurn.getCode(), solution);
                 }
                 break;
