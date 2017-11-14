@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DriverTurn {
 
-    public static Turn testConstructor(){
+    public Turn testConstructor(){
 
         ArrayList<Color> c1 = new ArrayList<>();
         Code c = new Code(c1);
@@ -20,7 +20,7 @@ public class DriverTurn {
         return t;
     }
 
-    public static void testSet(Turn t){
+    public void testSet(Turn t){
         ArrayList<Color> c1 = new ArrayList<>();
         c1.add(Color.BLACK);
         Code c = new Code(c1);
@@ -28,33 +28,40 @@ public class DriverTurn {
         ioUtils.printOutLn("Set turn OK");
     }
 
-    public static void testGetCode(Turn t){
+    public void testGetCode(Turn t){
         Code c = t.getCode();
         ioUtils.printOutLn("Get code OK");
     }
 
-    public static void testGetCorrection(Turn t){
+    public void testGetCorrection(Turn t){
         Code t1 = t.getCorrectionCode();
         ioUtils.printOutLn("Get correction code OK");
     }
 
-    public static void testGetCorrectionPins(Turn t){
+    public void testGetCorrectionPins(Turn t){
         List<Color> c = t.getCorrectionPins();
         ioUtils.printOutLn("Get corrections pins OK");
     }
 
-    public static void testGetCorrectionPinAt(Turn t){
+    public void testGetCorrectionPinAt(Turn t){
         Color c = t.getCorrectionPinAt(0);
         ioUtils.printOutLn("Get correction color OK");
     }
 
-    public static void main (String args[]){
+    public void exe(){
         Turn t = testConstructor();
         /*testSet(t);*/
         testGetCode(t);
         testGetCorrection(t);
         testGetCorrectionPins(t);
         /*testGetCorrectionPinAt(t);*/
+    }
+
+    public static void main (String args[]){
+
+        DriverTurn dt = new DriverTurn();
+        dt.exe();
+
     }
 
 }

@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class DriverPlayerPersistence {
 
-    protected String id;
-    protected String game;
+    private String id;
+    private String game;
 
     public static void main(String[] args)
     {
