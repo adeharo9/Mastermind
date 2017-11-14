@@ -1,6 +1,7 @@
 package domain.classes;
 
 import enums.Color;
+import enums.Difficulty;
 import util.*;
 
 import java.io.Serializable;
@@ -14,6 +15,21 @@ public class Code implements DeepCopyable, Serializable
     protected final long unorderedHash;
     protected final int size;
     protected ArrayList<Color> codePins;
+
+    public static Code getSolutionCorrection(Difficulty difficulty)
+    {
+        Color color = Color.BLACK;
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+
+        List<Color> colorList = new ArrayList<>(numPins);
+
+        for(int i = 0; i < numPins; ++i)
+        {
+            colorList.add(color);
+        }
+
+        return new Code(colorList);
+    }
 
     private static long calcOrderedHash(List<Color> code)
     {

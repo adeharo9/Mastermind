@@ -10,6 +10,8 @@ public class Board implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
+    private final Code solutionCorrection;
+
     private int nColumns;
     private int maxAttempts;
     private Difficulty difficulty;
@@ -60,6 +62,8 @@ public class Board implements DeepCopyable, Serializable
 
         solution = null;
         turnSet = new ArrayList<>();
+
+        solutionCorrection = Code.getSolutionCorrection(Difficulty.EASY);
     }
 
     public Board(final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
@@ -70,6 +74,8 @@ public class Board implements DeepCopyable, Serializable
 
         solution = null;
         turnSet = new ArrayList<>();
+
+        solutionCorrection = Code.getSolutionCorrection(difficulty);
     }
 
     public Board(final Board board) throws IllegalArgumentException, NullPointerException
@@ -79,6 +85,8 @@ public class Board implements DeepCopyable, Serializable
         setDifficulty(board.getDifficulty());
         setSolution(board.getSolution());
         setTurnSet(board.getTurnSet());
+
+        solutionCorrection = Code.getSolutionCorrection(board.getDifficulty());
     }
 
     /* SET METHODS */
@@ -212,6 +220,7 @@ public class Board implements DeepCopyable, Serializable
 
     public boolean finished() throws NullPointerException
     {
+        //return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCorrectionCode().equals(solutionCorrection));
         return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCode().equals(solution));
     }
 

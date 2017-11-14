@@ -21,7 +21,7 @@ public class BoardController
     @Deprecated
     public BoardController()
     {
-        this.board = new Board();
+        //this.board = new Board();
     }
 
     /* INITIALIZATION METHODS */
