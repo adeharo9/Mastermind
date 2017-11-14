@@ -18,20 +18,20 @@ public class CodeDriver
 
     }
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args) throws RuntimeException
     {
         CodeDriver codeDriver = new CodeDriver();
 
         codeDriver.exe();
     }
 
-    private void exe() throws Exception
+    private void exe() throws RuntimeException
     {
         testCodeUnorderedEquals();
         testCodeOrderedEquals();
     }
 
-    private void testCodeUnorderedEquals()
+    private void testCodeUnorderedEquals() throws RuntimeException
     {
         int n = NUM_TESTS / 2;
         List<Code> codeList = new ArrayList<>(n);
@@ -45,7 +45,7 @@ public class CodeDriver
 
         Collections.shuffle(codeList);
 
-        ioUtils.printOutLn("UNORDERED HASH TESTING");
+        //ioUtils.printOutLn("UNORDERED HASH TESTING");
 
         for(int i = 0; i < n; ++i)
         {
@@ -55,15 +55,21 @@ public class CodeDriver
                 Code code2 = codeList.get(j);
                 if(code1.unorderedEquals(code2))
                 {
-                    printCode(code1);
+                    /*printCode(code1);
                     printCode(code2);
-                    ioUtils.endLine();
+                    ioUtils.endLine();*/
+
+                    if(!areUnorderedEqual(code1, code2))
+                    {
+                        throw new RuntimeException("Error on testCodeUnorderedEquals.");
+                    }
                 }
             }
         }
+        ioUtils.printOutLn("Success on testCodeUnorderedEquals");
     }
 
-    private void testCodeOrderedEquals() throws Exception
+    private void testCodeOrderedEquals() throws RuntimeException
     {
         int n = NUM_TESTS / 2;
         List<Code> codeList = new ArrayList<>(n);
@@ -77,7 +83,7 @@ public class CodeDriver
 
         Collections.shuffle(codeList);
 
-        ioUtils.printOutLn("ORDERED HASH TESTING");
+        //ioUtils.printOutLn("ORDERED HASH TESTING");
 
         for(int i = 0; i < n; ++i)
         {
@@ -87,15 +93,15 @@ public class CodeDriver
                 Code code2 = codeList.get(j);
                 if(code1.orderedEquals(code2))
                 {
-                    printCode(code1);
+                    /*printCode(code1);
                     printCode(code2);
-                    ioUtils.endLine();
+                    ioUtils.endLine();*/
 
-                    if(!code1.equals(code2)) throw new Exception("Error on test.");
+                    if(!code1.equals(code2)) throw new RuntimeException("Error on testCodeOrderedEquals.");
                 }
             }
         }
-        ioUtils.printOutLn("Success!");
+        ioUtils.printOutLn("Success on testCodeOrderedEquals");
     }
 
     private Code randomCode(final Difficulty difficulty)
@@ -125,5 +131,16 @@ public class CodeDriver
             ioUtils.printOut(color.getStrId() + " ");
         }
         ioUtils.endLine();
+    }
+
+    private boolean areUnorderedEqual(Code code1, Code code2)
+    {
+        if(code1 == code2) return true;
+        if(code1 == null || code2 == null || code1.size() != code2.size()) return false;
+
+        Set<Color> colorSet1 = new HashSet<>(code1.getCodePins());
+        Set<Color> colorSet2 = new HashSet<>(code2.getCodePins());
+
+        return colorSet1.size() == colorSet2.size();
     }
 }
