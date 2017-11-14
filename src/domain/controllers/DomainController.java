@@ -83,6 +83,9 @@ public class DomainController
         PlayerController playerController1 = null;
         PlayerController playerController2 = null;
 
+        loggedPlayerController.restart();
+        playingPlayerControllers.clear();
+
         switch(mode)
         {
             case HUMAN_VS_HUMAN:
