@@ -1,5 +1,5 @@
-JFLAGS = -g -d ../bin
-JC = ../../jdk1.8.0_151/bin/javac
+JFLAGS = -d ../bin
+JC = javac
 .SUFFIXES: .java .class
 .java.class:
 	$(JC) $(JFLAGS) $*.java
