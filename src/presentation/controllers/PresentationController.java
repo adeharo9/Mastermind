@@ -438,6 +438,12 @@ public class PresentationController
         ioUtils.printOutLn("There are no saved games for this player.");
     }
 
+    public void gameNotStartedError()
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("The game still has no code");
+    }
+
     public void savedGamesListLoadError()
     {
         genericLoadError("saved games list");

@@ -2,6 +2,7 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
+import exceptions.GameNotStartedException;
 import exceptions.IntegrityCorruptionException;
 import exceptions.ReservedKeywordException;
 import exceptions.WrongPasswordException;
@@ -238,8 +239,11 @@ public class DomainController
         return true;
     }
 
-    private void giveClue() throws IllegalArgumentException
+    private void giveClue() throws IllegalArgumentException, GameNotStartedException
     {
+        boolean b = gameController.hasStarted();
+        if(!b) throw new GameNotStartedException();
+
         int type = ThreadLocalRandom.current().nextInt(1, 3);
         int num = 0;
 
@@ -326,9 +330,19 @@ public class DomainController
             switch(state)
             {
                 case ASK_FOR_CLUE:
-                    giveClue();
-                    gameController.pointsClue();
-                    state = State.IN_GAME_MENU;
+                    try
+                    {
+                        giveClue();
+                        gameController.pointsClue();
+                    }
+                    catch (GameNotStartedException e)
+                    {
+                        presentationController.gameNotStartedError();
+                    }
+                    finally
+                    {
+                        state = State.IN_GAME_MENU;
+                    }
                     break;
 
                 case CHECK_INFO:
