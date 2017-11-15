@@ -64,7 +64,7 @@ public class DriverCPU {
     private void testCodeBreak()
     {
         List<Color> code = new ArrayList<>();
-        Action action = testedCPU.codeBreak(Difficulty.MEDIUM, null);
+        Action action = testedCPU.codeBreak(Difficulty.MEDIUM, null, true);
 
         ioUtils.printOutLn("------------------------------------------------------------------" +
                 "\nNow, we're going to test the algorithm. Solution for the game: ");
@@ -93,7 +93,7 @@ public class DriverCPU {
             Code correction = codeCorrect.getCode();
             lastTurn.setCorrection(correction);
 
-            action = testedCPU.codeBreak(Difficulty.MEDIUM, lastTurn);
+            action = testedCPU.codeBreak(Difficulty.MEDIUM, lastTurn, false);
             code = action.getCode().getCodePins();
             ioUtils.printOutLn("Solution " + Integer.toString(count) + " generate by the algorithm: ");
             for (int i = 0; i < code.size(); ++i) {

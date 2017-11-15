@@ -190,6 +190,28 @@ public class DomainController
                     throw new IllegalArgumentException();
             }
         }
+
+        presentationController.clear();
+        List<Turn> turnSet = boardController.getTurnSet();
+        List<List<Color>> codes = new ArrayList<>(turnSet.size());
+        List<List<Color>> corrections = new ArrayList<>(turnSet.size());
+
+        for(final Turn turn : turnSet)
+        {
+            List<Color> code = turn.getCodePins();
+            List<Color> correction = turn.getCorrectionPins();
+
+            codes.add(code);
+
+            if(!correction.isEmpty())
+            {
+                corrections.add(correction);
+            }
+        }
+
+        presentationController.setSolution(boardController.getSolution().getCodePins());
+        presentationController.setCodes(codes);
+        presentationController.setCorrections(corrections);
     }
 
     private void saveGame() throws IOException
@@ -211,14 +233,15 @@ public class DomainController
         Turn lastTurn = boardController.getLastTurn();
         Difficulty difficulty = boardController.getDifficulty();
 
-        action = playerController.play(difficulty, lastTurn, code);
+        action = playerController.play(difficulty, lastTurn, code, boardController.isFirstTurn());
 
         if(action != null)
         {
             boardController.checkAction(action);
             boardController.addAction(action);
 
-            printBoard(playerController.getRole());
+            updateBoard();
+            //printBoard(playerController.getRole());
         }
     }
 
@@ -278,7 +301,7 @@ public class DomainController
 
     /* USER INTERACTION METHODS */
 
-    private void printBoard(Role role)
+    private void updateBoard()
     {
         Turn lastTurn = boardController.getLastTurn();
 
@@ -301,8 +324,6 @@ public class DomainController
                 presentationController.addCorrection(correction.getCodePins());
             }
         }
-
-        presentationController.printBoard(role);
     }
 
     /* MAIN STATE MACHINE */
@@ -340,6 +361,12 @@ public class DomainController
 
                 case CHECK_GAME_HAS_FINISHED:
                     boolean hasFinished = gameController.hasFinished();
+
+                    if(hasFinished)
+                    {
+                        presentationController.printBoard(Role.CODE_MAKER);
+                    }
+
                     state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished, mode);
 
                     break;
@@ -588,7 +615,10 @@ public class DomainController
                 case PLAY_CODE_BREAKER:
                     try
                     {
+                        presentationController.printBoard(Role.CODE_BREAKER);
+
                         playCodeBreaker();
+
                         state = State.PLAY_CODE_MAKER;
                     }
                     catch (ReservedKeywordException e)
@@ -604,6 +634,8 @@ public class DomainController
                 case PLAY_CODE_MAKER:
                     try
                     {
+                        presentationController.printBoard(Role.CODE_MAKER);
+
                         playCodeMaker();
 
                         state = State.CHECK_GAME_HAS_FINISHED;

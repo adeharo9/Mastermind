@@ -97,27 +97,23 @@ public class PlayerController
 
     /* PLAYING METHODS */
 
-    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution) throws IllegalArgumentException, ReservedKeywordException
+    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution, final boolean isFirstTurn) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
         switch (player.getRole()) {
             case CODE_MAKER:
-                if(player.isFirstTurn())
+                if(isFirstTurn)
                 {
                     action = codeMake(difficulty);
                 }
                 else
                 {
-                    if(lastTurn == null)
-                    {
-                        int i = 0;
-                    }
                     action = codeCorrect(difficulty, lastTurn.getCode(), solution);
                 }
                 break;
             case CODE_BREAKER:
-                action = codeBreak(difficulty, lastTurn);
+                action = codeBreak(difficulty, lastTurn, isFirstTurn);
                 break;
             case WATCHER:
                 action = null;
@@ -125,8 +121,6 @@ public class PlayerController
             default:
                 throw new IllegalArgumentException();
         }
-
-        player.passFirstTurn();
 
         return action;
     }
@@ -136,9 +130,9 @@ public class PlayerController
         return player.codeMake(difficulty);
     }
 
-    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException
+    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
-        return player.codeBreak(difficulty, lastTurn);
+        return player.codeBreak(difficulty, lastTurn, isFirstTurn);
     }
 
     private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException

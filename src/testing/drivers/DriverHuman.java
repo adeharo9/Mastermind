@@ -78,7 +78,7 @@ public class DriverHuman {
 
         try
         {
-            testedHuman.codeBreak(Difficulty.EASY, null);
+            testedHuman.codeBreak(Difficulty.EASY, null, true);
         }
         catch (ReservedKeywordException e)
         {

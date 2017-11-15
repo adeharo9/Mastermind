@@ -93,7 +93,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return new CodeMake(code);
     }
 
-    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn) throws ReservedKeywordException
+    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
         List<Color> colorList = codeInputByUser(difficulty);
         Code code = new Code(colorList);

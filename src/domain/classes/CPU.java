@@ -78,9 +78,9 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeMake(solution);
     }
 
-    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn)
+    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn)
     {
-        Code proposedSolutionByCPU = getCodeBreak(difficulty, lastTurn);
+        Code proposedSolutionByCPU = getCodeBreak(difficulty, lastTurn, isFirstTurn);
         return new CodeBreak(proposedSolutionByCPU);
     }
 
@@ -90,7 +90,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeCorrect(correction);
     }
 
-    private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn)
+    private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn)
     {
         int coincidences;
         int minCoincidences;
@@ -99,7 +99,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         HashMap<Code, Integer> coincidencesByCorrection = new HashMap<>();
         HashMap<Code, Integer> maxNotEliminatedByGuess = new HashMap<>();
 
-        if(firstTurn)
+        if(isFirstTurn)
         {
             generatePermutations(difficulty);
             currentGuess = getInitialGuess(difficulty);

@@ -165,6 +165,16 @@ public class PresentationController
         this.solution = solution;
     }
 
+    public void setCodes(List<List<Color>> codes)
+    {
+        this.codes = codes;
+    }
+
+    public void setCorrections(List<List<Color>> corrections)
+    {
+        this.corrections = corrections;
+    }
+
     public void addCode(List<Color> code)
     {
         this.codes.add(code);
