@@ -340,7 +340,7 @@ public class DomainController
 
                 case CHECK_GAME_HAS_FINISHED:
                     boolean hasFinished = gameController.hasFinished();
-                    state = Translate.booleanModeToStateCheckTurnNumber(hasFinished, mode);
+                    state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished, mode);
 
                     break;
 
