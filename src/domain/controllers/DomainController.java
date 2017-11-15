@@ -254,6 +254,7 @@ public class DomainController
                 num = (int) (Math.random() * c.size());
                 color = pins.get(num);
                 name = String.valueOf(color);
+                ++num;
                 break;
 
             case 2:
@@ -341,7 +342,6 @@ public class DomainController
 
                 case CHECK_TURN_NUMBER:
                     boolean finished = boardController.finished();
-
                     state = Translate.booleanModeToStateCheckTurnNumber(finished, mode);
 
                     break;
@@ -418,8 +418,8 @@ public class DomainController
                     break;
 
                 case GAME_OVER_MENU:
-                    gameController.pointsEndGame();
-                    returnState = presentationController.gameOverMenu();
+                    /*gameController.pointsEndGame();*/
+                    returnState = presentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
 
                     try
                     {
@@ -583,6 +583,7 @@ public class DomainController
                     try
                     {
                         playTurn();
+                        gameController.pointsEndTurn();
                         state = State.CHECK_TURN_NUMBER;
                     }
                     catch (ReservedKeywordException e)

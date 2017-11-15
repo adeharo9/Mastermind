@@ -51,22 +51,21 @@ public class GameController
     {
         int newpoints = game.getPoints();
         int modify = game.getBoard().getCurrentTurnNumber();
-        newpoints = newpoints + modify * Constants.POINTS_ROUND;
-        Turn lt = game.getBoard().getLastTurn();
-        for (int i = 0; i<lt.getCorrectionPins().size(); ++i)
-        {
-            Color c = lt.getCorrectionPinAt(i);
-            switch (c) {
-                case BLACK:
-                    newpoints = newpoints + Constants.POINTS_BLACK;
-                    break;
-                case WHITE:
-                    newpoints = newpoints + Constants.POINTS_WHITE;
-                    break;
-                case NONE:
-                    break;
+            newpoints = newpoints + modify * Constants.POINTS_ROUND;
+            Turn lt = game.getBoard().getLastTurn();
+            for (int i = 0; i < lt.getCorrectionPins().size(); ++i) {
+                Color c = lt.getCorrectionPinAt(i);
+                switch (c) {
+                    case BLACK:
+                        newpoints = newpoints + Constants.POINTS_BLACK;
+                        break;
+                    case WHITE:
+                        newpoints = newpoints + Constants.POINTS_WHITE;
+                        break;
+                    case NONE:
+                        break;
+                }
             }
-        }
         game.setPoints(newpoints);
     }
 
