@@ -404,6 +404,21 @@ public class PresentationController
         return genericWarning("close Mastermind");
     }
 
+    public int savedGameAlreadyExistsWarning() throws NumberFormatException
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("This game already exists. Do you want to overwrite it?");
+
+        ioUtils.endLine();
+        ioUtils.printOutLn("1.- Yes");
+        ioUtils.printOutLn("0.- No");
+
+        ioUtils.endLine();
+        ioUtils.printOut("Select option number: ");
+
+        return Integer.parseInt(ioUtils.input());
+    }
+
     /* ERROR MESSAGES */
 
     public void optionError()

@@ -705,6 +705,34 @@ public class DomainController
                         saveGame();
                         state = State.PLAY_TURN;
                     }
+                    catch (FileAlreadyExistsException e)
+                    {
+                        returnState = presentationController.savedGameAlreadyExistsWarning();
+
+                        try
+                        {
+                            switch (returnState)
+                            {
+                                case 0:
+                                    state = State.GAME_PAUSE_MENU;
+                                    break;
+                                case 1:
+                                    gamePersistence.delete(gameController.getId());
+                                    break;
+                                default:
+                                    throw new IllegalArgumentException();
+                            }
+                        }
+                        catch (IOException io)
+                        {
+                            presentationController.gameSaveError();
+                            state = State.GAME_PAUSE_MENU;
+                        }
+                        catch (IllegalArgumentException il)
+                        {
+                            presentationController.optionError();
+                        }
+                    }
                     catch(IOException e)
                     {
                         presentationController.gameSaveError();
@@ -720,7 +748,31 @@ public class DomainController
                     }
                     catch (FileAlreadyExistsException e)
                     {
-                        ioUtils.printOutLn("Hola");
+                        returnState = presentationController.savedGameAlreadyExistsWarning();
+
+                        try
+                        {
+                            switch (returnState)
+                            {
+                                case 0:
+                                    state = State.GAME_PAUSE_MENU;
+                                    break;
+                                case 1:
+                                    gamePersistence.delete(gameController.getId());
+                                    break;
+                                default:
+                                    throw new IllegalArgumentException();
+                            }
+                        }
+                        catch (IOException io)
+                        {
+                            presentationController.gameSaveError();
+                            state = State.GAME_PAUSE_MENU;
+                        }
+                        catch (IllegalArgumentException il)
+                        {
+                            presentationController.optionError();
+                        }
                     }
                     catch(IOException e)
                     {
