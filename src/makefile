@@ -65,6 +65,9 @@ classes: $(CLASSES:.java=.class)
 clean:
 	$(RM)r ../bin
 	mkdir ../bin
-	
+
+jar:
+	jar cvfe Mastermind.jar Mastermind $(CLASSES:.java=.class)
+
 run:
 	java -cp ../bin Mastermind
