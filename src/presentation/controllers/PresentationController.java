@@ -41,14 +41,6 @@ public class PresentationController
         return password;
     }
 
-    private Pair<String, String> getInfoUser() throws ReservedKeywordException
-    {
-        String username = getUsername();
-        String password = getPassword();
-
-        return new Pair<>(username, password);
-    }
-
     private int genericWarning(String action)
     {
         ioUtils.endLine();
@@ -93,16 +85,6 @@ public class PresentationController
         ioUtils.endLine();
         ioUtils.printOut("Select option number: ");
         return Integer.parseInt(ioUtils.input());
-    }
-
-    public Pair<String, String> logInMenu() throws ReservedKeywordException
-    {
-        return getInfoUser();
-    }
-
-    public Pair<String, String> registerMenu() throws ReservedKeywordException
-    {
-        return getInfoUser();
     }
 
     public int mainGameMenu() throws NumberFormatException
