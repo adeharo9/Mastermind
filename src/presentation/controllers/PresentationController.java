@@ -1,16 +1,13 @@
 package presentation.controllers;
 
 import enums.Color;
-import enums.Difficulty;
 import enums.Role;
 import exceptions.ReservedKeywordException;
-import util.Constants;
 import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class PresentationController
 {
@@ -22,7 +19,7 @@ public class PresentationController
 
     /* PRIVATE METHODS */
 
-    private Pair<String, String> getInfoUser() throws ReservedKeywordException
+    public String getUsername() throws ReservedKeywordException
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Write your username(or 0 to go back): ");
@@ -30,11 +27,24 @@ public class PresentationController
 
         if (username.equals("0")) throw new ReservedKeywordException();
 
+        return username;
+    }
+
+    public String getPassword() throws ReservedKeywordException
+    {
         ioUtils.endLine();
         ioUtils.printOutLn("Write your password(or 0 to go back): ");
         String password = ioUtils.input();
 
         if (password.equals("0")) throw new ReservedKeywordException();
+
+        return password;
+    }
+
+    private Pair<String, String> getInfoUser() throws ReservedKeywordException
+    {
+        String username = getUsername();
+        String password = getPassword();
 
         return new Pair<>(username, password);
     }
