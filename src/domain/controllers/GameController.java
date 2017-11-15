@@ -7,10 +7,8 @@ import domain.classes.Turn;
 import enums.Color;
 import enums.Difficulty;
 import util.Constants;
-import util.Pair;
-import enums.Role;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameController
 {
@@ -21,12 +19,12 @@ public class GameController
         game = null;
     }
 
-    public void newGame(String id, Difficulty difficulty, Board board, ArrayList<Pair<Player, Role>> playerRolePair)
+    public void newGame(String id, Difficulty difficulty, Board board, List<Player> players)
     {
         game = new Game(id, difficulty);
 
         game.setBoard(board);
-        game.setPlayerRolePairs(playerRolePair);
+        game.setPlayers(players);
 
         //return game;
     }

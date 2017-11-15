@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DomainController
 {
     private State state;
-    private ArrayList<String> savedGames;
+    private List<String> savedGames;
 
     private final PresentationController presentationController;
 
@@ -80,7 +80,7 @@ public class DomainController
         loggedPlayerController.restart();
         presentationController.clear();
 
-        ArrayList<Pair<Player, Role>> playerRolePairs = new ArrayList<>();
+        List<Player> players = new ArrayList<>();
 
         PlayerController playerController1 = null;
         PlayerController playerController2 = null;
@@ -125,24 +125,21 @@ public class DomainController
             case CODE_MAKER:
                 codeMakerController = playerController1;
                 codeBreakerController = playerController2;
-
-                playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
-                playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
                 break;
             case CODE_BREAKER:
                 codeMakerController = playerController2;
                 codeBreakerController = playerController1;
-
-                playerRolePairs.add(new Pair<>(playerController2.getPlayer(), playerController2.getRole()));
-                playerRolePairs.add(new Pair<>(playerController1.getPlayer(), playerController1.getRole()));
                 break;
             default:
                 throw new IllegalArgumentException();
         }
 
+        players.add(playerController1.getPlayer());
+        players.add(playerController2.getPlayer());
+
         Board board = boardController.newBoard(difficulty);
 
-        gameController.newGame(Utils.autoID(), difficulty, board, playerRolePairs);
+        gameController.newGame(Utils.autoID(), difficulty, board, players);
     }
 
     private void loadSavedGamesList() throws IOException
@@ -157,25 +154,26 @@ public class DomainController
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
 
-        ArrayList<Pair<Player, Role>> playerRolePairs = game.getPlayerRolePairs();
+        List<Player> players = game.getPlayers();
 
-        for(final Pair<Player, Role> playerRolePair : playerRolePairs)
+        for(Player player : players)
         {
             PlayerController playerController;
 
-            String playerId = playerRolePair.first.getId();
+            String playerId = player.getId();
 
             if(playerId.equals(loggedPlayerController.getId()))
             {
-                playerRolePair.first = loggedPlayerController.getPlayer();
+                loggedPlayerController.setRole(player.getRole());
+                player = loggedPlayerController.getPlayer();
                 playerController = loggedPlayerController;
             }
             else
             {
-                playerController = new PlayerController(playerRolePair.first);
+                playerController = new PlayerController(player);
             }
 
-            Role role = playerRolePair.second;
+            Role role = player.getRole();
 
             switch (role)
             {

@@ -1,12 +1,11 @@
 package util;
 
-import domain.classes.Code;
 import enums.Difficulty;
 import enums.Mode;
 import enums.Role;
 import enums.State;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Translate
 {
@@ -280,7 +279,7 @@ public abstract class Translate
         return int2StateGameDifficultySelectionMenu(state, State.GAME_MODE_SELECTION_MENU);
     }
 
-    public static String int2SavedGameId(ArrayList<String> savedGames, int index) throws IllegalArgumentException
+    public static String int2SavedGameId(List<String> savedGames, int index) throws IllegalArgumentException
     {
         String savedGameId;
 
@@ -352,11 +351,6 @@ public abstract class Translate
     public static State int2StateLogOutWarning(int state) throws IllegalArgumentException
     {
         return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
-    }
-
-    public static String code2String(Code code)
-    {
-        return "";
     }
 
     public static State booleanModeToStateCheckTurnNumber(boolean finished, Mode mode) throws IllegalArgumentException

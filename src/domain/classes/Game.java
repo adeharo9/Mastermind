@@ -16,7 +16,7 @@ public class Game implements DeepCopyable, Serializable
     protected int points;
 
     private Board board;
-    private ArrayList<Pair<Player, Role>> playerRolePairs;
+    private List<Player> players;
 
     /* PRIVATE METHODS */
 
@@ -30,18 +30,14 @@ public class Game implements DeepCopyable, Serializable
         return time >= 0 && time <= System.currentTimeMillis();
     }
 
-    private static boolean isValidPlayerRolePair(final Pair<Player, Role> playerRolePair) throws NullPointerException
-    {
-        return playerRolePair.first.isValid() && playerRolePair.second != null;
-    }
-
-    private static boolean isValidPlayerRolePairs(final ArrayList<Pair<Player, Role>> playerRolePairs) throws NullPointerException
+    @Deprecated
+    private static boolean isValidPlayers(final List<Player> players) throws NullPointerException
     {
         boolean b = true;
 
-        for(final Pair<Player, Role> playerRolePair : playerRolePairs)
+        for(final Player player : players)
         {
-            b = isValidPlayerRolePair(playerRolePair);
+            b = player.isValid();
             if(!b) break;
         }
 
@@ -56,31 +52,30 @@ public class Game implements DeepCopyable, Serializable
         this.time = time;
     }
 
-    private void addPlayerRolePair(final Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
+    private void addPlayer(final Player player) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidPlayerRolePair(playerRolePair);
+        boolean b = player.isValid();
         if(!b) throw new IllegalArgumentException();
 
-        if(playerRolePairs == null)
+        if(players == null)
         {
-            playerRolePairs = new ArrayList<>();
+            players = new ArrayList<>();
         }
 
-        this.playerRolePairs.add(playerRolePair);
+        this.players.add(player);
     }
 
-    private void addPlayerRolePairByCopy(final Pair<Player, Role> playerRolePair) throws IllegalArgumentException, NullPointerException
+    private void addPlayerByCopy(final Player player) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidPlayerRolePair(playerRolePair);
+        boolean b = player.isValid();
         if(!b) throw new IllegalArgumentException();
 
-        if(playerRolePairs == null)
+        if(players == null)
         {
-            playerRolePairs = new ArrayList<>();
+            players = new ArrayList<>();
         }
 
-        Pair<Player, Role> aux = new Pair<>(playerRolePair.first.deepCopy(), playerRolePair.second);
-        this.playerRolePairs.add(aux);
+        this.players.add(player.deepCopy());
     }
 
     /* CONSTRUCTION METHODS */
@@ -93,7 +88,7 @@ public class Game implements DeepCopyable, Serializable
         setPoints(Constants.POINTS_INIT);
 
         board = null;
-        playerRolePairs = new ArrayList<>();
+        players = new ArrayList<>();
     }
 
     public Game(final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
@@ -103,7 +98,7 @@ public class Game implements DeepCopyable, Serializable
         setPoints(Constants.POINTS_INIT);
 
         board = null;
-        playerRolePairs = new ArrayList<>();
+        players = new ArrayList<>();
 
     }
 
@@ -114,7 +109,7 @@ public class Game implements DeepCopyable, Serializable
         setPoints(Constants.POINTS_INIT);
 
         board = new Board(difficulty);
-        playerRolePairs = new ArrayList<>();
+        players = new ArrayList<>();
     }
 
     public Game(final Game game) throws IllegalArgumentException, NullPointerException
@@ -123,18 +118,10 @@ public class Game implements DeepCopyable, Serializable
         setTime(game.getTime());
         setBoardByCopy(game.getBoard());
         setPoints(game.getPoints());
-        setPlayerRolePairsByCopy(game.getPlayerRolePairs());
+        setPlayersByCopy(game.getPlayers());
     }
 
     /* SET METHODS */
-
-    /*public void setId(String id) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = isValidId(id);
-        if(!b) throw new IllegalArgumentException();
-
-        this.id = id;
-    }*/
 
     public void setTime()
     {
@@ -157,28 +144,29 @@ public class Game implements DeepCopyable, Serializable
         this.board = board.deepCopy();
     }
 
-    public void setPlayerRolePairs(final ArrayList<Pair<Player, Role>> playerRolePairs) throws IllegalArgumentException, NullPointerException
+    public void setPlayers(final List<Player> players) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidPlayerRolePairs(playerRolePairs);
+        boolean b = isValidPlayers(players);
         if(!b) throw new IllegalArgumentException();
 
-        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
+        this.players = new ArrayList<>(players.size());
 
-        for (final Pair<Player, Role> playerRolePair : playerRolePairs) {
-            addPlayerRolePair(playerRolePair);
+        for (final Player player : players)
+        {
+            addPlayer(player);
         }
     }
 
-    public void setPlayerRolePairsByCopy(final ArrayList<Pair<Player, Role>> playerRolePairs) throws IllegalArgumentException, NullPointerException
+    public void setPlayersByCopy(final List<Player> players) throws IllegalArgumentException, NullPointerException
     {
-        boolean b = isValidPlayerRolePairs(playerRolePairs);
+        boolean b = isValidPlayers(players);
         if(!b) throw new IllegalArgumentException();
 
-        this.playerRolePairs = new ArrayList<>(playerRolePairs.size());
+        this.players = new ArrayList<>(players.size());
 
-        for (final Pair<Player, Role> playerRolePair : playerRolePairs)
+        for (final Player player : players)
         {
-            addPlayerRolePairByCopy(playerRolePair);
+            addPlayerByCopy(player);
         }
     }
 
@@ -204,24 +192,19 @@ public class Game implements DeepCopyable, Serializable
         return board;
     }
 
-    public ArrayList<Pair<Player, Role>> getPlayerRolePairs()
+    public List<Player> getPlayers()
     {
-        return playerRolePairs;
-    }
-
-    public Pair<Player, Role> getPlayerRolePair(final int i) throws IndexOutOfBoundsException, NullPointerException
-    {
-        return playerRolePairs.get(i);
+        return players;
     }
 
     public Player getPlayer(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        return playerRolePairs.get(i).first;
+        return players.get(i);
     }
 
     public Role getRole(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
-        return playerRolePairs.get(i).second;
+        return players.get(i).getRole();
     }
 
     public int getPoints()
@@ -244,7 +227,7 @@ public class Game implements DeepCopyable, Serializable
         b = board != null;
         if(!b) return false;
 
-        b = playerRolePairs != null;
+        b = players != null;
 
         return b;
     }
