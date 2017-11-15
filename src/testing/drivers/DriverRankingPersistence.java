@@ -82,7 +82,7 @@ public class DriverRankingPersistence {
         {
             ioUtils.printOutLn("The ranking has loaded correctly!");
             ioUtils.endLine();
-            
+
             LinkedList<Pair<String, Integer>> topTen = rankingLoaded.getTopTen();
             for(int i = 0; i < topTen.size(); ++i)
             {
