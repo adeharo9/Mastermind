@@ -334,10 +334,10 @@ public class PresentationController
         switch(type)
         {
             case 1:
-                ioUtils.printOutLn ("Token in position" + number + "is" + color);
+                ioUtils.printOutLn ("Token in position " + number + " is " + color);
                 break;
             case 2:
-                ioUtils.printOutLn ("There is/are" + number + color + "tokens");
+                ioUtils.printOutLn ("There is/are " + number + " " + color + " tokens");
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -374,10 +374,11 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public int gameOverMenu() throws NumberFormatException
+    public int gameOverMenu(String points) throws NumberFormatException
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Game over");
+        ioUtils.printOutLn("Punctuation: "+ points);
         ioUtils.endLine();
         ioUtils.printOutLn("1.- Restart this game");
         ioUtils.printOutLn("2.- Start new game");
