@@ -597,11 +597,11 @@ public class DomainController
                     state = State.CHECK_GAME_HAS_FINISHED;
                     break;
 
-                case PLAY_CODEBREAKER:
+                case PLAY_CODE_BREAKER:
                     try
                     {
                         playCodeBreaker();
-                        state = State.PLAY_CODEMAKER;
+                        state = State.PLAY_CODE_MAKER;
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -613,7 +613,7 @@ public class DomainController
                     }
                     break;
 
-                case PLAY_CODEMAKER:
+                case PLAY_CODE_MAKER:
                     try
                     {
                         playCodeMaker();

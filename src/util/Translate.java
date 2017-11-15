@@ -386,11 +386,11 @@ public abstract class Translate
 
         if(hasStarted)
         {
-            state = State.PLAY_CODEBREAKER;
+            state = State.PLAY_CODE_BREAKER;
         }
         else
         {
-            state = State.PLAY_CODEMAKER;
+            state = State.PLAY_CODE_MAKER;
         }
 
         return state;
