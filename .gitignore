@@ -10,6 +10,7 @@
 
 # Directories #
 .idea
+bin
 games
 out
 players
