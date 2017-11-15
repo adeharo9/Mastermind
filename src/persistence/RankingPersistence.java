@@ -1,7 +1,7 @@
 package persistence;
 
 import domain.classes.Ranking;
-import exceptions.IntegrityCorruption;
+import exceptions.IntegrityCorruptionException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,7 +40,7 @@ public class RankingPersistence extends AbstractPersistence
 
     }
 
-    public void checkIntegrity() throws IntegrityCorruption
+    public void checkIntegrity() throws IntegrityCorruptionException
     {
 
     }

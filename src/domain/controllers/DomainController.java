@@ -2,9 +2,9 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
-import exceptions.IntegrityCorruption;
+import exceptions.IntegrityCorruptionException;
 import exceptions.ReservedKeywordException;
-import exceptions.WrongPassword;
+import exceptions.WrongPasswordException;
 //import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -54,13 +54,13 @@ public class DomainController
 
     /* EXECUTE */
 
-    private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
+    private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruptionException, IOException, WrongPasswordException, ClassNotFoundException
     {
         Player player = playerPersistence.load(userInfo.first);
         PlayerController playerController = new PlayerController(player);
 
         boolean b = playerController.checkPassword(userInfo.second);
-        if (!b) throw new WrongPassword();
+        if (!b) throw new WrongPasswordException();
 
         loggedPlayerController = playerController;
     }
@@ -310,7 +310,7 @@ public class DomainController
 
     /* MAIN STATE MACHINE */
 
-    public void exe() throws IntegrityCorruption, ReservedKeywordException
+    public void exe() throws IntegrityCorruptionException, ReservedKeywordException
     {
         int returnState;
         String str = null;
@@ -530,7 +530,7 @@ public class DomainController
                         logInUser(userInfo);
                         state = State.MAIN_GAME_MENU;
                     }
-                    catch(IOException | ClassNotFoundException | WrongPassword e)
+                    catch(IOException | ClassNotFoundException | WrongPasswordException e)
                     {
                         presentationController.logInError();
                         state = State.LOG_IN_USER_MENU;
