@@ -35,7 +35,12 @@ public abstract class AbstractPersistence
         FileInputStream in = new FileInputStream(gameFile);
         ObjectInputStream s = new ObjectInputStream(in);
 
-        return s.readObject();
+        Object object = s.readObject();
+
+        s.close();
+        in.close();
+
+        return object;
     }
 
     public void save(String objectName, Object object) throws IOException
