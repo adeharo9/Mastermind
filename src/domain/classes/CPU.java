@@ -211,6 +211,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         permute(0, numPins, colorCollection, new ArrayList<>());
     }
 
+    @SuppressWarnings("Duplicates")
     private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
         int size = code.size();

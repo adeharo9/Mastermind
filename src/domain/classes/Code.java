@@ -156,6 +156,11 @@ public class Code implements DeepCopyable, Serializable
     @Override
     public boolean equals(final Object o)
     {
+        return unorderedEquals(o);
+    }
+
+    public boolean hardEquals(final Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 

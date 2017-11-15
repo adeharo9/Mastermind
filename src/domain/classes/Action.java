@@ -51,10 +51,9 @@ public abstract class Action implements DeepCopyable
 
     public abstract void addSelfToBoard(Board board);
 
-    public abstract void checkAction(Difficulty difficulty) throws IllegalActionException;
+    public abstract void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException;
 
-
-    protected final void checkPinsInRange(Difficulty difficulty, boolean repetitionPolicy) throws IllegalActionException
+    protected final void checkPinsInRange(Difficulty difficulty, boolean repetitionPolicy, Set<Color> colorSet) throws IllegalActionException
     {
         boolean b;
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
@@ -62,7 +61,6 @@ public abstract class Action implements DeepCopyable
         b = colorList.size() == numPins;
         if(!b) throw new IllegalActionException("Code is of size " + colorList.size() + "; size " + numPins + " expected");
 
-        Set<Color> colorSet = Color.getValues(difficulty);
 
         for(final Color color : colorList)
         {

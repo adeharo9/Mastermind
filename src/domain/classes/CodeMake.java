@@ -38,10 +38,10 @@ public class CodeMake extends Action implements DeepCopyable
     }
 
     @Override
-    public void checkAction(Difficulty difficulty) throws IllegalActionException
+    public void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException
     {
         boolean repetitionPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
-        checkPinsInRange(difficulty, repetitionPolicy);
+        checkPinsInRange(difficulty, repetitionPolicy, Color.getValues(difficulty));
     }
 
     /* CLONING METHODS */

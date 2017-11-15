@@ -135,7 +135,7 @@ public class DriverCode
                     printCode(code2);
                     ioUtils.endLine();*/
 
-                    if(!code1.equals(code2)) throw new RuntimeException("Error on testCodeOrderedEquals.");
+                    if(!code1.hardEquals(code2)) throw new RuntimeException("Error on testCodeOrderedEquals.");
                 }
             }
         }

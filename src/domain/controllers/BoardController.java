@@ -86,7 +86,18 @@ public class BoardController
 
     public void checkAction(Action action) throws IllegalActionException
     {
-        action.checkAction(board.getDifficulty());
+        Code code;
+
+        if(getLastTurn() == null)
+        {
+            code = null;
+        }
+        else
+        {
+            code = getLastTurn().getCode();
+        }
+
+        action.checkAction(getDifficulty(), code, getSolution());
     }
 
     public void addAction(Action action)
