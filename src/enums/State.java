@@ -19,6 +19,8 @@ public enum State
     GAME_OVER_MENU,
     GAME_PAUSE_MENU,
     GAME_ROLE_SELECTION_MENU,
+    GET_USERNAME,
+    GET_PASSWORD,
 
     IN_GAME_MENU,
     INIT_PROGRAM,
@@ -36,6 +38,8 @@ public enum State
     NEW_GAME,
 
     PLAY_TURN,
+    PLAY_CODEBREAKER,
+    PLAY_CODEMAKER,
 
     REGISTER_USER,
     REGISTER_USER_MENU,
