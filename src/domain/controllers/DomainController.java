@@ -341,8 +341,8 @@ public class DomainController
                     break;
 
                 case CHECK_TURN_NUMBER:
-                    boolean finished = boardController.finished();
-                    state = Translate.booleanModeToStateCheckTurnNumber(finished, mode);
+                    boolean hasFinished = gameController.hasFinished();
+                    state = Translate.booleanModeToStateCheckTurnNumber(hasFinished, mode);
 
                     break;
 

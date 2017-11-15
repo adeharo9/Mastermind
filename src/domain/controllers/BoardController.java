@@ -71,11 +71,6 @@ public class BoardController
 
     /* VALIDATION METHODS */
 
-    public boolean finished() throws NullPointerException
-    {
-        return board.finished();
-    }
-
     public void checkAction(Action action)
     {
 

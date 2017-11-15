@@ -353,11 +353,11 @@ public abstract class Translate
         return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
     }
 
-    public static State booleanModeToStateCheckTurnNumber(boolean finished, Mode mode) throws IllegalArgumentException
+    public static State booleanModeToStateCheckTurnNumber(boolean hasFinished, Mode mode) throws IllegalArgumentException
     {
         State state;
 
-        if(finished)
+        if(hasFinished)
         {
             state = State.GAME_OVER_MENU;
         }
