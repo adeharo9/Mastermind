@@ -139,7 +139,7 @@ public abstract class Translate
                 state = State.CLOSE_PROGRAM_WARNING;
                 break;
             case 1:
-                state = State.REGISTER_USER_MENU;
+                state = State.REGISTER_GET_USERNAME_MENU;
                 break;
             case 2:
                 state = State.LOG_IN_GET_USERNAME_MENU;

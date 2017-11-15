@@ -66,12 +66,12 @@ public class DomainController
         loggedPlayerController = playerController;
     }
 
-    private void registerUser(Pair<String, String> userInfo) throws IOException
+    private void registerUser(final String username, final String password) throws IOException
     {
-        boolean b = playerPersistence.exists(userInfo.first);
+        boolean b = playerPersistence.exists(username);
         if(b) throw new FileAlreadyExistsException("");
 
-        Player player = loggedPlayerController.newHuman(userInfo.first, userInfo.second);
+        Player player = loggedPlayerController.newHuman(username, password);
 
         playerPersistence.save(player);
     }
@@ -324,8 +324,6 @@ public class DomainController
         Mode mode = null;
         Role role = null;
         Difficulty difficulty = null;
-
-        Pair<String, String> userInfo = null;
 
         while(!state.equals(State.CLOSE_PROGRAM))
         {
@@ -624,30 +622,41 @@ public class DomainController
                     }
                     break;
 
+                case REGISTER_GET_USERNAME_MENU:
+                    try
+                    {
+                        username = presentationController.getUsername();
+                        state = State.REGISTER_GET_PASSWORD_MENU;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.INIT_SESSION_MENU;
+                    }
+                    break;
+
+                case REGISTER_GET_PASSWORD_MENU:
+                    try
+                    {
+                        password = presentationController.getPassword();
+                        state = State.REGISTER_USER;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.REGISTER_GET_USERNAME_MENU;
+                    }
+                    break;
+
                 case REGISTER_USER:
                     try
                     {
-                        registerUser(userInfo);
+                        registerUser(username, password);
                         state = State.MAIN_GAME_MENU;
                     }
                     catch(IOException e)
                     {
                         presentationController.registerError();
-                        state = State.INIT_SESSION_MENU;
+                        state = State.REGISTER_GET_USERNAME_MENU;
                     }
-                    break;
-
-                case REGISTER_USER_MENU:
-                    try
-                    {
-                        userInfo = presentationController.registerMenu();
-                        state = State.REGISTER_USER;
-                    }
-                    catch(ReservedKeywordException e)
-                    {
-                        state = State.INIT_SESSION_MENU;
-                    }
-
                     break;
 
                 case RESTART_GAME:
