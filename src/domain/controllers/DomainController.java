@@ -203,40 +203,33 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void playTurn() throws IllegalArgumentException, ReservedKeywordException
+    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
-        Turn lastTurn;
 
         Code code = boardController.getSolution();
+        Turn lastTurn = boardController.getLastTurn();
         Difficulty difficulty = boardController.getDifficulty();
 
-        lastTurn = boardController.getLastTurn();
-
-        action = codeMakerController.play(difficulty, lastTurn, code);
+        action = playerController.play(difficulty, lastTurn, code);
 
         if(action != null)
         {
             boardController.checkAction(action);
             boardController.addAction(action);
 
-            printBoard(codeMakerController.getRole());
-        }
-
-        action = codeBreakerController.play(difficulty, lastTurn, code);
-
-        if(action != null)
-        {
-            boardController.checkAction(action);
-            boardController.addAction(action);
-
-            printBoard(codeBreakerController.getRole());
+            printBoard(playerController.getRole());
         }
     }
 
-    private boolean checkTurn(Turn turn)
+    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException
     {
-        return true;
+        play(codeMakerController);
+    }
+
+    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException
+    {
+        play(codeBreakerController);
     }
 
     private void giveClue() throws IllegalArgumentException, GameNotStartedException
@@ -345,6 +338,12 @@ public class DomainController
                     }
                     break;
 
+                case CHECK_GAME_HAS_FINISHED:
+                    boolean hasFinished = gameController.hasFinished();
+                    state = Translate.booleanModeToStateCheckTurnNumber(hasFinished, mode);
+
+                    break;
+
                 case CHECK_INFO:
                     presentationController.showInfo();
                     state = State.MAIN_GAME_MENU;
@@ -352,12 +351,6 @@ public class DomainController
 
                 case CHECK_RANKING:
                     state = State.MAIN_GAME_MENU;
-                    break;
-
-                case CHECK_TURN_NUMBER:
-                    boolean hasFinished = gameController.hasFinished();
-                    state = Translate.booleanModeToStateCheckTurnNumber(hasFinished, mode);
-
                     break;
 
                 case CLOSE_PROGRAM:
@@ -504,7 +497,7 @@ public class DomainController
                     try
                     {
                         loadGame(gameId);
-                        state = State.CHECK_TURN_NUMBER;
+                        state = State.CHECK_GAME_HAS_FINISHED;
                     }
                     catch (IOException | ClassNotFoundException e)
                     {
@@ -601,15 +594,14 @@ public class DomainController
 
                 case NEW_GAME:
                     newGame(mode, role, difficulty);
-                    state = State.CHECK_TURN_NUMBER;
+                    state = State.CHECK_GAME_HAS_FINISHED;
                     break;
 
-                case PLAY_TURN:
+                case PLAY_CODEBREAKER:
                     try
                     {
-                        playTurn();
-                        gameController.pointsEndTurn();
-                        state = State.CHECK_TURN_NUMBER;
+                        playCodeBreaker();
+                        state = State.PLAY_CODEMAKER;
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -618,8 +610,29 @@ public class DomainController
                     catch (IllegalArgumentException e)
                     {
                         presentationController.optionError();
+                    }
+                    break;
+
+                case PLAY_CODEMAKER:
+                    try
+                    {
+                        playCodeMaker();
+                        state = State.CHECK_GAME_HAS_FINISHED;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
                         state = State.IN_GAME_MENU;
                     }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
+                    break;
+
+                case PLAY_TURN:
+                    boolean hasStarted = gameController.hasStarted();
+                    state = Translate.booleanToStatePlayTurn(hasStarted);
+
                     break;
 
                 case REGISTER_GET_USERNAME_MENU:

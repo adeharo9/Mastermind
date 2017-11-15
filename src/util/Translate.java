@@ -379,4 +379,20 @@ public abstract class Translate
 
         return state;
     }
+
+    public static State booleanToStatePlayTurn(boolean hasStarted)
+    {
+        State state;
+
+        if(hasStarted)
+        {
+            state = State.PLAY_CODEBREAKER;
+        }
+        else
+        {
+            state = State.PLAY_CODEMAKER;
+        }
+
+        return state;
+    }
 }
