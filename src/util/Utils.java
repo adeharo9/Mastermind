@@ -18,11 +18,11 @@ public abstract class Utils
         return b;
     }
 
-    private final static int idSize = 32;
-    private final static String alphaMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private final static String alphaMinus = alphaMayus.toLowerCase();
-    private final static String numeric = "0123456789";
-    private final static String alphanumeric = alphaMayus + alphaMinus + numeric;
+    private final static int ID_SIZE = 32;
+    private final static String ALPHA_MAYUS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final static String ALPHA_MINUS = ALPHA_MAYUS.toLowerCase();
+    private final static String NUMERIC = "0123456789";
+    private final static String ALPHANUMERIC = ALPHA_MAYUS + ALPHA_MINUS + NUMERIC;
 
     private static String autoID(String charSet)
     {
@@ -30,7 +30,7 @@ public abstract class Utils
         String randChar;
         String id = "";
 
-        for(int i = 0; i < idSize; ++i)
+        for(int i = 0; i < ID_SIZE; ++i)
         {
             rand = ThreadLocalRandom.current().nextInt(0, charSet.length());
             randChar = Character.toString(charSet.charAt(rand));
@@ -42,6 +42,6 @@ public abstract class Utils
 
     public static String autoID()
     {
-        return autoID(alphanumeric);
+        return autoID(ALPHANUMERIC);
     }
 }
