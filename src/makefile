@@ -18,10 +18,8 @@ CLASSES = \
 	./domain/classes/Ranking.java \
 	./domain/classes/Turn.java \
 	./domain/controllers/BoardController.java \
-	./domain/controllers/CPUController.java \
 	./domain/controllers/DomainController.java \
 	./domain/controllers/GameController.java \
-	./domain/controllers/HumanController.java \
 	./domain/controllers/PlayerController.java \
 	./enums/Color.java \
 	./enums/Difficulty.java \
