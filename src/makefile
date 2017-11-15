@@ -29,9 +29,9 @@ CLASSES = \
 	./enums/Role.java \
 	./enums/State.java \
 	./exceptions/AbstractException.java \
-	./exceptions/IntegrityCorruption.java \
+	./exceptions/IntegrityCorruptionException.java \
 	./exceptions/ReservedKeywordException.java \
-	./exceptions/WrongPassword.java \
+	./exceptions/WrongPasswordException.java \
 	./persistence/AbstractPersistence.java \
 	./persistence/GamePersistence.java \
 	./persistence/PlayerPersistence.java \
