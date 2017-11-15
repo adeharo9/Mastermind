@@ -12,6 +12,8 @@ public class DriverCode
 {
     private static final int NUM_TESTS = 1000;
     private static final Difficulty DIFFICULTY = Difficulty.HARD;
+    private Code test;
+    private List<Color> colors;
 
     private DriverCode()
     {
@@ -27,8 +29,44 @@ public class DriverCode
 
     private void exe() throws RuntimeException
     {
+        testConstructors();
+        testGetsAndSets();
         testCodeUnorderedEquals();
         testCodeOrderedEquals();
+    }
+
+    private void testConstructors()
+    {
+        colors = new ArrayList<>();
+        colors.add(Color.BLUE);
+        colors.add(Color.PURPLE);
+        colors.add(Color.GREEN);
+        colors.add(Color.GREEN);
+
+        Code code = new Code(colors);
+        test = code;
+
+        Code codeCopy = new Code(code);
+
+        ioUtils.printOutLn("Success on testConstructors");
+    }
+
+    private void testGetsAndSets()
+    {
+        List<Color> pins = test.getCodePins();
+        boolean error = false;
+
+        for(int i = 0; i < pins.size(); ++i)
+        {
+            if(pins.get(i) != colors.get(i))
+            {
+                ioUtils.printOutLn("Error in getCodePins!");
+                error = true;
+                break;
+            }
+        }
+
+        if(!error) ioUtils.printOutLn("Success on testGetsAndSets");
     }
 
     private void testCodeUnorderedEquals() throws RuntimeException
