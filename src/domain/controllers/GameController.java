@@ -86,7 +86,8 @@ public class GameController
     {
         int newpoints = game.getPoints();
         long modify = game.getTime();
-        newpoints = newpoints + (int)modify * Constants.POINTS_TIME;
+        newpoints = newpoints + ((int)System.currentTimeMillis()-(int)modify) * Constants.POINTS_TIME;
+        if (newpoints<0) newpoints = 0;
         game.setPoints(newpoints);
     }
 
