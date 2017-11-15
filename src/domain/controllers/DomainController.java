@@ -55,12 +55,12 @@ public class DomainController
 
     /* EXECUTE */
 
-    private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruptionException, IOException, WrongPasswordException, ClassNotFoundException
+    private void logInUser(String username, String password) throws IntegrityCorruptionException, IOException, WrongPasswordException, ClassNotFoundException
     {
-        Player player = playerPersistence.load(userInfo.first);
+        Player player = playerPersistence.load(username);
         PlayerController playerController = new PlayerController(player);
 
-        boolean b = playerController.checkPassword(userInfo.second);
+        boolean b = playerController.checkPassword(password);
         if (!b) throw new WrongPasswordException();
 
         loggedPlayerController = playerController;
@@ -317,7 +317,9 @@ public class DomainController
     public void exe() throws IntegrityCorruptionException, ReservedKeywordException
     {
         int returnState;
-        String str = null;
+        String gameId = null;
+        String username = null;
+        String password = null;
 
         Mode mode = null;
         Role role = null;
@@ -503,7 +505,7 @@ public class DomainController
                 case LOAD_GAME:
                     try
                     {
-                        loadGame(str);
+                        loadGame(gameId);
                         state = State.CHECK_TURN_NUMBER;
                     }
                     catch (IOException | ClassNotFoundException e)
@@ -516,7 +518,7 @@ public class DomainController
                 case LOAD_GAME_MENU:
                     returnState = presentationController.loadGameMenu(savedGames);
 
-                    str = Translate.int2SavedGameId(savedGames, returnState);
+                    gameId = Translate.int2SavedGameId(savedGames, returnState);
                     state = Translate.int2StateLoadGameMenu(returnState);
                     break;
 
@@ -538,30 +540,41 @@ public class DomainController
                     }
                     break;
 
-                case LOG_IN_USER:
+                case LOG_IN_GET_USERNAME_MENU:
                     try
                     {
-                        logInUser(userInfo);
-                        state = State.MAIN_GAME_MENU;
-                    }
-                    catch(IOException | ClassNotFoundException | WrongPasswordException e)
-                    {
-                        presentationController.logInError();
-                        state = State.LOG_IN_USER_MENU;
-                    }
-                    break;
-
-                case LOG_IN_USER_MENU:
-                    try
-                    {
-                        userInfo = presentationController.logInMenu();
-                        state = State.LOG_IN_USER;
+                        username = presentationController.getUsername();
+                        state = State.LOG_IN_GET_PASSWORD_MENU;
                     }
                     catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
                     }
+                    break;
 
+                case LOG_IN_GET_PASSWORD_MENU:
+                    try
+                    {
+                        password = presentationController.getPassword();
+                        state = State.LOG_IN_USER;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.LOG_IN_GET_USERNAME_MENU;
+                    }
+                    break;
+
+                case LOG_IN_USER:
+                    try
+                    {
+                        logInUser(username, password);
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    catch(IOException | ClassNotFoundException | WrongPasswordException e)
+                    {
+                        presentationController.logInError();
+                        state = State.LOG_IN_GET_USERNAME_MENU;
+                    }
                     break;
 
                 case LOG_OUT_WARNING:

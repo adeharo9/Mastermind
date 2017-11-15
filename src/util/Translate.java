@@ -142,7 +142,7 @@ public abstract class Translate
                 state = State.REGISTER_USER_MENU;
                 break;
             case 2:
-                state = State.LOG_IN_USER_MENU;
+                state = State.LOG_IN_GET_USERNAME_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
