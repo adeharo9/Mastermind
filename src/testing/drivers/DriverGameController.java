@@ -1,6 +1,5 @@
 package testing.drivers;
 
-import com.sun.org.apache.xml.internal.utils.StringToIntTable;
 import domain.classes.Board;
 import domain.controllers.GameController;
 import enums.Difficulty;

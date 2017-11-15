@@ -7,6 +7,7 @@ import enums.Difficulty;
 import util.*;
 import java.util.*;
 
+
 public class DriverGame {
 
     private Game testedGame;
@@ -50,7 +51,6 @@ public class DriverGame {
         catch(IllegalArgumentException e){
             correct = true;
         }
-
         if(!correct){ioUtils.printOutLn("Error in setBoard!");}
     }
 

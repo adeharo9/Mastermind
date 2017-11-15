@@ -8,19 +8,19 @@ import util.ioUtils;
 
 import java.util.*;
 
-public class CodeDriver
+public class DriverCode
 {
     private static final int NUM_TESTS = 1000;
     private static final Difficulty DIFFICULTY = Difficulty.HARD;
 
-    private CodeDriver()
+    private DriverCode()
     {
 
     }
 
     public static void main(String[] args) throws RuntimeException
     {
-        CodeDriver codeDriver = new CodeDriver();
+        DriverCode codeDriver = new DriverCode();
 
         codeDriver.exe();
     }
