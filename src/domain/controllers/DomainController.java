@@ -2,10 +2,7 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
-import exceptions.GameNotStartedException;
-import exceptions.IntegrityCorruptionException;
-import exceptions.ReservedKeywordException;
-import exceptions.WrongPasswordException;
+import exceptions.*;
 //import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -225,7 +222,7 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException
+    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         Action action;
 
@@ -241,16 +238,15 @@ public class DomainController
             boardController.addAction(action);
 
             updateBoard();
-            //printBoard(playerController.getRole());
         }
     }
 
-    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException
+    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeMakerController);
     }
 
-    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException
+    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeBreakerController);
     }
@@ -621,6 +617,10 @@ public class DomainController
 
                         state = State.PLAY_CODE_MAKER;
                     }
+                    catch (IllegalActionException e)
+                    {
+                        presentationController.illegalActionError(e.getMessage());
+                    }
                     catch (ReservedKeywordException e)
                     {
                         state = State.GAME_PAUSE_MENU;
@@ -639,6 +639,10 @@ public class DomainController
                         playCodeMaker();
 
                         state = State.CHECK_GAME_HAS_FINISHED;
+                    }
+                    catch (IllegalActionException e)
+                    {
+                        presentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {

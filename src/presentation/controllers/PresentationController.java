@@ -475,4 +475,10 @@ public class PresentationController
     {
         genericSaveError("player");
     }
+
+    public void illegalActionError(final String msg)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Illegal action: " + msg);
+    }
 }

@@ -1,6 +1,12 @@
 package domain.classes;
 
+import enums.Color;
+import enums.Difficulty;
+import exceptions.IllegalActionException;
 import util.*;
+
+import java.util.List;
+import java.util.Set;
 
 public class CodeCorrect extends Action implements DeepCopyable
 {
@@ -35,6 +41,12 @@ public class CodeCorrect extends Action implements DeepCopyable
     public void addSelfToBoard(final Board board)
     {
         board.addCorrection(getCode());
+    }
+
+    @Override
+    public void checkAction(Difficulty difficulty) throws IllegalActionException
+    {
+        checkPinsInRange(difficulty, true);
     }
 
     /* CLONING METHODS */

@@ -1,6 +1,12 @@
 package domain.classes;
 
+import enums.Color;
+import enums.Difficulty;
+import exceptions.IllegalActionException;
 import util.*;
+
+import java.util.List;
+import java.util.Set;
 
 public abstract class Action implements DeepCopyable
 {
@@ -44,6 +50,31 @@ public abstract class Action implements DeepCopyable
     /* OTHER METHODS */
 
     public abstract void addSelfToBoard(Board board);
+
+    public abstract void checkAction(Difficulty difficulty) throws IllegalActionException;
+
+
+    protected final void checkPinsInRange(Difficulty difficulty, boolean repetitionPolicy) throws IllegalActionException
+    {
+        boolean b;
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        List<Color> colorList = code.getCodePins();
+        b = colorList.size() == numPins;
+        if(!b) throw new IllegalActionException("Code is of size " + colorList.size() + "; size " + numPins + " expected");
+
+        Set<Color> colorSet = Color.getValues(difficulty);
+
+        for(final Color color : colorList)
+        {
+            b = colorSet.contains(color);
+            if(!b) throw new IllegalActionException("Color " + color.getStrId() + " should not be there");
+
+            if(!repetitionPolicy)
+            {
+                colorSet.remove(color);
+            }
+        }
+    }
 
     /* VALIDATION METHODS */
 

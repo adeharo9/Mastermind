@@ -5,6 +5,7 @@ import domain.classes.Board;
 import domain.classes.Code;
 import domain.classes.Turn;
 import enums.Difficulty;
+import exceptions.IllegalActionException;
 
 import java.util.List;
 
@@ -83,9 +84,9 @@ public class BoardController
 
     /* VALIDATION METHODS */
 
-    public void checkAction(Action action)
+    public void checkAction(Action action) throws IllegalActionException
     {
-
+        action.checkAction(board.getDifficulty());
     }
 
     public void addAction(Action action)

@@ -1,6 +1,12 @@
 package domain.classes;
 
+import enums.Color;
+import enums.Difficulty;
+import exceptions.IllegalActionException;
 import util.*;
+
+import java.util.List;
+import java.util.Set;
 
 public class CodeMake extends Action implements DeepCopyable
 {
@@ -29,6 +35,13 @@ public class CodeMake extends Action implements DeepCopyable
     public void addSelfToBoard(final Board board)
     {
         board.setSolution(getCode());
+    }
+
+    @Override
+    public void checkAction(Difficulty difficulty) throws IllegalActionException
+    {
+        boolean repetitionPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
+        checkPinsInRange(difficulty, repetitionPolicy);
     }
 
     /* CLONING METHODS */
