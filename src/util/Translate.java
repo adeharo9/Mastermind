@@ -363,34 +363,23 @@ public abstract class Translate
         }
         else
         {
-            switch (mode)
-            {
-                case HUMAN_VS_HUMAN:
-                case HUMAN_VS_CPU:
-                    state = State.IN_GAME_MENU;
-                    break;
-                case CPU_VS_CPU:
-                    state = State.PLAY_TURN;
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
+            state = State.PLAY_TURN;
         }
 
         return state;
     }
 
-    public static State booleanToStatePlayTurn(boolean hasStarted)
+    public static State booleanToStatePlayTurn(boolean hasStarted, boolean hasCodeToCorrect)
     {
         State state;
 
-        if(hasStarted)
+        if(!hasStarted || hasCodeToCorrect)
         {
-            state = State.PLAY_CODE_BREAKER;
+            state = State.PLAY_CODE_MAKER;
         }
         else
         {
-            state = State.PLAY_CODE_MAKER;
+            state = State.PLAY_CODE_BREAKER;
         }
 
         return state;

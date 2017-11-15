@@ -69,6 +69,18 @@ public class BoardController
         return board.getLastTurn();
     }
 
+    public boolean isFirstTurn()
+    {
+        return board.isFirstTurn();
+    }
+
+    public boolean hasCodeToCorrect()
+    {
+        Turn lastTurn = getLastTurn();
+
+        return lastTurn != null && lastTurn.getCorrectionCode().size() == 0;
+    }
+
     /* VALIDATION METHODS */
 
     public void checkAction(Action action)

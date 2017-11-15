@@ -218,6 +218,11 @@ public class Board implements DeepCopyable, Serializable
         return turnSet.size() + 1;
     }
 
+    public boolean isFirstTurn()
+    {
+        return turnSet.isEmpty();
+    }
+
     /* TESTING METHODS */
 
     public boolean isValid()

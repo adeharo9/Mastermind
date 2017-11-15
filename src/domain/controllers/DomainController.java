@@ -617,6 +617,7 @@ public class DomainController
                     try
                     {
                         playCodeMaker();
+
                         state = State.CHECK_GAME_HAS_FINISHED;
                     }
                     catch (ReservedKeywordException e)
@@ -631,7 +632,9 @@ public class DomainController
 
                 case PLAY_TURN:
                     boolean hasStarted = gameController.hasStarted();
-                    state = Translate.booleanToStatePlayTurn(hasStarted);
+                    boolean hasCodeToCorrect = boardController.hasCodeToCorrect();
+
+                    state = Translate.booleanToStatePlayTurn(hasStarted, hasCodeToCorrect);
 
                     break;
 
