@@ -157,24 +157,24 @@ public class DomainController
 
         List<Player> players = game.getPlayers();
 
-        for(Player player : players)
+        for(int i = 0; i < players.size(); ++i)
         {
             PlayerController playerController;
 
-            String playerId = player.getId();
+            String playerId = players.get(i).getId();
 
             if(playerId.equals(loggedPlayerController.getId()))
             {
-                loggedPlayerController.setRole(player.getRole());
-                player = loggedPlayerController.getPlayer();
+                loggedPlayerController.setRole(players.get(i).getRole());
+                players.set(i, loggedPlayerController.getPlayer());
                 playerController = loggedPlayerController;
             }
             else
             {
-                playerController = new PlayerController(player);
+                playerController = new PlayerController(players.get(i));
             }
 
-            Role role = player.getRole();
+            Role role = players.get(i).getRole();
 
             switch (role)
             {
