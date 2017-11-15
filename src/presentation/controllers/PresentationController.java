@@ -219,11 +219,11 @@ public class PresentationController
 
         if(codes.get(0).size() == 4)
         {
-            ioUtils.printOutLn ("╔══════════════╦══════════════╗");
+            ioUtils.printOutLn ("╔════════════╦════════════╗");
         }
         else if(codes.get(0).size() == 6)
         {
-            ioUtils.printOutLn ("╔═════════════════════╦═════════════════════╗");
+            ioUtils.printOutLn ("╔═══════════════════╦═══════════════════╗");
         }
 
         for(int i = codes.size() - 1; i > 0; --i)
@@ -251,11 +251,11 @@ public class PresentationController
 
             if(codes.get(i).size() == 4)
             {
-                ioUtils.printOutLn ("╠══════════════╬══════════════╣");
+                ioUtils.printOutLn ("╠════════════╬════════════╣");
             }
             else if(codes.get(i).size()==6)
             {
-                ioUtils.printOutLn ("╠═════════════════════╬═════════════════════╣");
+                ioUtils.printOutLn ("╠═══════════════════╬═══════════════════╣");
             }
         }
 
@@ -283,11 +283,11 @@ public class PresentationController
 
         if(codes.get(0).size() == 4)
         {
-            ioUtils.printOutLn ("╚══════════════╩══════════════╝");
+            ioUtils.printOutLn ("╚════════════╩════════════╝");
         }
         else if(codes.get(0).size() == 6)
         {
-            ioUtils.printOutLn ("╚═════════════════════╩═════════════════════╝");
+            ioUtils.printOutLn ("╚═══════════════════╩═══════════════════╝");
         }
     }
 
@@ -307,11 +307,11 @@ public class PresentationController
 
         if(solution.size()==4)
         {
-            ioUtils.printOutLn ("╚══════════════╝");
+            ioUtils.printOutLn ("╚════════════╝");
         }
         else if(solution.size()==6)
         {
-            ioUtils.printOutLn ("╚═════════════════════╝");
+            ioUtils.printOutLn ("╚═══════════════════╝");
         }
     }
 
