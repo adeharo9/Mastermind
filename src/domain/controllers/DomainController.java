@@ -2,9 +2,10 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
-import exceptions.IntegrityCorruption;
+import exceptions.GameNotStartedException;
+import exceptions.IntegrityCorruptionException;
 import exceptions.ReservedKeywordException;
-import exceptions.WrongPassword;
+import exceptions.WrongPasswordException;
 //import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -54,13 +55,13 @@ public class DomainController
 
     /* EXECUTE */
 
-    private void logInUser(Pair<String, String> userInfo) throws IntegrityCorruption, IOException, WrongPassword, ClassNotFoundException
+    private void logInUser(String username, String password) throws IntegrityCorruptionException, IOException, WrongPasswordException, ClassNotFoundException
     {
-        Player player = playerPersistence.load(userInfo.first);
+        Player player = playerPersistence.load(username);
         PlayerController playerController = new PlayerController(player);
 
-        boolean b = playerController.checkPassword(userInfo.second);
-        if (!b) throw new WrongPassword();
+        boolean b = playerController.checkPassword(password);
+        if (!b) throw new WrongPasswordException();
 
         loggedPlayerController = playerController;
     }
@@ -238,8 +239,11 @@ public class DomainController
         return true;
     }
 
-    private void giveClue() throws IllegalArgumentException
+    private void giveClue() throws IllegalArgumentException, GameNotStartedException
     {
+        boolean b = gameController.hasStarted();
+        if(!b) throw new GameNotStartedException();
+
         int type = ThreadLocalRandom.current().nextInt(1, 3);
         int num = 0;
 
@@ -310,10 +314,12 @@ public class DomainController
 
     /* MAIN STATE MACHINE */
 
-    public void exe() throws IntegrityCorruption, ReservedKeywordException
+    public void exe() throws IntegrityCorruptionException, ReservedKeywordException
     {
         int returnState;
-        String str = null;
+        String gameId = null;
+        String username = null;
+        String password = null;
 
         Mode mode = null;
         Role role = null;
@@ -326,9 +332,19 @@ public class DomainController
             switch(state)
             {
                 case ASK_FOR_CLUE:
-                    giveClue();
-                    gameController.pointsClue();
-                    state = State.IN_GAME_MENU;
+                    try
+                    {
+                        giveClue();
+                        gameController.pointsClue();
+                    }
+                    catch (GameNotStartedException e)
+                    {
+                        presentationController.gameNotStartedError();
+                    }
+                    finally
+                    {
+                        state = State.IN_GAME_MENU;
+                    }
                     break;
 
                 case CHECK_INFO:
@@ -341,8 +357,8 @@ public class DomainController
                     break;
 
                 case CHECK_TURN_NUMBER:
-                    boolean finished = boardController.finished();
-                    state = Translate.booleanModeToStateCheckTurnNumber(finished, mode);
+                    boolean hasFinished = gameController.hasFinished();
+                    state = Translate.booleanModeToStateCheckTurnNumber(hasFinished, mode);
 
                     break;
 
@@ -489,7 +505,7 @@ public class DomainController
                 case LOAD_GAME:
                     try
                     {
-                        loadGame(str);
+                        loadGame(gameId);
                         state = State.CHECK_TURN_NUMBER;
                     }
                     catch (IOException | ClassNotFoundException e)
@@ -502,7 +518,7 @@ public class DomainController
                 case LOAD_GAME_MENU:
                     returnState = presentationController.loadGameMenu(savedGames);
 
-                    str = Translate.int2SavedGameId(savedGames, returnState);
+                    gameId = Translate.int2SavedGameId(savedGames, returnState);
                     state = Translate.int2StateLoadGameMenu(returnState);
                     break;
 
@@ -524,30 +540,41 @@ public class DomainController
                     }
                     break;
 
-                case LOG_IN_USER:
+                case LOG_IN_GET_USERNAME_MENU:
                     try
                     {
-                        logInUser(userInfo);
-                        state = State.MAIN_GAME_MENU;
-                    }
-                    catch(IOException | ClassNotFoundException | WrongPassword e)
-                    {
-                        presentationController.logInError();
-                        state = State.LOG_IN_USER_MENU;
-                    }
-                    break;
-
-                case LOG_IN_USER_MENU:
-                    try
-                    {
-                        userInfo = presentationController.logInMenu();
-                        state = State.LOG_IN_USER;
+                        username = presentationController.getUsername();
+                        state = State.LOG_IN_GET_PASSWORD_MENU;
                     }
                     catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
                     }
+                    break;
 
+                case LOG_IN_GET_PASSWORD_MENU:
+                    try
+                    {
+                        password = presentationController.getPassword();
+                        state = State.LOG_IN_USER;
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.LOG_IN_GET_USERNAME_MENU;
+                    }
+                    break;
+
+                case LOG_IN_USER:
+                    try
+                    {
+                        logInUser(username, password);
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    catch(IOException | ClassNotFoundException | WrongPasswordException e)
+                    {
+                        presentationController.logInError();
+                        state = State.LOG_IN_GET_USERNAME_MENU;
+                    }
                     break;
 
                 case LOG_OUT_WARNING:

@@ -142,7 +142,7 @@ public abstract class Translate
                 state = State.REGISTER_USER_MENU;
                 break;
             case 2:
-                state = State.LOG_IN_USER_MENU;
+                state = State.LOG_IN_GET_USERNAME_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -353,11 +353,11 @@ public abstract class Translate
         return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
     }
 
-    public static State booleanModeToStateCheckTurnNumber(boolean finished, Mode mode) throws IllegalArgumentException
+    public static State booleanModeToStateCheckTurnNumber(boolean hasFinished, Mode mode) throws IllegalArgumentException
     {
         State state;
 
-        if(finished)
+        if(hasFinished)
         {
             state = State.GAME_OVER_MENU;
         }

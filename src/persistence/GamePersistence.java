@@ -1,10 +1,9 @@
 package persistence;
 
 import domain.classes.Game;
-import exceptions.IntegrityCorruption;
+import exceptions.IntegrityCorruptionException;
 
 import java.io.*;
-import java.nio.file.FileAlreadyExistsException;
 
 public class GamePersistence extends AbstractPersistence
 {
@@ -36,7 +35,7 @@ public class GamePersistence extends AbstractPersistence
         super.save(id, game);
     }
 
-    public void checkIntegrity() throws IntegrityCorruption
+    public void checkIntegrity() throws IntegrityCorruptionException
     {
 
     }

@@ -1,12 +1,9 @@
 package persistence;
 
-import domain.classes.Game;
-import exceptions.IntegrityCorruption;
+import exceptions.IntegrityCorruptionException;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.ArrayList;
 
 public abstract class AbstractPersistence
 {
@@ -72,7 +69,7 @@ public abstract class AbstractPersistence
         if (!b) throw new IOException();
     }
 
-    public static void checkIntegrity(int hash, Object object) throws IntegrityCorruption
+    public static void checkIntegrity(int hash, Object object) throws IntegrityCorruptionException
     {
 
     }

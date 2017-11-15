@@ -212,6 +212,17 @@ public class Game implements DeepCopyable, Serializable
         return points;
     }
 
+    public boolean hasStarted() throws NullPointerException
+    {
+        return board.getSolution() != null;
+    }
+
+    public boolean hasFinished() throws NullPointerException
+    {
+        //return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCorrectionCode().equals(solutionCorrection));
+        return board.getTurnSet().size() == board.getMaxAttempts() || (!board.getTurnSet().isEmpty() && board.getLastTurn().getCode().equals(board.getSolution()));
+    }
+
     /* TESTING METHODS */
 
     public boolean isValid()
