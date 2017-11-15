@@ -160,16 +160,6 @@ public class PresentationController
         return Integer.parseInt(ioUtils.input());
     }
 
-    public int inGameMenu() throws NumberFormatException
-    {
-        ioUtils.endLine();
-        ioUtils.printOutLn ("1.- Write your code");
-        ioUtils.printOutLn ("0.- Pause game");
-        ioUtils.endLine();
-        ioUtils.printOut("Select option number: ");
-        return Integer.parseInt(ioUtils.input());
-    }
-
     public void setSolution(List<Color> solution)
     {
         this.solution = solution;

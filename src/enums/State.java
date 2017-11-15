@@ -20,7 +20,6 @@ public enum State
     GAME_PAUSE_MENU,
     GAME_ROLE_SELECTION_MENU,
 
-    IN_GAME_MENU,
     INIT_PROGRAM,
     INIT_SESSION_MENU,
 

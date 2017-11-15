@@ -334,7 +334,7 @@ public class DomainController
                     }
                     finally
                     {
-                        state = State.IN_GAME_MENU;
+                        state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -369,7 +369,7 @@ public class DomainController
                     break;
 
                 case CONTINUE_GAME:
-                    state = State.IN_GAME_MENU;
+                    state = State.PLAY_TURN;
                     break;
 
                 case EXIT_GAME_WITHOUT_SAVING:
@@ -458,18 +458,6 @@ public class DomainController
 
                         role = Translate.int2Role(returnState);
                         state = Translate.int2StateGameRoleSelectionMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        presentationController.optionError();
-                    }
-                    break;
-
-                case IN_GAME_MENU:
-                    try
-                    {
-                        returnState = presentationController.inGameMenu();
-                        state = Translate.int2StateInGameMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -605,7 +593,7 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.IN_GAME_MENU;
+                        state = State.GAME_PAUSE_MENU;
                     }
                     catch (IllegalArgumentException e)
                     {
@@ -622,7 +610,7 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.IN_GAME_MENU;
+                        state = State.GAME_PAUSE_MENU;
                     }
                     catch (IllegalArgumentException e)
                     {
@@ -683,7 +671,7 @@ public class DomainController
                     try
                     {
                         saveGame();
-                        state = State.IN_GAME_MENU;
+                        state = State.PLAY_TURN;
                     }
                     catch(IOException e)
                     {
