@@ -1,79 +1,95 @@
-JFLAGS = -cp ./src -d ./bin -g
-JC = ../jdk1.8.0_151/bin/javac
+BIN_PATH = ./bin
+SRC_PATH = ./src
+
+SRC_EXT = .java
+BIN_EXT = .class
+
+SRC_FILES_AUX = $(CLASSES:[FILEPATH]%=$(SRC_PATH)%)
+SRC_FILES = $(SRC_FILES_AUX:.[EXT]=$(SRC_EXT))
+
+JC = javac
+JFLAGS = -cp $(SRC_PATH) -d $(BIN_PATH) -g
+
+JAR = jar
+JARFLAGS = cvfe
+MAIN_CLASS = Mastermind
+JAR_NAME = Mastermind.jar
+
 .SUFFIXES: .java .class
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	./src/domain/classes/Action.java \
-	./src/domain/classes/Board.java \
-	./src/domain/classes/Code.java \
-	./src/domain/classes/CodeBreak.java \
-	./src/domain/classes/CodeCorrect.java \
-	./src/domain/classes/CodeMake.java \
-	./src/domain/classes/CPU.java \
-	./src/domain/classes/Game.java \
-	./src/domain/classes/Human.java \
-	./src/domain/classes/Player.java \
-	./src/domain/classes/Ranking.java \
-	./src/domain/classes/Turn.java \
-	./src/domain/controllers/BoardController.java \
-	./src/domain/controllers/DomainController.java \
-	./src/domain/controllers/GameController.java \
-	./src/domain/controllers/PlayerController.java \
-	./src/enums/Color.java \
-	./src/enums/Difficulty.java \
-	./src/enums/Mode.java \
-	./src/enums/Role.java \
-	./src/enums/State.java \
-	./src/exceptions/AbstractException.java \
-	./src/exceptions/GameNotStartedException.java \
-	./src/exceptions/IllegalActionException.java \
-	./src/exceptions/IntegrityCorruptionException.java \
-	./src/exceptions/ReservedKeywordException.java \
-	./src/exceptions/WrongPasswordException.java \
-	./src/persistence/AbstractPersistence.java \
-	./src/persistence/GamePersistence.java \
-	./src/persistence/PlayerPersistence.java \
-	./src/persistence/RankingPersistence.java \
-	./src/presentation/controllers/PresentationController.java \
-	./src/testing/drivers/DriverBoard.java \
-	./src/testing/drivers/DriverCode.java \
-	./src/testing/drivers/DriverColor.java \
-	./src/testing/drivers/DriverCPU.java \
-	./src/testing/drivers/DriverCPUController.java \
-	./src/testing/drivers/DriverGame.java \
-	./src/testing/drivers/DriverGameController.java \
-	./src/testing/drivers/DriverGamePersistence.java \
-	./src/testing/drivers/DriverPlayerPersistence.java \
-	./src/testing/drivers/DriverPresentationBoard.java \
-	./src/testing/drivers/DriverRanking.java \
-	./src/testing/drivers/DriverRankingPersistence.java \
-	./src/testing/drivers/DriverTurn.java \
-	./src/testing/AbstractTesting.java \
-	./src/util/Constants.java \
-	./src/util/DeepCopyable.java \
-	./src/util/Input.java \
-	./src/util/ioUtils.java \
-	./src/util/Pair.java \
-	./src/util/Rule.java \
-	./src/util/Translate.java \
-	./src/util/Utils.java \
-	./src/Mastermind.java
+	[FILEPATH]/domain/classes/Action.[EXT] \
+	[FILEPATH]/domain/classes/Board.[EXT] \
+	[FILEPATH]/domain/classes/Code.[EXT] \
+	[FILEPATH]/domain/classes/CodeBreak.[EXT] \
+	[FILEPATH]/domain/classes/CodeCorrect.[EXT] \
+	[FILEPATH]/domain/classes/CodeMake.[EXT] \
+	[FILEPATH]/domain/classes/CPU.[EXT] \
+	[FILEPATH]/domain/classes/Game.[EXT] \
+	[FILEPATH]/domain/classes/Human.[EXT] \
+	[FILEPATH]/domain/classes/Player.[EXT] \
+	[FILEPATH]/domain/classes/Ranking.[EXT] \
+	[FILEPATH]/domain/classes/Turn.[EXT] \
+	[FILEPATH]/domain/controllers/BoardController.[EXT] \
+	[FILEPATH]/domain/controllers/DomainController.[EXT] \
+	[FILEPATH]/domain/controllers/GameController.[EXT] \
+	[FILEPATH]/domain/controllers/PlayerController.[EXT] \
+	[FILEPATH]/enums/Color.[EXT] \
+	[FILEPATH]/enums/Difficulty.[EXT] \
+	[FILEPATH]/enums/Mode.[EXT] \
+	[FILEPATH]/enums/Role.[EXT] \
+	[FILEPATH]/enums/State.[EXT] \
+	[FILEPATH]/exceptions/AbstractException.[EXT] \
+	[FILEPATH]/exceptions/GameNotStartedException.[EXT] \
+	[FILEPATH]/exceptions/IllegalActionException.[EXT] \
+	[FILEPATH]/exceptions/IntegrityCorruptionException.[EXT] \
+	[FILEPATH]/exceptions/ReservedKeywordException.[EXT] \
+	[FILEPATH]/exceptions/WrongPasswordException.[EXT] \
+	[FILEPATH]/persistence/AbstractPersistence.[EXT] \
+	[FILEPATH]/persistence/GamePersistence.[EXT] \
+	[FILEPATH]/persistence/PlayerPersistence.[EXT] \
+	[FILEPATH]/persistence/RankingPersistence.[EXT] \
+	[FILEPATH]/presentation/controllers/PresentationController.[EXT] \
+	[FILEPATH]/testing/drivers/DriverBoard.[EXT] \
+	[FILEPATH]/testing/drivers/DriverCode.[EXT] \
+	[FILEPATH]/testing/drivers/DriverColor.[EXT] \
+	[FILEPATH]/testing/drivers/DriverCPU.[EXT] \
+	[FILEPATH]/testing/drivers/DriverCPUController.[EXT] \
+	[FILEPATH]/testing/drivers/DriverGame.[EXT] \
+	[FILEPATH]/testing/drivers/DriverGameController.[EXT] \
+	[FILEPATH]/testing/drivers/DriverGamePersistence.[EXT] \
+	[FILEPATH]/testing/drivers/DriverPlayerPersistence.[EXT] \
+	[FILEPATH]/testing/drivers/DriverPresentationBoard.[EXT] \
+	[FILEPATH]/testing/drivers/DriverRanking.[EXT] \
+	[FILEPATH]/testing/drivers/DriverRankingPersistence.[EXT] \
+	[FILEPATH]/testing/drivers/DriverTurn.[EXT] \
+	[FILEPATH]/testing/AbstractTesting.[EXT] \
+	[FILEPATH]/util/Constants.[EXT] \
+	[FILEPATH]/util/DeepCopyable.[EXT] \
+	[FILEPATH]/util/Input.[EXT] \
+	[FILEPATH]/util/ioUtils.[EXT] \
+	[FILEPATH]/util/Pair.[EXT] \
+	[FILEPATH]/util/Rule.[EXT] \
+	[FILEPATH]/util/Translate.[EXT] \
+	[FILEPATH]/util/Utils.[EXT] \
+	[FILEPATH]/Mastermind.[EXT]
 
 default: mkdir classes
 
-classes: $(CLASSES:.java=.class)
+classes: $(SRC_FILES:.java=.class)
 
 clean:
-	$(RM)r ./bin
-	mkdir -p ./bin
+	$(RM)r $(BIN_PATH)
+	$(RM) Mastermind.jar
+	mkdir -p $(BIN_PATH)
 
 jar:
-	jar cvfe Mastermind.jar Mastermind $(CLASSES:.java=.class)
+	$(JAR) $(JARFLAGS) $(JAR_NAME) $(MAIN_CLASS) -C $(BIN_PATH) .
 
 mkdir:
-	mkdir -p ./bin
+	mkdir -p $(BIN_PATH)
 
 run:
-	java -cp ./bin Mastermind
+	java -cp $(BIN_PATH) $(MAIN_CLASS)
