@@ -35,7 +35,7 @@ public class Ranking implements DeepCopyable, Serializable
     public LinkedList<Pair<String, Integer>> getTopTen() {
         return topTen;
     }
-    
+
     /* TESTING METHODS */
 
     public boolean inTopTen(final String idPlayer, final Integer points)
