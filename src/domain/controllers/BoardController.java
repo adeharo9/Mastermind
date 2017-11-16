@@ -21,7 +21,7 @@ public class BoardController
 
     public BoardController()
     {
-        //this.board = new Board();
+        //this.board = new sBoard();
     }
 
     /* INITIALIZATION METHODS */

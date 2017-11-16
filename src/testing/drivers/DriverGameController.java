@@ -1,21 +1,13 @@
 package testing.drivers;
 
-import domain.classes.Board;
+
 import domain.controllers.GameController;
-import enums.Difficulty;
+import enums.Color;
+import testing.stubs.sBoard;
+import testing.stubs.sGame;
 import util.ioUtils;
 
 public class DriverGameController {
-
-    public void testPointsEndTurn(){
-        GameController gameController = new GameController();
-        
-        ioUtils.printOut("Input current points (int):");
-        int cpoints = Integer.parseInt(ioUtils.input());
-        ioUtils.endLine();
-
-
-    }
 
     public static void main (String args[]){
         DriverGameController driverGameController = new DriverGameController();
@@ -23,6 +15,22 @@ public class DriverGameController {
     }
 
     public void exe(){
+
+    }
+
+    public void testPointsEndTurn(){
+        GameController gameController = new GameController();
+        sGame game = new sGame();
+        ioUtils.printOut("Input current points (int):");
+        game.setPoints(Integer.parseInt(ioUtils.input()));
+        ioUtils.endLine();
+        sBoard board = new sBoard();
+        ioUtils.printOut("Input current turn (int):");
+        board.setCurrentTurnNumber(Integer.parseInt(ioUtils.input()));
+        ioUtils.endLine();
+        ioUtils.printOut("Input code correction (K, W or N):");
+        Color c = Color.getColor(ioUtils.input());
+
 
     }
 }

@@ -215,7 +215,7 @@ public class Board implements DeepCopyable, Serializable
 
     public int getCurrentTurnNumber()
     {
-        return turnSet.size() + 1;
+        return turnSet.size();
     }
 
     public boolean isFirstTurn()

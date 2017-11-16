@@ -71,7 +71,6 @@ public class GameController
         int newPoints = game.getPoints();
         int modify = game.getBoard().getCurrentTurnNumber();
         newPoints = newPoints + modify * Constants.POINTS_ROUND;
-
         Turn lastTurn = game.getBoard().getLastTurn();
         for (int i = 0; i < lastTurn.getCorrectionPins().size(); ++i)
         {
