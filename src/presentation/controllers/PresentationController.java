@@ -3,7 +3,6 @@ package presentation.controllers;
 import enums.Color;
 import enums.Role;
 import exceptions.ReservedKeywordException;
-import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
@@ -287,10 +286,10 @@ public class PresentationController
     {
         ioUtils.printOut ("║");
 
-        for(int j = 0; j < solution.size(); ++j)
+        for(final Color color : solution)
         {
             ioUtils.printOut(" ");
-            ioUtils.printOut(solution.get(j).getStrId());
+            ioUtils.printOut(color.getStrId());
             ioUtils.printOut(" ");
         }
 
@@ -471,14 +470,27 @@ public class PresentationController
         genericSaveError("game");
     }
 
-    public void playerSaveError()
+    public void gameDeleteError()
     {
-        genericSaveError("player");
+        ioUtils.endLine();
+        ioUtils.printOutLn("Error while deleting game");
     }
 
     public void illegalActionError(final String msg)
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Illegal action: " + msg);
+    }
+
+    public void gameNotExistError(final String gameId)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Game " + gameId + " does not exist. Please choose another one");
+    }
+
+    public void playerAlreadyExistsError(final String playerId)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Player " + playerId + " already exists. Please choose another one");
     }
 }

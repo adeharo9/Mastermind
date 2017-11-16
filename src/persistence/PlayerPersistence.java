@@ -87,6 +87,7 @@ public class PlayerPersistence extends AbstractPersistence
             savedGame = br.readLine();
         }
 
+        br.close();
         return savedGames;
     }
 

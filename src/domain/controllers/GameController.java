@@ -6,6 +6,7 @@ import domain.classes.Player;
 import domain.classes.Turn;
 import enums.Color;
 import enums.Difficulty;
+import enums.Mode;
 import util.Constants;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public class GameController
         game = null;
     }
 
-    public void newGame(String id, Difficulty difficulty, Board board, List<Player> players)
+    public void newGame(String id, Difficulty difficulty, Mode mode, Board board, List<Player> players)
     {
-        game = new Game(id, difficulty);
+        game = new Game(id, difficulty, mode);
 
         game.setBoard(board);
         game.setPlayers(players);
@@ -45,6 +46,11 @@ public class GameController
     public String getId()
     {
         return game.getId();
+    }
+
+    public Mode getMode()
+    {
+        return game.getMode();
     }
 
     public boolean hasStarted()

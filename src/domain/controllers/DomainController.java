@@ -52,7 +52,7 @@ public class DomainController
 
     /* EXECUTE */
 
-    private void logInUser(String username, String password) throws IntegrityCorruptionException, IOException, WrongPasswordException, ClassNotFoundException
+    private void logInUser(String username, String password) throws IOException, WrongPasswordException, ClassNotFoundException
     {
         Player player = playerPersistence.load(username);
         PlayerController playerController = new PlayerController(player);
@@ -137,7 +137,7 @@ public class DomainController
 
         Board board = boardController.newBoard(difficulty);
 
-        gameController.newGame(Utils.autoID(), difficulty, board, players);
+        gameController.newGame(Utils.autoID(), difficulty, mode, board, players);
     }
 
     private void loadSavedGamesList() throws IOException
@@ -251,7 +251,7 @@ public class DomainController
         play(codeBreakerController);
     }
 
-    private void giveClue() throws IllegalArgumentException, GameNotStartedException
+    private void giveClue() throws GameNotStartedException
     {
         boolean b = gameController.hasStarted();
         if(!b) throw new GameNotStartedException();
@@ -363,7 +363,7 @@ public class DomainController
                         presentationController.printBoard(Role.CODE_MAKER);
                     }
 
-                    state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished, mode);
+                    state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished);
 
                     break;
 
@@ -448,11 +448,10 @@ public class DomainController
                     break;
 
                 case GAME_OVER_MENU:
-                    /*gameController.pointsEndGame();*/
-                    returnState = presentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
-
                     try
                     {
+                        /*gameController.pointsEndGame();*/
+                        returnState = presentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
                         state = Translate.int2StateGameOverMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
@@ -510,6 +509,11 @@ public class DomainController
                         loadGame(gameId);
                         state = State.CHECK_GAME_HAS_FINISHED;
                     }
+                    catch(FileNotFoundException e)
+                    {
+                        presentationController.gameNotExistError(gameId);
+                        state = State.LOAD_GAME_MENU;
+                    }
                     catch (IOException | ClassNotFoundException e)
                     {
                         presentationController.gameLoadError();
@@ -518,10 +522,17 @@ public class DomainController
                     break;
 
                 case LOAD_GAME_MENU:
-                    returnState = presentationController.loadGameMenu(savedGames);
+                    try
+                    {
+                        returnState = presentationController.loadGameMenu(savedGames);
 
-                    gameId = Translate.int2SavedGameId(savedGames, returnState);
-                    state = Translate.int2StateLoadGameMenu(returnState);
+                        gameId = Translate.int2SavedGameId(savedGames, returnState);
+                        state = Translate.int2StateLoadGameMenu(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
                     break;
 
                 case LOAD_SAVED_GAMES_LIST:
@@ -572,9 +583,14 @@ public class DomainController
                         logInUser(username, password);
                         state = State.MAIN_GAME_MENU;
                     }
-                    catch(IOException | ClassNotFoundException | WrongPasswordException e)
+                    catch(FileNotFoundException | WrongPasswordException e)
                     {
                         presentationController.logInError();
+                        state = State.LOG_IN_GET_USERNAME_MENU;
+                    }
+                    catch(IOException | ClassNotFoundException e)
+                    {
+                        presentationController.playerLoadError();
                         state = State.LOG_IN_GET_USERNAME_MENU;
                     }
                     break;
@@ -692,6 +708,11 @@ public class DomainController
                         registerUser(username, password);
                         state = State.MAIN_GAME_MENU;
                     }
+                    catch(FileAlreadyExistsException e)
+                    {
+                        presentationController.playerAlreadyExistsError(username);
+                        state = State.REGISTER_GET_USERNAME_MENU;
+                    }
                     catch(IOException e)
                     {
                         presentationController.registerError();
@@ -700,6 +721,9 @@ public class DomainController
                     break;
 
                 case RESTART_GAME:
+                    mode = gameController.getMode();
+                    role = loggedPlayerController.getRole();
+                    difficulty = boardController.getDifficulty();
                     state = State.NEW_GAME;
                     break;
 
@@ -727,12 +751,12 @@ public class DomainController
                                     throw new IllegalArgumentException();
                             }
                         }
-                        catch (IOException io)
+                        catch (IOException ei)
                         {
-                            presentationController.gameSaveError();
+                            presentationController.gameDeleteError();
                             state = State.GAME_PAUSE_MENU;
                         }
-                        catch (IllegalArgumentException il)
+                        catch (IllegalArgumentException ei)
                         {
                             presentationController.optionError();
                         }
@@ -770,7 +794,7 @@ public class DomainController
                         }
                         catch (IOException io)
                         {
-                            presentationController.gameSaveError();
+                            presentationController.gameDeleteError();
                             state = State.GAME_PAUSE_MENU;
                         }
                         catch (IllegalArgumentException il)
