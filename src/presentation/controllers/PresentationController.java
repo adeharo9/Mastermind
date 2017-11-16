@@ -470,14 +470,27 @@ public class PresentationController
         genericSaveError("game");
     }
 
-    public void playerSaveError()
+    public void gameDeleteError()
     {
-        genericSaveError("player");
+        ioUtils.endLine();
+        ioUtils.printOutLn("Error while deleting game");
     }
 
     public void illegalActionError(final String msg)
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Illegal action: " + msg);
+    }
+
+    public void gameNotExistError(final String gameId)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Game " + gameId + " does not exist. Please choose another one");
+    }
+
+    public void playerAlreadyExistsError(final String playerId)
+    {
+        ioUtils.endLine();
+        ioUtils.printOutLn("Player " + playerId + " already exists. Please choose another one");
     }
 }
