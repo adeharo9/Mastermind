@@ -75,13 +75,12 @@ CLASSES = \
 	[FILEPATH]/testing/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/testing/drivers/DriverRankingPersistence.[EXT] \
 	[FILEPATH]/testing/drivers/DriverTurn.[EXT] \
-	[FILEPATH]/testing/AbstractTesting.[EXT] \
+	[FILEPATH]/testing/stubs/Player.[EXT] \
 	[FILEPATH]/util/Constants.[EXT] \
 	[FILEPATH]/util/DeepCopyable.[EXT] \
 	[FILEPATH]/util/Input.[EXT] \
 	[FILEPATH]/util/ioUtils.[EXT] \
 	[FILEPATH]/util/Pair.[EXT] \
-	[FILEPATH]/util/Rule.[EXT] \
 	[FILEPATH]/util/Translate.[EXT] \
 	[FILEPATH]/util/Utils.[EXT] \
 	[FILEPATH]/Mastermind.[EXT]
@@ -99,6 +98,7 @@ TESTS = \
 	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
+	[FILEPATH]/stubs/Player.[EXT]
 
 $(BIN_FILES): | $(BIN_DIR)
 	$(JC) $(JFLAGS) $(SRC_FILES)
