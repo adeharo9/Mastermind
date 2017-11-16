@@ -1,7 +1,6 @@
 package testing.drivers;
 
 import domain.classes.Ranking;
-import persistence.AbstractPersistence;
 import persistence.RankingPersistence;
 import util.Pair;
 import util.ioUtils;
@@ -29,16 +28,16 @@ public class DriverRankingPersistence {
         Ranking ranking = new Ranking();
         RankingPersistence rankingPersistence = new RankingPersistence();
 
-        ranking.addInTopTen("alex", 1000);
-        ranking.addInTopTen("juan", 2000);
-        ranking.addInTopTen("pepe", 300);
-        ranking.addInTopTen("manuel", 2343);
-        ranking.addInTopTen("lsd", 1818);
-        ranking.addInTopTen("josejuan", 10000);
-        ranking.addInTopTen("marco", 923);
-        ranking.addInTopTen("maria", 48517);
-        ranking.addInTopTen("lope", 151);
-        ranking.addInTopTen("narciso", 5151);
+        ranking.addToTopTen("alex", 1000);
+        ranking.addToTopTen("juan", 2000);
+        ranking.addToTopTen("pepe", 300);
+        ranking.addToTopTen("manuel", 2343);
+        ranking.addToTopTen("lsd", 1818);
+        ranking.addToTopTen("josejuan", 10000);
+        ranking.addToTopTen("marco", 923);
+        ranking.addToTopTen("maria", 48517);
+        ranking.addToTopTen("lope", 151);
+        ranking.addToTopTen("narciso", 5151);
 
         try
         {

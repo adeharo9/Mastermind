@@ -27,16 +27,16 @@ public class DriverRanking {
    {
        Ranking ranking = new Ranking();
 
-       ranking.addInTopTen("alex", 1000);
-       ranking.addInTopTen("juan", 2000);
-       ranking.addInTopTen("pepe", 300);
-       ranking.addInTopTen("manuel", 2343);
-       ranking.addInTopTen("lsd", 1818);
-       ranking.addInTopTen("josejuan", 10000);
-       ranking.addInTopTen("marco", 923);
-       ranking.addInTopTen("maria", 48517);
-       ranking.addInTopTen("lope", 151);
-       ranking.addInTopTen("narciso", 5151);
+       ranking.addToTopTen("alex", 1000);
+       ranking.addToTopTen("juan", 2000);
+       ranking.addToTopTen("pepe", 300);
+       ranking.addToTopTen("manuel", 2343);
+       ranking.addToTopTen("lsd", 1818);
+       ranking.addToTopTen("josejuan", 10000);
+       ranking.addToTopTen("marco", 923);
+       ranking.addToTopTen("maria", 48517);
+       ranking.addToTopTen("lope", 151);
+       ranking.addToTopTen("narciso", 5151);
 
        LinkedList<Pair<String, Integer>> topTen = ranking.getTopTen();
 
@@ -56,7 +56,7 @@ public class DriverRanking {
 
        if(rankingTest.inTopTen("juanfran", 600))
        {
-           rankingTest.addInTopTen("juanfran", 600);
+           rankingTest.addToTopTen("juanfran", 600);
        }
 
        LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
@@ -72,7 +72,7 @@ public class DriverRanking {
    {
        ioUtils.printOutLn("Now, we're going to check the behavior of the " +
                "add function when the pair introduced is already in the top ten.\n");
-       rankingTest.addInTopTen("juanfran", 600);
+       rankingTest.addToTopTen("juanfran", 600);
 
        LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
        for(int i = 0; i < topTen.size(); ++i)

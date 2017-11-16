@@ -13,7 +13,7 @@ public class Game implements DeepCopyable, Serializable
 
     private final String id;
     private long time;
-    protected int points;
+    private int points;
 
     private Board board;
     private List<Player> players;
