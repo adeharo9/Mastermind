@@ -196,7 +196,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return currentGuess;
     }
 
-    private <T extends Collection<Color>> void permute(final int currDepth, final int maxDepth, final T elementSet, ArrayList<Color> aux)
+    private void permute(final int currDepth, final int maxDepth, final Collection<Color> colorCollection, List<Color> aux)
     {
         if(currDepth >= maxDepth)
         {
@@ -206,10 +206,10 @@ public class CPU extends Player implements DeepCopyable, Serializable
         }
         else
         {
-            for(final Color element : elementSet)
+            for(final Color color : colorCollection)
             {
-                aux.add(element);
-                permute(currDepth + 1, maxDepth, elementSet, aux);
+                aux.add(color);
+                permute(currDepth + 1, maxDepth, colorCollection, aux);
                 aux.remove(aux.size() - 1);
             }
         }
@@ -337,6 +337,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
             else
             {
                 color = lastColor;
+                colorSet.remove(color);
                 first = true;
             }
 
