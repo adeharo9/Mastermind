@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import domain.controllers.DomainController;
 import testing.stubs.*;
 import enums.*;
+import util.Translate;
 import util.Utils;
 
 import java.util.*;
 
 class JUnitDriverDomainController
 {
+    private State state;
 
     private DomainController domainController;
     private PlayerPersistence playerPersistence = new PlayerPersistence();
@@ -171,7 +173,5 @@ class JUnitDriverDomainController
 
         playerPersistence.savePlayerGame(gameId, playerId);
     }
-
-
 
 }
