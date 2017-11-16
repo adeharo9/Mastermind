@@ -2,10 +2,10 @@ package testing.stubs;
 
 import java.util.*;
 
-public class PlayerPersistence {
-    public Player load(String username){return new Player();}
+public class StubPlayerPersistence {
+    public StubPlayer load(String username){return new StubPlayer();}
     public boolean exists(String username){return false;}
-    public void save(Player player){}
+    public void save(StubPlayer player){}
     public List<String> loadSavedGames(String id)
     {
         List<String> savedGames = new ArrayList<>();

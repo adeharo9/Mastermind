@@ -1,12 +1,12 @@
 package testing.stubs;
 
-public class Board {
+public class StubBoard {
 
     private int currentTurn;
-    private Turn lastTurn;
+    private StubTurn lastTurn;
 
     public void setCurrentTurnNumber(int t){currentTurn = t;}
     public int getCurrentTurnNumber(){return currentTurn;}
-    public Turn getLastTurn(){return lastTurn;}
+    public StubTurn getLastTurn(){return lastTurn;}
 
 }

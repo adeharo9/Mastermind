@@ -84,7 +84,7 @@ public class DriverCPU {
         ioUtils.endLine();
 
         int count = 1;
-        while(count < 5)
+        while(count < 7)
         {
             lastTurn = new Turn(action.getCode());
             Action codeCorrect = new CodeCorrect();

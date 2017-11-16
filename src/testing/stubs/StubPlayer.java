@@ -2,7 +2,7 @@ package testing.stubs;
 
 import enums.*;
 
-public class Player {
+public class StubPlayer {
 
     public Object codeMake(Difficulty difficulty){return null;}
     public Object codeBreak(Difficulty difficulty, Object o, boolean b){return null;}

@@ -14,18 +14,18 @@ class JUnitDriverDomainController
     private State state;
 
     private DomainController domainController;
-    private PlayerPersistence playerPersistence = new PlayerPersistence();
-    private PlayerController loggedPlayerController = new PlayerController();
-    private PresentationController presentationController = new PresentationController();
+    private StubPlayerPersistence playerPersistence = new StubPlayerPersistence();
+    private StubPlayerController loggedPlayerController = new StubPlayerController();
+    private StubPresentationController presentationController = new StubPresentationController();
     private Role role = Role.CODE_BREAKER;
     private Mode mode = Mode.HUMAN_VS_HUMAN;
-    private PlayerController codeMakerController = new PlayerController();
-    private PlayerController codeBreakerController = new PlayerController();
-    private BoardController boardController = new BoardController();
-    private GameController gameController = new GameController();
+    private StubPlayerController codeMakerController = new StubPlayerController();
+    private StubPlayerController codeBreakerController = new StubPlayerController();
+    private StubBoardController boardController = new StubBoardController();
+    private StubGameController gameController = new StubGameController();
     private Difficulty difficulty = Difficulty.EASY;
     private List<String> savedGames;
-    private GamePersistence gamePersistence = new GamePersistence();
+    private StubGamePersistence gamePersistence = new StubGamePersistence();
 
     public static void main(String[] args)
     {
@@ -53,8 +53,8 @@ class JUnitDriverDomainController
 
     private void testHasToPrintBoard()
     {
-        GameController gameController = new GameController();
-        PlayerController loggedPlayerController = new PlayerController();
+        StubGameController gameController = new StubGameController();
+        StubPlayerController loggedPlayerController = new StubPlayerController();
 
         boolean hasToPrint = gameController.getMode() == Mode.HUMAN_VS_HUMAN || loggedPlayerController.getRole() == role || loggedPlayerController.getRole() == Role.WATCHER;
         assertTrue(hasToPrint);
@@ -62,8 +62,8 @@ class JUnitDriverDomainController
 
     private void testLogInUser()
     {
-        Player player = playerPersistence.load("pep");
-        PlayerController playerController = new PlayerController(player);
+        StubPlayer player = playerPersistence.load("pep");
+        StubPlayerController playerController = new StubPlayerController(player);
 
         boolean b = playerController.checkPassword("1234");
         assertTrue(b);
@@ -73,7 +73,7 @@ class JUnitDriverDomainController
     {
         boolean b = playerPersistence.exists("pep");
         assertFalse(b);
-        Player player = loggedPlayerController.newHuman("pep", "1234");
+        StubPlayer player = loggedPlayerController.newHuman("pep", "1234");
         playerPersistence.save(player);
     }
 
@@ -84,16 +84,16 @@ class JUnitDriverDomainController
         loggedPlayerController.restart();
         presentationController.clear();
 
-        List<Player> players = new ArrayList<>();
+        List<StubPlayer> players = new ArrayList<>();
 
-        PlayerController playerController1 = null;
-        PlayerController playerController2 = null;
+        StubPlayerController playerController1 = null;
+        StubPlayerController playerController2 = null;
 
         switch(mode)
         {
             case HUMAN_VS_HUMAN:
                 playerController1 = loggedPlayerController;
-                playerController2 = new PlayerController();
+                playerController2 = new StubPlayerController();
 
                 playerController2.newHuman(Utils.autoID());
                 passedTest1 = true;
@@ -101,7 +101,7 @@ class JUnitDriverDomainController
 
             case HUMAN_VS_CPU:
                 playerController1 = loggedPlayerController;
-                playerController2 = new PlayerController();
+                playerController2 = new StubPlayerController();
 
                 playerController2.newCPU(Utils.autoID());
                 break;
@@ -109,8 +109,8 @@ class JUnitDriverDomainController
             case CPU_VS_CPU:
                 role = Role.autoRole();
 
-                playerController1 = new PlayerController();
-                playerController2 = new PlayerController();
+                playerController1 = new StubPlayerController();
+                playerController2 = new StubPlayerController();
 
                 playerController1.newCPU(Utils.autoID());
                 playerController2.newCPU(Utils.autoID());
@@ -143,7 +143,7 @@ class JUnitDriverDomainController
         players.add(playerController1.getPlayer());
         players.add(playerController2.getPlayer());
 
-        Board board = boardController.newBoard(difficulty);
+        StubBoard board = boardController.newBoard(difficulty);
 
         gameController.newGame(Utils.autoID(), difficulty, mode, board, players);
 
@@ -152,7 +152,7 @@ class JUnitDriverDomainController
 
     private void testLoadSavedGameList()
     {
-        Player loggedPlayer = loggedPlayerController.getPlayer();
+        StubPlayer loggedPlayer = loggedPlayerController.getPlayer();
         savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
 
         for(int i = 0; i < savedGames.size(); ++i)
@@ -165,7 +165,7 @@ class JUnitDriverDomainController
 
     private void testSaveGame()
     {
-        Game game = gameController.getGame();
+        StubGame game = gameController.getGame();
         gamePersistence.save(game);
 
         String gameId = gameController.getId();

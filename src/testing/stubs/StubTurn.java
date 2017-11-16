@@ -5,7 +5,7 @@ import enums.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Turn {
+public class StubTurn {
 
     private ArrayList<Color> correctionPins;
 

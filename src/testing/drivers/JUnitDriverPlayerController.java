@@ -65,7 +65,7 @@ public class JUnitDriverPlayerController {
 
     private void testPlayCodeMaker() {
         boolean isFirstTurn = true;
-        testing.stubs.Player player = new testing.stubs.Player();
+        testing.stubs.StubPlayer player = new testing.stubs.StubPlayer();
         Object action;
         testedPlayerController.setRole(Role.CODE_MAKER);
         for (int i = 0; i < 2; ++i) {
@@ -95,7 +95,7 @@ public class JUnitDriverPlayerController {
     private void testPlayCodeBreaker()
     {
         boolean isFirstTurn = true;
-        testing.stubs.Player player = new testing.stubs.Player();
+        testing.stubs.StubPlayer player = new testing.stubs.StubPlayer();
         Object action;
         testedPlayerController.setRole(Role.CODE_BREAKER);
         for (int i = 0; i < 2; ++i) {
@@ -125,7 +125,7 @@ public class JUnitDriverPlayerController {
     private void testPlayWatcher()
     {
         boolean isFirstTurn = true;
-        testing.stubs.Player player = new testing.stubs.Player();
+        testing.stubs.StubPlayer player = new testing.stubs.StubPlayer();
         Object action;
         testedPlayerController.setRole(Role.WATCHER);
         for (int i = 0; i < 2; ++i) {

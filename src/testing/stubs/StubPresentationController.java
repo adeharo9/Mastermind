@@ -1,5 +1,5 @@
 package testing.stubs;
 
-public class PresentationController {
+public class StubPresentationController {
     public void clear(){}
 }
