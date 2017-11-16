@@ -255,6 +255,7 @@ public class DomainController
     private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeMakerController);
+        if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
     private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException

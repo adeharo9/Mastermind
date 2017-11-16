@@ -29,12 +29,12 @@ public final class Constants
     public static final int RANKING_SIZE = 10;
 
     /* POINT SYSTEM */
-    public static final int POINTS_INIT = 500;
-    public static final int POINTS_WHITE = 25;
-    public static final int POINTS_BLACK = 50;
+    public static final int POINTS_INIT = 3250;
+    public static final int POINTS_WHITE = 35;
+    public static final int POINTS_BLACK = 75;
     public static final int POINTS_ROUND = -10;
     public static final int POINTS_TIME = -1;
-    public static final int POINTS_CLUE = -50;
+    public static final int POINTS_CLUE = -150;
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
