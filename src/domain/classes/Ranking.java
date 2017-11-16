@@ -42,7 +42,7 @@ public class Ranking implements DeepCopyable, Serializable
         return ((topTen.getLast().second < points) || (topTen.size() < Constants.RANKING_SIZE));
     }
 
-    public void addInTopTen(final String idPlayer, final Integer points)
+    public void addToTopTen(final String idPlayer, final Integer points)
     {
         int i = correctPosition(points);
 
