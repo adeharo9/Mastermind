@@ -78,7 +78,7 @@ public class DomainController
         playerPersistence.save(player);
     }
 
-    private void newGame(Mode mode, Role role, Difficulty difficulty)
+    private void newGame(final Mode mode, Role role, final Difficulty difficulty)
     {
         loggedPlayerController.restart();
         presentationController.clear();
@@ -176,7 +176,7 @@ public class DomainController
                 playerController = new PlayerController(players.get(i));
             }
 
-            Role role = players.get(i).getRole();
+            Role role = playerController.getRole();
 
             switch (role)
             {

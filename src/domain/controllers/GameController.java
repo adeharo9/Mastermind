@@ -26,8 +26,6 @@ public class GameController
 
         game.setBoard(board);
         game.setPlayers(players);
-
-        //return game;
     }
 
     public void setGameByReference(Game game) throws IllegalArgumentException
