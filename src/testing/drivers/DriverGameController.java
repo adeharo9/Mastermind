@@ -3,8 +3,8 @@ package testing.drivers;
 
 import domain.controllers.GameController;
 import enums.Color;
-import testing.stubs.sBoard;
-import testing.stubs.sGame;
+import testing.stubs.Board;
+import testing.stubs.Game;
 import util.ioUtils;
 
 public class DriverGameController {
@@ -20,11 +20,11 @@ public class DriverGameController {
 
     public void testPointsEndTurn(){
         GameController gameController = new GameController();
-        sGame game = new sGame();
+        Game game = new Game();
         ioUtils.printOut("Input current points (int):");
         game.setPoints(Integer.parseInt(ioUtils.input()));
         ioUtils.endLine();
-        sBoard board = new sBoard();
+        Board board = new Board();
         ioUtils.printOut("Input current turn (int):");
         board.setCurrentTurnNumber(Integer.parseInt(ioUtils.input()));
         ioUtils.endLine();
