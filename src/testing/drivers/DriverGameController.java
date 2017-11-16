@@ -5,6 +5,7 @@ import domain.controllers.GameController;
 import enums.Color;
 import testing.stubs.Board;
 import testing.stubs.Game;
+import testing.stubs.Turn;
 import util.ioUtils;
 
 public class DriverGameController {
@@ -30,6 +31,11 @@ public class DriverGameController {
         ioUtils.endLine();
         ioUtils.printOut("Input code correction (K, W or N):");
         Color c = Color.getColor(ioUtils.input());
+        Turn turn = new Turn();
+        turn.setCorrection(c);
+        gameController.pointsEndTurn();
+        gameController.getPoints();
+        ioUtils.printOut(Integer.toString(gameController.getPoints()));
 
 
     }
