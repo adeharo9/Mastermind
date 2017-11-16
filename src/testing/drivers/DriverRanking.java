@@ -54,7 +54,7 @@ public class DriverRanking {
    {
        ioUtils.printOutLn("Now, we going to try to add a player and point in a full top ten: ");
 
-       if(rankingTest.inTopTen("juanfran", 600))
+       if(rankingTest.toTopTen("juanfran", 600))
        {
            rankingTest.addToTopTen("juanfran", 600);
        }
@@ -84,14 +84,14 @@ public class DriverRanking {
 
    private void testInTopTen()
    {
-       ioUtils.printOutLn("Now, we're going to test the function inTopTen that returns " +
+       ioUtils.printOutLn("Now, we're going to test the function toTopTen that returns " +
                "if a pair of player and point are in the top ten.\n");
        LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
        boolean error = false;
        for(int i = 0; i < topTen.size() - 1; ++i)
        {
            Pair<String, Integer> playerPoints = topTen.get(i);
-           if(!rankingTest.inTopTen(playerPoints.first, playerPoints.second)){
+           if(!rankingTest.toTopTen(playerPoints.first, playerPoints.second)){
                error = true;
                break;
            }
@@ -102,7 +102,7 @@ public class DriverRanking {
        }
        else
        {
-           ioUtils.printOutLn("The function inTopTen works correctly!");
+           ioUtils.printOutLn("The function toTopTen works correctly!");
        }
    }
 

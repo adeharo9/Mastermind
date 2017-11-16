@@ -167,7 +167,7 @@ public abstract class Translate
                 state = State.LOAD_SAVED_GAMES_LIST;
                 break;
             case 3:
-                state = State.CHECK_RANKING;
+                state = State.SHOW_RANKING;
                 break;
             case 4:
                 state = State.CHECK_INFO;
@@ -380,6 +380,22 @@ public abstract class Translate
         else
         {
             state = State.PLAY_CODE_BREAKER;
+        }
+
+        return state;
+    }
+
+    public static State intToStateShowRanking(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.MAIN_GAME_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
         return state;

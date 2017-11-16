@@ -46,6 +46,11 @@ public class GameController
         return game.getId();
     }
 
+    public int getPoints()
+    {
+        return game.getPoints();
+    }
+
     public Mode getMode()
     {
         return game.getMode();
