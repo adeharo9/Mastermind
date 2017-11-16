@@ -1,6 +1,6 @@
 package testing.stubs;
 
-public class Board {
+public class BoardStub {
 
     private int currentTurn;
 
