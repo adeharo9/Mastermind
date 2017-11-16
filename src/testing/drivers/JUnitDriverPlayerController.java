@@ -8,13 +8,13 @@ import enums.Role;
 import util.Utils;
 
 
-public class JUnirDriverPlayerController {
+public class JUnitDriverPlayerController {
 
     private PlayerController testedPlayerController;
 
     public static void main(String[] args)
     {
-        JUnirDriverPlayerController driverPlayerController = new JUnirDriverPlayerController();
+        JUnitDriverPlayerController driverPlayerController = new JUnitDriverPlayerController();
         driverPlayerController.exe();
     }
 
