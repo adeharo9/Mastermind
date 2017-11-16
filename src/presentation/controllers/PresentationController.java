@@ -370,7 +370,7 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Game over");
-        ioUtils.printOutLn("Punctuation: "+ points);
+        ioUtils.printOutLn("Points: "+ points);
         ioUtils.endLine();
         ioUtils.printOutLn("1.- Restart this game");
         ioUtils.printOutLn("2.- Start new game");
