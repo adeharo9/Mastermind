@@ -3,6 +3,7 @@ package presentation.controllers;
 import enums.Color;
 import enums.Role;
 import exceptions.ReservedKeywordException;
+import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
@@ -386,6 +387,22 @@ public class PresentationController
         return ioUtils.input();
     }
 
+    public int printRanking(List<Pair<String, Integer>> ranking)
+    {
+        ioUtils.endLine();
+        int i = 1;
+        for(final Pair<String, Integer> rankingEntry : ranking)
+        {
+            ioUtils.printOutLn("    " + i + ". " + rankingEntry.first + " - " + rankingEntry.second + " points");
+            ++i;
+        }
+        ioUtils.endLine();
+        ioUtils.printOutLn("0.- Back");
+        ioUtils.endLine();
+        ioUtils.printOut("Select option number: ");
+        return Integer.parseInt(ioUtils.input());
+    }
+
     /* WARNING MESSAGES */
 
     public int exitGameWarning() throws NumberFormatException
@@ -474,6 +491,16 @@ public class PresentationController
     {
         ioUtils.endLine();
         ioUtils.printOutLn("Error while deleting game");
+    }
+
+    public void rankingLoadError()
+    {
+        genericLoadError("ranking");
+    }
+
+    public void rankingSaveError()
+    {
+        genericSaveError("ranking");
     }
 
     public void illegalActionError(final String msg)

@@ -7,6 +7,7 @@ import exceptions.*;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 //import persistence.RankingPersistence;
+import persistence.RankingPersistence;
 import presentation.controllers.PresentationController;
 import util.*;
 
@@ -35,10 +36,11 @@ public class DomainController
     private PlayerController loggedPlayerController;
     private PlayerController codeMakerController;
     private PlayerController codeBreakerController;
+    private Ranking ranking;
 
     private GamePersistence gamePersistence;
     private PlayerPersistence playerPersistence;
-    //private RankingPersistence rankingPersistence;
+    private RankingPersistence rankingPersistence;
 
     public DomainController()
     {
@@ -50,10 +52,11 @@ public class DomainController
         boardController = new BoardController();
         gameController = new GameController();
         loggedPlayerController = new PlayerController();
+        ranking = new Ranking();
 
         gamePersistence = new GamePersistence();
         playerPersistence = new PlayerPersistence();
-        //rankingPersistence = new RankingPersistence();
+        rankingPersistence = new RankingPersistence();
     }
 
     /* EXECUTE */
@@ -333,6 +336,34 @@ public class DomainController
         }
     }
 
+    private void loadRanking() throws IOException, ClassNotFoundException
+    {
+        if(rankingPersistence.exists())
+        {
+            ranking = rankingPersistence.load();
+        }
+    }
+
+    private void saveRanking() throws IOException, ClassNotFoundException
+    {
+        if(rankingPersistence.exists())
+        {
+            rankingPersistence.delete();
+        }
+        rankingPersistence.save(ranking);
+    }
+
+    private void updateRanking()
+    {
+        String playerId = loggedPlayerController.getId();
+        int points = gameController.getPoints();
+
+        if(ranking.toTopTen(playerId, points))
+        {
+            ranking.addToTopTen(playerId, points);
+        }
+    }
+
     /* MAIN STATE MACHINE */
 
     public void exe() throws IntegrityCorruptionException, ReservedKeywordException
@@ -371,7 +402,20 @@ public class DomainController
 
                     if(hasFinished)
                     {
-                        presentationController.printBoard(Role.CODE_MAKER);
+                        try
+                        {
+                            presentationController.printBoard(Role.CODE_MAKER);
+
+                            if(gameController.getMode() != Mode.CPU_VS_CPU)
+                            {
+                                updateRanking();
+                                saveRanking();
+                            }
+                        }
+                        catch (IOException | ClassNotFoundException e)
+                        {
+                            presentationController.rankingSaveError();
+                        }
                     }
 
                     state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished);
@@ -383,8 +427,17 @@ public class DomainController
                     state = State.MAIN_GAME_MENU;
                     break;
 
-                case CHECK_RANKING:
-                    state = State.MAIN_GAME_MENU;
+                case SHOW_RANKING:
+                    try
+                    {
+                        returnState = presentationController.printRanking(ranking.getTopTen());
+                        state = Translate.intToStateShowRanking(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        presentationController.optionError();
+                    }
+
                     break;
 
                 case CLOSE_PROGRAM:
@@ -498,8 +551,23 @@ public class DomainController
                     }
                     break;
 
+                case LOAD_RANKING:
+                    try
+                    {
+                        loadRanking();
+                    }
+                    catch (IOException | ClassNotFoundException e)
+                    {
+                        presentationController.rankingLoadError();
+                    }
+                    finally
+                    {
+                        state = State.INIT_SESSION_MENU;
+                    }
+                    break;
+
                 case INIT_PROGRAM:
-                    state = State.INIT_SESSION_MENU;
+                    state = State.LOAD_RANKING;
                     break;
 
                 case INIT_SESSION_MENU:

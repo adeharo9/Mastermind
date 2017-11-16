@@ -32,15 +32,16 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
-    public LinkedList<Pair<String, Integer>> getTopTen() {
+    public LinkedList<Pair<String, Integer>> getTopTen()
+    {
         return topTen;
     }
 
     /* TESTING METHODS */
 
-    public boolean inTopTen(final String idPlayer, final Integer points)
+    public boolean toTopTen(final String idPlayer, final Integer points)
     {
-        return ((topTen.getLast().second < points) || (topTen.size() < Constants.RANKING_SIZE));
+        return (topTen.size() < Constants.RANKING_SIZE) || (points > topTen.getLast().second);
     }
 
     public void addToTopTen(final String idPlayer, final Integer points)
