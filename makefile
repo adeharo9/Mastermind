@@ -1,23 +1,33 @@
-BIN_PATH = ./bin
-SRC_PATH = ./src
+# DIRECTORIES
+BIN_DIR = ./bin
+SRC_DIR = ./src
+TST_DIR = testing
 
-SRC_EXT = .java
+# EXTENSIONS
 BIN_EXT = .class
+SRC_EXT = .java
+TST_EXT = .class
 
-SRC_FILES_AUX = $(CLASSES:[FILEPATH]%=$(SRC_PATH)%)
+# FILES
+BIN_FILES_AUX = $(CLASSES:[FILEPATH]%=$(BIN_DIR)%)
+BIN_FILES = $(BIN_FILES_AUX:.[EXT]=$(BIN_EXT))
+
+SRC_FILES_AUX = $(CLASSES:[FILEPATH]%=$(SRC_DIR)%)
 SRC_FILES = $(SRC_FILES_AUX:.[EXT]=$(SRC_EXT))
 
-JC = javac
-JFLAGS = -cp $(SRC_PATH) -d $(BIN_PATH) -g
+TST_FILES_AUX = $(TESTS:[FILEPATH]%=$(TST_DIR)%)
+TST_FILES = $(TST_FILES_AUX:.[EXT]=)
 
-JAR = jar
-JARFLAGS = cvfe
 MAIN_CLASS = Mastermind
-JAR_NAME = Mastermind.jar
+JAR_FILE = Mastermind.jar
 
-.SUFFIXES: .java .class
-.java.class:
-	$(JC) $(JFLAGS) $*.java
+# EXECUTABLES
+JC = javac
+JAR = jar
+
+# OPTIONS
+JFLAGS = -cp $(SRC_DIR) -d $(BIN_DIR) -g
+JARFLAGS = cvfe
 
 CLASSES = \
 	[FILEPATH]/domain/classes/Action.[EXT] \
@@ -76,20 +86,41 @@ CLASSES = \
 	[FILEPATH]/util/Utils.[EXT] \
 	[FILEPATH]/Mastermind.[EXT]
 
-default: mkdir classes
+TESTS = \
+	[FILEPATH]/drivers/DriverBoard.[EXT] \
+	[FILEPATH]/drivers/DriverCode.[EXT] \
+	[FILEPATH]/drivers/DriverColor.[EXT] \
+	[FILEPATH]/drivers/DriverCPU.[EXT] \
+	[FILEPATH]/drivers/DriverCPUController.[EXT] \
+	[FILEPATH]/drivers/DriverGame.[EXT] \
+	[FILEPATH]/drivers/DriverGameController.[EXT] \
+	[FILEPATH]/drivers/DriverGamePersistence.[EXT] \
+	[FILEPATH]/drivers/DriverPlayerPersistence.[EXT] \
+	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
+	[FILEPATH]/drivers/DriverRanking.[EXT] \
+	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
 
-classes: $(SRC_FILES:.java=.class)
+$(BIN_FILES): | $(BIN_DIR)
+	$(JC) $(JFLAGS) $(SRC_FILES)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+	
+$(JAR_FILE): $(BIN_FILES)
+	$(JAR) $(JARFLAGS) $(JAR_FILE) $(MAIN_CLASS) -C $(BIN_DIR) .
+
+all: jar
+
+default: $(BIN_FILES)
 
 clean:
-	$(RM)r $(BIN_PATH)
-	$(RM) Mastermind.jar
-	mkdir -p $(BIN_PATH)
+	$(RM)r $(BIN_DIR)
+	$(RM) $(JAR_FILE)
 
-jar:
-	$(JAR) $(JARFLAGS) $(JAR_NAME) $(MAIN_CLASS) -C $(BIN_PATH) .
+jar: $(JAR_FILE)
 
-mkdir:
-	mkdir -p $(BIN_PATH)
-
-run:
-	java -cp $(BIN_PATH) $(MAIN_CLASS)
+run: $(BIN_FILES)
+	java -cp $(BIN_DIR) $(MAIN_CLASS)
+	
+#run-tests: $(BIN_FILES)
+#	java -cp $(BIN_DIR) $(TST_FILES)
