@@ -1,5 +1,6 @@
 package testing.drivers;
 import domain.classes.Game;
+import enums.Mode;
 import persistence.GamePersistence;
 import enums.Difficulty;
 import util.Utils;
@@ -11,7 +12,7 @@ public class DriverGamePersistence
 
     public static void main(String args[])
     {
-        Game test = new Game(gameID, Difficulty.EASY);
+        Game test = new Game(gameID, Difficulty.EASY, Mode.HUMAN_VS_CPU);
         Game result;
         GamePersistence gP = new GamePersistence();
 

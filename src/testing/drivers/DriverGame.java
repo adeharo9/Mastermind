@@ -4,6 +4,7 @@ import domain.classes.Game;
 import domain.classes.Board;
 import domain.classes.Player;
 import enums.Difficulty;
+import enums.Mode;
 import util.*;
 import java.util.*;
 
@@ -28,8 +29,8 @@ public class DriverGame {
     private void testConstructors()
     {
         Game randomGame = new Game();
-        Game gameWithDifficulty = new Game(Difficulty.HARD);
-        Game gameWithDifficultyAndId = new Game(Utils.autoID(), Difficulty.HARD);
+        Game gameWithDifficulty = new Game(Difficulty.HARD, Mode.HUMAN_VS_CPU);
+        Game gameWithDifficultyAndId = new Game(Utils.autoID(), Difficulty.HARD, Mode.HUMAN_VS_CPU);
         this.testedGame = gameWithDifficultyAndId;
     }
 

@@ -52,6 +52,11 @@ public class DomainController
 
     /* EXECUTE */
 
+    private boolean hasToPrintBoard(final Role role)
+    {
+        return gameController.getMode() == Mode.HUMAN_VS_HUMAN || loggedPlayerController.getRole() == role || loggedPlayerController.getRole() == Role.WATCHER;
+    }
+
     private void logInUser(String username, String password) throws IOException, WrongPasswordException, ClassNotFoundException
     {
         Player player = playerPersistence.load(username);
@@ -627,7 +632,10 @@ public class DomainController
                 case PLAY_CODE_BREAKER:
                     try
                     {
-                        presentationController.printBoard(Role.CODE_BREAKER);
+                        if(hasToPrintBoard(Role.CODE_BREAKER))
+                        {
+                            presentationController.printBoard(Role.CODE_BREAKER);
+                        }
 
                         playCodeBreaker();
 
@@ -650,7 +658,10 @@ public class DomainController
                 case PLAY_CODE_MAKER:
                     try
                     {
-                        presentationController.printBoard(Role.CODE_MAKER);
+                        if(hasToPrintBoard(Role.CODE_MAKER))
+                        {
+                            presentationController.printBoard(Role.CODE_MAKER);
+                        }
 
                         playCodeMaker();
 
