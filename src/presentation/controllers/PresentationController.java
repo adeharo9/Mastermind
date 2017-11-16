@@ -108,7 +108,7 @@ public class PresentationController
         ioUtils.printOutLn("   Human vs. CPU: play against our algorithm");
         ioUtils.printOutLn("   CPU vs. CPU: see how our algorithm plays against himself");
         ioUtils.endLine();
-        ioUtils.printOutLn("sGame modes:");
+        ioUtils.printOutLn("Game modes:");
         ioUtils.printOutLn("  CODEMAKER: Make a code and CPU will try to solve it");
         ioUtils.printOutLn("  CODEBREAKER: CPU makes a code with specific rules and you should solve it");
         ioUtils.endLine();
@@ -369,7 +369,7 @@ public class PresentationController
     public int gameOverMenu(String points) throws NumberFormatException
     {
         ioUtils.endLine();
-        ioUtils.printOutLn("sGame over");
+        ioUtils.printOutLn("Game over");
         ioUtils.printOutLn("Punctuation: "+ points);
         ioUtils.endLine();
         ioUtils.printOutLn("1.- Restart this game");
@@ -516,7 +516,7 @@ public class PresentationController
     public void gameNotExistError(final String gameId)
     {
         ioUtils.endLine();
-        ioUtils.printOutLn("sGame " + gameId + " does not exist. Please choose another one");
+        ioUtils.printOutLn("Game " + gameId + " does not exist. Please choose another one");
     }
 
     public void playerAlreadyExistsError(final String playerId)
