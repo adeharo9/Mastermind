@@ -3,7 +3,6 @@ package presentation.controllers;
 import enums.Color;
 import enums.Role;
 import exceptions.ReservedKeywordException;
-import util.Pair;
 import util.ioUtils;
 
 import java.util.ArrayList;
@@ -287,10 +286,10 @@ public class PresentationController
     {
         ioUtils.printOut ("║");
 
-        for(int j = 0; j < solution.size(); ++j)
+        for(final Color color : solution)
         {
             ioUtils.printOut(" ");
-            ioUtils.printOut(solution.get(j).getStrId());
+            ioUtils.printOut(color.getStrId());
             ioUtils.printOut(" ");
         }
 
