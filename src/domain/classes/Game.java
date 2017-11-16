@@ -1,6 +1,7 @@
 package domain.classes;
 
 import enums.Difficulty;
+import enums.Mode;
 import enums.Role;
 import util.*;
 
@@ -14,6 +15,7 @@ public class Game implements DeepCopyable, Serializable
     private final String id;
     private long time;
     private int points;
+    private Mode mode;
 
     private Board board;
     private List<Player> players;
@@ -86,27 +88,31 @@ public class Game implements DeepCopyable, Serializable
         this.id = Utils.autoID();
         setTime();
         setPoints(Constants.POINTS_INIT);
+        mode = null;
 
         board = null;
         players = new ArrayList<>();
     }
 
-    public Game(final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    @Deprecated
+    public Game(final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
     {
         this.id = Utils.autoID();
         setTime();
         setPoints(Constants.POINTS_INIT);
+        setMode(mode);
 
         board = null;
         players = new ArrayList<>();
 
     }
 
-    public Game(final String id, final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    public Game(final String id, final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
     {
         this.id = id;
         setTime();
         setPoints(Constants.POINTS_INIT);
+        setMode(mode);
 
         board = new Board(difficulty);
         players = new ArrayList<>();
@@ -116,8 +122,10 @@ public class Game implements DeepCopyable, Serializable
     {
         id = game.getId();
         setTime(game.getTime());
-        setBoardByCopy(game.getBoard());
         setPoints(game.getPoints());
+        setMode(game.getMode());
+
+        setBoardByCopy(game.getBoard());
         setPlayersByCopy(game.getPlayers());
     }
 
@@ -126,6 +134,14 @@ public class Game implements DeepCopyable, Serializable
     public void setTime()
     {
         this.time = System.currentTimeMillis();
+    }
+
+    public void setMode(final Mode mode) throws IllegalArgumentException
+    {
+        boolean b = mode != null;
+        if(!b) throw new IllegalArgumentException();
+
+        this.mode = mode;
     }
 
     public void setBoard(final Board board) throws IllegalArgumentException, NullPointerException
@@ -187,6 +203,11 @@ public class Game implements DeepCopyable, Serializable
         return time;
     }
 
+    public Mode getMode()
+    {
+        return mode;
+    }
+
     public Board getBoard()
     {
         return board;
@@ -217,7 +238,7 @@ public class Game implements DeepCopyable, Serializable
         return board.getSolution() != null;
     }
 
-    public boolean hasFinished() throws NullPointerException
+    public boolean hasFinished()
     {
         //return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCorrectionCode().equals(solutionCorrection));
         return board.getTurnSet().size() == board.getMaxAttempts() || (!board.getTurnSet().isEmpty() && board.getLastTurn().getCode().orderedEquals(board.getSolution()));
@@ -233,6 +254,9 @@ public class Game implements DeepCopyable, Serializable
         if(!b) return false;
 
         b = isValidTime(time);
+        if(!b) return false;
+
+        b = mode != null;
         if(!b) return false;
 
         b = board != null;
