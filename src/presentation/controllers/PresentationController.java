@@ -389,7 +389,11 @@ public class PresentationController
 
     public int printRanking(List<Pair<String, Integer>> ranking)
     {
-        ioUtils.endLine();
+        if(!ranking.isEmpty())
+        {
+            ioUtils.endLine();
+        }
+
         int i = 1;
         for(final Pair<String, Integer> rankingEntry : ranking)
         {
