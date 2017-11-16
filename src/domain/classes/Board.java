@@ -6,6 +6,16 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Clase Tablero.
+ *
+ * Esta clase representa un tablero de Mastermind
+ * con su clave, sus intentos y sus respectivas
+ * correcciones.
+ *
+ * @author Alejandro de Haro
+ */
+
 public class Board implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
@@ -53,6 +63,13 @@ public class Board implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructor de tablero por defecto.
+     *
+     * Instancia un tablero vacío y no válido
+     * sin previa inicialización usando los setters
+     * públicos disponibles
+     */
     @Deprecated
     public Board ()
     {
@@ -66,7 +83,16 @@ public class Board implements DeepCopyable, Serializable
         solutionCorrection = Code.getSolutionCorrection(Difficulty.EASY);
     }
 
-    public Board(final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    /**
+     * Constructor de tablero por dificultad.
+     *
+     * Instancia un tablero vacío pero válido
+     * para empezar a jugar en él
+     *
+     * @param difficulty Dificultad del tablero
+     * @throws IllegalArgumentException En caso que la dificultad no sea correcta
+     */
+    public Board(final Difficulty difficulty) throws IllegalArgumentException
     {
         setNColumns(Constants.getNumPinsByDifficulty(difficulty));
         setMaxAttempts(Constants.getMaxRoundsByDifficulty(difficulty));
@@ -78,7 +104,15 @@ public class Board implements DeepCopyable, Serializable
         solutionCorrection = Code.getSolutionCorrection(difficulty);
     }
 
-    public Board(final Board board) throws IllegalArgumentException, NullPointerException
+    /**
+     * Constructora de tablero por copia.
+     *
+     * Instancia un tablero copia de otro tablero dado.
+     *
+     * @param board Tablero del que se quiere hacer la copia.
+     * @throws IllegalArgumentException En caso que alguno de los parámetros de board no sea correcto.
+     */
+    public Board(final Board board) throws IllegalArgumentException
     {
         setNColumns(board.getNColumns());
         setMaxAttempts (board.getMaxAttempts());
@@ -91,6 +125,17 @@ public class Board implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
+    /**
+     * Setter de número de columnas.
+     *
+     * Indica el número de columnas del tablero (es decir, el número
+     * de pines que se pueden poner por fila y por jugada).
+     *
+     * @param nColumns Número de columnas.
+     * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
+     * @deprecated En siguientes revisiones dicho valor será final.
+     */
+    @Deprecated
     public void setNColumns(final int nColumns) throws IllegalArgumentException
     {
         boolean b = isValidNColumns(nColumns);
@@ -99,6 +144,17 @@ public class Board implements DeepCopyable, Serializable
         this.nColumns = nColumns;
     }
 
+    /**
+     * Setter del valor máximo de intentos antes de terminar el juego.
+     *
+     * Indica el número máximo de turnos que se pueden jugar antes de que
+     * termine el juego.
+     *
+     * @param maxAttempts Número máximo de intentos.
+     * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
+     * @deprecated En siguientes revisiones dicho valor será final.
+     */
+    @Deprecated
     public void setMaxAttempts(final int maxAttempts) throws IllegalArgumentException
     {
         boolean b = isValidMaxAttempts(maxAttempts);
@@ -107,7 +163,16 @@ public class Board implements DeepCopyable, Serializable
         this.maxAttempts = maxAttempts;
     }
 
-    public void setDifficulty(final Difficulty difficulty) throws IllegalArgumentException, NullPointerException
+    /** Setter de dificultad.
+     *
+     * Indica la dificultad del tablero.
+     *
+     * @param difficulty Dificultad del tablero.
+     * @throws IllegalArgumentException En caso de que la dificultad no sea válida.
+     * @deprecated En siguientes revisiones dicho valor será final.
+     */
+    @Deprecated
+    public void setDifficulty(final Difficulty difficulty) throws IllegalArgumentException
     {
         boolean b = difficulty != null;
         if(!b) throw new IllegalArgumentException();
@@ -115,6 +180,15 @@ public class Board implements DeepCopyable, Serializable
         this.difficulty = difficulty;
     }
 
+    /**
+     * Setter de código del tablero (solución a la partida)
+     *
+     * Indica el código solución de la partida actual que se está jugando
+     *
+     * @param solution Código solución
+     * @throws IllegalArgumentException En caso de que el código no sea válido
+     * @throws NullPointerException En caso de que solution sea nulo
+     */
     public void setSolution(final Code solution) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidCode(solution);
@@ -123,6 +197,16 @@ public class Board implements DeepCopyable, Serializable
         this.solution = solution.deepCopy();
     }
 
+    /**
+     * Setter de conjunto de turnos.
+     *
+     * Indica el conjunto de turnos del tablero jugados hasta el momento.
+     * Ha de utilizarse conjuntamente a setSolution
+     *
+     * @param turnSet Conjunto de turnos de la partida
+     * @throws IllegalArgumentException En caso de que el conjunto no sea válido
+     * @throws NullPointerException En caso de que el conjunto sea nulo
+     */
     public void setTurnSet(final Collection<Turn> turnSet) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidTurnSet(turnSet);
@@ -136,6 +220,15 @@ public class Board implements DeepCopyable, Serializable
         }
     }
 
+    /**
+     * Añadir turno
+     *
+     * Añade un turno al conjunto de turnos del tablero
+     *
+     * @param turn Turno a añadir al tablero
+     * @throws IllegalArgumentException En caso de que el turno no sea válido
+     * @throws NullPointerException En caso de que el turno sea nulo
+     */
     public void addTurn(final Turn turn) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidCode(turn);
@@ -149,6 +242,15 @@ public class Board implements DeepCopyable, Serializable
         turnSet.add(turn.deepCopy());
     }
 
+    /**
+     * Añadir turno sin corrección
+     *
+     * Añade un turno aun sin corrección, tan solo formado
+     * por el código en sí
+     *
+     * @param code Código del turno sin corrección que añadir al tablero
+     * @throws IllegalArgumentException En caso de que el código no sea válido
+     */
     public void addCode(final Code code) throws IllegalArgumentException
     {
         boolean b = isValidCode(code);
@@ -157,6 +259,13 @@ public class Board implements DeepCopyable, Serializable
         turnSet.add(new Turn(code));
     }
 
+    /**
+     * Añadir corrección
+     *
+     * Indica la corrección al último turno jugado, la tuviese ya o no
+     *
+     * @param code Código de corrección
+     */
     public void addCorrection(final Code code)
     {
         boolean b = isValidCode(code);
@@ -167,6 +276,13 @@ public class Board implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
+    /**
+     * Getter de número de columnas del tablero
+     *
+     * Devuelve el número de columnas (es decir, de colores por turno) que cabe en el tablero
+     *
+     * @return
+     */
     public int getNColumns()
     {
         return nColumns;
