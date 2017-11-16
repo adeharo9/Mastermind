@@ -2,6 +2,7 @@ package domain.classes;
 
 import enums.Color;
 import enums.Difficulty;
+import exceptions.IllegalActionException;
 import util.Constants;
 import util.DeepCopyable;
 
@@ -90,7 +91,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeCorrect(correction);
     }
 
-    private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn)
+    private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws IllegalArgumentException
     {
         int coincidences;
         int minCoincidences;
@@ -101,7 +102,18 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
         if(isFirstTurn)
         {
-            generatePermutations(difficulty);
+            switch (difficulty)
+            {
+                case EASY:
+                    generateCombinations(difficulty);
+                    break;
+                case MEDIUM:
+                case HARD:
+                    generatePermutations(difficulty);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
             currentGuess = getInitialGuess(difficulty);
 
             guesses.remove(currentGuess);
@@ -208,7 +220,47 @@ public class CPU extends Player implements DeepCopyable, Serializable
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
         Collection<Color> colorCollection = Color.getValues(difficulty);
 
-        permute(0, numPins, colorCollection, new ArrayList<>());
+        permute(0, numPins, colorCollection, new ArrayList<>(numPins));
+    }
+
+    private void combine(final int currDepth, final int maxDepth, final Collection<Color> colorCollection, ArrayList<Color> aux, final Map<Color, Boolean> visited)
+    {
+        if(currDepth >= maxDepth)
+        {
+            final Code code = new Code(aux);
+            solutions.add(code);
+            guesses.add(code);
+        }
+        else
+        {
+            for(final Color color : colorCollection)
+            {
+                if(!visited.get(color))
+                {
+                    visited.put(color, Boolean.TRUE);
+                    aux.add(color);
+
+                    combine(currDepth + 1, maxDepth, colorCollection, aux, visited);
+
+                    aux.remove(aux.size() - 1);
+                    visited.put(color, Boolean.FALSE);
+                }
+            }
+        }
+    }
+
+    protected void generateCombinations(final Difficulty difficulty)
+    {
+        int numPins = Constants.getNumPinsByDifficulty(difficulty);
+        Collection<Color> colorCollection = Color.getValues(difficulty);
+        Map<Color, Boolean> visited = new HashMap<>(colorCollection.size());
+
+        for(final Color color : colorCollection)
+        {
+            visited.put(color, Boolean.FALSE);
+        }
+
+        combine(0, numPins, colorCollection, new ArrayList<>(numPins), visited);
     }
 
     @SuppressWarnings("Duplicates")
