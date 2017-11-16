@@ -1,21 +1,20 @@
 package testing.drivers;
 
+import static org.junit.jupiter.api.Assertions.*;
 import domain.controllers.PlayerController;
 import domain.classes.Player;
 import domain.classes.Human;
-import enums.Difficulty;
 import enums.Role;
 import util.Utils;
-import util.ioUtils;
-import testing.stubs.*;
 
-public class DriverPlayerController {
 
-    PlayerController testedPlayerController;
+public class JUnirDriverPlayerController {
+
+    private PlayerController testedPlayerController;
 
     public static void main(String[] args)
     {
-        DriverPlayerController driverPlayerController = new DriverPlayerController();
+        JUnirDriverPlayerController driverPlayerController = new JUnirDriverPlayerController();
         driverPlayerController.exe();
     }
 
@@ -31,40 +30,37 @@ public class DriverPlayerController {
 
     private void testSetPlayerByReference()
     {
-        Player player = new Human(Utils.autoID(), "1234");
+        String id = Utils.autoID();
+        Player player = new Human(id, "1234");
         PlayerController playerController = new PlayerController();
         playerController.setPlayerByReference(player);
 
         testedPlayerController = playerController;
-        ioUtils.printOutLn("Success on testSetPlayerByReference");
+        assertEquals(testedPlayerController.getId(), id);
     }
 
     private void testGetsAndSets()
     {
         Player player = testedPlayerController.getPlayer();
+        assertNotNull(player);
         String id = testedPlayerController.getId();
-        String role;
-        try
-        {
-            role = testedPlayerController.getRole().toString();
-        }
-        catch(NullPointerException e)
-        {
-            ioUtils.printOutLn("Success on testGetRole");
-        }
+        assertNotNull(id);
+
+        assertNull(testedPlayerController.getRole());
 
         testedPlayerController.setRole(Role.CODE_MAKER);
-        role = testedPlayerController.getRole().toString();
+        assertNotNull(testedPlayerController.getRole());
 
-        ioUtils.printOutLn("Success on testGetsAndSets");
+        String role = testedPlayerController.getRole().toString();
+        assertEquals(role, Role.CODE_MAKER.toString());
     }
 
     private void testNewHumanAndNewCPU()
     {
         testedPlayerController.newHuman("alex", "1234");
+        assertEquals(testedPlayerController.getId(), "alex");
         testedPlayerController.newCPU("cpu");
-
-        ioUtils.printOutLn("Success on testNewHumanAndNewCPU");
+        assertEquals(testedPlayerController.getId(), "cpu");
     }
 
     private void testPlayCodeMaker() {
@@ -91,12 +87,8 @@ public class DriverPlayerController {
                     throw new IllegalArgumentException();
             }
 
-            if (action == null && i == 0)
-            {
-                ioUtils.printOutLn("Success on testPlayCodeMake with isFirstTurn = true");
-                isFirstTurn = false;
-            }
-            else if(action == null && i == 1){ioUtils.printOutLn("Success on testPlayCodeMake with isFirstTurn = false");}
+            assertNull(action);
+            isFirstTurn = false;
         }
     }
 
@@ -125,12 +117,8 @@ public class DriverPlayerController {
                     throw new IllegalArgumentException();
             }
 
-            if (action == null && i == 0)
-            {
-                ioUtils.printOutLn("Success on testPlayCodeBreak with isFirstTurn = true");
-                isFirstTurn = false;
-            }
-            else if(action == null && i == 1){ioUtils.printOutLn("Success on testPlayCodeBreak with isFirstTurn = false");}
+            assertNull(action);
+            isFirstTurn = false;
         }
     }
 
@@ -158,12 +146,9 @@ public class DriverPlayerController {
                 default:
                     throw new IllegalArgumentException();
             }
-            if (action == null && i == 0)
-            {
-                ioUtils.printOutLn("Success on testPlayWatcher with isFirstTurn = true");
-                isFirstTurn = false;
-            }
-            else if(action == null && i == 1){ioUtils.printOutLn("Success on testPlayWatcher with isFirstTurn = false");}
+
+            assertNull(action);
+            isFirstTurn = false;
         }
     }
 }
