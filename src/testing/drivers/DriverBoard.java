@@ -38,7 +38,7 @@ public class DriverBoard {
         }
         catch (NullPointerException e)
         {
-            ioUtils.printOutLn("The constructors functions of Board works correctly!\n");
+            ioUtils.printOutLn("The constructors functions of sBoard works correctly!\n");
         }
     }
 
