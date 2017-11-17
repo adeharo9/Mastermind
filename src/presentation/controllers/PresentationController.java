@@ -121,7 +121,7 @@ public class PresentationController
         ioUtils.printOutLn("Difficulty modes:");
         ioUtils.printOutLn("  EASY MODE: Code of 4 non-repeated colors, 6 possible colors");
         ioUtils.printOutLn("  MEDIUM MODE: Code of 4 colors, 6 possible colors");
-        ioUtils.printOutLn("  HARD MODE: Code of 6 colors, 8 possible colors");
+        ioUtils.printOutLn("  HARD MODE: Code of 5 colors, 6 possible colors");
         ioUtils.endLine();
         ioUtils.printOutLn("Correction rules:");
         ioUtils.printOutLn("  Black tokens: The color and the position of a token coincide");
