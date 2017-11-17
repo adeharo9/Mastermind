@@ -209,7 +209,7 @@ public class DriverBoard {
                 "B: Blue\n" +
                 "Y: Yellow\n" +
                 "P: Purple");
-        for(int i = 0; i < 4; ++i)
+        for(int i = 0; i < 2; ++i)
         {
             Color color = Color.getColor(ioUtils.input());
             pins.add(color);
