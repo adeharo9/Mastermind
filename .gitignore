@@ -1,8 +1,5 @@
 # Compiler outputs #
-*.a
-*.bat
 *.class
-*.exe
 *.iml
 
 # Program files
@@ -12,11 +9,8 @@
 .idea
 bin
 games
-javadoc
-out
 players
+ranking
 
 # Packages #
-*.gz
-*.iso
-*.jar
+Mastermind.jar
