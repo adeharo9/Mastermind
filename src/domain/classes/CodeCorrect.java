@@ -34,12 +34,28 @@ public class CodeCorrect extends Action implements DeepCopyable
         super();
     }
 
-
+    /**
+     * Constructora de CodeCorrect por copia.
+     *
+     * Crea una copia de la instancia de CodeCorrect y de Action
+     * pasada como parámetro.
+     *
+     * @param codeCorrect CodeCorrect a copiar
+     * @throws IllegalArgumentException En caso que codeCorrect no sea válido.
+     * @throws NullPointerException En caso que codeCorrect sea nulo.
+     */
     public CodeCorrect(final CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
     {
         super(codeCorrect);
     }
 
+    /**
+     * Constructora de CodeCorrect a partir de un código.
+     *
+     * Crea una nueva instancia de CodeCorrect y Action a partir de un código.
+     *
+     * @param code código del padre, es decir, de Action.
+     */
     public CodeCorrect(final Code code)
     {
         super(code);
@@ -52,13 +68,31 @@ public class CodeCorrect extends Action implements DeepCopyable
     /* TESTING METHODS */
 
     /* OTHER METHODS */
-
+    /**
+     * Añadir código al board.
+     *
+     * Añade el código de la acción al Board
+     * que se le pasa como parámetro.
+     *
+     * @param board Board al que añadir el código.
+     */
     @Override
     public void addSelfToBoard(final Board board)
     {
         board.addCorrection(getCode());
     }
 
+    /**
+     * Comprobar acción.
+     *
+     * Comprueba que las normas del juego
+     * dado un código y la solución.
+     *
+     * @param difficulty Dificultad para comprobar normas.
+     * @param code Código a comprobar.
+     * @param solution Código solución.
+     * @throws IllegalActionException En el caso que no cumpla las normas del juego.
+     */
     @Override
     public void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException
     {
@@ -118,7 +152,13 @@ public class CodeCorrect extends Action implements DeepCopyable
     }
 
     /* CLONING METHODS */
-
+    /**
+     * Copiar acción
+     *
+     * Hace copia profunda del CodeCorrect.
+     *
+     * @return una copia del CodeCorrect.
+     */
     public CodeCorrect deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CodeCorrect(this);
