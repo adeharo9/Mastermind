@@ -78,7 +78,7 @@ public abstract class Action implements DeepCopyable
     /* OTHER METHODS */
 
     /**
-     * Añdir código al board.
+     * Añadir código al board.
      *
      * Añade el código de la acción al Board
      * que se le pasa como parámetro.
@@ -94,9 +94,9 @@ public abstract class Action implements DeepCopyable
      * Comprueba que las normas del juego
      * dado un código y la solución.
      *
-     * @param difficulty
-     * @param code
-     * @param solution
+     * @param difficulty Dificultad para comprobar normas.
+     * @param code Código a comprobar.
+     * @param solution Código solución.
      * @throws IllegalActionException En el caso que no cumpla las normas del juego.
      */
 

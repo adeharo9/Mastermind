@@ -149,6 +149,9 @@ clean:
 	$(RM) $(JAR_FILE)
 	$(RM) $(ZIP_FILE)
 
+examples:
+	$(shell cd ./test/testgames/scripts;./TestGenerateExamplesTG.bash > /dev/null 2>&1)
+
 jar: $(JAR_FILE)
 
 run: $(BIN_FILES)

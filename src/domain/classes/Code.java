@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Clase Code.
  *
- * Esta clase representa un código de colores con su respectivo tamaño.
+ * Representa un código de colores con su respectivo tamaño.
  *
  * @author Alejandro de Haro
  */
@@ -25,6 +25,15 @@ public class Code implements DeepCopyable, Serializable
     protected final int size;
     protected ArrayList<Color> codePins;
 
+    /**
+     * Getter de la corrección del código solución
+     *
+     * Devuelve el código corrección de la solución, es decir, un código solamente con
+     * fichas negras
+     *
+     * @param difficulty Dificultad del código
+     * @return Deuvele un código solamente con fichas negras
+     */
     public static Code getSolutionCorrection(Difficulty difficulty)
     {
         Color color = Color.BLACK;
