@@ -165,7 +165,7 @@ public class Human extends Player implements DeepCopyable, Serializable
     }
 
     /* PLAY METHODS */
-    
+
     public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
         List<Color> colorList = codeInputByUser(difficulty);
