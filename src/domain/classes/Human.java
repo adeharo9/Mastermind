@@ -71,7 +71,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param username Nombre del jugador
      * @param password Contraseña de acceso
      * @throws IllegalArgumentException En caso que alguno de los parametros de human no sea correcto.
-     * @throws NullPointerException En caso
+     * @throws NullPointerException En caso que alguno de los parametros sea nulo
      */
 
     public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
