@@ -26,6 +26,7 @@ public class DriverGameController {
 
     public void exe()
     {
+        ioUtils.endLine();
         ioUtils.printOutLn("1.- Test PointsEndTurn");
         ioUtils.printOutLn("2.- Test PointsClue");
         ioUtils.printOutLn("0.- Close");
@@ -42,6 +43,7 @@ public class DriverGameController {
             case "0":
                 break;
         }
+        ioUtils.endLine();
     }
 
     public void testPointsEndTurn(){
@@ -54,7 +56,7 @@ public class DriverGameController {
         ioUtils.printOut("Input current turn (int):");
         int turnnumber = Integer.parseInt(ioUtils.input());
         ioUtils.endLine();
-        ioUtils.printOut("Input code correction (K, W or N):");
+        ioUtils.printOut("Input code correction (one letter: K, W or N):");
         Color c = Color.getColor(ioUtils.input());
         List<Color> cl = new ArrayList<>();
         cl.add(Color.RED);
