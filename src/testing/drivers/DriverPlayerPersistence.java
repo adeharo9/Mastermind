@@ -22,52 +22,22 @@ public class DriverPlayerPersistence {
 
     private void exe()
     {
-        if(savePlayerTest())
-        {
-            ioUtils.printOutLn("The player has been saved correctly!");
-
-            if(loadPlayerTest())
-            {
-                ioUtils.printOutLn("The player has been loaded correctly!");
-
-                if(savePlayerGameTest())
-                {
-                    ioUtils.printOutLn("The player game has been saved correctly!");
-
-                    if(loadPlayerGameTest())
-                    {
-                        ioUtils.printOutLn("The player game has been loaded correctly!");
-                    }
-
-                    else
-                    {
-                        ioUtils.printOutLn("Test not passed. The player game hasn't been loaded correctly!");
-                    }
-
-                }
-
-                else
-                {
-                    ioUtils.printOutLn("Test not passed. The player game hasn't been saved correctly!");
-                }
-            }
-            else
-            {
-                ioUtils.printOutLn("Test not passed. The player hasn't been loaded correctly!");
-            }
-        }
-
-        else
-        {
-            ioUtils.printOutLn("Test not passed. The player hasn't been saved.");
-        }
+        savePlayerTest();
+        loadPlayerTest();
+        savePlayerGameTest();
+        loadPlayerGameTest();
     }
 
-    private boolean savePlayerTest()
+    private void savePlayerTest()
     {
-        String idPlayer = Utils.autoID();
+        ioUtils.printOutLn("Test savePlayer");
+        ioUtils.printOutLn("Introduce a id:");
+        String idPlayer = ioUtils.input();
         this.id = idPlayer;
-        Player player = new Human(idPlayer, "1234");
+
+        ioUtils.printOutLn("Introduce a password:");
+        String password = ioUtils.input();
+        Player player = new Human(idPlayer, password);
         PlayerPersistence playerPersistence = new PlayerPersistence();
         try
         {
@@ -75,13 +45,12 @@ public class DriverPlayerPersistence {
         }
         catch(IOException e)
         {
-            return false;
+            ioUtils.printOutLn("Error on savePlayerTest");
         }
-
-        return playerPersistence.exists(idPlayer);
+        ioUtils.printOutLn("Success on savePlayerTest");
     }
 
-    private boolean loadPlayerTest()
+    private void loadPlayerTest()
     {
         Player playerLoaded;
         PlayerPersistence playerPersistence = new PlayerPersistence();
@@ -94,16 +63,18 @@ public class DriverPlayerPersistence {
         }
         catch(IOException | ClassNotFoundException e)
         {
-            return false;
+            ioUtils.printOutLn("Error on loadPlayerTest");
         }
 
-        return (idPlayer.equals(this.id));
+        ioUtils.printOutLn("If the function works correctly, the id introduced previously is: " +
+                            idPlayer);
     }
 
-    private boolean savePlayerGameTest()
+    private void savePlayerGameTest()
     {
         PlayerPersistence playerPersistence = new PlayerPersistence();
-        String idGame = Utils.autoID();
+        ioUtils.printOutLn("Introduce a id of a game: ");
+        String idGame = ioUtils.input();
         this.game = idGame;
         try
         {
@@ -111,13 +82,13 @@ public class DriverPlayerPersistence {
         }
         catch(IOException e)
         {
-            return false;
+            ioUtils.printOutLn("Error on savePlayerGameTest");
         }
 
-        return true;
+        ioUtils.printOutLn("Success on savePlayerGameTest");
     }
 
-    private boolean loadPlayerGameTest()
+    private void loadPlayerGameTest()
     {
         PlayerPersistence playerPersistence = new PlayerPersistence();
         ArrayList<String> savedGames = new ArrayList<>();
@@ -131,8 +102,9 @@ public class DriverPlayerPersistence {
         }
         catch(IOException | ClassNotFoundException e)
         {
-            return false;
+            ioUtils.printOutLn("Error on loadPlayerGameTest");
         }
-        return(savedGames.get(0).equals(game));
+        ioUtils.printOutLn("If the function works correctly, the id introduced previously is: " +
+                savedGames.get(0));
     }
 }
