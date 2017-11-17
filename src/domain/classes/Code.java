@@ -7,6 +7,16 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+
+/**
+ * Clase Code.
+ *
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador.
+ *
+ * @author Alex
+ */
+
 public class Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */

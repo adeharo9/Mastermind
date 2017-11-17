@@ -8,6 +8,15 @@ import util.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase CodeCorrect.
+ *
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador para indica el código del juego.
+ *
+ * @author Alex
+ */
+
 public class CodeMake extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */
