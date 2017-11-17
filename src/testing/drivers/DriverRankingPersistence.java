@@ -25,19 +25,19 @@ public class DriverRankingPersistence {
 
     private void testSaveRanking()
     {
+        ioUtils.printOutLn("Test addInEmptyTopTen");
+        ioUtils.printOutLn("Introduce a sequence of 10 of id and points (Input example: " +
+                "alex 1000 pep 30 juan 2000 ...):");
         Ranking ranking = new Ranking();
-        RankingPersistence rankingPersistence = new RankingPersistence();
 
-        ranking.addToTopTen("alex", 1000);
-        ranking.addToTopTen("juan", 2000);
-        ranking.addToTopTen("pepe", 300);
-        ranking.addToTopTen("manuel", 2343);
-        ranking.addToTopTen("lsd", 1818);
-        ranking.addToTopTen("josejuan", 10000);
-        ranking.addToTopTen("marco", 923);
-        ranking.addToTopTen("maria", 48517);
-        ranking.addToTopTen("lope", 151);
-        ranking.addToTopTen("narciso", 5151);
+        for(int i = 0; i < 10; ++i)
+        {
+            String id = ioUtils.input();
+            int points = Integer.parseInt(ioUtils.input());
+            ranking.addToTopTen(id, points);
+        }
+
+        RankingPersistence rankingPersistence = new RankingPersistence();
 
         try
         {
