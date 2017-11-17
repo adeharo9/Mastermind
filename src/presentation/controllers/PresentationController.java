@@ -9,6 +9,12 @@ import util.ioUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PresentationController.
+ *
+ * @author Rafael
+ */
+
 public class PresentationController
 {
     /* ATTRIBUTES */

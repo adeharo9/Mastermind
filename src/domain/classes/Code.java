@@ -11,10 +11,9 @@ import java.util.*;
 /**
  * Clase Code.
  *
- * Esta clase representa el rol de una acción realizada
- * por el jugador.
+ * Esta clase representa un código de colores con su respectivo tamaño.
  *
- * @author Alex
+ * @author Alejandro de Haro
  */
 
 public class Code implements DeepCopyable, Serializable

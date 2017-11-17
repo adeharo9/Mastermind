@@ -5,6 +5,12 @@ import exceptions.IntegrityCorruptionException;
 
 import java.io.*;
 
+/**
+ * GamePersistence.
+ *
+ * @author Alex
+ */
+
 public class GamePersistence extends AbstractPersistence
 {
 

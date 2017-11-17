@@ -11,6 +11,12 @@ import util.Constants;
 
 import java.util.List;
 
+/**
+ * GameController.
+ *
+ * @author Alejandro de Haro, Rafael
+ */
+
 public class GameController
 {
     private Game game;

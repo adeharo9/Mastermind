@@ -9,6 +9,13 @@ import util.DeepCopyable;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Clase CPU.
+ *
+ * Esta clase representa la CPU como un posible jugador de la partida.
+ *
+ * @author Alex, Rafael, Alejandro de Haro
+ */
 public class CPU extends Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
