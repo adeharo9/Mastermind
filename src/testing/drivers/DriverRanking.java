@@ -20,27 +20,25 @@ public class DriverRanking {
        testAddInAEmptyTopTen();
        testAddInAFullTopTen();
        testAddARepeatedPlayer();
-       testInTopTen();
+       testToTopTen();
    }
 
    private void testAddInAEmptyTopTen()
    {
+       ioUtils.printOutLn("Test addInEmptyTopTen");
+       ioUtils.printOutLn("Introduce a sequence of 10 of id and points (Input example: " +
+               "alex 1000 pep 30 juan 2000 ...):");
        Ranking ranking = new Ranking();
 
-       ranking.addToTopTen("alex", 1000);
-       ranking.addToTopTen("juan", 2000);
-       ranking.addToTopTen("pepe", 300);
-       ranking.addToTopTen("manuel", 2343);
-       ranking.addToTopTen("lsd", 1818);
-       ranking.addToTopTen("josejuan", 10000);
-       ranking.addToTopTen("marco", 923);
-       ranking.addToTopTen("maria", 48517);
-       ranking.addToTopTen("lope", 151);
-       ranking.addToTopTen("narciso", 5151);
+       for(int i = 0; i < 10; ++i)
+       {
+           String id = ioUtils.input();
+           int points = Integer.parseInt(ioUtils.input());
+           ranking.addToTopTen(id, points);
+       }
 
        LinkedList<Pair<String, Integer>> topTen = ranking.getTopTen();
 
-       ioUtils.printOutLn("Add 10 players and points in a empty Ranking.");
 
        for(int i = 0; i < topTen.size(); ++i)
        {
@@ -52,11 +50,14 @@ public class DriverRanking {
 
    private void testAddInAFullTopTen()
    {
-       ioUtils.printOutLn("Now, we going to try to add a player and point in a full top ten: ");
+       ioUtils.printOutLn("Now, we are going to try to add a player and point in a full top ten." +
+               " Introduce a pair of id and point which is in top ten: ");
 
-       if(rankingTest.toTopTen("juanfran", 600))
+       String id = ioUtils.input();
+       int points = Integer.parseInt(ioUtils.input());
+       if(rankingTest.toTopTen(id, points))
        {
-           rankingTest.addToTopTen("juanfran", 600);
+           rankingTest.addToTopTen(id, points);
        }
 
        LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
@@ -72,7 +73,7 @@ public class DriverRanking {
    {
        ioUtils.printOutLn("Now, we're going to check the behavior of the " +
                "add function when the pair introduced is already in the top ten.\n");
-       rankingTest.addToTopTen("juanfran", 600);
+       rankingTest.addToTopTen(rankingTest.getTopTen().get(5).first, rankingTest.getTopTen().get(5).second);
 
        LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
        for(int i = 0; i < topTen.size(); ++i)
@@ -82,28 +83,18 @@ public class DriverRanking {
        ioUtils.endLine();
    }
 
-   private void testInTopTen()
+   private void testToTopTen()
    {
        ioUtils.printOutLn("Now, we're going to test the function toTopTen that returns " +
                "if a pair of player and point are in the top ten.\n");
-       LinkedList<Pair<String, Integer>> topTen = rankingTest.getTopTen();
-       boolean error = false;
-       for(int i = 0; i < topTen.size() - 1; ++i)
+       ioUtils.printOutLn("Introduce a pair of id and point: ");
+       String id = ioUtils.input();
+       int points = Integer.parseInt(ioUtils.input());
+       if(rankingTest.toTopTen(id, points))
        {
-           Pair<String, Integer> playerPoints = topTen.get(i);
-           if(!rankingTest.toTopTen(playerPoints.first, playerPoints.second)){
-               error = true;
-               break;
-           }
+           ioUtils.printOutLn("This pair should be in the top ten");
        }
-       if(error)
-       {
-           ioUtils.printOutLn("Test not passed!");
-       }
-       else
-       {
-           ioUtils.printOutLn("The function toTopTen works correctly!");
-       }
+       else{ioUtils.printOutLn("This pair shouldn't be in the top ten");}
    }
 
 }
