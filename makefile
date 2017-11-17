@@ -2,6 +2,9 @@
 BIN_DIR = ./bin
 SRC_DIR = ./src
 TST_DIR = testing
+SRC_SOURCEPATH = $(SRC_DIR)
+SRC_CLASSPATH = test/hamcrest-core-1.3.jar:test/junit-4.12.jar
+BIN_CLASSPATH =$(BIN_DIR):test/hamcrest-core-1.3.jar:test/junit-4.12.jar
 
 # EXTENSIONS
 BIN_EXT = .class
@@ -26,7 +29,7 @@ JC = javac
 JAR = jar
 
 # OPTIONS
-JFLAGS = -cp $(SRC_DIR) -d $(BIN_DIR) -g
+JFLAGS = -sourcepath $(SRC_SOURCEPATH) -classpath $(SRC_CLASSPATH) -d $(BIN_DIR) -g
 JARFLAGS = cvfe
 
 CLASSES = \
@@ -75,6 +78,8 @@ CLASSES = \
 	[FILEPATH]/testing/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/testing/drivers/DriverRankingPersistence.[EXT] \
 	[FILEPATH]/testing/drivers/DriverTurn.[EXT] \
+	[FILEPATH]/testing/drivers/JUnitDriverDomainController.[EXT] \
+	[FILEPATH]/testing/drivers/JUnitDriverPlayerController.[EXT] \
 	[FILEPATH]/testing/stubs/StubBoard.[EXT] \
 	[FILEPATH]/testing/stubs/StubBoardController.[EXT] \
 	[FILEPATH]/testing/stubs/StubGame.[EXT] \
@@ -107,6 +112,8 @@ TESTS = \
 	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
+	[FILEPATH]/testing/drivers/JUnitDriverDomainController.[EXT] \
+	[FILEPATH]/testing/drivers/JUnitDriverPlayerController.[EXT] \
 	[FILEPATH]/testing/stubs/StubBoard.[EXT] \
 	[FILEPATH]/testing/stubs/StubBoardController.[EXT] \
 	[FILEPATH]/testing/stubs/StubGame.[EXT] \
@@ -138,7 +145,7 @@ clean:
 jar: $(JAR_FILE)
 
 run: $(BIN_FILES)
-	java -cp $(BIN_DIR) $(MAIN_CLASS)
+	java -cp $(BIN_CLASSPATH) $(MAIN_CLASS)
 	
 #run-tests: $(BIN_FILES)
-#	java -cp $(BIN_DIR) $(TST_FILES)
+#	java -cp $(BIN_CLASSPATH) $(TST_FILES)
