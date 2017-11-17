@@ -37,11 +37,20 @@ public class DriverCode
 
     private void testConstructors()
     {
+        ioUtils.printOutLn("Test of constructors of code");
+        ioUtils.printOutLn("Write a code of 4 colors using the following letters (Input example: O Y B G):\n" +
+                "O: Orange\n" +
+                "R: Red\n" +
+                "G: Green\n" +
+                "B: Blue\n" +
+                "Y: Yellow\n" +
+                "P: Purple");
         colors = new ArrayList<>();
-        colors.add(Color.BLUE);
-        colors.add(Color.PURPLE);
-        colors.add(Color.GREEN);
-        colors.add(Color.GREEN);
+        for(int i = 0; i < 4; ++i)
+        {
+            Color color = Color.getColor(ioUtils.input());
+            colors.add(color);
+        }
 
         Code code = new Code(colors);
         test = code;
