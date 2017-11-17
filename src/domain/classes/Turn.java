@@ -6,6 +6,15 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Clase Turno.
+ *
+ * Esta clase representa un turno con sus respectivos código y corrección para ser almacenados
+ * en el tablero correspondiente
+ *
+ * @author Alejandro de Haro
+ */
+
 public class Turn extends Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
@@ -21,12 +30,30 @@ public class Turn extends Code implements DeepCopyable, Serializable
         correctionPins = new ArrayList<>(n);
     }*/
 
+    /**
+     * Constructora de turno.
+     *
+     * Instancia un turno con un código determinado y con una corrección vacía (aun sin realizar).
+     *
+     * @param code Código de colores del turno.
+     * @throws IllegalArgumentException En caso de que el turno no sea válido.
+     * @throws NullPointerException En caso de que code sea nulo.
+     */
     public Turn(final Code code) throws IllegalArgumentException, NullPointerException
     {
         super(code);
         correctionPins = new ArrayList<>();
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia un turno copia de otro turno.
+     *
+     * @param turn Turno a partir del cual se quiere instanciar una copia.
+     * @throws IllegalArgumentException En caso de que el turno no sea válido.
+     * @throws NullPointerException En caso de que el turno sea nulo.
+     */
     public Turn(final Turn turn) throws IllegalArgumentException, NullPointerException
     {
         super(turn);
@@ -36,6 +63,16 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
+    /**
+     * Setter de corrección por lista de colores.
+     *
+     * Indica la corrección asociada al turno en cuestión dada una lista de colores representativa
+     * de dicha corrección.
+     *
+     * @param correctionPins Lista de colores representativa de la corrección
+     * @throws IllegalArgumentException En caso de que la lista de colores no sea válida
+     * @throws NullPointerException En caso de que la lista de colores sea nula
+     */
     public void setCorrectionPins(final List<Color> correctionPins) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValid(correctionPins);
@@ -45,6 +82,13 @@ public class Turn extends Code implements DeepCopyable, Serializable
         this.correctionPins.addAll(correctionPins);
     }
 
+    /**
+     * Setter de corrección por código.
+     *
+     *
+     * @param code
+     * @throws IllegalArgumentException
+     */
     public void setCorrection(final Code code) throws IllegalArgumentException
     {
         setCorrectionPins(code.getCodePins());
