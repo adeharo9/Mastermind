@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Domain Controller
  *
- * @author Alejandro de Haro
+ * @author Alejandro de Haro, Rafael
  */
 
 public class DomainController

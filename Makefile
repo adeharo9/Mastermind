@@ -1,15 +1,18 @@
 # DIRECTORIES
 BIN_DIR = ./bin
 SRC_DIR = ./src
-TST_DIR = testing
+DRIVER_DIR = testing
+JUNIT_DIR = testing
+
 SRC_SOURCEPATH = $(SRC_DIR)
 SRC_CLASSPATH = test/hamcrest-core-1.3.jar:test/junit-4.12.jar
-BIN_CLASSPATH =$(BIN_DIR):test/hamcrest-core-1.3.jar:test/junit-4.12.jar
+BIN_CLASSPATH =$(BIN_DIR):$(SRC_CLASSPATH)
 
 # EXTENSIONS
 BIN_EXT = .class
 SRC_EXT = .java
-TST_EXT = .class
+DRIVER_EXT =
+JUNIT_EXT = 
 
 # FILES
 BIN_FILES_AUX = $(CLASSES:[FILEPATH]%=$(BIN_DIR)%)
@@ -18,15 +21,19 @@ BIN_FILES = $(BIN_FILES_AUX:.[EXT]=$(BIN_EXT))
 SRC_FILES_AUX = $(CLASSES:[FILEPATH]%=$(SRC_DIR)%)
 SRC_FILES = $(SRC_FILES_AUX:.[EXT]=$(SRC_EXT))
 
-TST_FILES_AUX = $(TESTS:[FILEPATH]%=$(TST_DIR)%)
-TST_FILES = $(TST_FILES_AUX:.[EXT]=)
+DRIVER_FILES_AUX = $(DRIVERS:[FILEPATH]%=$(DRIVER_DIR)%)
+DRIVER_FILES = $(DRIVER_FILES_AUX:.[EXT]=$(DRIVER_EXT))
+
+JUNIT_FILES_AUX = $(JUNITS:[FILEPATH]%=$(JUNIT_DIR)%)
+JUNIT_FILES = $(JUNIT_FILES_AUX:.[EXT]=$(JUNIT_EXT))
 
 MAIN_CLASS = Mastermind
 JAR_FILE = Mastermind.jar
 
 # EXECUTABLES
-JC = javac
-JAR = jar
+JC = /usr/bin/jdk1.8.0_151/bin/javac
+JAR = /usr/bin/jdk1.8.0_151/bin/jar
+JV = /usr/bin/jdk1.8.0_151/bin/java
 
 # OPTIONS
 JFLAGS = -sourcepath $(SRC_SOURCEPATH) -classpath $(SRC_CLASSPATH) -d $(BIN_DIR) -g
@@ -99,7 +106,7 @@ CLASSES = \
 	[FILEPATH]/util/Utils.[EXT] \
 	[FILEPATH]/Mastermind.[EXT]
 
-TESTS = \
+DRIVERS = \
 	[FILEPATH]/drivers/DriverBoard.[EXT] \
 	[FILEPATH]/drivers/DriverCode.[EXT] \
 	[FILEPATH]/drivers/DriverColor.[EXT] \
@@ -111,26 +118,18 @@ TESTS = \
 	[FILEPATH]/drivers/DriverPlayerPersistence.[EXT] \
 	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/drivers/DriverRanking.[EXT] \
-	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
-	[FILEPATH]/testing/drivers/JUnitDriverDomainController.[EXT] \
-	[FILEPATH]/testing/drivers/JUnitDriverPlayerController.[EXT] \
-	[FILEPATH]/testing/stubs/StubBoard.[EXT] \
-	[FILEPATH]/testing/stubs/StubBoardController.[EXT] \
-	[FILEPATH]/testing/stubs/StubGame.[EXT] \
-	[FILEPATH]/testing/stubs/StubGameController.[EXT] \
-	[FILEPATH]/testing/stubs/StubGamePersistence.[EXT] \
-	[FILEPATH]/testing/stubs/StubPlayer.[EXT] \
-	[FILEPATH]/testing/stubs/StubPlayerController.[EXT] \
-	[FILEPATH]/testing/stubs/StubPlayerPersistence.[EXT] \
-	[FILEPATH]/testing/stubs/StubPresentationController.[EXT] \
-	[FILEPATH]/testing/stubs/StubTurn.[EXT] \
+	[FILEPATH]/drivers/DriverRankingPersistence.[EXT]
+
+JUNITS = \
+	[FILEPATH]/drivers/JUnitDriverDomainController.[EXT] \
+	[FILEPATH]/drivers/JUnitDriverPlayerController.[EXT]
 
 $(BIN_FILES): | $(BIN_DIR)
 	$(JC) $(JFLAGS) $(SRC_FILES)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
-	
+
 $(JAR_FILE): $(BIN_FILES)
 	$(JAR) $(JARFLAGS) $(JAR_FILE) $(MAIN_CLASS) -C $(BIN_DIR) .
 
@@ -145,7 +144,12 @@ clean:
 jar: $(JAR_FILE)
 
 run: $(BIN_FILES)
-	java -cp $(BIN_CLASSPATH) $(MAIN_CLASS)
-	
-#run-tests: $(BIN_FILES)
-#	java -cp $(BIN_CLASSPATH) $(TST_FILES)
+	$(JV) -cp $(BIN_CLASSPATH) $(MAIN_CLASS)
+
+run-drivers: $(BIN_FILES)
+	$(foreach DRIVER_FILE, $(DRIVER_FILES), $(JV) -cp $(BIN_CLASSPATH) $(DRIVER_FILE);)
+
+run-junits: $(BIN_FILES)
+	$(foreach JUNIT_FILE, $(JUNIT_FILES), $(JV) -cp $(BIN_CLASSPATH) $(JUNIT_FILE);)
+
+run-tests: run-drivers run-junits
