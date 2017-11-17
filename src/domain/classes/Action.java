@@ -1,5 +1,13 @@
 package domain.classes;
 
+import enums.Color;
+import enums.Difficulty;
+import exceptions.IllegalActionException;
+import util.*;
+
+import java.util.List;
+import java.util.Set;
+
 /**
  * Action Class
  *
@@ -9,14 +17,6 @@ package domain.classes;
  *
  * @author Alex
  */
-
-import enums.Color;
-import enums.Difficulty;
-import exceptions.IllegalActionException;
-import util.*;
-
-import java.util.List;
-import java.util.Set;
 
 public abstract class Action implements DeepCopyable
 {
@@ -42,6 +42,17 @@ public abstract class Action implements DeepCopyable
 
     /* SET METHODS */
 
+    /**
+     * Setter del código
+     *
+     * Indica el código, es decir, la combinación de
+     * colores de la Acción del Player.
+     *
+     * @param code Código de colores
+     * @throws IllegalArgumentException Si el código que entra como parámetro no es válido
+     * @throws NullPointerException Si el código es nulo
+     */
+
     public final void setCode(final Code code) throws IllegalArgumentException, NullPointerException
     {
         boolean b = code.isValid();
@@ -51,6 +62,8 @@ public abstract class Action implements DeepCopyable
     }
 
     /* GET METHODS */
+
+
 
     public final Code getCode()
     {
