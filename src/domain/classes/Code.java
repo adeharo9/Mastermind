@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Clase Code.
  *
- * Esta clase representa un código de colores con su respectivo tamaño.
+ * Representa un código de colores con su respectivo tamaño.
  *
  * @author Alejandro de Haro
  */
