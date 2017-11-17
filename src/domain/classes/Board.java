@@ -277,42 +277,88 @@ public class Board implements DeepCopyable, Serializable
     /* GET METHODS */
 
     /**
-     * Getter de número de columnas del tablero
+     * Getter de número de columnas del tablero.
      *
-     * Devuelve el número de columnas (es decir, de colores por turno) que cabe en el tablero
+     * Devuelve el número de columnas (es decir, de colores por turno) que caben en el tablero.
      *
-     * @return
+     * @return Número de columnas de pines por turno.
      */
     public int getNColumns()
     {
         return nColumns;
     }
 
+    /**
+     * Getter de número máximo de jugadas.
+     *
+     * Devuelve el número máximo de jugadas que se pueden hacer en una partida.
+     *
+     * @return Número máximo de jugadas de una partida.
+     */
     public int getMaxAttempts ()
     {
         return maxAttempts;
     }
 
+    /**
+     * Getter de dificultad de tablero.
+     *
+     * Devuelve la dificultad del tablero actual.
+     *
+     * @return Dificultad del tablero.
+     */
     public Difficulty getDifficulty()
     {
         return difficulty;
     }
 
+    /**
+     * Getter de código de solución.
+     *
+     * Devuelve el código solución del juego actual que se está llevando a cabo.
+     *
+     * @return Código de solución del tablero.
+     */
     public Code getSolution()
     {
         return solution;
     }
 
+    /**
+     * Getter de conjunto de turnos del juego
+     *
+     * Devuelve una referencia a la lista de turnos o jugadas del juego actual
+     *
+     * @return Lista de turnos del tablero
+     */
     public ArrayList<Turn> getTurnSet ()
     {
         return turnSet;
     }
 
+    /**
+     * Getter de turno de acceso aleatorio
+     *
+     * Devuelve el turno jugado en la jugaga i-ésima
+     *
+     * @param i Número de turno que se quiere consultar
+     * @return Turno de la jugada i-ésima
+     * @throws IndexOutOfBoundsException En caso que el índice no sea un número positivo
+     * @throws NullPointerException En caso de que el conjunto de turnos no esté inicializado
+     */
     public Turn getTurn(final int i) throws IndexOutOfBoundsException, NullPointerException
     {
         return turnSet.get(i);
     }
 
+    /**
+     * Getter de último turno jugado
+     *
+     * Devuelve el último turno se que ha jugado (es decir, el último que se ha añadido al tablero)
+     * en el estado en que se encuentre
+     *
+     * @return Último turno jugado
+     */
     public Turn getLastTurn()
     {
         Turn turn;
@@ -329,11 +375,26 @@ public class Board implements DeepCopyable, Serializable
         return turn;
     }
 
+    /**
+     * Getter de número de turno actual.
+     *
+     * Devuelve el número de turno que se está jugando actualmente.
+     *
+     * @return Número de turno actual.
+     */
     public int getCurrentTurnNumber()
     {
         return turnSet.size();
     }
 
+    /**
+     * Consultora booleana de primer turno.
+     *
+     * Devuelve true si aun no se ha añadido ningún turno al conjunto de turnos (es decir, si se está
+     * jugando el primer turno).
+     *
+     * @return Booleano indicando si se está jugando el primer turno
+     */
     public boolean isFirstTurn()
     {
         return turnSet.isEmpty();
@@ -341,6 +402,12 @@ public class Board implements DeepCopyable, Serializable
 
     /* TESTING METHODS */
 
+    /**
+     * Consultora de validez de tablero
+     *
+     * @return Devuelve true si el tablero actual es válido; esto es: su número de filas y columnas es positivo y
+     * mayor que cero, tiene una dificultad asociadad y está listo para jugarse en él.
+     */
     public boolean isValid()
     {
         boolean b;
@@ -361,6 +428,15 @@ public class Board implements DeepCopyable, Serializable
 
     /* COPY METHODS */
 
+    /**
+     * Copia de objeto.
+     *
+     * Devuelve una copia profunda del objeto actual.
+     *
+     * @return Copia profunda del objeto actual.
+     * @throws IllegalArgumentException En caso de que alguno de los valores de este tablero no sea válido.
+     * @throws NullPointerException En caso de que alguno de los campos de este tablero no esté inicializado.
+     */
     public Board deepCopy () throws IllegalArgumentException, NullPointerException
     {
         return new Board (this);
