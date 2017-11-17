@@ -1,5 +1,15 @@
 package domain.classes;
 
+/**
+ * Action Class
+ *
+ * This class represents an abstract action
+ * (code make, code break or code correct)
+ * in a Mastermind game
+ *
+ * @author Alex
+ */
+
 import enums.Color;
 import enums.Difficulty;
 import exceptions.IllegalActionException;

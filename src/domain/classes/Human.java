@@ -10,6 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase Humano.
+ *
+ * Esta clase representa un Jugador del tipo
+ * Humano, el cual tiene una contraseña.
+ *
+ * @author Rafael Ramirez
+ */
+
 public class Human extends Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
@@ -25,16 +34,45 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructor de humano por defecto.
+     *
+     * Instancia un humano vacío y no válido
+     * sin previa inicialización usando los setters
+     * públicos disponibles
+     */
+
     public Human()
     {
         super();
         this.password = "";
     }
 
+    /**
+     * Constructor de jugador por nombre.
+     *
+     * Instancia un jugador con nombre solamente.
+     *
+     * @param username Nombre del jugador
+     * @throws IllegalArgumentException En caso que el nombre no sea correcto
+     */
+
     public Human(final String username) throws IllegalArgumentException
     {
         super(username);
     }
+
+    /**
+     * Constructor de jugador.
+     *
+     * Instancia un jugador con nombre y contraseña,
+     * el cual ya puede iniciar sesion en la aplicacion.
+     *
+     * @param username Nombre del jugador
+     * @param password Contraseña de acceso
+     * @throws IllegalArgumentException En caso que alguno de los parametros de human no sea correcto.
+     * @throws NullPointerException En caso
+     */
 
     public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
     {
