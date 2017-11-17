@@ -27,7 +27,7 @@ public abstract class Player implements DeepCopyable, Serializable
 
     private static boolean isValidId(final String id) throws NullPointerException
     {
-        return !id.isEmpty();
+        return id != null;
     }
 
     /* CONSTRUCTION METHODS */
