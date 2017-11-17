@@ -127,8 +127,6 @@ public class PresentationController
         ioUtils.printOutLn("  Black tokens: The color and the position of a token coincide");
         ioUtils.printOutLn("  White tokens: The color of a token coincide");
         ioUtils.printOutLn("  None tokens: The color of a token don't coincide");
-        ioUtils.printOutLn("  EASY MODE: correction tokens are placed in the order of the response tokens.");
-        ioUtils.printOutLn("  MEDIUM and HARD MODE: correction tokens are placed in random order.");
     }
 
     public int gameModeSelectionMenu() throws NumberFormatException
