@@ -40,7 +40,7 @@ public class CodeCorrect extends Action implements DeepCopyable
      * Crea una copia de la instancia de CodeCorrect y de Action
      * pasada como parámetro.
      *
-     * @param codeCorrect CodeCorrect a copiar
+     * @param codeCorrect CodeCorrect a copiar.
      * @throws IllegalArgumentException En caso que codeCorrect no sea válido.
      * @throws NullPointerException En caso que codeCorrect sea nulo.
      */

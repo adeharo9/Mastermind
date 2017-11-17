@@ -121,7 +121,6 @@ public class DriverBoard {
 
     private void testAddTurn()
     {
-        ioUtils.printOutLn("I");
         List<Color> pins = new ArrayList<>();
         pins.add(Color.BLUE);
         pins.add(Color.ORANGE);
@@ -200,7 +199,7 @@ public class DriverBoard {
         }
         catch(IllegalArgumentException e)
         {
-            ioUtils.printOutLn("Test passed. You can't add a code of 4 pins in a hard board that needs 6!\n");
+            ioUtils.printOutLn("Test passed. You can't add a code of 4 pins in a hard board that needs 5!\n");
         }
 
         ioUtils.printOutLn("Write a code of 2 colors using the following letters (Input example: O Y):\n" +
@@ -210,7 +209,7 @@ public class DriverBoard {
                 "B: Blue\n" +
                 "Y: Yellow\n" +
                 "P: Purple");
-        for(int i = 0; i < 4; ++i)
+        for(int i = 0; i < 2; ++i)
         {
             Color color = Color.getColor(ioUtils.input());
             pins.add(color);

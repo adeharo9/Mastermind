@@ -60,10 +60,10 @@ public class DriverGamePersistence
             case "1":
                 mode = Mode.HUMAN_VS_HUMAN;
                 break;
-            case "m":
+            case "2":
                 mode = Mode.HUMAN_VS_CPU;
                 break;
-            case "e":
+            case "3":
                 mode = Mode.CPU_VS_CPU;
                 break;
             default:
