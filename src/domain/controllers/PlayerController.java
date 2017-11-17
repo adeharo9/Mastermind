@@ -5,6 +5,12 @@ import enums.Difficulty;
 import enums.Role;
 import exceptions.ReservedKeywordException;
 
+/**
+ * PlayerController.
+ *
+ * @author Alejandro de Haro, Alex
+ */
+
 public class PlayerController
 {
     /* ATTRIBUTES */

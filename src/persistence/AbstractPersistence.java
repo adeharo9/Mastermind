@@ -4,6 +4,11 @@ import exceptions.IntegrityCorruptionException;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
+/**
+ * AbstractPersistence.
+ *
+ * @author Alex
+ */
 
 public abstract class AbstractPersistence
 {

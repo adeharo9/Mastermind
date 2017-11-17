@@ -5,6 +5,15 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Clase Ranking.
+ *
+ * Esta clase representa un ranking formado por
+ * las 10 mejores puntuaciones o menos (en caso que no se
+ * hayan jugado 10 partidas) con el id del jugador que la ha conseguido.
+ *
+ * @author Alex
+ */
 public class Ranking implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
@@ -13,16 +22,33 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora de Raniking.
+     *
+     * Instancia un ranking vacío pero evitando NullPointerException.
+     */
     public Ranking()
     {
         topTen = new LinkedList<>();
     }
 
+     /* CONSTRUCTION METHODS */
+
+    /**
+     * Constructora por defecto de Raniking.
+     *
+     * Instancia un ranking vacío.
+     */
     public Ranking(final Ranking ranking)
     {
 
     }
 
+    /**
+     * Constructora de ranking por lista de jugadores y puntuación.
+     * @param topTen Lista de los 10 o menos (en caso que no se hayan jugado todavía 10 partidas)
+     *              mejores jugadores y puntos respectivos ordenados por este último.
+     */
     public Ranking(final LinkedList<Pair<String, Integer>> topTen)
     {
         this.topTen = topTen;
@@ -32,6 +58,15 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
+    /**
+     * Getter del top ten
+     *
+     * Devuelve la lista de jugadores y puntuaciones
+     * respectivas que conforman las mejores 10 partidas.
+     *
+     * @return Lista de los 10 o menos (en caso que no se hayan jugado todavía 10 partidas)
+     *              mejores jugadores y puntos respectivos ordenados por este último.
+     */
     public LinkedList<Pair<String, Integer>> getTopTen()
     {
         return topTen;
@@ -39,11 +74,31 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* TESTING METHODS */
 
+    /**
+     * Consultar si está en el top ten.
+     *
+     * Consulta si el jugador identificado por idPlayer junto con la
+     * puntuación que ha conseguido, están en el top ten.
+     *
+     * @param idPlayer Id del jugador que ha realizado la partida.
+     * @param points Puntuación que el jugador ha conseguido.
+     * @return True si debe estar en el top ten, en cualquier otro caso false.
+     */
     public boolean toTopTen(final String idPlayer, final Integer points)
     {
         return (topTen.size() < Constants.RANKING_SIZE) || (points > topTen.getLast().second);
     }
 
+    /**
+     * Añadir jugador y puntuación al top ten.
+     *
+     * La pareja formada por el jugador identificado por idPlayer y
+     * la puntuación que ha conseguido, siempre previamente habiendo sido comprobado
+     * si está en el top Ten, se añade en el top ten en la posición que le toca.
+     *
+     * @param idPlayer Id del jugador que realiza la partida.
+     * @param points Puntuación que el jugador ha conseguido y que está entre las 10 mejores.
+     */
     public void addToTopTen(final String idPlayer, final Integer points)
     {
         int i = correctPosition(points);
@@ -87,6 +142,13 @@ public class Ranking implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    /**
+     * Copia de objeto.
+     *
+     * Devuelve una copia profunda del objeto actual.
+     *
+     * @return Copia profunda del objeto actual.
+     */
     public Ranking deepCopy()
     {
         return new Ranking(this);

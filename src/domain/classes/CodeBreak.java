@@ -8,6 +8,15 @@ import util.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase CodeBreak.
+ *
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador para intentar averiguar el código.
+ *
+ * @author Alex
+ */
+
 public class CodeBreak extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */

@@ -10,16 +10,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Clase CodeCorrect.
+ *
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador para corregir una jugada.
+ *
+ * @author Alex
+ */
 public class CodeCorrect extends Action implements DeepCopyable
 {
     /* ATTRIBUTES */
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora de CodeCorrect vacío.
+     *
+     * Crea una nueva instancia de CodeCorrect y de Action.
+     */
     public CodeCorrect()
     {
         super();
     }
+
 
     public CodeCorrect(final CodeCorrect codeCorrect) throws IllegalArgumentException, NullPointerException
     {

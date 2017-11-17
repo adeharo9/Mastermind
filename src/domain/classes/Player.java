@@ -8,6 +8,14 @@ import util.Utils;
 
 import java.io.Serializable;
 
+/**
+ * Clase Player.
+ *
+ * Esta clase representa un jugador.
+ *
+ * @author Rafael
+ */
+
 public abstract class Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */

@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Action Class
+ * Clase Action.
  *
- * This class represents an abstract action
- * (code make, code break or code correct)
- * in a Mastermind game
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador.
  *
  * @author Alex
  */
@@ -43,14 +42,14 @@ public abstract class Action implements DeepCopyable
     /* SET METHODS */
 
     /**
-     * Setter del código
+     * Setter del código.
      *
      * Indica el código, es decir, la combinación de
-     * colores de la Acción del Player.
+     * colores de la Acción del Player con su respectivo size.
      *
-     * @param code Código de colores
-     * @throws IllegalArgumentException Si el código que entra como parámetro no es válido
-     * @throws NullPointerException Si el código es nulo
+     * @param code Código de colores.
+     * @throws IllegalArgumentException Si el código que entra como parámetro no es válido.
+     * @throws NullPointerException Si el código es nulo.
      */
 
     public final void setCode(final Code code) throws IllegalArgumentException, NullPointerException
@@ -63,7 +62,13 @@ public abstract class Action implements DeepCopyable
 
     /* GET METHODS */
 
-
+    /**
+     * Getter del código.
+     *
+     * Devuelve el código, es decir, la combinación de colores y el size de la misma.
+     *
+     * @return Código asociado a la acción.
+     */
 
     public final Code getCode()
     {
@@ -72,7 +77,28 @@ public abstract class Action implements DeepCopyable
 
     /* OTHER METHODS */
 
+    /**
+     * Añdir código al board.
+     *
+     * Añade el código de la acción al Board
+     * que se le pasa como parámetro.
+     *
+     * @param board Board al que añadir el código.
+     */
+
     public abstract void addSelfToBoard(Board board);
+
+    /**
+     * Comprobar acción.
+     *
+     * Comprueba que las normas del juego
+     * dado un código y la solución.
+     *
+     * @param difficulty
+     * @param code
+     * @param solution
+     * @throws IllegalActionException En el caso que no cumpla las normas del juego.
+     */
 
     public abstract void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException;
 
@@ -99,6 +125,14 @@ public abstract class Action implements DeepCopyable
 
     /* VALIDATION METHODS */
 
+    /**
+     * Código válido
+     *
+     * Comprueba si el código de la acción es válido.
+     *
+     * @return true si no es null, en cualquier otro caso false.
+     */
+
     public boolean isValid()
     {
         return code != null;
@@ -106,5 +140,12 @@ public abstract class Action implements DeepCopyable
 
     /* CLONING METHODS */
 
+    /**
+     * Copiar acción
+     *
+     * Hace copia profunda de la acción.
+     *
+     * @return una copia de la acción.
+     */
     public abstract Action deepCopy();
 }

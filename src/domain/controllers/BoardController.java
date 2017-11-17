@@ -9,6 +9,12 @@ import exceptions.IllegalActionException;
 
 import java.util.List;
 
+/**
+ * BoardController.
+ *
+ * @author Alejandro de Haro
+ */
+
 public class BoardController
 {
     /* ATTRIBUTES */
