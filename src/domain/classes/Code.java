@@ -7,6 +7,15 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+
+/**
+ * Clase Code.
+ *
+ * Esta clase representa un código de colores con su respectivo tamaño.
+ *
+ * @author Alejandro de Haro
+ */
+
 public class Code implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */

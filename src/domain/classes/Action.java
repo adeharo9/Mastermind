@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Action Class
+ * Clase Action.
  *
- * This class represents an abstract action
- * (code make, code break or code correct)
- * in a Mastermind game
+ * Esta clase representa el rol de una acción realizada
+ * por el jugador.
  *
  * @author Alex
  */

@@ -6,6 +6,11 @@ import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 
+/**
+ * PlayerPersistence.
+ *
+ * @author Alex
+ */
 
 public class PlayerPersistence extends AbstractPersistence
 {

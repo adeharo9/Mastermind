@@ -7,6 +7,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * RankingPersistence.
+ *
+ * @author Alex
+ */
+
 public class RankingPersistence extends AbstractPersistence
 {
     public RankingPersistence()

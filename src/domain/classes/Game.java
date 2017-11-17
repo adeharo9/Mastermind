@@ -8,6 +8,13 @@ import util.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Clase Game.
+ *
+ * Esta clase representa un contenedor de los parámetros básicos de la partida.
+ *
+ * @author Rafael
+ */
 public class Game implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
