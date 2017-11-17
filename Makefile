@@ -1,6 +1,8 @@
 # DIRECTORIES
 BIN_DIR = ./bin
 SRC_DIR = ./src
+DOC_DIR = ./docs
+TST_DIR = ./test
 DRIVER_DIR = testing
 JUNIT_DIR = testing
 
@@ -12,7 +14,9 @@ BIN_CLASSPATH =$(BIN_DIR):$(SRC_CLASSPATH)
 BIN_EXT = .class
 SRC_EXT = .java
 DRIVER_EXT =
-JUNIT_EXT = 
+JUNIT_EXT =
+JAR_EXT = .jar
+ZIP_EXT = .zip
 
 # FILES
 BIN_FILES_AUX = $(CLASSES:[FILEPATH]%=$(BIN_DIR)%)
@@ -28,16 +32,19 @@ JUNIT_FILES_AUX = $(JUNITS:[FILEPATH]%=$(JUNIT_DIR)%)
 JUNIT_FILES = $(JUNIT_FILES_AUX:.[EXT]=$(JUNIT_EXT))
 
 MAIN_CLASS = Mastermind
-JAR_FILE = Mastermind.jar
+JAR_FILE = Mastermind$(JAR_EXT)
+ZIP_FILE = PROP_23.63$(ZIP_EXT)
 
 # EXECUTABLES
-JC = /usr/bin/jdk1.8.0_151/bin/javac
-JAR = /usr/bin/jdk1.8.0_151/bin/jar
-JV = /usr/bin/jdk1.8.0_151/bin/java
+JC = javac
+JAR = jar
+JV = java
+ZIP = zip
 
 # OPTIONS
 JFLAGS = -sourcepath $(SRC_SOURCEPATH) -classpath $(SRC_CLASSPATH) -d $(BIN_DIR) -g
 JARFLAGS = cvfe
+ZOPTIONS = -r
 
 CLASSES = \
 	[FILEPATH]/domain/classes/Action.[EXT] \
@@ -133,13 +140,14 @@ $(BIN_DIR):
 $(JAR_FILE): $(BIN_FILES)
 	$(JAR) $(JARFLAGS) $(JAR_FILE) $(MAIN_CLASS) -C $(BIN_DIR) .
 
-all: jar
+all: zip jar
 
 default: $(BIN_FILES)
 
 clean:
 	$(RM)r $(BIN_DIR)
 	$(RM) $(JAR_FILE)
+	$(RM) $(ZIP_FILE)
 
 jar: $(JAR_FILE)
 
@@ -153,3 +161,6 @@ run-junits: $(BIN_FILES)
 	$(foreach JUNIT_FILE, $(JUNIT_FILES), $(JV) -cp $(BIN_CLASSPATH) $(JUNIT_FILE);)
 
 run-tests: run-drivers run-junits
+
+$(ZIP):
+	$(ZIP) $(ZOPTIONS) $(ZIP_FILE) $(DOC_DIR) $(SRC_DIR) $(TST_DIR) Makefile
