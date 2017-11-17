@@ -36,14 +36,22 @@ public class DriverColor {
     {
         ioUtils.printOutLn("----------------------------------------------------------------\n" +
                         "Now, we're going to test if, given a set of colors (blue, black, orange and purple), the function getRandomColor " +
-                "returns one of the colors that the set contains:\n");
+                "returns one of the colors that the set contains:\n" +
+                "Introduce the 4 colors of this set (Input example: O Y B G):\n" +
+                "O: Orange\n" +
+                "R: Red\n" +
+                "G: Green\n" +
+                "B: Blue\n" +
+                "Y: Yellow\n" +
+                "P: Purple");
         Set<Color> colorSet = new HashSet<>();
-
-        colorSet.add(Color.BLUE);
-        colorSet.add(Color.ORANGE);
-        colorSet.add(Color.BLACK);
-        colorSet.add(Color.PURPLE);
-
+        for(int i = 0; i < 4; ++i)
+        {
+            Color color = Color.getColor(ioUtils.input());
+            colorSet.add(color);
+        }
+        ioUtils.printOutLn("If the getRandomColor works correctly, the color that will appear is one " +
+                "of those that have been previously introduced:");
         ioUtils.printOutLn(Color.getRandomColor(colorSet).getStrDescription());
     }
 }
