@@ -75,7 +75,16 @@ CLASSES = \
 	[FILEPATH]/testing/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/testing/drivers/DriverRankingPersistence.[EXT] \
 	[FILEPATH]/testing/drivers/DriverTurn.[EXT] \
-	[FILEPATH]/testing/stubs/Player.[EXT] \
+	[FILEPATH]/testing/stubs/StubBoard.[EXT] \
+	[FILEPATH]/testing/stubs/StubBoardController.[EXT] \
+	[FILEPATH]/testing/stubs/StubGame.[EXT] \
+	[FILEPATH]/testing/stubs/StubGameController.[EXT] \
+	[FILEPATH]/testing/stubs/StubGamePersistence.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayer.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayerController.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayerPersistence.[EXT] \
+	[FILEPATH]/testing/stubs/StubPresentationController.[EXT] \
+	[FILEPATH]/testing/stubs/StubTurn.[EXT] \
 	[FILEPATH]/util/Constants.[EXT] \
 	[FILEPATH]/util/DeepCopyable.[EXT] \
 	[FILEPATH]/util/Input.[EXT] \
@@ -98,7 +107,16 @@ TESTS = \
 	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
-	[FILEPATH]/stubs/Player.[EXT]
+	[FILEPATH]/testing/stubs/StubBoard.[EXT] \
+	[FILEPATH]/testing/stubs/StubBoardController.[EXT] \
+	[FILEPATH]/testing/stubs/StubGame.[EXT] \
+	[FILEPATH]/testing/stubs/StubGameController.[EXT] \
+	[FILEPATH]/testing/stubs/StubGamePersistence.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayer.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayerController.[EXT] \
+	[FILEPATH]/testing/stubs/StubPlayerPersistence.[EXT] \
+	[FILEPATH]/testing/stubs/StubPresentationController.[EXT] \
+	[FILEPATH]/testing/stubs/StubTurn.[EXT] \
 
 $(BIN_FILES): | $(BIN_DIR)
 	$(JC) $(JFLAGS) $(SRC_FILES)
