@@ -85,9 +85,10 @@ public class Turn extends Code implements DeepCopyable, Serializable
     /**
      * Setter de corrección por código.
      *
+     * Indica la corrección asociada al turno en cuestión dado un código representativo de la corrección en cuestión.
      *
-     * @param code
-     * @throws IllegalArgumentException
+     * @param code Código representativo de la corrección.
+     * @throws IllegalArgumentException En caso de que code no sea un código válido.
      */
     public void setCorrection(final Code code) throws IllegalArgumentException
     {
@@ -96,6 +97,10 @@ public class Turn extends Code implements DeepCopyable, Serializable
 
     /* GET METHODS */
 
+    /**
+     *
+     * @return
+     */
     public final Code getCode()
     {
         return new Code(codePins);
