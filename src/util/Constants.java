@@ -7,12 +7,12 @@ public final class Constants
     /* NUMBER OF COLORS ALLOWED */
     public static final int NUM_COLORS_EASY = 6;
     public static final int NUM_COLORS_MEDIUM = 6;
-    public static final int NUM_COLORS_HARD = 8;
+    public static final int NUM_COLORS_HARD = 6;
 
     /* NUMBER OF PINS TO BE GUESSED */
     public static final int NUM_PINS_EASY = 4;
     public static final int NUM_PINS_MEDIUM = 4;
-    public static final int NUM_PINS_HARD = 6;
+    public static final int NUM_PINS_HARD = 5;
 
     /* MAXIMUM NUMBER OF ROUNDS */
     public static final int MAX_ROUNDS_EASY = 30;
