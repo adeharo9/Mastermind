@@ -106,7 +106,7 @@ public class Ranking implements DeepCopyable, Serializable
         Pair<String, Integer> toAdd = new Pair<>(idPlayer, points);
         topTen.add(i, toAdd);
 
-        if(topTen.size() > Constants.RANKING_SIZE) { topTen.pollLast(); }
+        if(topTen.size() > Constants.RANKING_SIZE) { topTen.removeLast(); }
     }
 
     private int correctPosition(final Integer points)
