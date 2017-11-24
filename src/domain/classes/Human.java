@@ -39,7 +39,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      *
      * Instancia un humano vacío y no válido
      * sin previa inicialización usando los setters
-     * públicos disponibles
+     * públicos disponibles.
      */
 
     public Human()
@@ -53,8 +53,8 @@ public class Human extends Player implements DeepCopyable, Serializable
      *
      * Instancia un jugador con nombre solamente.
      *
-     * @param username Nombre del jugador
-     * @throws IllegalArgumentException En caso que el nombre no sea correcto
+     * @param username Nombre del jugador.
+     * @throws IllegalArgumentException En caso que el nombre no sea correcto.
      */
 
     public Human(final String username) throws IllegalArgumentException
@@ -71,7 +71,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param username Nombre del jugador
      * @param password Contraseña de acceso
      * @throws IllegalArgumentException En caso que alguno de los parametros de human no sea correcto.
-     * @throws NullPointerException En caso que alguno de los parametros sea nulo
+     * @throws NullPointerException En caso que alguno de los parametros sea nulo.
      */
 
     public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
@@ -81,6 +81,15 @@ public class Human extends Player implements DeepCopyable, Serializable
         setPassword(password);
     }
 
+    /**
+     * Constructor de jugador.
+     *
+     * Instancia un jugador humano que es copia de human.
+     *
+     * @param human Objeto Humano
+     * @throws IllegalArgumentException En caso que human no sea correcto.
+     * @throws NullPointerException En caso que human sea nulo.
+     */
     @Deprecated
     public Human(final Human human) throws IllegalArgumentException, NullPointerException
     {
@@ -91,6 +100,16 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
+    /**
+     * Setter de contraseña.
+     *
+     * Indica la contraseña de acceso del humano.
+     *
+     * @param password Contraseña de acceso.
+     * @throws IllegalArgumentException En caso que password no sea correcto.
+     * @throws NullPointerException En caso que password sea nulo.
+     */
+
     public void setPassword(final String password) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPassword(password);
@@ -100,7 +119,13 @@ public class Human extends Player implements DeepCopyable, Serializable
     }
 
     /* GET METHODS */
-
+    /**
+     * Getter de contraseña.
+     *
+     * Obtiene la contraseña del humano.
+     *
+     * @return String password
+     */
     public final String getPassword()
     {
         return password;
@@ -108,6 +133,15 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* VALIDATION METHODS */
 
+    /**
+     * Setter de contraseña.
+     *
+     * Instancia un jugador humano que es copia de human.
+     *
+     * @param password Contraseña de acceso.
+     * @return boolean password es igual al password del humano actual.
+     * @throws NullPointerException En caso que password sea nulo.
+     */
     public final boolean checkPassword(final String password) throws NullPointerException
     {
         return this.password.equals(password);
@@ -115,6 +149,15 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    /**
+     * Copia de Human
+     *
+     * Devuelve una copia profunda del objeto actual
+     *
+     * @return Copia profunda del objeto actual
+     * @throws IllegalArgumentException En caso que Human no sea correcto.
+     * @throws NullPointerException En caso que Human sea nulo.
+     */
     @Deprecated
     public Human deepCopy() throws IllegalArgumentException, NullPointerException
     {
