@@ -367,7 +367,7 @@ public class DomainController
 
     /* MAIN STATE MACHINE */
 
-    public void exe() throws IntegrityCorruptionException, ReservedKeywordException
+    public void exe() throws ReservedKeywordException
     {
         int returnState;
         String gameId = null;
