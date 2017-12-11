@@ -5,20 +5,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Mastermind //extends Application
+public class Mastermind extends Application
 {
-    /*@Override
+    @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("./presentation/MainView.fxml"));
         primaryStage.setTitle("Mastermind");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-    }*/
+    }
 
     public static void main(String args[]) throws Exception
     {
-        //launch(args);
-        DomainController domainController = new DomainController();
-        domainController.exe();
+        launch(args);
+        /*DomainController domainController = new DomainController();
+        domainController.exe();*/
     }
 }
