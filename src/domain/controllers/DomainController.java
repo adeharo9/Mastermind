@@ -3,11 +3,11 @@ package domain.controllers;
 import domain.classes.*;
 import enums.*;
 import exceptions.*;
-//import persistence.BoardPersistence;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
-//import persistence.RankingPersistence;
 import persistence.RankingPersistence;
+import presentation.controllers.AbstractViewController;
+import presentation.controllers.InitSessionViewController;
 import presentation.controllers.PresentationController;
 import util.*;
 
@@ -30,6 +30,7 @@ public class DomainController
     private List<String> savedGames;
 
     private final PresentationController presentationController;
+    private AbstractViewController currentViewController;
 
     private BoardController boardController;
     private GameController gameController;
@@ -572,6 +573,17 @@ public class DomainController
                     break;
 
                 case INIT_SESSION_MENU:
+                    currentViewController = new InitSessionViewController();
+
+                    try
+                    {
+                        currentViewController.start();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
                     try
                     {
                         returnState = presentationController.initSessionMenu();
