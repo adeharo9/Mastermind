@@ -1,4 +1,3 @@
-import domain.controllers.DomainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +8,7 @@ public class Mastermind extends Application
 {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("./presentation/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("presentation/views/InitSessionView.fxml"));
         primaryStage.setTitle("Mastermind");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
