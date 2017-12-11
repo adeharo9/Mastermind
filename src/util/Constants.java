@@ -36,6 +36,9 @@ public final class Constants
     public static final int POINTS_TIME = -1;
     public static final int POINTS_CLUE = -150;
 
+    /* DIRECTORIES */
+    public static final String VIEWS_PATH = "/presentation/views/";
+
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         return getGenericByDifficulty(difficulty, NUM_COLORS_EASY, NUM_COLORS_MEDIUM, NUM_COLORS_HARD);
