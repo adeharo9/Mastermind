@@ -3,7 +3,9 @@ package domain.classes;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;
-import util.*;
+import util.Constants;
+import util.DeepCopyable;
+import util.ioUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

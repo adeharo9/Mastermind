@@ -1,11 +1,14 @@
 package testing.drivers;
 
 import domain.classes.Board;
-import domain.classes.Turn;
 import domain.classes.Code;
-import enums.*;
-import java.util.*;
+import domain.classes.Turn;
+import enums.Color;
+import enums.Difficulty;
 import util.ioUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DriverBoard {
 

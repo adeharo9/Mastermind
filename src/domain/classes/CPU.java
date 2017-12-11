@@ -2,7 +2,6 @@ package domain.classes;
 
 import enums.Color;
 import enums.Difficulty;
-import exceptions.IllegalActionException;
 import util.Constants;
 import util.DeepCopyable;
 

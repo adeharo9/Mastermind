@@ -1,10 +1,11 @@
 package domain.classes;
 
 import enums.Color;
-import util.*;
+import util.DeepCopyable;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase Turno.

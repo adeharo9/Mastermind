@@ -3,7 +3,8 @@ package persistence;
 import domain.classes.Game;
 import exceptions.IntegrityCorruptionException;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * GamePersistence.

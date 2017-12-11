@@ -1,7 +1,9 @@
 package testing.stubs;
 
 import enums.Difficulty;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StubBoardController {
     public StubBoard newBoard(Difficulty difficulty){return new StubBoard();}

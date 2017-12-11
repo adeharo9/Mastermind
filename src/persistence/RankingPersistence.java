@@ -4,7 +4,6 @@ import domain.classes.Ranking;
 import exceptions.IntegrityCorruptionException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**

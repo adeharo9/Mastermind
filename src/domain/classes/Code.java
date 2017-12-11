@@ -2,10 +2,14 @@ package domain.classes;
 
 import enums.Color;
 import enums.Difficulty;
-import util.*;
+import util.Constants;
+import util.DeepCopyable;
+import util.Utils;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 /**

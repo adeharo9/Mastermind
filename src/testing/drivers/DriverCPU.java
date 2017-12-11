@@ -1,10 +1,13 @@
 package testing.drivers;
 
 import domain.classes.*;
-import enums.*;
-import java.util.*;
+import enums.Color;
+import enums.Difficulty;
 import util.Utils;
 import util.ioUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DriverCPU {
 

@@ -1,8 +1,10 @@
 package testing.drivers;
 
-import domain.classes.Human;
 import domain.classes.Code;
-import enums.*;
+import domain.classes.Human;
+import enums.Color;
+import enums.Difficulty;
+import enums.Role;
 import exceptions.ReservedKeywordException;
 import util.Utils;
 import util.ioUtils;

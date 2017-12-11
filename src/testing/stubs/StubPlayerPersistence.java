@@ -1,6 +1,7 @@
 package testing.stubs;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StubPlayerPersistence {
     public StubPlayer load(String username){return new StubPlayer();}

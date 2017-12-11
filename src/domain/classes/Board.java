@@ -1,10 +1,12 @@
 package domain.classes;
 
 import enums.Difficulty;
-import util.*;
+import util.Constants;
+import util.DeepCopyable;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Clase Tablero.

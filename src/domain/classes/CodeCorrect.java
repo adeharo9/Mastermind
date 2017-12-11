@@ -3,12 +3,11 @@ package domain.classes;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.IllegalActionException;
-import util.*;
+import util.DeepCopyable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Clase CodeCorrect.

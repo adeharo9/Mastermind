@@ -1,6 +1,6 @@
 package util;
 
-import java.util.*;
+import java.util.Collection;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Utils

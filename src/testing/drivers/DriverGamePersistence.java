@@ -1,10 +1,9 @@
 package testing.drivers;
+
 import domain.classes.Game;
-import enums.Color;
+import enums.Difficulty;
 import enums.Mode;
 import persistence.GamePersistence;
-import enums.Difficulty;
-import util.Utils;
 import util.ioUtils;
 
 public class DriverGamePersistence

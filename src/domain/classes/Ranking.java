@@ -1,9 +1,11 @@
 package domain.classes;
 
-import util.*;
+import util.Constants;
+import util.DeepCopyable;
+import util.Pair;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.LinkedList;
 
 /**
  * Clase Ranking.

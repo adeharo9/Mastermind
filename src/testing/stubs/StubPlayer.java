@@ -1,6 +1,7 @@
 package testing.stubs;
 
-import enums.*;
+import enums.Difficulty;
+import enums.Role;
 
 public class StubPlayer {
 

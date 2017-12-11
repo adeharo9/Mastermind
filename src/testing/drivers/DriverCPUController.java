@@ -1,9 +1,7 @@
 package testing.drivers;
 
-import domain.classes.Action;
 import domain.classes.CPU;
 import domain.classes.Code;
-import domain.classes.CodeCorrect;
 import domain.controllers.PlayerController;
 import enums.Color;
 import enums.Difficulty;

@@ -1,13 +1,15 @@
 package testing.drivers;
 
-import domain.classes.Game;
 import domain.classes.Board;
-import domain.classes.Player;
+import domain.classes.Game;
 import domain.classes.Human;
+import domain.classes.Player;
 import enums.Difficulty;
 import enums.Mode;
-import util.*;
-import java.util.*;
+import util.ioUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DriverGame {

@@ -1,13 +1,12 @@
 package testing.drivers;
 
+import domain.classes.Human;
+import domain.classes.Player;
 import persistence.PlayerPersistence;
-import util.Utils;
 import util.ioUtils;
-import domain.classes.*;
-import java.util.*;
 
-import javax.rmi.CORBA.Util;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DriverPlayerPersistence {
 

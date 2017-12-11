@@ -3,7 +3,8 @@ package domain.classes;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.IllegalActionException;
-import util.*;
+import util.Constants;
+import util.DeepCopyable;
 
 import java.util.List;
 import java.util.Set;

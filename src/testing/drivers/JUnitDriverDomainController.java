@@ -1,13 +1,17 @@
 package testing.drivers;
 
-import static org.junit.Assert.*;
 import domain.controllers.DomainController;
+import enums.Difficulty;
+import enums.Mode;
+import enums.Role;
+import enums.State;
 import testing.stubs.*;
-import enums.*;
-import util.Translate;
 import util.Utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 class JUnitDriverDomainController
 {

@@ -3,10 +3,8 @@ package domain.classes;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.IllegalActionException;
-import util.*;
-
-import java.util.List;
-import java.util.Set;
+import util.Constants;
+import util.DeepCopyable;
 
 /**
  * Clase CodeBreak.

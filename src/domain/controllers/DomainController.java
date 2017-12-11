@@ -2,14 +2,19 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
-import exceptions.*;
+import exceptions.GameNotStartedException;
+import exceptions.IllegalActionException;
+import exceptions.ReservedKeywordException;
+import exceptions.WrongPasswordException;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.AbstractViewController;
 import presentation.controllers.InitSessionViewController;
 import presentation.controllers.PresentationController;
-import util.*;
+import util.Constants;
+import util.Translate;
+import util.Utils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

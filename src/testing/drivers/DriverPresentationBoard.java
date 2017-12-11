@@ -1,9 +1,8 @@
 package testing.drivers;
+
 import enums.Color;
 import presentation.controllers.PresentationController;
-import util.ioUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

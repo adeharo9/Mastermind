@@ -1,11 +1,12 @@
 package testing.drivers;
 
-import static org.junit.Assert.*;
-import domain.controllers.PlayerController;
-import domain.classes.Player;
 import domain.classes.Human;
+import domain.classes.Player;
+import domain.controllers.PlayerController;
 import enums.Role;
 import util.Utils;
+
+import static org.junit.Assert.*;
 
 
 public class JUnitDriverPlayerController {

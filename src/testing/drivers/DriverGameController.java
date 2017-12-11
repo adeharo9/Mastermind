@@ -9,9 +9,6 @@ import domain.controllers.GameController;
 import enums.Color;
 import enums.Difficulty;
 import enums.Mode;
-import testing.stubs.StubBoard;
-import testing.stubs.StubGame;
-import testing.stubs.StubTurn;
 import util.ioUtils;
 
 import java.util.ArrayList;
