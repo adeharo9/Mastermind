@@ -1,7 +1,7 @@
 package testing.drivers;
 
 import enums.Color;
-import presentation.controllers.PresentationController;
+import presentation.controllers.OldPresentationController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class DriverPresentationBoard
 {
     public static void main(String args[])
     {
-        PresentationController presentationController = new PresentationController();
+        OldPresentationController oldPresentationController = new OldPresentationController();
         List<List<Color>> codes = new ArrayList<>(4);
         List<List<Color>> corrections = new ArrayList<>(3);
         List<Color> code1 = new ArrayList<>();
@@ -40,7 +40,7 @@ public class DriverPresentationBoard
         code1.add(Color.getRandomColor(6));
         code1.add(Color.getRandomColor(6));
 
-        //presentationController.printBoard(codes,corrections);
-        //presentationController.printCode(code1);
+        //oldPresentationController.printBoard(codes,corrections);
+        //oldPresentationController.printCode(code1);
     }
 }
