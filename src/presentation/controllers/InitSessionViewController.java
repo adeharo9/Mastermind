@@ -4,9 +4,9 @@ import domain.controllers.DomainController;
 import exceptions.ReservedKeywordException;
 import javafx.fxml.FXML;
 
-public class MainViewController
+public class InitSessionViewController
 {
-    public MainViewController()
+    public InitSessionViewController()
     {
 
     }
