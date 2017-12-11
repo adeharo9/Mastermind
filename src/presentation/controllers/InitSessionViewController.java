@@ -1,18 +1,31 @@
 package presentation.controllers;
 
-import domain.controllers.DomainController;
-import exceptions.ReservedKeywordException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class InitSessionViewController
+public class InitSessionViewController extends AbstractViewController
 {
     public InitSessionViewController()
     {
 
     }
 
+    @Override
     @FXML
-    private void initialize() throws ReservedKeywordException
+    protected void initialize()
     {
+    }
+
+    @Override
+    public void start() throws Exception
+    {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../views/InitSessionView.fxml"));
+        stage.setTitle("Mastermind");
+        stage.setScene(new Scene(root, 300, 275));
+        stage.show();
     }
 }
