@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import enums.View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import util.Constants;
 
+import java.io.IOException;
+
 
 public class InitSessionViewController extends AbstractViewController
 {
@@ -15,6 +18,7 @@ public class InitSessionViewController extends AbstractViewController
     {
 
     }
+
 
     @Override
     @FXML
@@ -33,8 +37,9 @@ public class InitSessionViewController extends AbstractViewController
     }
 
     @FXML
-    public void pressButton(ActionEvent actionEvent)
+    public void pressButton(ActionEvent actionEvent) throws IOException
     {
-        System.out.println("Button pressed");
+        updateView(View.LOADING_VIEW.getViewFile());
+        notify();
     }
 }
