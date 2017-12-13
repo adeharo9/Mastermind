@@ -33,6 +33,12 @@ public class Mastermind extends Application
         logicThread.start();
     }
 
+    @Override
+    public void stop()
+    {
+        System.exit(0);
+    }
+
     public static void main(String args[])
     {
         launch(args);
