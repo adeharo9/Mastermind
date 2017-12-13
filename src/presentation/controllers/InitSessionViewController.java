@@ -37,7 +37,7 @@ public class InitSessionViewController extends AbstractViewController
     }
 
     @FXML
-    public void pressButton(ActionEvent actionEvent) throws IOException
+    public synchronized void pressButton(ActionEvent actionEvent) throws IOException
     {
         updateView(View.LOADING_VIEW.getViewFile());
         notify();
