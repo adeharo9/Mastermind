@@ -590,6 +590,7 @@ public class DomainController
                     state = State.LOAD_RANKING;
 
                     updateView(View.INIT_SESSION_VIEW);
+                    
                     break;
 
                 case INIT_SESSION_MENU:
