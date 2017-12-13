@@ -52,7 +52,7 @@ class JUnitDriverDomainController
     private void testConstructors()
     {
         assertNull(domainController);
-        domainController = new DomainController(new PresentationController());
+        domainController = new DomainController();
         assertNotNull(domainController);
     }
 
