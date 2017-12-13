@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
-import presentation.controllers.AbstractViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import runnables.UpdateViewRunnable;
@@ -28,7 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Domain Controller
  *
- * @author Alejandro de Haro, Rafael
+ * @author Alejandro de Haro, Rafael, Alex
  */
 
 public class DomainController
@@ -37,8 +36,7 @@ public class DomainController
     private List<String> savedGames;
 
     private final OldPresentationController oldPresentationController;
-    private final PresentationController presentationController;
-    private AbstractViewController currentViewController;
+    private PresentationController presentationController;
 
     private BoardController boardController;
     private GameController gameController;
@@ -51,13 +49,13 @@ public class DomainController
     private PlayerPersistence playerPersistence;
     private RankingPersistence rankingPersistence;
 
-    public DomainController(PresentationController presentationController)
+    public DomainController()
     {
         state = State.INIT_PROGRAM;
         savedGames = new ArrayList<>();
 
         oldPresentationController = new OldPresentationController();
-        this.presentationController = presentationController;
+        this.presentationController = null;
 
         boardController = new BoardController();
         gameController = new GameController();
@@ -67,6 +65,11 @@ public class DomainController
         gamePersistence = new GamePersistence();
         playerPersistence = new PlayerPersistence();
         rankingPersistence = new RankingPersistence();
+    }
+
+    public void setPresentationController(final PresentationController presentationController)
+    {
+        this.presentationController = presentationController;
     }
 
     /* EXECUTE */
@@ -593,7 +596,8 @@ public class DomainController
                     wait();
                     try
                     {
-                        returnState = oldPresentationController.initSessionMenu();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.initSessionMenu();
                         state = Translate.int2StateInitSessionMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
