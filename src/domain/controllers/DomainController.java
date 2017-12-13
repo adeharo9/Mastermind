@@ -6,11 +6,14 @@ import exceptions.GameNotStartedException;
 import exceptions.IllegalActionException;
 import exceptions.ReservedKeywordException;
 import exceptions.WrongPasswordException;
+import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.AbstractViewController;
 import presentation.controllers.OldPresentationController;
+import presentation.controllers.PresentationController;
+import runnables.UpdateViewRunnable;
 import util.Constants;
 import util.Translate;
 import util.Utils;
@@ -34,6 +37,7 @@ public class DomainController
     private List<String> savedGames;
 
     private final OldPresentationController oldPresentationController;
+    private final PresentationController presentationController;
     private AbstractViewController currentViewController;
 
     private BoardController boardController;
@@ -47,12 +51,13 @@ public class DomainController
     private PlayerPersistence playerPersistence;
     private RankingPersistence rankingPersistence;
 
-    public DomainController()
+    public DomainController(PresentationController presentationController)
     {
         state = State.INIT_PROGRAM;
         savedGames = new ArrayList<>();
 
         oldPresentationController = new OldPresentationController();
+        this.presentationController = presentationController;
 
         boardController = new BoardController();
         gameController = new GameController();
@@ -372,12 +377,12 @@ public class DomainController
 
     private void updateView(View view)
     {
-
+        Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
     }
 
     /* MAIN STATE MACHINE */
 
-    public void exe() throws ReservedKeywordException
+    public synchronized void exe() throws InterruptedException
     {
         int returnState;
         String gameId = null;
@@ -578,11 +583,14 @@ public class DomainController
                     break;
 
                 case INIT_PROGRAM:
+
                     state = State.LOAD_RANKING;
+
+                    updateView(View.INIT_SESSION_VIEW);
                     break;
 
                 case INIT_SESSION_MENU:
-                    updateView(View.INIT_SESSION_VIEW);
+                    wait();
                     try
                     {
                         returnState = oldPresentationController.initSessionMenu();
