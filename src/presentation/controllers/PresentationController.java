@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import domain.controllers.DomainController;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,17 +13,26 @@ import java.io.IOException;
 public class PresentationController
 {
     /* ATTRIBUTES */
-    private final Stage stage;
+    private Stage stage;
 
-    public PresentationController(Stage stage) throws IOException
+    public PresentationController()
+    {
+
+    }
+
+    public void setStage(Stage stage)
     {
         this.stage = stage;
-        initView();
     }
 
     public void initView() throws IOException, NullPointerException
     {
-        Parent root = FXMLLoader.load(getClass().getResource(Constants.VIEWS_PATH + View.LOADING_VIEW.getViewFile()));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + View.LOADING_VIEW.getViewFile()));
+
+        Parent root = fxmlLoader.load();
+
+        PresentationController presentationController = fxmlLoader.getController();
+        presentationController.setStage(this.stage);
 
         this.stage.setTitle("Mastermind");
         this.stage.setScene(new Scene(root));
@@ -31,7 +41,12 @@ public class PresentationController
 
     public void updateView(final String viewFile) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource(Constants.VIEWS_PATH + viewFile));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + viewFile));
+
+        Parent root = fxmlLoader.load();
+
+        PresentationController presentationController = fxmlLoader.getController();
+        presentationController.setStage(this.stage);
 
         stage.getScene().setRoot(root);
     }
