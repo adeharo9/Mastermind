@@ -1,9 +1,6 @@
 package presentation.controllers;
 
 import domain.controllers.DomainController;
-import enums.Difficulty;
-import enums.Mode;
-import enums.Role;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +18,7 @@ public class PresentationController
 
     protected static final DomainController domainController = new DomainController();
 
-    protected static volatile int returnState = 0;
+    protected static volatile int returnState;
     protected static volatile String gameId;
     protected static volatile String username;
     protected static volatile String password;
