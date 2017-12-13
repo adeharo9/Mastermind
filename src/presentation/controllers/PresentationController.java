@@ -1,6 +1,9 @@
 package presentation.controllers;
 
 import domain.controllers.DomainController;
+import enums.Difficulty;
+import enums.Mode;
+import enums.Role;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,16 +16,40 @@ import java.io.IOException;
 public class PresentationController
 {
     /* ATTRIBUTES */
+
     private Stage stage;
+
+    protected static final DomainController domainController = new DomainController();
+
+    protected static volatile int returnState = 0;
+    protected static volatile String gameId;
+    protected static volatile String username;
+    protected static volatile String password;
+
+    /* CONSTRUCTORS */
 
     public PresentationController()
     {
 
     }
 
-    public void setStage(Stage stage)
+    /* SET METHODS */
+
+    public void setStage(final Stage stage)
     {
         this.stage = stage;
+    }
+
+    /* GET METHODS */
+
+    public static int getReturnState()
+    {
+        return PresentationController.returnState;
+    }
+
+    public DomainController getDomainController()
+    {
+        return PresentationController.domainController;
     }
 
     public void initView() throws IOException, NullPointerException
