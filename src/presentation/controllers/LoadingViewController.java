@@ -12,10 +12,4 @@ public class LoadingViewController extends AbstractViewController
     {
 
     }
-
-    @Override
-    public void start() throws Exception
-    {
-
-    }
 }

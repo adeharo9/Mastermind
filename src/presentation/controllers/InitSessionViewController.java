@@ -19,21 +19,11 @@ public class InitSessionViewController extends AbstractViewController
 
     }
 
-
     @Override
     @FXML
     protected void initialize()
     {
-    }
 
-    @Override
-    public void start() throws Exception
-    {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource(Constants.VIEWS_PATH + "InitSessionView.fxml"));
-        stage.setTitle("Mastermind");
-        stage.setScene(new Scene(root, 300, 275));
-        stage.showAndWait();
     }
 
     @FXML

@@ -15,6 +15,4 @@ public abstract class AbstractViewController extends PresentationController
 
     @FXML
     protected abstract void initialize();
-
-    public abstract void start() throws Exception;
 }
