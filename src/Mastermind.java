@@ -20,9 +20,7 @@ public class Mastermind extends Application
     public void init() throws InterruptedException
     {
         presentationController = new PresentationController();
-
         domainController = presentationController.getDomainController();
-        domainController.setPresentationController(presentationController);
     }
 
     @Override

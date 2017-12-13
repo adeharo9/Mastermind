@@ -30,7 +30,7 @@ public class PresentationController
 
     public PresentationController()
     {
-
+        domainController.setPresentationController(this);
     }
 
     /* SET METHODS */
