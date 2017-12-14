@@ -25,6 +25,19 @@ public class PresentationController
     protected static volatile String username;
     protected static volatile String password;
 
+    /* PRIVATE METHODS */
+    protected void pressButtonAction(final View view, final int value) throws IOException
+    {
+        updateView(view.getViewFile());
+        returnState = value;
+        threadFinished = true;
+
+        synchronized (domainController)
+        {
+            domainController.notify();
+        }
+    }
+
     /* CONSTRUCTORS */
 
     public PresentationController()

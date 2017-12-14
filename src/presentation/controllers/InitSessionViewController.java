@@ -14,11 +14,13 @@ import java.io.IOException;
 
 public class InitSessionViewController extends AbstractViewController
 {
+    /* CONSTRUCTORS */
     public InitSessionViewController()
     {
 
     }
 
+    /* FXML */
     @Override
     @FXML
     protected void initialize()
@@ -27,15 +29,20 @@ public class InitSessionViewController extends AbstractViewController
     }
 
     @FXML
-    public void pressButton(ActionEvent actionEvent) throws IOException
+    public void closeButtonAction(ActionEvent actionEvent) throws IOException
     {
-        updateView(View.LOADING_VIEW.getViewFile());
-        returnState = 1;
-        threadFinished = true;
+        pressButtonAction(View.LOADING_VIEW, 0);
+    }
 
-        synchronized (domainController)
-        {
-            domainController.notify();
-        }
+    @FXML
+    public void registerButtonAction(ActionEvent actionEvent) throws IOException
+    {
+        pressButtonAction(View.LOADING_VIEW, 1);
+    }
+
+    @FXML
+    public void logInButtonAction(ActionEvent actionEvent) throws IOException
+    {
+        pressButtonAction(View.LOADING_VIEW, 2);
     }
 }

@@ -12,7 +12,7 @@
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Close" textAlignment="CENTER" />
+          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Close" textAlignment="CENTER" />
         </items>
       </ToolBar>
       <Separator orientation="VERTICAL" prefHeight="50.0" visible="false" />
@@ -23,8 +23,8 @@
       </Label>
       <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="568.0" prefWidth="400.0" spacing="15.0">
          <children>
-            <Button fx:id="logInButton" defaultButton="true" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#pressButton" text="Log In" textAlignment="CENTER" />
-            <Button fx:id="registerButton" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#pressButton" text="Register" textAlignment="CENTER" />
+            <Button fx:id="logInButton" defaultButton="true" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
+            <Button fx:id="registerButton" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" textAlignment="CENTER" />
          </children>
       </VBox>
    </children>
