@@ -698,7 +698,7 @@ public class DomainController
                     }
                     break;
 
-                case LOG_IN_GET_PASSWORD_MENU:
+                /*case LOG_IN_GET_PASSWORD_MENU:
                     try
                     {
                         password = oldPresentationController.getPassword();
@@ -708,7 +708,7 @@ public class DomainController
                     {
                         state = State.LOG_IN_MENU;
                     }
-                    break;
+                    break;*/
 
                 case LOG_IN_USER:
                     try
@@ -817,7 +817,7 @@ public class DomainController
 
                     break;
 
-                case REGISTER_GET_USERNAME_MENU:
+                case REGISTER_MENU:
                     //updateView(View.REGISTER_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
@@ -825,20 +825,24 @@ public class DomainController
                     }
                     try
                     {
-                        username = oldPresentationController.getUsername();
-                        state = State.REGISTER_GET_PASSWORD_MENU;
+                        username = PresentationController.getUsername();
+                        password = PresentationController.getPassword();
+                        returnState = PresentationController.getReturnState();
+                        //username = oldPresentationController.getUsername();
+                        //state = State.REGISTER_GET_PASSWORD_MENU;
+                        state = Translate.intToStateRegisterMenu(returnState);
                     }
-                    catch (ReservedKeywordException e)
+                    /*catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
-                    }
+                    }*/
                     finally
                     {
                         presentationController.clearThreadHasFinished();
                     }
                     break;
 
-                case REGISTER_GET_PASSWORD_MENU:
+                /*case REGISTER_GET_PASSWORD_MENU:
                     try
                     {
                         password = oldPresentationController.getPassword();
@@ -846,9 +850,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.REGISTER_GET_USERNAME_MENU;
+                        state = State.REGISTER_MENU;
                     }
-                    break;
+                    break;*/
 
                 case REGISTER_USER:
                     try
@@ -859,12 +863,12 @@ public class DomainController
                     catch(FileAlreadyExistsException e)
                     {
                         oldPresentationController.playerAlreadyExistsError(username);
-                        state = State.REGISTER_GET_USERNAME_MENU;
+                        state = State.REGISTER_MENU;
                     }
                     catch(IOException e)
                     {
                         oldPresentationController.registerError();
-                        state = State.REGISTER_GET_USERNAME_MENU;
+                        state = State.REGISTER_MENU;
                     }
                     break;
 
