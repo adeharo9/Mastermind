@@ -673,7 +673,7 @@ public class DomainController
                     }
                     break;
 
-                case LOG_IN_GET_USERNAME_MENU:
+                case LOG_IN_MENU:
                     //updateView(View.LOG_IN_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
@@ -681,13 +681,17 @@ public class DomainController
                     }
                     try
                     {
-                        username = oldPresentationController.getUsername();
-                        state = State.LOG_IN_GET_PASSWORD_MENU;
+                        username = PresentationController.getUsername();
+                        password = PresentationController.getPassword();
+                        returnState = PresentationController.getReturnState();
+                        //username = oldPresentationController.getUsername();
+                        //state = State.LOG_IN_USER;
+                        state = Translate.intToStateLogInMenu(returnState);
                     }
-                    catch (ReservedKeywordException e)
+                    /*catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
-                    }
+                    }*/
                     finally
                     {
                         presentationController.clearThreadHasFinished();
@@ -702,7 +706,7 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.LOG_IN_GET_USERNAME_MENU;
+                        state = State.LOG_IN_MENU;
                     }
                     break;
 
@@ -715,12 +719,12 @@ public class DomainController
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
                         oldPresentationController.logInError();
-                        state = State.LOG_IN_GET_USERNAME_MENU;
+                        state = State.LOG_IN_MENU;
                     }
                     catch(IOException | ClassNotFoundException e)
                     {
                         oldPresentationController.playerLoadError();
-                        state = State.LOG_IN_GET_USERNAME_MENU;
+                        state = State.LOG_IN_MENU;
                     }
                     break;
 
