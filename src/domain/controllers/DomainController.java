@@ -463,6 +463,11 @@ public class DomainController
                     break;
 
                 case CLOSE_PROGRAM_WARNING:
+                    //updateView(View.CLOSE_PROGRAM_WARNING_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         returnState = oldPresentationController.closeProgramWarning();
@@ -471,6 +476,10 @@ public class DomainController
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -588,12 +597,12 @@ public class DomainController
                 case INIT_PROGRAM:
 
                     state = State.LOAD_RANKING;
-
-                    updateView(View.INIT_SESSION_VIEW);
                     
                     break;
 
                 case INIT_SESSION_MENU:
+                    updateView(View.INIT_SESSION_VIEW);
+
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
@@ -665,6 +674,11 @@ public class DomainController
                     break;
 
                 case LOG_IN_GET_USERNAME_MENU:
+                    //updateView(View.LOG_IN_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         username = oldPresentationController.getUsername();
@@ -673,6 +687,10 @@ public class DomainController
                     catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -796,6 +814,11 @@ public class DomainController
                     break;
 
                 case REGISTER_GET_USERNAME_MENU:
+                    //updateView(View.REGISTER_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         username = oldPresentationController.getUsername();
@@ -804,6 +827,10 @@ public class DomainController
                     catch (ReservedKeywordException e)
                     {
                         state = State.INIT_SESSION_MENU;
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 

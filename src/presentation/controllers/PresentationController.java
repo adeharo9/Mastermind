@@ -16,25 +16,25 @@ public class PresentationController
 
     private Stage stage;
 
-    protected static final DomainController domainController = new DomainController();
+    private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
-    protected static volatile boolean threadFinished = false;
+    private static volatile boolean threadFinished = false;
 
-    protected static volatile int returnState;
-    protected static volatile String gameId;
-    protected static volatile String username;
-    protected static volatile String password;
+    private static volatile int returnState;
+    private static volatile String gameId;
+    private static volatile String username;
+    private static volatile String password;
 
     /* PRIVATE METHODS */
-    protected void pressButtonAction(final View view, final int value) throws IOException
+
+    protected void pressButtonAction(final int value) throws IOException
     {
-        updateView(view.getViewFile());
         returnState = value;
         threadFinished = true;
 
-        synchronized (domainController)
+        synchronized(DOMAIN_CONTROLLER)
         {
-            domainController.notify();
+            DOMAIN_CONTROLLER.notify();
         }
     }
 
@@ -42,7 +42,7 @@ public class PresentationController
 
     public PresentationController()
     {
-        domainController.setPresentationController(this);
+        DOMAIN_CONTROLLER.setPresentationController(this);
     }
 
     /* SET METHODS */
@@ -66,13 +66,15 @@ public class PresentationController
 
     public DomainController getDomainController()
     {
-        return PresentationController.domainController;
+        return PresentationController.DOMAIN_CONTROLLER;
     }
 
     public boolean threadHasFinished()
     {
         return PresentationController.threadFinished;
     }
+
+    /* GUI INTERACTION */
 
     public void initView() throws IOException, NullPointerException
     {
