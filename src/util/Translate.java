@@ -139,7 +139,7 @@ public abstract class Translate
                 state = State.CLOSE_PROGRAM_WARNING;
                 break;
             case 1:
-                state = State.REGISTER_GET_USERNAME_MENU;
+                state = State.REGISTER_MENU;
                 break;
             case 2:
                 state = State.LOG_IN_MENU;
@@ -412,6 +412,25 @@ public abstract class Translate
                 break;
             case 1:
                 state = State.LOG_IN_USER;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State intToStateRegisterMenu(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.INIT_SESSION_MENU;
+                break;
+            case 1:
+                state = State.REGISTER_USER;
                 break;
             default:
                 throw new IllegalArgumentException();
