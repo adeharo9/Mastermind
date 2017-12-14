@@ -18,6 +18,8 @@ public class PresentationController
 
     protected static final DomainController domainController = new DomainController();
 
+    protected static volatile boolean threadFinished = false;
+
     protected static volatile int returnState;
     protected static volatile String gameId;
     protected static volatile String username;
@@ -37,6 +39,11 @@ public class PresentationController
         this.stage = stage;
     }
 
+    public void clearThreadHasFinished()
+    {
+        PresentationController.threadFinished = false;
+    }
+
     /* GET METHODS */
 
     public static int getReturnState()
@@ -47,6 +54,11 @@ public class PresentationController
     public DomainController getDomainController()
     {
         return PresentationController.domainController;
+    }
+
+    public boolean threadHasFinished()
+    {
+        return PresentationController.threadFinished;
     }
 
     public void initView() throws IOException, NullPointerException

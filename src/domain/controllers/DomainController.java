@@ -594,7 +594,10 @@ public class DomainController
                     break;
 
                 case INIT_SESSION_MENU:
-                    wait();
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -604,6 +607,10 @@ public class DomainController
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 

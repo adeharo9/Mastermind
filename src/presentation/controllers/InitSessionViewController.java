@@ -31,6 +31,7 @@ public class InitSessionViewController extends AbstractViewController
     {
         updateView(View.LOADING_VIEW.getViewFile());
         returnState = 1;
+        threadFinished = true;
 
         synchronized (domainController)
         {
