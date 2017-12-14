@@ -401,6 +401,11 @@ public class DomainController
             switch(state)
             {
                 case ASK_FOR_CLUE:
+                    //updateView(View.SHOW_CLUE_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         giveClue();
@@ -413,6 +418,7 @@ public class DomainController
                     finally
                     {
                         state = State.GAME_PAUSE_MENU;
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -470,7 +476,8 @@ public class DomainController
                     }
                     try
                     {
-                        returnState = oldPresentationController.closeProgramWarning();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.closeProgramWarning();
                         state = Translate.int2StateCloseProgramWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -741,14 +748,24 @@ public class DomainController
                     break;
 
                 case MAIN_GAME_MENU:
+                    //updateView(View.MAIN_GAME_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
-                        returnState = oldPresentationController.mainGameMenu();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.mainGameMenu();
                         state = Translate.int2StateMainGameMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
