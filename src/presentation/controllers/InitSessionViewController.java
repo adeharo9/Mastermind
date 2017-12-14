@@ -12,7 +12,7 @@ import util.Constants;
 import java.io.IOException;
 
 
-public class InitSessionViewController extends AbstractViewController
+public class InitSessionViewController extends PresentationController
 {
     /* CONSTRUCTORS */
     public InitSessionViewController()
@@ -21,13 +21,6 @@ public class InitSessionViewController extends AbstractViewController
     }
 
     /* FXML */
-    @Override
-    @FXML
-    protected void initialize()
-    {
-
-    }
-
     @FXML
     public void closeButtonAction(ActionEvent actionEvent) throws IOException
     {

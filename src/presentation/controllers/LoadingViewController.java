@@ -1,14 +1,8 @@
 package presentation.controllers;
 
-public class LoadingViewController extends AbstractViewController
+public class LoadingViewController extends PresentationController
 {
     public LoadingViewController()
-    {
-
-    }
-
-    @Override
-    protected void initialize()
     {
 
     }
