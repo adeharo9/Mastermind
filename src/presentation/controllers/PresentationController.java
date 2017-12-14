@@ -27,15 +27,19 @@ public class PresentationController
 
     /* PRIVATE METHODS */
 
-    protected void pressButtonAction(final int value) throws IOException
+    protected void endAction()
     {
-        PresentationController.returnState = value;
-        PresentationController.threadFinished = true;
-
         synchronized(DOMAIN_CONTROLLER)
         {
             DOMAIN_CONTROLLER.notify();
         }
+    }
+
+    protected void pressButtonAction(final int value) throws IOException
+    {
+        PresentationController.returnState = value;
+        PresentationController.threadFinished = true;
+        endAction();
     }
 
     /* CONSTRUCTORS */
@@ -62,6 +66,16 @@ public class PresentationController
     public static int getReturnState()
     {
         return PresentationController.returnState;
+    }
+
+    public static String getUsername()
+    {
+        return PresentationController.username;
+    }
+
+    public static String getPassword()
+    {
+        return PresentationController.password;
     }
 
     public DomainController getDomainController()
