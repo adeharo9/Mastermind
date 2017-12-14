@@ -1,13 +1,8 @@
 import domain.controllers.DomainController;
-import enums.View;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentation.controllers.PresentationController;
 import runnables.LogicThreadRunnable;
-import util.Constants;
 
 import java.io.IOException;
 

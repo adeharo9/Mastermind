@@ -1,6 +1,5 @@
 package runnables;
 
-import enums.View;
 import presentation.controllers.PresentationController;
 
 import java.io.IOException;
