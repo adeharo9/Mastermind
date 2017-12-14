@@ -29,8 +29,8 @@ public class PresentationController
 
     protected void pressButtonAction(final int value) throws IOException
     {
-        returnState = value;
-        threadFinished = true;
+        PresentationController.returnState = value;
+        PresentationController.threadFinished = true;
 
         synchronized(DOMAIN_CONTROLLER)
         {
@@ -99,6 +99,6 @@ public class PresentationController
         PresentationController presentationController = fxmlLoader.getController();
         presentationController.setStage(this.stage);
 
-        stage.getScene().setRoot(root);
+        this.stage.getScene().setRoot(root);
     }
 }
