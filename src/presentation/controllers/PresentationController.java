@@ -101,6 +101,7 @@ public class PresentationController
 
         this.stage.setTitle("Mastermind");
         this.stage.setScene(new Scene(root));
+        //this.stage.setResizable(false);
         this.stage.show();
     }
 
