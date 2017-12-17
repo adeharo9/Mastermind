@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
+   <children>
+      <VBox layoutX="115.0" layoutY="168.0" prefHeight="265.0" prefWidth="171.0">
+         <children>
+            <Button layoutX="104.0" layoutY="134.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Continue game" />
+            <Button layoutX="104.0" layoutY="179.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Save and continue" translateY="30.0" />
+            <Button layoutX="104.0" layoutY="219.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Save and exit" translateY="60.0" />
+            <Button layoutX="104.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Ask for clue" translateY="90.0" />
+            <Button layoutX="104.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Exit" translateY="120.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
