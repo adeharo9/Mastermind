@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SavedGameAlreadyExistsViewController">
+   <children>
+      <VBox layoutX="80.0" layoutY="102.0" prefHeight="265.0" prefWidth="258.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="258.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This game already exists. Do you want to overwrite it? " translateY="10.0" wrappingWidth="257.13671875" />
+                  <Button layoutX="161.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Yes" translateX="80.0" translateY="40.0" />
+                  <Button layoutX="161.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="No" translateX="80.0" translateY="60.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
