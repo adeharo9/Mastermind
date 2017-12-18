@@ -29,13 +29,13 @@ public class GameSelectionViewController extends PresentationController
     @FXML
     public void playerVsPlayerRadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-
+        roleModeVBox.setDisable(false);
     }
 
     @FXML
     public void playerVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-
+        roleModeVBox.setDisable(false);
     }
 
     @FXML
