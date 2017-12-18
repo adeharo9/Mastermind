@@ -13,6 +13,7 @@ public class LoadingViewController extends PresentationController
     }
 
     /* FXML */
+
     @FXML
     public void closeButtonAction(ActionEvent actionEvent) throws IOException
     {

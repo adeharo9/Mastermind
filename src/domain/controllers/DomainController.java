@@ -455,7 +455,6 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.closeProgramWarning();
                         state = Translate.int2StateCloseProgramWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -485,7 +484,6 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.exitGameWarning();
                         state = Translate.int2StateExitGameWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -497,28 +495,6 @@ public class DomainController
                         presentationController.clearThreadHasFinished();
                     }
                     break;
-
-                /*case GAME_DIFFICULTY_SELECTION_MENU:
-                    try
-                    {
-                        returnState = oldPresentationController.gameDifficultySelectionMenu();
-
-                        difficulty = Translate.int2Difficulty(returnState);
-
-                        if(mode == Mode.CPU_VS_CPU)
-                        {
-                            state = Translate.int2StateGameDifficultySelectionMenuCPU(returnState);
-                        }
-                        else
-                        {
-                            state = Translate.int2StateGameDifficultySelectionMenuHuman(returnState);
-                        }
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    break;*/
 
                 case GAME_MODE_SELECTION_MENU:
                     updateView(View.GAME_SELECTION_VIEW);
@@ -538,8 +514,6 @@ public class DomainController
                         role = Translate.int2Role(returnState);
 
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.gameModeSelectionMenu();
-
                         state = Translate.int2StateGameModeSelectionMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
@@ -575,7 +549,6 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.pauseMenu();
                         state = Translate.int2StateGamePauseMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -587,20 +560,6 @@ public class DomainController
                         presentationController.clearThreadHasFinished();
                     }
                     break;
-
-                /*case GAME_ROLE_SELECTION_MENU:
-                    try
-                    {
-                        returnState = oldPresentationController.gameRoleSelectionMenu();
-
-                        role = Translate.int2Role(returnState);
-                        state = Translate.int2StateGameRoleSelectionMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    break;*/
 
                 case HINT_MENU:
                     updateView(View.SHOW_HINT_VIEW);
@@ -643,7 +602,6 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.initSessionMenu();
                         state = Translate.int2StateInitSessionMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -741,31 +699,14 @@ public class DomainController
                         username = PresentationController.getUsername();
                         password = PresentationController.getPassword();
                         returnState = PresentationController.getReturnState();
-                        //username = oldPresentationController.getUsername();
-                        //state = State.LOG_IN_USER;
+
                         state = Translate.intToStateLogInMenu(returnState);
                     }
-                    /*catch (ReservedKeywordException e)
-                    {
-                        state = State.INIT_SESSION_MENU;
-                    }*/
                     finally
                     {
                         presentationController.clearThreadHasFinished();
                     }
                     break;
-
-                /*case LOG_IN_GET_PASSWORD_MENU:
-                    try
-                    {
-                        password = oldPresentationController.getPassword();
-                        state = State.LOG_IN_USER;
-                    }
-                    catch (ReservedKeywordException e)
-                    {
-                        state = State.LOG_IN_MENU;
-                    }
-                    break;*/
 
                 case LOG_IN_USER:
                     try
@@ -794,7 +735,7 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.logOutWarning();
+
                         state = Translate.int2StateLogOutWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -816,7 +757,7 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.mainGameMenu();
+
                         state = Translate.int2StateMainGameMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
@@ -905,31 +846,14 @@ public class DomainController
                         username = PresentationController.getUsername();
                         password = PresentationController.getPassword();
                         returnState = PresentationController.getReturnState();
-                        //username = oldPresentationController.getUsername();
-                        //state = State.REGISTER_GET_PASSWORD_MENU;
+
                         state = Translate.intToStateRegisterMenu(returnState);
                     }
-                    /*catch (ReservedKeywordException e)
-                    {
-                        state = State.INIT_SESSION_MENU;
-                    }*/
                     finally
                     {
                         presentationController.clearThreadHasFinished();
                     }
                     break;
-
-                /*case REGISTER_GET_PASSWORD_MENU:
-                    try
-                    {
-                        password = oldPresentationController.getPassword();
-                        state = State.REGISTER_USER;
-                    }
-                    catch (ReservedKeywordException e)
-                    {
-                        state = State.REGISTER_MENU;
-                    }
-                    break;*/
 
                 case REGISTER_USER:
                     try
@@ -960,7 +884,6 @@ public class DomainController
                     try
                     {
                         saveGame();
-                        //state = State.PLAY_TURN;
                         state = State.GAME_PAUSE_MENU;
                     }
                     catch (FileAlreadyExistsException e)
@@ -997,47 +920,6 @@ public class DomainController
                         state = State.GAME_PAUSE_MENU;
                     }
                     break;
-
-                /*case SAVE_GAME_AND_EXIT:
-                    try
-                    {
-                        saveGame();
-                        state = State.MAIN_GAME_MENU;
-                    }
-                    catch (FileAlreadyExistsException e)
-                    {
-                        returnState = oldPresentationController.savedGameAlreadyExistsWarning();
-
-                        try
-                        {
-                            switch (returnState)
-                            {
-                                case 0:
-                                    state = State.GAME_PAUSE_MENU;
-                                    break;
-                                case 1:
-                                    gamePersistence.delete(gameController.getId());
-                                    break;
-                                default:
-                                    throw new IllegalArgumentException();
-                            }
-                        }
-                        catch (IOException io)
-                        {
-                            oldPresentationController.gameDeleteError();
-                            state = State.GAME_PAUSE_MENU;
-                        }
-                        catch (IllegalArgumentException il)
-                        {
-                            oldPresentationController.optionError();
-                        }
-                    }
-                    catch(IOException e)
-                    {
-                        oldPresentationController.gameSaveError();
-                        state = State.GAME_PAUSE_MENU;
-                    }
-                    break;*/
 
                 case SHOW_RANKING:
                     updateView(View.RANKING_VIEW);
