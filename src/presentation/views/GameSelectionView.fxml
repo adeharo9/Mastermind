@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@styles/monokhai.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameSelectionViewController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokhai.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameSelectionViewController">
    <children>
       <VBox layoutX="37.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="339.0">
          <children>
