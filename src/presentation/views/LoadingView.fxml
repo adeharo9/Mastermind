@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
+
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
    <children>
-      <Label alignment="CENTER" text="LOADING ..." textAlignment="CENTER">
-         <font>
-            <Font size="64.0" />
-         </font>
-      </Label>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button mnemonicParsing="false" text="Close" />
+        </items>
+      </ToolBar>
+      <VBox alignment="CENTER" prefHeight="570.0" prefWidth="400.0">
+         <children>
+            <ProgressIndicator />
+            <Separator orientation="VERTICAL" prefHeight="10.0" />
+            <Label text="Loading ...">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </VBox>
