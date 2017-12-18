@@ -210,14 +210,14 @@ public abstract class Translate
             case 1:
                 state = State.SAVE_GAME_AND_CONTINUE;
                 break;
-            case 2:
+            /*case 2:
                 state = State.SAVE_GAME_AND_EXIT;
+                break;*/
+            case 2:
+                state = State.ASK_FOR_CLUE;
                 break;
             case 3:
                 state = State.EXIT_GAME_WITHOUT_SAVING_WARNING;
-                break;
-            case 4:
-                state = State.ASK_FOR_CLUE;
                 break;
             default:
                 throw new IllegalArgumentException();
