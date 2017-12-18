@@ -251,7 +251,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateGameRoleSelectionMenu(int stat) throws IllegalArgumentException
+    /*public static State int2StateGameRoleSelectionMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -269,12 +269,12 @@ public abstract class Translate
         }
 
         return state;
-    }
+    }*/
 
-    public static State int2StateGameDifficultySelectionMenuHuman(int state) throws IllegalArgumentException
+    /*public static State int2StateGameDifficultySelectionMenuHuman(int state) throws IllegalArgumentException
     {
         return int2StateGameDifficultySelectionMenu(state, State.GAME_ROLE_SELECTION_MENU);
-    }
+    }*/
 
     public static State int2StateGameDifficultySelectionMenuCPU(int state) throws IllegalArgumentException
     {

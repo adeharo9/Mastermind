@@ -475,7 +475,7 @@ public class DomainController
                     }
                     break;
 
-                case GAME_DIFFICULTY_SELECTION_MENU:
+                /*case GAME_DIFFICULTY_SELECTION_MENU:
                     try
                     {
                         returnState = oldPresentationController.gameDifficultySelectionMenu();
@@ -495,7 +495,7 @@ public class DomainController
                     {
                         oldPresentationController.optionError();
                     }
-                    break;
+                    break;*/
 
                 case GAME_MODE_SELECTION_MENU:
                     updateView(View.GAME_SELECTION_VIEW);
@@ -565,7 +565,7 @@ public class DomainController
                     }
                     break;
 
-                case GAME_ROLE_SELECTION_MENU:
+                /*case GAME_ROLE_SELECTION_MENU:
                     try
                     {
                         returnState = oldPresentationController.gameRoleSelectionMenu();
@@ -577,7 +577,7 @@ public class DomainController
                     {
                         oldPresentationController.optionError();
                     }
-                    break;
+                    break;*/
 
                 case HINT_MENU:
                     //updateView(View.SHOW_CLUE_VIEW);
