@@ -24,9 +24,9 @@ public class PresentationController
     protected static volatile int mode;
     protected static volatile int difficulty;
     protected static volatile int role;
-    private static volatile String gameId;
-    private static volatile String username;
-    private static volatile String password;
+    protected static volatile String gameId;
+    protected static volatile String username;
+    protected static volatile String password;
 
     /* PRIVATE METHODS */
 
