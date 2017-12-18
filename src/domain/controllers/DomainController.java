@@ -452,19 +452,6 @@ public class DomainController
                     state = State.MAIN_GAME_MENU;
                     break;
 
-                case SHOW_RANKING:
-                    try
-                    {
-                        returnState = oldPresentationController.printRanking(ranking.getTopTen());
-                        state = Translate.intToStateShowRanking(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-
-                    break;
-
                 case CLOSE_PROGRAM:
                     break;
 
@@ -586,21 +573,6 @@ public class DomainController
                     }
                     break;
 
-                case LOAD_RANKING:
-                    try
-                    {
-                        loadRanking();
-                    }
-                    catch (IOException | ClassNotFoundException e)
-                    {
-                        oldPresentationController.rankingLoadError();
-                    }
-                    finally
-                    {
-                        state = State.INIT_SESSION_MENU;
-                    }
-                    break;
-
                 case INIT_PROGRAM:
 
                     state = State.LOAD_RANKING;
@@ -659,6 +631,21 @@ public class DomainController
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    break;
+
+                case LOAD_RANKING:
+                    try
+                    {
+                        loadRanking();
+                    }
+                    catch (IOException | ClassNotFoundException e)
+                    {
+                        oldPresentationController.rankingLoadError();
+                    }
+                    finally
+                    {
+                        state = State.INIT_SESSION_MENU;
                     }
                     break;
 
@@ -748,7 +735,7 @@ public class DomainController
                     break;
 
                 case MAIN_GAME_MENU:
-                    //updateView(View.MAIN_GAME_VIEW);
+                    updateView(View.MAIN_GAME_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
@@ -976,6 +963,19 @@ public class DomainController
                         oldPresentationController.gameSaveError();
                         state = State.GAME_PAUSE_MENU;
                     }
+                    break;
+
+                case SHOW_RANKING:
+                    try
+                    {
+                        returnState = oldPresentationController.printRanking(ranking.getTopTen());
+                        state = Translate.intToStateShowRanking(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        oldPresentationController.optionError();
+                    }
+
                     break;
 
                 default:
