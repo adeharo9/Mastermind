@@ -526,14 +526,24 @@ public class DomainController
                     break;
 
                 case GAME_PAUSE_MENU:
+                    updateView(View.PAUSE_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
-                        returnState = oldPresentationController.pauseMenu();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.pauseMenu();
                         state = Translate.int2StateGamePauseMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
