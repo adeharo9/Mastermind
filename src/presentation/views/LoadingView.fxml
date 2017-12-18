@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@styles/monokhai.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
+      <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button mnemonicParsing="false" text="Close" />
+          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Close" />
         </items>
       </ToolBar>
       <VBox alignment="CENTER" prefHeight="570.0" prefWidth="400.0">
          <children>
             <ProgressIndicator />
             <Separator orientation="VERTICAL" prefHeight="10.0" visible="false" />
-            <Label text="Loading ...">
+            <Label styleClass="text" text="Loading ...">
                <font>
                   <Font size="24.0" />
                </font>
