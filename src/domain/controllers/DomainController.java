@@ -603,6 +603,8 @@ public class DomainController
 
                 case INIT_PROGRAM:
 
+                    Thread.sleep(Constants.THREAD_SLEEP_MS);
+
                     state = State.LOAD_RANKING;
                     
                     break;

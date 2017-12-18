@@ -39,6 +39,9 @@ public final class Constants
     /* DIRECTORIES */
     public static final String VIEWS_PATH = "/presentation/views/";
 
+    /* GUI CONSTANTS */
+    public static final int THREAD_SLEEP_MS = 2000;
+
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         return getGenericByDifficulty(difficulty, NUM_COLORS_EASY, NUM_COLORS_MEDIUM, NUM_COLORS_HARD);
