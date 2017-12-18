@@ -45,7 +45,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="roleModeVBox" disable="true">
+            <VBox fx:id="roleModeVBox">
                <children>
                   <Label prefHeight="45.0" prefWidth="66.0" text="ROLE MODE" />
                   <HBox fx:id="roleModeButtons" prefHeight="61.0" prefWidth="339.0">
