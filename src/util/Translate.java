@@ -236,12 +236,14 @@ public abstract class Translate
                 state = State.MAIN_GAME_MENU;
                 break;
             case 1:
-            case 2:
+                state = State.NEW_GAME;
+                break;
+            /*case 2:
                 state = State.GAME_ROLE_SELECTION_MENU;
                 break;
             case 3:
                 state = State.GAME_DIFFICULTY_SELECTION_MENU;
-                break;
+                break;*/
             default:
                 throw new IllegalArgumentException();
         }

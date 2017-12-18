@@ -498,16 +498,34 @@ public class DomainController
                     break;
 
                 case GAME_MODE_SELECTION_MENU:
+                    updateView(View.GAME_SELECTION_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
-                        returnState = oldPresentationController.gameModeSelectionMenu();
-
+                        returnState = PresentationController.getMode();
                         mode = Translate.int2Mode(returnState);
+
+                        returnState = PresentationController.getDifficulty();
+                        difficulty = Translate.int2Difficulty(returnState);
+
+                        returnState = PresentationController.getRole();
+                        role = Translate.int2Role(returnState);
+
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.gameModeSelectionMenu();
+
                         state = Translate.int2StateGameModeSelectionMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
