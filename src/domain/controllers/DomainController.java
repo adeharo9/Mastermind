@@ -696,7 +696,7 @@ public class DomainController
                     break;
 
                 case LOG_IN_MENU:
-                    //updateView(View.LOG_IN_VIEW);
+                    updateView(View.LOG_IN_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
