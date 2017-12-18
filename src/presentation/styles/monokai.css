@@ -5,14 +5,16 @@
     monokai-blue: #66d9ef;
     monokai-orange: #fd971f;
     monokai-purple: #ae81ff;
+    monokai-black: #1e1e1e;
+    monokai-white: #bbbbbb;
 
-    background-color: #1e1e1e;
+    background-color: linear-gradient(monokai-black 0%, monokai-black 25%, monokai-white);
 
-    text-color: #bbbbbb;
+    text-color: monokai-white;
 
     button-color: #2d2f30;
     button-hover-color: #353739;
-    button-focused-color: #4b6eaf;
+    button-focused-color: monokai-blue;
 
     toolbar-color: #3c3f41;
 }
@@ -26,6 +28,8 @@
 {
 	-fx-background-color: button-color;
     -fx-text-fill: text-color;
+
+    -fx-background-radius: 50px;
 }
 
 .button:hover
@@ -35,12 +39,20 @@
 
 .button:focused
 {
-    -fx-background-color: button-focused-color;
+    -fx-border-color: button-focused-color;
+
+    -fx-border-radius: 50px;
 }
 
 .radio-button
 {
     -fx-text-fill: text-color;
+}
+
+.radio-button .dot:selected
+{
+    -fx-border-color: monokai-blue;
+    -fx-background-color: monokai-black;
 }
 
 .text
@@ -50,7 +62,7 @@
 
 .title
 {
-    -fx-font-size: 40 px;
+    -fx-font-size: 40px;
     -fx-text-fill: text-color;
 }
 
