@@ -21,6 +21,9 @@ public class PresentationController
     private static volatile boolean threadFinished = false;
 
     private static volatile int returnState;
+    private static volatile int mode;
+    private static volatile int difficulty;
+    private static volatile int role;
     private static volatile String gameId;
     private static volatile String username;
     private static volatile String password;
@@ -66,6 +69,21 @@ public class PresentationController
     public static int getReturnState()
     {
         return PresentationController.returnState;
+    }
+
+    public static int getMode()
+    {
+        return PresentationController.mode;
+    }
+
+    public static int getDifficulty()
+    {
+        return PresentationController.difficulty;
+    }
+
+    public static int getRole()
+    {
+        return PresentationController.role;
     }
 
     public static String getUsername()
