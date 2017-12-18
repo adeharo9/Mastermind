@@ -850,7 +850,7 @@ public class DomainController
                     break;
 
                 case REGISTER_MENU:
-                    //updateView(View.REGISTER_VIEW);
+                    updateView(View.REGISTER_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
