@@ -14,8 +14,8 @@
     text-color: monokai-white;
 
     button-color: #2d2f30;
-    button-hover-color: #353739;
-    button-focused-color: monokai-blue;
+    button-focused-color: #353739;
+    button-hover-color: monokai-blue;
 
     toolbar-color: #3c3f41;
 }
@@ -32,21 +32,23 @@
 .button
 {
 	-fx-background-color: button-color;
-    -fx-text-fill: text-color;
-
     -fx-background-radius: 50px;
+
+    -fx-border-color: button-color;
+    -fx-border-radius: 50px;
+
+    -fx-text-fill: text-color;
 }
 
 .button:hover
 {
-    -fx-background-color: button-hover-color;
+    -fx-border-color: button-hover-color !important;
 }
 
 .button:focused
 {
+    -fx-background-color: button-focused-color;
     -fx-border-color: button-focused-color;
-
-    -fx-border-radius: 50px;
 }
 
 /* RADIO BUTTONS*/
