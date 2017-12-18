@@ -314,10 +314,10 @@ public class OldPresentationController
     public int pauseMenu() throws NumberFormatException
     {
         ioUtils.endLine();
-        ioUtils.printOutLn ("1.- Save and continue");
-        ioUtils.printOutLn ("2.- Save and exit");
+        ioUtils.printOutLn ("1.- Save");
+        //ioUtils.printOutLn ("2.- Save and exit");
+        ioUtils.printOutLn ("2.- Ask for clue");
         ioUtils.printOutLn ("3.- Exit without saving");
-        ioUtils.printOutLn ("4.- Ask for clue");
         ioUtils.printOutLn ("0.- Continue game");
         ioUtils.endLine();
         ioUtils.printOut("Select option number: ");
