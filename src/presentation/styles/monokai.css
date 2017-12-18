@@ -1,0 +1,60 @@
+.root
+{
+    monokai-red: #f92672;
+    monokai-green: #a6e22e;
+    monokai-blue: #66d9ef;
+    monokai-orange: #fd971f;
+    monokai-purple: #ae81ff;
+
+    background-color: #1e1e1e;
+
+    text-color: #bbbbbb;
+
+    button-color: #2d2f30;
+    button-hover-color: #353739;
+    button-focused-color: #4b6eaf;
+
+    toolbar-color: #3c3f41;
+}
+
+.background
+{
+    -fx-background-color: background-color;
+}
+
+.button
+{
+	-fx-background-color: button-color;
+    -fx-text-fill: text-color;
+}
+
+.button:hover
+{
+    -fx-background-color: button-hover-color;
+}
+
+.button:focused
+{
+    -fx-background-color: button-focused-color;
+}
+
+.radio-button
+{
+    -fx-text-fill: text-color;
+}
+
+.text
+{
+    -fx-text-fill: text-color;
+}
+
+.title
+{
+    -fx-font-size: 40 px;
+    -fx-text-fill: text-color;
+}
+
+.toolbar
+{
+    -fx-background-color: toolbar-color;
+}
