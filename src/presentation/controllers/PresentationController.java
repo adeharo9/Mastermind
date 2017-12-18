@@ -21,9 +21,9 @@ public class PresentationController
     private static volatile boolean threadFinished = false;
 
     private static volatile int returnState;
-    private static volatile int mode;
-    private static volatile int difficulty;
-    private static volatile int role;
+    protected static volatile int mode;
+    protected static volatile int difficulty;
+    protected static volatile int role;
     private static volatile String gameId;
     private static volatile String username;
     private static volatile String password;
@@ -32,6 +32,8 @@ public class PresentationController
 
     protected void endAction()
     {
+        PresentationController.threadFinished = true;
+
         synchronized(DOMAIN_CONTROLLER)
         {
             DOMAIN_CONTROLLER.notify();
@@ -41,7 +43,6 @@ public class PresentationController
     protected void pressButtonAction(final int value) throws IOException
     {
         PresentationController.returnState = value;
-        PresentationController.threadFinished = true;
         endAction();
     }
 
