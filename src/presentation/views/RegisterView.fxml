@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.PasswordField?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RegisterViewController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
@@ -18,7 +19,7 @@
             <Label text="Username" />
             <TextField fx:id="usernameTextField" promptText="Username" />
             <Label text="Password" />
-            <TextField fx:id="passwordTextField" promptText="Password" />
+            <PasswordField fx:id="passwordPasswordField" promptText="Password" />
             <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
          </children>
       </VBox>
