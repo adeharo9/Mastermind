@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.MainGameViewController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="402.0">
+         <items>
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonAction" text="Close" textAlignment="CENTER" />
+         </items>
+      </ToolBar>
+      <VBox layoutX="138.0" layoutY="168.0" prefHeight="223.0" prefWidth="127.0">
+         <children>
+            <Button layoutX="134.0" layoutY="111.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="New game" />
+            <Button layoutX="134.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Load game" translateY="20.0" />
+            <Button layoutX="133.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Ranking" translateY="40.0" />
+            <Button layoutX="133.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Info" translateY="60.0" />
+            <Button layoutX="133.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Edit user" translateY="80.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
