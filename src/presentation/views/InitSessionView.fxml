@@ -16,14 +16,14 @@
         </items>
       </ToolBar>
       <Separator orientation="VERTICAL" prefHeight="50.0" visible="false" />
-      <Label styleClass="text" text="MASTERMIND">
+      <Label styleClass="title" text="MASTERMIND">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
       <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="568.0" prefWidth="400.0" spacing="15.0">
          <children>
-            <Button fx:id="logInButton" defaultButton="true" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
+            <Button fx:id="logInButton" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
             <Button fx:id="registerButton" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" textAlignment="CENTER" />
          </children>
       </VBox>

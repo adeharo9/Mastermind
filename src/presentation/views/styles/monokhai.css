@@ -30,6 +30,12 @@
     -fx-text-fill: #bbbbbb;
 }
 
+.title
+{
+    -fx-font-size: 40 px;
+    -fx-text-fill: #bbbbbb;
+}
+
 .toolbar
 {
     -fx-background-color: #3c3f41;
