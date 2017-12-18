@@ -60,6 +60,7 @@
                   </HBox>
                </children>
             </VBox>
+            <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#startGameButtonAction" text="Start Game" />
          </children>
       </VBox>
       <ToolBar prefHeight="40.0" prefWidth="400.0">
