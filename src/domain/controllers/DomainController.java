@@ -887,7 +887,8 @@ public class DomainController
                     try
                     {
                         saveGame();
-                        state = State.PLAY_TURN;
+                        //state = State.PLAY_TURN;
+                        state = State.GAME_PAUSE_MENU;
                     }
                     catch (FileAlreadyExistsException e)
                     {
@@ -924,7 +925,7 @@ public class DomainController
                     }
                     break;
 
-                case SAVE_GAME_AND_EXIT:
+                /*case SAVE_GAME_AND_EXIT:
                     try
                     {
                         saveGame();
@@ -963,7 +964,7 @@ public class DomainController
                         oldPresentationController.gameSaveError();
                         state = State.GAME_PAUSE_MENU;
                     }
-                    break;
+                    break;*/
 
                 case SHOW_RANKING:
                     try
