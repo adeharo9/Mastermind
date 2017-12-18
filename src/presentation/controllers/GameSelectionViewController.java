@@ -49,6 +49,7 @@ public class GameSelectionViewController extends PresentationController
     @FXML
     public void cpuVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
     {
+        roleModeVBox.setDisable(true);
         PresentationController.mode = 3;
     }
 
