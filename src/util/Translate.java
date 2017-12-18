@@ -208,13 +208,13 @@ public abstract class Translate
                 state = State.CONTINUE_GAME;
                 break;
             case 1:
-                state = State.SAVE_GAME_AND_CONTINUE;
+                state = State.SAVE_GAME;
                 break;
             /*case 2:
                 state = State.SAVE_GAME_AND_EXIT;
                 break;*/
             case 2:
-                state = State.ASK_FOR_CLUE;
+                state = State.HINT_MENU;
                 break;
             case 3:
                 state = State.EXIT_GAME_WITHOUT_SAVING_WARNING;

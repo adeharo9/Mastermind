@@ -400,28 +400,6 @@ public class DomainController
         {
             switch(state)
             {
-                case ASK_FOR_CLUE:
-                    //updateView(View.SHOW_CLUE_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
-                    try
-                    {
-                        giveClue();
-                        gameController.pointsClue();
-                    }
-                    catch (GameNotStartedException e)
-                    {
-                        oldPresentationController.gameNotStartedError();
-                    }
-                    finally
-                    {
-                        state = State.GAME_PAUSE_MENU;
-                        presentationController.clearThreadHasFinished();
-                    }
-                    break;
-
                 case CHECK_GAME_HAS_FINISHED:
                     boolean hasFinished = gameController.hasFinished();
 
@@ -570,6 +548,28 @@ public class DomainController
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    break;
+
+                case HINT_MENU:
+                    //updateView(View.SHOW_CLUE_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
+                    try
+                    {
+                        giveClue();
+                        gameController.pointsClue();
+                    }
+                    catch (GameNotStartedException e)
+                    {
+                        oldPresentationController.gameNotStartedError();
+                    }
+                    finally
+                    {
+                        state = State.GAME_PAUSE_MENU;
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -883,7 +883,7 @@ public class DomainController
                     state = State.NEW_GAME;
                     break;
 
-                case SAVE_GAME_AND_CONTINUE:
+                case SAVE_GAME:
                     try
                     {
                         saveGame();

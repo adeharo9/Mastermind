@@ -2,7 +2,7 @@ package enums;
 
 public enum State
 {
-    ASK_FOR_CLUE,
+    HINT_MENU,
 
     CHECK_GAME_HAS_FINISHED,
     CHECK_INFO,
@@ -45,6 +45,6 @@ public enum State
     REGISTER_USER,
     RESTART_GAME,
 
-    SAVE_GAME_AND_CONTINUE,
+    SAVE_GAME,
     //SAVE_GAME_AND_EXIT,
 }
