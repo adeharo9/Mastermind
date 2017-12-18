@@ -15,7 +15,7 @@ public enum View
     EDIT_USER_VIEW("EditUserView.fxml"),
     PAUSE_VIEW("PauseView.fxml"),
     SAVE_GAME_VIEW("SaveGameView.fxml"),
-    SHOW_CLUE_VIEW("ShowClueView.fxml"),
+    SHOW_HINT_VIEW("ShowClueView.fxml"),
     GAME_OVER_VIEW("GameOverView.fxml");
 
     private final String viewFile;

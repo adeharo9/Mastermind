@@ -426,8 +426,21 @@ public class DomainController
                     break;
 
                 case CHECK_INFO:
-                    oldPresentationController.showInfo();
-                    state = State.MAIN_GAME_MENU;
+                    updateView(View.SHOW_INFO_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
+                    try
+                    {
+                        //PresentationController.showInfo();
+                        oldPresentationController.showInfo();
+                        state = State.MAIN_GAME_MENU;
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
+                    }
                     break;
 
                 case CLOSE_PROGRAM:
@@ -464,14 +477,24 @@ public class DomainController
                     break;
 
                 case EXIT_GAME_WITHOUT_SAVING_WARNING:
+                    //updateView(View.EXIT_GAME_WARNING);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
-                        returnState = oldPresentationController.exitGameWarning();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.exitGameWarning();
                         state = Translate.int2StateExitGameWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -580,13 +603,14 @@ public class DomainController
                     break;*/
 
                 case HINT_MENU:
-                    //updateView(View.SHOW_CLUE_VIEW);
+                    updateView(View.SHOW_HINT_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
                     }
                     try
                     {
+                        //PresentationController.giveClue();
                         giveClue();
                         gameController.pointsClue();
                     }
@@ -651,6 +675,11 @@ public class DomainController
                     break;
 
                 case LOAD_GAME_MENU:
+                    updateView(View.LOAD_GAME_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
                         returnState = oldPresentationController.loadGameMenu(savedGames);
@@ -661,6 +690,10 @@ public class DomainController
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -753,14 +786,24 @@ public class DomainController
                     break;
 
                 case LOG_OUT_WARNING:
+                    //updateView(View.LOG_OUT_WARNING);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
-                        returnState = oldPresentationController.logOutWarning();
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.logOutWarning();
                         state = Translate.int2StateLogOutWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -997,14 +1040,24 @@ public class DomainController
                     break;*/
 
                 case SHOW_RANKING:
+                    updateView(View.RANKING_VIEW);
+                    while(!presentationController.threadHasFinished())
+                    {
+                        wait();
+                    }
                     try
                     {
+                        //returnState = PresentationController.getReturnState();
                         returnState = oldPresentationController.printRanking(ranking.getTopTen());
                         state = Translate.intToStateShowRanking(returnState);
                     }
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        presentationController.clearThreadHasFinished();
                     }
 
                     break;
