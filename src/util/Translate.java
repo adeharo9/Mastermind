@@ -347,7 +347,7 @@ public abstract class Translate
 
     public static State int2StateCloseProgramWarning(int state) throws IllegalArgumentException
     {
-        return int2StateYesNo(state, State.CLOSE_PROGRAM, State.INIT_SESSION_MENU);
+        return int2StateYesNo(state, State.LAST_ACTIONS, State.INIT_SESSION_MENU);
     }
 
     public static State int2StateLogOutWarning(int state) throws IllegalArgumentException
