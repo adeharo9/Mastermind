@@ -9,8 +9,6 @@ import java.io.IOException;
 
 public class WarningPopUpController extends PresentationController
 {
-    @FXML
-    private Button yesButton;
     public WarningPopUpController()
     {
 
