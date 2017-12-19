@@ -21,7 +21,7 @@ public class Mastermind extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        presentationController.setStage(stage);
+        presentationController.setMainStage(stage);
         presentationController.initView();
 
         Thread logicThread = new Thread(new LogicThreadRunnable(domainController));
