@@ -12,6 +12,7 @@ import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
+import runnables.PopUpViewRunnable;
 import runnables.UpdateViewRunnable;
 import util.Constants;
 import util.Translate;
@@ -408,6 +409,11 @@ public class DomainController
         Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
     }
 
+    private void popUpView(View view)
+    {
+        Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
+    }
+
     /* MAIN STATE MACHINE */
 
     public synchronized void exe() throws InterruptedException
@@ -472,7 +478,7 @@ public class DomainController
                     break;
 
                 case CLOSE_PROGRAM_WARNING:
-                    //updateView(View.CLOSE_PROGRAM_WARNING_VIEW);
+                    popUpView(View.EXIT_GAME_WARNING_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
@@ -637,6 +643,11 @@ public class DomainController
                     {
                         presentationController.clearThreadHasFinished();
                     }
+                    break;
+
+                case LAST_ACTIONS:
+                    Platform.exit();
+                    state = State.CLOSE_PROGRAM;
                     break;
 
                 case LOAD_GAME:
