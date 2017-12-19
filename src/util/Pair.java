@@ -18,16 +18,4 @@ public class Pair<T1 extends Serializable, T2 extends Serializable> implements S
         this.first = first;
         this.second = second;
     }
-
-    @Deprecated
-    public boolean hasNull()
-    {
-        return first == null || second == null;
-    }
-
-    @Deprecated
-    public static <T1 extends Serializable, T2 extends Serializable> boolean isValid(Pair<T1, T2> pair)
-    {
-        return pair != null && !pair.hasNull();
-    }
 }
