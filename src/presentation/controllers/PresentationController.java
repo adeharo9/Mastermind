@@ -5,6 +5,8 @@ import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import util.Constants;
 
@@ -14,7 +16,8 @@ public class PresentationController
 {
     /* ATTRIBUTES */
 
-    private Stage stage;
+    protected Stage mainStage;
+    protected Stage popUpStage;
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -40,10 +43,29 @@ public class PresentationController
         }
     }
 
+    protected void pressButtonSpecificAction()
+    {
+
+    }
+
     protected void pressButtonAction(final int value) throws IOException
     {
         PresentationController.returnState = value;
+        pressButtonSpecificAction();
         endAction();
+    }
+
+    private Parent loadView(final String viewFile) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + viewFile));
+
+        Parent root = fxmlLoader.load();
+
+        PresentationController presentationController = fxmlLoader.getController();
+        presentationController.setMainStage(this.mainStage);
+        presentationController.setPopUpStage(this.popUpStage);
+
+        return root;
     }
 
     /* CONSTRUCTORS */
@@ -55,9 +77,14 @@ public class PresentationController
 
     /* SET METHODS */
 
-    public void setStage(final Stage stage)
+    public void setMainStage(final Stage mainStage)
     {
-        this.stage = stage;
+        this.mainStage = mainStage;
+    }
+
+    public void setPopUpStage(final Stage popUpStage)
+    {
+        this.popUpStage = popUpStage;
     }
 
     public void clearThreadHasFinished()
@@ -111,28 +138,38 @@ public class PresentationController
 
     public void initView() throws IOException, NullPointerException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + View.LOADING_VIEW.getViewFile()));
+        Parent root = loadView(View.LOADING_VIEW.getViewFile());
 
-        Parent root = fxmlLoader.load();
+        this.mainStage.setTitle("Mastermind");
+        this.mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
 
-        PresentationController presentationController = fxmlLoader.getController();
-        presentationController.setStage(this.stage);
+        this.mainStage.setScene(new Scene(root));
+        //this.mainStage.setResizable(false);
 
-        this.stage.setTitle("Mastermind");
-        this.stage.setScene(new Scene(root));
-        //this.stage.setResizable(false);
-        this.stage.show();
+        this.mainStage.show();
     }
 
     public void updateView(final String viewFile) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + viewFile));
+        Parent root = loadView(viewFile);
 
-        Parent root = fxmlLoader.load();
+        this.mainStage.getScene().setRoot(root);
+    }
 
-        PresentationController presentationController = fxmlLoader.getController();
-        presentationController.setStage(this.stage);
+    public void popUpWindow(final String viewFile) throws IOException
+    {
+        popUpStage = new Stage();
 
-        this.stage.getScene().setRoot(root);
+        Parent root = loadView(viewFile);
+
+        popUpStage.setTitle("Warning");
+        popUpStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE)));
+
+        popUpStage.initModality(Modality.APPLICATION_MODAL);
+        popUpStage.setResizable(false);
+
+        popUpStage.setScene(new Scene(root, 250, 100));
+
+        popUpStage.show();
     }
 }
