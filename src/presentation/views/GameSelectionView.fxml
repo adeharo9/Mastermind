@@ -36,7 +36,7 @@
                      <children>
                         <RadioButton fx:id="easyRadioButton" layoutX="50.0" layoutY="203.0" mnemonicParsing="false" onAction="#easyRadioButtonAction" selected="true" text="Easy">
                            <toggleGroup>
-                              <ToggleGroup fx:id="difficulltyMode" />
+                              <ToggleGroup fx:id="difficultyMode" />
                            </toggleGroup>
                         </RadioButton>
                         <RadioButton fx:id="mediumRadioButton" layoutX="167.0" layoutY="203.0" mnemonicParsing="false" onAction="#mediumRadioButtonAction" text="Medium" toggleGroup="$difficulltyMode" translateX="40.0" />
@@ -50,7 +50,7 @@
                   <Label prefHeight="45.0" prefWidth="66.0" styleClass="text" text="ROLE MODE" />
                   <HBox fx:id="roleModeButtons" prefHeight="61.0" prefWidth="339.0">
                      <children>
-                        <RadioButton fx:id="codemMakerRadioButton" layoutX="50.0" layoutY="203.0" mnemonicParsing="false" onAction="#codeMakerRadioButtonAction" text="Code Maker">
+                        <RadioButton fx:id="codeMakerRadioButton" layoutX="50.0" layoutY="203.0" mnemonicParsing="false" onAction="#codeMakerRadioButtonAction" text="Code Maker">
                            <toggleGroup>
                               <ToggleGroup fx:id="roleMode" />
                            </toggleGroup>
