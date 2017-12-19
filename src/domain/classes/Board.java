@@ -22,7 +22,7 @@ public class Board implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    private final Code solutionCorrection;
+    //private final Code solutionCorrection;
 
     private final int nColumns;
     private final int maxAttempts;
@@ -64,7 +64,7 @@ public class Board implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
-    /**
+    /*/**
      * Constructor de tablero por defecto.
      *
      * Instancia un tablero vacío y no válido
@@ -105,7 +105,7 @@ public class Board implements DeepCopyable, Serializable
         solution = null;
         turnSet = new ArrayList<>();
 
-        solutionCorrection = Code.getSolutionCorrection(difficulty);
+        //solutionCorrection = Code.getSolutionCorrection(difficulty);
     }
 
     /**
@@ -127,7 +127,7 @@ public class Board implements DeepCopyable, Serializable
         setSolution(board.getSolution());
         setTurnSet(board.getTurnSet());
 
-        solutionCorrection = Code.getSolutionCorrection(board.getDifficulty());
+        //solutionCorrection = Code.getSolutionCorrection(board.getDifficulty());
     }
 
     /* SET METHODS */
