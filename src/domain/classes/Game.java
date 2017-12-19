@@ -250,7 +250,6 @@ public class Game implements DeepCopyable, Serializable
 
     public boolean hasFinished()
     {
-        //return turnSet.size() == maxAttempts || (!turnSet.isEmpty() && getLastTurn().getCorrectionCode().equals(solutionCorrection));
         return board.getTurnSet().size() == board.getMaxAttempts() || (!board.getTurnSet().isEmpty() && board.getLastTurn().getCode().orderedEquals(board.getSolution()));
     }
 
