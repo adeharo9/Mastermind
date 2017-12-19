@@ -83,16 +83,6 @@ public class Code implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
-    /*@Deprecated
-    public Code(final int size) throws IllegalArgumentException
-    {
-        boolean b = size >= 0;
-        if(!b) throw new IllegalArgumentException();
-
-        this.size = size;
-        codePins = new ArrayList<>(size);
-    }*/
-
     public <C extends List<Color>> Code(final C codePins)
     {
         this.orderedHash = calcOrderedHash(codePins);

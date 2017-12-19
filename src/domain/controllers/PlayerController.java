@@ -29,21 +29,7 @@ public class PlayerController
         setPlayerByReference(player);
     }
 
-    @Deprecated
-    public PlayerController(final Human human)
-    {
-        setPlayerByReference(human);
-    }
-
-    @Deprecated
-    public PlayerController(final CPU cpu)
-    {
-        setPlayerByReference(cpu);
-    }
-
     /* INSTANTIATION METHODS */
-
-    //public abstract Player newPlayer(final String id);
 
     public Player newHuman(final String id)
     {
