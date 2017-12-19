@@ -5,6 +5,11 @@
     monokai-blue: #66d9ef;
     monokai-orange: #fd971f;
     monokai-purple: #ae81ff;
+
+    monokai-yellow: #ecbe14;
+    monokai-cyan: blue;
+    monokai-magenta: red;
+
     monokai-black: #1e1e1e;
     monokai-grey: #6d6d6d;
     monokai-white: #bbbbbb;
@@ -89,4 +94,59 @@
 .toolbar
 {
     -fx-background-color: toolbar-color;
+}
+
+.color-red
+{
+    -fx-background-color: monokai-red;
+}
+
+.color-green
+{
+    -fx-background-color: monokai-green;
+}
+
+.color-blue
+{
+    -fx-background-color: monokai-blue;
+}
+
+.color-orange
+{
+    -fx-background-color: monokai-orange;
+}
+
+.color-purple
+{
+    -fx-background-color: monokai-purple;
+}
+
+.color-yellow
+{
+    -fx-background-color: monokai-yellow;
+}
+
+.color-cyan
+{
+    -fx-background-color: monokai-cyan;
+}
+
+.color-magenta
+{
+    -fx-background-color: monokai-magenta;
+}
+
+.color-none
+{
+    -fx-background-color: monokai-none;
+}
+
+.color-black
+{
+    -fx-background-color: monokai-black;
+}
+
+.color-white
+{
+    -fx-background-color: monokai-white;
 }

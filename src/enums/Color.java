@@ -10,22 +10,23 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public enum Color
 {
-    RED(0, "R", "Red"),
-    GREEN(RED.getId() + 1, "G", "Green"),
-    BLUE(GREEN.getId() + 1, "B", "Blue"),
-    ORANGE(BLUE.getId() + 1, "O", "Orange"),
-    PURPLE(ORANGE.getId() + 1, "P", "Purple"),
-    YELLOW(PURPLE.getId() + 1, "Y", "Yellow"),
-    CYAN(YELLOW.getId() + 1, "C", "Cyan"),
-    MAGENTA(CYAN.getId() + 1, "M", "Magenta"),
+    RED(0, "R", "Red", "color-red"),
+    GREEN(RED.getId() + 1, "G", "Green", "color-green"),
+    BLUE(GREEN.getId() + 1, "B", "Blue", "color-blue"),
+    ORANGE(BLUE.getId() + 1, "O", "Orange", "color-orange"),
+    PURPLE(ORANGE.getId() + 1, "P", "Purple", "color-purple"),
+    YELLOW(PURPLE.getId() + 1, "Y", "Yellow", "color-yellow"),
+    CYAN(YELLOW.getId() + 1, "C", "Cyan", "color-cyan"),
+    MAGENTA(CYAN.getId() + 1, "M", "Magenta", "color-magenta"),
 
-    NONE(MAGENTA.getId() + 1, "N", "None"),
-    BLACK(NONE.getId() + 1, "K", "Black"),
-    WHITE(BLACK.getId() + 1, "W", "White");
+    NONE(MAGENTA.getId() + 1, "N", "None", "color-none"),
+    BLACK(NONE.getId() + 1, "K", "Black", "color-black"),
+    WHITE(BLACK.getId() + 1, "W", "White", "color-white");
 
     private final int id;
     private final String strId;
     private final String strDescription;
+    private final String cssStyleClass;
 
     public static final int SIZE = WHITE.getId() + 1;
 
@@ -41,11 +42,12 @@ public enum Color
         }
     }
 
-    private Color(final int id, final String strId, final String strDescription)
+    private Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
     {
         this.id = id;
         this.strId = strId;
         this.strDescription = strDescription;
+        this.cssStyleClass = cssStyleClass;
     }
 
     public static Color getColor(final int id) throws IllegalArgumentException
