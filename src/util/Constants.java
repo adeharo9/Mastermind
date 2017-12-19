@@ -38,6 +38,11 @@ public final class Constants
 
     /* DIRECTORIES */
     public static final String VIEWS_PATH = "/presentation/views/";
+    public static final String RESOURCES_PATH = "/resources/";
+
+    /* IMAGES */
+    public static final String ICON_FILE = "icon.png";
+    public static final String WARNING_ICON_FILE = "warning-icon.png";
 
     /* GUI CONSTANTS */
     public static final int THREAD_SLEEP_MS = 2000;
