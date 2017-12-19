@@ -1,7 +1,6 @@
 package persistence;
 
 import domain.classes.Ranking;
-import exceptions.IntegrityCorruptionException;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,10 +58,5 @@ public class RankingPersistence extends AbstractPersistence
     public void delete(String key) throws IOException
     {
         super.delete("ranking");
-    }
-
-    public void checkIntegrity() throws IntegrityCorruptionException
-    {
-
     }
 }

@@ -1,7 +1,6 @@
 package persistence;
 
 import domain.classes.Player;
-import exceptions.IntegrityCorruptionException;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
@@ -95,10 +94,5 @@ public class PlayerPersistence extends AbstractPersistence
 
         br.close();
         return savedGames;
-    }
-
-    public void checkIntegrity() throws IntegrityCorruptionException
-    {
-
     }
 }

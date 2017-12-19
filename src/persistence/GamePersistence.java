@@ -1,7 +1,6 @@
 package persistence;
 
 import domain.classes.Game;
-import exceptions.IntegrityCorruptionException;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,10 +39,5 @@ public class GamePersistence extends AbstractPersistence
     {
         String id = ((Game) game).getId();
         super.save(id, game);
-    }
-
-    public void checkIntegrity() throws IntegrityCorruptionException
-    {
-
     }
 }

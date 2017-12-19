@@ -1,7 +1,5 @@
 package persistence;
 
-import exceptions.IntegrityCorruptionException;
-
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 /**
@@ -77,10 +75,5 @@ public abstract class AbstractPersistence
 
         b = file.delete();
         if (!b) throw new IOException();
-    }
-
-    public static void checkIntegrity(int hash, Object object) throws IntegrityCorruptionException
-    {
-
     }
 }
