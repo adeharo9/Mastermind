@@ -24,9 +24,9 @@ public class Board implements DeepCopyable, Serializable
 
     private final Code solutionCorrection;
 
-    private int nColumns;
-    private int maxAttempts;
-    private Difficulty difficulty;
+    private final int nColumns;
+    private final int maxAttempts;
+    private final Difficulty difficulty;
 
     private Code solution;
     private ArrayList<Turn> turnSet;
@@ -57,7 +57,6 @@ public class Board implements DeepCopyable, Serializable
         return b;
     }
 
-    @Deprecated
     private boolean isValidCode(final Code code) throws NullPointerException
     {
         return code.size () == nColumns;
@@ -72,7 +71,7 @@ public class Board implements DeepCopyable, Serializable
      * sin previa inicialización usando los setters
      * públicos disponibles
      */
-    @Deprecated
+    /*@Deprecated
     public Board ()
     {
         nColumns = -1;
@@ -83,7 +82,7 @@ public class Board implements DeepCopyable, Serializable
         turnSet = new ArrayList<>();
 
         solutionCorrection = Code.getSolutionCorrection(Difficulty.EASY);
-    }
+    }*/
 
     /**
      * Constructor de tablero por dificultad.
@@ -96,9 +95,12 @@ public class Board implements DeepCopyable, Serializable
      */
     public Board(final Difficulty difficulty) throws IllegalArgumentException
     {
-        setNColumns(Constants.getNumPinsByDifficulty(difficulty));
-        setMaxAttempts(Constants.getMaxRoundsByDifficulty(difficulty));
-        setDifficulty(difficulty);
+        this.nColumns = Constants.getNumPinsByDifficulty(difficulty);
+        this.maxAttempts = Constants.getMaxRoundsByDifficulty(difficulty);
+        this.difficulty = difficulty;
+        //setNColumns(Constants.getNumPinsByDifficulty(difficulty));
+        //setMaxAttempts(Constants.getMaxRoundsByDifficulty(difficulty));
+        //setDifficulty(difficulty);
 
         solution = null;
         turnSet = new ArrayList<>();
@@ -116,9 +118,12 @@ public class Board implements DeepCopyable, Serializable
      */
     public Board(final Board board) throws IllegalArgumentException
     {
-        setNColumns(board.getNColumns());
-        setMaxAttempts (board.getMaxAttempts());
-        setDifficulty(board.getDifficulty());
+        this.nColumns = board.getNColumns();
+        this.maxAttempts = board.getMaxAttempts();
+        this.difficulty = board.getDifficulty();
+        //setNColumns(board.getNColumns());
+        //setMaxAttempts (board.getMaxAttempts());
+        //setDifficulty(board.getDifficulty());
         setSolution(board.getSolution());
         setTurnSet(board.getTurnSet());
 
@@ -127,7 +132,7 @@ public class Board implements DeepCopyable, Serializable
 
     /* SET METHODS */
 
-    /**
+    /*/**
      * Setter de número de columnas.
      *
      * Indica el número de columnas del tablero (es decir, el número
@@ -137,16 +142,16 @@ public class Board implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
      * @deprecated En siguientes revisiones dicho valor será final.
      */
-    @Deprecated
+    /*@Deprecated
     public void setNColumns(final int nColumns) throws IllegalArgumentException
     {
         boolean b = isValidNColumns(nColumns);
         if(!b) throw new IllegalArgumentException();
 
         this.nColumns = nColumns;
-    }
+    }*/
 
-    /**
+    /*/**
      * Setter del valor máximo de intentos antes de terminar el juego.
      *
      * Indica el número máximo de turnos que se pueden jugar antes de que
@@ -156,16 +161,16 @@ public class Board implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
      * @deprecated En siguientes revisiones dicho valor será final.
      */
-    @Deprecated
+    /*@Deprecated
     public void setMaxAttempts(final int maxAttempts) throws IllegalArgumentException
     {
         boolean b = isValidMaxAttempts(maxAttempts);
         if(!b) throw new IllegalArgumentException();
 
         this.maxAttempts = maxAttempts;
-    }
+    }*/
 
-    /** Setter de dificultad.
+    /*/** Setter de dificultad.
      *
      * Indica la dificultad del tablero.
      *
@@ -173,14 +178,14 @@ public class Board implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso de que la dificultad no sea válida.
      * @deprecated En siguientes revisiones dicho valor será final.
      */
-    @Deprecated
+    /*@Deprecated
     public void setDifficulty(final Difficulty difficulty) throws IllegalArgumentException
     {
         boolean b = difficulty != null;
         if(!b) throw new IllegalArgumentException();
 
         this.difficulty = difficulty;
-    }
+    }*/
 
     /**
      * Setter de código del tablero (solución a la partida)

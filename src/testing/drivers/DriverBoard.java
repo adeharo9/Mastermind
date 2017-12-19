@@ -24,14 +24,14 @@ public class DriverBoard {
     private void exe()
     {
         testConstructors();
-        testGetsAndSets();
+        //testGetsAndSets();
         testAddTurn();
         testAddCodeAndAddCorrection();
     }
 
     private void testConstructors()
     {
-        Board board = new Board();
+        Board board = new Board(Difficulty.EASY);
         Difficulty difficulty = null;
         ioUtils.printOutLn("Introduce a difficulty (introduce h if you want hard " +
                 "difficulty, m if you want medium and e if you want easy): ");
@@ -63,7 +63,7 @@ public class DriverBoard {
         }
     }
 
-    private void testGetsAndSets()
+    /*private void testGetsAndSets()
     {
         Difficulty difficulty = null;
         ioUtils.printOutLn("Test of getter and setters of Board:");
@@ -120,7 +120,7 @@ public class DriverBoard {
 
         ioUtils.printOutLn("Difficulty: " + difficulty.toString() + " Max attempts: " + Integer.toString(maxAttempts) +
             " Actual turn: " + Integer.toString(turn) + " Number of columns: " + Integer.toString(nColumns) + "\n");
-    }
+    }*/
 
     private void testAddTurn()
     {

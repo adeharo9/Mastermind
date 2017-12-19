@@ -102,7 +102,7 @@ public class DriverGame {
 
         testedGame.setPoints(1000);
         if(testedGame.getPoints() != 1000){ioUtils.printOutLn("Error in setPoints!\n");}
-        Board board = new Board();
+        Board board = new Board(Difficulty.EASY);
         boolean correct = false;
         try{
             testedGame.setBoard(board);
