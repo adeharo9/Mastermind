@@ -249,6 +249,31 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
+    private void renameGame(final String gameId)
+    {
+
+    }
+
+    public void deleteGame(final String gameId)
+    {
+
+    }
+
+    public void renameUsername(final String username)
+    {
+
+    }
+
+    public void changePassword(final String password)
+    {
+
+    }
+
+    public void deleteUser(final String username)
+    {
+
+    }
+
     private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         Action action;
