@@ -2,7 +2,7 @@ import domain.controllers.DomainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import presentation.controllers.PresentationController;
-import runnables.LogicThreadRunnable;
+import presentation.runnables.LogicThreadRunnable;
 
 import java.io.IOException;
 

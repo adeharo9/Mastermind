@@ -1,16 +1,16 @@
-package runnables;
+package presentation.runnables;
 
 import presentation.controllers.PresentationController;
 
 import java.io.IOException;
 
-public class PopUpViewRunnable implements Runnable
+public class UpdateViewRunnable implements Runnable
 {
 
     private final PresentationController presentationController;
     private final String viewFile;
 
-    public PopUpViewRunnable(PresentationController presentationController, String viewFile)
+    public UpdateViewRunnable(PresentationController presentationController, String viewFile)
     {
         this.presentationController = presentationController;
         this.viewFile = viewFile;
@@ -21,7 +21,7 @@ public class PopUpViewRunnable implements Runnable
     {
         try
         {
-            presentationController.popUpWindow(viewFile);
+            presentationController.updateView(viewFile);
         }
         catch (IOException e)
         {

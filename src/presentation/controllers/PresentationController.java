@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import presentation.handlers.CloseWindowHandler;
 import util.Constants;
 
 import java.io.IOException;
@@ -48,7 +50,7 @@ public class PresentationController
 
     }
 
-    protected void pressButtonAction(final int value) throws IOException
+    public void pressButtonAction(final int value) throws IOException
     {
         PresentationController.returnState = value;
         pressButtonSpecificAction();
@@ -167,6 +169,7 @@ public class PresentationController
 
         popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.setResizable(false);
+        popUpStage.setOnCloseRequest(new CloseWindowHandler(this));
 
         popUpStage.setScene(new Scene(root, 250, 100));
 
