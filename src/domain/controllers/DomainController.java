@@ -478,7 +478,7 @@ public class DomainController
                     break;
 
                 case CLOSE_PROGRAM_WARNING:
-                    popUpView(View.EXIT_GAME_WARNING_VIEW);
+                    popUpView(View.CLOSE_PROGRAM_WARNING_VIEW);
                     while(!presentationController.threadHasFinished())
                     {
                         wait();
