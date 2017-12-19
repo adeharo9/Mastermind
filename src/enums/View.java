@@ -2,21 +2,23 @@ package enums;
 
 public enum View
 {
-    LOADING_VIEW("LoadingView.fxml"),
-    INIT_SESSION_VIEW("InitSessionView.fxml"),
-    LOG_IN_VIEW("LogInView.fxml"),
-    REGISTER_VIEW("RegisterView.fxml"),
-    MAIN_GAME_VIEW("MainGameView.fxml"),
-    GAME_IN_PROGRESS_VIEW("GameInProgressView.fxml"),
-    GAME_SELECTION_VIEW("GameSelectionView.fxml"),
-    LOAD_GAME_VIEW("LoadGameView.fxml"),
-    RANKING_VIEW("RankingView.fxml"),
-    SHOW_INFO_VIEW("ShowInfoView.fxml"),
     EDIT_USER_VIEW("EditUserView.fxml"),
-    PAUSE_VIEW("PauseView.fxml"),
+    EXIT_GAME_WARNING_VIEW("ExitGameWarningView.fxml"),
+    GAME_IN_PROGRESS_VIEW("GameInProgressView.fxml"),
+    GAME_OVER_VIEW("GameOverView.fxml"),
+    GAME_SELECTION_VIEW("GameSelectionView.fxml"),
+    INIT_SESSION_VIEW("InitSessionView.fxml"),
+    LOAD_GAME_VIEW("LoadGameView.fxml"),
+    LOADING_VIEW("LoadingView.fxml"),
+    LOG_IN_VIEW("LogInView.fxml"),
+    MAIN_GAME_VIEW("MainGameView.fxml"),
+    RANKING_VIEW("RankingView.fxml"),
+    REGISTER_VIEW("RegisterView.fxml"),
     SAVE_GAME_VIEW("SaveGameView.fxml"),
     SHOW_HINT_VIEW("ShowClueView.fxml"),
-    GAME_OVER_VIEW("GameOverView.fxml");
+    SHOW_INFO_VIEW("ShowInfoView.fxml"),
+    PAUSE_VIEW("PauseView.fxml");
+
 
     private final String viewFile;
 
