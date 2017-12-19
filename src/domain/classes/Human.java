@@ -92,7 +92,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que human no sea correcto.
      * @throws NullPointerException En caso que human sea nulo.
      */
-    @Deprecated
     public Human(final Human human) throws IllegalArgumentException, NullPointerException
     {
         super(human);
@@ -160,7 +159,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que Human no sea correcto.
      * @throws NullPointerException En caso que Human sea nulo.
      */
-    @Deprecated
     public Human deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Human(this);
