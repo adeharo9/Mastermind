@@ -21,6 +21,7 @@ public enum State
     INIT_PROGRAM,
     INIT_SESSION_MENU,
 
+    LAST_ACTIONS,
     LOAD_GAME,
     LOAD_GAME_MENU,
     LOAD_RANKING,
