@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import presentation.handlers.CloseWindowHandler;
 import util.Constants;
 
@@ -17,6 +16,8 @@ import java.io.IOException;
 public class PresentationController
 {
     /* ATTRIBUTES */
+
+    private String currentViewFile;
 
     protected Stage mainStage;
     protected Stage popUpStage;
@@ -59,6 +60,8 @@ public class PresentationController
 
     private Parent loadView(final String viewFile) throws IOException
     {
+        this.currentViewFile = viewFile;
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Constants.VIEWS_PATH + viewFile));
 
         Parent root = fxmlLoader.load();
@@ -66,6 +69,7 @@ public class PresentationController
         PresentationController presentationController = fxmlLoader.getController();
         presentationController.setMainStage(this.mainStage);
         presentationController.setPopUpStage(this.popUpStage);
+        presentationController.setCurrentViewFile(this.currentViewFile);
 
         return root;
     }
@@ -89,7 +93,12 @@ public class PresentationController
         this.popUpStage = popUpStage;
     }
 
-    public void clearThreadHasFinished()
+    public void setCurrentViewFile(final String currentViewFile)
+    {
+        this.currentViewFile = currentViewFile;
+    }
+
+    public static void clearThreadHasFinished()
     {
         PresentationController.threadFinished = false;
     }
@@ -131,7 +140,7 @@ public class PresentationController
         return PresentationController.DOMAIN_CONTROLLER;
     }
 
-    public boolean threadHasFinished()
+    public static boolean threadHasFinished()
     {
         return PresentationController.threadFinished;
     }
@@ -153,9 +162,12 @@ public class PresentationController
 
     public void updateView(final String viewFile) throws IOException
     {
-        Parent root = loadView(viewFile);
+        if(currentViewFile == null || !currentViewFile.equals(viewFile))
+        {
+            Parent root = loadView(viewFile);
 
-        this.mainStage.getScene().setRoot(root);
+            this.mainStage.getScene().setRoot(root);
+        }
     }
 
     public void popUpWindow(final String viewFile) throws IOException

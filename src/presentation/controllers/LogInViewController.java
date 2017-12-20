@@ -14,7 +14,7 @@ public class LogInViewController extends PresentationController
 
     @FXML private TextField usernameTextField;
     @FXML private PasswordField passwordPasswordField;
-    @FXML private Label wrongUserPass;
+    @FXML private Label logInErrorLabel;
 
     /* CONSTRUCTORS */
 
@@ -43,6 +43,6 @@ public class LogInViewController extends PresentationController
 
     public void errorMessage()
     {
-        wrongUserPass.setVisible(true);
+        logInErrorLabel.setVisible(true);
     }
 }
