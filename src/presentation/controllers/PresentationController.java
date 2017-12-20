@@ -175,4 +175,6 @@ public class PresentationController
 
         popUpStage.show();
     }
+
+    public void errorMessage(){}
 }

@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -13,6 +14,7 @@ public class LogInViewController extends PresentationController
 
     @FXML private TextField usernameTextField;
     @FXML private PasswordField passwordPasswordField;
+    @FXML private Label wrongUserPass;
 
     /* CONSTRUCTORS */
 
@@ -36,5 +38,11 @@ public class LogInViewController extends PresentationController
         PresentationController.password = passwordPasswordField.getText();
 
         pressButtonAction(1);
+
+    }
+
+    public void errorMessage()
+    {
+        wrongUserPass.setVisible(true);
     }
 }

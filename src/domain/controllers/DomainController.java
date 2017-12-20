@@ -10,8 +10,10 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
+import presentation.controllers.LogInViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
+import presentation.runnables.ErrorMessageRunnable;
 import presentation.runnables.PopUpViewRunnable;
 import presentation.runnables.UpdateViewRunnable;
 import util.Constants;
@@ -414,6 +416,11 @@ public class DomainController
         Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
     }
 
+    private void errorMessage()
+    {
+        Platform.runLater(new ErrorMessageRunnable(presentationController));
+    }
+
     /* MAIN STATE MACHINE */
 
     public synchronized void exe() throws InterruptedException
@@ -752,6 +759,7 @@ public class DomainController
                     }
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
+                        errorMessage();
                         oldPresentationController.logInError();
                         state = State.LOG_IN_MENU;
                     }
