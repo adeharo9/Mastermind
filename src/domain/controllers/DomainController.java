@@ -405,9 +405,9 @@ public class DomainController
         }
     }
 
-    private void updateView(View view) throws InterruptedException
+    private void runOnGUIThreadAndWait(final Runnable runnable) throws InterruptedException
     {
-        Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
+        Platform.runLater(runnable);
 
         while(!PresentationController.threadHasFinished())
         {
@@ -415,9 +415,26 @@ public class DomainController
         }
     }
 
-    private void popUpView(View view)
+    private void updateView(View view) throws InterruptedException
     {
-        Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
+        runOnGUIThreadAndWait(new UpdateViewRunnable(presentationController, view.getViewFile()));
+        /*Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
+
+        while(!PresentationController.threadHasFinished())
+        {
+            wait();
+        }*/
+    }
+
+    private void popUpView(View view) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, view.getViewFile()));
+        /*Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
+
+        while(!PresentationController.threadHasFinished())
+        {
+            wait();
+        }*/
     }
 
     private void errorMessage()
@@ -487,10 +504,7 @@ public class DomainController
 
                 case CLOSE_PROGRAM_WARNING:
                     popUpView(View.CLOSE_PROGRAM_WARNING_VIEW);
-                    while(!PresentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -740,7 +754,6 @@ public class DomainController
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
                         errorMessage();
-                        oldPresentationController.logInError();
                         state = State.LOG_IN_MENU;
                     }
                     catch(IOException | ClassNotFoundException e)
@@ -751,8 +764,7 @@ public class DomainController
                     break;
 
                 case LOG_OUT_WARNING:
-                    //updateView(View.LOG_OUT_WARNING);
-                    //presentationController = presentationController.updatePresentationController();
+                    popUpView(View.LOG_OUT_WARNING_VIEW);
 
                     try
                     {
