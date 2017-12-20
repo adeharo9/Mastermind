@@ -11,6 +11,7 @@ public enum View
     LOAD_GAME_VIEW("LoadGameView.fxml"),
     LOADING_VIEW("LoadingView.fxml"),
     LOG_IN_VIEW("LogInView.fxml"),
+    LOG_OUT_WARNING_VIEW("LogOutWarningView.fxml"),
     MAIN_GAME_VIEW("MainGameView.fxml"),
     RANKING_VIEW("RankingView.fxml"),
     REGISTER_VIEW("RegisterView.fxml"),
