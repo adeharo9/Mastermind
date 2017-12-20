@@ -2,8 +2,8 @@ package enums;
 
 public enum View
 {
-    EDIT_USER_VIEW("EditUserView.fxml"),
     CLOSE_PROGRAM_WARNING_VIEW("CloseProgramWarningView.fxml"),
+    EDIT_USER_VIEW("EditUserView.fxml"),
     EXIT_CURRENT_GAME_WARNING_VIEW("ExitCurrentGameWarningView.fxml"),
     GAME_IN_PROGRESS_VIEW("GameInProgressView.fxml"),
     GAME_OVER_VIEW("GameOverView.fxml"),
