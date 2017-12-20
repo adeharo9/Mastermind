@@ -524,13 +524,12 @@ public class DomainController
                     state = State.PLAY_TURN;
                     break;
 
-                case EXIT_GAME_WITHOUT_SAVING:
+                case EXIT_CURRENT_GAME:
                     state = State.MAIN_GAME_MENU;
                     break;
 
-                case EXIT_GAME_WITHOUT_SAVING_WARNING:
-                    //updateView(View.EXIT_GAME_WARNING);
-                    //presentationController = presentationController.updatePresentationController();
+                case EXIT_CURRENT_GAME_WARNING:
+                    updateView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
 
                     try
                     {
