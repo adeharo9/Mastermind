@@ -11,15 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RankingViewController">
+<VBox prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="400.0" styleClass="toolbar">
-         <items>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
-         </items>
-      </ToolBar>
-      <Separator orientation="VERTICAL" prefHeight="10.0" prefWidth="6.0" visible="false" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="High scores:" translateX="30.0" translateY="50.0" wrappingWidth="104.775390625" />
-      <TableView fx:id="rankingTableView" maxWidth="-Infinity" prefHeight="282.0" prefWidth="335.0" translateX="30.0" translateY="100.0" />
+      <Label prefHeight="17.0" prefWidth="71.0" styleClass="text" text="High scores:" translateX="50.0" translateY="100.0" />
+      <Label fx:id="firstPositionLabel" layoutX="49.0" layoutY="125.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="110.0" />
+      <Label fx:id="secondPositionLabel" layoutX="49.0" layoutY="159.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="120.0" />
+      <Label fx:id="thirdPositionLabel" layoutX="49.0" layoutY="198.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="130.0" />
+      <Label fx:id="fourthPositionLabel" layoutX="49.0" layoutY="229.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="140.0" />
+      <Label fx:id="fifthPositionLabel" layoutX="49.0" layoutY="258.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="150.0" />
+      <Label fx:id="sixthPositionLabel" layoutX="49.0" layoutY="292.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="160.0" />
+      <Label fx:id="seventhPositionLabel" layoutX="49.0" layoutY="327.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="170.0" />
+      <Label fx:id="eighthPositionLabel" layoutX="49.0" layoutY="356.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="180.0" />
+      <Label fx:id="ninethPositionLabel" layoutX="49.0" layoutY="386.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="190.0" />
+      <Label fx:id="tenthPositionLabel" layoutX="49.0" layoutY="413.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="200.0" />
    </children>
 </VBox>
