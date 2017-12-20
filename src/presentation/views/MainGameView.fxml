@@ -9,7 +9,7 @@
    <children>
       <ToolBar prefHeight="40.0" prefWidth="402.0" styleClass="toolbar">
          <items>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonAction" text="Log Out" textAlignment="CENTER" />
          </items>
       </ToolBar>
       <VBox layoutX="138.0" layoutY="168.0" prefHeight="223.0" prefWidth="127.0">

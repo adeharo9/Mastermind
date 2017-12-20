@@ -15,7 +15,7 @@ public class MainGameViewController extends PresentationController
 
     /* FXML */
     @FXML
-    public void backButtonAction(ActionEvent actionEvent) throws IOException
+    public void logOutButtonAction(ActionEvent actionEvent) throws IOException
     {
         pressButtonAction(0);
     }
