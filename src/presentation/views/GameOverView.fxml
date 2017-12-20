@@ -31,8 +31,8 @@
             </Label>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="79.0">
                <children>
-                  <Label text="SCORE:  " />
-                  <Text fx:id="scoreOutput" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="34.0" />
+                  <Label styleClass="text" text="SCORE:  " />
+                  <Label fx:id="pointsLabel" styleClass="text" />
                </children>
             </HBox>
             <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
