@@ -151,7 +151,29 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateMainGameMenu(int stat) throws IllegalArgumentException
+    public static State int2StateEditUserMenu(final int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.MAIN_MENU;
+                break;
+            case 1:
+                state = State.EDIT_USERNAME;
+                break;
+            case 2:
+                state = State.EDIT_PASSWORD;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateMainMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -171,6 +193,9 @@ public abstract class Translate
                 break;
             case 4:
                 state = State.CHECK_INFO;
+                break;
+            case 5:
+                state = State.EDIT_USER_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();

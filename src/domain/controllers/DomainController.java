@@ -525,7 +525,30 @@ public class DomainController
                     break;
 
                 case EDIT_USER_MENU:
+                    updateView(View.EDIT_USER_VIEW);
 
+                    try
+                    {
+                        returnState = PresentationController.getReturnState();
+
+                        state = Translate.int2StateEditUserMenu(returnState);
+                    }
+                    catch(IllegalArgumentException e)
+                    {
+                        oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
+                    }
+                    break;
+
+                case EDIT_USERNAME:
+                    state = State.EDIT_USER_MENU;
+                    break;
+
+                case EDIT_PASSWORD:
+                    state = State.EDIT_USER_MENU;
                     break;
 
                 case EXIT_CURRENT_GAME:
@@ -792,7 +815,7 @@ public class DomainController
                     {
                         returnState = PresentationController.getReturnState();
 
-                        state = Translate.int2StateMainGameMenu(returnState);
+                        state = Translate.int2StateMainMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
