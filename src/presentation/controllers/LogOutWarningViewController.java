@@ -2,15 +2,12 @@ package presentation.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CloseProgramWarningViewController extends PopUpController
+public class LogOutWarningViewController extends PopUpController
 {
-    public CloseProgramWarningViewController()
+    public LogOutWarningViewController()
     {
 
     }
@@ -23,7 +20,7 @@ public class CloseProgramWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void exitButtonAction(ActionEvent actionEvent) throws IOException
+    public void logOutButtonAction(ActionEvent actionEvent) throws IOException
     {
         super.yesButtonAction(actionEvent);
     }

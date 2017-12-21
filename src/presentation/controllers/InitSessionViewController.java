@@ -16,7 +16,7 @@ public class InitSessionViewController extends PresentationController
 
     /* FXML */
     @FXML
-    public void closeButtonAction(ActionEvent actionEvent) throws IOException
+    public void exitButtonAction(ActionEvent actionEvent) throws IOException
     {
         pressButtonAction(0);
     }

@@ -217,7 +217,7 @@ public abstract class Translate
                 state = State.HINT_MENU;
                 break;
             case 3:
-                state = State.EXIT_GAME_WITHOUT_SAVING_WARNING;
+                state = State.EXIT_CURRENT_GAME_WARNING;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -342,7 +342,7 @@ public abstract class Translate
 
     public static State int2StateExitGameWarning(int state) throws IllegalArgumentException
     {
-        return int2StateYesNo(state, State.EXIT_GAME_WITHOUT_SAVING, State.GAME_PAUSE_MENU);
+        return int2StateYesNo(state, State.EXIT_CURRENT_GAME, State.GAME_PAUSE_MENU);
     }
 
     public static State int2StateCloseProgramWarning(int state) throws IllegalArgumentException

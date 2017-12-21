@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
-import presentation.controllers.LogInViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.ErrorMessageRunnable;
@@ -406,14 +405,36 @@ public class DomainController
         }
     }
 
-    private void updateView(View view)
+    private void runOnGUIThreadAndWait(final Runnable runnable) throws InterruptedException
     {
-        Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
+        Platform.runLater(runnable);
+
+        while(!PresentationController.threadHasFinished())
+        {
+            wait();
+        }
     }
 
-    private void popUpView(View view)
+    private void updateView(View view) throws InterruptedException
     {
-        Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
+        runOnGUIThreadAndWait(new UpdateViewRunnable(presentationController, view.getViewFile()));
+        /*Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
+
+        while(!PresentationController.threadHasFinished())
+        {
+            wait();
+        }*/
+    }
+
+    private void popUpView(View view) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, view.getViewFile()));
+        /*Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
+
+        while(!PresentationController.threadHasFinished())
+        {
+            wait();
+        }*/
     }
 
     private void errorMessage()
@@ -465,10 +486,7 @@ public class DomainController
 
                 case CHECK_INFO:
                     updateView(View.SHOW_INFO_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         //PresentationController.showInfo();
@@ -477,7 +495,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -486,10 +504,7 @@ public class DomainController
 
                 case CLOSE_PROGRAM_WARNING:
                     popUpView(View.CLOSE_PROGRAM_WARNING_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -501,7 +516,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -509,16 +524,13 @@ public class DomainController
                     state = State.PLAY_TURN;
                     break;
 
-                case EXIT_GAME_WITHOUT_SAVING:
+                case EXIT_CURRENT_GAME:
                     state = State.MAIN_GAME_MENU;
                     break;
 
-                case EXIT_GAME_WITHOUT_SAVING_WARNING:
-                    //updateView(View.EXIT_GAME_WARNING);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+                case EXIT_CURRENT_GAME_WARNING:
+                    updateView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -530,16 +542,13 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
                 case GAME_MODE_SELECTION_MENU:
                     updateView(View.GAME_SELECTION_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = PresentationController.getMode();
@@ -560,7 +569,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -580,10 +589,7 @@ public class DomainController
 
                 case GAME_PAUSE_MENU:
                     updateView(View.PAUSE_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -595,16 +601,13 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
                 case HINT_MENU:
                     updateView(View.SHOW_HINT_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         //PresentationController.giveClue();
@@ -618,7 +621,7 @@ public class DomainController
                     finally
                     {
                         state = State.GAME_PAUSE_MENU;
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -633,10 +636,6 @@ public class DomainController
                 case INIT_SESSION_MENU:
                     updateView(View.INIT_SESSION_VIEW);
 
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -648,7 +647,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -677,10 +676,7 @@ public class DomainController
 
                 case LOAD_GAME_MENU:
                     updateView(View.LOAD_GAME_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = oldPresentationController.loadGameMenu(savedGames);
@@ -694,7 +690,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -733,10 +729,7 @@ public class DomainController
 
                 case LOG_IN_MENU:
                     updateView(View.LOG_IN_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         username = PresentationController.getUsername();
@@ -747,7 +740,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -760,7 +753,6 @@ public class DomainController
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
                         errorMessage();
-                        oldPresentationController.logInError();
                         state = State.LOG_IN_MENU;
                     }
                     catch(IOException | ClassNotFoundException e)
@@ -771,11 +763,8 @@ public class DomainController
                     break;
 
                 case LOG_OUT_WARNING:
-                    //updateView(View.LOG_OUT_WARNING);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+                    popUpView(View.LOG_OUT_WARNING_VIEW);
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -788,16 +777,13 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
                 case MAIN_GAME_MENU:
                     updateView(View.MAIN_GAME_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         returnState = PresentationController.getReturnState();
@@ -810,7 +796,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -881,10 +867,7 @@ public class DomainController
 
                 case REGISTER_MENU:
                     updateView(View.REGISTER_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         username = PresentationController.getUsername();
@@ -895,7 +878,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -967,10 +950,7 @@ public class DomainController
 
                 case SHOW_RANKING:
                     updateView(View.RANKING_VIEW);
-                    while(!presentationController.threadHasFinished())
-                    {
-                        wait();
-                    }
+
                     try
                     {
                         //returnState = PresentationController.getReturnState();
@@ -983,7 +963,7 @@ public class DomainController
                     }
                     finally
                     {
-                        presentationController.clearThreadHasFinished();
+                        PresentationController.clearThreadHasFinished();
                     }
 
                     break;
