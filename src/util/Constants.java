@@ -47,6 +47,11 @@ public final class Constants
     /* GUI CONSTANTS */
     public static final int THREAD_SLEEP_MS = 2000;
 
+    /* ERROR MESSAGES */
+    public static final String WRONG_USERNAME_OR_PASSWORD = "Wrong username or password";
+    public static final String PASSWORDS_MUST_MATCH = "Passwords must match";
+    public static final String USERNAME_ALREADY_EXISTS = "Username already exists";
+
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
         return getGenericByDifficulty(difficulty, NUM_COLORS_EASY, NUM_COLORS_MEDIUM, NUM_COLORS_HARD);

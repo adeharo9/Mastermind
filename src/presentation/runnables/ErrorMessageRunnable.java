@@ -8,15 +8,17 @@ public class ErrorMessageRunnable implements Runnable
 {
 
     private final PresentationController presentationController;
+    private final String message;
 
-    public ErrorMessageRunnable(PresentationController presentationController)
+    public ErrorMessageRunnable(PresentationController presentationController, final String message)
     {
         this.presentationController = presentationController;
+        this.message = message;
     }
 
     @Override
     public void run()
     {
-        presentationController.errorMessage();
+        presentationController.errorMessage(message);
     }
 }

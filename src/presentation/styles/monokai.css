@@ -73,6 +73,11 @@
 
 /* LABELS */
 
+.error-label
+{
+    -fx-text-fill: red;
+}
+
 .text
 {
     -fx-text-fill: text-color;

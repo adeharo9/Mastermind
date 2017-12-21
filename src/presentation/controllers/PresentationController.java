@@ -33,6 +33,8 @@ public class PresentationController
     protected static volatile String gameId;
     protected static volatile String username;
     protected static volatile String password;
+    protected static volatile String confirmPassword;
+    protected static volatile String newPassword;
 
     /* PRIVATE METHODS */
 
@@ -135,6 +137,16 @@ public class PresentationController
         return PresentationController.password;
     }
 
+    public static String getConfirmPassword()
+    {
+        return PresentationController.confirmPassword;
+    }
+
+    public static String getNewPassword()
+    {
+        return PresentationController.newPassword;
+    }
+
     public DomainController getDomainController()
     {
         return PresentationController.DOMAIN_CONTROLLER;
@@ -188,5 +200,8 @@ public class PresentationController
         popUpStage.show();
     }
 
-    public void errorMessage(){}
+    public void errorMessage(final String message)
+    {
+
+    }
 }

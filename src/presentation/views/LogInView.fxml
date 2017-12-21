@@ -36,7 +36,7 @@
                   <Button fx:id="logInButton" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" />
                </children>
             </VBox>
-            <Label fx:id="logInErrorLabel" text="Wrong username or password" textFill="RED" visible="false" />
+            <Label fx:id="errorLabel" styleClass="error-label" textFill="RED" visible="false" />
          </children>
       </VBox>
    </children>

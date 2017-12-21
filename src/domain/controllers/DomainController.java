@@ -92,9 +92,12 @@ public class DomainController
         loggedPlayerController = playerController;
     }
 
-    private void registerUser(final String username, final String password) throws IOException
+    private void registerUser(final String username, final String password, final String confirmPassword) throws IOException, WrongPasswordException
     {
-        boolean b = playerPersistence.exists(username);
+        boolean b = password.equals(confirmPassword);
+        if(!b) throw new WrongPasswordException();
+
+        b = playerPersistence.exists(username);
         if(b) throw new FileAlreadyExistsException("");
 
         Player player = loggedPlayerController.newHuman(username, password);
@@ -418,28 +421,16 @@ public class DomainController
     private void updateView(View view) throws InterruptedException
     {
         runOnGUIThreadAndWait(new UpdateViewRunnable(presentationController, view.getViewFile()));
-        /*Platform.runLater(new UpdateViewRunnable(presentationController, view.getViewFile()));
-
-        while(!PresentationController.threadHasFinished())
-        {
-            wait();
-        }*/
     }
 
     private void popUpView(View view) throws InterruptedException
     {
         runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, view.getViewFile()));
-        /*Platform.runLater(new PopUpViewRunnable(presentationController, view.getViewFile()));
-
-        while(!PresentationController.threadHasFinished())
-        {
-            wait();
-        }*/
     }
 
-    private void errorMessage()
+    private void errorMessage(final String message)
     {
-        Platform.runLater(new ErrorMessageRunnable(presentationController));
+        Platform.runLater(new ErrorMessageRunnable(presentationController, message));
     }
 
     /* MAIN STATE MACHINE */
@@ -450,6 +441,7 @@ public class DomainController
         String gameId = null;
         String username = null;
         String password = null;
+        String confirmPassword = null;
 
         Mode mode = null;
         Role role = null;
@@ -544,10 +536,16 @@ public class DomainController
                     break;
 
                 case EDIT_USERNAME:
+
+                    username = PresentationController.getUsername();
+
                     state = State.EDIT_USER_MENU;
                     break;
 
                 case EDIT_PASSWORD:
+
+                    password = PresentationController.getNewPassword();
+                    confirmPassword = PresentationController.getConfirmPassword();
                     state = State.EDIT_USER_MENU;
                     break;
 
@@ -573,20 +571,11 @@ public class DomainController
                     }
                     break;
 
-                case GAME_MODE_SELECTION_MENU:
+                case GAME_SETTINGS_MENU:
                     updateView(View.GAME_SELECTION_VIEW);
 
                     try
                     {
-                        returnState = PresentationController.getMode();
-                        mode = Translate.int2Mode(returnState);
-
-                        returnState = PresentationController.getDifficulty();
-                        difficulty = Translate.int2Difficulty(returnState);
-
-                        returnState = PresentationController.getRole();
-                        role = Translate.int2Role(returnState);
-
                         returnState = PresentationController.getReturnState();
                         state = Translate.int2StateGameModeSelectionMenu(returnState);
                     }
@@ -759,8 +748,6 @@ public class DomainController
 
                     try
                     {
-                        username = PresentationController.getUsername();
-                        password = PresentationController.getPassword();
                         returnState = PresentationController.getReturnState();
 
                         state = Translate.intToStateLogInMenu(returnState);
@@ -774,12 +761,15 @@ public class DomainController
                 case LOG_IN_USER:
                     try
                     {
+                        username = PresentationController.getUsername();
+                        password = PresentationController.getPassword();
+
                         logInUser(username, password);
                         state = State.MAIN_MENU;
                     }
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
-                        errorMessage();
+                        errorMessage(Constants.WRONG_USERNAME_OR_PASSWORD);
                         state = State.LOG_IN_MENU;
                     }
                     catch(IOException | ClassNotFoundException e)
@@ -897,8 +887,6 @@ public class DomainController
 
                     try
                     {
-                        username = PresentationController.getUsername();
-                        password = PresentationController.getPassword();
                         returnState = PresentationController.getReturnState();
 
                         state = Translate.intToStateRegisterMenu(returnState);
@@ -912,12 +900,21 @@ public class DomainController
                 case REGISTER_USER:
                     try
                     {
-                        registerUser(username, password);
+                        username = PresentationController.getUsername();
+                        password = PresentationController.getPassword();
+                        confirmPassword = PresentationController.getConfirmPassword();
+
+                        registerUser(username, password, confirmPassword);
                         state = State.MAIN_MENU;
+                    }
+                    catch (WrongPasswordException e)
+                    {
+                        errorMessage(Constants.PASSWORDS_MUST_MATCH);
+                        state = State.REGISTER_MENU;
                     }
                     catch(FileAlreadyExistsException e)
                     {
-                        oldPresentationController.playerAlreadyExistsError(username);
+                        errorMessage(Constants.USERNAME_ALREADY_EXISTS);
                         state = State.REGISTER_MENU;
                     }
                     catch(IOException e)

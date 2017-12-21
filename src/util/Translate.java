@@ -183,7 +183,7 @@ public abstract class Translate
                 state = State.LOG_OUT_WARNING;
                 break;
             case 1:
-                state = State.GAME_MODE_SELECTION_MENU;
+                state = State.GAME_SETTINGS_MENU;
                 break;
             case 2:
                 state = State.LOAD_SAVED_GAMES_LIST;
@@ -263,12 +263,6 @@ public abstract class Translate
             case 1:
                 state = State.NEW_GAME;
                 break;
-            /*case 2:
-                state = State.GAME_ROLE_SELECTION_MENU;
-                break;
-            case 3:
-                state = State.GAME_DIFFICULTY_SELECTION_MENU;
-                break;*/
             default:
                 throw new IllegalArgumentException();
         }
@@ -283,7 +277,7 @@ public abstract class Translate
         switch (stat)
         {
             case 0:
-                state = State.GAME_MODE_SELECTION_MENU;
+                state = State.GAME_SETTINGS_MENU;
                 break;
             case 1:
             case 2:
@@ -303,7 +297,7 @@ public abstract class Translate
 
     public static State int2StateGameDifficultySelectionMenuCPU(int state) throws IllegalArgumentException
     {
-        return int2StateGameDifficultySelectionMenu(state, State.GAME_MODE_SELECTION_MENU);
+        return int2StateGameDifficultySelectionMenu(state, State.GAME_SETTINGS_MENU);
     }
 
     public static String int2SavedGameId(List<String> savedGames, int index) throws IllegalArgumentException
@@ -356,7 +350,7 @@ public abstract class Translate
                 state = State.RESTART_GAME;
                 break;
             case 2:
-                state = State.GAME_MODE_SELECTION_MENU;
+                state = State.GAME_SETTINGS_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();

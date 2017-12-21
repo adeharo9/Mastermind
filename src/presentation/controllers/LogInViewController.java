@@ -14,7 +14,7 @@ public class LogInViewController extends PresentationController
 
     @FXML private TextField usernameTextField;
     @FXML private PasswordField passwordPasswordField;
-    @FXML private Label logInErrorLabel;
+    @FXML private Label errorLabel;
 
     /* CONSTRUCTORS */
 
@@ -34,6 +34,8 @@ public class LogInViewController extends PresentationController
     @FXML
     public void logInButtonAction(ActionEvent actionEvent) throws IOException
     {
+        errorLabel.setVisible(false);
+
         PresentationController.username = usernameTextField.getText();
         PresentationController.password = passwordPasswordField.getText();
 
@@ -41,11 +43,12 @@ public class LogInViewController extends PresentationController
 
     }
 
-    public void errorMessage()
+    public void errorMessage(final String message)
     {
-        logInErrorLabel.setVisible(true);
+        errorLabel.setVisible(true);
+        errorLabel.setText(message);
 
-        usernameTextField.setText("");
-        passwordPasswordField.setText("");
+        usernameTextField.clear();
+        passwordPasswordField.clear();
     }
 }
