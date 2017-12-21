@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import util.Constants;
 
 import java.io.IOException;
 
@@ -45,10 +46,15 @@ public class LogInViewController extends PresentationController
 
     public void errorMessage(final String message)
     {
+        switch (message)
+        {
+            case Constants.WRONG_USERNAME_OR_PASSWORD:
+                usernameTextField.clear();
+                passwordPasswordField.clear();
+                break;
+        }
+
         errorLabel.setVisible(true);
         errorLabel.setText(message);
-
-        usernameTextField.clear();
-        passwordPasswordField.clear();
     }
 }
