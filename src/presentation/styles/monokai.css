@@ -95,7 +95,7 @@
 
 .toolbar
 {
-    -fx-fill: toolbar-color;
+    -fx-background-color: toolbar-color;
 }
 
 .color-red
