@@ -5,6 +5,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameInProgressViewController extends PresentationController
@@ -15,6 +16,8 @@ public class GameInProgressViewController extends PresentationController
     @FXML private Circle smallPinTemplate;
     @FXML private HBox rowTemplate;
     @FXML private VBox board;
+    @FXML private Button pauseButton;
+    @FXML private Button helpButton;
 
     private ArrayList<Circle> colorSelectors;
 

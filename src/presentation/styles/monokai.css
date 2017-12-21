@@ -93,60 +93,60 @@
 
 .toolbar
 {
-    -fx-background-color: toolbar-color;
+    -fx-fill: toolbar-color;
 }
 
 .color-red
 {
-    -fx-background-color: monokai-red;
+    -fx-fill: monokai-red;
 }
 
 .color-green
 {
-    -fx-background-color: monokai-green;
+    -fx-fill: monokai-green;
 }
 
 .color-blue
 {
-    -fx-background-color: monokai-blue;
+    -fx-fill: monokai-blue;
 }
 
 .color-orange
 {
-    -fx-background-color: monokai-orange;
+    -fx-fill: monokai-orange;
 }
 
 .color-purple
 {
-    -fx-background-color: monokai-purple;
+    -fx-fill: monokai-purple;
 }
 
 .color-yellow
 {
-    -fx-background-color: monokai-yellow;
+    -fx-fill: monokai-yellow;
 }
 
 .color-cyan
 {
-    -fx-background-color: monokai-cyan;
+    -fx-fill: monokai-cyan;
 }
 
 .color-magenta
 {
-    -fx-background-color: monokai-magenta;
+    -fx-fill: monokai-magenta;
 }
 
 .color-none
 {
-    -fx-background-color: monokai-none;
+    -fx-fill: monokai-none;
 }
 
 .color-black
 {
-    -fx-background-color: monokai-black;
+    -fx-fill: monokai-black;
 }
 
 .color-white
 {
-    -fx-background-color: monokai-white;
+    -fx-fill: monokai-white;
 }
