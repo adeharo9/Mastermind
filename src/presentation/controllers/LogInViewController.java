@@ -44,5 +44,8 @@ public class LogInViewController extends PresentationController
     public void errorMessage()
     {
         logInErrorLabel.setVisible(true);
+
+        usernameTextField.setText("");
+        passwordPasswordField.setText("");
     }
 }
