@@ -7,7 +7,7 @@ public enum View
     EXIT_CURRENT_GAME_WARNING_VIEW("ExitCurrentGameWarningView.fxml"),
     GAME_IN_PROGRESS_VIEW("GameInProgressView.fxml"),
     GAME_OVER_VIEW("GameOverView.fxml"),
-    GAME_SELECTION_VIEW("GameSelectionView.fxml"),
+    GAME_SETTINGS_VIEW("GameSettingsView.fxml"),
     INIT_SESSION_VIEW("InitSessionView.fxml"),
     LOAD_GAME_VIEW("LoadGameView.fxml"),
     LOADING_VIEW("LoadingView.fxml"),

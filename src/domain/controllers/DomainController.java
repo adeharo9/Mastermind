@@ -572,7 +572,7 @@ public class DomainController
                     break;
 
                 case GAME_SETTINGS_MENU:
-                    updateView(View.GAME_SELECTION_VIEW);
+                    updateView(View.GAME_SETTINGS_VIEW);
 
                     try
                     {
