@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class MainGameViewController extends PresentationController
+public class MainMenuViewController extends PresentationController
 {
     /* CONSTRUCTORS */
-    public MainGameViewController()
+    public MainMenuViewController()
     {
 
     }
