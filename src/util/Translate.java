@@ -233,7 +233,7 @@ public abstract class Translate
         switch (stat)
         {
             case 0:
-                state = State.MAIN_GAME_MENU;
+                state = State.MAIN_MENU;
                 break;
             case 1:
                 state = State.NEW_GAME;
@@ -308,7 +308,7 @@ public abstract class Translate
         switch (stat)
         {
             case 0:
-                state = State.MAIN_GAME_MENU;
+                state = State.MAIN_MENU;
                 break;
             default:
                 state = State.LOAD_GAME;
@@ -325,7 +325,7 @@ public abstract class Translate
         switch (stat)
         {
             case 0:
-                state = State.MAIN_GAME_MENU;
+                state = State.MAIN_MENU;
                 break;
             case 1:
                 state = State.RESTART_GAME;
@@ -352,7 +352,7 @@ public abstract class Translate
 
     public static State int2StateLogOutWarning(int state) throws IllegalArgumentException
     {
-        return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_GAME_MENU);
+        return int2StateYesNo(state, State.INIT_SESSION_MENU, State.MAIN_MENU);
     }
 
     public static State booleanModeToStateCheckGameHasFinished(boolean hasFinished) throws IllegalArgumentException
@@ -394,7 +394,7 @@ public abstract class Translate
         switch (returnState)
         {
             case 0:
-                state = State.MAIN_GAME_MENU;
+                state = State.MAIN_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();

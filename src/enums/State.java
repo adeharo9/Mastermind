@@ -31,7 +31,7 @@ public enum State
     LOG_IN_USER,
     LOG_OUT_WARNING,
 
-    MAIN_GAME_MENU,
+    MAIN_MENU,
 
     NEW_GAME,
 

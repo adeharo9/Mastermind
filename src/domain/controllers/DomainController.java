@@ -491,7 +491,7 @@ public class DomainController
                     {
                         //PresentationController.showInfo();
                         oldPresentationController.showInfo();
-                        state = State.MAIN_GAME_MENU;
+                        state = State.MAIN_MENU;
                     }
                     finally
                     {
@@ -529,7 +529,7 @@ public class DomainController
                     break;
 
                 case EXIT_CURRENT_GAME:
-                    state = State.MAIN_GAME_MENU;
+                    state = State.MAIN_MENU;
                     break;
 
                 case EXIT_CURRENT_GAME_WARNING:
@@ -722,12 +722,12 @@ public class DomainController
                     catch (FileNotFoundException e)
                     {
                         oldPresentationController.savedGamesListNotExistError();
-                        state = State.MAIN_GAME_MENU;
+                        state = State.MAIN_MENU;
                     }
                     catch (IOException e)
                     {
                         oldPresentationController.savedGamesListLoadError();
-                        state = State.MAIN_GAME_MENU;
+                        state = State.MAIN_MENU;
                     }
                     break;
 
@@ -752,7 +752,7 @@ public class DomainController
                     try
                     {
                         logInUser(username, password);
-                        state = State.MAIN_GAME_MENU;
+                        state = State.MAIN_MENU;
                     }
                     catch(FileNotFoundException | WrongPasswordException e)
                     {
@@ -785,7 +785,7 @@ public class DomainController
                     }
                     break;
 
-                case MAIN_GAME_MENU:
+                case MAIN_MENU:
                     updateView(View.MAIN_MENU_VIEW);
 
                     try
@@ -890,7 +890,7 @@ public class DomainController
                     try
                     {
                         registerUser(username, password);
-                        state = State.MAIN_GAME_MENU;
+                        state = State.MAIN_MENU;
                     }
                     catch(FileAlreadyExistsException e)
                     {
