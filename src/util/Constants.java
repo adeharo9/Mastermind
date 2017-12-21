@@ -48,7 +48,7 @@ public final class Constants
     public static final int THREAD_SLEEP_MS = 2000;
 
     /* ERROR MESSAGES */
-    public static final String WRONG_USERNAME_OR_PASSWORD = "Wrong username or password";
+    public static final String WRONG_USERNAME_OR_PASSWORD = "Wrong username and/or password";
     public static final String PASSWORDS_MUST_MATCH = "Passwords must match";
     public static final String USERNAME_ALREADY_EXISTS = "Username already exists";
     public static final String USER_REGISTERING_ERROR = "Error while registering user";

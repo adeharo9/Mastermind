@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -21,13 +22,15 @@
           <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
         </items>
       </ToolBar>
-      <Separator orientation="VERTICAL" prefHeight="50.0" visible="false" />
       <Label styleClass="title" text="MASTERMIND">
          <font>
             <Font size="40.0" />
          </font>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
       </Label>
-      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="568.0" prefWidth="400.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
             <TextField fx:id="usernameTextField" promptText="Username" style="-fx-max-width: 200; -fx-translate-y: 0;" />
             <PasswordField fx:id="passwordPasswordField" promptText="Password" style="-fx-max-width: 200;" />

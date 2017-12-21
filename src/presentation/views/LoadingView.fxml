@@ -12,18 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="15.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadingViewController">
    <children>
-      <VBox alignment="CENTER" prefHeight="570.0" prefWidth="400.0">
-         <children>
-            <ProgressIndicator />
-            <Separator orientation="VERTICAL" prefHeight="10.0" visible="false" />
-            <Label styleClass="text" text="Loading ...">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
+      <Label styleClass="text" text="Loading ...">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ProgressIndicator />
    </children>
 </VBox>

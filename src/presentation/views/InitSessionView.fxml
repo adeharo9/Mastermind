@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -19,13 +20,15 @@
           <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" textAlignment="CENTER" />
         </items>
       </ToolBar>
-      <Separator orientation="VERTICAL" prefHeight="50.0" visible="false" />
       <Label styleClass="title" text="MASTERMIND">
          <font>
             <Font size="40.0" />
          </font>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
       </Label>
-      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="568.0" prefWidth="400.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
             <Button fx:id="logInButton" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
             <Button fx:id="registerButton" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" textAlignment="CENTER" />
