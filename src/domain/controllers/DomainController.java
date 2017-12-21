@@ -774,7 +774,7 @@ public class DomainController
                     }
                     catch(IOException | ClassNotFoundException e)
                     {
-                        oldPresentationController.playerLoadError();
+                        errorMessage(Constants.USER_LOADING_ERROR);
                         state = State.LOG_IN_MENU;
                     }
                     break;
@@ -919,7 +919,7 @@ public class DomainController
                     }
                     catch(IOException e)
                     {
-                        oldPresentationController.registerError();
+                        errorMessage(Constants.USER_REGISTERING_ERROR);
                         state = State.REGISTER_MENU;
                     }
                     break;
