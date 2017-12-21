@@ -524,6 +524,10 @@ public class DomainController
                     state = State.PLAY_TURN;
                     break;
 
+                case EDIT_USER_MENU:
+
+                    break;
+
                 case EXIT_CURRENT_GAME:
                     state = State.MAIN_GAME_MENU;
                     break;
@@ -782,7 +786,7 @@ public class DomainController
                     break;
 
                 case MAIN_GAME_MENU:
-                    updateView(View.MAIN_GAME_VIEW);
+                    updateView(View.MAIN_MENU_VIEW);
 
                     try
                     {

@@ -13,7 +13,7 @@ public enum View
     LOADING_VIEW("LoadingView.fxml"),
     LOG_IN_VIEW("LogInView.fxml"),
     LOG_OUT_WARNING_VIEW("LogOutWarningView.fxml"),
-    MAIN_GAME_VIEW("MainGameView.fxml"),
+    MAIN_MENU_VIEW("MainMenuView.fxml"),
     RANKING_VIEW("RankingView.fxml"),
     REGISTER_VIEW("RegisterView.fxml"),
     SAVE_GAME_VIEW("SaveGameView.fxml"),
