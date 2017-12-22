@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RankingViewController">
    <children>
       <Label prefHeight="17.0" prefWidth="71.0" styleClass="text" text="High scores:" translateX="50.0" translateY="100.0" />
       <Label fx:id="firstPositionLabel" layoutX="49.0" layoutY="125.0" prefHeight="17.0" prefWidth="326.0" translateX="50.0" translateY="110.0" />
