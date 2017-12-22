@@ -549,7 +549,7 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateExitGameWarning(returnState);
+                        state = Translate.int2StateExitCurrentGameWarning(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
@@ -567,7 +567,7 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateGameModeSelectionMenu(returnState);
+                        state = Translate.int2StateGameSettingsMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
                     {
@@ -987,7 +987,7 @@ public class DomainController
                     {
                         returnState = PresentationController.getReturnState();
                         //returnState = oldPresentationController.printRanking(ranking.getTopTen());
-                        state = Translate.intToStateShowRanking(returnState);
+                        state = Translate.intToStateRankingMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
                     {

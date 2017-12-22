@@ -267,7 +267,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateGameModeSelectionMenu(int stat) throws IllegalArgumentException
+    public static State int2StateGameSettingsMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -345,7 +345,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateExitGameWarning(int state) throws IllegalArgumentException
+    public static State int2StateExitCurrentGameWarning(int state) throws IllegalArgumentException
     {
         return int2StateYesNo(state, State.EXIT_CURRENT_GAME, State.GAME_PAUSE_MENU);
     }
@@ -392,7 +392,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State intToStateShowRanking(int returnState) throws IllegalArgumentException
+    public static State intToStateRankingMenu(int returnState) throws IllegalArgumentException
     {
         State state;
 
