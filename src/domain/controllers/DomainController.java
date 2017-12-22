@@ -12,10 +12,7 @@ import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
-import presentation.runnables.ShowLoadedGamesRunnable;
-import presentation.runnables.ShowMessageRunnable;
-import presentation.runnables.PopUpViewRunnable;
-import presentation.runnables.UpdateViewRunnable;
+import presentation.runnables.*;
 import util.Constants;
 import util.Translate;
 import util.Utils;
@@ -444,6 +441,11 @@ public class DomainController
         runOnGUIThreadAndWait(new ShowLoadedGamesRunnable(presentationController, savedGames));
     }
 
+    private void showUsername() throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, loggedPlayerController.getId()));
+    }
+
     /* MAIN STATE MACHINE */
 
     public synchronized void exe() throws InterruptedException
@@ -514,6 +516,8 @@ public class DomainController
 
                 case EDIT_USER_MENU:
                     updateView(View.EDIT_USER_VIEW);
+                    PresentationController.clearThreadHasFinished();
+                    showUsername();
 
                     try
                     {

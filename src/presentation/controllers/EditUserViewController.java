@@ -23,7 +23,19 @@ public class EditUserViewController extends PresentationController
 
     }
 
+    @Override
+    public void showMessage(final String message)
+    {
+        usernameLabel.setText(message);
+    }
+
     /* FXML */
+
+    @FXML
+    public void initialize()
+    {
+        endAction();
+    }
 
     @FXML
     public void backButtonAction(ActionEvent actionEvent) throws IOException
