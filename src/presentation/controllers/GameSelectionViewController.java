@@ -2,8 +2,8 @@ package presentation.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 
 public class GameSelectionViewController extends PresentationController
@@ -35,7 +35,7 @@ public class GameSelectionViewController extends PresentationController
     @FXML
     public void playerVsPlayerRadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(false);
+        roleModeVBox.setDisable(true);
         PresentationController.mode = 1;
     }
 
@@ -53,6 +53,19 @@ public class GameSelectionViewController extends PresentationController
         PresentationController.mode = 3;
     }
 
+    @FXML
+    public void cpuVsCPURadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    {
+        roleModeVBox.setDisable(true);
+        PresentationController.mode = 3;
+    }
+
+    @FXML
+    public void cpuVsCPURadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    {
+        roleModeVBox.setDisable(false);
+        PresentationController.mode = 3;
+    }
 
     @FXML
     public void easyRadioButtonAction(ActionEvent actionEvent) throws IOException
