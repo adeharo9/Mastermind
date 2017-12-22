@@ -53,6 +53,7 @@ public final class Constants
     public static final String USERNAME_ALREADY_EXISTS = "Username already exists";
     public static final String USER_REGISTERING_ERROR = "Error while registering user";
     public static final String USER_LOADING_ERROR = "Error while loading user";
+    public static final String GAME_LOADING_ERROR = "Error while loading game";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {

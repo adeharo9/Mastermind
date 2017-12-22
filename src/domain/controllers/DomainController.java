@@ -685,7 +685,7 @@ public class DomainController
                     }
                     catch (IOException | ClassNotFoundException e)
                     {
-                        oldPresentationController.gameLoadError();
+                        errorMessage(Constants.GAME_LOADING_ERROR);
                         state = State.LOAD_GAME_MENU;
                     }
                     break;
@@ -695,7 +695,8 @@ public class DomainController
 
                     try
                     {
-                        returnState = oldPresentationController.loadGameMenu(savedGames);
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.loadGameMenu(savedGames);
 
                         gameId = Translate.int2SavedGameId(savedGames, returnState);
                         state = Translate.int2StateLoadGameMenu(returnState);
@@ -977,8 +978,8 @@ public class DomainController
 
                     try
                     {
-                        //returnState = PresentationController.getReturnState();
-                        returnState = oldPresentationController.printRanking(ranking.getTopTen());
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.printRanking(ranking.getTopTen());
                         state = Translate.intToStateShowRanking(returnState);
                     }
                     catch (IllegalArgumentException e)
