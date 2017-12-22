@@ -980,7 +980,7 @@ public class DomainController
                     }
                     break;
 
-                case SHOW_RANKING:
+                case RANKING_MENU:
                     updateView(View.RANKING_VIEW);
 
                     try

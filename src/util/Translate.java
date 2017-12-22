@@ -189,7 +189,7 @@ public abstract class Translate
                 state = State.LOAD_SAVED_GAMES_LIST;
                 break;
             case 3:
-                state = State.SHOW_RANKING;
+                state = State.RANKING_MENU;
                 break;
             case 4:
                 state = State.INFO_MENU;
