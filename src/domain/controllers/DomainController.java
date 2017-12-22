@@ -680,7 +680,7 @@ public class DomainController
                     }
                     catch(FileNotFoundException e)
                     {
-                        oldPresentationController.gameNotExistError(gameId);
+                        errorMessage(Constants.GAME_DOESNT_EXISTS);
                         state = State.LOAD_GAME_MENU;
                     }
                     catch (IOException | ClassNotFoundException e)
