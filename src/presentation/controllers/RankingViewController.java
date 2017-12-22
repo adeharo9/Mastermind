@@ -2,16 +2,40 @@ package presentation.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import util.Pair;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RankingViewController extends PresentationController
 {
     /* ATTRIBUTES */
 
-    @FXML private Label rankingLabel;
+    @FXML private VBox rankingVBox;
+
+    private HBox getNewRankingEntry(final String username, final Integer points)
+    {
+        HBox hBox = new HBox();
+
+        Label usernameLabel = new Label(username);
+        Label pointsLabel = new Label(points.toString());
+
+        usernameLabel.getStyleClass().add("text");
+        pointsLabel.getStyleClass().add("text");
+
+        hBox.getChildren().add(usernameLabel);
+        hBox.getChildren().add(pointsLabel);
+        hBox.setAlignment(Pos.CENTER);
+
+        hBox.setSpacing(50);
+
+        return hBox;
+    }
 
     /* CONSTRUCTORS */
 
@@ -20,12 +44,22 @@ public class RankingViewController extends PresentationController
 
     }
 
-    public void setRanking()
+    public void showRanking(List<Pair<String, Integer>> topTen)
     {
-
+        for(Pair<String, Integer> entry : topTen)
+        {
+            HBox hBox = getNewRankingEntry(entry.first, entry.second);
+            rankingVBox.getChildren().add(hBox);
+        }
     }
 
     /* FXML */
+
+    @FXML
+    public void initialize()
+    {
+        endAction();
+    }
 
     @FXML
     public void backButtonAction(ActionEvent actionEvent) throws IOException

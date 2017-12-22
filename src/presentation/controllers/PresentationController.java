@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentation.handlers.CloseWindowHandler;
 import util.Constants;
+import util.Pair;
 
 import java.io.IOException;
 import java.util.List;
@@ -207,6 +208,11 @@ public class PresentationController
     }
 
     public void showLoadedGames(final List<String> savedGames)
+    {
+
+    }
+
+    public void showRanking(final List<Pair<String, Integer>> topTen)
     {
 
     }

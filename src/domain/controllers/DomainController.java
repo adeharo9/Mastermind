@@ -14,6 +14,7 @@ import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.*;
 import util.Constants;
+import util.Pair;
 import util.Translate;
 import util.Utils;
 
@@ -444,6 +445,11 @@ public class DomainController
     private void showUsername() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, loggedPlayerController.getId()));
+    }
+
+    private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ShowRankingRunnable(presentationController, topTen));
     }
 
     /* MAIN STATE MACHINE */
@@ -902,6 +908,31 @@ public class DomainController
 
                     break;
 
+                case RANKING_MENU:
+                    updateView(View.RANKING_VIEW);
+                    PresentationController.clearThreadHasFinished();
+                    showRanking(ranking.getTopTen());
+
+                    try
+                    {
+                        returnState = PresentationController.getReturnState();
+                        //returnState = oldPresentationController.printRanking(ranking.getTopTen());
+                        state = Translate.intToStateRankingMenu(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
+                    }
+
+                    break;
+
+                default:
+                    break;
+
                 case REGISTER_MENU:
                     updateView(View.REGISTER_VIEW);
 
@@ -990,29 +1021,6 @@ public class DomainController
                         oldPresentationController.gameSaveError();
                         state = State.GAME_PAUSE_MENU;
                     }
-                    break;
-
-                case RANKING_MENU:
-                    updateView(View.RANKING_VIEW);
-
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.printRanking(ranking.getTopTen());
-                        state = Translate.intToStateRankingMenu(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
-
-                    break;
-
-                default:
                     break;
             }
         }
