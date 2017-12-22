@@ -49,13 +49,18 @@ public class LoadGameViewController extends PresentationController
 
     public void showLoadedGames(final List<String> savedGames)
     {
+        savedGamesVBox.setVisible(false);
+
         for(final String savedGame : savedGames)
         {
             GridPane gridPane = getNewGridPane(savedGame);
             savedGamesVBox.getChildren().add(gridPane);
         }
+
         contentScrollPane.setFitToHeight(true);
         contentScrollPane.setFitToWidth(true);
+
+        savedGamesVBox.setVisible(true);
     }
 
     /* FXML */
