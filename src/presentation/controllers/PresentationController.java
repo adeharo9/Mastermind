@@ -12,6 +12,7 @@ import presentation.handlers.CloseWindowHandler;
 import util.Constants;
 
 import java.io.IOException;
+import java.util.List;
 
 public class PresentationController
 {
@@ -201,6 +202,11 @@ public class PresentationController
     }
 
     public void showMessage(final String message)
+    {
+
+    }
+
+    public void showLoadedGames(final List<String> savedGames)
     {
 
     }

@@ -18,28 +18,12 @@
          <content>
             <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="30.0" styleClass="background">
                <children>
-                  <Label styleClass="text" text="Saved Games">
+                  <Label styleClass="text" text="SAVED GAMES">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <GridPane fx:id="savedGameGridPane">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label fx:id="savedGameIdLabel" styleClass="text" text="Hola" />
-                        <TextField visible="false" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Edit" GridPane.columnIndex="1" />
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </GridPane>
+                  <VBox fx:id="savedGamesVBox" alignment="CENTER" spacing="10.0" />
                   <VBox alignment="CENTER">
                      <children>
                         <Label fx:id="errorLabel" styleClass="error-label" visible="false" />

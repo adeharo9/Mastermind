@@ -12,6 +12,7 @@ import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
+import presentation.runnables.ShowLoadedGamesRunnable;
 import presentation.runnables.ShowMessageRunnable;
 import presentation.runnables.PopUpViewRunnable;
 import presentation.runnables.UpdateViewRunnable;
@@ -438,6 +439,11 @@ public class DomainController
         runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, Constants.INFO_MESSAGE));
     }
 
+    private void showLoadedGames(final List<String> savedGames) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ShowLoadedGamesRunnable(presentationController, savedGames));
+    }
+
     /* MAIN STATE MACHINE */
 
     public synchronized void exe() throws InterruptedException
@@ -699,6 +705,8 @@ public class DomainController
 
                 case LOAD_GAME_MENU:
                     updateView(View.LOAD_GAME_VIEW);
+                    PresentationController.clearThreadHasFinished();
+                    showLoadedGames(savedGames);
 
                     try
                     {

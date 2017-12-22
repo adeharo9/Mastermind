@@ -2,16 +2,39 @@ package presentation.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoadGameViewController extends PresentationController
 {
     @FXML private Label errorLabel;
     @FXML private ScrollPane contentScrollPane;
+    @FXML private VBox savedGamesVBox;
+
+    private GridPane getNewGridPane(final String gameId)
+    {
+        Label gameIdLabel = new Label(gameId);
+        gameIdLabel.getStyleClass().add("text");
+        GridPane.setHgrow(gameIdLabel, Priority.SOMETIMES);
+
+        Button editButton = new Button("Edit");
+
+        GridPane gridPane = new GridPane();
+        GridPane.setHalignment(editButton, HPos.RIGHT);
+
+        gridPane.add(gameIdLabel, 0, 0);
+        gridPane.add(editButton, 1, 0);
+
+        return gridPane;
+    }
 
     public LoadGameViewController()
     {
@@ -24,13 +47,24 @@ public class LoadGameViewController extends PresentationController
         errorLabel.setText(message);
     }
 
+    public void showLoadedGames(final List<String> savedGames)
+    {
+        for(final String savedGame : savedGames)
+        {
+            GridPane gridPane = getNewGridPane(savedGame);
+            savedGamesVBox.getChildren().add(gridPane);
+        }
+        contentScrollPane.setFitToHeight(true);
+        contentScrollPane.setFitToWidth(true);
+    }
+
     /* FXML */
 
     @FXML
     public void initialize()
     {
-        contentScrollPane.setFitToHeight(true);
-        contentScrollPane.setFitToWidth(true);
+
+        endAction();
     }
 
     @FXML
