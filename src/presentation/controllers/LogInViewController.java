@@ -44,7 +44,7 @@ public class LogInViewController extends PresentationController
 
     }
 
-    public void errorMessage(final String message)
+    public void showMessage(final String message)
     {
         switch (message)
         {

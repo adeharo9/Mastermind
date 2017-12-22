@@ -12,7 +12,7 @@ import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
-import presentation.runnables.ErrorMessageRunnable;
+import presentation.runnables.ShowMessageRunnable;
 import presentation.runnables.PopUpViewRunnable;
 import presentation.runnables.UpdateViewRunnable;
 import util.Constants;
@@ -430,7 +430,12 @@ public class DomainController
 
     private void errorMessage(final String message)
     {
-        Platform.runLater(new ErrorMessageRunnable(presentationController, message));
+        Platform.runLater(new ShowMessageRunnable(presentationController, message));
+    }
+
+    private void showHint() throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, Constants.INFO_MESSAGE));
     }
 
     /* MAIN STATE MACHINE */
@@ -474,21 +479,6 @@ public class DomainController
 
                     state = Translate.booleanModeToStateCheckGameHasFinished(hasFinished);
 
-                    break;
-
-                case CHECK_INFO:
-                    updateView(View.SHOW_INFO_VIEW);
-
-                    try
-                    {
-                        //PresentationController.showInfo();
-                        oldPresentationController.showInfo();
-                        state = State.MAIN_MENU;
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case CLOSE_PROGRAM:
@@ -622,7 +612,7 @@ public class DomainController
                     break;
 
                 case HINT_MENU:
-                    updateView(View.SHOW_HINT_VIEW);
+                    updateView(View.HINT_VIEW);
 
                     try
                     {
@@ -637,6 +627,23 @@ public class DomainController
                     finally
                     {
                         state = State.GAME_PAUSE_MENU;
+                        PresentationController.clearThreadHasFinished();
+                    }
+                    break;
+
+                case INFO_MENU:
+                    updateView(View.INFO_VIEW);
+                    PresentationController.clearThreadHasFinished();
+                    showHint();
+
+                    try
+                    {
+                        returnState = PresentationController.getReturnState();
+
+                        state = Translate.int2StateInfoMenu(returnState);
+                    }
+                    finally
+                    {
                         PresentationController.clearThreadHasFinished();
                     }
                     break;

@@ -27,7 +27,7 @@ public class RegisterViewController extends PresentationController
 
     /* GUI INTERACTION */
 
-    public void errorMessage(final String message)
+    public void showMessage(final String message)
     {
         switch (message)
         {

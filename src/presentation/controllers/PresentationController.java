@@ -200,7 +200,7 @@ public class PresentationController
         popUpStage.show();
     }
 
-    public void errorMessage(final String message)
+    public void showMessage(final String message)
     {
 
     }

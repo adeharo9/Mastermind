@@ -18,7 +18,7 @@ public class LoadGameViewController extends PresentationController
 
     }
 
-    public void errorMessage(String message)
+    public void showMessage(String message)
     {
         errorLabel.setVisible(true);
         errorLabel.setText(message);

@@ -47,6 +47,28 @@ public final class Constants
     /* GUI CONSTANTS */
     public static final int THREAD_SLEEP_MS = 2000;
 
+    /* GENERAL MESSAGES */
+
+    public static final String INFO_MESSAGE =
+            "Player modes:\n" +
+            "    Human vs. Human: play against other human\n" +
+            "    Human vs. CPU: play against our algorithm\n" +
+            "    CPU vs. CPU: see how our algorithm plays against himself\n" +
+            "\n" +
+            "Game modes:\n" +
+            "    CODEMAKER: Make a code and CPU will try to solve it\n" +
+            "    CODEBREAKER: CPU makes a code with specific rules and you should solve it\n" +
+            "\n" +
+            "Difficulty modes:\n" +
+            "    EASY MODE: Code of 4 non-repeated colors, 6 possible colors\n" +
+            "    MEDIUM MODE: Code of 4 colors, 6 possible colors\n" +
+            "    HARD MODE: Code of 5 colors, 6 possible colors\n" +
+            "\n" +
+            "Correction rules:\n" +
+            "    Black tokens: The color and the position of a token coincide\n" +
+            "    White tokens: The color of a token coincide\n" +
+            "    None tokens: The color of a token don't coincide";
+
     /* ERROR MESSAGES */
     public static final String WRONG_USERNAME_OR_PASSWORD = "Wrong username and/or password";
     public static final String PASSWORDS_MUST_MATCH = "Passwords must match";

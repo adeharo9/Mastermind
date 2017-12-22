@@ -2,15 +2,13 @@ package presentation.runnables;
 
 import presentation.controllers.PresentationController;
 
-import java.io.IOException;
-
-public class ErrorMessageRunnable implements Runnable
+public class ShowMessageRunnable implements Runnable
 {
 
     private final PresentationController presentationController;
     private final String message;
 
-    public ErrorMessageRunnable(PresentationController presentationController, final String message)
+    public ShowMessageRunnable(PresentationController presentationController, final String message)
     {
         this.presentationController = presentationController;
         this.message = message;
@@ -19,6 +17,6 @@ public class ErrorMessageRunnable implements Runnable
     @Override
     public void run()
     {
-        presentationController.errorMessage(message);
+        presentationController.showMessage(message);
     }
 }

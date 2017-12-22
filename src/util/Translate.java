@@ -192,10 +192,26 @@ public abstract class Translate
                 state = State.SHOW_RANKING;
                 break;
             case 4:
-                state = State.CHECK_INFO;
+                state = State.INFO_MENU;
                 break;
             case 5:
                 state = State.EDIT_USER_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State int2StateInfoMenu(final int stat) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (stat)
+        {
+            case 0:
+                state = State.MAIN_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -268,36 +284,6 @@ public abstract class Translate
         }
 
         return state;
-    }
-
-    /*public static State int2StateGameRoleSelectionMenu(int stat) throws IllegalArgumentException
-    {
-        State state;
-
-        switch (stat)
-        {
-            case 0:
-                state = State.GAME_SETTINGS_MENU;
-                break;
-            case 1:
-            case 2:
-                state = State.GAME_DIFFICULTY_SELECTION_MENU;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return state;
-    }*/
-
-    /*public static State int2StateGameDifficultySelectionMenuHuman(int state) throws IllegalArgumentException
-    {
-        return int2StateGameDifficultySelectionMenu(state, State.GAME_ROLE_SELECTION_MENU);
-    }*/
-
-    public static State int2StateGameDifficultySelectionMenuCPU(int state) throws IllegalArgumentException
-    {
-        return int2StateGameDifficultySelectionMenu(state, State.GAME_SETTINGS_MENU);
     }
 
     public static String int2SavedGameId(List<String> savedGames, int index) throws IllegalArgumentException
