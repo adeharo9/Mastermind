@@ -98,4 +98,15 @@ public class PlayerPersistence extends AbstractPersistence
         br.close();
         return savedGames;
     }
+
+    public void deletePlayerGame(String gameId, String playerId) throws IOException
+    {
+        ArrayList<String> savedGames = loadSavedGames(playerId);
+        savedGames.remove(gameId);
+
+        int size = savedGames.size();
+
+        for(int i = 0; i < size; ++i) { savePlayerGame(savedGames.get(i), playerId); }
+
+    }
 }
