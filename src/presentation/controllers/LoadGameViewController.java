@@ -17,7 +17,6 @@ import java.util.List;
 public class LoadGameViewController extends PresentationController
 {
     @FXML private Label errorLabel;
-    @FXML private ScrollPane contentScrollPane;
     @FXML private VBox savedGamesVBox;
 
     private GridPane getNewGridPane(final String gameId)
@@ -57,9 +56,6 @@ public class LoadGameViewController extends PresentationController
             GridPane gridPane = getNewGridPane(savedGame);
             savedGamesVBox.getChildren().add(gridPane);
         }
-
-        contentScrollPane.setFitToHeight(true);
-        contentScrollPane.setFitToWidth(true);
 
         savedGamesVBox.setVisible(true);
     }
