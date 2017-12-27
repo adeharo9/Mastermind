@@ -22,6 +22,8 @@
     button-focused-color: #353739;
     button-hover-color: monokai-blue;
 
+    error-color: red;
+
     toolbar-color: #3c3f41;
 }
 
@@ -74,7 +76,12 @@
 
 .error-label
 {
-    -fx-text-fill: red;
+    -fx-text-fill: error-color;
+}
+
+.scroll-bar
+{
+    -fx-background-color: monokai-black;
 }
 
 .text

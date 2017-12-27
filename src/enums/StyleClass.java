@@ -6,6 +6,7 @@ public enum StyleClass
     BUTTON ("button"),
     ERROR_LABEL ("error-label"),
     RADIO_BUTTON ("radio-button"),
+    SCROLL_BAR ("scroll-bar"),
     TEXT ("text"),
     TEXT_FIELD ("text-field"),
     TITLE ("title"),
