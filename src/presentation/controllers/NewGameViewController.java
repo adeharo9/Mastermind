@@ -69,7 +69,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsCPURadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    public void playerVsCPURadioButtonOnMouseEntered() throws IOException
     {
         if(disabled)
         {
@@ -78,7 +78,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsCPURadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    public void playerVsCPURadioButtonOnMouseExited() throws IOException
     {
         if(disabled)
         {
@@ -87,7 +87,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    public void playerVsPlayerRadioButtonOnMouseEntered() throws IOException
     {
         if(!disabled)
         {
@@ -96,7 +96,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    public void playerVsPlayerRadioButtonOnMouseExited() throws IOException
     {
         if(!disabled)
         {
@@ -105,7 +105,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    public void cpuVsCPURadioButtonOnMouseEntered() throws IOException
     {
         if(!disabled)
         {
@@ -114,7 +114,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    public void cpuVsCPURadioButtonOnMouseExited() throws IOException
     {
         if(!disabled)
         {
