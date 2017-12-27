@@ -43,6 +43,7 @@ public enum State
 
     REGISTER_MENU,
     REGISTER_USER,
+    RENDER_BOARD,
     RESTART_GAME,
 
     SAVE_GAME,

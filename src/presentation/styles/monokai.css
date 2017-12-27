@@ -62,6 +62,12 @@
     -fx-border-color: button-focused-color;
 }
 
+.circle
+{
+    -fx-stroke: monokai-black;
+    -fx-stroke-width: 1;
+}
+
 /* RADIO BUTTONS*/
 
 .radio-button

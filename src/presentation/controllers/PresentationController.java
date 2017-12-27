@@ -227,33 +227,43 @@ public class PresentationController
 
     public void setSolution(List<Color> solution)
     {
-        this.solution = solution;
+        PresentationController.solution = solution;
     }
 
     public void setCodes(List<List<Color>> codes)
     {
-        this.codes = codes;
+        PresentationController.codes = codes;
     }
 
     public void setCorrections(List<List<Color>> corrections)
     {
-        this.corrections = corrections;
+        PresentationController.corrections = corrections;
     }
 
     public void addCode(List<Color> code)
     {
-        this.codes.add(code);
+        PresentationController.codes.add(code);
     }
 
     public void addCorrection(List<Color> correction)
     {
-        this.corrections.add(correction);
+        PresentationController.corrections.add(correction);
     }
 
     public void clear()
     {
-        solution.clear();
-        codes.clear();
-        corrections.clear();
+        PresentationController.solution.clear();
+        PresentationController.codes.clear();
+        PresentationController.corrections.clear();
+    }
+
+    public void printBoard(final Difficulty difficulty)
+    {
+
+    }
+
+    public void printLastTurn()
+    {
+
     }
 }

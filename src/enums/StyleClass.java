@@ -4,6 +4,7 @@ public enum StyleClass
 {
     BACKGROUND ("background"),
     BUTTON ("button"),
+    CIRCLE ("circle"),
     ERROR_LABEL ("error-label"),
     RADIO_BUTTON ("radio-button"),
     SCROLL_BAR ("scroll-bar"),

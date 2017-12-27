@@ -107,6 +107,7 @@ public class DomainController
     private void newGame(final Mode mode, Role role, final Difficulty difficulty)
     {
         loggedPlayerController.restart();
+        presentationController.clear();
         oldPresentationController.clear();
 
         List<Player> players = new ArrayList<>();
@@ -219,6 +220,7 @@ public class DomainController
             }
         }
 
+        presentationController.clear();
         oldPresentationController.clear();
         List<Turn> turnSet = boardController.getTurnSet();
         List<List<Color>> codes = new ArrayList<>(turnSet.size());
@@ -236,6 +238,10 @@ public class DomainController
                 corrections.add(correction);
             }
         }
+
+        presentationController.setSolution(boardController.getSolution().getCodePins());
+        presentationController.setCodes(codes);
+        presentationController.setCorrections(corrections);
 
         oldPresentationController.setSolution(boardController.getSolution().getCodePins());
         oldPresentationController.setCodes(codes);
@@ -361,6 +367,7 @@ public class DomainController
         if(lastTurn == null)
         {
             Code solution = boardController.getSolution();
+            presentationController.setSolution(solution.getCodePins());
             oldPresentationController.setSolution(solution.getCodePins());
         }
         else
@@ -370,10 +377,12 @@ public class DomainController
 
             if(correction.getCodePins().isEmpty())
             {
+                presentationController.addCode(code.getCodePins());
                 oldPresentationController.addCode(code.getCodePins());
             }
             else
             {
+                presentationController.addCorrection(correction.getCodePins());
                 oldPresentationController.addCorrection(correction.getCodePins());
             }
         }
@@ -450,6 +459,16 @@ public class DomainController
     private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ShowRankingRunnable(presentationController, topTen));
+    }
+
+    private void renderBoard(final Difficulty difficulty)
+    {
+        Platform.runLater(new PrintBoardRunnable(presentationController, difficulty));
+    }
+
+    private void renderLastTurn()
+    {
+        Platform.runLater(new PrintLastTurnRunnable(presentationController));
     }
 
     /* MAIN STATE MACHINE */
@@ -681,7 +700,7 @@ public class DomainController
                     try
                     {
                         loadGame(gameId);
-                        state = State.CHECK_GAME_HAS_FINISHED;
+                        state = State.RENDER_BOARD;
                     }
                     catch(FileNotFoundException e)
                     {
@@ -826,18 +845,8 @@ public class DomainController
                     break;
 
                 case NEW_GAME:
-
-                    returnState = PresentationController.getMode();
-                    mode = Translate.int2Mode(returnState);
-
-                    returnState = PresentationController.getRole();
-                    role = Translate.int2Role(returnState);
-
-                    returnState = PresentationController.getDifficulty();
-                    difficulty = Translate.int2Difficulty(returnState);
-
                     newGame(mode, role, difficulty);
-                    state = State.CHECK_GAME_HAS_FINISHED;
+                    state = State.RENDER_BOARD;
                     break;
 
                 case NEW_GAME_MENU:
@@ -845,6 +854,15 @@ public class DomainController
 
                     try
                     {
+                        returnState = PresentationController.getMode();
+                        mode = Translate.int2Mode(returnState);
+
+                        returnState = PresentationController.getRole();
+                        role = Translate.int2Role(returnState);
+
+                        returnState = PresentationController.getDifficulty();
+                        difficulty = Translate.int2Difficulty(returnState);
+
                         returnState = PresentationController.getReturnState();
                         state = Translate.int2StateGameSettingsMenu(returnState);
                     }
@@ -861,6 +879,8 @@ public class DomainController
                 case PLAY_CODE_BREAKER:
                     try
                     {
+                        renderLastTurn();
+
                         if(hasToPrintBoard(Role.CODE_BREAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_BREAKER);
@@ -887,6 +907,8 @@ public class DomainController
                 case PLAY_CODE_MAKER:
                     try
                     {
+                        renderLastTurn();
+
                         if(hasToPrintBoard(Role.CODE_MAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_MAKER);
@@ -983,6 +1005,15 @@ public class DomainController
                         errorMessage(Constants.USER_REGISTERING_ERROR);
                         state = State.REGISTER_MENU;
                     }
+                    break;
+
+                case RENDER_BOARD:
+                    updateView(View.GAME_IN_PROGRESS_VIEW);
+                    PresentationController.clearThreadHasFinished();
+
+                    renderBoard(boardController.getDifficulty());
+
+                    state = State.CHECK_GAME_HAS_FINISHED;
                     break;
 
                 case RESTART_GAME:
