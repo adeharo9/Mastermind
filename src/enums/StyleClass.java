@@ -11,16 +11,16 @@ public enum StyleClass
     TITLE ("title"),
     TOOLBAR ("toolbar");
 
-    private final String id;
+    private final String stringId;
 
-    private StyleClass(final String id)
+    private StyleClass(final String stringId)
     {
-        this.id = id;
+        this.stringId = stringId;
     }
 
     @Override
     public String toString()
     {
-        return id;
+        return stringId;
     }
 }
