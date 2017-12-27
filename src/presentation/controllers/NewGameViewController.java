@@ -1,8 +1,6 @@
 package presentation.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;

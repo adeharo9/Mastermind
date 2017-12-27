@@ -2,12 +2,10 @@ package presentation.controllers;
 
 import enums.Color;
 import enums.Difficulty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

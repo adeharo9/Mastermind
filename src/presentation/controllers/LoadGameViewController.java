@@ -1,7 +1,6 @@
 package presentation.controllers;
 
 import enums.StyleClass;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.Node;

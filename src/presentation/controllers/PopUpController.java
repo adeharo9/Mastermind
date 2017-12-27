@@ -1,7 +1,5 @@
 package presentation.controllers;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
 
 public abstract class PopUpController extends PresentationController
