@@ -15,7 +15,7 @@
       <HBox alignment="CENTER" layoutX="85.0" layoutY="61.0" prefHeight="25.0" prefWidth="55.0">
          <children>
             <Separator prefWidth="30.0" visible="false" />
-            <Button minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="OK!" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#okButtonAction" prefHeight="25.0" prefWidth="83.0" text="OK!" />
          </children>
       </HBox>
    </children>
