@@ -14,6 +14,8 @@
     monokai-grey: #6d6d6d;
     monokai-white: #bbbbbb;
 
+    monokai-none: transparent;
+
     background-color: linear-gradient(monokai-black 0%, monokai-black 25%, #5a5a5a);
 
     text-color: monokai-white;
