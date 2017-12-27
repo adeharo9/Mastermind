@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
+import presentation.controllers.HintViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.*;
@@ -259,14 +260,20 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void renameGame(final String gameId)
+    private void renameGame(final String gameId) throws IOException
     {
+        Game game = gameController.getGame();
+        String playerId = loggedPlayerController.getId();
+        deleteGame(gameId);
+        playerPersistence.deletePlayerGame(gameId, playerId);
 
+        game.setId(gameId);
+        saveGame();
     }
 
-    public void deleteGame(final String gameId)
+    public void deleteGame(final String gameId) throws IOException
     {
-
+        gamePersistence.delete(gameId);
     }
 
     public void renameUsername(final String username)
@@ -356,6 +363,7 @@ public class DomainController
         }
 
         oldPresentationController.showClue(type,String.valueOf(num),name);
+        /*presentationController.showClue(type,String.valueOf(num),name);*/
     }
 
     /* USER INTERACTION METHODS */
