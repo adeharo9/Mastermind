@@ -10,7 +10,6 @@ import java.io.IOException;
 public class InfoViewController extends PresentationController
 {
     @FXML private Label infoLabel;
-    @FXML private ScrollPane contentScrollPane;
 
     public InfoViewController()
     {
@@ -26,9 +25,6 @@ public class InfoViewController extends PresentationController
     public void showMessage(final String message)
     {
         infoLabel.setText(message);
-
-        contentScrollPane.setFitToWidth(true);
-        contentScrollPane.setFitToHeight(true);
     }
 
     @FXML

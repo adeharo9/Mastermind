@@ -19,18 +19,22 @@
           <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
         </items>
       </ToolBar>
-      <VBox fx:id="rankingVBox" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="400.0" spacing="30.0" VBox.vgrow="ALWAYS">
-         <children>
-            <HBox>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="rankingVBox" alignment="CENTER" spacing="30.0" styleClass="background">
                <children>
-                  <Label styleClass="text" text="High scores:" />
+                  <HBox>
+                     <children>
+                        <Label styleClass="text" text="High scores:" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="rankingVBox" alignment="CENTER" spacing="10.0" />
                </children>
-            </HBox>
-            <VBox fx:id="rankingVBox" alignment="CENTER" spacing="10.0" />
-         </children>
-         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </padding>
-      </VBox>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </VBox>

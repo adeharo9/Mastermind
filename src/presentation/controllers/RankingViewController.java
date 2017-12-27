@@ -24,10 +24,12 @@ public class RankingViewController extends PresentationController
         HBox hBox = new HBox();
 
         Label usernameLabel = new Label(username);
-        Label pointsLabel = new Label(points.toString());
-
         usernameLabel.getStyleClass().add(StyleClass.TEXT.toString());
+        usernameLabel.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+
+        Label pointsLabel = new Label(points.toString());
         pointsLabel.getStyleClass().add(StyleClass.TEXT.toString());
+        pointsLabel.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
 
         hBox.getChildren().add(usernameLabel);
         hBox.getChildren().add(pointsLabel);
