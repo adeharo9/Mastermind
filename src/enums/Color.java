@@ -83,6 +83,11 @@ public enum Color
         return strDescription;
     }
 
+    public String getCssStyleClass()
+    {
+        return cssStyleClass;
+    }
+
     public static Set<Color> getValues(final Difficulty difficulty) throws IllegalArgumentException
     {
         int n = Constants.getNumColorsByDifficulty(difficulty);
