@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
+import presentation.controllers.HintViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.*;
@@ -350,6 +351,7 @@ public class DomainController
         }
 
         oldPresentationController.showClue(type,String.valueOf(num),name);
+        /*presentationController.showClue(type,String.valueOf(num),name);*/
     }
 
     /* USER INTERACTION METHODS */
