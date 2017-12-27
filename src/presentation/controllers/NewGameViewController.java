@@ -6,14 +6,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 
-public class GameSelectionViewController extends PresentationController
+public class NewGameViewController extends PresentationController
 {
     /* ATTRIBUTES */
+
+    private boolean disabled = false;
 
     @FXML private VBox roleModeVBox;
 
     /* CONSTRUCTORS */
-    public GameSelectionViewController()
+    public NewGameViewController()
     {
 
     }
@@ -33,38 +35,81 @@ public class GameSelectionViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void playerVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(true);
-        PresentationController.mode = 1;
+        disabled = false;
+        roleModeVBox.setDisable(disabled);
+        PresentationController.mode = 2;
     }
 
     @FXML
-    public void playerVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void playerVsPlayerRadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(false);
-        PresentationController.mode = 2;
+        disabled = true;
+        roleModeVBox.setDisable(disabled);
+        PresentationController.mode = 1;
     }
 
     @FXML
     public void cpuVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(true);
+        disabled = true;
+        roleModeVBox.setDisable(disabled);
         PresentationController.mode = 3;
+    }
+
+    @FXML
+    public void playerVsCPURadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    {
+        if(disabled)
+        {
+            roleModeVBox.setDisable(false);
+        }
+    }
+
+    @FXML
+    public void playerVsCPURadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    {
+        if(disabled)
+        {
+            roleModeVBox.setDisable(true);
+        }
+    }
+
+    @FXML
+    public void playerVsPlayerRadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
+    {
+        if(!disabled)
+        {
+            roleModeVBox.setDisable(true);
+        }
+    }
+
+    @FXML
+    public void playerVsPlayerRadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
+    {
+        if(!disabled)
+        {
+            roleModeVBox.setDisable(false);
+        }
     }
 
     @FXML
     public void cpuVsCPURadioButtonOnMouseEntered(MouseEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(true);
-        PresentationController.mode = 3;
+        if(!disabled)
+        {
+            roleModeVBox.setDisable(true);
+        }
     }
 
     @FXML
     public void cpuVsCPURadioButtonOnMouseExited(MouseEvent actionEvent) throws IOException
     {
-        roleModeVBox.setDisable(false);
-        PresentationController.mode = 3;
+        if(!disabled)
+        {
+            roleModeVBox.setDisable(false);
+        }
     }
 
     @FXML
