@@ -38,19 +38,19 @@ public class EditUserViewController extends PresentationController
     }
 
     @FXML
-    public void backButtonAction(ActionEvent actionEvent) throws IOException
+    public void backButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void editButtonAction(ActionEvent actionEvent) throws IOException
+    public void editButtonAction() throws IOException
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void updatePasswordButtonAction(ActionEvent actionEvent) throws IOException
+    public void updatePasswordButtonAction() throws IOException
     {
         pressButtonAction(2);
     }

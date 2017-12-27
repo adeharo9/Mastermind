@@ -33,19 +33,19 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void backButtonAction(ActionEvent actionEvent) throws IOException
+    public void backButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void startGameButtonAction(ActionEvent actionEvent) throws IOException
+    public void startGameButtonAction() throws IOException
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void playerVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void playerVsCPURadioButtonAction() throws IOException
     {
         disabled = false;
         roleModeVBox.setDisable(disabled);
@@ -53,7 +53,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void playerVsPlayerRadioButtonAction() throws IOException
     {
         disabled = true;
         roleModeVBox.setDisable(disabled);
@@ -61,7 +61,7 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void cpuVsCPURadioButtonAction() throws IOException
     {
         disabled = true;
         roleModeVBox.setDisable(disabled);
@@ -123,32 +123,32 @@ public class NewGameViewController extends PresentationController
     }
 
     @FXML
-    public void easyRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void easyRadioButtonAction() throws IOException
     {
         PresentationController.difficulty = 1;
     }
 
     @FXML
-    public void mediumRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void mediumRadioButtonAction() throws IOException
     {
         PresentationController.difficulty = 2;
     }
 
     @FXML
-    public void hardRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void hardRadioButtonAction() throws IOException
     {
         PresentationController.difficulty = 3;
     }
 
 
     @FXML
-    public void codeMakerRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void codeMakerRadioButtonAction() throws IOException
     {
         PresentationController.role = 1;
     }
 
     @FXML
-    public void codeBreakerRadioButtonAction(ActionEvent actionEvent) throws IOException
+    public void codeBreakerRadioButtonAction() throws IOException
     {
         PresentationController.role = 2;
     }

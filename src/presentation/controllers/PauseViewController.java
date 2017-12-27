@@ -15,25 +15,25 @@ public class PauseViewController extends PresentationController
 
     /* FXML */
     @FXML
-    public void continueButtonAction(ActionEvent actionEvent) throws IOException
+    public void continueButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void saveButtonAction(ActionEvent actionEvent) throws IOException
+    public void saveButtonAction() throws IOException
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void hintButtonAction(ActionEvent actionEvent) throws IOException
+    public void hintButtonAction() throws IOException
     {
         pressButtonAction(2);
     }
 
     @FXML
-    public void mainMenuButtonAction(ActionEvent actionEvent) throws IOException
+    public void mainMenuButtonAction() throws IOException
     {
         pressButtonAction(3);
     }

@@ -20,14 +20,14 @@ public class CloseProgramWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void exitButtonAction(ActionEvent actionEvent) throws IOException
+    public void exitButtonAction() throws IOException
     {
-        super.yesButtonAction(actionEvent);
+        super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction(ActionEvent actionEvent) throws IOException
+    public void cancelButtonAction() throws IOException
     {
-        super.noButtonAction(actionEvent);
+        super.noButtonAction();
     }
 }

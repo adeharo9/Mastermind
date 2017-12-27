@@ -20,14 +20,14 @@ public class ExitCurrentGameWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void exitGameButtonAction(ActionEvent actionEvent) throws IOException
+    public void exitGameButtonAction() throws IOException
     {
-        super.yesButtonAction(actionEvent);
+        super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction(ActionEvent actionEvent) throws IOException
+    public void cancelButtonAction() throws IOException
     {
-        super.noButtonAction(actionEvent);
+        super.noButtonAction();
     }
 }

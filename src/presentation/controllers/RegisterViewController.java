@@ -47,13 +47,13 @@ public class RegisterViewController extends PresentationController
     /* FXML */
 
     @FXML
-    public void backButtonAction(ActionEvent actionEvent) throws IOException
+    public void backButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void registerButtonAction(ActionEvent actionEvent) throws IOException
+    public void registerButtonAction() throws IOException
     {
         errorLabel.setVisible(false);
 

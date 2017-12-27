@@ -64,13 +64,13 @@ public class GameInProgressViewController extends PresentationController
     }
 
     @FXML
-    public void pauseButtonAction(ActionEvent actionEvent) throws IOException
+    public void pauseButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void helpButtonAction(ActionEvent actionEvent) throws IOException
+    public void helpButtonAction() throws IOException
     {
         pressButtonAction(1);
     }

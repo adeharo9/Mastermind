@@ -20,14 +20,14 @@ public class LogOutWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void logOutButtonAction(ActionEvent actionEvent) throws IOException
+    public void logOutButtonAction() throws IOException
     {
-        super.yesButtonAction(actionEvent);
+        super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction(ActionEvent actionEvent) throws IOException
+    public void cancelButtonAction() throws IOException
     {
-        super.noButtonAction(actionEvent);
+        super.noButtonAction();
     }
 }

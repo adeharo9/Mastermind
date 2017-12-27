@@ -15,37 +15,37 @@ public class MainMenuViewController extends PresentationController
 
     /* FXML */
     @FXML
-    public void logOutButtonAction(ActionEvent actionEvent) throws IOException
+    public void logOutButtonAction() throws IOException
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void newGameButtonAction(ActionEvent actionEvent) throws IOException
+    public void newGameButtonAction() throws IOException
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void loadGameButtonAction(ActionEvent actionEvent) throws IOException
+    public void loadGameButtonAction() throws IOException
     {
         pressButtonAction(2);
     }
 
     @FXML
-    public void rankingButtonAction(ActionEvent actionEvent) throws IOException
+    public void rankingButtonAction() throws IOException
     {
         pressButtonAction(3);
     }
 
     @FXML
-    public void infoButtonAction(ActionEvent actionEvent) throws IOException
+    public void infoButtonAction() throws IOException
     {
         pressButtonAction(4);
     }
 
     @FXML
-    public void editUserButtonAction(ActionEvent actionEvent) throws IOException
+    public void editUserButtonAction() throws IOException
     {
         pressButtonAction(5);
     }
