@@ -254,14 +254,20 @@ public class DomainController
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
-    private void renameGame(final String gameId)
+    private void renameGame(final String gameId) throws IOException
     {
+        Game game = gameController.getGame();
+        String playerId = loggedPlayerController.getId();
+        deleteGame(gameId);
+        playerPersistence.deletePlayerGame(gameId, playerId);
 
+        game.setId(gameId);
+        saveGame();
     }
 
-    public void deleteGame(final String gameId)
+    public void deleteGame(final String gameId) throws IOException
     {
-
+        gamePersistence.delete(gameId);
     }
 
     public void renameUsername(final String username)

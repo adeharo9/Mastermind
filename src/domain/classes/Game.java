@@ -22,7 +22,7 @@ public class Game implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    private final String id;
+    private String id;
     private long time;
     private int points;
     private Mode mode;
@@ -140,6 +140,8 @@ public class Game implements DeepCopyable, Serializable
     }
 
     /* SET METHODS */
+
+    public void setId(String id) { this.id = id; }
 
     public void setTime()
     {

@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import domain.controllers.DomainController;
 import enums.Color;
+import enums.Difficulty;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,9 +41,10 @@ public class PresentationController
     protected static volatile String confirmPassword;
     protected static volatile String newPassword;
 
-    private List<Color> solution = new ArrayList<>();
-    private List<List<Color>> codes = new ArrayList<>();
-    private List<List<Color>> corrections = new ArrayList<>();
+    protected static Difficulty boardDifficulty;
+    protected static List<Color> solution = new ArrayList<>();
+    protected static List<List<Color>> codes = new ArrayList<>();
+    protected static List<List<Color>> corrections = new ArrayList<>();
 
     /* PRIVATE METHODS */
 
@@ -223,4 +225,35 @@ public class PresentationController
 
     }
 
+    public void setSolution(List<Color> solution)
+    {
+        this.solution = solution;
+    }
+
+    public void setCodes(List<List<Color>> codes)
+    {
+        this.codes = codes;
+    }
+
+    public void setCorrections(List<List<Color>> corrections)
+    {
+        this.corrections = corrections;
+    }
+
+    public void addCode(List<Color> code)
+    {
+        this.codes.add(code);
+    }
+
+    public void addCorrection(List<Color> correction)
+    {
+        this.corrections.add(correction);
+    }
+
+    public void clear()
+    {
+        solution.clear();
+        codes.clear();
+        corrections.clear();
+    }
 }
