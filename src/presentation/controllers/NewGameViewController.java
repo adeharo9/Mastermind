@@ -15,6 +15,7 @@ public class NewGameViewController extends PresentationController
     @FXML private VBox roleModeVBox;
 
     /* CONSTRUCTORS */
+
     public NewGameViewController()
     {
 

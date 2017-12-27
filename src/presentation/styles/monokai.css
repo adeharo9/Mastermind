@@ -68,7 +68,6 @@
 .radio-button .dot:selected
 {
     -fx-background-color: monokai-black;
-    -fx-border-color: monokai-blue;
 }
 
 /* LABELS */
