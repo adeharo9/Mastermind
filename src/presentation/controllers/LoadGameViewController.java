@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import enums.StyleClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -22,7 +23,7 @@ public class LoadGameViewController extends PresentationController
     private GridPane getNewGridPane(final String gameId)
     {
         Label gameIdLabel = new Label(gameId);
-        gameIdLabel.getStyleClass().add("text");
+        gameIdLabel.getStyleClass().add(StyleClass.TEXT.toString());
         GridPane.setHgrow(gameIdLabel, Priority.SOMETIMES);
 
         Button editButton = new Button("Edit");

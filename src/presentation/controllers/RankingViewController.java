@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import enums.StyleClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -25,8 +26,8 @@ public class RankingViewController extends PresentationController
         Label usernameLabel = new Label(username);
         Label pointsLabel = new Label(points.toString());
 
-        usernameLabel.getStyleClass().add("text");
-        pointsLabel.getStyleClass().add("text");
+        usernameLabel.getStyleClass().add(StyleClass.TEXT.toString());
+        pointsLabel.getStyleClass().add(StyleClass.TEXT.toString());
 
         hBox.getChildren().add(usernameLabel);
         hBox.getChildren().add(pointsLabel);
