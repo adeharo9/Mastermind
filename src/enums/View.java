@@ -24,7 +24,7 @@ public enum View
 
     private final String viewFile;
 
-    View(final String viewFile)
+    private View(final String viewFile)
     {
         this.viewFile = viewFile;
     }
