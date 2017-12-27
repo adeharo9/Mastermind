@@ -18,7 +18,7 @@ public class LoadGameViewController extends PresentationController
     @FXML private Label errorLabel;
     @FXML private GridPane savedGamesGridPane;
 
-    private List<Node> getNewGridPane(final String gameId)
+    private List<Node> getNewGridPaneChildren(final String gameId)
     {
         Label gameIdLabel = new Label(gameId);
         gameIdLabel.getStyleClass().add(StyleClass.TEXT.toString());
@@ -55,11 +55,11 @@ public class LoadGameViewController extends PresentationController
         for(final String savedGame : savedGames)
         {
             int column = 0;
-            List<Node> nodeList = getNewGridPane(savedGame);
+            List<Node> gridPaneChildren = getNewGridPaneChildren(savedGame);
 
-            while(!nodeList.isEmpty())
+            while(!gridPaneChildren.isEmpty())
             {
-                savedGamesGridPane.add(nodeList.get(0), column, row);
+                savedGamesGridPane.add(gridPaneChildren.get(0), column, row);
                 ++column;
             }
             ++row;
