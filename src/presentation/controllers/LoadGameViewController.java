@@ -4,6 +4,7 @@ import enums.StyleClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,9 +18,9 @@ import java.util.List;
 public class LoadGameViewController extends PresentationController
 {
     @FXML private Label errorLabel;
-    @FXML private VBox savedGamesVBox;
+    @FXML private GridPane savedGamesGridPane;
 
-    private GridPane getNewGridPane(final String gameId)
+    private List<Node> getNewGridPane(final String gameId)
     {
         Label gameIdLabel = new Label(gameId);
         gameIdLabel.getStyleClass().add(StyleClass.TEXT.toString());
@@ -33,7 +34,7 @@ public class LoadGameViewController extends PresentationController
         gridPane.add(gameIdLabel, 0, 0);
         gridPane.add(editButton, 1, 0);
 
-        return gridPane;
+        return gridPane.getChildren();
     }
 
     public LoadGameViewController()
@@ -49,15 +50,24 @@ public class LoadGameViewController extends PresentationController
 
     public void showLoadedGames(final List<String> savedGames)
     {
-        savedGamesVBox.setVisible(false);
+        int row = 0;
+
+        savedGamesGridPane.setVisible(false);
 
         for(final String savedGame : savedGames)
         {
-            GridPane gridPane = getNewGridPane(savedGame);
-            savedGamesVBox.getChildren().add(gridPane);
+            int column = 0;
+            List<Node> nodeList = getNewGridPane(savedGame);
+
+            while(!nodeList.isEmpty())
+            {
+                savedGamesGridPane.add(nodeList.get(0), column, row);
+                ++column;
+            }
+            ++row;
         }
 
-        savedGamesVBox.setVisible(true);
+        savedGamesGridPane.setVisible(true);
     }
 
     /* FXML */
