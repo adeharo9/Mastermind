@@ -577,8 +577,8 @@ public class DomainController
                     }
                     break;
 
-                case GAME_SETTINGS_MENU:
-                    updateView(View.GAME_SETTINGS_VIEW);
+                case NEW_GAME_MENU:
+                    updateView(View.NEW_GAME_VIEW);
 
                     try
                     {

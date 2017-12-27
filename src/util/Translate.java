@@ -183,7 +183,7 @@ public abstract class Translate
                 state = State.LOG_OUT_WARNING;
                 break;
             case 1:
-                state = State.GAME_SETTINGS_MENU;
+                state = State.NEW_GAME_MENU;
                 break;
             case 2:
                 state = State.LOAD_SAVED_GAMES_LIST;
@@ -336,7 +336,7 @@ public abstract class Translate
                 state = State.RESTART_GAME;
                 break;
             case 2:
-                state = State.GAME_SETTINGS_MENU;
+                state = State.NEW_GAME_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
