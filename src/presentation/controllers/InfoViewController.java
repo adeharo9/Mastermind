@@ -27,8 +27,8 @@ public class InfoViewController extends PresentationController
     {
         infoLabel.setText(message);
 
-        /*contentScrollPane.setFitToWidth(true);
-        contentScrollPane.setFitToHeight(true);*/
+        contentScrollPane.setFitToWidth(true);
+        contentScrollPane.setFitToHeight(true);
     }
 
     @FXML
