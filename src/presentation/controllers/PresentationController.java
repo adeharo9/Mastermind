@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import domain.controllers.DomainController;
+import enums.Color;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ import util.Constants;
 import util.Pair;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PresentationController
@@ -37,6 +39,10 @@ public class PresentationController
     protected static volatile String password;
     protected static volatile String confirmPassword;
     protected static volatile String newPassword;
+
+    private List<Color> solution = new ArrayList<>();
+    private List<List<Color>> codes = new ArrayList<>();
+    private List<List<Color>> corrections = new ArrayList<>();
 
     /* PRIVATE METHODS */
 
