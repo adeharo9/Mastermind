@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 public class PlayerPersistence extends AbstractPersistence
 {
+
+    protected final static String PLAYERS_PATH = "players/";
+    protected final static String CONFIG_FILE = "config.cfg";
     protected String playerPath;
 
     protected String getConfigFilePath(String playerId)

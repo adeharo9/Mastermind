@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class RankingPersistence extends AbstractPersistence
 {
+
+    protected final static String RANKING_PATH = "ranking/";
+
     public RankingPersistence()
     {
 
