@@ -25,6 +25,14 @@ public class NewGameViewController extends PresentationController
     /* FXML */
 
     @FXML
+    public void initialize()
+    {
+        PresentationController.mode = 2;
+        PresentationController.difficulty = 1;
+        PresentationController.role = 2;
+    }
+
+    @FXML
     public void backButtonAction(ActionEvent actionEvent) throws IOException
     {
         pressButtonAction(0);

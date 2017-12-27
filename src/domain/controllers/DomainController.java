@@ -577,24 +577,6 @@ public class DomainController
                     }
                     break;
 
-                case NEW_GAME_MENU:
-                    updateView(View.NEW_GAME_VIEW);
-
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateGameSettingsMenu(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
-                    break;
-
                 case GAME_OVER_MENU:
                     try
                     {
@@ -844,8 +826,36 @@ public class DomainController
                     break;
 
                 case NEW_GAME:
+
+                    returnState = PresentationController.getMode();
+                    mode = Translate.int2Mode(returnState);
+
+                    returnState = PresentationController.getRole();
+                    role = Translate.int2Role(returnState);
+
+                    returnState = PresentationController.getDifficulty();
+                    difficulty = Translate.int2Difficulty(returnState);
+
                     newGame(mode, role, difficulty);
                     state = State.CHECK_GAME_HAS_FINISHED;
+                    break;
+
+                case NEW_GAME_MENU:
+                    updateView(View.NEW_GAME_VIEW);
+
+                    try
+                    {
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.int2StateGameSettingsMenu(returnState);
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
+                    }
                     break;
 
                 case PLAY_CODE_BREAKER:
