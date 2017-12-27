@@ -14,7 +14,7 @@
           <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
         </items>
       </ToolBar>
-      <ScrollPane fx:id="contentScrollPane" prefViewportHeight="560.0" prefViewportWidth="395.0" styleClass="background" VBox.vgrow="ALWAYS">
+      <ScrollPane fx:id="contentScrollPane" prefViewportHeight="560.0" prefViewportWidth="395.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
          <content>
             <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="30.0" styleClass="background">
                <children>
