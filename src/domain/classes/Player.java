@@ -20,7 +20,7 @@ public abstract class Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    protected final String id;
+    protected String id;
     protected Role role;
 
     /* PRIVATE METHODS */
@@ -70,6 +70,11 @@ public abstract class Player implements DeepCopyable, Serializable
     }
 
     /* SET METHODS */
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
 
     public void setRole(Role role) throws IllegalArgumentException
     {
