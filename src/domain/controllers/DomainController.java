@@ -275,19 +275,28 @@ public class DomainController
         gamePersistence.delete(gameId);
     }
 
-    public void renameUsername(final String username)
+    public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
+        Player loggedPlayer = loggedPlayerController.getPlayer();
+        deleteUser(loggedPlayer.getId());
 
+        loggedPlayer.setId(username);
+        playerPersistence.save(loggedPlayer);
     }
 
-    public void changePassword(final String password)
+    public void changePassword(final String password) throws IOException
     {
+        String username = loggedPlayerController.getId();
+        deleteUser(username);
 
+        Player player = loggedPlayerController.newHuman(username, password);
+
+        playerPersistence.save(player);
     }
 
-    public void deleteUser(final String username)
+    public void deleteUser(final String username) throws IOException
     {
-
+        playerPersistence.delete(username);
     }
 
     private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
