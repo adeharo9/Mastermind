@@ -445,4 +445,23 @@ public abstract class Translate
 
         return state;
     }
+
+    public static State intToStatePlay(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.GAME_PAUSE_MENU;
+                break;
+            case 1:
+                state = State.HINT_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
 }
