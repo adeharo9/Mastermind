@@ -3,6 +3,7 @@ package presentation.controllers;
 import domain.controllers.DomainController;
 import enums.Color;
 import enums.Difficulty;
+import enums.Role;
 import enums.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

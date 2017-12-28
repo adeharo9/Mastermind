@@ -1,6 +1,7 @@
 package presentation.runnables;
 
 import enums.Difficulty;
+import enums.Role;
 import presentation.controllers.PresentationController;
 
 public class PrintBoardRunnable implements Runnable
