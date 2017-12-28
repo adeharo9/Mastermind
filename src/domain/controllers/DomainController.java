@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
-import presentation.controllers.HintViewController;
 import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.*;
@@ -484,6 +483,7 @@ public class DomainController
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
+        String returnString = null;
         String gameId = null;
         String username = null;
         String password = null;
