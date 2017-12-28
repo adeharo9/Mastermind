@@ -170,7 +170,7 @@ public class GameInProgressViewController extends PresentationController
         for(int column = 0; column < numPins; ++column)
         {
             Circle pin = getNewPin(Color.NONE);
-            pin.getStyleClass().add(StyleClass.EMPTY_CIRCLE.toString());
+            pin.getStyleClass().add(StyleClass.COLOR_NONE.toString());
 
             pin.setOnDragOver(new EventHandler<DragEvent>()
             {
@@ -190,9 +190,18 @@ public class GameInProgressViewController extends PresentationController
                 }
             });
 
+            pin.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                    pin.getStyleClass().setAll(StyleClass.COLOR_NONE.toString());
+                }
+            });
+
             userChoiceGridPane.add(pin, column, 0);
 
-            emptyCorrection.add(Color.NONE);
+            emptyCorrection.add(Color.HIDDEN);
         }
 
         GridPane correctionGridPane = getNewCorrectionGridPane(emptyCorrection);

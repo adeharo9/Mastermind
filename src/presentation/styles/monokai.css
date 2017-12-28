@@ -67,11 +67,7 @@
 .circle:disabled
 {
     -fx-fill: monokai-grey;
-}
-
-.empty-circle
-{
-    -fx-stroke: monokai-black;
+    -fx-stroke: monokai-grey;
     -fx-stroke-width: 1;
 }
 
@@ -127,54 +123,83 @@
 .color-red
 {
     -fx-fill: monokai-red;
+    -fx-stroke: monokai-red;
+    -fx-stroke-width: 1;
 }
 
 .color-green
 {
     -fx-fill: monokai-green;
+    -fx-stroke: monokai-green;
+    -fx-stroke-width: 1;
 }
 
 .color-blue
 {
     -fx-fill: monokai-blue;
+    -fx-stroke: monokai-blue;
+    -fx-stroke-width: 1;
 }
 
 .color-orange
 {
     -fx-fill: monokai-orange;
+    -fx-stroke: monokai-orange;
+    -fx-stroke-width: 1;
 }
 
 .color-purple
 {
     -fx-fill: monokai-purple;
+    -fx-stroke: monokai-purple;
+    -fx-stroke-width: 1;
 }
 
 .color-yellow
 {
     -fx-fill: monokai-yellow;
+    -fx-stroke: monokai-yellow;
+    -fx-stroke-width: 1;
 }
 
 .color-cyan
 {
     -fx-fill: monokai-cyan;
+    -fx-stroke: monokai-cyan;
+    -fx-stroke-width: 1;
 }
 
 .color-magenta
 {
     -fx-fill: monokai-magenta;
+    -fx-stroke: monokai-magenta;
+    -fx-stroke-width: 1;
 }
 
 .color-none
 {
     -fx-fill: monokai-none;
+    -fx-stroke: monokai-black;
+    -fx-stroke-width: 1;
 }
 
 .color-black
 {
     -fx-fill: monokai-black;
+    -fx-stroke: monokai-black;
+    -fx-stroke-width: 1;
 }
 
 .color-white
 {
     -fx-fill: monokai-white;
+    -fx-stroke: monokai-white;
+    -fx-stroke-width: 1;
+}
+
+.color-hidden
+{
+    -fx-fill: monokai-none;
+    -fx-stroke: monokai-none;
+    -fx-stroke-width: 1;
 }

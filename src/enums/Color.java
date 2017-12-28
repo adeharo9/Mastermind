@@ -21,7 +21,9 @@ public enum Color
 
     NONE(MAGENTA.getId() + 1, "N", "None", "color-none"),
     BLACK(NONE.getId() + 1, "K", "Black", "color-black"),
-    WHITE(BLACK.getId() + 1, "W", "White", "color-white");
+    WHITE(BLACK.getId() + 1, "W", "White", "color-white"),
+
+    HIDDEN(WHITE.getId() + 1, "H", "Hidden", "color-hidden");
 
     private final int id;
     private final String strId;
@@ -32,6 +34,7 @@ public enum Color
 
     private static HashMap<Integer, Color> int2Color = new HashMap<>();
     private static HashMap<String, Color> str2Color = new HashMap<>();
+    private static HashMap<String, Color> style2Color = new HashMap<>();
 
     static
     {
@@ -39,6 +42,7 @@ public enum Color
         {
             int2Color.put(color.id, color);
             str2Color.put(color.strId, color);
+            style2Color.put(color.cssStyleClass, color);
         }
     }
 
@@ -62,6 +66,15 @@ public enum Color
     public static Color getColor(final String strId) throws IllegalArgumentException
     {
         Color color = str2Color.get(strId);
+
+        if(color == null) throw new IllegalArgumentException();
+
+        return color;
+    }
+
+    public static Color getColorByStyle(final String style) throws IllegalArgumentException
+    {
+        Color color = style2Color.get(style);
 
         if(color == null) throw new IllegalArgumentException();
 
