@@ -3,7 +3,6 @@ package presentation.controllers;
 import enums.Color;
 import enums.Difficulty;
 import enums.StyleClass;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -14,7 +13,6 @@ import javafx.scene.shape.Circle;
 import presentation.handlers.PinCircleOnMouseEnteredHandler;
 import presentation.handlers.PinCircleOnMouseExitedHandler;
 import util.Constants;
-import util.ioUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,7 +96,6 @@ public class GameInProgressViewController extends PresentationController
 
         dragboard.setContent(content);
         event.consume();
-        ioUtils.printOutLn("Drag Detected");
     }
 
     private void dragOver(final DragEvent event, final Circle pin)
@@ -111,7 +108,6 @@ public class GameInProgressViewController extends PresentationController
         }
 
         event.consume();
-        ioUtils.printOutLn("Drag Over");
     }
 
     @SuppressWarnings("unchecked")
@@ -130,7 +126,6 @@ public class GameInProgressViewController extends PresentationController
 
         event.setDropCompleted(dragCompleted);
         event.consume();
-        ioUtils.printOutLn("Drag Dropped");
     }
 
     /* CONSTRUCTORS */
