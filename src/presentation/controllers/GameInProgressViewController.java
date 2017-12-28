@@ -2,12 +2,17 @@ package presentation.controllers;
 
 import enums.Color;
 import enums.Difficulty;
+import enums.Role;
 import enums.StyleClass;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import presentation.handlers.PinCircleOnMouseEnteredHandler;
+import presentation.handlers.PinCircleOnMouseExitedHandler;
 import util.Constants;
 
 import java.io.IOException;
@@ -19,15 +24,21 @@ public class GameInProgressViewController extends PresentationController
     /* ATTRIBUTES */
 
     @FXML private VBox boardVBox;
+
     private GridPane turnsGridPane;
     private GridPane userChoiceGridPane;
     private GridPane colorSelectionGridPane;
+
+    private static final DataFormat STYLE_CLASS = new DataFormat("StyleClass");
+
+    /* PRIVATE METHODS */
 
     private Circle getNewPin(final Color color)
     {
         Circle pin = new Circle();
 
         pin.setRadius(25);
+        pin.getStyleClass().add(StyleClass.CIRCLE.toString());
         pin.getStyleClass().add(color.getCssStyleClass());
 
         return pin;
@@ -37,7 +48,8 @@ public class GameInProgressViewController extends PresentationController
     {
         int column = 0;
         GridPane correctionGridPane = new GridPane();
-        correctionGridPane.setHgap(2);
+        correctionGridPane.setHgap(5);
+        correctionGridPane.setAlignment(Pos.CENTER);
 
         for(final Color color : correction)
         {
@@ -50,6 +62,8 @@ public class GameInProgressViewController extends PresentationController
 
         return correctionGridPane;
     }
+
+    /* RENDERING METHODS */
 
     private void printTurn(final int row)
     {
@@ -75,6 +89,124 @@ public class GameInProgressViewController extends PresentationController
         }
     }
 
+    private void printUserChoiceContainer()
+    {
+        int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
+        List<Color> emptyCorrection = new ArrayList<>();
+
+        for(int column = 0; column < numPins; ++column)
+        {
+            Circle pin = getNewPin(Color.NONE);
+            pin.getStyleClass().add(StyleClass.COLOR_BLACK.toString());
+
+            pin.setOnDragOver(new EventHandler<DragEvent>()
+            {
+                @Override
+                public void handle(DragEvent event)
+                {
+                    dragOver(event, pin);
+                }
+            });
+
+            pin.setOnDragDropped(new EventHandler<DragEvent>()
+            {
+                @Override
+                public void handle(DragEvent event)
+                {
+                    dragDropped(event, pin);
+                }
+            });
+
+            pin.setOnMouseClicked(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                    pin.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString());
+                }
+            });
+
+            userChoiceGridPane.add(pin, column, 0);
+
+            emptyCorrection.add(Color.HIDDEN);
+        }
+
+        GridPane correctionGridPane = getNewCorrectionGridPane(emptyCorrection);
+
+        userChoiceGridPane.add(correctionGridPane, numPins, 0);
+    }
+
+    private void printColorSelectors(final  List<Color> colorList)
+    {
+        int column = 0;
+
+        for(final Color color : colorList)
+        {
+            Circle pin = getNewPin(color);
+            pin.setOnMouseEntered(new PinCircleOnMouseEnteredHandler(this));
+            pin.setOnMouseExited(new PinCircleOnMouseExitedHandler(this));
+
+            pin.setOnDragDetected(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent event)
+                {
+                    dragDetected(event, pin);
+                }
+            });
+
+            colorSelectionGridPane.add(pin, column, 0);
+
+            ++column;
+        }
+    }
+
+    /* DRAG AND DROP METHODS */
+
+    private void dragDetected(final MouseEvent event, final Circle pin)
+    {
+        Dragboard dragboard = pin.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+
+        ClipboardContent content = new ClipboardContent();
+
+        ArrayList<String> styles = new ArrayList<>(pin.getStyleClass());
+
+        content.put(STYLE_CLASS, styles);
+
+        dragboard.setContent(content);
+        event.consume();
+    }
+
+    private void dragOver(final DragEvent event, final Circle pin)
+    {
+        Dragboard dragboard = event.getDragboard();
+
+        if(event.getGestureSource() != pin && dragboard.hasContent(STYLE_CLASS))
+        {
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+
+        event.consume();
+    }
+
+    @SuppressWarnings("unchecked")
+    private void dragDropped(final DragEvent event, final Circle pin)
+    {
+        boolean dragCompleted = false;
+
+        Dragboard dragboard = event.getDragboard();
+
+        if(dragboard.hasContent(STYLE_CLASS))
+        {
+            List<String> styles = (ArrayList<String>) dragboard.getContent(STYLE_CLASS);
+            pin.getStyleClass().setAll(styles);
+            dragCompleted = true;
+        }
+
+        event.setDropCompleted(dragCompleted);
+        event.consume();
+    }
+
     /* CONSTRUCTORS */
 
     public GameInProgressViewController()
@@ -93,6 +225,8 @@ public class GameInProgressViewController extends PresentationController
         colorSelectionGridPane.setAlignment(Pos.CENTER);
     }
 
+    /* GUI INTERACTION METHODS */
+
     public void printAllTurns()
     {
         for(int index = 0; index < codes.size(); ++index)
@@ -109,39 +243,18 @@ public class GameInProgressViewController extends PresentationController
         }
     }
 
-    public void printUserChoiceContainer()
+    public void printCorrectionColorSelectors()
     {
-        int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
-        List<Color> emptyCorrection = new ArrayList<>();
+        List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
 
-        for(int column = 0; column < numPins; ++column)
-        {
-            Circle pin = getNewPin(Color.NONE);
-            pin.getStyleClass().add(StyleClass.CIRCLE.toString());
-
-            userChoiceGridPane.add(pin, column, 0);
-
-            emptyCorrection.add(Color.NONE);
-        }
-
-        GridPane correctionGridPane = getNewCorrectionGridPane(emptyCorrection);
-
-        userChoiceGridPane.add(correctionGridPane, numPins, 0);
+        printColorSelectors(colorList);
     }
 
-    public void printColorSelectors()
+    public void printCodeColorSelectors()
     {
-        int column = 0;
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
 
-        for(final Color color : colorList)
-        {
-            Circle pin = getNewPin(color);
-
-            colorSelectionGridPane.add(pin, column, 0);
-
-            ++column;
-        }
+        printColorSelectors(colorList);
     }
 
     public void printBoard(final Difficulty difficulty)
@@ -150,7 +263,7 @@ public class GameInProgressViewController extends PresentationController
 
         printAllTurns();
         printUserChoiceContainer();
-        printColorSelectors();
+        printCodeColorSelectors();
     }
 
     /* FXML */
@@ -175,5 +288,23 @@ public class GameInProgressViewController extends PresentationController
     public void helpButtonAction() throws IOException
     {
         pressButtonAction(1);
+    }
+
+    @FXML
+    public void finishTurnButtonAction() throws IOException
+    {
+        pressButtonAction(2);
+    }
+
+    @FXML
+    public void pinCircleOnMouseEntered()
+    {
+        turnsGridPane.setDisable(true);
+    }
+
+    @FXML
+    public void pinCircleOnMouseExited()
+    {
+        turnsGridPane.setDisable(false);
     }
 }
