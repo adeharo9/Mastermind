@@ -63,15 +63,6 @@
     -fx-border-color: button-focused-color;
 }
 
-/* CIRCLE */
-
-.circle:disabled
-{
-    -fx-fill: monokai-grey;
-    -fx-stroke: monokai-grey;
-    -fx-stroke-width: 1;
-}
-
 /* RADIO BUTTONS*/
 
 .radio-button

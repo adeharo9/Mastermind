@@ -46,6 +46,7 @@ public class PresentationController
     protected static List<Color> solution = new ArrayList<>();
     protected static List<List<Color>> codes = new ArrayList<>();
     protected static List<List<Color>> corrections = new ArrayList<>();
+    protected static List<Color> currentTurn = new ArrayList<>();
 
     /* PRIVATE METHODS */
 
@@ -156,6 +157,11 @@ public class PresentationController
     public static String getNewPassword()
     {
         return PresentationController.newPassword;
+    }
+
+    public static List<Color> getCurrentTurn()
+    {
+        return PresentationController.currentTurn;
     }
 
     public DomainController getDomainController()

@@ -16,13 +16,13 @@ public class DriverHuman {
 
     private Human testedHuman;
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         DriverHuman driverHuman = new DriverHuman();
         driverHuman.exe();
     }
 
-    private void exe()
+    private void exe() throws InterruptedException
     {
         testConstructors();
         testGetsAndSets();
@@ -60,7 +60,7 @@ public class DriverHuman {
         if(!testedHuman.checkPassword("4321")){ioUtils.printOutLn("Error in checkPassword function!");}
     }
 
-    private void testCodeMake()
+    private void testCodeMake() throws InterruptedException
     {
         ioUtils.printOutLn("Test codeMake function:\n");
         try
@@ -73,7 +73,7 @@ public class DriverHuman {
         }
     }
 
-    private void testCodeBreak()
+    private void testCodeBreak() throws InterruptedException
     {
         ioUtils.printOutLn("Test codeBreak function:\n");
         testedHuman.setRole(Role.CODE_BREAKER);

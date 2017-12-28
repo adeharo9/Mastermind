@@ -290,7 +290,7 @@ public class DomainController
 
     }
 
-    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
+    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         Action action;
 
@@ -309,13 +309,13 @@ public class DomainController
         }
     }
 
-    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
+    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         play(codeMakerController);
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
-    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
+    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         play(codeBreakerController);
     }
@@ -473,9 +473,14 @@ public class DomainController
         Platform.runLater(new PrintBoardRunnable(presentationController, difficulty));
     }
 
-    private void renderLastTurn()
+    private void renderLastTurn() throws InterruptedException
     {
         Platform.runLater(new PrintLastTurnRunnable(presentationController));
+    }
+
+    private void renderLastTurnBlocking() throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new PrintLastTurnRunnable(presentationController));
     }
 
     /* MAIN STATE MACHINE */
@@ -887,11 +892,15 @@ public class DomainController
                 case PLAY_CODE_BREAKER:
                     try
                     {
-                        renderLastTurn();
 
                         if(hasToPrintBoard(Role.CODE_BREAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_BREAKER);
+                            renderLastTurnBlocking();
+                        }
+                        else
+                        {
+                            renderLastTurn();
                         }
 
                         playCodeBreaker();
@@ -915,11 +924,15 @@ public class DomainController
                 case PLAY_CODE_MAKER:
                     try
                     {
-                        renderLastTurn();
 
                         if(hasToPrintBoard(Role.CODE_MAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_MAKER);
+                            renderLastTurnBlocking();
+                        }
+                        else
+                        {
+                            renderLastTurn();
                         }
 
                         playCodeMaker();

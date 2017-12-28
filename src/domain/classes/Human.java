@@ -3,6 +3,7 @@ package domain.classes;
 import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;
+import presentation.controllers.PresentationController;
 import util.Constants;
 import util.DeepCopyable;
 import util.ioUtils;
@@ -166,7 +167,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* PLAY METHODS */
 
-    public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
+    public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
     {
         List<Color> colorList = codeInputByUser(difficulty);
         Code code = new Code(colorList);
@@ -174,7 +175,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return new CodeMake(code);
     }
 
-    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
+    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
     {
         List<Color> colorList = codeInputByUser(difficulty);
         Code code = new Code(colorList);
@@ -192,7 +193,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* USER INTERACTION METHODS */
 
-    private List<Color> codeInputByUser(Difficulty difficulty) throws ReservedKeywordException
+    private List<Color> codeInputByUser(Difficulty difficulty) throws ReservedKeywordException, InterruptedException
     {
         List<String> code = readCode(difficulty);
         List<Color> colorList = new ArrayList<>(code.size());
@@ -218,7 +219,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return colorList;
     }
 
-    private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
+    /*private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {
         boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
@@ -254,6 +255,37 @@ public class Human extends Player implements DeepCopyable, Serializable
 
             code.add(read);
         }
+
+        return code;
+    }*/
+
+    private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException, InterruptedException
+    {
+        int returnState;
+
+        returnState = PresentationController.getReturnState();
+
+        switch (returnState)
+        {
+            case 0:
+                throw new ReservedKeywordException();
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        List<Color> colorCode = PresentationController.getCurrentTurn();
+        List<String> code = new ArrayList<>();
+
+        for(final Color color : colorCode)
+        {
+            code.add(color.getStrId());
+        }
+
+        PresentationController.clearThreadHasFinished();
 
         return code;
     }

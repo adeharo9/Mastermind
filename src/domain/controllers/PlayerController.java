@@ -89,7 +89,7 @@ public class PlayerController
 
     /* PLAYING METHODS */
 
-    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution, final boolean isFirstTurn) throws IllegalArgumentException, ReservedKeywordException
+    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution, final boolean isFirstTurn) throws IllegalArgumentException, ReservedKeywordException, InterruptedException
     {
         Action action;
 
@@ -117,17 +117,17 @@ public class PlayerController
         return action;
     }
 
-    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
+    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
     {
         return player.codeMake(difficulty);
     }
 
-    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
+    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
     {
         return player.codeBreak(difficulty, lastTurn, isFirstTurn);
     }
 
-    private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException
+    private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException, InterruptedException
     {
         return player.codeCorrect(difficulty, code, solution);
     }

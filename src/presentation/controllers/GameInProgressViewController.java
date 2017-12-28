@@ -7,6 +7,7 @@ import enums.StyleClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -38,7 +39,6 @@ public class GameInProgressViewController extends PresentationController
         Circle pin = new Circle();
 
         pin.setRadius(25);
-        pin.getStyleClass().add(StyleClass.CIRCLE.toString());
         pin.getStyleClass().add(color.getCssStyleClass());
 
         return pin;
@@ -293,6 +293,18 @@ public class GameInProgressViewController extends PresentationController
     @FXML
     public void finishTurnButtonAction() throws IOException
     {
+        int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
+        currentTurn.clear();
+        List<Node> nodeList = userChoiceGridPane.getChildren();
+
+        for(int i = 0; i < numPins; ++i)
+        {
+            Node node = nodeList.get(i);
+            Color color = Color.getColorByStyle(node.getStyleClass().get(0));
+            currentTurn.add(color);
+            node.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString());
+        }
+
         pressButtonAction(2);
     }
 

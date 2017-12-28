@@ -97,9 +97,9 @@ public abstract class Player implements DeepCopyable, Serializable
 
     /* PLAYING METHODS */
 
-    public abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException;
+    public abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException;
 
-    public abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException;
+    public abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException;
 
-    public abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
+    public abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException, InterruptedException;
 }

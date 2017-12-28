@@ -16,7 +16,6 @@ public enum StyleClass
     COLOR_BLACK ("color-black"),
     COLOR_WHITE ("color-white"),
     COLOR_HIDDEN ("color-hidden"),
-    CIRCLE ("circle"),
     ERROR_LABEL ("error-label"),
     RADIO_BUTTON ("radio-button"),
     SCROLL_BAR ("scroll-bar"),
