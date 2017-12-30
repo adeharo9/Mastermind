@@ -80,14 +80,9 @@ public abstract class PresentationController
     {
         STAGE_STACK.push(currentStage);
         currentStage = new Stage();
-        currentStage.setOnCloseRequest(new EventHandler<WindowEvent>()
-        {
-            @Override
-            public void handle(WindowEvent event)
-            {
-                currentStage = STAGE_STACK.pop();
-            }
-        });
+        currentStage.setOnCloseRequest((WindowEvent event) ->
+                currentStage = STAGE_STACK.pop()
+        );
     }
 
     protected void registerToDomainController()
@@ -234,14 +229,39 @@ public abstract class PresentationController
         }
     }
 
-    public void newWindow(final String viewFile, final String windowTitle, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler)
+    public void newPopUpStage(final String viewFile, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
     {
+        popUpStage = new Stage();
 
+        Parent root = loadView(viewFile);
+
+        popUpStage.setTitle(title);
+        popUpStage.getIcons().add(new Image(getClass().getResourceAsStream(iconPath)));
+
+        popUpStage.initModality(modality);
+        popUpStage.setResizable(false);
+
+        popUpStage.setOnCloseRequest(closingEventHandler);
+
+        popUpStage.setScene(new Scene(root, 250, 100));
+
+        popUpStage.show();
     }
 
     public void popUpWindow(final String viewFile) throws IOException
     {
-        popUpStage = new Stage();
+        newPopUpStage(viewFile, "Warning", Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE, Modality.APPLICATION_MODAL, (WindowEvent event) ->
+        {
+            try
+            {
+                pressButtonAction(0);
+            }
+            catch (IOException ioe)
+            {
+
+            }
+        });
+        /*popUpStage = new Stage();
 
         Parent root = loadView(viewFile);
 
@@ -263,25 +283,10 @@ public abstract class PresentationController
                 }
             }
         );
-        /*popUpStage.setOnCloseRequest(new EventHandler<WindowEvent>()
-        {
-            @Override
-            public void handle(WindowEvent event)
-            {
-                try
-                {
-                    pressButtonAction(0);
-                }
-                catch (IOException e)
-                {
-
-                }
-            }
-        });*/
 
         popUpStage.setScene(new Scene(root, 250, 100));
 
-        popUpStage.show();
+        popUpStage.show();*/
     }
 
     /* TEMPLATE PATTERN */
