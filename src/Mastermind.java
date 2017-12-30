@@ -2,6 +2,8 @@ import domain.controllers.DomainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import presentation.controllers.PresentationController;
+import presentation.controllers.RegisterViewController;
+import presentation.controllers.RegisteringPresentationController;
 import presentation.runnables.LogicThreadRunnable;
 
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class Mastermind extends Application
     @Override
     public void init() throws InterruptedException
     {
-        presentationController = new PresentationController();
+        presentationController = new RegisteringPresentationController();
         domainController = presentationController.getDomainController();
     }
 
