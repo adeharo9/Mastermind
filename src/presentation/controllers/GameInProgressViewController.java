@@ -1,6 +1,8 @@
 package presentation.controllers;
 
-import enums.*;
+import enums.Color;
+import enums.Difficulty;
+import enums.StyleClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
