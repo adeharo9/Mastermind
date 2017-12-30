@@ -190,6 +190,11 @@ public abstract class PresentationController
         return PresentationController.newPassword;
     }
 
+    public static String getGameId()
+    {
+        return PresentationController.gameId;
+    }
+
     public static List<Color> getCurrentTurn()
     {
         return PresentationController.currentTurn;

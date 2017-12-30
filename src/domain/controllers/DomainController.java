@@ -1054,9 +1054,11 @@ public class DomainController
                     break;
 
                 case SAVE_GAME:
+                    popUpView(View.SAVE_GAME_VIEW);
                     try
                     {
                         saveGame();
+                        renameGame(PresentationController.getGameId());
                         state = State.GAME_PAUSE_MENU;
                     }
                     catch (FileAlreadyExistsException e)
@@ -1091,6 +1093,10 @@ public class DomainController
                     {
                         oldPresentationController.gameSaveError();
                         state = State.GAME_PAUSE_MENU;
+                    }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
             }

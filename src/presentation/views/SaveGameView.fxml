@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
+<AnchorPane prefHeight="100.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameController">
    <children>
-      <VBox layoutX="60.0" layoutY="116.0" prefHeight="171.0" prefWidth="255.0">
+      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="185.0" styleClass="text" text="Enter a name for this game:" />
+      <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0">
          <children>
-            <Text layoutX="63.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actual name:" wrappingWidth="262.13671875" />
-            <Text layoutX="63.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to change the name of the game?" translateY="20.0" wrappingWidth="262.13671875" />
-            <VBox layoutX="123.0" layoutY="287.0" prefHeight="134.0" prefWidth="179.0">
-               <children>
-                  <Button layoutX="153.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Yes" translateX="80.0" translateY="40.0" />
-                  <Button layoutX="153.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="No" translateX="80.0" translateY="60.0" />
-               </children>
-            </VBox>
+            <Button fx:id="exitButton" minWidth="60.0" mnemonicParsing="false" onAction="#exitButtonAction" text="Save" />
+            <Separator prefWidth="30.0" visible="false" />
+            <Button fx:id="cancelButton" minWidth="60.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Back" />
          </children>
-      </VBox>
+      </HBox>
+      <TextField layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game identifier" />
    </children>
 </AnchorPane>
