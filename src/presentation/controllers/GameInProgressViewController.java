@@ -3,7 +3,6 @@ package presentation.controllers;
 import enums.Color;
 import enums.Difficulty;
 import enums.StyleClass;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -215,14 +214,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
     }
 
-    public void renderCorrectionColorSelectors()
+    private void renderCorrectionColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
 
         renderColorSelectors(colorList);
     }
 
-    public void renderCodeColorSelectors()
+    private void renderCodeColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
 
