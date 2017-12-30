@@ -15,6 +15,6 @@ public class PrintLastTurnRunnable implements Runnable
     @Override
     public void run()
     {
-        presentationController.printLastTurn();
+        presentationController.renderLastTurn();
     }
 }

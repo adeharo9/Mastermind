@@ -96,6 +96,20 @@ public abstract class PresentationController
         DOMAIN_CONTROLLER.setPresentationController(this);
     }
 
+    /* GUI ELEMENT METHODS */
+
+    protected Circle getNewPin(final Color color)
+    {
+        Circle pin = new Circle();
+
+        pin.setRadius(25);
+        pin.getStyleClass().add(color.getCssStyleClass());
+
+        return pin;
+    }
+
+    /* PRIVATE METHODS */
+
     private void setPopUpStage(final Stage popUpStage)
     {
         this.popUpStage = popUpStage;
@@ -105,8 +119,6 @@ public abstract class PresentationController
     {
         this.currentViewFile = currentViewFile;
     }
-
-    /* PRIVATE METHODS */
 
     private Parent loadView(final String viewFile) throws IOException
     {
@@ -302,25 +314,13 @@ public abstract class PresentationController
         PresentationController.corrections.clear();
     }
 
-    public void printBoard(final Difficulty difficulty)
+    public void renderBoard(final Difficulty difficulty)
     {
 
     }
 
-    public void printLastTurn()
+    public void renderLastTurn()
     {
 
-    }
-
-    /* GUI ELEMENT METHODS */
-
-    protected Circle getNewPin(final Color color)
-    {
-        Circle pin = new Circle();
-
-        pin.setRadius(25);
-        pin.getStyleClass().add(color.getCssStyleClass());
-
-        return pin;
     }
 }

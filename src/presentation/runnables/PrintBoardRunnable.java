@@ -1,7 +1,6 @@
 package presentation.runnables;
 
 import enums.Difficulty;
-import enums.Role;
 import presentation.controllers.PresentationController;
 
 public class PrintBoardRunnable implements Runnable
@@ -19,6 +18,6 @@ public class PrintBoardRunnable implements Runnable
     @Override
     public void run()
     {
-        presentationController.printBoard(difficulty);
+        presentationController.renderBoard(difficulty);
     }
 }

@@ -40,7 +40,7 @@ public class DriverPresentationBoard
         code1.add(Color.getRandomColor(6));
         code1.add(Color.getRandomColor(6));
 
-        //oldPresentationController.printBoard(codes,corrections);
+        //oldPresentationController.renderBoard(codes,corrections);
         //oldPresentationController.printCode(code1);
     }
 }

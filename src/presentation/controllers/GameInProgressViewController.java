@@ -10,10 +10,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import presentation.handlers.PinCircleOnMouseEnteredHandler;
-import presentation.handlers.PinCircleOnMouseExitedHandler;
 import util.Constants;
+import util.UncheckedCast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,7 +53,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* RENDERING METHODS */
 
-    private void printTurn(final int row)
+    @SuppressWarnings("EmptyCatchBlock")
+    private void renderTurn(final int row)
     {
         int column = 0;
 
@@ -75,11 +74,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
         catch(IndexOutOfBoundsException iob)
         {
-
+            // Catch block deliberately left blank
+            //
+            // If there is no correction on the current code,
+            // it simply means it still has not been corrected
+            // and thus nothing should be done here.
         }
     }
 
-    private void printUserChoiceContainer()
+    private void renderUserChoiceContainer()
     {
         int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
         List<Color> emptyCorrection = new ArrayList<>();
@@ -126,15 +129,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         userChoiceGridPane.add(correctionGridPane, numPins, 0);
     }
 
-    private void printColorSelectors(final  List<Color> colorList)
+    private void renderColorSelectors(final List<Color> colorList)
     {
         int column = 0;
 
         for(final Color color : colorList)
         {
             Circle pin = getNewPin(color);
-            pin.setOnMouseEntered(new PinCircleOnMouseEnteredHandler(this));
-            pin.setOnMouseExited(new PinCircleOnMouseExitedHandler(this));
 
             pin.setOnDragDetected(new EventHandler<MouseEvent>()
             {
@@ -179,7 +180,6 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         event.consume();
     }
 
-    @SuppressWarnings("unchecked")
     private void dragDropped(final DragEvent event, final Circle pin)
     {
         boolean dragCompleted = false;
@@ -188,7 +188,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
         if(dragboard.hasContent(STYLE_CLASS))
         {
-            List<String> styles = (ArrayList<String>) dragboard.getContent(STYLE_CLASS);
+            List<String> styles = UncheckedCast.cast(dragboard.getContent(STYLE_CLASS));
             pin.getStyleClass().setAll(styles);
             dragCompleted = true;
         }
@@ -217,43 +217,53 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* GUI INTERACTION METHODS */
 
-    public void printAllTurns()
+    private void renderAllTurns()
     {
         for(int index = 0; index < codes.size(); ++index)
         {
-            printTurn(index);
+            renderTurn(index);
         }
     }
 
-    public  void printLastTurn()
+    public  void renderLastTurn()
     {
         if(!codes.isEmpty())
         {
-            printTurn(codes.size() - 1);
+            renderTurn(codes.size() - 1);
         }
     }
 
-    public void printCorrectionColorSelectors()
+    public void renderCorrectionColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
 
-        printColorSelectors(colorList);
+        renderColorSelectors(colorList);
     }
 
-    public void printCodeColorSelectors()
+    public void renderCodeColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
 
-        printColorSelectors(colorList);
+        renderColorSelectors(colorList);
     }
 
-    public void printBoard(final Difficulty difficulty)
+    public void renderBoard(final Difficulty difficulty)
     {
         boardDifficulty = difficulty;
 
-        printAllTurns();
-        printUserChoiceContainer();
-        printCodeColorSelectors();
+        renderAllTurns();
+        renderUserChoiceContainer();
+        renderCodeColorSelectors();
+    }
+
+    public void updateToCodeMakerBoard()
+    {
+        renderCorrectionColorSelectors();
+    }
+
+    public void updateToCodeBreakerBoard()
+    {
+        renderCodeColorSelectors();
     }
 
     /* FXML */
@@ -302,17 +312,5 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
 
         pressButtonAction(2);
-    }
-
-    @FXML
-    public void pinCircleOnMouseEntered()
-    {
-        turnsGridPane.setDisable(true);
-    }
-
-    @FXML
-    public void pinCircleOnMouseExited()
-    {
-        turnsGridPane.setDisable(false);
     }
 }
