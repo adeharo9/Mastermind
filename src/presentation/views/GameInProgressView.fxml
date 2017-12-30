@@ -15,8 +15,24 @@
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseButtonAction" text="Pause" textAlignment="CENTER" />
-            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpButtonAction" text="Help" />
+            <GridPane alignment="CENTER_LEFT" hgap="30.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="30.0">
+                     <children>
+                      <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseButtonAction" text="Pause" textAlignment="CENTER" />
+                        <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpButtonAction" text="Help" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="showCodeButton" mnemonicParsing="false" onAction="#showCodeButtonAction" text="Show Code" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+               </children>
+            </GridPane>
         </items>
       </ToolBar>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="487.0" prefWidth="400.0" styleClass="background" VBox.vgrow="ALWAYS">
