@@ -246,7 +246,19 @@ public abstract class PresentationController
         popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.setResizable(false);
 
-        popUpStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        popUpStage.setOnCloseRequest((WindowEvent event) ->
+            {
+                try
+                {
+                    pressButtonAction(0);
+                }
+                catch (IOException ioe)
+                {
+
+                }
+            }
+        );
+        /*popUpStage.setOnCloseRequest(new EventHandler<WindowEvent>()
         {
             @Override
             public void handle(WindowEvent event)
@@ -260,7 +272,7 @@ public abstract class PresentationController
 
                 }
             }
-        });
+        });*/
 
         popUpStage.setScene(new Scene(root, 250, 100));
 

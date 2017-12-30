@@ -94,32 +94,17 @@ public class GameInProgressViewController extends RegisteringPresentationControl
             Circle pin = getNewPin(Color.NONE);
             pin.getStyleClass().add(StyleClass.COLOR_BLACK.toString());
 
-            pin.setOnDragOver(new EventHandler<DragEvent>()
-            {
-                @Override
-                public void handle(DragEvent event)
-                {
-                    dragOver(event, pin);
-                }
-            });
+            pin.setOnDragOver((DragEvent event) ->
+                    dragOver(event, pin)
+            );
 
-            pin.setOnDragDropped(new EventHandler<DragEvent>()
-            {
-                @Override
-                public void handle(DragEvent event)
-                {
-                    dragDropped(event, pin);
-                }
-            });
+            pin.setOnDragDropped( (DragEvent event) ->
+                    dragDropped(event, pin)
+            );
 
-            pin.setOnMouseClicked(new EventHandler<MouseEvent>()
-            {
-                @Override
-                public void handle(MouseEvent event)
-                {
-                    pin.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString());
-                }
-            });
+            pin.setOnMouseClicked((MouseEvent event) ->
+                pin.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString())
+            );
 
             userChoiceGridPane.add(pin, column, 0);
 
@@ -139,14 +124,9 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         {
             Circle pin = getNewPin(color);
 
-            pin.setOnDragDetected(new EventHandler<MouseEvent>()
-            {
-                @Override
-                public void handle(MouseEvent event)
-                {
-                    dragDetected(event, pin);
-                }
-            });
+            pin.setOnDragDetected((MouseEvent event) ->
+                    dragDetected(event, pin)
+            );
 
             colorSelectionGridPane.add(pin, column, 0);
 
