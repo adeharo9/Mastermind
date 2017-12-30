@@ -199,7 +199,7 @@ public class PresentationController
         }
     }
 
-    public void popUpWindow(final String viewFile) throws IOException
+    public void popUpWindow(final String viewFile, final Modality modality) throws IOException
     {
         popUpStage = new Stage();
 
@@ -208,13 +208,18 @@ public class PresentationController
         popUpStage.setTitle("Warning");
         popUpStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE)));
 
-        popUpStage.initModality(Modality.APPLICATION_MODAL);
+        popUpStage.initModality(modality);
         popUpStage.setResizable(false);
         popUpStage.setOnCloseRequest(new CloseWindowHandler(this));
 
         popUpStage.setScene(new Scene(root, 250, 100));
 
         popUpStage.show();
+    }
+
+    public void popUpWindow(final String viewFile) throws IOException
+    {
+        popUpWindow(viewFile, Modality.APPLICATION_MODAL);
     }
 
     public void showMessage(final String message)
