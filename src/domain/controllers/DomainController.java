@@ -479,17 +479,17 @@ public class DomainController
 
     private void renderBoard(final Difficulty difficulty)
     {
-        Platform.runLater(new PrintBoardRunnable(presentationController, difficulty));
+        Platform.runLater(new RenderBoardRunnable(presentationController, difficulty));
     }
 
     private void renderLastTurn() throws InterruptedException
     {
-        Platform.runLater(new PrintLastTurnRunnable(presentationController));
+        Platform.runLater(new RenderLastTurnRunnable(presentationController));
     }
 
     private void renderLastTurnBlocking() throws InterruptedException
     {
-        runOnGUIThreadAndWait(new PrintLastTurnRunnable(presentationController));
+        runOnGUIThreadAndWait(new RenderLastTurnRunnable(presentationController));
     }
 
     /* MAIN STATE MACHINE */
