@@ -5,12 +5,15 @@ import enums.Color;
 import enums.Difficulty;
 import enums.Role;
 import enums.View;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import presentation.handlers.CloseWindowHandler;
 import util.Constants;
 import util.Pair;
@@ -18,8 +21,9 @@ import util.Pair;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
-public class PresentationController
+public abstract class PresentationController
 {
     /* ATTRIBUTES */
 
@@ -27,6 +31,9 @@ public class PresentationController
 
     protected Stage mainStage;
     protected Stage popUpStage;
+
+    protected static Stage currentStage;
+    protected final static Stack<Stage> STAGE_STACK = new Stack<>();
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -72,6 +79,20 @@ public class PresentationController
         endAction();
     }
 
+    private void newStage()
+    {
+        STAGE_STACK.push(currentStage);
+        currentStage = new Stage();
+        currentStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent event)
+            {
+                currentStage = STAGE_STACK.pop();
+            }
+        });
+    }
+
     private Parent loadView(final String viewFile) throws IOException
     {
         this.currentViewFile = viewFile;
@@ -81,6 +102,7 @@ public class PresentationController
         Parent root = fxmlLoader.load();
 
         PresentationController presentationController = fxmlLoader.getController();
+
         presentationController.setMainStage(this.mainStage);
         presentationController.setPopUpStage(this.popUpStage);
         presentationController.setCurrentViewFile(this.currentViewFile);
@@ -88,11 +110,16 @@ public class PresentationController
         return root;
     }
 
+    protected void registerToDomainController()
+    {
+        DOMAIN_CONTROLLER.setPresentationController(this);
+    }
+
     /* CONSTRUCTORS */
 
     public PresentationController()
     {
-        DOMAIN_CONTROLLER.setPresentationController(this);
+        //registerToDomainController();
     }
 
     /* SET METHODS */
@@ -199,7 +226,12 @@ public class PresentationController
         }
     }
 
-    public void popUpWindow(final String viewFile, final Modality modality) throws IOException
+    public void newWindow(final String viewFile, final String windowTitle, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler)
+    {
+
+    }
+
+    public void popUpWindow(final String viewFile) throws IOException
     {
         popUpStage = new Stage();
 
@@ -208,7 +240,7 @@ public class PresentationController
         popUpStage.setTitle("Warning");
         popUpStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE)));
 
-        popUpStage.initModality(modality);
+        popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.setResizable(false);
         popUpStage.setOnCloseRequest(new CloseWindowHandler(this));
 
@@ -217,10 +249,7 @@ public class PresentationController
         popUpStage.show();
     }
 
-    public void popUpWindow(final String viewFile) throws IOException
-    {
-        popUpWindow(viewFile, Modality.APPLICATION_MODAL);
-    }
+    /* TEMPLATE PATTERN */
 
     public void showMessage(final String message)
     {
@@ -277,5 +306,17 @@ public class PresentationController
     public void printLastTurn()
     {
 
+    }
+
+    /* GUI ELEMENT METHODS */
+
+    protected Circle getNewPin(final Color color)
+    {
+        Circle pin = new Circle();
+
+        pin.setRadius(25);
+        pin.getStyleClass().add(color.getCssStyleClass());
+
+        return pin;
     }
 }

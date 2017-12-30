@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 
 import java.io.IOException;
 
-public class EditUserViewController extends PresentationController
+public class EditUserViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
 

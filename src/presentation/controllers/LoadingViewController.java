@@ -1,6 +1,6 @@
 package presentation.controllers;
 
-public class LoadingViewController extends PresentationController
+public class LoadingViewController extends RegisteringPresentationController
 {
     public LoadingViewController()
     {

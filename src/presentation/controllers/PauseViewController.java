@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class PauseViewController extends PresentationController
+public class PauseViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
     public PauseViewController()

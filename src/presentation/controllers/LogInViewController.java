@@ -8,7 +8,7 @@ import util.Constants;
 
 import java.io.IOException;
 
-public class LogInViewController extends PresentationController
+public class LogInViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
 

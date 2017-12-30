@@ -12,7 +12,7 @@ import javafx.scene.layout.Priority;
 import java.io.IOException;
 import java.util.List;
 
-public class LoadGameViewController extends PresentationController
+public class LoadGameViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;
     @FXML private GridPane savedGamesGridPane;

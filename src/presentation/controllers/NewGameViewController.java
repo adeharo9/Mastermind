@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class NewGameViewController extends PresentationController
+public class NewGameViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
 

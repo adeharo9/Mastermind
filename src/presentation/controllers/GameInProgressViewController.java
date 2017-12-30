@@ -1,17 +1,16 @@
 package presentation.controllers;
 
-import enums.Color;
-import enums.Difficulty;
-import enums.Role;
-import enums.StyleClass;
+import enums.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import presentation.handlers.PinCircleOnMouseEnteredHandler;
 import presentation.handlers.PinCircleOnMouseExitedHandler;
 import util.Constants;
@@ -20,11 +19,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameInProgressViewController extends PresentationController
+public class GameInProgressViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
 
     @FXML private VBox boardVBox;
+    @FXML private Button showCodeButton;
 
     private GridPane turnsGridPane;
     private GridPane userChoiceGridPane;
@@ -33,16 +33,6 @@ public class GameInProgressViewController extends PresentationController
     private static final DataFormat STYLE_CLASS = new DataFormat("StyleClass");
 
     /* PRIVATE METHODS */
-
-    private Circle getNewPin(final Color color)
-    {
-        Circle pin = new Circle();
-
-        pin.setRadius(25);
-        pin.getStyleClass().add(color.getCssStyleClass());
-
-        return pin;
-    }
 
     private GridPane getNewCorrectionGridPane(final List<Color> correction)
     {
@@ -288,6 +278,12 @@ public class GameInProgressViewController extends PresentationController
     public void helpButtonAction() throws IOException
     {
         pressButtonAction(1);
+    }
+
+    @FXML
+    public void showCodeButtonAction() throws IOException
+    {
+
     }
 
     @FXML

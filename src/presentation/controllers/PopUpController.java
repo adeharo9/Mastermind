@@ -2,7 +2,7 @@ package presentation.controllers;
 
 import java.io.IOException;
 
-public abstract class PopUpController extends PresentationController
+public abstract class PopUpController extends RegisteringPresentationController
 {
     public void yesButtonAction() throws IOException
     {

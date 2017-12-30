@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 
 
-public class InitSessionViewController extends PresentationController
+public class InitSessionViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
     public InitSessionViewController()

@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class InfoViewController extends PresentationController
+public class InfoViewController extends RegisteringPresentationController
 {
     @FXML private Label infoLabel;
 

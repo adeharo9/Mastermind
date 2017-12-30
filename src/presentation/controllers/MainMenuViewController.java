@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class MainMenuViewController extends PresentationController
+public class MainMenuViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
     public MainMenuViewController()

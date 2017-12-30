@@ -12,7 +12,7 @@ import util.Pair;
 import java.io.IOException;
 import java.util.List;
 
-public class RankingViewController extends PresentationController
+public class RankingViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
 
