@@ -43,8 +43,11 @@ public class LogInViewController extends RegisteringPresentationController
 
     }
 
-    public void showMessage(final String message)
+    @Override
+    public void processInfo(final Object info)
     {
+        String message = (String) info;
+
         switch (message)
         {
             case Constants.WRONG_USERNAME_OR_PASSWORD:

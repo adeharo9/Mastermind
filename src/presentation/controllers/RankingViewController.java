@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import util.Pair;
+import util.UncheckedCast;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,8 +48,10 @@ public class RankingViewController extends RegisteringPresentationController
 
     }
 
-    public void showRanking(List<Pair<String, Integer>> topTen)
+    public void processInfo(final Object info)
     {
+        List<Pair<String, Integer>> topTen = UncheckedCast.cast(info);
+
         int row = 0;
 
         for(Pair<String, Integer> entry : topTen)

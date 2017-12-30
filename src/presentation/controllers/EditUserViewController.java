@@ -23,8 +23,10 @@ public class EditUserViewController extends RegisteringPresentationController
     }
 
     @Override
-    public void showMessage(final String message)
+    public void processInfo(final Object info)
     {
+        String message = (String) info;
+
         usernameLabel.setText(message);
     }
 

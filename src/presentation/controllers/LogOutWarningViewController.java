@@ -11,7 +11,7 @@ public class LogOutWarningViewController extends PopUpController
 
     }
 
-    protected void pressButtonSpecificAction()
+    protected void pressButtonTemplateAction()
     {
         this.popUpStage.close();
     }

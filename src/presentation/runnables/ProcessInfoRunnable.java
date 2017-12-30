@@ -2,21 +2,21 @@ package presentation.runnables;
 
 import presentation.controllers.PresentationController;
 
-public class ShowMessageRunnable implements Runnable
+public class ProcessInfoRunnable implements Runnable
 {
 
     private final PresentationController presentationController;
-    private final String message;
+    private final Object info;
 
-    public ShowMessageRunnable(PresentationController presentationController, final String message)
+    public ProcessInfoRunnable(PresentationController presentationController, final Object info)
     {
         this.presentationController = presentationController;
-        this.message = message;
+        this.info = info;
     }
 
     @Override
     public void run()
     {
-        presentationController.showMessage(message);
+        presentationController.processInfo(info);
     }
 }

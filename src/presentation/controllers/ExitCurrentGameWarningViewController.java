@@ -11,7 +11,7 @@ public class ExitCurrentGameWarningViewController extends PopUpController
 
     }
 
-    protected void pressButtonSpecificAction()
+    protected void pressButtonTemplateAction()
     {
         this.popUpStage.close();
     }

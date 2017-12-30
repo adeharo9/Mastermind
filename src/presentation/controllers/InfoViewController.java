@@ -20,8 +20,11 @@ public class InfoViewController extends RegisteringPresentationController
         endAction();
     }
 
-    public void showMessage(final String message)
+    @Override
+    public void processInfo(final Object info)
     {
+        String message = (String) info;
+
         infoLabel.setText(message);
     }
 

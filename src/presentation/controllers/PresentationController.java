@@ -3,7 +3,6 @@ package presentation.controllers;
 import domain.controllers.DomainController;
 import enums.Color;
 import enums.Difficulty;
-import enums.Role;
 import enums.View;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import presentation.handlers.CloseWindowHandler;
 import util.Constants;
 import util.Pair;
 
@@ -55,7 +53,7 @@ public abstract class PresentationController
     protected static List<List<Color>> corrections = new ArrayList<>();
     protected static List<Color> currentTurn = new ArrayList<>();
 
-    /* PRIVATE METHODS */
+    /* PROTECTED METHODS */
 
     protected void endAction()
     {
@@ -67,15 +65,15 @@ public abstract class PresentationController
         }
     }
 
-    protected void pressButtonSpecificAction()
+    protected void pressButtonTemplateAction()
     {
 
     }
 
-    public void pressButtonAction(final int value) throws IOException
+    protected void pressButtonAction(final int value) throws IOException
     {
         PresentationController.returnState = value;
-        pressButtonSpecificAction();
+        pressButtonTemplateAction();
         endAction();
     }
 
@@ -92,6 +90,23 @@ public abstract class PresentationController
             }
         });
     }
+
+    protected void registerToDomainController()
+    {
+        DOMAIN_CONTROLLER.setPresentationController(this);
+    }
+
+    private void setPopUpStage(final Stage popUpStage)
+    {
+        this.popUpStage = popUpStage;
+    }
+
+    private void setCurrentViewFile(final String currentViewFile)
+    {
+        this.currentViewFile = currentViewFile;
+    }
+
+    /* PRIVATE METHODS */
 
     private Parent loadView(final String viewFile) throws IOException
     {
@@ -110,33 +125,11 @@ public abstract class PresentationController
         return root;
     }
 
-    protected void registerToDomainController()
-    {
-        DOMAIN_CONTROLLER.setPresentationController(this);
-    }
-
-    /* CONSTRUCTORS */
-
-    public PresentationController()
-    {
-        //registerToDomainController();
-    }
-
     /* SET METHODS */
 
     public void setMainStage(final Stage mainStage)
     {
         this.mainStage = mainStage;
-    }
-
-    public void setPopUpStage(final Stage popUpStage)
-    {
-        this.popUpStage = popUpStage;
-    }
-
-    public void setCurrentViewFile(final String currentViewFile)
-    {
-        this.currentViewFile = currentViewFile;
     }
 
     public static void clearThreadHasFinished()
@@ -211,7 +204,6 @@ public abstract class PresentationController
         this.mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
 
         this.mainStage.setScene(new Scene(root));
-        //this.mainStage.setResizable(false);
 
         this.mainStage.show();
     }
@@ -242,7 +234,22 @@ public abstract class PresentationController
 
         popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.setResizable(false);
-        popUpStage.setOnCloseRequest(new CloseWindowHandler(this));
+
+        popUpStage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent event)
+            {
+                try
+                {
+                    pressButtonAction(0);
+                }
+                catch (IOException e)
+                {
+
+                }
+            }
+        });
 
         popUpStage.setScene(new Scene(root, 250, 100));
 
@@ -251,7 +258,7 @@ public abstract class PresentationController
 
     /* TEMPLATE PATTERN */
 
-    public void showMessage(final String message)
+    public void processInfo(final Object object)
     {
 
     }
@@ -261,10 +268,7 @@ public abstract class PresentationController
 
     }
 
-    public void showRanking(final List<Pair<String, Integer>> topTen)
-    {
-
-    }
+    /* BOARD METHODS */
 
     public void setSolution(List<Color> solution)
     {

@@ -26,8 +26,10 @@ public class RegisterViewController extends RegisteringPresentationController
 
     /* GUI INTERACTION */
 
-    public void showMessage(final String message)
+    public void processInfo(final Object info)
     {
+        String message = (String) info;
+        
         switch (message)
         {
             case Constants.USERNAME_ALREADY_EXISTS:

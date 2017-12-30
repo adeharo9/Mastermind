@@ -454,12 +454,12 @@ public class DomainController
 
     private void errorMessage(final String message)
     {
-        Platform.runLater(new ShowMessageRunnable(presentationController, message));
+        Platform.runLater(new ProcessInfoRunnable(presentationController, message));
     }
 
     private void showHint() throws InterruptedException
     {
-        runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, Constants.INFO_MESSAGE));
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.INFO_MESSAGE));
     }
 
     private void showLoadedGames(final List<String> savedGames) throws InterruptedException
@@ -469,12 +469,12 @@ public class DomainController
 
     private void showUsername() throws InterruptedException
     {
-        runOnGUIThreadAndWait(new ShowMessageRunnable(presentationController, loggedPlayerController.getId()));
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, loggedPlayerController.getId()));
     }
 
     private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
     {
-        runOnGUIThreadAndWait(new ShowRankingRunnable(presentationController, topTen));
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, topTen));
     }
 
     private void renderBoard(final Difficulty difficulty)

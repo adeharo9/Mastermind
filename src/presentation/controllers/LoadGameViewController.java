@@ -39,12 +39,16 @@ public class LoadGameViewController extends RegisteringPresentationController
 
     }
 
-    public void showMessage(String message)
+    @Override
+    public void processInfo(final Object info)
     {
+        String message = (String) info;
+
         errorLabel.setVisible(true);
         errorLabel.setText(message);
     }
 
+    @Override
     public void showLoadedGames(final List<String> savedGames)
     {
         int row = 0;
