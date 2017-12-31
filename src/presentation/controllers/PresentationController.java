@@ -264,7 +264,7 @@ public abstract class PresentationController
             }
             catch (IOException ioe)
             {
-                ioUtils.printErrLn(ioe.getMessage());
+                throw new RuntimeException(ioe.getMessage());
             }
         });
     }
