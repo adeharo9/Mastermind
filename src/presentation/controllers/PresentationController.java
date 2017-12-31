@@ -14,7 +14,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Constants;
-import util.ioUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +30,8 @@ public abstract class PresentationController
     protected Stage popUpStage;
 
     protected static Stage currentStage;
-    protected final static Stack<Stage> STAGE_STACK = new Stack<>();
+    protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
+    protected final static Stack<Stage> FOCUS_STAGE_STACK = new Stack<>();
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -79,10 +79,10 @@ public abstract class PresentationController
 
     private void newStage()
     {
-        STAGE_STACK.push(currentStage);
+        FOCUS_STAGE_STACK.push(currentStage);
         currentStage = new Stage();
         currentStage.setOnCloseRequest((WindowEvent event) ->
-                currentStage = STAGE_STACK.pop()
+                currentStage = FOCUS_STAGE_STACK.pop()
         );
     }
 
