@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Constants;
+import util.ioUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -263,7 +264,7 @@ public abstract class PresentationController
             }
             catch (IOException ioe)
             {
-
+                ioUtils.printErrLn(ioe.getMessage());
             }
         });
     }
