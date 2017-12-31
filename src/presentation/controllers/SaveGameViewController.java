@@ -2,9 +2,12 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class SaveGameViewController extends PopUpController {
+
+    @FXML private TextField gameIdTextField;
 
     public SaveGameViewController()
     {
@@ -19,8 +22,9 @@ public class SaveGameViewController extends PopUpController {
     /* FXML */
 
     @FXML
-    public void saveGameButtonAction() throws IOException
+    public void saveButtonAction() throws IOException
     {
+        PresentationController.gameId = gameIdTextField.getText();
         super.yesButtonAction();
     }
 

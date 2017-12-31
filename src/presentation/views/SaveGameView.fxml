@@ -12,11 +12,11 @@
       <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="185.0" styleClass="text" text="Enter a name for this game:" />
       <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0">
          <children>
-            <Button fx:id="exitButton" minWidth="60.0" mnemonicParsing="false" onAction="#exitButtonAction" text="Save" />
+            <Button fx:id="saveButton" minWidth="60.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
             <Separator prefWidth="30.0" visible="false" />
-            <Button fx:id="cancelButton" minWidth="60.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
+            <Button fx:id="backButton" minWidth="60.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
          </children>
       </HBox>
-      <TextField layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game identifier" />
+      <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game identifier" />
    </children>
 </AnchorPane>
