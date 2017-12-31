@@ -30,7 +30,8 @@ public abstract class PresentationController
     protected Stage popUpStage;
 
     protected static Stage currentStage;
-    protected final static Stack<Stage> STAGE_STACK = new Stack<>();
+    protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
+    protected final static Stack<Stage> FOCUS_STAGE_STACK = new Stack<>();
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -78,10 +79,10 @@ public abstract class PresentationController
 
     private void newStage()
     {
-        STAGE_STACK.push(currentStage);
+        FOCUS_STAGE_STACK.push(currentStage);
         currentStage = new Stage();
         currentStage.setOnCloseRequest((WindowEvent event) ->
-                currentStage = STAGE_STACK.pop()
+                currentStage = FOCUS_STAGE_STACK.pop()
         );
     }
 
@@ -229,7 +230,7 @@ public abstract class PresentationController
         }
     }
 
-    public void newPopUpStage(final String viewFile, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
+    private void newPopUpStage(final String viewFile, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
     {
         popUpStage = new Stage();
 
@@ -248,6 +249,11 @@ public abstract class PresentationController
         popUpStage.show();
     }
 
+    public void popUpInfoWindow(final String viewFile) throws IOException
+    {
+        newPopUpStage(viewFile, "Solution", Constants.RESOURCES_PATH + Constants.ICON_FILE, Modality.NONE, (WindowEvent event) -> {});
+    }
+
     public void popUpWindow(final String viewFile) throws IOException
     {
         newPopUpStage(viewFile, "Warning", Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE, Modality.APPLICATION_MODAL, (WindowEvent event) ->
@@ -258,35 +264,9 @@ public abstract class PresentationController
             }
             catch (IOException ioe)
             {
-
+                throw new RuntimeException(ioe.getMessage());
             }
         });
-        /*popUpStage = new Stage();
-
-        Parent root = loadView(viewFile);
-
-        popUpStage.setTitle("Warning");
-        popUpStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE)));
-
-        popUpStage.initModality(Modality.APPLICATION_MODAL);
-        popUpStage.setResizable(false);
-
-        popUpStage.setOnCloseRequest((WindowEvent event) ->
-            {
-                try
-                {
-                    pressButtonAction(0);
-                }
-                catch (IOException ioe)
-                {
-
-                }
-            }
-        );
-
-        popUpStage.setScene(new Scene(root, 250, 100));
-
-        popUpStage.show();*/
     }
 
     /* TEMPLATE PATTERN */
