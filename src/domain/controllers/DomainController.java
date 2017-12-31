@@ -499,11 +499,11 @@ public class DomainController
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
-        String returnString = null;
+        String returnString;
         String gameId = null;
-        String username = null;
-        String password = null;
-        String confirmPassword = null;
+        String username;
+        String password;
+        String confirmPassword;
 
         Mode mode = null;
         Role role = null;
