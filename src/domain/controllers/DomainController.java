@@ -928,6 +928,10 @@ public class DomainController
                     {
                         oldPresentationController.optionError();
                     }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
+                    }
                     break;
 
                 case PLAY_CODE_MAKER:
@@ -959,6 +963,10 @@ public class DomainController
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
+                    }
+                    finally
+                    {
+                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
