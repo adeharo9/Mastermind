@@ -17,6 +17,6 @@
             <Button fx:id="backButton" minWidth="60.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
          </children>
       </HBox>
-      <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game identifier" />
+      <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game Identifier" />
    </children>
 </AnchorPane>
