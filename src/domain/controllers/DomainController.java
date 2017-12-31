@@ -988,7 +988,7 @@ public class DomainController
                     try
                     {
                         returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.printRanking(ranking.getTopTen());
+
                         state = Translate.intToStateRankingMenu(returnState);
                     }
                     catch (IllegalArgumentException e)
