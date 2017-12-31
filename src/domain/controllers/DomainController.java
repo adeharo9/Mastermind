@@ -443,6 +443,8 @@ public class DomainController
         {
             wait();
         }
+
+        PresentationController.clearThreadHasFinished();
     }
 
     private void updateView(View view) throws InterruptedException
@@ -559,10 +561,6 @@ public class DomainController
                     {
                         oldPresentationController.optionError();
                     }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case CONTINUE_GAME:
@@ -571,28 +569,23 @@ public class DomainController
 
                 case EDIT_USER_MENU:
                     updateView(View.EDIT_USER_VIEW);
-                    PresentationController.clearThreadHasFinished();
                     showUsername();
 
                     try
                     {
                         returnState = PresentationController.getReturnState();
-
                         state = Translate.int2StateEditUserMenu(returnState);
                     }
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
                     }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case EDIT_USERNAME:
                     showRenameUsernameTextField();
                     username = PresentationController.getUsername();
+
                     try
                     {
                         renameUsername(username);
@@ -614,7 +607,10 @@ public class DomainController
                     {
                         changePassword(password);
                     }
-                    catch(IOException e){}
+                    catch(IOException e)
+                    {
+
+                    }
                     break;
 
                 case EXIT_CURRENT_GAME:
@@ -632,10 +628,6 @@ public class DomainController
                     catch(IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -656,19 +648,9 @@ public class DomainController
                 case GAME_PAUSE_MENU:
                     updateView(View.PAUSE_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateGamePauseMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateGamePauseMenu(returnState);
+
                     break;
 
                 case HINT_MENU:
@@ -676,7 +658,6 @@ public class DomainController
 
                     try
                     {
-                        //PresentationController.giveClue();
                         giveClue();
                         gameController.pointsClue();
                     }
@@ -687,29 +668,19 @@ public class DomainController
                     finally
                     {
                         state = State.GAME_PAUSE_MENU;
-                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
                 case INFO_MENU:
                     updateView(View.INFO_VIEW);
-                    PresentationController.clearThreadHasFinished();
                     showHint();
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateInfoMenu(returnState);
 
-                        state = Translate.int2StateInfoMenu(returnState);
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case INIT_PROGRAM:
-
                     Thread.sleep(Constants.THREAD_SLEEP_MS);
 
                     state = State.LOAD_RANKING;
@@ -719,19 +690,9 @@ public class DomainController
                 case INIT_SESSION_MENU:
                     updateView(View.INIT_SESSION_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateInitSessionMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateInitSessionMenu(returnState);
+
                     break;
 
                 case LAST_ACTIONS:
@@ -759,25 +720,12 @@ public class DomainController
 
                 case LOAD_GAME_MENU:
                     updateView(View.LOAD_GAME_VIEW);
-                    PresentationController.clearThreadHasFinished();
                     showLoadedGames(savedGames);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        //returnState = oldPresentationController.loadGameMenu(savedGames);
+                    returnState = PresentationController.getReturnState();
+                    gameId = Translate.int2SavedGameId(savedGames, returnState);
+                    state = Translate.int2StateLoadGameMenu(returnState);
 
-                        gameId = Translate.int2SavedGameId(savedGames, returnState);
-                        state = Translate.int2StateLoadGameMenu(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case LOAD_RANKING:
@@ -816,16 +764,9 @@ public class DomainController
                 case LOG_IN_MENU:
                     updateView(View.LOG_IN_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.intToStateLogInMenu(returnState);
 
-                        state = Translate.intToStateLogInMenu(returnState);
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case LOG_IN_USER:
@@ -852,39 +793,17 @@ public class DomainController
                 case LOG_OUT_WARNING:
                     popUpView(View.LOG_OUT_WARNING_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateLogOutWarning(returnState);
 
-                        state = Translate.int2StateLogOutWarning(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case MAIN_MENU:
                     updateView(View.MAIN_MENU_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateMainMenu(returnState);
 
-                        state = Translate.int2StateMainMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case NEW_GAME:
@@ -895,34 +814,23 @@ public class DomainController
                 case NEW_GAME_MENU:
                     updateView(View.NEW_GAME_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getMode();
-                        mode = Translate.int2Mode(returnState);
+                    returnState = PresentationController.getMode();
+                    mode = Translate.int2Mode(returnState);
 
-                        returnState = PresentationController.getRole();
-                        role = Translate.int2Role(returnState);
+                    returnState = PresentationController.getRole();
+                    role = Translate.int2Role(returnState);
 
-                        returnState = PresentationController.getDifficulty();
-                        difficulty = Translate.int2Difficulty(returnState);
+                    returnState = PresentationController.getDifficulty();
+                    difficulty = Translate.int2Difficulty(returnState);
 
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateGameSettingsMenu(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateGameSettingsMenu(returnState);
+
                     break;
 
                 case PLAY_CODE_BREAKER:
                     try
                     {
-
                         if(hasToPrintBoard(Role.CODE_BREAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_BREAKER);
@@ -948,10 +856,6 @@ public class DomainController
                     catch (IllegalArgumentException e)
                     {
                         oldPresentationController.optionError();
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
                     }
                     break;
 
@@ -985,10 +889,6 @@ public class DomainController
                     {
                         oldPresentationController.optionError();
                     }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case PLAY_TURN:
@@ -1001,18 +901,10 @@ public class DomainController
 
                 case RANKING_MENU:
                     updateView(View.RANKING_VIEW);
-                    PresentationController.clearThreadHasFinished();
                     showRanking(ranking.getTopTen());
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.intToStateRankingMenu(returnState);
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.intToStateRankingMenu(returnState);
 
                     break;
 
@@ -1022,16 +914,9 @@ public class DomainController
                 case REGISTER_MENU:
                     updateView(View.REGISTER_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.intToStateRegisterMenu(returnState);
 
-                        state = Translate.intToStateRegisterMenu(returnState);
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
-                    }
                     break;
 
                 case REGISTER_USER:
@@ -1063,8 +948,6 @@ public class DomainController
 
                 case RENDER_BOARD:
                     updateView(View.GAME_IN_PROGRESS_VIEW);
-                    PresentationController.clearThreadHasFinished();
-
                     renderBoard(boardController.getDifficulty());
 
                     state = State.CHECK_GAME_HAS_FINISHED;
@@ -1117,10 +1000,6 @@ public class DomainController
                     {
                         oldPresentationController.gameSaveError();
                         state = State.GAME_PAUSE_MENU;
-                    }
-                    finally
-                    {
-                        PresentationController.clearThreadHasFinished();
                     }
                     break;
             }
