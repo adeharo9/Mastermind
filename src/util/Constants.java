@@ -77,6 +77,7 @@ public final class Constants
     public static final String USER_LOADING_ERROR = "Error while loading user";
     public static final String GAME_DOESNT_EXISTS  = "Selected game does not exist";
     public static final String GAME_LOADING_ERROR = "Error while loading game";
+    public static final String EDIT_USERNAME = "Show rename text field";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {

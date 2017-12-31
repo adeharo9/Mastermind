@@ -3,6 +3,8 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import util.Constants;
 
 import java.io.IOException;
 
@@ -11,6 +13,7 @@ public class EditUserViewController extends RegisteringPresentationController
     /* ATTRIBUTES */
 
     @FXML private Label usernameLabel;
+    @FXML private TextField newUsernameTextField;
     @FXML private PasswordField currentPasswordPasswordField;
     @FXML private PasswordField newPasswordPasswordField;
     @FXML private PasswordField confirmNewPasswordPasswordField;
@@ -26,8 +29,15 @@ public class EditUserViewController extends RegisteringPresentationController
     public void processInfo(final Object info)
     {
         String message = (String) info;
-
-        usernameLabel.setText(message);
+        switch (message)
+        {
+            case Constants.EDIT_USERNAME:
+                newUsernameTextField.setVisible(true);
+                break;
+            default:
+                usernameLabel.setText(message);
+                break;
+        }
     }
 
     /* FXML */
@@ -47,6 +57,8 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML
     public void editButtonAction() throws IOException
     {
+        PresentationController.username = newUsernameTextField.getText();
+        newUsernameTextField.setVisible(false);
         pressButtonAction(1);
     }
 

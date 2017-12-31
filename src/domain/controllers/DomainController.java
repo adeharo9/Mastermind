@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import domain.classes.*;
 import enums.*;
 import exceptions.GameNotStartedException;
@@ -474,6 +475,11 @@ public class DomainController
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, loggedPlayerController.getId()));
     }
 
+    private void showRenameUsernameTextField() throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.EDIT_USERNAME));
+    }
+
     private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, topTen));
@@ -585,8 +591,16 @@ public class DomainController
                     break;
 
                 case EDIT_USERNAME:
-
+                    showRenameUsernameTextField();
                     username = PresentationController.getUsername();
+                    try
+                    {
+                        renameUsername(username);
+                    }
+                    catch(IOException | ClassNotFoundException e)
+                    {
+
+                    }
 
                     state = State.EDIT_USER_MENU;
                     break;
@@ -595,7 +609,12 @@ public class DomainController
 
                     password = PresentationController.getNewPassword();
                     confirmPassword = PresentationController.getConfirmPassword();
-                    state = State.EDIT_USER_MENU;
+
+                    try
+                    {
+                        changePassword(password);
+                    }
+                    catch(IOException e){}
                     break;
 
                 case EXIT_CURRENT_GAME:
