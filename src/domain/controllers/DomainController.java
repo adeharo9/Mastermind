@@ -262,9 +262,11 @@ public class DomainController
     private void renameGame(final String gameId) throws IOException
     {
         Game game = gameController.getGame();
+        String gameIdToChange = game.getId();
+
         String playerId = loggedPlayerController.getId();
-        deleteGame(gameId);
-        playerPersistence.deletePlayerGame(gameId, playerId);
+        deleteGame(gameIdToChange);
+        playerPersistence.deletePlayerGame(gameIdToChange, playerId);
 
         game.setId(gameId);
         saveGame();
