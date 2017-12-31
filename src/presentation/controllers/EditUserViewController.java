@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML private PasswordField currentPasswordPasswordField;
     @FXML private PasswordField newPasswordPasswordField;
     @FXML private PasswordField confirmNewPasswordPasswordField;
+    @FXML private Button editButton;
 
     /* CONSTRUCTORS */
 
@@ -33,6 +35,7 @@ public class EditUserViewController extends RegisteringPresentationController
         {
             case Constants.EDIT_USERNAME:
                 newUsernameTextField.setVisible(true);
+                editButton.setText("Done");
                 break;
             default:
                 usernameLabel.setText(message);
