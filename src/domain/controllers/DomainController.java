@@ -552,15 +552,9 @@ public class DomainController
                 case CLOSE_PROGRAM_WARNING:
                     popUpView(View.CLOSE_PROGRAM_WARNING_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateCloseProgramWarning(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateCloseProgramWarning(returnState);
+
                     break;
 
                 case CONTINUE_GAME:
@@ -571,15 +565,9 @@ public class DomainController
                     updateView(View.EDIT_USER_VIEW);
                     showUsername();
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateEditUserMenu(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateEditUserMenu(returnState);
+
                     break;
 
                 case EDIT_USERNAME:
@@ -620,28 +608,15 @@ public class DomainController
                 case EXIT_CURRENT_GAME_WARNING:
                     updateView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
 
-                    try
-                    {
-                        returnState = PresentationController.getReturnState();
-                        state = Translate.int2StateExitCurrentGameWarning(returnState);
-                    }
-                    catch(IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.int2StateExitCurrentGameWarning(returnState);
+
                     break;
 
                 case GAME_OVER_MENU:
-                    try
-                    {
-                        /*gameController.pointsEndGame();*/
-                        returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
-                        state = Translate.int2StateGameOverMenu(returnState);
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
+                    /*gameController.pointsEndGame();*/
+                    returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
+                    state = Translate.int2StateGameOverMenu(returnState);
 
                     break;
 
@@ -853,10 +828,6 @@ public class DomainController
                     {
                         state = State.GAME_PAUSE_MENU;
                     }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
-                    }
                     break;
 
                 case PLAY_CODE_MAKER:
@@ -884,10 +855,6 @@ public class DomainController
                     catch (ReservedKeywordException e)
                     {
                         state = State.GAME_PAUSE_MENU;
-                    }
-                    catch (IllegalArgumentException e)
-                    {
-                        oldPresentationController.optionError();
                     }
                     break;
 
@@ -957,6 +924,7 @@ public class DomainController
                     mode = gameController.getMode();
                     role = loggedPlayerController.getRole();
                     difficulty = boardController.getDifficulty();
+
                     state = State.NEW_GAME;
                     break;
 
@@ -990,10 +958,6 @@ public class DomainController
                         {
                             oldPresentationController.gameDeleteError();
                             state = State.GAME_PAUSE_MENU;
-                        }
-                        catch (IllegalArgumentException ei)
-                        {
-                            oldPresentationController.optionError();
                         }
                     }
                     catch(IOException e)
