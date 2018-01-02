@@ -84,6 +84,8 @@ public abstract class Player implements DeepCopyable, Serializable
         this.role = role;
     }
 
+    public void setPassword(final String password) throws IllegalArgumentException, NullPointerException {}
+
     /* VALIDATION METHODS */
 
     public boolean isValid()

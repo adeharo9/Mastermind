@@ -32,6 +32,7 @@
                      </graphic>
                   </Label>
                   <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Edit" GridPane.columnIndex="2" />
+                  <Button fx:id="doneButton" mnemonicParsing="false" onAction="#doneButtonAction" text="Done" visible="false" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <Separator prefWidth="200.0" />
