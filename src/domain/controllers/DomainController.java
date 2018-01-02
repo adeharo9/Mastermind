@@ -656,7 +656,11 @@ public class DomainController
                     confirmPassword = PresentationController.getConfirmPassword();
                     currentPassword = PresentationController.getCurrentPassword();
 
-                    if(!loggedPlayer.checkPassword(currentPassword)) errorMessage(Constants.WRONG_PASSWORD);
+                    if(!loggedPlayer.checkPassword(currentPassword))
+                    {
+                        errorMessage(Constants.WRONG_PASSWORD);
+                    }
+
                     try
                     {
                         changePassword(password, confirmPassword);
@@ -1044,32 +1048,13 @@ public class DomainController
                     }
                     catch (FileAlreadyExistsException e)
                     {
-                        returnState = oldPresentationController.savedGameAlreadyExistsWarning();
-
-                        try
-                        {
-                            switch (returnState)
-                            {
-                                case 0:
-                                    state = State.GAME_PAUSE_MENU;
-                                    break;
-                                case 1:
-                                    gamePersistence.delete(gameController.getId());
-                                    break;
-                                default:
-                                    throw new IllegalArgumentException();
-                            }
-                        }
-                        catch (IOException ei)
-                        {
-                            oldPresentationController.gameDeleteError();
-                            state = State.GAME_PAUSE_MENU;
-                        }
+                        state = State.SAVE_GAME_OVERWRITE;
                     }
                     catch(IOException e)
                     {
-                        errorMessage(Constants.GAME_SAVING_ERROR);
-                        state = State.GAME_PAUSE_MENU;
+                        /*errorMessage(Constants.GAME_SAVING_ERROR);
+                        Thread.sleep(Constants.ERROR_MESSAGE_TIME_MS);
+                        state = State.GAME_PAUSE_MENU;*/
                     }
                     break;
 
@@ -1079,6 +1064,27 @@ public class DomainController
                     returnState = PresentationController.getReturnState();
                     state = Translate.intToStateSaveGameMenu(returnState);
 
+                    break;
+
+                case SAVE_GAME_OVERWRITE:
+                    popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_OVERWRITE_VIEW);
+
+                    returnState = PresentationController.getReturnState();
+
+                    try
+                    {
+                        if(returnState == 1)
+                        {
+                            gamePersistence.delete(gameController.getId());
+                        }
+
+                        state = Translate.intToStateSaveGameOverwrite(returnState);
+                    }
+                    catch (IOException ei)
+                    {
+                        oldPresentationController.gameDeleteError();
+                        state = State.GAME_PAUSE_MENU;
+                    }
                     break;
             }
         }

@@ -46,6 +46,7 @@ public final class Constants
 
     /* GUI CONSTANTS */
     public static final int LOADING_TIME_MS = 1250;
+    public static final int ERROR_MESSAGE_TIME_MS = 2000;
 
     /* GENERAL MESSAGES */
 

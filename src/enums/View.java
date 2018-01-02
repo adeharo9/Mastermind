@@ -17,6 +17,7 @@ public enum View
     RANKING_VIEW("RankingView.fxml"),
     REGISTER_VIEW("RegisterView.fxml"),
     SAVE_GAME_VIEW("SaveGameView.fxml"),
+    SAVE_GAME_OVERWRITE_VIEW("SaveGameOverwriteView.fxml"),
     SHOW_CODE_VIEW("ShowCodeView.fxml"),
     HINT_VIEW("HintView.fxml"),
     INFO_VIEW("InfoView.fxml"),

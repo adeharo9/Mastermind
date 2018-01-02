@@ -11,27 +11,6 @@ public abstract class Translate
 {
     /* PRIVATE METHODS */
 
-    private static State int2StateGameDifficultySelectionMenu(int stat, State state0) throws IllegalArgumentException
-    {
-        State state;
-
-        switch (stat)
-        {
-            case 0:
-                state = state0;
-                break;
-            case 1:
-            case 2:
-            case 3:
-                state = State.NEW_GAME;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return state;
-    }
-
     private static State int2StateYesNo(int stat, State stateYes, State stateNo) throws IllegalArgumentException
     {
         State state;
@@ -489,6 +468,25 @@ public abstract class Translate
     }
 
     public static State intToStateSaveGameMenu(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.GAME_PAUSE_MENU;
+                break;
+            case 1:
+                state = State.SAVE_GAME;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State intToStateSaveGameOverwrite(int returnState) throws IllegalArgumentException
     {
         State state;
 

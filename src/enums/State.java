@@ -48,4 +48,5 @@ public enum State
 
     SAVE_GAME,
     SAVE_GAME_MENU,
+    SAVE_GAME_OVERWRITE,
 }
