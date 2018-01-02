@@ -811,7 +811,6 @@ public class DomainController
                     catch (IOException | ClassNotFoundException e)
                     {
                         errorMessage(Constants.RANKING_LOADING_ERROR);
-                        //oldPresentationController.rankingLoadError();
                     }
                     finally
                     {
