@@ -641,7 +641,7 @@ public class DomainController
                     break;
 
                 case EXIT_CURRENT_GAME_WARNING:
-                    updateView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
+                    popUpView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
 
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateExitCurrentGameWarning(returnState);
