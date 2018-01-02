@@ -275,16 +275,16 @@ public abstract class PresentationController
         String title = popUpWindowStyle.getTitle();
         String iconPath = Constants.RESOURCES_PATH + popUpWindowStyle.getIconFile();
         Modality modality = popUpWindowStyle.getModality();
-        EventHandler<WindowEvent> eventHandler;
+        EventHandler<WindowEvent> closingEventHandler;
 
         switch (popUpWindowStyle)
         {
             case INFO:
-                eventHandler = (WindowEvent event) -> {};
+                closingEventHandler = (WindowEvent event) -> {};
                 break;
             case INTERACTION:
             case WARNING:
-                eventHandler = (WindowEvent event) ->
+                closingEventHandler = (WindowEvent event) ->
                     {
                         try
                         {
@@ -300,7 +300,7 @@ public abstract class PresentationController
                 throw new IllegalArgumentException();
         }
 
-        newPopUpStage(viewFile, title, iconPath, modality, eventHandler);
+        newPopUpStage(viewFile, title, iconPath, modality, closingEventHandler);
     }
 
     /* TEMPLATE PATTERN */
