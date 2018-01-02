@@ -600,7 +600,7 @@ public class DomainController
                         catch (IOException | ClassNotFoundException e)
                         {
                             errorMessage(Constants.RANKING_LOAD_ERROR);
-                            oldPresentationController.rankingSaveError();
+                            //oldPresentationController.rankingSaveError();
                         }
                     }
 
@@ -706,7 +706,7 @@ public class DomainController
                     catch (GameNotStartedException e)
                     {
                         returnString = Constants.GAME_NOT_STARTED_ERROR;
-                        oldPresentationController.gameNotStartedError();
+                        //oldPresentationController.gameNotStartedError();
                     }
                     finally
                     {
@@ -896,7 +896,7 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        oldPresentationController.illegalActionError(e.getMessage());
+                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -927,7 +927,7 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        oldPresentationController.illegalActionError(e.getMessage());
+                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -958,7 +958,7 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        oldPresentationController.illegalActionError(e.getMessage());
+                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
