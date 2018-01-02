@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import domain.controllers.DomainController;
 import enums.Color;
+import enums.PlayingAction;
 import enums.Difficulty;
 import enums.View;
 import javafx.event.EventHandler;
@@ -52,6 +53,8 @@ public abstract class PresentationController
     protected static List<List<Color>> codes = new ArrayList<>();
     protected static List<List<Color>> corrections = new ArrayList<>();
     protected static List<Color> currentTurn = new ArrayList<>();
+
+    private static volatile PlayingAction playingAction;
 
     /* PROTECTED METHODS */
 
@@ -201,6 +204,11 @@ public abstract class PresentationController
         return PresentationController.DOMAIN_CONTROLLER;
     }
 
+    public static boolean isColorSelector(final PlayingAction playingAction)
+    {
+        return PresentationController.playingAction == playingAction;
+    }
+
     public static boolean threadHasFinished()
     {
         return PresentationController.threadFinished;
@@ -321,6 +329,21 @@ public abstract class PresentationController
     }
 
     public void renderLastTurn()
+    {
+
+    }
+
+    public void updateToCodeBreakerBoard()
+    {
+
+    }
+
+    public void updateToCodeCorrecterBoard()
+    {
+
+    }
+
+    public void updateToCodeMakerBoard()
     {
 
     }
