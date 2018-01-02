@@ -682,8 +682,10 @@ public class DomainController
                     break;
 
                 case GAME_OVER_MENU:
+                    updateView(View.GAME_OVER_VIEW);
                     /*gameController.pointsEndGame();*/
-                    returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
+                    //returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
+                    returnState = PresentationController.getReturnState();
                     state = Translate.int2StateGameOverMenu(returnState);
 
                     break;
