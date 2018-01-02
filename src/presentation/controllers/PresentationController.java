@@ -218,12 +218,12 @@ public abstract class PresentationController
 
         mainStage.setScene(new Scene(root));
         mainStage.setOnCloseRequest((WindowEvent event) ->
-        {
-            if(popUpStage != null)
             {
-                popUpStage.close();
+                if(popUpStage != null)
+                {
+                    popUpStage.close();
+                }
             }
-        }
         );
 
         mainStage.show();
