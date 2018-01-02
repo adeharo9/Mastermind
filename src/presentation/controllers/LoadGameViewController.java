@@ -12,6 +12,7 @@ import util.Constants;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public class LoadGameViewController extends RegisteringPresentationController
 {
@@ -50,7 +51,7 @@ public class LoadGameViewController extends RegisteringPresentationController
     }
 
     @Override
-    public void showLoadedGames(final List<String> savedGames)
+    public void showLoadedGames(final Set<String> savedGames)
     {
         int row = 0;
 

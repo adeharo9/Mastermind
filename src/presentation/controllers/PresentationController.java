@@ -16,6 +16,7 @@ import util.Constants;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 public abstract class PresentationController
@@ -310,7 +311,7 @@ public abstract class PresentationController
 
     }
 
-    public void showLoadedGames(final List<String> savedGames)
+    public void showLoadedGames(final Set<String> savedGames)
     {
 
     }

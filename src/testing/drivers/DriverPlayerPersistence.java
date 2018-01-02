@@ -7,6 +7,8 @@ import util.ioUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class DriverPlayerPersistence {
 
@@ -90,7 +92,7 @@ public class DriverPlayerPersistence {
     private void loadPlayerGameTest()
     {
         PlayerPersistence playerPersistence = new PlayerPersistence();
-        ArrayList<String> savedGames = new ArrayList<>();
+        Set<String> savedGames = new HashSet<>();
         Player player = new Human();
 
         try
@@ -104,6 +106,6 @@ public class DriverPlayerPersistence {
             ioUtils.printOutLn("Error on loadPlayerGameTest");
         }
         ioUtils.printOutLn("If the function works correctly, the id introduced previously is: " +
-                savedGames.get(0));
+                (savedGames.contains(this.id)?this.id:""));
     }
 }

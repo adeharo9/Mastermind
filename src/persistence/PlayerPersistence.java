@@ -5,6 +5,8 @@ import domain.classes.Player;
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * PlayerPersistence.
@@ -75,19 +77,18 @@ public class PlayerPersistence extends AbstractPersistence
         out.close();
     }
 
-    public void savePlayerGames(ArrayList<String> gamesId, String playerId) throws IOException
+    public void savePlayerGames(Set<String> gamesId, String playerId) throws IOException
     {
-        int size = gamesId.size();
-        for(int i = 0; i < size; ++i)
+        for(String gameId : gamesId)
         {
-            savePlayerGame(gamesId.get(i), playerId);
+            savePlayerGame(gameId, playerId);
         }
     }
 
-    public ArrayList<String> loadSavedGames(String playerId) throws IOException
+    public Set<String> loadSavedGames(String playerId) throws IOException
     {
         String savedGame;
-        ArrayList<String> savedGames = new ArrayList<>();
+        Set<String> savedGames = new HashSet<>();
 
         String filePath = getConfigFilePath(playerId);
         File configFile = new File(filePath);
@@ -105,17 +106,21 @@ public class PlayerPersistence extends AbstractPersistence
         }
 
         br.close();
+
         return savedGames;
     }
 
     public void deletePlayerGame(String gameId, String playerId) throws IOException
     {
-        ArrayList<String> savedGames = loadSavedGames(playerId);
+        Set<String> savedGames = loadSavedGames(playerId);
         savedGames.remove(gameId);
 
         int size = savedGames.size();
 
-        for(int i = 0; i < size; ++i) { savePlayerGame(savedGames.get(i), playerId); }
+        for(final String game : savedGames)
+        {
+            savePlayerGame(game, playerId);
+        }
 
     }
 

@@ -3,13 +3,14 @@ package presentation.runnables;
 import presentation.controllers.PresentationController;
 
 import java.util.List;
+import java.util.Set;
 
 public class ShowLoadedGamesRunnable implements Runnable
 {
     private PresentationController presentationController;
-    private List<String> savedGames;
+    private Set<String> savedGames;
 
-    public ShowLoadedGamesRunnable(final PresentationController presentationController, final List<String> savedGames)
+    public ShowLoadedGamesRunnable(final PresentationController presentationController, final Set<String> savedGames)
     {
         this.presentationController = presentationController;
         this.savedGames = savedGames;

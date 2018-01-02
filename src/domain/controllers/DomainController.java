@@ -22,7 +22,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -34,7 +36,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DomainController
 {
     private State state;
-    private List<String> savedGames;
+    private Set<String> savedGames;
 
     private final OldPresentationController oldPresentationController;
     private PresentationController presentationController;
@@ -53,7 +55,7 @@ public class DomainController
     public DomainController()
     {
         state = State.INIT_PROGRAM;
-        savedGames = new ArrayList<>();
+        savedGames = new HashSet<>();
 
         oldPresentationController = new OldPresentationController();
         this.presentationController = null;
@@ -273,7 +275,7 @@ public class DomainController
 
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
-        ArrayList<String> savedGames = new ArrayList<>();
+        Set<String> savedGames = new HashSet<>();
 
         try
         {
@@ -498,7 +500,7 @@ public class DomainController
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.INFO_MESSAGE));
     }
 
-    private void showLoadedGames(final List<String> savedGames) throws InterruptedException
+    private void showLoadedGames(final Set<String> savedGames) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ShowLoadedGamesRunnable(presentationController, savedGames));
     }
@@ -789,7 +791,8 @@ public class DomainController
                         showLoadedGames(savedGames);
 
                         returnState = PresentationController.getReturnState();
-                        gameId = Translate.int2SavedGameId(savedGames, returnState);
+                        gameId = PresentationController.getGameId();
+                        //gameId = Translate.int2SavedGameId(savedGames, returnState);
                         state = Translate.int2StateLoadGameMenu(returnState);
                     }
 
@@ -1048,7 +1051,7 @@ public class DomainController
                     }
                     catch (FileAlreadyExistsException e)
                     {
-                        state = State.SAVE_GAME_OVERWRITE;
+                        state = State.SAVE_GAME_OVERWRITE_MENU;
                     }
                     catch(IOException e)
                     {
@@ -1066,7 +1069,7 @@ public class DomainController
 
                     break;
 
-                case SAVE_GAME_OVERWRITE:
+                case SAVE_GAME_OVERWRITE_MENU:
                     popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_OVERWRITE_VIEW);
 
                     returnState = PresentationController.getReturnState();

@@ -6,6 +6,7 @@ import enums.Role;
 import enums.State;
 
 import java.util.List;
+import java.util.Set;
 
 public abstract class Translate
 {
@@ -259,7 +260,7 @@ public abstract class Translate
         return state;
     }
 
-    public static String int2SavedGameId(List<String> savedGames, int index) throws IllegalArgumentException
+    /*public static String int2SavedGameId(Set<String> savedGames, int index) throws IllegalArgumentException
     {
         String savedGameId;
 
@@ -277,7 +278,7 @@ public abstract class Translate
         }
 
         return savedGameId;
-    }
+    }*/
 
     public static State int2StateLoadGameMenu(int stat)
     {
