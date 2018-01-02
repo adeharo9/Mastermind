@@ -183,9 +183,9 @@ public class Human extends Player implements DeepCopyable, Serializable
         return new CodeBreak(code);
     }
 
-    public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException
+    public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException, InterruptedException
     {
-        List<Color> colorList = correctionInputByUser(difficulty);
+        List<Color> colorList = codeInputByUser(difficulty);
         Code code = new Code(colorList);
 
         return new CodeCorrect(code);
@@ -206,7 +206,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return colorList;
     }
 
-    private List<Color> correctionInputByUser(Difficulty difficulty) throws ReservedKeywordException
+    /*private List<Color> correctionInputByUser(Difficulty difficulty) throws ReservedKeywordException
     {
         List<String> correction = readCorrectionCode(difficulty);
         List<Color> colorList = new ArrayList<>(correction.size());
@@ -217,7 +217,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         }
 
         return colorList;
-    }
+    }*/
 
     /*private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {
@@ -290,7 +290,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return code;
     }
 
-    private List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
+    /*private List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
     {
         int numColors = Constants.getNumColorsByDifficulty(difficulty);
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
@@ -328,5 +328,5 @@ public class Human extends Player implements DeepCopyable, Serializable
         }
 
         return code;
-    }
+    }*/
 }

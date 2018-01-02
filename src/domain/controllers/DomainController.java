@@ -321,15 +321,21 @@ public class DomainController
         }
     }
 
-    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    {
+        play(codeBreakerController);
+    }
+
+    private void playCodeCorrecter() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         play(codeMakerController);
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
-    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
-        play(codeBreakerController);
+        play(codeMakerController);
+        if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
     private void giveClue() throws GameNotStartedException
@@ -500,6 +506,35 @@ public class DomainController
     private void renderLastTurnBlocking() throws InterruptedException
     {
         runOnGUIThreadAndWait(new RenderLastTurnRunnable(presentationController));
+    }
+
+    private Runnable getUpdateBoardRunnable(final PlayingAction playingAction)
+    {
+        Runnable runnable;
+
+        switch (playingAction)
+        {
+            case CODE_BREAK:
+                runnable = () -> presentationController.updateToCodeBreakerBoard();
+                break;
+            case CODE_CORRECT:
+                runnable = () -> presentationController.updateToCodeCorrecterBoard();
+                break;
+            case CODE_MAKE:
+                runnable = () -> presentationController.updateToCodeMakerBoard();
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return runnable;
+    }
+
+    private void updateBoardTo(final PlayingAction playingAction) throws InterruptedException
+    {
+        Runnable runnable = getUpdateBoardRunnable(playingAction);
+
+        Platform.runLater(runnable);
     }
 
     /* MAIN STATE MACHINE */
@@ -809,6 +844,7 @@ public class DomainController
                         if(hasToPrintBoard(Role.CODE_BREAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_BREAKER);
+                            updateBoardTo(PlayingAction.CODE_BREAK);
                             renderLastTurnBlocking();
                         }
                         else
@@ -818,7 +854,36 @@ public class DomainController
 
                         playCodeBreaker();
 
-                        state = State.PLAY_CODE_MAKER;
+                        state = State.PLAY_CODE_CORRECTER;
+                    }
+                    catch (IllegalActionException e)
+                    {
+                        oldPresentationController.illegalActionError(e.getMessage());
+                    }
+                    catch (ReservedKeywordException e)
+                    {
+                        state = State.GAME_PAUSE_MENU;
+                    }
+                    break;
+
+                case PLAY_CODE_CORRECTER:
+                    try
+                    {
+
+                        if(hasToPrintBoard(Role.CODE_MAKER))
+                        {
+                            oldPresentationController.printBoard(Role.CODE_MAKER);
+                            updateBoardTo(PlayingAction.CODE_CORRECT);
+                            renderLastTurnBlocking();
+                        }
+                        else
+                        {
+                            renderLastTurn();
+                        }
+
+                        playCodeCorrecter();
+
+                        state = State.CHECK_GAME_HAS_FINISHED;
                     }
                     catch (IllegalActionException e)
                     {
@@ -837,6 +902,7 @@ public class DomainController
                         if(hasToPrintBoard(Role.CODE_MAKER))
                         {
                             oldPresentationController.printBoard(Role.CODE_MAKER);
+                            updateBoardTo(PlayingAction.CODE_MAKE);
                             renderLastTurnBlocking();
                         }
                         else
