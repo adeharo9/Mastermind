@@ -264,14 +264,7 @@ public class DomainController
     private void renameGame(final String gameId) throws IOException
     {
         Game game = gameController.getGame();
-        String gameIdToChange = game.getId();
-
-        String playerId = loggedPlayerController.getId();
-        deleteGame(gameIdToChange);
-        playerPersistence.deletePlayerGame(gameIdToChange, playerId);
-
         game.setId(gameId);
-        saveGame();
     }
 
     public void deleteGame(final String gameId) throws IOException
@@ -1063,8 +1056,8 @@ public class DomainController
                     popUpView(View.SAVE_GAME_VIEW);
                     try
                     {
-                        saveGame();
                         renameGame(PresentationController.getGameId());
+                        saveGame();
                         state = State.GAME_PAUSE_MENU;
                     }
                     catch (FileAlreadyExistsException e)
