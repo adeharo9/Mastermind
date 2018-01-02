@@ -1,11 +1,7 @@
 package enums;
 
-import javafx.event.EventHandler;
 import javafx.stage.Modality;
-import javafx.stage.WindowEvent;
 import util.Constants;
-
-import java.io.IOException;
 
 public enum PopUpWindowStyle
 {

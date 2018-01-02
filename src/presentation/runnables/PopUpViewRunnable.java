@@ -1,9 +1,7 @@
 package presentation.runnables;
 
 import enums.PopUpWindowStyle;
-import javafx.stage.Modality;
 import presentation.controllers.PresentationController;
-import util.Constants;
 
 import java.io.IOException;
 
