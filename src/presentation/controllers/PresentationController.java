@@ -47,6 +47,7 @@ public abstract class PresentationController
     protected static volatile String password;
     protected static volatile String confirmPassword;
     protected static volatile String newPassword;
+    protected static volatile String currentPassword;
 
     protected static Difficulty boardDifficulty;
     protected static List<Color> solution = new ArrayList<>();
@@ -180,6 +181,11 @@ public abstract class PresentationController
     public static String getNewPassword()
     {
         return PresentationController.newPassword;
+    }
+
+    public static String getCurrentPassword()
+    {
+        return PresentationController.currentPassword;
     }
 
     public static String getGameId()

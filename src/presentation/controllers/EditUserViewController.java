@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import util.Constants;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML private PasswordField confirmNewPasswordPasswordField;
     @FXML private Button editButton;
     @FXML private Button doneButton;
+    @FXML private Label exceptionsLabel;
 
     /* CONSTRUCTORS */
 
@@ -38,6 +40,16 @@ public class EditUserViewController extends RegisteringPresentationController
                 newUsernameTextField.setVisible(true);
                 editButton.setVisible(false);
                 doneButton.setVisible(true);
+                break;
+            case Constants.WRONG_PASSWORD:
+                exceptionsLabel.setVisible(true);
+                exceptionsLabel.setTextFill(Color.web("red"));
+                exceptionsLabel.setText(Constants.WRONG_PASSWORD);
+                break;
+            case Constants.PASSWORDS_MUST_MATCH:
+                exceptionsLabel.setVisible(true);
+                exceptionsLabel.setTextFill(Color.web("red"));
+                exceptionsLabel.setText(Constants.PASSWORDS_MUST_MATCH);
                 break;
             default:
                 usernameLabel.setText(message);
@@ -78,6 +90,9 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML
     public void updatePasswordButtonAction() throws IOException
     {
+        PresentationController.newPassword = newPasswordPasswordField.getText();
+        PresentationController.confirmPassword = confirmNewPasswordPasswordField.getText();
+        PresentationController.currentPassword = currentPasswordPasswordField.getText();
         pressButtonAction(2);
     }
 }
