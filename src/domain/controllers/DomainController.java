@@ -357,7 +357,7 @@ public class DomainController
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
-    private void giveClue() throws GameNotStartedException
+    private void giveHint() throws GameNotStartedException
     {
         boolean b = gameController.hasStarted();
         if(!b) throw new GameNotStartedException();
@@ -582,7 +582,7 @@ public class DomainController
                     {
                         try
                         {
-                            oldPresentationController.printBoard(Role.CODE_MAKER);
+                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             renderLastTurn();
 
                             if(gameController.getMode() != Mode.CPU_VS_CPU)
@@ -593,6 +593,7 @@ public class DomainController
                         }
                         catch (IOException | ClassNotFoundException e)
                         {
+                            errorMessage(Constants.RANKING_LOAD_ERROR);
                             oldPresentationController.rankingSaveError();
                         }
                     }
@@ -602,6 +603,9 @@ public class DomainController
                     break;
 
                 case CLOSE_PROGRAM:
+                    // This state is never reached since it is the loop exit condition.
+                    //
+                    // Its presence here is only for completeness purposes.
                     break;
 
                 case CLOSE_PROGRAM_WARNING:
@@ -691,7 +695,7 @@ public class DomainController
 
                     try
                     {
-                        giveClue();
+                        giveHint();
                         gameController.pointsClue();
                     }
                     catch (GameNotStartedException e)
@@ -866,7 +870,7 @@ public class DomainController
                     {
                         if(hasToPrintBoard(Role.CODE_BREAKER))
                         {
-                            oldPresentationController.printBoard(Role.CODE_BREAKER);
+                            //oldPresentationController.printBoard(Role.CODE_BREAKER);
                             updateBoardTo(PlayingAction.CODE_BREAK);
                             renderLastTurnBlocking();
                         }
@@ -897,7 +901,7 @@ public class DomainController
 
                         if(hasToPrintBoard(Role.CODE_MAKER))
                         {
-                            oldPresentationController.printBoard(Role.CODE_MAKER);
+                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_CORRECT);
                             renderLastTurnBlocking();
                         }
@@ -928,7 +932,7 @@ public class DomainController
 
                         if(hasToPrintBoard(Role.CODE_MAKER))
                         {
-                            oldPresentationController.printBoard(Role.CODE_MAKER);
+                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_MAKE);
                             renderLastTurnBlocking();
                         }

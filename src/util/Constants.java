@@ -79,6 +79,7 @@ public final class Constants
     public static final String GAME_LOADING_ERROR = "Error while loading game";
     public static final String EDIT_USERNAME = "Show rename text field";
     public static final String WRONG_PASSWORD = "Wrong current password";
+    public static final String RANKING_LOAD_ERROR = "Error while saving ranking";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {
