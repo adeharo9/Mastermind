@@ -1,10 +1,7 @@
 package presentation.controllers;
 
 import domain.controllers.DomainController;
-import enums.Color;
-import enums.Difficulty;
-import enums.PlayingAction;
-import enums.View;
+import enums.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -273,24 +270,37 @@ public abstract class PresentationController
         popUpStage.show();
     }
 
-    public void popUpInfoWindow(final String viewFile) throws IOException
+    public void popUpWindow(final PopUpWindowStyle popUpWindowStyle, final String viewFile) throws IOException
     {
-        newPopUpStage(viewFile, "Solution", Constants.RESOURCES_PATH + Constants.ICON_FILE, Modality.NONE, (WindowEvent event) -> {});
-    }
+        String title = popUpWindowStyle.getTitle();
+        String iconPath = Constants.RESOURCES_PATH + popUpWindowStyle.getIconFile();
+        Modality modality = popUpWindowStyle.getModality();
+        EventHandler<WindowEvent> eventHandler;
 
-    public void popUpWindow(final String viewFile) throws IOException
-    {
-        newPopUpStage(viewFile, "Warning", Constants.RESOURCES_PATH + Constants.WARNING_ICON_FILE, Modality.APPLICATION_MODAL, (WindowEvent event) ->
+        switch (popUpWindowStyle)
         {
-            try
-            {
-                pressButtonAction(0);
-            }
-            catch (IOException ioe)
-            {
-                throw new RuntimeException(ioe.getMessage());
-            }
-        });
+            case INFO:
+                eventHandler = (WindowEvent event) -> {};
+                break;
+            case INTERACTION:
+            case WARNING:
+                eventHandler = (WindowEvent event) ->
+                    {
+                        try
+                        {
+                            pressButtonAction(0);
+                        }
+                        catch (IOException ioe)
+                        {
+                            throw new RuntimeException(ioe.getMessage());
+                        }
+                    };
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        newPopUpStage(viewFile, title, iconPath, modality, eventHandler);
     }
 
     /* TEMPLATE PATTERN */

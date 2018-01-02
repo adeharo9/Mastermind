@@ -1,6 +1,5 @@
 package domain.controllers;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import domain.classes.*;
 import enums.*;
 import exceptions.GameNotStartedException;
@@ -19,7 +18,6 @@ import util.Pair;
 import util.Translate;
 import util.Utils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -484,14 +482,14 @@ public class DomainController
         PresentationController.clearThreadHasFinished();
     }
 
-    private void updateView(View view) throws InterruptedException
+    private void updateView(final View view) throws InterruptedException
     {
         runOnGUIThreadAndWait(new UpdateViewRunnable(presentationController, view.getViewFile()));
     }
 
-    private void popUpView(View view) throws InterruptedException
+    private void popUpView(final PopUpWindowStyle popUpWindowStyle, final View view) throws InterruptedException
     {
-        runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, view.getViewFile()));
+        runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, popUpWindowStyle, view.getViewFile()));
     }
 
     private void errorMessage(final String message)
@@ -632,7 +630,7 @@ public class DomainController
                     break;
 
                 case CLOSE_PROGRAM_WARNING:
-                    popUpView(View.CLOSE_PROGRAM_WARNING_VIEW);
+                    popUpView(PopUpWindowStyle.WARNING, View.CLOSE_PROGRAM_WARNING_VIEW);
 
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateCloseProgramWarning(returnState);
@@ -693,7 +691,7 @@ public class DomainController
                     break;
 
                 case EXIT_CURRENT_GAME_WARNING:
-                    popUpView(View.EXIT_CURRENT_GAME_WARNING_VIEW);
+                    popUpView(PopUpWindowStyle.WARNING, View.EXIT_CURRENT_GAME_WARNING_VIEW);
 
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateExitCurrentGameWarning(returnState);
@@ -719,7 +717,7 @@ public class DomainController
                     break;
 
                 case HINT_MENU:
-                    popUpView(View.HINT_VIEW);
+                    popUpView(PopUpWindowStyle.INTERACTION, View.HINT_VIEW);
                     try
                     {
                         returnString = generateHint();
@@ -860,7 +858,7 @@ public class DomainController
                     break;
 
                 case LOG_OUT_WARNING:
-                    popUpView(View.LOG_OUT_WARNING_VIEW);
+                    popUpView(PopUpWindowStyle.WARNING, View.LOG_OUT_WARNING_VIEW);
 
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateLogOutWarning(returnState);
@@ -1060,7 +1058,7 @@ public class DomainController
                     break;
 
                 case SAVE_GAME:
-                    popUpView(View.SAVE_GAME_VIEW);
+                    popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_VIEW);
                     try
                     {
                         saveGame();

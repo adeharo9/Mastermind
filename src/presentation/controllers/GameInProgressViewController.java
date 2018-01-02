@@ -1,9 +1,6 @@
 package presentation.controllers;
 
-import enums.Color;
-import enums.Difficulty;
-import enums.StyleClass;
-import enums.View;
+import enums.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -320,7 +317,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML
     public void showCodeButtonAction() throws IOException
     {
-        popUpInfoWindow(View.SHOW_CODE_VIEW.getViewFile());
+        popUpWindow(PopUpWindowStyle.INFO, View.SHOW_CODE_VIEW.getViewFile());
     }
 
     @FXML
