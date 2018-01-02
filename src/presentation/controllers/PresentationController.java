@@ -268,7 +268,7 @@ public abstract class PresentationController
 
         popUpStage.setOnCloseRequest(closingEventHandler);
 
-        popUpStage.setScene(new Scene(root, 250, 100));
+        popUpStage.setScene(new Scene(root, 250, 125));
 
         popUpStage.show();
     }
