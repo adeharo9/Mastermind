@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import util.Constants;
 
 import java.io.IOException;
 import java.util.List;
@@ -76,7 +77,6 @@ public class LoadGameViewController extends RegisteringPresentationController
     @FXML
     public void initialize()
     {
-
         endAction();
     }
 

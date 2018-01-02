@@ -174,6 +174,7 @@ public class DomainController
 
     private void loadSavedGamesList() throws IOException
     {
+        savedGames.clear();
         Player loggedPlayer = loggedPlayerController.getPlayer();
         savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
     }
@@ -780,11 +781,27 @@ public class DomainController
 
                 case LOAD_GAME_MENU:
                     updateView(View.LOAD_GAME_VIEW);
-                    showLoadedGames(savedGames);
 
-                    returnState = PresentationController.getReturnState();
-                    gameId = Translate.int2SavedGameId(savedGames, returnState);
-                    state = Translate.int2StateLoadGameMenu(returnState);
+                    try
+                    {
+                        loadSavedGamesList();
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        errorMessage(Constants.PLAYER_HAS_NO_SAVED_GAMES);
+                    }
+                    catch (IOException e)
+                    {
+                        errorMessage(Constants.SAVED_GAMES_LIST_LOAD_ERROR);
+                    }
+                    finally
+                    {
+                        showLoadedGames(savedGames);
+
+                        returnState = PresentationController.getReturnState();
+                        gameId = Translate.int2SavedGameId(savedGames, returnState);
+                        state = Translate.int2StateLoadGameMenu(returnState);
+                    }
 
                     break;
 
@@ -800,24 +817,6 @@ public class DomainController
                     finally
                     {
                         state = State.INIT_SESSION_MENU;
-                    }
-                    break;
-
-                case LOAD_SAVED_GAMES_LIST:
-                    try
-                    {
-                        loadSavedGamesList();
-                        state = State.LOAD_GAME_MENU;
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        oldPresentationController.savedGamesListNotExistError();
-                        state = State.MAIN_MENU;
-                    }
-                    catch (IOException e)
-                    {
-                        oldPresentationController.savedGamesListLoadError();
-                        state = State.MAIN_MENU;
                     }
                     break;
 

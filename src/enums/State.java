@@ -28,7 +28,6 @@ public enum State
     LOAD_GAME,
     LOAD_GAME_MENU,
     LOAD_RANKING,
-    LOAD_SAVED_GAMES_LIST,
     LOG_IN_MENU,
     LOG_IN_USER,
     LOG_OUT_WARNING,
