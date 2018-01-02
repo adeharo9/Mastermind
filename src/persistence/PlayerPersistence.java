@@ -75,6 +75,15 @@ public class PlayerPersistence extends AbstractPersistence
         out.close();
     }
 
+    public void savePlayerGames(ArrayList<String> gamesId, String playerId) throws IOException
+    {
+        int size = gamesId.size();
+        for(int i = 0; i < size; ++i)
+        {
+            savePlayerGame(gamesId.get(i), playerId);
+        }
+    }
+
     public ArrayList<String> loadSavedGames(String playerId) throws IOException
     {
         String savedGame;

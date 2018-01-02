@@ -280,14 +280,24 @@ public class DomainController
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
         Player loggedPlayer = loggedPlayerController.getPlayer();
-        deleteUser(loggedPlayer.getId());
+        String player = loggedPlayer.getId();
+        ArrayList<String> savedGames = new ArrayList<>();
+        try
+        {
+            savedGames = playerPersistence.loadSavedGames(player);
+        }
+        catch(FileNotFoundException e){}
+        deleteUser(player);
 
         loggedPlayer.setId(username);
         playerPersistence.save(loggedPlayer);
+        playerPersistence.savePlayerGames(savedGames, player);
     }
 
     public void changePassword(final String password) throws IOException
     {
+        Player loggedPlayer = loggedPlayerController.getPlayer();
+        loggedPlayer.setPassword(password);
         String username = loggedPlayerController.getId();
         deleteUser(username);
 

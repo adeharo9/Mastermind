@@ -19,6 +19,7 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML private PasswordField newPasswordPasswordField;
     @FXML private PasswordField confirmNewPasswordPasswordField;
     @FXML private Button editButton;
+    @FXML private Button doneButton;
 
     /* CONSTRUCTORS */
 
@@ -35,7 +36,8 @@ public class EditUserViewController extends RegisteringPresentationController
         {
             case Constants.EDIT_USERNAME:
                 newUsernameTextField.setVisible(true);
-                editButton.setText("Done");
+                editButton.setVisible(false);
+                doneButton.setVisible(true);
                 break;
             default:
                 usernameLabel.setText(message);
@@ -60,9 +62,17 @@ public class EditUserViewController extends RegisteringPresentationController
     @FXML
     public void editButtonAction() throws IOException
     {
+        pressButtonAction(1);
+    }
+
+    @FXML
+    public void doneButtonAction() throws IOException
+    {
         PresentationController.username = newUsernameTextField.getText();
         newUsernameTextField.setVisible(false);
-        pressButtonAction(1);
+        doneButton.setVisible(false);
+        editButton.setVisible(true);
+        endAction();
     }
 
     @FXML
