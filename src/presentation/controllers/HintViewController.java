@@ -18,7 +18,7 @@ public class HintViewController extends PopUpController
 
     protected void pressButtonTemplateAction()
     {
-        this.popUpStage.close();
+        popUpStage.close();
     }
 
     /* FXML */

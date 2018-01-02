@@ -282,11 +282,19 @@ public class DomainController
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
         ArrayList<String> savedGames = new ArrayList<>();
+
         try
         {
             savedGames = playerPersistence.loadSavedGames(player);
         }
-        catch(FileNotFoundException e){}
+        catch(FileNotFoundException e)
+        {
+            // Catch block deliberately left blank
+            //
+            // If there are no saved games, nothing has
+            // to be done here.
+        }
+
         deleteUser(player);
 
         loggedPlayer.setId(username);
@@ -551,7 +559,6 @@ public class DomainController
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
-        String returnString;
         String gameId = null;
         String username;
         String password;
