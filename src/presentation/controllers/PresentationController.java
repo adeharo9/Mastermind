@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import domain.controllers.DomainController;
 import enums.Color;
+import enums.PlayingAction;
 import enums.Difficulty;
 import enums.View;
 import javafx.event.EventHandler;
@@ -26,8 +27,8 @@ public abstract class PresentationController
 
     private String currentViewFile;
 
-    protected Stage mainStage;
-    protected Stage popUpStage;
+    protected static Stage mainStage;
+    protected static Stage popUpStage;
 
     protected static Stage currentStage;
     protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
@@ -52,6 +53,8 @@ public abstract class PresentationController
     protected static List<List<Color>> codes = new ArrayList<>();
     protected static List<List<Color>> corrections = new ArrayList<>();
     protected static List<Color> currentTurn = new ArrayList<>();
+
+    private static volatile PlayingAction playingAction;
 
     /* PROTECTED METHODS */
 
@@ -105,11 +108,6 @@ public abstract class PresentationController
 
     /* PRIVATE METHODS */
 
-    private void setPopUpStage(final Stage popUpStage)
-    {
-        this.popUpStage = popUpStage;
-    }
-
     private void setCurrentViewFile(final String currentViewFile)
     {
         this.currentViewFile = currentViewFile;
@@ -125,8 +123,6 @@ public abstract class PresentationController
 
         PresentationController presentationController = fxmlLoader.getController();
 
-        presentationController.setMainStage(this.mainStage);
-        presentationController.setPopUpStage(this.popUpStage);
         presentationController.setCurrentViewFile(this.currentViewFile);
 
         return root;
@@ -136,7 +132,7 @@ public abstract class PresentationController
 
     public void setMainStage(final Stage mainStage)
     {
-        this.mainStage = mainStage;
+        PresentationController.mainStage = mainStage;
     }
 
     public static void clearThreadHasFinished()
@@ -201,6 +197,11 @@ public abstract class PresentationController
         return PresentationController.DOMAIN_CONTROLLER;
     }
 
+    public static boolean isColorSelector(final PlayingAction playingAction)
+    {
+        return PresentationController.playingAction == playingAction;
+    }
+
     public static boolean threadHasFinished()
     {
         return PresentationController.threadFinished;
@@ -212,12 +213,20 @@ public abstract class PresentationController
     {
         Parent root = loadView(View.LOADING_VIEW.getViewFile());
 
-        this.mainStage.setTitle("Mastermind");
-        this.mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
+        mainStage.setTitle("Mastermind");
+        mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
 
-        this.mainStage.setScene(new Scene(root));
+        mainStage.setScene(new Scene(root));
+        mainStage.setOnCloseRequest((WindowEvent event) ->
+            {
+                if(popUpStage != null)
+                {
+                    popUpStage.close();
+                }
+            }
+        );
 
-        this.mainStage.show();
+        mainStage.show();
     }
 
     public void updateView(final String viewFile) throws IOException
@@ -226,7 +235,7 @@ public abstract class PresentationController
         {
             Parent root = loadView(viewFile);
 
-            this.mainStage.getScene().setRoot(root);
+            mainStage.getScene().setRoot(root);
         }
     }
 
@@ -321,6 +330,21 @@ public abstract class PresentationController
     }
 
     public void renderLastTurn()
+    {
+
+    }
+
+    public void updateToCodeBreakerBoard()
+    {
+
+    }
+
+    public void updateToCodeCorrecterBoard()
+    {
+
+    }
+
+    public void updateToCodeMakerBoard()
     {
 
     }

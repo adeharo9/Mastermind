@@ -39,6 +39,7 @@ public enum State
 
     PLAY_TURN,
     PLAY_CODE_BREAKER,
+    PLAY_CODE_CORRECTER,
     PLAY_CODE_MAKER,
 
     REGISTER_MENU,

@@ -115,11 +115,23 @@ public enum Color
         return colorSet;
     }
 
-    public static Set<Color> getCorrectionValues()
+    public static Set<Color> getFullCorrectionValues()
     {
         Set<Color> colorSet = new HashSet<>();
 
         for(int i = NONE.getId(); i <= WHITE.getId(); ++i)
+        {
+            colorSet.add(getColor(i));
+        }
+
+        return colorSet;
+    }
+
+    public static Set<Color> getCorrectionValues()
+    {
+        Set<Color> colorSet = new HashSet<>();
+
+        for(int i = BLACK.getId(); i <= WHITE.getId(); ++i)
         {
             colorSet.add(getColor(i));
         }

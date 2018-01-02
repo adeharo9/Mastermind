@@ -53,9 +53,20 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         return correctionGridPane;
     }
 
+    private List<Color> getEmptyCorrection(int nElements)
+    {
+        List<Color> colorList = new ArrayList<>(nElements);
+
+        for(int i = 0; i < nElements; ++i)
+        {
+            colorList.add(Color.NONE);
+        }
+
+        return colorList;
+    }
+
     /* RENDERING METHODS */
 
-    @SuppressWarnings("EmptyCatchBlock")
     private void renderTurn(final int row)
     {
         int column = 0;
@@ -76,23 +87,22 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
         catch(IndexOutOfBoundsException iob)
         {
-            // Catch block deliberately left blank
-            //
-            // If there is no correction on the current code,
-            // it simply means it still has not been corrected
-            // and thus nothing should be done here.
+            int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
+
+            List<Color> emptyCorrection = getEmptyCorrection(numPins);
+            GridPane correctionGridPane = getNewCorrectionGridPane(emptyCorrection);
+
+            turnsGridPane.add(correctionGridPane, column, row);
         }
     }
 
     private void renderUserChoiceContainer()
     {
         int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
-        List<Color> emptyCorrection = new ArrayList<>();
 
         for(int column = 0; column < numPins; ++column)
         {
             Circle pin = getNewPin(Color.NONE);
-            pin.getStyleClass().add(StyleClass.COLOR_BLACK.toString());
 
             pin.setOnDragOver((DragEvent event) ->
                     dragOver(event, pin)
@@ -103,14 +113,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
             );
 
             pin.setOnMouseClicked((MouseEvent event) ->
-                pin.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString())
+                pin.getStyleClass().setAll(StyleClass.COLOR_NONE.toString())
             );
 
             userChoiceGridPane.add(pin, column, 0);
-
-            emptyCorrection.add(Color.HIDDEN);
         }
 
+        List<Color> emptyCorrection = getEmptyCorrection(numPins);
         GridPane correctionGridPane = getNewCorrectionGridPane(emptyCorrection);
 
         userChoiceGridPane.add(correctionGridPane, numPins, 0);
@@ -119,6 +128,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     private void renderColorSelectors(final List<Color> colorList)
     {
         int column = 0;
+
+        colorSelectionGridPane.getChildren().clear();
 
         for(final Color color : colorList)
         {
@@ -218,14 +229,12 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     private void renderCorrectionColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
-
         renderColorSelectors(colorList);
     }
 
     private void renderCodeColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
-
         renderColorSelectors(colorList);
     }
 
@@ -235,17 +244,27 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
         renderAllTurns();
         renderUserChoiceContainer();
-        renderCodeColorSelectors();
-    }
-
-    public void updateToCodeMakerBoard()
-    {
-        renderCorrectionColorSelectors();
     }
 
     public void updateToCodeBreakerBoard()
     {
         renderCodeColorSelectors();
+
+        showCodeButton.setVisible(false);
+    }
+
+    public void updateToCodeCorrecterBoard()
+    {
+        renderCorrectionColorSelectors();
+
+        showCodeButton.setVisible(true);
+    }
+
+    public void updateToCodeMakerBoard()
+    {
+        renderCodeColorSelectors();
+
+        showCodeButton.setVisible(false);
     }
 
     /* FXML */
@@ -256,6 +275,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         boardVBox.getChildren().add(turnsGridPane);
         boardVBox.getChildren().add(userChoiceGridPane);
         boardVBox.getChildren().add(colorSelectionGridPane);
+
+        showCodeButton.setVisible(false);
 
         endAction();
     }
@@ -290,7 +311,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
             Node node = nodeList.get(i);
             Color color = Color.getColorByStyle(node.getStyleClass().get(0));
             currentTurn.add(color);
-            node.getStyleClass().setAll(StyleClass.COLOR_BLACK.toString());
+            node.getStyleClass().setAll(StyleClass.COLOR_NONE.toString());
         }
 
         pressButtonAction(2);

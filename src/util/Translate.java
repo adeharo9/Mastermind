@@ -380,9 +380,22 @@ public abstract class Translate
     {
         State state;
 
-        if(!hasStarted || hasCodeToCorrect)
+        /*if(!hasStarted || hasCodeToCorrect)
         {
             state = State.PLAY_CODE_MAKER;
+        }
+        else
+        {
+            state = State.PLAY_CODE_BREAKER;
+        }*/
+
+        if(!hasStarted)
+        {
+            state = State.PLAY_CODE_MAKER;
+        }
+        else if(hasCodeToCorrect)
+        {
+            state = State.PLAY_CODE_CORRECTER;
         }
         else
         {
