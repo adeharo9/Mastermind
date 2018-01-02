@@ -344,7 +344,7 @@ public abstract class PresentationController
         throw new RuntimeException("You should not be executing this method from here");
     }
 
-    public void renderLastTurn()
+    public void renderLastTurn(final boolean renderFinishTurnButton)
     {
         throw new RuntimeException("You should not be executing this method from here");
     }

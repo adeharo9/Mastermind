@@ -28,6 +28,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML private VBox nonScrollableVBox;
     @FXML private Button helpButton;
     @FXML private Button showCodeButton;
+    @FXML private Button finishTurnButton;
     @FXML private Label errorLabel;
 
     private GridPane turnsGridPane;
@@ -228,12 +229,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
     }
 
-    public  void renderLastTurn()
+    public  void renderLastTurn(final boolean renderFinishTurnButton)
     {
         if(!codes.isEmpty())
         {
             renderTurn(codes.size() - 1);
         }
+
+        finishTurnButton.setVisible(renderFinishTurnButton);
     }
 
     private void renderCorrectionColorSelectors()
@@ -297,6 +300,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
         helpButton.setVisible(false);
         showCodeButton.setVisible(false);
+        finishTurnButton.setVisible(true);
 
         endAction();
     }

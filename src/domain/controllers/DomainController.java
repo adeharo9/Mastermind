@@ -75,9 +75,9 @@ public class DomainController
 
     /* EXECUTE */
 
-    private boolean hasToPrintBoard(final Role role)
+    private boolean hasToBlock(final Role role)
     {
-        return gameController.getMode() == Mode.HUMAN_VS_HUMAN || loggedPlayerController.getRole() == role || loggedPlayerController.getRole() == Role.WATCHER;
+        return gameController.getMode() == Mode.HUMAN_VS_HUMAN || loggedPlayerController.getRole() == role;
     }
 
     private void logInUser(String username, String password) throws IOException, WrongPasswordException, ClassNotFoundException
@@ -524,12 +524,12 @@ public class DomainController
 
     private void renderLastTurn() throws InterruptedException
     {
-        Platform.runLater(new RenderLastTurnRunnable(presentationController));
+        Platform.runLater(new RenderLastTurnRunnable(presentationController, false));
     }
 
     private void renderLastTurnBlocking() throws InterruptedException
     {
-        runOnGUIThreadAndWait(new RenderLastTurnRunnable(presentationController));
+        runOnGUIThreadAndWait(new RenderLastTurnRunnable(presentationController, true));
     }
 
     private Runnable getUpdateBoardRunnable(final PlayingAction playingAction)
@@ -878,7 +878,7 @@ public class DomainController
                 case PLAY_CODE_BREAKER:
                     try
                     {
-                        if(hasToPrintBoard(Role.CODE_BREAKER))
+                        if(hasToBlock(Role.CODE_BREAKER))
                         {
                             //oldPresentationController.printBoard(Role.CODE_BREAKER);
                             updateBoardTo(PlayingAction.CODE_BREAK);
@@ -909,7 +909,7 @@ public class DomainController
                     try
                     {
 
-                        if(hasToPrintBoard(Role.CODE_MAKER))
+                        if(hasToBlock(Role.CODE_MAKER))
                         {
                             //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_CORRECT);
@@ -940,7 +940,7 @@ public class DomainController
                     try
                     {
 
-                        if(hasToPrintBoard(Role.CODE_MAKER))
+                        if(hasToBlock(Role.CODE_MAKER))
                         {
                             //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_MAKE);
