@@ -108,7 +108,6 @@ public class DomainController
     {
         loggedPlayerController.restart();
         presentationController.clear();
-        oldPresentationController.clear();
 
         List<Player> players = new ArrayList<>();
 
@@ -222,7 +221,7 @@ public class DomainController
         }
 
         presentationController.clear();
-        oldPresentationController.clear();
+
         List<Turn> turnSet = boardController.getTurnSet();
         List<List<Color>> codes = new ArrayList<>(turnSet.size());
         List<List<Color>> corrections = new ArrayList<>(turnSet.size());
@@ -243,10 +242,6 @@ public class DomainController
         presentationController.setSolution(boardController.getSolution().getCodePins());
         presentationController.setCodes(codes);
         presentationController.setCorrections(corrections);
-
-        oldPresentationController.setSolution(boardController.getSolution().getCodePins());
-        oldPresentationController.setCodes(codes);
-        oldPresentationController.setCorrections(corrections);
     }
 
     private void saveGame() throws IOException
@@ -402,7 +397,7 @@ public class DomainController
             default:
                 throw new IllegalArgumentException();
         }
-        //oldPresentationController.showClue(type,String.valueOf(number),name);
+
         return message;
     }
 
@@ -416,7 +411,6 @@ public class DomainController
         {
             Code solution = boardController.getSolution();
             presentationController.setSolution(solution.getCodePins());
-            oldPresentationController.setSolution(solution.getCodePins());
         }
         else
         {
@@ -426,12 +420,10 @@ public class DomainController
             if(correction.getCodePins().isEmpty())
             {
                 presentationController.addCode(code.getCodePins());
-                oldPresentationController.addCode(code.getCodePins());
             }
             else
             {
                 presentationController.addCorrection(correction.getCodePins());
-                oldPresentationController.addCorrection(correction.getCodePins());
             }
         }
     }
@@ -597,7 +589,6 @@ public class DomainController
                     {
                         try
                         {
-                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             renderLastTurn();
 
                             if(gameController.getMode() != Mode.CPU_VS_CPU)
@@ -609,7 +600,6 @@ public class DomainController
                         catch (IOException | ClassNotFoundException e)
                         {
                             errorMessage(Constants.RANKING_LOAD_ERROR);
-                            //oldPresentationController.rankingSaveError();
                         }
                     }
 
@@ -720,7 +710,6 @@ public class DomainController
                     catch (GameNotStartedException e)
                     {
                         returnString = Constants.GAME_NOT_STARTED_ERROR;
-                        //oldPresentationController.gameNotStartedError();
                     }
                     finally
                     {
@@ -728,7 +717,6 @@ public class DomainController
 
                         returnState = PresentationController.getReturnState();
                         state = Translate.intToStateHintMenu(returnState);
-                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -891,7 +879,6 @@ public class DomainController
                     {
                         if(hasToBlock(Role.CODE_BREAKER))
                         {
-                            //oldPresentationController.printBoard(Role.CODE_BREAKER);
                             updateBoardTo(PlayingAction.CODE_BREAK);
                             renderLastTurnBlocking();
                         }
@@ -907,7 +894,6 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -922,7 +908,6 @@ public class DomainController
 
                         if(hasToBlock(Role.CODE_MAKER))
                         {
-                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_CORRECT);
                             renderLastTurnBlocking();
                         }
@@ -938,7 +923,6 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
@@ -953,7 +937,6 @@ public class DomainController
 
                         if(hasToBlock(Role.CODE_MAKER))
                         {
-                            //oldPresentationController.printBoard(Role.CODE_MAKER);
                             updateBoardTo(PlayingAction.CODE_MAKE);
                             renderLastTurnBlocking();
                         }
@@ -969,7 +952,6 @@ public class DomainController
                     catch (IllegalActionException e)
                     {
                         errorMessage(e.getMessage());
-                        //oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
                     {
