@@ -80,11 +80,6 @@ public abstract class PresentationController
         endAction();
     }
 
-    public void initialize()
-    {
-
-    }
-
     private void newStage()
     {
         FOCUS_STAGE_STACK.push(currentStage);
@@ -213,6 +208,11 @@ public abstract class PresentationController
     }
 
     /* GUI INTERACTION */
+
+    public void initialize()
+    {
+
+    }
 
     public void initView() throws IOException, NullPointerException
     {
