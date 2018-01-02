@@ -41,6 +41,11 @@ public class EditUserViewController extends RegisteringPresentationController
                 editButton.setVisible(false);
                 doneButton.setVisible(true);
                 break;
+            case Constants.USERNAME_ALREADY_EXISTS:
+                exceptionsLabel.setVisible(true);
+                exceptionsLabel.setTextFill(Color.web("red"));
+                exceptionsLabel.setText(Constants.USERNAME_ALREADY_EXISTS);
+                break;
             case Constants.WRONG_PASSWORD:
                 exceptionsLabel.setVisible(true);
                 exceptionsLabel.setTextFill(Color.web("red"));

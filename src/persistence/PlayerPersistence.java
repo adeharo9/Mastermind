@@ -118,4 +118,12 @@ public class PlayerPersistence extends AbstractPersistence
         for(int i = 0; i < size; ++i) { savePlayerGame(savedGames.get(i), playerId); }
 
     }
+
+    public void deleteConfigFile(final String username) throws IOException
+    {
+        String configFilePath = getConfigFilePath(username);
+
+        File file = new File(configFilePath);
+        file.delete();
+    }
 }
