@@ -85,6 +85,7 @@ public final class Constants
     public static final String EMPTY_PASSWORD_ERROR = "Password should have at least 1 character";
     public static final String PLAYER_HAS_NO_SAVED_GAMES = "There are no saved games for this player";
     public static final String SAVED_GAMES_LIST_LOAD_ERROR = "Error while loading saved games list";
+    public static final String RANKING_LOADING_ERROR = "Error while loading ranking";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {

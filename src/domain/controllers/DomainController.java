@@ -742,8 +742,6 @@ public class DomainController
                     break;
 
                 case INIT_PROGRAM:
-                    Thread.sleep(Constants.LOADING_TIME_MS);
-
                     state = State.LOAD_RANKING;
                     
                     break;
@@ -812,10 +810,12 @@ public class DomainController
                     }
                     catch (IOException | ClassNotFoundException e)
                     {
-                        oldPresentationController.rankingLoadError();
+                        errorMessage(Constants.RANKING_LOADING_ERROR);
+                        //oldPresentationController.rankingLoadError();
                     }
                     finally
                     {
+                        Thread.sleep(Constants.LOADING_TIME_MS);
                         state = State.INIT_SESSION_MENU;
                     }
                     break;
