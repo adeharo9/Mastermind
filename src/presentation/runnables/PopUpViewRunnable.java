@@ -1,18 +1,22 @@
 package presentation.runnables;
 
+import enums.PopUpWindowStyle;
+import javafx.stage.Modality;
 import presentation.controllers.PresentationController;
+import util.Constants;
 
 import java.io.IOException;
 
 public class PopUpViewRunnable implements Runnable
 {
-
     private final PresentationController presentationController;
+    private final PopUpWindowStyle popUpWindowStyle;
     private final String viewFile;
 
-    public PopUpViewRunnable(PresentationController presentationController, String viewFile)
+    public PopUpViewRunnable(final PresentationController presentationController, final PopUpWindowStyle popUpWindowStyle, final String viewFile)
     {
         this.presentationController = presentationController;
+        this.popUpWindowStyle = popUpWindowStyle;
         this.viewFile = viewFile;
     }
 
@@ -21,11 +25,11 @@ public class PopUpViewRunnable implements Runnable
     {
         try
         {
-            presentationController.popUpWindow(viewFile);
+            presentationController.popUpWindow(popUpWindowStyle, viewFile);
         }
         catch (IOException e)
         {
-
+            throw new RuntimeException();
         }
     }
 }
