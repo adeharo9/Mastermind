@@ -251,9 +251,6 @@ public abstract class Translate
             case 1:
                 state = State.SAVE_GAME;
                 break;
-            /*case 2:
-                state = State.SAVE_GAME_AND_EXIT;
-                break;*/
             case 2:
                 state = State.HINT_MENU;
                 break;

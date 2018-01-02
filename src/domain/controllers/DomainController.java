@@ -609,7 +609,7 @@ public class DomainController
                     break;
 
                 case CONTINUE_GAME:
-                    state = State.PLAY_TURN;
+                    state = State.RENDER_BOARD;
                     break;
 
                 case EDIT_USER_MENU:
