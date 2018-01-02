@@ -673,7 +673,7 @@ public class DomainController
                     break;
 
                 case HINT_MENU:
-                    updateView(View.HINT_VIEW);
+                    popUpView(View.HINT_VIEW);
 
                     try
                     {
@@ -871,7 +871,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -900,7 +902,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -929,7 +933,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
