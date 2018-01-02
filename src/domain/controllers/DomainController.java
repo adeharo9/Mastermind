@@ -742,7 +742,7 @@ public class DomainController
                     break;
 
                 case INIT_PROGRAM:
-                    Thread.sleep(Constants.THREAD_SLEEP_MS);
+                    Thread.sleep(Constants.THREAD_SLEEP_TIME_MS);
 
                     state = State.LOAD_RANKING;
                     
