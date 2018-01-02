@@ -220,7 +220,7 @@ public abstract class Translate
         return state;
     }
 
-    public static State int2StateInGameMenu(int stat) throws IllegalArgumentException
+    /*public static State int2StateInGameMenu(int stat) throws IllegalArgumentException
     {
         State state;
 
@@ -237,7 +237,7 @@ public abstract class Translate
         }
 
         return state;
-    }
+    }*/
 
     public static State int2StateGamePauseMenu(int stat) throws IllegalArgumentException
     {
@@ -467,6 +467,22 @@ public abstract class Translate
                 break;
             case 1:
                 state = State.HINT_MENU;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State intToStateHintMenu(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.RENDER_BOARD;
                 break;
             default:
                 throw new IllegalArgumentException();

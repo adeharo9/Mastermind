@@ -26,6 +26,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     @FXML private VBox boardVBox;
     @FXML private VBox nonScrollableVBox;
+    @FXML private Button helpButton;
     @FXML private Button showCodeButton;
     @FXML private Label errorLabel;
 
@@ -261,6 +262,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     {
         renderCodeColorSelectors();
 
+        helpButton.setVisible(true);
         showCodeButton.setVisible(false);
     }
 
@@ -269,6 +271,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     {
         renderCorrectionColorSelectors();
 
+        helpButton.setVisible(false);
         showCodeButton.setVisible(true);
     }
 
@@ -277,6 +280,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     {
         renderCodeColorSelectors();
 
+        helpButton.setVisible(false);
         showCodeButton.setVisible(false);
     }
 
@@ -291,6 +295,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         nonScrollableVBox.getChildren().add(0, colorSelectionGridPane);
         nonScrollableVBox.getChildren().add(0, userChoiceGridPane);
 
+        helpButton.setVisible(false);
         showCodeButton.setVisible(false);
 
         endAction();

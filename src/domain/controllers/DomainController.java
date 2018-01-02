@@ -357,49 +357,49 @@ public class DomainController
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
-    private void giveHint() throws GameNotStartedException
+    private String generateHint() throws GameNotStartedException
     {
         boolean b = gameController.hasStarted();
         if(!b) throw new GameNotStartedException();
 
-        int type = ThreadLocalRandom.current().nextInt(1, 3);
-        int num = 0;
+        int number = 0;
+        int type = ThreadLocalRandom.current().nextInt(0, 2);
 
-        Code c = boardController.getSolution();
         Color color;
-        String name;
-        List<Color> pins = c.getCodePins();
+        String message;
+        Code solution = boardController.getSolution();
+        List<Color> solutionPins = solution.getCodePins();
 
         switch(type)
         {
-            case 1:
-                num = (int) (Math.random() * c.size());
-                color = pins.get(num);
-                name = String.valueOf(color);
-                ++num;
+            case 0:
+                number = (int) (Math.random() * solution.size());
+                color = solutionPins.get(number);
+
+                message = "Token in position " + (number + 1) + " is " + color.getStrDescription().toLowerCase();
                 break;
 
-            case 2:
+            case 1:
                 Difficulty difficulty = boardController.getDifficulty();
                 int numColors = Constants.getNumColorsByDifficulty(difficulty);
                 color = Color.getRandomColor(numColors);
 
-                for(int i = 0; i < c.size(); ++i){
-                    if(pins.get(i) == color)
+                for(final Color pin : solutionPins)
+                {
+                    if(pin == color)
                     {
-                        ++num;
+                        ++number;
                     }
                 }
 
-                name = String.valueOf(color);
+                message = "There " + ((number == 1) ? "is" : "are") + " " + number + " " + color.getStrDescription().toLowerCase() + " token" + ((number == 1) ? "" : "s");
                 break;
 
             default:
                 throw new IllegalArgumentException();
         }
-
-        oldPresentationController.showClue(type,String.valueOf(num),name);
-        /*presentationController.showClue(type,String.valueOf(num),name);*/
+        //oldPresentationController.showClue(type,String.valueOf(number),name);
+        return message;
     }
 
     /* USER INTERACTION METHODS */
@@ -487,7 +487,12 @@ public class DomainController
         Platform.runLater(new ProcessInfoRunnable(presentationController, message));
     }
 
-    private void showHint() throws InterruptedException
+    private void showHint(final String message) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
+    }
+
+    private void showInfo() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.INFO_MESSAGE));
     }
@@ -561,6 +566,7 @@ public class DomainController
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
+        String returnString = null;
         String gameId = null;
         String username;
         String password;
@@ -692,25 +698,29 @@ public class DomainController
 
                 case HINT_MENU:
                     popUpView(View.HINT_VIEW);
-
                     try
                     {
-                        giveHint();
+                        returnString = generateHint();
                         gameController.pointsClue();
                     }
                     catch (GameNotStartedException e)
                     {
+                        returnString = Constants.GAME_NOT_STARTED_ERROR;
                         oldPresentationController.gameNotStartedError();
                     }
                     finally
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        showHint(returnString);
+
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStateHintMenu(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
                 case INFO_MENU:
                     updateView(View.INFO_VIEW);
-                    showHint();
+                    showInfo();
 
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateInfoMenu(returnState);

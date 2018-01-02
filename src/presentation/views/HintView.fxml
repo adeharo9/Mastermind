@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<AnchorPane prefHeight="100.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.HintViewController">
+
+<VBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.HintViewController">
    <children>
-      <Label fx:id="hintLabel" layoutX="35.0" layoutY="33.0" prefHeight="17.0" prefWidth="184.0" styleClass="text" />
-      <HBox alignment="CENTER" layoutX="85.0" layoutY="61.0" prefHeight="25.0" prefWidth="55.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#okButtonAction" text="OK!" />
-         </children>
-      </HBox>
+      <Label fx:id="hintLabel" layoutX="35.0" layoutY="33.0" styleClass="text" textAlignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#okButtonAction" text="Accept" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</VBox>
