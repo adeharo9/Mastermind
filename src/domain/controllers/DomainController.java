@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import domain.classes.*;
 import enums.*;
 import exceptions.GameNotStartedException;
@@ -661,11 +662,13 @@ public class DomainController
                     try
                     {
                         changePassword(password, confirmPassword);
+                        errorMessage(Constants.NEW_PASSWORD_SAVED);
                     }
                     catch(IOException | WrongPasswordException e)
                     {
                         errorMessage(Constants.PASSWORDS_MUST_MATCH);
                     }
+
                     state = State.EDIT_USER_MENU;
                     break;
 
