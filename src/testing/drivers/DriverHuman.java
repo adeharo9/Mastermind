@@ -110,7 +110,7 @@ public class DriverHuman {
         {
             testedHuman.codeCorrect(Difficulty.EASY, code, solution);
         }
-        catch (ReservedKeywordException e)
+        catch (ReservedKeywordException | InterruptedException e)
         {
             e.printStackTrace();
         }
