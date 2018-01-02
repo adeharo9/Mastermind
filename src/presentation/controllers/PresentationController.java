@@ -2,8 +2,8 @@ package presentation.controllers;
 
 import domain.controllers.DomainController;
 import enums.Color;
-import enums.PlayingAction;
 import enums.Difficulty;
+import enums.PlayingAction;
 import enums.View;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

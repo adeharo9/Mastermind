@@ -4,14 +4,11 @@ import enums.Color;
 import enums.Difficulty;
 import exceptions.ReservedKeywordException;
 import presentation.controllers.PresentationController;
-import util.Constants;
 import util.DeepCopyable;
-import util.ioUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Clase Humano.
