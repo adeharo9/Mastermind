@@ -280,6 +280,7 @@ public class Game implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    @Override
     public Game deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Game(this);

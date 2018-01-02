@@ -176,6 +176,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
      * mantener un método específico para esta función.
      */
     @Deprecated
+    @Override
     public boolean isValid() throws NullPointerException
     {
         return isValid(correctionPins);
@@ -192,6 +193,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso de que alguno de los valores de este turno no sea válido.
      * @throws NullPointerException En caso de que alguno de los campos de este turno no esté inicializado.
      */
+    @Override
     public Turn deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Turn(this);

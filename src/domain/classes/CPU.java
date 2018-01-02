@@ -48,6 +48,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    @Override
     public CPU deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new CPU(this);
@@ -55,6 +56,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
     /* PLAYING METHODS */
 
+    @Override
     public Action codeMake(final Difficulty difficulty)
     {
         Color color;
@@ -85,12 +87,14 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeMake(solution);
     }
 
+    @Override
     public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn)
     {
         Code proposedSolutionByCPU = getCodeBreak(difficulty, lastTurn, isFirstTurn);
         return new CodeBreak(proposedSolutionByCPU);
     }
 
+    @Override
     public Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
         Code correction = getCodeCorrect(difficulty, code, solution);

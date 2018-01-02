@@ -100,6 +100,7 @@ public abstract class Player implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    @Override
     public abstract Player deepCopy ();
 
     /* PLAYING METHODS */

@@ -151,6 +151,8 @@ public class Ranking implements DeepCopyable, Serializable
      *
      * @return Copia profunda del objeto actual.
      */
+
+    @Override
     public Ranking deepCopy()
     {
         return new Ranking(this);

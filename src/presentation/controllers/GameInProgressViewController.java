@@ -238,6 +238,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         renderColorSelectors(colorList);
     }
 
+    @Override
     public void renderBoard(final Difficulty difficulty)
     {
         boardDifficulty = difficulty;
@@ -246,6 +247,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         renderUserChoiceContainer();
     }
 
+    @Override
     public void updateToCodeBreakerBoard()
     {
         renderCodeColorSelectors();
@@ -253,6 +255,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         showCodeButton.setVisible(false);
     }
 
+    @Override
     public void updateToCodeCorrecterBoard()
     {
         renderCorrectionColorSelectors();
@@ -260,6 +263,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         showCodeButton.setVisible(true);
     }
 
+    @Override
     public void updateToCodeMakerBoard()
     {
         renderCodeColorSelectors();

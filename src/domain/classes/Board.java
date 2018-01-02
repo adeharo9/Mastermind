@@ -436,6 +436,7 @@ public class Board implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso de que alguno de los valores de este tablero no sea válido.
      * @throws NullPointerException En caso de que alguno de los campos de este tablero no esté inicializado.
      */
+    @Override
     public Board deepCopy () throws IllegalArgumentException, NullPointerException
     {
         return new Board (this);

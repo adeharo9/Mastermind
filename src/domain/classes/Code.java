@@ -140,6 +140,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+    @Override
     public Code deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Code(this);

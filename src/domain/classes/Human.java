@@ -109,6 +109,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws NullPointerException En caso que password sea nulo.
      */
 
+    @Override
     public void setPassword(final String password) throws IllegalArgumentException, NullPointerException
     {
         boolean b = isValidPassword(password);
@@ -141,6 +142,8 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @return boolean password es igual al password del humano actual.
      * @throws NullPointerException En caso que password sea nulo.
      */
+
+    @Override
     public final boolean checkPassword(final String password) throws NullPointerException
     {
         return this.password.equals(password);
@@ -157,6 +160,8 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que Human no sea correcto.
      * @throws NullPointerException En caso que Human sea nulo.
      */
+
+    @Override
     public Human deepCopy() throws IllegalArgumentException, NullPointerException
     {
         return new Human(this);
@@ -164,6 +169,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* PLAY METHODS */
 
+    @Override
     public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
     {
         List<Color> colorList = codeInputByUser(difficulty);
@@ -172,6 +178,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return new CodeMake(code);
     }
 
+    @Override
     public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
     {
         List<Color> colorList = codeInputByUser(difficulty);
@@ -180,6 +187,7 @@ public class Human extends Player implements DeepCopyable, Serializable
         return new CodeBreak(code);
     }
 
+    @Override
     public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException, InterruptedException
     {
         List<Color> colorList = codeInputByUser(difficulty);
