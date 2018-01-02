@@ -50,6 +50,7 @@
     -fx-text-fill: text-color;
 
     -fx-min-width: 60px;
+    -fx-min-height: 25px;
 }
 
 .button:hover
