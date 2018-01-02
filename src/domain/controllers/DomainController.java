@@ -887,7 +887,6 @@ public class DomainController
                     {
                         returnState = PresentationController.getReturnState();
                         state = Translate.intToStatePlay(returnState);
-                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -919,7 +918,6 @@ public class DomainController
                     {
                         returnState = PresentationController.getReturnState();
                         state = Translate.intToStatePlay(returnState);
-                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -951,7 +949,6 @@ public class DomainController
                     {
                         returnState = PresentationController.getReturnState();
                         state = Translate.intToStatePlay(returnState);
-                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
