@@ -690,7 +690,7 @@ public class DomainController
                     updateView(View.GAME_OVER_VIEW);
                     showScore(String.valueOf(gameController.getGame().getPoints()));
                     /*gameController.pointsEndGame();*/
-                    //returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
+
                     returnState = PresentationController.getReturnState();
                     state = Translate.int2StateGameOverMenu(returnState);
 
