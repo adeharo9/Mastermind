@@ -31,6 +31,11 @@
             </GridPane>
         </items>
       </ToolBar>
+      <Label fx:id="errorLabel" styleClass="error-label">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
       <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="background" VBox.vgrow="ALWAYS">
          <content>
             <VBox alignment="TOP_CENTER" styleClass="background">
@@ -39,7 +44,7 @@
                      <content>
                         <VBox fx:id="boardVBox" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" styleClass="background">
                            <padding>
-                              <Insets left="30.0" right="30.0" top="30.0" />
+                              <Insets left="30.0" right="30.0" />
                            </padding>
                         </VBox>
                      </content>

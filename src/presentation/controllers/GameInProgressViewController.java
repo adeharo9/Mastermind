@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML private VBox boardVBox;
     @FXML private VBox nonScrollableVBox;
     @FXML private Button showCodeButton;
+    @FXML private Label errorLabel;
 
     private GridPane turnsGridPane;
     private GridPane userChoiceGridPane;
@@ -211,6 +213,12 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* GUI INTERACTION METHODS */
 
+    public void processInfo(final Object info)
+    {
+        String message = (String) info;
+        errorLabel.setText(message);
+    }
+
     private void renderAllTurns()
     {
         for(int index = 0; index < codes.size(); ++index)
@@ -309,6 +317,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML
     public void finishTurnButtonAction() throws IOException
     {
+        errorLabel.setText("");
+
         int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
         currentTurn.clear();
         List<Node> nodeList = userChoiceGridPane.getChildren();

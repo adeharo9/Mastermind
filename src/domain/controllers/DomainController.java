@@ -874,6 +874,7 @@ public class DomainController
                     }
                     catch (IllegalActionException e)
                     {
+                        errorMessage(e.getMessage());
                         oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
@@ -905,6 +906,7 @@ public class DomainController
                     }
                     catch (IllegalActionException e)
                     {
+                        errorMessage(e.getMessage());
                         oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
@@ -936,6 +938,7 @@ public class DomainController
                     }
                     catch (IllegalActionException e)
                     {
+                        errorMessage(e.getMessage());
                         oldPresentationController.illegalActionError(e.getMessage());
                     }
                     catch (ReservedKeywordException e)
