@@ -282,7 +282,7 @@ public class DomainController
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
         boolean b = playerPersistence.exists(username);
-        if(!b) throw new IOException();
+        if(b) throw new IOException();
 
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
