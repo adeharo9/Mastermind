@@ -36,6 +36,7 @@ public class RegisterViewController extends RegisteringPresentationController
                 usernameTextField.clear();
 
             case Constants.PASSWORDS_MUST_MATCH:
+            case Constants.EMPTY_PASSWORD_ERROR:
                 passwordPasswordField.clear();
                 confirmPasswordPasswordField.clear();
                 break;

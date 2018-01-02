@@ -33,7 +33,7 @@ public class PlayerController
 
     public Player newHuman(final String id)
     {
-        return newHuman(id, "");
+        return newHuman(id, "mastermind");
     }
 
     public Player newHuman(final String id, final String password)

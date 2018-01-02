@@ -1028,6 +1028,11 @@ public class DomainController
                         errorMessage(Constants.USERNAME_ALREADY_EXISTS);
                         state = State.REGISTER_MENU;
                     }
+                    catch (IllegalArgumentException iae)
+                    {
+                        errorMessage(Constants.EMPTY_PASSWORD_ERROR);
+                        state = State.REGISTER_MENU;
+                    }
                     catch(IOException e)
                     {
                         errorMessage(Constants.USER_REGISTERING_ERROR);

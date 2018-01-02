@@ -82,6 +82,7 @@ public final class Constants
     public static final String RANKING_LOAD_ERROR = "Error while saving ranking";
     public static final String GAME_NOT_STARTED_ERROR = "The game still has no code";
     public static final String NEW_PASSWORD_SAVED = "New password saved correctly";
+    public static final String EMPTY_PASSWORD_ERROR = "Password should have at least 1 character";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
     {

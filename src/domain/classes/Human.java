@@ -29,7 +29,7 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     private static boolean isValidPassword(final String password)
     {
-        return (password != null && password != "");
+        return (password != null && !password.equals(""));
     }
 
     /* CONSTRUCTION METHODS */
