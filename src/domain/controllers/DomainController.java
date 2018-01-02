@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import domain.classes.*;
 import enums.*;
 import exceptions.GameNotStartedException;
@@ -18,6 +19,7 @@ import util.Pair;
 import util.Translate;
 import util.Utils;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -279,6 +281,9 @@ public class DomainController
 
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
+        boolean b = playerPersistence.exists(username);
+        if(!b) throw new IOException();
+
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
         ArrayList<String> savedGames = new ArrayList<>();
@@ -296,6 +301,7 @@ public class DomainController
         }
 
         deleteUser(player);
+        deleteConfigFile(player);
 
         loggedPlayer.setId(username);
         playerPersistence.save(loggedPlayer);
@@ -306,6 +312,7 @@ public class DomainController
     {
         boolean b = password.equals(confirmPassword);
         if(!b) throw new WrongPasswordException();
+
         Player loggedPlayer = loggedPlayerController.getPlayer();
         loggedPlayer.setPassword(password);
         String username = loggedPlayerController.getId();
@@ -319,6 +326,11 @@ public class DomainController
     public void deleteUser(final String username) throws IOException
     {
         playerPersistence.delete(username);
+    }
+
+    public void deleteConfigFile(final String username) throws IOException
+    {
+        playerPersistence.deleteConfigFile(username);
     }
 
     private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
@@ -650,7 +662,7 @@ public class DomainController
                     }
                     catch(IOException | ClassNotFoundException e)
                     {
-
+                        errorMessage(Constants.USERNAME_ALREADY_EXISTS);
                     }
                     state = State.EDIT_USER_MENU;
                     break;
@@ -666,11 +678,13 @@ public class DomainController
                     try
                     {
                         changePassword(password, confirmPassword);
+                        errorMessage(Constants.NEW_PASSWORD_SAVED);
                     }
                     catch(IOException | WrongPasswordException e)
                     {
                         errorMessage(Constants.PASSWORDS_MUST_MATCH);
                     }
+
                     state = State.EDIT_USER_MENU;
                     break;
 
