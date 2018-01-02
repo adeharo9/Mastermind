@@ -45,7 +45,7 @@ public final class Constants
     public static final String WARNING_ICON_FILE = "warning-icon.png";
 
     /* GUI CONSTANTS */
-    public static final int LOADING_TIME_MS = 2000;
+    public static final int LOADING_TIME_MS = 1250;
 
     /* GENERAL MESSAGES */
 
