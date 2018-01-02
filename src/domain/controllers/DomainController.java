@@ -492,6 +492,11 @@ public class DomainController
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
     }
 
+    private void showScore(final String message) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
+    }
+
     private void showInfo() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.INFO_MESSAGE));
@@ -683,6 +688,7 @@ public class DomainController
 
                 case GAME_OVER_MENU:
                     updateView(View.GAME_OVER_VIEW);
+                    showScore(String.valueOf(gameController.getGame().getPoints()));
                     /*gameController.pointsEndGame();*/
                     //returnState = oldPresentationController.gameOverMenu(String.valueOf(gameController.getGame().getPoints()));
                     returnState = PresentationController.getReturnState();
