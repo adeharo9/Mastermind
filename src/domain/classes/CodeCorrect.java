@@ -95,7 +95,7 @@ public class CodeCorrect extends Action implements DeepCopyable
     @Override
     public void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException
     {
-        checkPinsInRange(difficulty, true, Color.getCorrectionValues());
+        checkPinsInRange(difficulty, true, Color.getFullCorrectionValues());
         Code correction = getCodeCorrect(difficulty, code, solution);
 
         boolean b = correction.unorderedEquals(this.code);
