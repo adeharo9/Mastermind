@@ -24,6 +24,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     /* ATTRIBUTES */
 
     @FXML private VBox boardVBox;
+    @FXML private VBox nonScrollableVBox;
     @FXML private Button showCodeButton;
 
     private GridPane turnsGridPane;
@@ -273,12 +274,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* FXML */
 
+    @Override
     @FXML
     public void initialize()
     {
         boardVBox.getChildren().add(turnsGridPane);
-        boardVBox.getChildren().add(userChoiceGridPane);
-        boardVBox.getChildren().add(colorSelectionGridPane);
+
+        nonScrollableVBox.getChildren().add(0, colorSelectionGridPane);
+        nonScrollableVBox.getChildren().add(0, userChoiceGridPane);
 
         showCodeButton.setVisible(false);
 
