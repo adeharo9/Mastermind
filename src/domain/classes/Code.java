@@ -83,7 +83,7 @@ public class Code implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
-    public <C extends List<Color>> Code(final C codePins)
+    public Code(final List<Color> codePins)
     {
         this.orderedHash = calcOrderedHash(codePins);
         this.unorderedHash = calcUnorderedHash(codePins);

@@ -1,5 +1,6 @@
 package domain.classes;
 
+import enums.Color;
 import enums.Difficulty;
 import util.Constants;
 import util.DeepCopyable;
@@ -7,6 +8,7 @@ import util.DeepCopyable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Clase Tablero.
@@ -28,6 +30,7 @@ public class Board implements DeepCopyable, Serializable
 
     private Code solution;
     private ArrayList<Turn> turnSet;
+    private final Code solutionCorrection;
 
     private static boolean isValidNColumns(final int nColumns)
     {
@@ -100,6 +103,8 @@ public class Board implements DeepCopyable, Serializable
 
         solution = null;
         turnSet = new ArrayList<>();
+
+        solutionCorrection = new Code(Collections.nCopies(Constants.getNumPinsByDifficulty(difficulty), Color.BLACK));
     }
 
     /**
@@ -120,6 +125,8 @@ public class Board implements DeepCopyable, Serializable
         //setDifficulty(board.getDifficulty());
         setSolution(board.getSolution());
         setTurnSet(board.getTurnSet());
+
+        solutionCorrection = new Code(Collections.nCopies(Constants.getNumPinsByDifficulty(difficulty), Color.BLACK));
     }
 
     /* SET METHODS */
@@ -333,6 +340,11 @@ public class Board implements DeepCopyable, Serializable
     public ArrayList<Turn> getTurnSet ()
     {
         return turnSet;
+    }
+
+    public Code getSolutionCorrection()
+    {
+        return solutionCorrection;
     }
 
     /**
