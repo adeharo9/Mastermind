@@ -252,9 +252,6 @@ public abstract class Translate
                 state = State.SAVE_GAME;
                 break;
             case 2:
-                state = State.HINT_MENU;
-                break;
-            case 3:
                 state = State.EXIT_CURRENT_GAME_WARNING;
                 break;
             default:

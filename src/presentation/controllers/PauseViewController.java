@@ -26,15 +26,9 @@ public class PauseViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void hintButtonAction() throws IOException
-    {
-        pressButtonAction(2);
-    }
-
-    @FXML
     public void mainMenuButtonAction() throws IOException
     {
-        pressButtonAction(3);
+        pressButtonAction(2);
     }
 
 }
