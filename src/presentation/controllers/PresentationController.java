@@ -27,8 +27,8 @@ public abstract class PresentationController
 
     private String currentViewFile;
 
-    protected Stage mainStage;
-    protected Stage popUpStage;
+    protected static Stage mainStage;
+    protected static Stage popUpStage;
 
     protected static Stage currentStage;
     protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
@@ -108,11 +108,6 @@ public abstract class PresentationController
 
     /* PRIVATE METHODS */
 
-    private void setPopUpStage(final Stage popUpStage)
-    {
-        this.popUpStage = popUpStage;
-    }
-
     private void setCurrentViewFile(final String currentViewFile)
     {
         this.currentViewFile = currentViewFile;
@@ -128,8 +123,6 @@ public abstract class PresentationController
 
         PresentationController presentationController = fxmlLoader.getController();
 
-        presentationController.setMainStage(this.mainStage);
-        presentationController.setPopUpStage(this.popUpStage);
         presentationController.setCurrentViewFile(this.currentViewFile);
 
         return root;
@@ -139,7 +132,7 @@ public abstract class PresentationController
 
     public void setMainStage(final Stage mainStage)
     {
-        this.mainStage = mainStage;
+        PresentationController.mainStage = mainStage;
     }
 
     public static void clearThreadHasFinished()
@@ -220,12 +213,20 @@ public abstract class PresentationController
     {
         Parent root = loadView(View.LOADING_VIEW.getViewFile());
 
-        this.mainStage.setTitle("Mastermind");
-        this.mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
+        mainStage.setTitle("Mastermind");
+        mainStage.getIcons().add(new Image(getClass().getResourceAsStream(Constants.RESOURCES_PATH + Constants.ICON_FILE)));
 
-        this.mainStage.setScene(new Scene(root));
+        mainStage.setScene(new Scene(root));
+        mainStage.setOnCloseRequest((WindowEvent event) ->
+        {
+            if(popUpStage != null)
+            {
+                popUpStage.close();
+            }
+        }
+        );
 
-        this.mainStage.show();
+        mainStage.show();
     }
 
     public void updateView(final String viewFile) throws IOException
@@ -234,7 +235,7 @@ public abstract class PresentationController
         {
             Parent root = loadView(viewFile);
 
-            this.mainStage.getScene().setRoot(root);
+            mainStage.getScene().setRoot(root);
         }
     }
 
