@@ -326,26 +326,26 @@ public abstract class PresentationController
 
     public void renderBoard(final Difficulty difficulty)
     {
-
+        throw new RuntimeException("You should not be executing this method from here");
     }
 
     public void renderLastTurn()
     {
-
+        throw new RuntimeException("You should not be executing this method from here");
     }
 
     public void updateToCodeBreakerBoard()
     {
-
+        throw new RuntimeException("You should not be executing this method from here");
     }
 
     public void updateToCodeCorrecterBoard()
     {
-
+        throw new RuntimeException("You should not be executing this method from here");
     }
 
     public void updateToCodeMakerBoard()
     {
-
+        throw new RuntimeException("You should not be executing this method from here");
     }
 }
