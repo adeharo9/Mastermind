@@ -495,10 +495,10 @@ public abstract class Translate
         switch (returnState)
         {
             case 0:
-                state = State.SAVE_GAME;
+                state = State.GAME_PAUSE_MENU;
                 break;
             case 1:
-                state = State.GAME_PAUSE_MENU;
+                state = State.SAVE_GAME;
                 break;
             default:
                 throw new IllegalArgumentException();
