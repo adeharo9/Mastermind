@@ -191,7 +191,7 @@
 
 .color-hidden
 {
-    -fx-fill: monokai-black;
+    -fx-fill: monokai-none;
     -fx-stroke: monokai-white;
     -fx-stroke-width: 1;
 }
