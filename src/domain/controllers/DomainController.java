@@ -262,14 +262,7 @@ public class DomainController
     private void renameGame(final String gameId) throws IOException
     {
         Game game = gameController.getGame();
-        String gameIdToChange = game.getId();
-
-        String playerId = loggedPlayerController.getId();
-        deleteGame(gameIdToChange);
-        playerPersistence.deletePlayerGame(gameIdToChange, playerId);
-
         game.setId(gameId);
-        saveGame();
     }
 
     public void deleteGame(final String gameId) throws IOException
@@ -280,7 +273,7 @@ public class DomainController
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
         boolean b = playerPersistence.exists(username);
-        if(!b) throw new IOException();
+        if(b) throw new IOException();
 
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
@@ -303,7 +296,7 @@ public class DomainController
 
         loggedPlayer.setId(username);
         playerPersistence.save(loggedPlayer);
-        playerPersistence.savePlayerGames(savedGames, player);
+        playerPersistence.savePlayerGames(savedGames, username);
     }
 
     public void changePassword(final String password, final String confirmPassword) throws IOException, WrongPasswordException
@@ -1061,8 +1054,8 @@ public class DomainController
                     popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_VIEW);
                     try
                     {
-                        saveGame();
                         renameGame(PresentationController.getGameId());
+                        saveGame();
                         state = State.GAME_PAUSE_MENU;
                     }
                     catch (FileAlreadyExistsException e)

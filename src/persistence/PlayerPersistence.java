@@ -21,7 +21,8 @@ public class PlayerPersistence extends AbstractPersistence
 
     protected String getConfigFilePath(String playerId)
     {
-        return  getDirPath() + CONFIG_FILE;
+        setPlayerPath(playerId + "/");
+        return  BASE_PATH + PLAYERS_PATH + playerPath + CONFIG_FILE;
     }
 
     public void setPlayerPath(String playerPath)
@@ -61,7 +62,6 @@ public class PlayerPersistence extends AbstractPersistence
 
     public void savePlayerGame(String gameId, String playerId) throws IOException
     {
-        setPlayerPath(playerId + "/");
         String filePath = getConfigFilePath(playerId);
         File configFile = new File(filePath);
 
