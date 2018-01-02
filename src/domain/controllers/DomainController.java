@@ -282,11 +282,19 @@ public class DomainController
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
         ArrayList<String> savedGames = new ArrayList<>();
+
         try
         {
             savedGames = playerPersistence.loadSavedGames(player);
         }
-        catch(FileNotFoundException e){}
+        catch(FileNotFoundException e)
+        {
+            // Catch block deliberately left blank
+            //
+            // If there are no saved games, nothing has
+            // to be done here.
+        }
+
         deleteUser(player);
 
         loggedPlayer.setId(username);
@@ -553,7 +561,6 @@ public class DomainController
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
-        String returnString;
         String gameId = null;
         String username;
         String password;
@@ -605,7 +612,7 @@ public class DomainController
                     break;
 
                 case CONTINUE_GAME:
-                    state = State.PLAY_TURN;
+                    state = State.RENDER_BOARD;
                     break;
 
                 case EDIT_USER_MENU:
@@ -679,7 +686,7 @@ public class DomainController
                     break;
 
                 case HINT_MENU:
-                    updateView(View.HINT_VIEW);
+                    popUpView(View.HINT_VIEW);
 
                     try
                     {
@@ -877,7 +884,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -906,7 +915,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -935,7 +946,9 @@ public class DomainController
                     }
                     catch (ReservedKeywordException e)
                     {
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStatePlay(returnState);
+                        //state = State.GAME_PAUSE_MENU;
                     }
                     break;
 

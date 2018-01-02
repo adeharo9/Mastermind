@@ -24,6 +24,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     /* ATTRIBUTES */
 
     @FXML private VBox boardVBox;
+    @FXML private VBox nonScrollableVBox;
     @FXML private Button showCodeButton;
 
     private GridPane turnsGridPane;
@@ -102,7 +103,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
         for(int column = 0; column < numPins; ++column)
         {
-            Circle pin = getNewPin(Color.NONE);
+            Circle pin = getNewPin(Color.HIDDEN);
 
             pin.setOnDragOver((DragEvent event) ->
                     dragOver(event, pin)
@@ -113,7 +114,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
             );
 
             pin.setOnMouseClicked((MouseEvent event) ->
-                pin.getStyleClass().setAll(StyleClass.COLOR_NONE.toString())
+                pin.getStyleClass().setAll(Color.HIDDEN.getCssStyleClass())
             );
 
             userChoiceGridPane.add(pin, column, 0);
@@ -273,12 +274,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* FXML */
 
+    @Override
     @FXML
     public void initialize()
     {
         boardVBox.getChildren().add(turnsGridPane);
-        boardVBox.getChildren().add(userChoiceGridPane);
-        boardVBox.getChildren().add(colorSelectionGridPane);
+
+        nonScrollableVBox.getChildren().add(0, colorSelectionGridPane);
+        nonScrollableVBox.getChildren().add(0, userChoiceGridPane);
 
         showCodeButton.setVisible(false);
 
@@ -313,9 +316,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         for(int i = 0; i < numPins; ++i)
         {
             Node node = nodeList.get(i);
+
+            if(node.getStyleClass().get(0).equals(StyleClass.COLOR_HIDDEN.toString()))
+            {
+                node.getStyleClass().setAll(StyleClass.COLOR_NONE.toString());
+            }
+
             Color color = Color.getColorByStyle(node.getStyleClass().get(0));
             currentTurn.add(color);
-            node.getStyleClass().setAll(StyleClass.COLOR_NONE.toString());
+            node.getStyleClass().setAll(StyleClass.COLOR_HIDDEN.toString());
         }
 
         pressButtonAction(2);

@@ -220,9 +220,8 @@ public class Human extends Player implements DeepCopyable, Serializable
         switch (returnState)
         {
             case 0:
-                throw new ReservedKeywordException();
             case 1:
-                break;
+                throw new ReservedKeywordException();
             case 2:
                 break;
             default:
@@ -236,8 +235,6 @@ public class Human extends Player implements DeepCopyable, Serializable
         {
             code.add(color.getStrId());
         }
-
-        PresentationController.clearThreadHasFinished();
 
         return code;
     }
