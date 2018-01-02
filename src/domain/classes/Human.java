@@ -206,59 +206,6 @@ public class Human extends Player implements DeepCopyable, Serializable
         return colorList;
     }
 
-    /*private List<Color> correctionInputByUser(Difficulty difficulty) throws ReservedKeywordException
-    {
-        List<String> correction = readCorrectionCode(difficulty);
-        List<Color> colorList = new ArrayList<>(correction.size());
-
-        for(final String str : correction)
-        {
-            colorList.add(Color.getColor(str));
-        }
-
-        return colorList;
-    }*/
-
-    /*private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
-    {
-        boolean repetitionsPolicy = Constants.getRepetitionPolicyByDifficulty(difficulty);
-        int numColors = Constants.getNumColorsByDifficulty(difficulty);
-        int numPins = Constants.getNumPinsByDifficulty(difficulty);
-
-        Set<Color> colorSet = Color.getValues(difficulty);
-        List<String> code = new ArrayList<>(numPins);
-
-        ioUtils.endLine();
-        ioUtils.printOut("Write a code of " + numPins + (repetitionsPolicy ? " " : " non-repeated ") + "colors using the following letters (Input example:");
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
-        }
-
-        ioUtils.printOutLn("):");
-
-        for(final Color color : colorSet)
-        {
-            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
-        }
-
-        ioUtils.endLine();
-        ioUtils.printOutLn("Write your code here (or 0 to pause):");
-
-        String read;
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            read = ioUtils.input();
-            if (read.equals("0")) throw new ReservedKeywordException();
-
-            code.add(read);
-        }
-
-        return code;
-    }*/
-
     private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException, InterruptedException
     {
         int returnState;
@@ -289,44 +236,4 @@ public class Human extends Player implements DeepCopyable, Serializable
 
         return code;
     }
-
-    /*private List<String> readCorrectionCode (Difficulty difficulty) throws ReservedKeywordException
-    {
-        int numColors = Constants.getNumColorsByDifficulty(difficulty);
-        int numPins = Constants.getNumPinsByDifficulty(difficulty);
-        Set<Color> correctionSet = Color.getCorrectionValues();
-        List<String> code = new ArrayList<>(numPins);
-
-        ioUtils.endLine();
-
-        ioUtils.printOut("Write a " + numPins + "-sized code using the following letters (Input example:");
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            ioUtils.printOut(" " + Color.getRandomColor(numColors).getStrId());
-        }
-
-        ioUtils.printOutLn("):");
-
-        for(final Color color : correctionSet)
-        {
-            ioUtils.printOutLn(color.getStrId() + ": " + color.getStrDescription());
-        }
-
-        ioUtils.endLine();
-
-        ioUtils.printOutLn("Write your code here(or 0 to pause):");
-
-        String read;
-
-        for(int i = 0; i < numPins; ++i)
-        {
-            read = ioUtils.input();
-            if (read.equals("0")) throw new ReservedKeywordException();
-
-            code.add(read);
-        }
-
-        return code;
-    }*/
 }
