@@ -305,7 +305,7 @@ public class DomainController
 
         loggedPlayer.setId(username);
         playerPersistence.save(loggedPlayer);
-        playerPersistence.savePlayerGames(savedGames, player);
+        playerPersistence.savePlayerGames(savedGames, username);
     }
 
     public void changePassword(final String password, final String confirmPassword) throws IOException, WrongPasswordException
