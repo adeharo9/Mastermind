@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.EditUserViewController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
@@ -38,6 +41,11 @@
                   <PasswordField fx:id="currentPasswordPasswordField" maxWidth="200.0" promptText="Current Password" />
                   <PasswordField fx:id="newPasswordPasswordField" maxWidth="200.0" promptText="New Password" />
                   <PasswordField fx:id="confirmNewPasswordPasswordField" maxWidth="200.0" promptText="Confirm New Password" />
+                  <Label fx:id="exceptionsLabel" visible="false">
+                     <VBox.margin>
+                        <Insets right="180.0" />
+                     </VBox.margin>
+                  </Label>
                   <Button fx:id="updatePasswordButton" mnemonicParsing="false" onAction="#updatePasswordButtonAction" text="Update Password" />
                </children>
             </VBox>

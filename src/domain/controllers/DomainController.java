@@ -302,8 +302,10 @@ public class DomainController
         playerPersistence.savePlayerGames(savedGames, player);
     }
 
-    public void changePassword(final String password) throws IOException
+    public void changePassword(final String password, final String confirmPassword) throws IOException, WrongPasswordException
     {
+        boolean b = password.equals(confirmPassword);
+        if(!b) throw new WrongPasswordException();
         Player loggedPlayer = loggedPlayerController.getPlayer();
         loggedPlayer.setPassword(password);
         String username = loggedPlayerController.getId();
@@ -563,6 +565,7 @@ public class DomainController
         String username;
         String password;
         String confirmPassword;
+        String currentPassword;
 
         Mode mode = null;
         Role role = null;
@@ -633,23 +636,26 @@ public class DomainController
                     {
 
                     }
-
                     state = State.EDIT_USER_MENU;
                     break;
 
                 case EDIT_PASSWORD:
+                    Player loggedPlayer = loggedPlayerController.getPlayer();
 
                     password = PresentationController.getNewPassword();
                     confirmPassword = PresentationController.getConfirmPassword();
+                    currentPassword = PresentationController.getCurrentPassword();
 
+                    if(!loggedPlayer.checkPassword(currentPassword)) errorMessage(Constants.WRONG_PASSWORD);
                     try
                     {
-                        changePassword(password);
+                        changePassword(password, confirmPassword);
                     }
-                    catch(IOException e)
+                    catch(IOException | WrongPasswordException e)
                     {
-
+                        errorMessage(Constants.PASSWORDS_MUST_MATCH);
                     }
+                    state = State.EDIT_USER_MENU;
                     break;
 
                 case EXIT_CURRENT_GAME:
