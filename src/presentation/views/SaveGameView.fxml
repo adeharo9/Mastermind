@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<AnchorPane prefHeight="100.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
+
+
+<VBox prefHeight="125.0" prefWidth="250.0" spacing="30.0" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
    <children>
-      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="185.0" styleClass="text" text="Enter a name for this game:" />
+      <VBox spacing="5.0">
+         <children>
+            <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="185.0" styleClass="text" text="Enter a name for this game:" />
+            <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game Name" />
+            <VBox alignment="CENTER">
+               <children>
+                  <Label fx:id="errorLabel" styleClass="error-label" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
       <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0">
          <children>
             <Button fx:id="saveButton" minWidth="60.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
@@ -13,6 +28,8 @@
             <Button fx:id="backButton" minWidth="60.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
          </children>
       </HBox>
-      <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game Identifier" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</VBox>

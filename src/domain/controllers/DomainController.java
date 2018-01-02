@@ -1036,7 +1036,6 @@ public class DomainController
                     break;
 
                 case SAVE_GAME:
-                    popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_VIEW);
                     try
                     {
                         renameGame(PresentationController.getGameId());
@@ -1069,13 +1068,19 @@ public class DomainController
                     }
                     catch(IOException e)
                     {
-                        oldPresentationController.gameSaveError();
+                        errorMessage(Constants.GAME_SAVING_ERROR);
                         state = State.GAME_PAUSE_MENU;
                     }
                     break;
+
+                case SAVE_GAME_MENU:
+                    popUpView(PopUpWindowStyle.INTERACTION, View.SAVE_GAME_VIEW);
+
+                    returnState = PresentationController.getReturnState();
+                    state = Translate.intToStateSaveGameMenu(returnState);
+
+                    break;
             }
         }
-
-
     }
 }

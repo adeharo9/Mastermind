@@ -249,7 +249,7 @@ public abstract class Translate
                 state = State.CONTINUE_GAME;
                 break;
             case 1:
-                state = State.SAVE_GAME;
+                state = State.SAVE_GAME_MENU;
                 break;
             case 2:
                 state = State.EXIT_CURRENT_GAME_WARNING;
@@ -480,6 +480,25 @@ public abstract class Translate
         {
             case 0:
                 state = State.RENDER_BOARD;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State intToStateSaveGameMenu(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.SAVE_GAME;
+                break;
+            case 1:
+                state = State.GAME_PAUSE_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
