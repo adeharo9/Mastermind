@@ -17,7 +17,6 @@ import util.UncheckedCast;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameInProgressViewController extends RegisteringPresentationController
@@ -230,14 +229,12 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     private void renderCorrectionColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
-
         renderColorSelectors(colorList);
     }
 
     private void renderCodeColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
-
         renderColorSelectors(colorList);
     }
 
@@ -252,16 +249,22 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     public void updateToCodeBreakerBoard()
     {
         renderCodeColorSelectors();
+
+        showCodeButton.setVisible(false);
     }
 
     public void updateToCodeCorrecterBoard()
     {
         renderCorrectionColorSelectors();
+
+        showCodeButton.setVisible(true);
     }
 
     public void updateToCodeMakerBoard()
     {
         renderCodeColorSelectors();
+
+        showCodeButton.setVisible(false);
     }
 
     /* FXML */
@@ -272,6 +275,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         boardVBox.getChildren().add(turnsGridPane);
         boardVBox.getChildren().add(userChoiceGridPane);
         boardVBox.getChildren().add(colorSelectionGridPane);
+
+        showCodeButton.setVisible(false);
 
         endAction();
     }
