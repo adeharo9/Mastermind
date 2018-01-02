@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
 <VBox alignment="CENTER" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.ExitCurrentGameWarningViewController">
    <children>
-      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="14.0" styleClass="text" text="Are you sure you want to exit the current game?" wrapText="true" />
+      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="14.0" maxWidth="250.0" styleClass="text" text="Are you sure you want to exit the current game?" wrapText="true" />
       <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0">
          <children>
             <Button fx:id="exitGameButton" minWidth="60.0" mnemonicParsing="false" onAction="#exitGameButtonAction" text="Exit Game" />

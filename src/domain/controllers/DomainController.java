@@ -583,6 +583,7 @@ public class DomainController
                         try
                         {
                             oldPresentationController.printBoard(Role.CODE_MAKER);
+                            renderLastTurn();
 
                             if(gameController.getMode() != Mode.CPU_VS_CPU)
                             {
