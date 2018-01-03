@@ -2,7 +2,6 @@ package presentation.runnables;
 
 import presentation.controllers.PresentationController;
 
-import java.util.List;
 import java.util.Set;
 
 public class ShowLoadedGamesRunnable implements Runnable

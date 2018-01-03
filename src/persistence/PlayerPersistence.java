@@ -4,7 +4,6 @@ import domain.classes.Player;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

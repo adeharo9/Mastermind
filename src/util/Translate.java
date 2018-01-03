@@ -5,9 +5,6 @@ import enums.Mode;
 import enums.Role;
 import enums.State;
 
-import java.util.List;
-import java.util.Set;
-
 public abstract class Translate
 {
     /* PRIVATE METHODS */
