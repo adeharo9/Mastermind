@@ -2,10 +2,7 @@ package domain.controllers;
 
 import domain.classes.*;
 import enums.*;
-import exceptions.GameNotStartedException;
-import exceptions.IllegalActionException;
-import exceptions.ReservedKeywordException;
-import exceptions.WrongPasswordException;
+import exceptions.*;
 import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
@@ -93,10 +90,10 @@ public class DomainController
         loggedPlayerController = playerController;
     }
 
-    private void registerUser(final String username, final String password, final String confirmPassword) throws IOException, WrongPasswordException
+    private void registerUser(final String username, final String password, final String confirmPassword) throws IOException, PasswordMismatchException
     {
         boolean b = password.equals(confirmPassword);
-        if(!b) throw new WrongPasswordException();
+        if(!b) throw new PasswordMismatchException();
 
         b = playerPersistence.exists(username);
         if(b) throw new FileAlreadyExistsException("");
@@ -297,27 +294,30 @@ public class DomainController
         playerPersistence.savePlayerGames(savedGames, username);
     }
 
-    public void changePassword(final String password, final String confirmPassword) throws IOException, WrongPasswordException
+    private void changePassword(final String oldPassword, final String newPassword, final String confirmNewPassword) throws IOException, WrongPasswordException, PasswordMismatchException
     {
-        boolean b = password.equals(confirmPassword);
+        boolean b = loggedPlayerController.checkPassword(oldPassword);
         if(!b) throw new WrongPasswordException();
 
+        b = newPassword.equals(confirmNewPassword);
+        if(!b) throw new PasswordMismatchException();
+
         Player loggedPlayer = loggedPlayerController.getPlayer();
-        loggedPlayer.setPassword(password);
+        loggedPlayer.setPassword(newPassword);
         String username = loggedPlayerController.getId();
         deleteUser(username);
 
-        Player player = loggedPlayerController.newHuman(username, password);
+        Player player = loggedPlayerController.newHuman(username, newPassword);
 
         playerPersistence.save(player);
     }
 
-    public void deleteUser(final String username) throws IOException
+    private void deleteUser(final String username) throws IOException
     {
         playerPersistence.delete(username);
     }
 
-    public void deleteConfigFile(final String username) throws IOException
+    private void deleteConfigFile(final String username) throws IOException
     {
         playerPersistence.deleteConfigFile(username);
     }
@@ -652,28 +652,32 @@ public class DomainController
                     break;
 
                 case EDIT_PASSWORD:
-                    Player loggedPlayer = loggedPlayerController.getPlayer();
-
+                    currentPassword = PresentationController.getCurrentPassword();
                     password = PresentationController.getNewPassword();
                     confirmPassword = PresentationController.getConfirmPassword();
-                    currentPassword = PresentationController.getCurrentPassword();
-
-                    if(!loggedPlayer.checkPassword(currentPassword))
-                    {
-                        errorMessage(Constants.WRONG_PASSWORD);
-                    }
 
                     try
                     {
-                        changePassword(password, confirmPassword);
+                        changePassword(currentPassword, password, confirmPassword);
                         errorMessage(Constants.NEW_PASSWORD_SAVED);
                     }
-                    catch(IOException | WrongPasswordException e)
+                    catch(WrongPasswordException e)
+                    {
+                        errorMessage(Constants.WRONG_PASSWORD);
+                    }
+                    catch (PasswordMismatchException pme)
                     {
                         errorMessage(Constants.PASSWORDS_MUST_MATCH);
                     }
+                    catch (IOException ioe)
+                    {
+                        errorMessage(Constants.PASSWORD_CHANGE_ERROR);
+                    }
+                    finally
+                    {
+                        state = State.EDIT_USER_MENU;
+                    }
 
-                    state = State.EDIT_USER_MENU;
                     break;
 
                 case EXIT_CURRENT_GAME:
@@ -1005,7 +1009,7 @@ public class DomainController
                         registerUser(username, password, confirmPassword);
                         state = State.MAIN_MENU;
                     }
-                    catch (WrongPasswordException e)
+                    catch (PasswordMismatchException e)
                     {
                         errorMessage(Constants.PASSWORDS_MUST_MATCH);
                         state = State.REGISTER_MENU;

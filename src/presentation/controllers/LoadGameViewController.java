@@ -40,6 +40,19 @@ public class LoadGameViewController extends RegisteringPresentationController
         GridPane.setHgrow(gameIdButton, Priority.ALWAYS);
 
         Button editButton = new Button("Edit");
+        editButton.setOnAction((actionEvent) ->
+            {
+                try
+                {
+                    PresentationController.gameId = gameId;
+                    pressButtonAction(2);
+                }
+                catch (IOException ioe)
+                {
+                    throw new RuntimeException();
+                }
+            }
+        );
 
         GridPane gridPane = new GridPane();
         GridPane.setHalignment(editButton, HPos.RIGHT);
