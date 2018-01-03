@@ -1,5 +1,6 @@
 package persistence;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import domain.classes.Player;
 
 import java.io.*;
@@ -47,6 +48,12 @@ public class PlayerPersistence extends AbstractPersistence
         return filePlayer.exists();
     }
 
+    public boolean existsDir()
+    {
+        File filePlayer = new File(getDirPath());
+        return filePlayer.exists();
+    }
+
     public Player load(String playerId) throws IOException, ClassNotFoundException
     {
         setPlayerPath(playerId + "/");
@@ -74,6 +81,34 @@ public class PlayerPersistence extends AbstractPersistence
         out.write(gameId);
         out.write("\n");
         out.close();
+    }
+
+    public void renamePlayer(final String oldUsername, final String newUsername) throws IOException
+    {
+        setPlayerPath(newUsername + "/");
+
+        boolean b = existsDir();
+        if(b) throw new IOException();
+
+        setPlayerPath(oldUsername + "/");
+        String playerFilePath = getFilePath(oldUsername);
+        String newPlayerFilePath = getFilePath(newUsername);
+
+        File oldPlayerFile = new File(playerFilePath);
+        File newPlayerFile = new File(newPlayerFilePath);
+
+        b = oldPlayerFile.renameTo(newPlayerFile);
+        if(!b) throw new IOException();
+
+        String oldPlayerDirPath = getDirPath();
+        setPlayerPath(newUsername + "/");
+        String newPlayerDirPath = getDirPath();
+
+        File oldPlayerDir = new File(oldPlayerDirPath);
+        File newPlayerDir = new File(newPlayerDirPath);
+
+        b = oldPlayerDir.renameTo(newPlayerDir);
+        if(!b) throw new IOException();
     }
 
     public void savePlayerGames(Set<String> gamesId, String playerId) throws IOException
@@ -113,8 +148,6 @@ public class PlayerPersistence extends AbstractPersistence
     {
         Set<String> savedGames = loadSavedGames(playerId);
         savedGames.remove(gameId);
-
-        int size = savedGames.size();
 
         for(final String game : savedGames)
         {

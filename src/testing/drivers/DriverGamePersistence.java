@@ -73,7 +73,7 @@ public class DriverGamePersistence
 
         try
         {
-            gP.save(test);
+            //gP.save(test);
         }
         catch (Exception e)
         {
@@ -88,7 +88,7 @@ public class DriverGamePersistence
         Game result = null;
         try
         {
-            result = gP.load(gameID);
+            //result = gP.load(gameID);
             ioUtils.printOutLn(result.getId());
         }
         catch (Exception e)

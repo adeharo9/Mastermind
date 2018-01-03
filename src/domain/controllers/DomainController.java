@@ -178,7 +178,9 @@ public class DomainController
 
     private void loadGame(String id) throws IOException, ClassNotFoundException
     {
-        Game game = gamePersistence.load(id);
+        Player loggedPlayer = loggedPlayerController.getPlayer();
+        String player = loggedPlayer.getId();
+        Game game = gamePersistence.load(id, player);
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
 
@@ -245,11 +247,10 @@ public class DomainController
     private void saveGame() throws IOException
     {
         Game game = gameController.getGame();
-        gamePersistence.save(game);
-
         String gameId = gameController.getId();
         String playerId = loggedPlayerController.getId();
 
+        gamePersistence.save(game, playerId);
         playerPersistence.savePlayerGame(gameId, playerId);
     }
 
@@ -266,31 +267,11 @@ public class DomainController
 
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
-        boolean b = playerPersistence.exists(username);
-        if(b) throw new IOException();
-
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
-        Set<String> savedGames = new HashSet<>();
 
-        try
-        {
-            savedGames = playerPersistence.loadSavedGames(player);
-        }
-        catch(FileNotFoundException e)
-        {
-            // Catch block deliberately left blank
-            //
-            // If there are no saved games, nothing has
-            // to be done here.
-        }
-
-        deleteUser(player);
-        deleteConfigFile(player);
-
+        playerPersistence.renamePlayer(player, username);
         loggedPlayer.setId(username);
-        playerPersistence.save(loggedPlayer);
-        playerPersistence.savePlayerGames(savedGames, username);
     }
 
     private void changePassword(final String oldPassword, final String newPassword, final String confirmNewPassword) throws IOException, WrongPasswordException, PasswordMismatchException

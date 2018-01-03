@@ -69,6 +69,7 @@ public class EditUserViewController extends RegisteringPresentationController
                 confirmNewPasswordPasswordField.clear();
                 currentPasswordPasswordField.clear();
                 usernameLabel.setText(message);
+                exceptionsLabel.setVisible(false);
                 break;
         }
     }

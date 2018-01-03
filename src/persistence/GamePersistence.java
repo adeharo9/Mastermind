@@ -13,12 +13,18 @@ import java.io.IOException;
 
 public class GamePersistence extends AbstractPersistence
 {
-
+    protected final static String PLAYER_PATH = "players/";
     protected final static String GAME_PATH = "games/";
+    protected String playerPath;
 
     public GamePersistence()
     {
 
+    }
+
+    public void setPlayerPath(String playerPath)
+    {
+        this.playerPath = playerPath;
     }
 
     public boolean exists(String key)
@@ -27,18 +33,23 @@ public class GamePersistence extends AbstractPersistence
         return fileGame.exists();
     }
 
-    public String getDirPath()
+    public boolean exists(String key, String player)
     {
-        return BASE_PATH + GAME_PATH;
+        setPlayerPath(player + "/");
+        return exists(key);
     }
 
-    public Game load(String id) throws IOException, ClassNotFoundException
+    public String getDirPath() { return BASE_PATH + PLAYER_PATH + playerPath + GAME_PATH; }
+
+    public Game load(String id, String player) throws IOException, ClassNotFoundException
     {
+        setPlayerPath(player + "/");
         return (Game) super.load(id);
     }
 
-    public void save(Object game) throws IOException
+    public void save(Object game, String player) throws IOException
     {
+        setPlayerPath(player + "/");
         String id = ((Game) game).getId();
         super.save(id, game);
     }
