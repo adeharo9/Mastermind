@@ -6,6 +6,15 @@ TST_DIR = ./test
 DRIVER_DIR = testing
 JUNIT_DIR = testing
 
+PRESENTATION_DIR = /presentation
+VIEWS_DIR = $(PRESENTATION_DIR)/views
+STYLES_DIR = $(PRESENTATION_DIR)/styles
+RESOURCES_DIR = /resources
+
+RESOURCES_TARGET = $(BIN_DIR)$(RESOURCES_DIR)
+VIEWS_TARGET = $(BIN_DIR)$(VIEWS_DIR)
+STYLES_TARGET = $(BIN_DIR)$(STYLES_DIR)
+
 SRC_SOURCEPATH = $(SRC_DIR)
 SRC_CLASSPATH = test/hamcrest-core-1.3.jar:test/junit-4.12.jar
 BIN_CLASSPATH =$(BIN_DIR):$(SRC_CLASSPATH)
@@ -172,7 +181,7 @@ JUNITS = \
 	[FILEPATH]/drivers/JUnitDriverDomainController.[EXT] \
 	[FILEPATH]/drivers/JUnitDriverPlayerController.[EXT]
 
-$(BIN_FILES): | $(BIN_DIR)
+$(BIN_FILES): | $(BIN_DIR) $(RESOURCES_TARGET) $(VIEWS_TARGET) $(STYLES_TARGET)
 	$(JC) $(JFLAGS) $(SRC_FILES)
 
 $(BIN_DIR):
@@ -180,6 +189,18 @@ $(BIN_DIR):
 
 $(JAR_FILE): $(BIN_FILES)
 	$(JAR) $(JARFLAGS) $(JAR_FILE) $(MAIN_CLASS) -C $(BIN_DIR) .
+
+$(RESOURCES_TARGET):
+	mkdir -p $(RESOURCES_TARGET)
+	cp -rf $(SRC_DIR)$(RESOURCES_DIR)/* $(RESOURCES_TARGET)
+
+$(VIEWS_TARGET):
+	mkdir -p $(VIEWS_TARGET)
+	cp -rf $(SRC_DIR)$(VIEWS_DIR)/* $(VIEWS_TARGET)
+
+$(STYLES_TARGET):
+	mkdir -p $(STYLES_TARGET)
+	cp -rf $(SRC_DIR)$(STYLES_DIR)/* $(STYLES_TARGET)
 
 all: zip jar
 
