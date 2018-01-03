@@ -51,6 +51,11 @@ public final class Constants
     /* GENERAL MESSAGES */
 
     public static final String INFO_MESSAGE =
+            "In game instructions:\n" +
+            "    Drag and drop the circles in the corresponding area for set your color code.\n" +
+            "    In CodeMaker mode, you can see your code in any moment (Show Code button).\n" +
+            "    In codebreaker mode, you can get a clue of the CPU code in any moment in exchange of points (Help button).\n" +
+            "\n" +
             "Player modes:\n" +
             "    Human vs. Human: play against other human\n" +
             "    Human vs. CPU: play against our algorithm\n" +
