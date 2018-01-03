@@ -272,6 +272,8 @@ public class DomainController
 
         playerPersistence.renamePlayer(player, username);
         loggedPlayer.setId(username);
+        playerPersistence.delete(username);
+        playerPersistence.save(loggedPlayer);
     }
 
     private void changePassword(final String oldPassword, final String newPassword, final String confirmNewPassword) throws IOException, WrongPasswordException, PasswordMismatchException
