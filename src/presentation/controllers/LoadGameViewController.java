@@ -1,13 +1,18 @@
 package presentation.controllers;
 
 import enums.StyleClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import util.Constants;
 
 import java.io.IOException;
@@ -18,19 +23,28 @@ public class LoadGameViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;
     @FXML private GridPane savedGamesGridPane;
+    @FXML private Button loadGameButton;
 
     private List<Node> getNewGridPaneChildren(final String gameId)
     {
-        Label gameIdLabel = new Label(gameId);
-        gameIdLabel.getStyleClass().add(StyleClass.TEXT.toString());
-        GridPane.setHgrow(gameIdLabel, Priority.SOMETIMES);
+        Button gameIdButton = new Button(gameId);
+        gameIdButton.setAlignment(Pos.CENTER_LEFT);
+        gameIdButton.setMinSize(60, 25);
+        gameIdButton.setPadding(new Insets(0, 15, 0, 15));
+        gameIdButton.setOnAction((actionEvent) ->
+                {
+                    PresentationController.gameId = gameId;
+                    loadGameButton.setVisible(true);
+                }
+        );
+        GridPane.setHgrow(gameIdButton, Priority.ALWAYS);
 
         Button editButton = new Button("Edit");
 
         GridPane gridPane = new GridPane();
         GridPane.setHalignment(editButton, HPos.RIGHT);
 
-        gridPane.add(gameIdLabel, 0, 0);
+        gridPane.add(gameIdButton, 0, 0);
         gridPane.add(editButton, 1, 0);
 
         return gridPane.getChildren();
@@ -78,6 +92,7 @@ public class LoadGameViewController extends RegisteringPresentationController
     @FXML
     public void initialize()
     {
+        loadGameButton.setVisible(false);
         endAction();
     }
 
@@ -88,8 +103,14 @@ public class LoadGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void editButtonAction() throws IOException
+    public void loadGameButtonAction() throws IOException
     {
         pressButtonAction(1);
+    }
+
+    @FXML
+    public void editButtonAction() throws IOException
+    {
+        pressButtonAction(2);
     }
 }

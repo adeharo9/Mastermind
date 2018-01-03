@@ -289,9 +289,14 @@ public abstract class Translate
             case 0:
                 state = State.MAIN_MENU;
                 break;
-            default:
+            case 1:
                 state = State.LOAD_GAME;
                 break;
+            /*case 2:
+                state = State.;
+                break;*/
+            default:
+                throw new IllegalArgumentException();
         }
 
         return state;
