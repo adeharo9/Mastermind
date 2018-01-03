@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
-
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameOverViewController">
+
+<VBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameOverViewController">
    <children>
-      <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
-        <items>
-          <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuButtonAction" text="Main Menu" textAlignment="CENTER" />
-        </items>
-      </ToolBar>
-      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="568.0" prefWidth="400.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="100.0" prefWidth="250.0" spacing="15.0">
          <children>
-            <Label styleClass="title" text="GAME OVER">
+            <Label prefHeight="27.0" prefWidth="220.0" styleClass="title" text="GAME OVER">
                <font>
-                  <Font size="40.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="79.0">
@@ -26,13 +25,25 @@
                   <Label fx:id="pointsLabel" styleClass="text" />
                </children>
             </HBox>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                <children>
-                  <Button fx:id="resetGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetGameButtonAction" text="Reset Game" />
-                  <Button fx:id="newGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameButtonAction" text="New Game" translateY="20.0" />
+                <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuButtonAction" text="Main Menu" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="resetGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetGameButtonAction" text="Reset Game">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="newGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameButtonAction" text="New Game" />
                </children>
             </VBox>
          </children>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
 </VBox>
