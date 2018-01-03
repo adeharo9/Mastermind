@@ -40,6 +40,7 @@ public class EditUserViewController extends RegisteringPresentationController
                 newUsernameTextField.setVisible(true);
                 editButton.setVisible(false);
                 doneButton.setVisible(true);
+                exceptionsLabel.setVisible(false);
                 break;
             case Constants.USERNAME_ALREADY_EXISTS:
                 exceptionsLabel.setVisible(true);
@@ -69,7 +70,6 @@ public class EditUserViewController extends RegisteringPresentationController
                 confirmNewPasswordPasswordField.clear();
                 currentPasswordPasswordField.clear();
                 usernameLabel.setText(message);
-                exceptionsLabel.setVisible(false);
                 break;
         }
     }
