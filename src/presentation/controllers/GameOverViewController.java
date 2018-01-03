@@ -1,11 +1,12 @@
 package presentation.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class GameOverViewController extends RegisteringPresentationController
+public class GameOverViewController extends PopUpController
 {
     /* ATTRIBUTES */
 
@@ -16,6 +17,11 @@ public class GameOverViewController extends RegisteringPresentationController
     public GameOverViewController()
     {
 
+    }
+
+    protected void pressButtonTemplateAction()
+    {
+        popUpStage.close();
     }
 
     /* GUI INTERACTION */
