@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import persistence.GamePersistence;
 import persistence.PlayerPersistence;
 import persistence.RankingPersistence;
-import presentation.controllers.OldPresentationController;
 import presentation.controllers.PresentationController;
 import presentation.runnables.*;
 import util.Constants;
@@ -35,7 +34,7 @@ public class DomainController
     private State state;
     private Set<String> savedGames;
 
-    private final OldPresentationController oldPresentationController;
+    //private final OldPresentationController oldPresentationController;
     private PresentationController presentationController;
 
     private BoardController boardController;
@@ -54,7 +53,7 @@ public class DomainController
         state = State.INIT_PROGRAM;
         savedGames = new HashSet<>();
 
-        oldPresentationController = new OldPresentationController();
+        //oldPresentationController = new OldPresentationController();
         this.presentationController = null;
 
         boardController = new BoardController();
@@ -483,6 +482,11 @@ public class DomainController
     private void errorMessage(final String message)
     {
         Platform.runLater(new ProcessInfoRunnable(presentationController, message));
+    }
+
+    private void showMessageAndWait(final String message) throws InterruptedException
+    {
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
     }
 
     private void showHint(final String message) throws InterruptedException
@@ -1059,9 +1063,10 @@ public class DomainController
                     }
                     catch(IOException e)
                     {
-                        /*errorMessage(Constants.GAME_SAVING_ERROR);
-                        Thread.sleep(Constants.ERROR_MESSAGE_TIME_MS);
-                        state = State.GAME_PAUSE_MENU;*/
+                        popUpView(PopUpWindowStyle.WARNING, View.ERROR_MESSAGE_WARNING_VIEW);
+                        showMessageAndWait(Constants.GAME_SAVING_ERROR);
+
+                        state = State.GAME_PAUSE_MENU;
                     }
                     break;
 
@@ -1089,7 +1094,9 @@ public class DomainController
                     }
                     catch (IOException ei)
                     {
-                        oldPresentationController.gameDeleteError();
+                        popUpView(PopUpWindowStyle.WARNING, View.ERROR_MESSAGE_WARNING_VIEW);
+                        showMessageAndWait(Constants.GAME_DELETING_ERROR);
+
                         state = State.GAME_PAUSE_MENU;
                     }
                     break;

@@ -88,6 +88,7 @@ public final class Constants
     public static final String SAVED_GAMES_LIST_LOAD_ERROR = "Error while loading saved games list";
     public static final String RANKING_LOADING_ERROR = "Error while loading ranking";
     public static final String GAME_SAVING_ERROR = "Error while saving game";
+    public static final String GAME_DELETING_ERROR = "Error while deleting game";
     public static final String PASSWORD_CHANGE_ERROR = "Error while changing password";
 
     public static int getNumColorsByDifficulty(Difficulty difficulty) throws IllegalArgumentException
