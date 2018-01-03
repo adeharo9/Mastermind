@@ -66,19 +66,54 @@ CLASSES = \
 	[FILEPATH]/enums/Color.[EXT] \
 	[FILEPATH]/enums/Difficulty.[EXT] \
 	[FILEPATH]/enums/Mode.[EXT] \
+	[FILEPATH]/enums/PlayingAction.[EXT] \
+	[FILEPATH]/enums/PopUpWindowStyle.[EXT] \
 	[FILEPATH]/enums/Role.[EXT] \
 	[FILEPATH]/enums/State.[EXT] \
+	[FILEPATH]/enums/StyleClass.[EXT] \
+	[FILEPATH]/enums/View.[EXT] \
 	[FILEPATH]/exceptions/AbstractException.[EXT] \
 	[FILEPATH]/exceptions/GameNotStartedException.[EXT] \
 	[FILEPATH]/exceptions/IllegalActionException.[EXT] \
-	[FILEPATH]/exceptions/IntegrityCorruptionException.[EXT] \
+	[FILEPATH]/exceptions/PasswordMismatchException.[EXT] \
 	[FILEPATH]/exceptions/ReservedKeywordException.[EXT] \
 	[FILEPATH]/exceptions/WrongPasswordException.[EXT] \
 	[FILEPATH]/persistence/AbstractPersistence.[EXT] \
 	[FILEPATH]/persistence/GamePersistence.[EXT] \
 	[FILEPATH]/persistence/PlayerPersistence.[EXT] \
 	[FILEPATH]/persistence/RankingPersistence.[EXT] \
+	[FILEPATH]/presentation/controllers/CloseProgramWarningViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/EditUserViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/ErrorMessageWarningViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/ExitCurrentGameWarningViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/GameInProgressViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/GameOverViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/HintViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/InfoViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/InitSessionViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/LoadGameViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/LoadingViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/LogInViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/LogOutWarningViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/MainMenuViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/NewGameViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/NonRegisteringPresentationController.[EXT] \
+	[FILEPATH]/presentation/controllers/PauseViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/PopUpController.[EXT] \
 	[FILEPATH]/presentation/controllers/PresentationController.[EXT] \
+	[FILEPATH]/presentation/controllers/RankingViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/RegisteringPresentationController.[EXT] \
+	[FILEPATH]/presentation/controllers/RegisterViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/SaveGameOverwriteViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/SaveGameViewController.[EXT] \
+	[FILEPATH]/presentation/controllers/ShowCodeViewController.[EXT] \
+	[FILEPATH]/presentation/runnables/LogicThreadRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/PopUpViewRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/ProcessInfoRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/RenderBoardRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/RenderLastTurnRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/ShowLoadedGamesRunnable.[EXT] \
+	[FILEPATH]/presentation/runnables/UpdateViewRunnable.[EXT] \
 	[FILEPATH]/testing/drivers/DriverBoard.[EXT] \
 	[FILEPATH]/testing/drivers/DriverCode.[EXT] \
 	[FILEPATH]/testing/drivers/DriverColor.[EXT] \
@@ -87,10 +122,12 @@ CLASSES = \
 	[FILEPATH]/testing/drivers/DriverGame.[EXT] \
 	[FILEPATH]/testing/drivers/DriverGameController.[EXT] \
 	[FILEPATH]/testing/drivers/DriverGamePersistence.[EXT] \
+	[FILEPATH]/testing/drivers/DriverHuman.[EXT] \
 	[FILEPATH]/testing/drivers/DriverPlayerPersistence.[EXT] \
 	[FILEPATH]/testing/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/testing/drivers/DriverRanking.[EXT] \
 	[FILEPATH]/testing/drivers/DriverRankingPersistence.[EXT] \
+	[FILEPATH]/testing/drivers/DriverRenames.[EXT] \
 	[FILEPATH]/testing/drivers/DriverTurn.[EXT] \
 	[FILEPATH]/testing/drivers/JUnitDriverDomainController.[EXT] \
 	[FILEPATH]/testing/drivers/JUnitDriverPlayerController.[EXT] \
@@ -110,6 +147,7 @@ CLASSES = \
 	[FILEPATH]/util/ioUtils.[EXT] \
 	[FILEPATH]/util/Pair.[EXT] \
 	[FILEPATH]/util/Translate.[EXT] \
+	[FILEPATH]/util/UncheckedCast.[EXT] \
 	[FILEPATH]/util/Utils.[EXT] \
 	[FILEPATH]/Mastermind.[EXT]
 
@@ -122,10 +160,13 @@ DRIVERS = \
 	[FILEPATH]/drivers/DriverGame.[EXT] \
 	[FILEPATH]/drivers/DriverGameController.[EXT] \
 	[FILEPATH]/drivers/DriverGamePersistence.[EXT] \
+	[FILEPATH]/drivers/DriverHuman.[EXT] \
 	[FILEPATH]/drivers/DriverPlayerPersistence.[EXT] \
 	[FILEPATH]/drivers/DriverPresentationBoard.[EXT] \
 	[FILEPATH]/drivers/DriverRanking.[EXT] \
-	[FILEPATH]/drivers/DriverRankingPersistence.[EXT]
+	[FILEPATH]/drivers/DriverRankingPersistence.[EXT] \
+	[FILEPATH]/drivers/DriverRenames.[EXT] \
+	[FILEPATH]/drivers/DriverTurn.[EXT]
 
 JUNITS = \
 	[FILEPATH]/drivers/JUnitDriverDomainController.[EXT] \
