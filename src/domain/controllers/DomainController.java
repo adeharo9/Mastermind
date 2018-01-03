@@ -1066,7 +1066,8 @@ public class DomainController
                         popUpView(PopUpWindowStyle.WARNING, View.ERROR_MESSAGE_WARNING_VIEW);
                         showMessageAndWait(Constants.GAME_SAVING_ERROR);
 
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStateErrorMessageWarning(returnState);
                     }
                     break;
 
@@ -1097,7 +1098,8 @@ public class DomainController
                         popUpView(PopUpWindowStyle.WARNING, View.ERROR_MESSAGE_WARNING_VIEW);
                         showMessageAndWait(Constants.GAME_DELETING_ERROR);
 
-                        state = State.GAME_PAUSE_MENU;
+                        returnState = PresentationController.getReturnState();
+                        state = Translate.intToStateErrorMessageWarning(returnState);
                     }
                     break;
             }

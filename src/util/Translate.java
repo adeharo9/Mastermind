@@ -197,25 +197,6 @@ public abstract class Translate
         return state;
     }
 
-    /*public static State int2StateInGameMenu(int stat) throws IllegalArgumentException
-    {
-        State state;
-
-        switch(stat)
-        {
-            case 0:
-                state = State.GAME_PAUSE_MENU;
-                break;
-            case 1:
-                state = State.PLAY_TURN;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
-        return state;
-    }*/
-
     public static State int2StateGamePauseMenu(int stat) throws IllegalArgumentException
     {
         State state;
@@ -256,26 +237,6 @@ public abstract class Translate
 
         return state;
     }
-
-    /*public static String int2SavedGameId(Set<String> savedGames, int index) throws IllegalArgumentException
-    {
-        String savedGameId;
-
-        if(index == 0)
-        {
-            savedGameId = null;
-        }
-        else if(index <= savedGames.size())
-        {
-            savedGameId = savedGames.get(index - 1);
-        }
-        else
-        {
-            throw new IllegalArgumentException();
-        }
-
-        return savedGameId;
-    }*/
 
     public static State int2StateLoadGameMenu(int stat)
     {
@@ -355,15 +316,6 @@ public abstract class Translate
     public static State booleanToStatePlayTurn(boolean hasStarted, boolean hasCodeToCorrect)
     {
         State state;
-
-        /*if(!hasStarted || hasCodeToCorrect)
-        {
-            state = State.PLAY_CODE_MAKER;
-        }
-        else
-        {
-            state = State.PLAY_CODE_BREAKER;
-        }*/
 
         if(!hasStarted)
         {
@@ -500,6 +452,22 @@ public abstract class Translate
                 break;
             case 1:
                 state = State.SAVE_GAME;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return state;
+    }
+
+    public static State intToStateErrorMessageWarning(int returnState) throws IllegalArgumentException
+    {
+        State state;
+
+        switch (returnState)
+        {
+            case 0:
+                state = State.GAME_PAUSE_MENU;
                 break;
             default:
                 throw new IllegalArgumentException();
