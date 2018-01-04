@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.EditUserViewController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
@@ -14,22 +17,19 @@
          <children>
             <GridPane>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="108.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="0.0" prefWidth="169.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label styleClass="text" text="Current username:" textFill="#cfcfcf" />
-                  <Label fx:id="usernameLabel" styleClass="text" textFill="#cfcfcf" GridPane.columnIndex="1">
-                     <graphic>
-                        <TextField fx:id="newUsernameTextField" promptText="New username" visible="false" />
-                     </graphic>
-                  </Label>
-                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Edit" GridPane.columnIndex="2" />
+                  <Label prefHeight="22.0" prefWidth="110.0" styleClass="text" text="Current username:" textFill="#cfcfcf" />
+                  <Label fx:id="usernameLabel" prefHeight="20.0" prefWidth="158.0" styleClass="text" textFill="#cfcfcf" GridPane.columnIndex="1" />
+                  <TextField fx:id="newUsernameTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="161.0" promptText="New username" visible="false" GridPane.columnIndex="1" />
                   <Button fx:id="doneButton" mnemonicParsing="false" onAction="#doneButtonAction" text="Done" visible="false" GridPane.columnIndex="2" />
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Edit" GridPane.columnIndex="2" GridPane.columnSpan="2" />
                </children>
             </GridPane>
             <Separator prefWidth="200.0" />
