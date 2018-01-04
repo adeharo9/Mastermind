@@ -14,7 +14,6 @@ public class ErrorMessageWarningViewController extends PopUpController
 
     }
 
-    @Override
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();

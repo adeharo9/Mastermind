@@ -13,7 +13,7 @@ public class LogOutWarningViewController extends PopUpController
 
     protected void pressButtonTemplateAction()
     {
-        this.popUpStage.close();
+        popUpStage.close();
     }
 
     /* FXML */
