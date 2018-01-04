@@ -317,7 +317,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML
     public void showCodeButtonAction() throws IOException
     {
-        popUpWindow(PopUpWindowStyle.INFO, View.SHOW_CODE_VIEW.getViewFile());
+        if(getDifficulty() == 3) popUpWindow(PopUpWindowStyle.INFO_HARD, View.SHOW_CODE_VIEW.getViewFile());
+        else popUpWindow(PopUpWindowStyle.INFO, View.SHOW_CODE_VIEW.getViewFile());
     }
 
     @FXML
