@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<VBox prefHeight="125.0" prefWidth="250.0" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
+
+<VBox prefHeight="99.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
    <children>
       <VBox spacing="5.0">
          <children>
             <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="185.0" styleClass="text" text="Enter a name for this game:" />
             <TextField fx:id="gameIdTextField" layoutX="14.0" layoutY="26.0" prefHeight="24.0" prefWidth="228.0" promptText="Game Name" />
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1.0" prefWidth="220.0">
                <children>
                   <Label fx:id="errorLabel" styleClass="error-label" />
                </children>
