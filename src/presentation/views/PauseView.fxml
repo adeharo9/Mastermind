@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
+
+
+<VBox styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
    <children>
-      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="30.0">
-         <children>
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="25.0" prefWidth="123.0" text="Save" />
-            <Button fx:id="mainMenuButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuButtonAction" prefHeight="25.0" prefWidth="123.0" text="Main Menu" />
-         </children>
-      </VBox>
       <ToolBar prefHeight="40.0" prefWidth="400.0" styleClass="toolbar">
         <items>
           <Button fx:id="continueButton" mnemonicParsing="false" onAction="#continueButtonAction" text="Continue" />
         </items>
       </ToolBar>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="30.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="25.0" prefWidth="123.0" text="Save" />
+            <Button fx:id="mainMenuButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuButtonAction" prefHeight="25.0" prefWidth="123.0" text="Main Menu" />
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</VBox>
