@@ -283,6 +283,7 @@ public abstract class PresentationController
         switch (popUpWindowStyle)
         {
             case INFO:
+            case INFO_HARD:
                 closingEventHandler = (WindowEvent event) -> {};
                 break;
             default:
