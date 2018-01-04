@@ -252,7 +252,7 @@ public abstract class PresentationController
         }
     }
 
-    private void newPopUpStage(final String viewFile, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
+    private void newPopUpStage(final String viewFile, final int width, final int height, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
     {
         popUpStage = new Stage();
 
@@ -266,7 +266,7 @@ public abstract class PresentationController
 
         popUpStage.setOnCloseRequest(closingEventHandler);
 
-        popUpStage.setScene(new Scene(root, 250, 125));
+        popUpStage.setScene(new Scene(root, width, height));
 
         popUpStage.show();
     }
@@ -275,6 +275,8 @@ public abstract class PresentationController
     {
         String title = popUpWindowStyle.getTitle();
         String iconPath = Constants.RESOURCES_PATH + popUpWindowStyle.getIconFile();
+        int width = popUpWindowStyle.getWidth();
+        int height = popUpWindowStyle.getHeight();
         Modality modality = popUpWindowStyle.getModality();
         EventHandler<WindowEvent> closingEventHandler;
 
@@ -301,7 +303,7 @@ public abstract class PresentationController
                 throw new IllegalArgumentException();
         }
 
-        newPopUpStage(viewFile, title, iconPath, modality, closingEventHandler);
+        newPopUpStage(viewFile, width, height, title, iconPath, modality, closingEventHandler);
     }
 
     /* TEMPLATE PATTERN */
