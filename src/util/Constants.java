@@ -53,6 +53,7 @@ public final class Constants
     public static final String INFO_MESSAGE =
             "In game instructions:\n" +
             "    Drag and drop the circles in the corresponding area for set your color code.\n" +
+            "    Click an area in your answer code to eliminate the color in this area.\n" +
             "    In CodeMaker mode, you can see your code in any moment (Show Code button).\n" +
             "    In codebreaker mode, you can get a clue of the CPU code in any moment in exchange of points (Help button).\n" +
             "\n" +
