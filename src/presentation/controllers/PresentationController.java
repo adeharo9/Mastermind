@@ -282,9 +282,10 @@ public abstract class PresentationController
 
         switch (popUpWindowStyle)
         {
-            case GAME_OVER:
-            case INTERACTION:
-            case WARNING:
+            case INFO:
+                closingEventHandler = (WindowEvent event) -> {};
+                break;
+            default:
                 closingEventHandler = (WindowEvent event) ->
                     {
                         try
@@ -296,9 +297,6 @@ public abstract class PresentationController
                             throw new RuntimeException(ioe.getMessage());
                         }
                     };
-                break;
-            default:
-                closingEventHandler = (WindowEvent event) -> {};
                 break;
         }
 
