@@ -239,7 +239,10 @@ public class DomainController
             }
         }
 
-        presentationController.setSolution(boardController.getSolution().getCodePins());
+        if(boardController.getSolution() != null)
+        {
+            presentationController.setSolution(boardController.getSolution().getCodePins());
+        }
         presentationController.setCodes(codes);
         presentationController.setCorrections(corrections);
     }
