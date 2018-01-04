@@ -282,9 +282,6 @@ public abstract class PresentationController
 
         switch (popUpWindowStyle)
         {
-            case INFO:
-                closingEventHandler = (WindowEvent event) -> {};
-                break;
             case GAME_OVER:
             case INTERACTION:
             case WARNING:
@@ -301,7 +298,7 @@ public abstract class PresentationController
                     };
                 break;
             default:
-                throw new IllegalArgumentException();
+                closingEventHandler = (WindowEvent event) -> {};
         }
 
         newPopUpStage(viewFile, width, height, title, iconPath, modality, closingEventHandler);
