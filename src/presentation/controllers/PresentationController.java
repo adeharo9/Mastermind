@@ -299,6 +299,7 @@ public abstract class PresentationController
                 break;
             default:
                 closingEventHandler = (WindowEvent event) -> {};
+                break;
         }
 
         newPopUpStage(viewFile, width, height, title, iconPath, modality, closingEventHandler);
