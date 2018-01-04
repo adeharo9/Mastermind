@@ -285,6 +285,7 @@ public abstract class PresentationController
             case INFO:
                 closingEventHandler = (WindowEvent event) -> {};
                 break;
+            case GAME_OVER:
             case INTERACTION:
             case WARNING:
                 closingEventHandler = (WindowEvent event) ->

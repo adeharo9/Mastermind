@@ -680,7 +680,7 @@ public class DomainController
                     break;
 
                 case GAME_OVER_MENU:
-                    popUpView(PopUpWindowStyle.INTERACTION, View.GAME_OVER_VIEW);
+                    popUpView(PopUpWindowStyle.GAME_OVER, View.GAME_OVER_VIEW);
                     showScore(String.valueOf(gameController.getGame().getPoints()));
                     /*gameController.pointsEndGame();*/
 
