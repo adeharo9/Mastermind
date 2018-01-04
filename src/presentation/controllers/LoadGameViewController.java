@@ -34,8 +34,8 @@ public class LoadGameViewController extends RegisteringPresentationController
         );
         GridPane.setHgrow(gameIdButton, Priority.ALWAYS);
 
-        Button editButton = new Button("Edit");
-        editButton.setOnAction((actionEvent) ->
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction((actionEvent) ->
             {
                 try
                 {
@@ -50,10 +50,10 @@ public class LoadGameViewController extends RegisteringPresentationController
         );
 
         GridPane gridPane = new GridPane();
-        GridPane.setHalignment(editButton, HPos.RIGHT);
+        GridPane.setHalignment(deleteButton, HPos.RIGHT);
 
         gridPane.add(gameIdButton, 0, 0);
-        gridPane.add(editButton, 1, 0);
+        gridPane.add(deleteButton, 1, 0);
 
         return gridPane.getChildren();
     }
@@ -117,7 +117,7 @@ public class LoadGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void editButtonAction() throws IOException
+    public void deleteButtonAction() throws IOException
     {
         pressButtonAction(2);
     }

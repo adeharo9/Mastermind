@@ -113,6 +113,7 @@ public class PlayerPersistence extends AbstractPersistence
 
     public void savePlayerGames(Set<String> gamesId, String playerId) throws IOException
     {
+        deleteConfigFile(playerId);
         for(String gameId : gamesId)
         {
             savePlayerGame(gameId, playerId);
@@ -153,6 +154,8 @@ public class PlayerPersistence extends AbstractPersistence
         {
             savePlayerGame(game, playerId);
         }
+
+        savePlayerGames(savedGames, playerId);
 
     }
 

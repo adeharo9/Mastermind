@@ -262,7 +262,11 @@ public class DomainController
 
     public void deleteGame(final String gameId) throws IOException
     {
+        String playerId = loggedPlayerController.getId();
+        gamePersistence.setPlayerPath(playerId + "/");
         gamePersistence.delete(gameId);
+
+        playerPersistence.deletePlayerGame(gameId, playerId);
     }
 
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
@@ -788,6 +792,19 @@ public class DomainController
                         state = Translate.int2StateLoadGameMenu(returnState);
                     }
 
+                    break;
+
+                case DELETE_GAME:
+                    try
+                    {
+                        deleteGame(gameId);
+                    }
+                    catch (IOException e)
+                    {
+                        errorMessage(Constants.GAME_DELETING_ERROR);
+                    }
+
+                    state = State.LOAD_GAME_MENU;
                     break;
 
                 case LOAD_RANKING:

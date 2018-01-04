@@ -27,6 +27,7 @@ public enum State
     LAST_ACTIONS,
     LOAD_GAME,
     LOAD_GAME_MENU,
+    DELETE_GAME,
     LOAD_RANKING,
     LOG_IN_MENU,
     LOG_IN_USER,

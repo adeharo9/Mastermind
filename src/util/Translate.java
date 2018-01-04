@@ -250,9 +250,9 @@ public abstract class Translate
             case 1:
                 state = State.LOAD_GAME;
                 break;
-            /*case 2:
-                state = State.;
-                break;*/
+            case 2:
+                state = State.DELETE_GAME;
+                break;
             default:
                 throw new IllegalArgumentException();
         }
