@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadGameViewController">
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadGameViewController">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
+      <ToolBar layoutX="118.0" layoutY="39.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="398.0" styleClass="toolbar">
         <items>
           <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
         </items>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </ToolBar>
       <VBox alignment="CENTER" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
             <ScrollPane fx:id="contentScrollPane" fitToHeight="true" fitToWidth="true" prefViewportHeight="560.0" prefViewportWidth="395.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="30.0" styleClass="background">
+                  <VBox alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="398.0" spacing="30.0" styleClass="background">
                      <children>
                         <Label styleClass="text" text="SAVED GAMES">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <GridPane fx:id="savedGamesGridPane" vgap="10.0">
+                        <GridPane fx:id="savedGamesGridPane" alignment="CENTER" vgap="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -38,11 +47,8 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGameButtonAction" text="Load Game" visible="false" />
+            <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGameButtonAction" prefHeight="25.0" prefWidth="96.0" text="Load Game" translateY="-17.0" visible="false" />
          </children>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="30.0" />
-   </padding>
 </VBox>

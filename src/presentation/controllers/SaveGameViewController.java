@@ -9,7 +9,6 @@ import java.io.IOException;
 public class SaveGameViewController extends PopUpController {
 
     @FXML private TextField gameIdTextField;
-    @FXML private Label errorLabel;
 
     public SaveGameViewController()
     {
@@ -21,21 +20,12 @@ public class SaveGameViewController extends PopUpController {
         popUpStage.close();
     }
 
-    public void processInfo(final Object info)
-    {
-        String message = (String) info;
-
-        errorLabel.setText(message);
-        errorLabel.setVisible(true);
-    }
-
     /* FXML */
 
     @FXML
     @Override
     public void initialize()
     {
-        errorLabel.setVisible(false);
     }
 
     @FXML
