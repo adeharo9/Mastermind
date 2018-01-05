@@ -3,6 +3,7 @@ package presentation.controllers;
 import enums.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -136,7 +137,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         for(final Color color : colorList)
         {
             Circle pin = getNewPin(color);
-
+            pin.setCursor(Cursor.OPEN_HAND);
             pin.setOnDragDetected((MouseEvent event) ->
                     dragDetected(event, pin)
             );
