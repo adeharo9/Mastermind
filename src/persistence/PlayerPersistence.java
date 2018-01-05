@@ -195,7 +195,7 @@ public class PlayerPersistence extends AbstractPersistence
      * @param playerId Identificador del jugador al que pertenecen las partidas.
      * @throws IOException Si el jugador ya tiene guardada una partida con el mismo nombre en la capa de persistencia.
      */
-    public void savePlayerGames(Set<String> gamesId, String playerId) throws IOException
+    private void savePlayerGames(Set<String> gamesId, String playerId) throws IOException
     {
         deleteConfigFile(playerId);
         for(String gameId : gamesId)
