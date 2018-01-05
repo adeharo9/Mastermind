@@ -14,15 +14,47 @@ public abstract class AbstractPersistence
     protected final static String BASE_PATH = "./";
     protected final static String GAME_EXTENSION = ".mm";
 
+    /**
+     * Existe en la persistencia.
+     *
+     * Indica si el objeto identificado por key existe
+     * en la capa de datos.
+     *
+     * @param key Identificador del objeto.
+     */
     public abstract boolean exists(String key);
 
+    /**
+     * Getter del directorio.
+     *
+     * Devuelve el path del directorio en el
+     * cual se encuentra el objeto correspondiente.
+     *
+     */
     public abstract String getDirPath();
 
+    /**
+     * Getter del fichero.
+     *
+     * Devuelve el path del fichero concreto en el
+     * cual se encuentra el objeto identificado por key.
+     *
+     * @param key Identificador del objeto.
+     */
     public String getFilePath(String key)
     {
         return getDirPath() + key + GAME_EXTENSION;
     }
 
+    /**
+     * Cargar.
+     *
+     * Devuelve el objeto identificado por key.
+     *
+     * @param key Identificador del objeto.
+     * @throws IOException Si el objeto no existe en la capa de persistencia.
+     * @throws ClassNotFoundException Si la definición del objeto no se corresponde a la leída en el documento.
+     */
     public Object load(String key) throws IOException, ClassNotFoundException
     {
         boolean b = exists(key);
@@ -41,6 +73,15 @@ public abstract class AbstractPersistence
         return object;
     }
 
+    /**
+     * Guardar.
+     *
+     * Guarda en la capa de persistencia el objeto object identificado por objectName.
+     *
+     * @param objectName Identificador del objeto a guardar.
+     * @param object Objeto a guardar.
+     * @throws IOException Si el objeto ya existe en la capa de persistencia.
+     */
     public void save(String objectName, Object object) throws IOException
     {
         boolean b;
@@ -60,6 +101,14 @@ public abstract class AbstractPersistence
         oos.close();
     }
 
+    /**
+     * Eliminar.
+     *
+     * Elimina de la capa de persistencia el objeto identificado por key.
+     *
+     * @param key Identificador del objeto a eliminar.
+     * @throws IOException Si el objeto identificado por key no existe en la capa de persistencia.
+     */
     public void delete(String key) throws IOException
     {
         boolean b = exists(key);
