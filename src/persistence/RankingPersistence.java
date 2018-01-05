@@ -111,17 +111,4 @@ public class RankingPersistence extends AbstractPersistence
     {
         super.delete("ranking");
     }
-
-    /**
-     * Eliminar ranking.
-     *
-     * Elimina de la capa de persistencia el ranking identificado por key.
-     *
-     * @param key Identificador del ranking a eliminar.
-     * @throws IOException Si el ranking no existe en la capa de persistencia.
-     */
-    public void delete(String key) throws IOException
-    {
-        super.delete("ranking");
-    }
 }
