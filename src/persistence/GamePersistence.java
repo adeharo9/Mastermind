@@ -61,7 +61,7 @@ public class GamePersistence extends AbstractPersistence
     /**
      * Cargar partida.
      *
-     * Devuelve la partida identificado por key.
+     * Devuelve la partida identificada por id.
      *
      * @param id Identificador de la partida.
      * @param player Identificador del jugador al que pertenece la partida.
