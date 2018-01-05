@@ -253,11 +253,6 @@ public class PlayerPersistence extends AbstractPersistence
         Set<String> savedGames = loadSavedGames(playerId);
         savedGames.remove(gameId);
 
-        for(final String game : savedGames)
-        {
-            savePlayerGame(game, playerId);
-        }
-
         savePlayerGames(savedGames, playerId);
 
     }
