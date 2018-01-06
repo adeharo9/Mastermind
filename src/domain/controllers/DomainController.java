@@ -621,6 +621,19 @@ public class DomainController
                     state = State.RENDER_BOARD;
                     break;
 
+                case DELETE_GAME:
+                    try
+                    {
+                        deleteGame(gameId);
+                    }
+                    catch (IOException e)
+                    {
+                        errorMessage(Constants.GAME_DELETING_ERROR);
+                    }
+
+                    state = State.LOAD_GAME_MENU;
+                    break;
+
                 case EDIT_USER_MENU:
                     updateView(View.EDIT_USER_VIEW);
                     showUsername();
@@ -791,23 +804,9 @@ public class DomainController
 
                         returnState = PresentationController.getReturnState();
                         gameId = PresentationController.getGameId();
-                        //gameId = Translate.int2SavedGameId(savedGames, returnState);
                         state = Translate.int2StateLoadGameMenu(returnState);
                     }
 
-                    break;
-
-                case DELETE_GAME:
-                    try
-                    {
-                        deleteGame(gameId);
-                    }
-                    catch (IOException e)
-                    {
-                        errorMessage(Constants.GAME_DELETING_ERROR);
-                    }
-
-                    state = State.LOAD_GAME_MENU;
                     break;
 
                 case LOAD_RANKING:
