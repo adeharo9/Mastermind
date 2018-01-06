@@ -57,6 +57,11 @@ public class NewGameViewController extends RegisteringPresentationController
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial Player vs. CPU.
+     */
     @FXML
     public void playerVsCPURadioButtonAction()
     {
@@ -65,6 +70,11 @@ public class NewGameViewController extends RegisteringPresentationController
         PresentationController.mode = 2;
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. Player.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial Player vs. Player.
+     */
     @FXML
     public void playerVsPlayerRadioButtonAction()
     {
@@ -73,6 +83,11 @@ public class NewGameViewController extends RegisteringPresentationController
         PresentationController.mode = 1;
     }
 
+    /**
+     * Método de gestión de botón radial CPU vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial CPU vs. CPU.
+     */
     @FXML
     public void cpuVsCPURadioButtonAction()
     {
@@ -81,6 +96,11 @@ public class NewGameViewController extends RegisteringPresentationController
         PresentationController.mode = 3;
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Player vs. CPU.
+     */
     @FXML
     public void playerVsCPURadioButtonOnMouseEntered()
     {
@@ -90,6 +110,11 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al sacar el mouse de encima del botón radial Player vs. CPU.
+     */
     @FXML
     public void playerVsCPURadioButtonOnMouseExited()
     {
@@ -99,6 +124,11 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. Player.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Player vs. Player.
+     */
     @FXML
     public void playerVsPlayerRadioButtonOnMouseEntered()
     {
@@ -108,6 +138,11 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial Player vs. Player.
+     *
+     * Método de gestión de las acciones a llevar a cabo al sacar el mouse de encima del botón radial Player vs. Player.
+     */
     @FXML
     public void playerVsPlayerRadioButtonOnMouseExited()
     {
@@ -117,6 +152,11 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial CPU vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial CPU vs. CPU.
+     */
     @FXML
     public void cpuVsCPURadioButtonOnMouseEntered()
     {
@@ -126,6 +166,11 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial CPU vs. CPU.
+     *
+     * Método de gestión de las acciones a llevar a cabo al sacar el mouse de encima del botón radial CPU vs. CPU.
+     */
     @FXML
     public void cpuVsCPURadioButtonOnMouseExited()
     {
@@ -135,31 +180,55 @@ public class NewGameViewController extends RegisteringPresentationController
         }
     }
 
+    /**
+     * Método de gestión de botón radial Easy.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Easy.
+     */
     @FXML
     public void easyRadioButtonAction()
     {
         PresentationController.difficulty = 1;
     }
 
+    /**
+     * Método de gestión de botón radial Medium.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Medium.
+     */
     @FXML
     public void mediumRadioButtonAction()
     {
         PresentationController.difficulty = 2;
     }
 
+    /**
+     * Método de gestión de botón radial Hard.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Hard.
+     */
     @FXML
     public void hardRadioButtonAction()
     {
         PresentationController.difficulty = 3;
     }
 
-
+    /**
+     * Método de gestión de botón radial Code Maker.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Code Maker.
+     */
     @FXML
     public void codeMakerRadioButtonAction()
     {
         PresentationController.role = 1;
     }
 
+    /**
+     * Método de gestión de botón radial Code Breaker.
+     *
+     * Método de gestión de las acciones a llevar a cabo al situar el mouse encima del botón radial Code Breaker.
+     */
     @FXML
     public void codeBreakerRadioButtonAction()
     {
