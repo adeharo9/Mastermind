@@ -32,16 +32,38 @@ public class Board implements DeepCopyable, Serializable
     private ArrayList<Turn> turnSet;
     private final Code solutionCorrection;
 
+    /**
+     * Validar columnas.
+     *
+     * Comprueba si el nombre de columnas es válido.
+     *
+     * @param nColumns Nombre de columnas a validar.
+     */
     private static boolean isValidNColumns(final int nColumns)
     {
         return nColumns > 0;
     }
 
+    /**
+     * Validar intentos.
+     *
+     * Comprueba si el nombre de máximos intentos es válido.
+     *
+     * @param maxAttempts Nombre de máximos intentos a validar.
+     */
     private static boolean isValidMaxAttempts(final int maxAttempts)
     {
         return maxAttempts > 0;
     }
 
+    /**
+     * Validar turnos.
+     *
+     * Comprueba si los turnos del tablero son válidos.
+     *
+     * @param turnSet Conjunto de turnos a validar.
+     * @throws NullPointerException Si alguno de los turnos es null.
+     */
     private static boolean isValidTurnSet(final Collection<Turn> turnSet) throws NullPointerException
     {
         boolean b = turnSet.isEmpty();
@@ -58,6 +80,13 @@ public class Board implements DeepCopyable, Serializable
         return b;
     }
 
+    /**
+     * Validar código.
+     *
+     * Comprueba si el código de colores es válido.
+     *
+     * @param code Código de colores a validar.
+     */
     private boolean isValidCode(final Code code) throws NullPointerException
     {
         return code.size () == nColumns;

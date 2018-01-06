@@ -26,15 +26,34 @@ public abstract class Action implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora por defecto.
+     *
+     * Constructora de acción vacía.
+     */
     protected Action()
     {
 
     }
 
+    /**
+     * Constructora con código.
+     *
+     * Constructora de una acción mediante un código de colores.
+     *
+     * @param code Código de colores.
+     */
     protected Action(final Code code) {
         this.code = code;
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Constructora de una acción mediante otra.
+     *
+     * @param action Acción para copiar.
+     */
     protected Action(final Action action) throws IllegalArgumentException, NullPointerException
     {
         setCode(action.getCode());
@@ -92,17 +111,26 @@ public abstract class Action implements DeepCopyable
     /**
      * Comprobar acción.
      *
-     * Comprueba que las normas del juego
-     * dado un código y la solución.
+     * Comprueba las normas del juego
+     * dado, un código y la solución.
      *
      * @param difficulty Dificultad para comprobar normas.
      * @param code Código a comprobar.
      * @param solution Código solución.
      * @throws IllegalActionException En el caso que no cumpla las normas del juego.
      */
-
     public abstract void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException;
 
+    /**
+     * Pins en el rango.
+     *
+     * Comprueba que los pins de colores se encuentran en el rango.
+     *
+     * @param difficulty Dificultad para comprobar normas.
+     * @param repetitionPolicy Política de repetición.
+     * @param colorSet Set de colores.
+     * @throws IllegalActionException En el caso que no cumpla las normas del juego.
+     */
     protected final void checkPinsInRange(Difficulty difficulty, boolean repetitionPolicy, Set<Color> colorSet) throws IllegalActionException
     {
         boolean b;
@@ -127,7 +155,7 @@ public abstract class Action implements DeepCopyable
     /* VALIDATION METHODS */
 
     /**
-     * Código válido
+     * Código válido.
      *
      * Comprueba si el código de la acción es válido.
      *
@@ -142,7 +170,7 @@ public abstract class Action implements DeepCopyable
     /* CLONING METHODS */
 
     /**
-     * Copiar acción
+     * Copiar acción.
      *
      * Hace copia profunda de la acción.
      *
