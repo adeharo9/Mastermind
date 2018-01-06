@@ -48,6 +48,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
     /* CLONING METHODS */
 
+
     @Override
     public CPU deepCopy() throws IllegalArgumentException, NullPointerException
     {
@@ -56,6 +57,13 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
     /* PLAYING METHODS */
 
+    /**
+     * Acción como code maker.
+     *
+     * Permite al jugador de tipo cpu realizar una acción como code maker.
+     *
+     * @param difficulty Dificultad de la partida.
+     */
     @Override
     public Action codeMake(final Difficulty difficulty)
     {
@@ -87,6 +95,15 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeMake(solution);
     }
 
+    /**
+     * Acción como code breaker.
+     *
+     * Permite al jugador de tipo cpu realizar una acción como code breaker.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param lastTurn Último turno de la partida.
+     * @param isFirstTurn Indica si se trata del primer turno.
+     */
     @Override
     public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn)
     {
@@ -94,6 +111,15 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeBreak(proposedSolutionByCPU);
     }
 
+    /**
+     * Acción como code correct.
+     *
+     * Permite al jugador de tipo corregir la acción de otro jugador.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param code Código introducido a corregir.
+     * @param solution Código de colores que representa la solución.
+     */
     @Override
     public Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
@@ -101,6 +127,16 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new CodeCorrect(correction);
     }
 
+    /**
+     * Código para jugar.
+     *
+     * Devuelve el código de colores propuesto por
+     * el algoritmo para intentar batir al code maker.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param lastTurn Último turno de la partida.
+     * @param isFirstTurn Indica si es el primer turno.
+     */
     private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws IllegalArgumentException
     {
         int coincidences;
@@ -206,6 +242,16 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return currentGuess;
     }
 
+    /**
+     * Permutaciones de colores.
+     *
+     * Realiza las diferentes permutaciones de colores posibles.
+     *
+     * @param currDepth Límite actual de la permutación.
+     * @param maxDepth Límite máximo de la permutación.
+     * @param colorCollection Colores posibles.
+     * @param aux Lista auxiliar de colores.
+     */
     private void permute(final int currDepth, final int maxDepth, final Collection<Color> colorCollection, List<Color> aux)
     {
         if(currDepth >= maxDepth)
@@ -225,6 +271,13 @@ public class CPU extends Player implements DeepCopyable, Serializable
         }
     }
 
+    /**
+     * Permutaciones de colores.
+     *
+     * Realiza las diferentes permutaciones de colores posibles en función de la dificultad.
+     *
+     * @param difficulty Dificultad de la partida.
+     */
     protected void generatePermutations(final Difficulty difficulty)
     {
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
@@ -233,6 +286,16 @@ public class CPU extends Player implements DeepCopyable, Serializable
         permute(0, numPins, colorCollection, new ArrayList<>(numPins));
     }
 
+    /**
+     * Combinaciones.
+     *
+     * Obtiene las diferentes permutaciones posibles pero sin repeticiones.
+     *
+     * @param currDepth Límite actual de la permutación.
+     * @param maxDepth Límite máximo de la permutación.
+     * @param colorCollection Colores posibles.
+     * @param aux Lista auxiliar de colores.
+     */
     private void combine(final int currDepth, final int maxDepth, final Collection<Color> colorCollection, ArrayList<Color> aux, final Map<Color, Boolean> visited)
     {
         if(currDepth >= maxDepth)
@@ -259,6 +322,13 @@ public class CPU extends Player implements DeepCopyable, Serializable
         }
     }
 
+    /**
+     * Combinaciones.
+     *
+     * Obtiene las diferentes permutaciones posibles pero sin repeticiones.
+     *
+     * @param difficulty Dificultad de la partida.
+     */
     protected void generateCombinations(final Difficulty difficulty)
     {
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
@@ -273,6 +343,15 @@ public class CPU extends Player implements DeepCopyable, Serializable
         combine(0, numPins, colorCollection, new ArrayList<>(numPins), visited);
     }
 
+    /**
+     * Acción como code correct.
+     *
+     * Obtiene la corrección del código de colores introducidos.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param code Código introducido a corregir.
+     * @param solution Código de colores que representa la solución.
+     */
     @SuppressWarnings("Duplicates")
     private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
@@ -321,6 +400,15 @@ public class CPU extends Player implements DeepCopyable, Serializable
         return new Code(pins);
     }
 
+    /**
+     * Primer código de colores.
+     *
+     * Obtiene el primer código de colores a partir
+     * del cual se desarrollará el algoritmo.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @throws IllegalArgumentException Si el objeto esperado no se corresponde con el parámetro enviado.
+     */
     private Code getInitialGuess(Difficulty difficulty) throws IllegalArgumentException
     {
         Set<Color> colorSet = Color.getValues(difficulty);
@@ -358,7 +446,14 @@ public class CPU extends Player implements DeepCopyable, Serializable
     }
 
     /* TESTING FUNCTIONS*/
-
+    /**
+     * Getter de solutions.
+     *
+     * Devuelve el HashSet que contiene las posibles
+     * soluciones de la partida.
+     *
+     * @return HashSet<Code> solutions.
+     */
     protected HashSet<Code> getSolutions()
     {
         return solutions;
