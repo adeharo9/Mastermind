@@ -102,6 +102,15 @@ public class CodeCorrect extends Action implements DeepCopyable
         if(!b) throw new IllegalActionException("Wrong correction");
     }
 
+    /**
+     * Obtener corrección.
+     *
+     * Obtiene la corrección del código de colores introducidos.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param code Código introducido a corregir.
+     * @param solution Código de colores que representa la solución.
+     */
     @SuppressWarnings("Duplicates")
     private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
@@ -158,7 +167,6 @@ public class CodeCorrect extends Action implements DeepCopyable
      *
      * @return una copia del CodeCorrect.
      */
-
     @Override
     public CodeCorrect deepCopy() throws IllegalArgumentException, NullPointerException
     {

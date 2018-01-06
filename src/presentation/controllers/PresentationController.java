@@ -67,11 +67,24 @@ public abstract class PresentationController
         }
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
     protected void pressButtonTemplateAction()
     {
 
     }
 
+    /**
+     * Método de gestión de botón genérico.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar un botón genérico.
+     *
+     * @param value Valor del botón pulsado.
+     */
     protected void pressButtonAction(final int value)
     {
         PresentationController.returnState = value;
@@ -213,6 +226,12 @@ public abstract class PresentationController
 
     /* GUI INTERACTION */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no realizar ninguna acción por defecto.
+     */
     public void initialize()
     {
 
@@ -296,7 +315,15 @@ public abstract class PresentationController
 
     /* TEMPLATE PATTERN */
 
-    public void processInfo(final Object object)
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de no realizar ninguna acción por defecto.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
+    public void processInfo(final Object info)
     {
 
     }

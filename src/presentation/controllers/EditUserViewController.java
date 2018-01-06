@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-import java.io.IOException;
-
 public class EditUserViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
@@ -25,11 +23,24 @@ public class EditUserViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de edición de usuario.
+     */
     public EditUserViewController()
     {
 
     }
 
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de recibir mensajes de error y mostrarlos adecuadamente.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
     @Override
     public void processInfo(final Object info)
     {
@@ -58,9 +69,6 @@ public class EditUserViewController extends RegisteringPresentationController
                 exceptionsLabel.setText(Constants.PASSWORDS_MUST_MATCH);
                 break;
             case Constants.NEW_PASSWORD_SAVED:
-                newPasswordPasswordField.clear();
-                confirmNewPasswordPasswordField.clear();
-                currentPasswordPasswordField.clear();
                 exceptionsLabel.setVisible(true);
                 exceptionsLabel.setTextFill(Color.web("green"));
                 exceptionsLabel.setText(Constants.NEW_PASSWORD_SAVED);
@@ -76,24 +84,46 @@ public class EditUserViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no bloquear el controlador
+     * de dominio.
+     */
     @FXML
     public void initialize()
     {
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Edit.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Edit.
+     */
     @FXML
     public void editButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Done.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Done.
+     */
     @FXML
     public void doneButtonAction()
     {
@@ -104,6 +134,11 @@ public class EditUserViewController extends RegisteringPresentationController
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Update Password.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Update Password.
+     */
     @FXML
     public void updatePasswordButtonAction()
     {

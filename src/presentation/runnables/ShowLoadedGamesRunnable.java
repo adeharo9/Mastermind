@@ -14,7 +14,7 @@ import java.util.Set;
  * de transferencia de información porque, en el caso del controlador de vista de cargar
  * partida dicha función ya estaba en uso.
  *
- * @author Alejandro de Haro
+ * @author Rafael Ramírez
  */
 
 public class ShowLoadedGamesRunnable implements Runnable

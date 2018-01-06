@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <VBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameOverViewController">
    <children>
       <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" prefHeight="100.0" prefWidth="250.0" spacing="15.0">

@@ -22,172 +22,233 @@ import java.util.List;
 
 public class Code implements DeepCopyable, Serializable
 {
-    /* ATTRIBUTES */
+        /* ATTRIBUTES */
 
-    protected final long orderedHash;
-    protected final long unorderedHash;
-    protected final int size;
-    protected ArrayList<Color> codePins;
+        protected final long orderedHash;
+        protected final long unorderedHash;
+        protected final int size;
+        protected ArrayList<Color> codePins;
+
+        /**
+         * Calcular hash ordenado.
+         *
+         * Calcula el código hash.
+         *
+         * @param code Código de colores.
+         */
+        private static long calcOrderedHash(List<Color> code)
+        {
+            int k = Color.SIZE;
+            long orderedHash = 0;
+
+            for(int i = 0; i < code.size(); ++i)
+            {
+                orderedHash += code.get(i).getId() * Math.pow((k), i);
+            }
+
+            return orderedHash;
+        }
 
     /**
-     * Getter de la corrección del código solución
+     * Calcular hash desordenado.
      *
-     * Devuelve el código corrección de la solución, es decir, un código solamente con
-     * fichas negras
+     * Calcula el código hash.
      *
-     * @param difficulty Dificultad del código
-     * @return Deuvele un código solamente con fichas negras
+     * @param code Código de colores.
      */
-    public static Code getSolutionCorrection(Difficulty difficulty)
-    {
-        Color color = Color.BLACK;
-        int numPins = Constants.getNumPinsByDifficulty(difficulty);
-
-        List<Color> colorList = new ArrayList<>(numPins);
-
-        for(int i = 0; i < numPins; ++i)
+        private static long calcUnorderedHash(Collection<Color> code)
         {
-            colorList.add(color);
+            int k;
+            int n = code.size();
+            long unorderedHash = 0;
+
+            for(Color color : code)
+            {
+                k = color.getId();
+                unorderedHash += (Math.pow(n, k) - 1) / (n - 1);
+            }
+
+            return unorderedHash;
         }
 
-        return new Code(colorList);
-    }
+        /* CONSTRUCTION METHODS */
 
-    private static long calcOrderedHash(List<Color> code)
-    {
-        int k = Color.SIZE;
-        long orderedHash = 0;
-
-        for(int i = 0; i < code.size(); ++i)
+    /**
+     * Constructora código.
+     *
+     * Instancia un código de colores con la
+     * lista de colores dada.
+     *
+     * @param codePins Lista de colores.
+     */
+        public Code(final List<Color> codePins)
         {
-            orderedHash += code.get(i).getId() * Math.pow((k), i);
+            this.orderedHash = calcOrderedHash(codePins);
+            this.unorderedHash = calcUnorderedHash(codePins);
+            this.size = codePins.size();
+            setCodePins(codePins);
         }
 
-        return orderedHash;
-    }
-
-    private static long calcUnorderedHash(Collection<Color> code)
-    {
-        int k;
-        int n = code.size();
-        long unorderedHash = 0;
-
-        for(Color color : code)
+    /**
+     * Constructora por copia.
+     *
+     * Instancia un código a partir de otro dado.
+     *
+     * @param code Código de colores.
+     */
+        public Code(final Code code) throws IllegalArgumentException, NullPointerException
         {
-            k = color.getId();
-            unorderedHash += (Math.pow(n, k) - 1) / (n - 1);
+            this.orderedHash = code.orderedHash;
+            this.unorderedHash = code.unorderedHash;
+            size = code.size();
+            setCodePins(code.getCodePins());
         }
 
-        return unorderedHash;
-    }
+        /* SET METHODS */
 
-    /* CONSTRUCTION METHODS */
+    /**
+     * Setter código.
+     *
+     * Indica el código de colores.
+     *
+     * @param codePins Código de colores.
+     * @throws IllegalArgumentException Si el código de colores no es válido.
+     * @throws NullPointerException Si el código de colores está vacío.
+     */
+        protected final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
+        {
+            boolean b = Utils.isValidCollection(codePins);
+            if(!b) throw new IllegalArgumentException();
 
-    public Code(final List<Color> codePins)
-    {
-        this.orderedHash = calcOrderedHash(codePins);
-        this.unorderedHash = calcUnorderedHash(codePins);
-        this.size = codePins.size();
-        setCodePins(codePins);
-    }
+            this.codePins = new ArrayList<>(codePins.size());
+            this.codePins.addAll(codePins);
+        }
 
-    public Code(final Code code) throws IllegalArgumentException, NullPointerException
-    {
-        this.orderedHash = code.orderedHash;
-        this.unorderedHash = code.unorderedHash;
-        size = code.size();
-        setCodePins(code.getCodePins());
-    }
+        /* GET METHODS */
 
-    /* SET METHODS */
+    /**
+     * Getter código.
+     *
+     * Devuelve el código de colores.
+     *
+     * @return List<Color> codePins.
+     */
+        public final List<Color> getCodePins()
+        {
+            return codePins;
+        }
 
-    protected final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
-    {
-        boolean b = Utils.isValidCollection(codePins);
-        if(!b) throw new IllegalArgumentException();
+        /* CONSULTING METHODS */
+    /**
+     * Getter medida código.
+     *
+     * Devuelve la medida del código de colores.
+     *
+     * @return int size.
+     */
+        public final int size()
+        {
+            return size;
+        }
 
-        this.codePins = new ArrayList<>(codePins.size());
-        this.codePins.addAll(codePins);
-    }
+        /* VALIDITY METHODS */
+    /**
+     * Validar código.
+     *
+     * Comprueba si el código de colores es válido.
+     *
+     * @return true si el código de colores, en cualquier otro caso false.
+     */
+        public boolean isValid()
+        {
+            return codePins != null;
+        }
 
-    /* GET METHODS */
+        /* CLONING METHODS */
 
-    public final List<Color> getCodePins()
-    {
-        return codePins;
-    }
+        @Override
+        public Code deepCopy() throws IllegalArgumentException, NullPointerException
+        {
+            return new Code(this);
+        }
 
-    /* CONSULTING METHODS */
+        /* HASHING METHODS */
 
-    public final int size()
-    {
-        return size;
-    }
+    /**
+     * Igualdad de códigos.
+     *
+     * Comprueba si los códigos son iguales tanto en colores como en posición de colores.
+     *
+     * @return true si son iguales, en cualquier otro caso falso.
+     */
+        public boolean orderedEquals(final Object o)
+        {
+            if (o == null || getClass() != o.getClass()) return false;
 
-    /* MODIFYING METHODS */
+            final Code code = (Code) o;
 
-    public void clear()
-    {
-        codePins.clear();
-    }
+            return this.orderedHash == code.orderedHash;
+        }
 
-    /* VALIDITY METHODS */
+    /**
+     * Igualdad de códigos.
+     *
+     * Comprueba si los códigos son iguales solo en posición.
+     *
+     * @return true si son iguales, en cualquier otro caso falso.
+     */
+        public boolean unorderedEquals(final Object o)
+        {
+            if (o == null || getClass() != o.getClass()) return false;
 
-    public boolean isValid()
-    {
-        return codePins != null;
-    }
+            final Code code = (Code) o;
 
-    /* CLONING METHODS */
+            return this.unorderedHash == code.unorderedHash;
+        }
 
-    @Override
-    public Code deepCopy() throws IllegalArgumentException, NullPointerException
-    {
-        return new Code(this);
-    }
+    /**
+     * Igualdad de códigos.
+     *
+     * Comprueba si los códigos son iguales solo en colores.
+     *
+     * @return true si son iguales, en cualquier otro caso falso.
+     */
+        @Override
+        public boolean equals(final Object o)
+        {
+            return unorderedEquals(o);
+        }
 
-    /* HASHING METHODS */
+    /**
+     * Igualdad de códigos.
+     *
+     * Comprueba si los códigos son iguales.
+     *
+     * @return true si son iguales, en cualquier otro caso falso.
+     */
+        public boolean hardEquals(final Object o)
+        {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
 
-    public boolean orderedEquals(final Object o)
-    {
-        if (o == null || getClass() != o.getClass()) return false;
+            final Code code = (Code) o;
 
-        final Code code = (Code) o;
+            if (this.size != code.size) return false;
+            return getCodePins() != null ? getCodePins().equals(code.getCodePins()) : code.getCodePins() == null;
+        }
 
-        return this.orderedHash == code.orderedHash;
-    }
-
-    public boolean unorderedEquals(final Object o)
-    {
-        if (o == null || getClass() != o.getClass()) return false;
-
-        final Code code = (Code) o;
-
-        return this.unorderedHash == code.unorderedHash;
-    }
-
-    @Override
-    public boolean equals(final Object o)
-    {
-        return unorderedEquals(o);
-    }
-
-    public boolean hardEquals(final Object o)
-    {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        final Code code = (Code) o;
-
-        if (this.size != code.size) return false;
-        return getCodePins() != null ? getCodePins().equals(code.getCodePins()) : code.getCodePins() == null;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = size;
-        result = 31 * result + (getCodePins() != null ? getCodePins().hashCode() : 0);
-        return result;
-    }
+    /**
+     * Código hash.
+     *
+     * Devuelve el código hash del código de colores correspondiente.
+     *
+     * @return código hash.
+     */
+        @Override
+        public int hashCode()
+        {
+            int result = size;
+            result = 31 * result + (getCodePins() != null ? getCodePins().hashCode() : 0);
+            return result;
+        }
 }

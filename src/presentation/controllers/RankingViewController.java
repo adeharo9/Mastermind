@@ -10,7 +10,6 @@ import javafx.scene.layout.Priority;
 import util.Pair;
 import util.UncheckedCast;
 
-import java.io.IOException;
 import java.util.List;
 
 public class RankingViewController extends RegisteringPresentationController
@@ -19,6 +18,18 @@ public class RankingViewController extends RegisteringPresentationController
 
     @FXML private GridPane rankingGridPane;
 
+    /**
+     * Método de generación de unidad de ranking.
+     *
+     * Método encargado de generar la estructura de visualización que contiene
+     * todos los elementos (etiquetas, etc.) necesarios para la
+     * correcta visualización de una unidad de ranking (una fila con el nombre de usuario
+     * y los puntos conseguidos).
+     *
+     * @param username Nombre de usuario del usuario a mostrar en la entrada.
+     * @param points Puntos del usuario a mostrar en la entrada.
+     * @return Entrada de ranking correctamente configurada.
+     */
     private List<Node> getNewRankingEntry(final String username, final Integer points)
     {
         //HBox hBox = new HBox();
@@ -43,11 +54,25 @@ public class RankingViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de ranking.
+     */
     public RankingViewController()
     {
 
     }
 
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de recibir el ranking de jugadores y mostrarlo adecuadamente.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
+    @Override
     public void processInfo(final Object info)
     {
         List<Pair<String, Integer>> topTen = UncheckedCast.cast(info);
@@ -71,12 +96,24 @@ public class RankingViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de inicializar los distintos
+     * campos y no bloquear el controlador de dominio.
+     */
     @FXML
     public void initialize()
     {
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {
