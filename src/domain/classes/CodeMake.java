@@ -7,10 +7,12 @@ import util.Constants;
 import util.DeepCopyable;
 
 /**
- * Clase CodeCorrect.
+ * Clase CodeMake.
  *
  * Esta clase representa el rol de una acción realizada
- * por el jugador para indica el código del juego.
+ * por el jugador que indica el código de colores de la solución
+ * y es el encargado de realizar la corrección de las diferentes
+ * acciones.
  *
  * @author Alex
  */
@@ -38,12 +40,29 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* OTHER METHODS */
 
+    /**
+     * Añadir solución.
+     *
+     * Añade la solución al tablero.
+     *
+     * @param board Tablero.
+     */
     @Override
     public void addSelfToBoard(final Board board)
     {
         board.setSolution(getCode());
     }
 
+    /**
+     * Comprobar acción.
+     *
+     * Comprueba que la acción es válida.
+     *
+     * @param difficulty Dificultad.
+     * @param code Código de colores propuesto.
+     * @param solution Código colores solución.
+     * @throws IllegalActionException Si la acción no es válida.
+     */
     @Override
     public void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException
     {
