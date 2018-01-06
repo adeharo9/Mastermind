@@ -27,6 +27,11 @@ public class Human extends Player implements DeepCopyable, Serializable
 
     /* PRIVATE METHODS */
 
+    /**
+     * Contraseña válida.
+     *
+     * Comprueba si la contraseña dada es válida.
+     */
     private static boolean isValidPassword(final String password)
     {
         return (password != null && !password.equals(""));
@@ -41,7 +46,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * sin previa inicialización usando los setters
      * públicos disponibles.
      */
-
     public Human()
     {
         super();
