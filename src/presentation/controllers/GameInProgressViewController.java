@@ -411,7 +411,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
      *
      * Adapta los selectores de color del tablero actual y los
      * botones de la vista a un jugador de tipo code maker en modo generación
-     * de código de tablero..
+     * de código de tablero.
      */
     @Override
     public void updateToCodeMakerBoard()
