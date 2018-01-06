@@ -9,6 +9,11 @@ public class HintViewController extends PopUpController
 {
     @FXML private Label hintLabel;
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de pista.
+     */
     public HintViewController()
     {
 

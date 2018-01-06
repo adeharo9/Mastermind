@@ -5,6 +5,12 @@ import javafx.fxml.FXML;
 public class MainMenuViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
+
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de menú principal.
+     */
     public MainMenuViewController()
     {
 

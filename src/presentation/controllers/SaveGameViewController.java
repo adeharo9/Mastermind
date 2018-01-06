@@ -7,6 +7,11 @@ public class SaveGameViewController extends PopUpController {
 
     @FXML private TextField gameIdTextField;
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de guardado de partida.
+     */
     public SaveGameViewController()
     {
 

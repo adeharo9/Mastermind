@@ -13,6 +13,11 @@ public class NewGameViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de partida nueva.
+     */
     public NewGameViewController()
     {
 

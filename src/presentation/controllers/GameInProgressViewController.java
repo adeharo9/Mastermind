@@ -195,6 +195,11 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de tablero de juego.
+     */
     public GameInProgressViewController()
     {
         turnsGridPane = new GridPane();

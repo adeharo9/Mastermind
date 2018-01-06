@@ -16,6 +16,11 @@ public class LogInViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de inicio de sesión.
+     */
     public LogInViewController()
     {
 

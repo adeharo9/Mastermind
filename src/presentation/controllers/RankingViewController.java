@@ -42,6 +42,11 @@ public class RankingViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de ranking.
+     */
     public RankingViewController()
     {
 

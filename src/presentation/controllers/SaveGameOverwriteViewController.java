@@ -4,6 +4,11 @@ import javafx.fxml.FXML;
 
 public class SaveGameOverwriteViewController extends PopUpController
 {
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de sobreescritura al guardar partida.
+     */
     public SaveGameOverwriteViewController()
     {
 

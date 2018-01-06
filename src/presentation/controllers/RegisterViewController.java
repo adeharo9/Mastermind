@@ -17,6 +17,11 @@ public class RegisterViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de menú de registro.
+     */
     public RegisterViewController()
     {
 

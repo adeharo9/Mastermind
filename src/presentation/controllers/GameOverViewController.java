@@ -11,6 +11,11 @@ public class GameOverViewController extends PopUpController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de juego finalizado.
+     */
     public GameOverViewController()
     {
 

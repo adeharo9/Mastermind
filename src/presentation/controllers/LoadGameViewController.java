@@ -51,6 +51,11 @@ public class LoadGameViewController extends RegisteringPresentationController
         return gridPane.getChildren();
     }
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de cargar partida.
+     */
     public LoadGameViewController()
     {
 

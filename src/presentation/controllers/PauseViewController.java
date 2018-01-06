@@ -5,6 +5,12 @@ import javafx.fxml.FXML;
 public class PauseViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
+
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de menú de pausa.
+     */
     public PauseViewController()
     {
 

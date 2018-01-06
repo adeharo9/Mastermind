@@ -13,6 +13,11 @@ public class ShowCodeViewController extends NonRegisteringPresentationController
 
     @FXML private HBox codeHBox;
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de código de solución.
+     */
     public ShowCodeViewController()
     {
 

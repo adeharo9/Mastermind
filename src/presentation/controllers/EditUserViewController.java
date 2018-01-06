@@ -23,6 +23,11 @@ public class EditUserViewController extends RegisteringPresentationController
 
     /* CONSTRUCTORS */
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de edición de usuario.
+     */
     public EditUserViewController()
     {
 

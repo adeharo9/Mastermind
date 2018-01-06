@@ -7,6 +7,11 @@ public class InfoViewController extends RegisteringPresentationController
 {
     @FXML private Label infoLabel;
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de información.
+     */
     public InfoViewController()
     {
 

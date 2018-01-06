@@ -6,6 +6,12 @@ import javafx.fxml.FXML;
 public class InitSessionViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
+
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de inicio de sesión/registro.
+     */
     public InitSessionViewController()
     {
 

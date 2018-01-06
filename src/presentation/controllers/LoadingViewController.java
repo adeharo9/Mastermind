@@ -7,6 +7,11 @@ public class LoadingViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;
 
+    /**
+     * Constructor por defecto.
+     *
+     * Constructor de instancia de controlador de vista de carga.
+     */
     public LoadingViewController()
     {
 
