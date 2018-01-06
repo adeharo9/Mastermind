@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-import java.io.IOException;
-
 public class EditUserViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
@@ -76,26 +74,48 @@ public class EditUserViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no bloquear el controlador
+     * de dominio.
+     */
     @FXML
     public void initialize()
     {
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Edit.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Edit.
+     */
     @FXML
-    public void editButtonAction() throws IOException
+    public void editButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Done.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Done.
+     */
     @FXML
-    public void doneButtonAction() throws IOException
+    public void doneButtonAction()
     {
         PresentationController.username = newUsernameTextField.getText();
         newUsernameTextField.setVisible(false);
@@ -104,8 +124,13 @@ public class EditUserViewController extends RegisteringPresentationController
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Update Password.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Update Password.
+     */
     @FXML
-    public void updatePasswordButtonAction() throws IOException
+    public void updatePasswordButtonAction()
     {
         PresentationController.newPassword = newPasswordPasswordField.getText();
         PresentationController.confirmPassword = confirmNewPasswordPasswordField.getText();

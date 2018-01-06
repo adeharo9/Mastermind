@@ -143,7 +143,7 @@ public abstract class Action implements DeepCopyable
         for(final Color color : colorList)
         {
             b = colorSet.contains(color);
-            if(!b) throw new IllegalActionException("Color " + color.getStrId() + " should not be there");
+            if(!b) throw new IllegalActionException("Color " + color.getStrDescription().toLowerCase() + " should not be there");
 
             if(!repetitionPolicy)
             {

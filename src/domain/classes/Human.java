@@ -60,7 +60,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param username Nombre del jugador.
      * @throws IllegalArgumentException En caso que el nombre no sea correcto.
      */
-
     public Human(final String username) throws IllegalArgumentException
     {
         super(username);
@@ -77,7 +76,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que alguno de los parametros de human no sea correcto.
      * @throws NullPointerException En caso que alguno de los parametros sea nulo.
      */
-
     public Human(final String username, final String password) throws IllegalArgumentException, NullPointerException
     {
         super(username);
@@ -112,7 +110,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que password no sea correcto.
      * @throws NullPointerException En caso que password sea nulo.
      */
-
     @Override
     public void setPassword(final String password) throws IllegalArgumentException, NullPointerException
     {
@@ -146,7 +143,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @return boolean password es igual al password del humano actual.
      * @throws NullPointerException En caso que password sea nulo.
      */
-
     @Override
     public final boolean checkPassword(final String password) throws NullPointerException
     {
@@ -164,7 +160,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws IllegalArgumentException En caso que Human no sea correcto.
      * @throws NullPointerException En caso que Human sea nulo.
      */
-
     @Override
     public Human deepCopy() throws IllegalArgumentException, NullPointerException
     {

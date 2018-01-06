@@ -2,8 +2,6 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 public class SaveGameOverwriteViewController extends PopUpController
 {
     public SaveGameOverwriteViewController()
@@ -18,14 +16,24 @@ public class SaveGameOverwriteViewController extends PopUpController
 
     /* FXML */
 
+    /**
+     * Método de gestión de botón Overwrite.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Overwrite.
+     */
     @FXML
-    public void overwriteButtonAction() throws IOException
+    public void overwriteButtonAction()
     {
         super.yesButtonAction();
     }
 
+    /**
+     * Método de gestión de botón Cancel.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Cancel.
+     */
     @FXML
-    public void cancelButtonAction() throws IOException
+    public void cancelButtonAction()
     {
         super.noButtonAction();
     }

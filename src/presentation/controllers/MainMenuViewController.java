@@ -2,8 +2,6 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 public class MainMenuViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */
@@ -13,38 +11,69 @@ public class MainMenuViewController extends RegisteringPresentationController
     }
 
     /* FXML */
+
+    /**
+     * Método de gestión de botón Log Out.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Log Out.
+     */
     @FXML
-    public void logOutButtonAction() throws IOException
+    public void logOutButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón New Game.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón New Game.
+     */
     @FXML
-    public void newGameButtonAction() throws IOException
+    public void newGameButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Load Game.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Load Game.
+     */
     @FXML
-    public void loadGameButtonAction() throws IOException
+    public void loadGameButtonAction()
     {
         pressButtonAction(2);
     }
 
+    /**
+     * Método de gestión de botón Ranking.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Ranking.
+     */
     @FXML
-    public void rankingButtonAction() throws IOException
+    public void rankingButtonAction()
     {
         pressButtonAction(3);
     }
 
+    /**
+     * Método de gestión de botón Info.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Info.
+     */
     @FXML
-    public void infoButtonAction() throws IOException
+    public void infoButtonAction()
     {
         pressButtonAction(4);
     }
 
+    /**
+     * Método de gestión de botón Edit User.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Edit User.
+     */
     @FXML
-    public void editUserButtonAction() throws IOException
+    public void editUserButtonAction()
     {
         pressButtonAction(5);
     }

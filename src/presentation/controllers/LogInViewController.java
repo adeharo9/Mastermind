@@ -6,8 +6,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import util.Constants;
 
-import java.io.IOException;
-
 public class LogInViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
@@ -25,14 +23,24 @@ public class LogInViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Log In.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Log In.
+     */
     @FXML
-    public void logInButtonAction() throws IOException
+    public void logInButtonAction()
     {
         errorLabel.setVisible(false);
 

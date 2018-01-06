@@ -2,8 +2,6 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 
 public class InitSessionViewController extends RegisteringPresentationController
 {
@@ -13,21 +11,36 @@ public class InitSessionViewController extends RegisteringPresentationController
 
     }
 
+    /**
+     * Método de gestión de botón Exit.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Exit.
+     */
     /* FXML */
     @FXML
-    public void exitButtonAction() throws IOException
+    public void exitButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Register.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Register.
+     */
     @FXML
-    public void registerButtonAction() throws IOException
+    public void registerButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Log In.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Log In.
+     */
     @FXML
-    public void logInButtonAction() throws IOException
+    public void logInButtonAction()
     {
         pressButtonAction(2);
     }

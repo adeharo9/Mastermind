@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -38,15 +37,8 @@ public class LoadGameViewController extends RegisteringPresentationController
         deleteButton.getStyleClass().add("button");
         deleteButton.setOnAction((actionEvent) ->
             {
-                try
-                {
-                    PresentationController.gameId = gameId;
-                    pressButtonAction(2);
-                }
-                catch (IOException ioe)
-                {
-                    throw new RuntimeException();
-                }
+                PresentationController.gameId = gameId;
+                pressButtonAction(2);
             }
         );
 
@@ -79,6 +71,7 @@ public class LoadGameViewController extends RegisteringPresentationController
         int row = 0;
 
         savedGamesGridPane.setVisible(false);
+        savedGamesGridPane.getChildren().clear();
 
         for(final String savedGame : savedGames)
         {
@@ -98,6 +91,13 @@ public class LoadGameViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de inicializar los distintos
+     * campos y no bloquear el controlador de dominio.
+     */
     @FXML
     public void initialize()
     {
@@ -105,20 +105,35 @@ public class LoadGameViewController extends RegisteringPresentationController
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Load Game.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Load Game.
+     */
     @FXML
-    public void loadGameButtonAction() throws IOException
+    public void loadGameButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Delete.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Delete.
+     */
     @FXML
-    public void deleteButtonAction() throws IOException
+    public void deleteButtonAction()
     {
         pressButtonAction(2);
     }

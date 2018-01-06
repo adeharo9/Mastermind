@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * Esta clase representa un jugador.
  *
- * @author Rafael
+ * @author Rafael Ramírez
  */
 
 public abstract class Player implements DeepCopyable, Serializable

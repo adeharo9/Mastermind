@@ -1,15 +1,23 @@
 package presentation.controllers;
 
-import java.io.IOException;
-
 public abstract class PopUpController extends RegisteringPresentationController
 {
-    public void yesButtonAction() throws IOException
+    /**
+     * Método de gestión de botón Yes.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Yes.
+     */
+    public void yesButtonAction()
     {
         pressButtonAction(1);
     }
 
-    public void noButtonAction() throws IOException
+    /**
+     * Método de gestión de botón No.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón No.
+     */
+    public void noButtonAction()
     {
         pressButtonAction(0);
     }
