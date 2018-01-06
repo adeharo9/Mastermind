@@ -72,7 +72,7 @@ public abstract class PresentationController
 
     }
 
-    protected void pressButtonAction(final int value) throws IOException
+    protected void pressButtonAction(final int value)
     {
         PresentationController.returnState = value;
         pressButtonTemplateAction();
@@ -287,17 +287,7 @@ public abstract class PresentationController
                 closingEventHandler = (WindowEvent event) -> {};
                 break;
             default:
-                closingEventHandler = (WindowEvent event) ->
-                    {
-                        try
-                        {
-                            pressButtonAction(0);
-                        }
-                        catch (IOException ioe)
-                        {
-                            throw new RuntimeException(ioe.getMessage());
-                        }
-                    };
+                closingEventHandler = (WindowEvent event) -> pressButtonAction(0);
                 break;
         }
 

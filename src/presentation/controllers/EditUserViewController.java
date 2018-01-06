@@ -83,19 +83,19 @@ public class EditUserViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void editButtonAction() throws IOException
+    public void editButtonAction()
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void doneButtonAction() throws IOException
+    public void doneButtonAction()
     {
         PresentationController.username = newUsernameTextField.getText();
         newUsernameTextField.setVisible(false);
@@ -105,7 +105,7 @@ public class EditUserViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void updatePasswordButtonAction() throws IOException
+    public void updatePasswordButtonAction()
     {
         PresentationController.newPassword = newPasswordPasswordField.getText();
         PresentationController.confirmPassword = confirmNewPasswordPasswordField.getText();

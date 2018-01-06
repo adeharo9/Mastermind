@@ -14,6 +14,12 @@ public class ErrorMessageWarningViewController extends PopUpController
 
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();
@@ -36,7 +42,7 @@ public class ErrorMessageWarningViewController extends PopUpController
     }
 
     @FXML
-    public void acceptButtonAction() throws IOException
+    public void acceptButtonAction()
     {
         super.noButtonAction();
     }

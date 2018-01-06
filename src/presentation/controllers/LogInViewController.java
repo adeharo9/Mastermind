@@ -26,13 +26,13 @@ public class LogInViewController extends RegisteringPresentationController
     /* FXML */
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void logInButtonAction() throws IOException
+    public void logInButtonAction()
     {
         errorLabel.setVisible(false);
 

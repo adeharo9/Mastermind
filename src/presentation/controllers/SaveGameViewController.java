@@ -29,14 +29,14 @@ public class SaveGameViewController extends PopUpController {
     }
 
     @FXML
-    public void saveButtonAction() throws IOException
+    public void saveButtonAction()
     {
         PresentationController.gameId = gameIdTextField.getText();
         super.yesButtonAction();
     }
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         super.noButtonAction();
     }

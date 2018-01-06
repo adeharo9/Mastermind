@@ -304,13 +304,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     }
 
     @FXML
-    public void pauseButtonAction() throws IOException
+    public void pauseButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void helpButtonAction() throws IOException
+    public void helpButtonAction()
     {
         pressButtonAction(1);
     }
@@ -318,12 +318,18 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML
     public void showCodeButtonAction() throws IOException
     {
-        if(getDifficulty() == 3) popUpWindow(PopUpWindowStyle.INFO_HARD, View.SHOW_CODE_VIEW.getViewFile());
-        else popUpWindow(PopUpWindowStyle.INFO, View.SHOW_CODE_VIEW.getViewFile());
+        if(getDifficulty() == 3)
+        {
+            popUpWindow(PopUpWindowStyle.INFO_HARD, View.SHOW_CODE_VIEW.getViewFile());
+        }
+        else
+        {
+            popUpWindow(PopUpWindowStyle.INFO, View.SHOW_CODE_VIEW.getViewFile());
+        }
     }
 
     @FXML
-    public void finishTurnButtonAction() throws IOException
+    public void finishTurnButtonAction()
     {
         errorLabel.setText("");
 

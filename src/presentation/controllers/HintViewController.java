@@ -45,7 +45,7 @@ public class HintViewController extends PopUpController
     }
 
     @FXML
-    public void okButtonAction() throws IOException
+    public void okButtonAction()
     {
         super.noButtonAction();
     }

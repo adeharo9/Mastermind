@@ -19,13 +19,13 @@ public class SaveGameOverwriteViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void overwriteButtonAction() throws IOException
+    public void overwriteButtonAction()
     {
         super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction() throws IOException
+    public void cancelButtonAction()
     {
         super.noButtonAction();
     }
