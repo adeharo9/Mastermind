@@ -25,16 +25,34 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora vacía.
+     *
+     * Instancia un jugador de tipo cpu vacío.
+     */
     public CPU()
     {
         super();
     }
 
+    /**
+     * Constructora por id.
+     *
+     * Instancia un jugador de tipo cpu con el identificador dado.
+     * @param id Identificador de la cpu.
+     */
     public CPU(final String id) throws IllegalArgumentException
     {
         super(id);
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia un jugador de tipo cpu por copia
+     * a partir de otro dado.
+     * @param cpu Jugador a copiar.
+     */
     public CPU(final CPU cpu) throws IllegalArgumentException, NullPointerException
     {
         super(cpu);
