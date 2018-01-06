@@ -309,7 +309,15 @@ public abstract class PresentationController
 
     /* TEMPLATE PATTERN */
 
-    public void processInfo(final Object object)
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de no realizar ninguna acción por defecto.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
+    public void processInfo(final Object info)
     {
 
     }

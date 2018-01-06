@@ -28,6 +28,14 @@ public class EditUserViewController extends RegisteringPresentationController
 
     }
 
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de recibir mensajes de error y mostrarlos adecuadamente.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
     @Override
     public void processInfo(final Object info)
     {

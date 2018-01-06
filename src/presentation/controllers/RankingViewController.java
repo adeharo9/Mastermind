@@ -47,6 +47,15 @@ public class RankingViewController extends RegisteringPresentationController
 
     }
 
+    /**
+     * Método de procesado de información proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir información genérica proveniente del controlador
+     * de dominio, concretamente de recibir el ranking de jugadores y mostrarlo adecuadamente.
+     *
+     * @param info Información recibida desde el controlador de dominio.
+     */
+    @Override
     public void processInfo(final Object info)
     {
         List<Pair<String, Integer>> topTen = UncheckedCast.cast(info);
