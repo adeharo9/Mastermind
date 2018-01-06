@@ -64,9 +64,6 @@ public class EditUserViewController extends RegisteringPresentationController
                 exceptionsLabel.setText(Constants.PASSWORDS_MUST_MATCH);
                 break;
             case Constants.NEW_PASSWORD_SAVED:
-                newPasswordPasswordField.clear();
-                confirmNewPasswordPasswordField.clear();
-                currentPasswordPasswordField.clear();
                 exceptionsLabel.setVisible(true);
                 exceptionsLabel.setTextFill(Color.web("green"));
                 exceptionsLabel.setText(Constants.NEW_PASSWORD_SAVED);
