@@ -20,6 +20,13 @@ public class NewGameViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de inicializar los distintos
+     * campos.
+     */
     @FXML
     public void initialize()
     {
@@ -28,12 +35,22 @@ public class NewGameViewController extends RegisteringPresentationController
         PresentationController.role = 2;
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Start Game.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Start Game.
+     */
     @FXML
     public void startGameButtonAction()
     {

@@ -70,12 +70,24 @@ public class RankingViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de inicializar los distintos
+     * campos y no bloquear el controlador de dominio.
+     */
     @FXML
     public void initialize()
     {
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {

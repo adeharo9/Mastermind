@@ -35,6 +35,13 @@ public class HintViewController extends PopUpController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no bloquear el controlador
+     * de dominio.
+     */
     @Override
     @FXML
     public void initialize()
@@ -42,6 +49,11 @@ public class HintViewController extends PopUpController
         endAction();
     }
 
+    /**
+     * Método de gestión de botón OK.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón OK.
+     */
     @FXML
     public void okButtonAction()
     {

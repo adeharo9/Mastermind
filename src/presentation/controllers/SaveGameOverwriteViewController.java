@@ -16,12 +16,22 @@ public class SaveGameOverwriteViewController extends PopUpController
 
     /* FXML */
 
+    /**
+     * Método de gestión de botón Overwrite.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Overwrite.
+     */
     @FXML
     public void overwriteButtonAction()
     {
         super.yesButtonAction();
     }
 
+    /**
+     * Método de gestión de botón Cancel.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Cancel.
+     */
     @FXML
     public void cancelButtonAction()
     {

@@ -22,6 +22,13 @@ public class LoadingViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no bloquear el controlador
+     * de dominio.
+     */
     @FXML
     public void initialize()
     {

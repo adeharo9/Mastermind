@@ -23,12 +23,22 @@ public class LogInViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Log In.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Log In.
+     */
     @FXML
     public void logInButtonAction()
     {

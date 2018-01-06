@@ -287,6 +287,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* FXML */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de inicializar los distintos
+     * campos y no bloquear el controlador de dominio.
+     */
     @Override
     @FXML
     public void initialize()
@@ -303,18 +310,33 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         endAction();
     }
 
+    /**
+     * Método de gestión de botón Pause.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Pause.
+     */
     @FXML
     public void pauseButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Help.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Help.
+     */
     @FXML
     public void helpButtonAction()
     {
         pressButtonAction(1);
     }
 
+    /**
+     * Método de gestión de botón Show Code.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Show Code.
+     */
     @FXML
     public void showCodeButtonAction() throws IOException
     {
@@ -328,6 +350,11 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
     }
 
+    /**
+     * Método de gestión de botón Finish Turn.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Finish Turn.
+     */
     @FXML
     public void finishTurnButtonAction()
     {

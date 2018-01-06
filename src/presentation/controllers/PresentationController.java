@@ -72,6 +72,13 @@ public abstract class PresentationController
 
     }
 
+    /**
+     * Método de gestión de botón genérico.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar un botón genérico.
+     *
+     * @param value Valor del botón pulsado.
+     */
     protected void pressButtonAction(final int value)
     {
         PresentationController.returnState = value;
@@ -213,6 +220,12 @@ public abstract class PresentationController
 
     /* GUI INTERACTION */
 
+    /**
+     * Método de captura de inicialización de JavaFX.
+     *
+     * Método a ejecutar cuando todos los campos fxml han sido construidos
+     * e inicializados, implementado con la finalidad de no realizar ninguna acción por defecto.
+     */
     public void initialize()
     {
 

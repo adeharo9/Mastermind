@@ -46,12 +46,22 @@ public class RegisterViewController extends RegisteringPresentationController
 
     /* FXML */
 
+    /**
+     * Método de gestión de botón Back.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Back.
+     */
     @FXML
     public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
+    /**
+     * Método de gestión de botón Register.
+     *
+     * Método de gestión de las acciones a llevar a cabo al pulsar el botón Register.
+     */
     @FXML
     public void registerButtonAction()
     {
