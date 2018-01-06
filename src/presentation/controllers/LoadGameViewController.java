@@ -73,6 +73,14 @@ public class LoadGameViewController extends RegisteringPresentationController
         errorLabel.setText(message);
     }
 
+    /**
+     * Método de procesado de lista de partidas guardadas proveniente del controlador de dominio.
+     *
+     * Método encargado de recibir el listado de partidas guardadas proveniente del controlador
+     * de dominio y mostrarlas adecuadamente.
+     *
+     * @param savedGames Listado de partidas guardadas recibido desde el controlador de dominio.
+     */
     @Override
     public void showLoadedGames(final Set<String> savedGames)
     {
