@@ -82,7 +82,6 @@ public class DomainController
      * queremos.
      *
      * @param presentationController Controlador de presentación.
-
      */
 
     public void setPresentationController(final PresentationController presentationController)
@@ -92,10 +91,35 @@ public class DomainController
 
     /* EXECUTE */
 
+    /**
+     * Bloquear ejecucion
+     *
+     * Informa si se debe bloquear la ejecucion segun el rol
+     * de la persona que esta jugando.
+     *
+     * @param role rol que se debe comparar con el rol de jugador actual.
+     * @return true si en la partida solo juegan humanos o
+     *         el rol pasado por parametro es el mismo que el del jugador.
+     */
+
     private boolean hasToBlock(final Role role)
     {
         return gameController.getMode() == Mode.HUMAN_VS_HUMAN || loggedPlayerController.getRole() == role;
     }
+
+    /**
+     * Logueo de usuario.
+     *
+     * Se identifica en el programa como el
+     * usuario que tiene nombre y contraseña
+     * iguales a los parametros introducidos.
+     *
+     * @param username Nombre del usuario.
+     * @param password Contraseña del usuario.
+     * @exception IOException Entrada de parametros incorrecta.
+     * @exception WrongPasswordException La contraseña no coincide con el nombre de usuario.
+     * @exception ClassNotFoundException Error en la creacion del objeto player.
+     */
 
     private void logInUser(String username, String password) throws IOException, WrongPasswordException, ClassNotFoundException
     {
@@ -107,6 +131,19 @@ public class DomainController
 
         loggedPlayerController = playerController;
     }
+
+    /**
+     * Registro de usuario
+     *
+     * Crea y guarda un usuario con nombre
+     * y contraseña como los introducidos.
+     *
+     * @param username Nombre de nuevo usuario.
+     * @param password Contraseña de nuevo usuario.
+     * @param confirmPassword Contraseña de validacion.
+     * @exception IOException Entrada de parametros incorrecta.
+     * @exception PasswordMismatchException password y confirmPassword son diferentes
+     */
 
     private void registerUser(final String username, final String password, final String confirmPassword) throws IOException, PasswordMismatchException
     {
@@ -120,6 +157,18 @@ public class DomainController
 
         playerPersistence.save(player);
     }
+
+    /**
+     * Crear nueva partida.
+     *
+     * Crear una nueva partida con los parametros
+     * introducidos y asociarla a los controladores
+     * correspondientes.
+     *
+     * @param mode Modo de juego de la nueva partida.
+     * @param role Rol del jugador logueado en la nueva partida.
+     * @param difficulty Dificultad de la nueva partida.
+     */
 
     private void newGame(final Mode mode, Role role, final Difficulty difficulty)
     {
@@ -188,12 +237,33 @@ public class DomainController
         gameController.newGame(Utils.autoID(), difficulty, mode, board, players);
     }
 
+    /**
+     * Cargar lista de partidas guardadas
+     *
+     * Carga en un parametro del controlador, una
+     * lista con todas las partidas guardadas por
+     * el jugador actual.
+     *
+     * @exception IOException La lista de partidas no se ha cargado correctamente.
+     */
+
     private void loadSavedGamesList() throws IOException
     {
         savedGames.clear();
         Player loggedPlayer = loggedPlayerController.getPlayer();
         savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
     }
+
+    /**
+     * Cargar partida
+     *
+     * Carga la partida con nombre id y la asocia
+     * con los controladores necesarios.
+     *
+     * @param id Nombre de la partida que se quiere cargar.
+     * @exception IOException
+     * @exception ClassNotFoundException
+     */
 
     private void loadGame(String id) throws IOException, ClassNotFoundException
     {
@@ -266,6 +336,15 @@ public class DomainController
         presentationController.setCorrections(corrections);
     }
 
+    /**
+     * Guardar Partida
+     *
+     * Guarda la partida actual en un archivo
+     * binario.
+     *
+     * @exception IOException La partida no se ha guardado correctamente.
+     */
+
     private void saveGame() throws IOException
     {
         Game game = gameController.getGame();
@@ -275,6 +354,16 @@ public class DomainController
         gamePersistence.save(game, playerId);
         playerPersistence.savePlayerGame(gameId, playerId);
     }
+
+    /**
+     * Renombrar partida
+     *
+     * Cambia el nombre de la partida actual
+     * por el nombre del parametro introducido
+     *
+     * @param gameId Nombre de la partida
+     * @exception IOException Error al introducir el parametro.
+     */
 
     private void renameGame(final String gameId) throws IOException
     {
@@ -289,7 +378,7 @@ public class DomainController
      * eliminar una partida con nombre gameId
      *
      * @param gameId Nombre de la partida.
-     * @throws IOException nombre introducido correctamente
+     * @throws IOException nombre introducido incorrecto
      */
 
     public void deleteGame(final String gameId) throws IOException
@@ -308,8 +397,8 @@ public class DomainController
      * al nombre que se ha introducido
      *
      * @param username Nombre de usuario nuevo.
-     * @throws IOException Nombre introducido correctamente
-     * @throws ClassNotFoundException La clase para el cambio de nombre es la correcta
+     * @throws IOException Nombre introducido incorrecto
+     * @throws ClassNotFoundException Error al crear el objeto Player
      */
 
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
@@ -322,6 +411,20 @@ public class DomainController
         playerPersistence.delete(username);
         playerPersistence.save(loggedPlayer);
     }
+
+    /**
+     * Cambio de contraseña
+     *
+     * Cambia la contraseña del usuario actual
+     * por una nueva pasada por parametro.
+     *
+     * @param oldPassword Contraseña actual
+     * @param newPassword Contraseña nueva
+     * @param confirmNewPassword Comprobacion de la nueva contraseña
+     * @exception IOException Error al introducir los parametros.
+     * @exception WrongPasswordException Contraseña actual no coincide con la pasada por parametro oldPassword.
+     * @exception PasswordMismatchException newPassword y confirmNewPassword no coinciden
+     */
 
     private void changePassword(final String oldPassword, final String newPassword, final String confirmNewPassword) throws IOException, WrongPasswordException, PasswordMismatchException
     {
@@ -340,6 +443,16 @@ public class DomainController
 
         playerPersistence.save(player);
     }
+
+    /**
+     * Borrar usuario
+     *
+     * Borra el usuario con el mismo nombre
+     * que el parametro introducido.
+     *
+     * @param username Nombre de usuario que se va a borrar.
+     * @exception IOException Error al introducir el parametro.
+     */
 
     private void deleteUser(final String username) throws IOException
     {

@@ -14,7 +14,7 @@
     monokai-grey: #6d6d6d;
     monokai-white: #bbbbbb;
 
-    monokai-none: linear-gradient(monokai-black 0%, monokai-black 25%, monokai-white);
+    monokai-none: transparent;
 
     /*background-color: linear-gradient(monokai-black 0%, monokai-black 25%, #5a5a5a);*/
     background-color: monokai-black;
@@ -174,7 +174,7 @@
 .color-none
 {
     -fx-fill: monokai-none;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-none;
     -fx-stroke-width: 1;
 }
 
