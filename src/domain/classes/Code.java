@@ -73,6 +73,14 @@ public class Code implements DeepCopyable, Serializable
 
         /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora código.
+     *
+     * Instancia un código de colores con la
+     * lista de colores dada.
+     *
+     * @param codePins Lista de colores.
+     */
         public Code(final List<Color> codePins)
         {
             this.orderedHash = calcOrderedHash(codePins);
@@ -81,6 +89,13 @@ public class Code implements DeepCopyable, Serializable
             setCodePins(codePins);
         }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia un código a partir de otro dado.
+     *
+     * @param code Código de colores.
+     */
         public Code(final Code code) throws IllegalArgumentException, NullPointerException
         {
             this.orderedHash = code.orderedHash;
