@@ -48,6 +48,13 @@ public class DomainController
     private PlayerPersistence playerPersistence;
     private RankingPersistence rankingPersistence;
 
+    /**
+     * Constructor de controlador de dominio.
+     *
+     * Instancia un controlador de dominio
+     *
+     */
+
     public DomainController()
     {
         state = State.INIT_PROGRAM;
@@ -65,6 +72,18 @@ public class DomainController
         playerPersistence = new PlayerPersistence();
         rankingPersistence = new RankingPersistence();
     }
+
+    /**
+     * Setter del controlador de presentación.
+     *
+     * Establece el controlador de presentación
+     * al que se debe enviar toda la información
+     * para que se muestre por pantalla lo que
+     * queremos.
+     *
+     * @param presentationController Controlador de presentación.
+
+     */
 
     public void setPresentationController(final PresentationController presentationController)
     {
@@ -263,6 +282,16 @@ public class DomainController
         game.setId(gameId);
     }
 
+    /**
+     * Eliminar partida.
+     *
+     * Envia la orden a persistencia de
+     * eliminar una partida con nombre gameId
+     *
+     * @param gameId Nombre de la partida.
+     * @throws IOException nombre introducido correctamente
+     */
+
     public void deleteGame(final String gameId) throws IOException
     {
         String playerId = loggedPlayerController.getId();
@@ -271,6 +300,17 @@ public class DomainController
 
         playerPersistence.deletePlayerGame(gameId, playerId);
     }
+
+    /**
+     * Cambio de nombre de usuario
+     *
+     * Cambia el nombre del usuario actual
+     * al nombre que se ha introducido
+     *
+     * @param username Nombre de usuario nuevo.
+     * @throws IOException Nombre introducido correctamente
+     * @throws ClassNotFoundException La clase para el cambio de nombre es la correcta
+     */
 
     public void renameUsername(final String username) throws IOException, ClassNotFoundException
     {
@@ -559,6 +599,17 @@ public class DomainController
     }
 
     /* MAIN STATE MACHINE */
+
+    /**
+     * Máquina de estados
+     *
+     * Ejecuta las funciones necesarias segun el
+     * estado en el que se encuentra y cambia el
+     * estado segun el resultado de las funciones
+     * ejecutadas.
+     *
+     * @throws InterruptedException el threat actual ha sido interrumpido
+     */
 
     public synchronized void exe() throws InterruptedException
     {
