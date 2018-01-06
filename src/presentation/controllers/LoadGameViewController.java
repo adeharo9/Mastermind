@@ -79,6 +79,7 @@ public class LoadGameViewController extends RegisteringPresentationController
         int row = 0;
 
         savedGamesGridPane.setVisible(false);
+        savedGamesGridPane.getChildren().clear();
 
         for(final String savedGame : savedGames)
         {
