@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 
 public abstract class PresentationController
 {
@@ -29,8 +28,6 @@ public abstract class PresentationController
     protected static Stage popUpStage;
 
     protected static Stage currentStage;
-    protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
-    protected final static Stack<Stage> FOCUS_STAGE_STACK = new Stack<>();
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -52,8 +49,6 @@ public abstract class PresentationController
     protected static List<List<Color>> codes = new ArrayList<>();
     protected static List<List<Color>> corrections = new ArrayList<>();
     protected static List<Color> currentTurn = new ArrayList<>();
-
-    private static volatile PlayingAction playingAction;
 
     /* PROTECTED METHODS */
 
