@@ -28,6 +28,7 @@ public class LogOutWarningViewController extends PopUpController
      * Método plantilla que ejecuta su código cuando cualquier botón de la vista
      * del controlador se pulsa.
      */
+    @Override
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();

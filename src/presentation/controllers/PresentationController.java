@@ -67,6 +67,12 @@ public abstract class PresentationController
         }
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
     protected void pressButtonTemplateAction()
     {
 

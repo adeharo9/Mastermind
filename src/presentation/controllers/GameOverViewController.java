@@ -16,6 +16,13 @@ public class GameOverViewController extends PopUpController
 
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
+    @Override
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();
