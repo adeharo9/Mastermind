@@ -494,6 +494,8 @@ public class Game implements DeepCopyable, Serializable
      * Hace copia profunda de la partida.
      *
      * @return una copia de la partida.
+     * @throws IllegalArgumentException En caso que alguno de los elementos de la partida no sean válidos.
+     * @throws NullPointerException En caso que alguno de los elementos sean nulos.
      */
     @Override
     public Game deepCopy() throws IllegalArgumentException, NullPointerException
