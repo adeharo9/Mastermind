@@ -19,6 +19,16 @@ public class LoadGameViewController extends RegisteringPresentationController
     @FXML private GridPane savedGamesGridPane;
     @FXML private Button loadGameButton;
 
+    /**
+     * Método de generación de unidad de partida guardada.
+     *
+     * Método encargado de generar la estructura de visualización que contiene
+     * todos los elementos (botones, interacciones, etc.) necesarios para la
+     * correcta visualización e interacción de y con una partida guardada.
+     *
+     * @param gameId ID de la partida guardada sobre la que generar la estructura de visualización.
+     * @return Lista de nodos contenedora de la unidad de partida guardada.
+     */
     private List<Node> getNewGridPaneChildren(final String gameId)
     {
         Button gameIdButton = new Button(gameId);

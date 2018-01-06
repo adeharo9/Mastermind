@@ -18,6 +18,18 @@ public class RankingViewController extends RegisteringPresentationController
 
     @FXML private GridPane rankingGridPane;
 
+    /**
+     * Método de generación de unidad de ranking.
+     *
+     * Método encargado de generar la estructura de visualización que contiene
+     * todos los elementos (etiquetas, etc.) necesarios para la
+     * correcta visualización de una unidad de ranking (una fila con el nombre de usuario
+     * y los puntos conseguidos).
+     *
+     * @param username Nombre de usuario del usuario a mostrar en la entrada.
+     * @param points Puntos del usuario a mostrar en la entrada.
+     * @return Entrada de ranking correctamente configurada.
+     */
     private List<Node> getNewRankingEntry(final String username, final Integer points)
     {
         //HBox hBox = new HBox();
