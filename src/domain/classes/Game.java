@@ -142,6 +142,11 @@ public class Game implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora aleatoria.
+     *
+     * Instancia una partida con un identificador aleatorio.
+     */
     @Deprecated
     public Game() throws IllegalArgumentException, NullPointerException
     {
@@ -154,6 +159,17 @@ public class Game implements DeepCopyable, Serializable
         players = new ArrayList<>();
     }
 
+    /**
+     * Constructora por dificultad y modo.
+     *
+     * Instancia una partida con un identificador aleatorio,
+     * con la dificultad y modo dados.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @param mode Modo de juego.
+     * @throws IllegalArgumentException Si el modo no es válido.
+     * @throws NullPointerException Si el modo es nulo.
+     */
     @Deprecated
     public Game(final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
     {
@@ -167,6 +183,18 @@ public class Game implements DeepCopyable, Serializable
 
     }
 
+    /**
+     * Constructora por id, dificultad y modo.
+     *
+     * Instancia una partida con el identificador,
+     * dificultad y modo dados.
+     *
+     * @param id Identificador de la partida.
+     * @param difficulty Dificultad de la partida.
+     * @param mode Modo de juego.
+     * @throws IllegalArgumentException Si el modo o el id no es válido.
+     * @throws NullPointerException Si el modo es null.
+     */
     public Game(final String id, final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
     {
         this.id = id;
@@ -178,6 +206,16 @@ public class Game implements DeepCopyable, Serializable
         players = new ArrayList<>();
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia una partida por copia
+     * a partir de otra dada.
+     *
+     * @param game Partida a copiar.
+     * @throws IllegalArgumentException Si el modo no es válido.
+     * @throws NullPointerException Si el modo es null.
+     */
     public Game(final Game game) throws IllegalArgumentException, NullPointerException
     {
         id = game.getId();
@@ -451,11 +489,11 @@ public class Game implements DeepCopyable, Serializable
     /* CLONING METHODS */
 
     /**
-     * Copiar acción.
+     * Copiar partida.
      *
-     * Hace copia profunda de la acción.
+     * Hace copia profunda de la partida.
      *
-     * @return una copia de la acción.
+     * @return una copia de la partida.
      */
     @Override
     public Game deepCopy() throws IllegalArgumentException, NullPointerException
