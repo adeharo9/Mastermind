@@ -23,10 +23,24 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora por código.
+     *
+     * Instancia una acción como code make con el código dado.
+     *
+     * @param code Código de colores.
+     */
     public CodeMake(final Code code) {
         super(code);
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia una acción como code make por copia.
+     *
+     * @param codeMake Acción como code make dada.
+     */
     public CodeMake(final CodeMake codeMake) throws IllegalArgumentException, NullPointerException
     {
         super(codeMake);
@@ -72,6 +86,13 @@ public class CodeMake extends Action implements DeepCopyable
 
     /* CLONING METHODS */
 
+    /**
+     * Copiar acción.
+     *
+     * Hace copia profunda de la acción.
+     *
+     * @return una copia de la acción.
+     */
     @Override
     public CodeMake deepCopy() throws IllegalArgumentException, NullPointerException
     {
