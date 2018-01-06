@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
-<?import java.lang.*?>
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameInProgressViewController">
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">

@@ -2,8 +2,6 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 public class SaveGameOverwriteViewController extends PopUpController
 {
     public SaveGameOverwriteViewController()

@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-import java.io.IOException;
-
 public class EditUserViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

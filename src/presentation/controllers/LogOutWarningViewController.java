@@ -2,8 +2,6 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 /**
  * Controlador de vista de aviso de cerrado de sesión.
  *

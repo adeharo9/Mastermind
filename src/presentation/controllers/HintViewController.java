@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import util.Constants;
 
-import java.io.IOException;
-
 public class HintViewController extends PopUpController
 {
     @FXML private Label hintLabel;

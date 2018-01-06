@@ -6,8 +6,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import util.Constants;
 
-import java.io.IOException;
-
 public class LogInViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

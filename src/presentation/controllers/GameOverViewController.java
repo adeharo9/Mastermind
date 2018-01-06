@@ -1,10 +1,7 @@
 package presentation.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-
-import java.io.IOException;
 
 public class GameOverViewController extends PopUpController
 {

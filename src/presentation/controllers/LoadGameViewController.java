@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 

@@ -3,8 +3,6 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
-
 /**
  * Controlador de vista de aviso de mensaje de error.
  *

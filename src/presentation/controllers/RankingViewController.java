@@ -10,7 +10,6 @@ import javafx.scene.layout.Priority;
 import util.Pair;
 import util.UncheckedCast;
 
-import java.io.IOException;
 import java.util.List;
 
 public class RankingViewController extends RegisteringPresentationController
