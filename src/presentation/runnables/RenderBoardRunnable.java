@@ -10,7 +10,7 @@ import presentation.controllers.PresentationController;
  * a las funciones de renderizado de tablero del controlador de presentación
  * en el thread de la interfaz gráfica desde el thread de la lógica del programa.
  *
- * @author Alejandro de Haro.
+ * @author Rafael Ramírez
  */
 
 public class RenderBoardRunnable implements Runnable

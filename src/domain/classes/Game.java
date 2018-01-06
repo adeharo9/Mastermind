@@ -16,7 +16,7 @@ import java.util.List;
  *
  * Esta clase representa un contenedor de los parámetros básicos de la partida.
  *
- * @author Rafael
+ * @author Rafael Ramírez
  */
 public class Game implements DeepCopyable, Serializable
 {
