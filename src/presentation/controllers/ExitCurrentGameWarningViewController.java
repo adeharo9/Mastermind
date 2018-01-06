@@ -11,6 +11,12 @@ public class ExitCurrentGameWarningViewController extends PopUpController
 
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();
@@ -19,13 +25,13 @@ public class ExitCurrentGameWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void exitGameButtonAction() throws IOException
+    public void exitGameButtonAction()
     {
         super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction() throws IOException
+    public void cancelButtonAction()
     {
         super.noButtonAction();
     }

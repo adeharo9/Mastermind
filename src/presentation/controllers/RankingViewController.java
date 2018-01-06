@@ -78,7 +78,7 @@ public class RankingViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }

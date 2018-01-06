@@ -4,12 +4,12 @@ import java.io.IOException;
 
 public abstract class PopUpController extends RegisteringPresentationController
 {
-    public void yesButtonAction() throws IOException
+    public void yesButtonAction()
     {
         pressButtonAction(1);
     }
 
-    public void noButtonAction() throws IOException
+    public void noButtonAction()
     {
         pressButtonAction(0);
     }

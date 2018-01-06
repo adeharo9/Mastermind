@@ -31,19 +31,19 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void startGameButtonAction() throws IOException
+    public void startGameButtonAction()
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void playerVsCPURadioButtonAction() throws IOException
+    public void playerVsCPURadioButtonAction()
     {
         disabled = false;
         roleModeVBox.setDisable(disabled);
@@ -51,7 +51,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonAction() throws IOException
+    public void playerVsPlayerRadioButtonAction()
     {
         disabled = true;
         roleModeVBox.setDisable(disabled);
@@ -59,7 +59,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonAction() throws IOException
+    public void cpuVsCPURadioButtonAction()
     {
         disabled = true;
         roleModeVBox.setDisable(disabled);
@@ -67,7 +67,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void playerVsCPURadioButtonOnMouseEntered() throws IOException
+    public void playerVsCPURadioButtonOnMouseEntered()
     {
         if(disabled)
         {
@@ -76,7 +76,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void playerVsCPURadioButtonOnMouseExited() throws IOException
+    public void playerVsCPURadioButtonOnMouseExited()
     {
         if(disabled)
         {
@@ -85,7 +85,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonOnMouseEntered() throws IOException
+    public void playerVsPlayerRadioButtonOnMouseEntered()
     {
         if(!disabled)
         {
@@ -94,7 +94,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void playerVsPlayerRadioButtonOnMouseExited() throws IOException
+    public void playerVsPlayerRadioButtonOnMouseExited()
     {
         if(!disabled)
         {
@@ -103,7 +103,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonOnMouseEntered() throws IOException
+    public void cpuVsCPURadioButtonOnMouseEntered()
     {
         if(!disabled)
         {
@@ -112,7 +112,7 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void cpuVsCPURadioButtonOnMouseExited() throws IOException
+    public void cpuVsCPURadioButtonOnMouseExited()
     {
         if(!disabled)
         {
@@ -121,32 +121,32 @@ public class NewGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void easyRadioButtonAction() throws IOException
+    public void easyRadioButtonAction()
     {
         PresentationController.difficulty = 1;
     }
 
     @FXML
-    public void mediumRadioButtonAction() throws IOException
+    public void mediumRadioButtonAction()
     {
         PresentationController.difficulty = 2;
     }
 
     @FXML
-    public void hardRadioButtonAction() throws IOException
+    public void hardRadioButtonAction()
     {
         PresentationController.difficulty = 3;
     }
 
 
     @FXML
-    public void codeMakerRadioButtonAction() throws IOException
+    public void codeMakerRadioButtonAction()
     {
         PresentationController.role = 1;
     }
 
     @FXML
-    public void codeBreakerRadioButtonAction() throws IOException
+    public void codeBreakerRadioButtonAction()
     {
         PresentationController.role = 2;
     }

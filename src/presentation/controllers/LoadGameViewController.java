@@ -38,15 +38,8 @@ public class LoadGameViewController extends RegisteringPresentationController
         deleteButton.getStyleClass().add("button");
         deleteButton.setOnAction((actionEvent) ->
             {
-                try
-                {
-                    PresentationController.gameId = gameId;
-                    pressButtonAction(2);
-                }
-                catch (IOException ioe)
-                {
-                    throw new RuntimeException();
-                }
+                PresentationController.gameId = gameId;
+                pressButtonAction(2);
             }
         );
 
@@ -107,19 +100,19 @@ public class LoadGameViewController extends RegisteringPresentationController
     }
 
     @FXML
-    public void backButtonAction() throws IOException
+    public void backButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void loadGameButtonAction() throws IOException
+    public void loadGameButtonAction()
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void deleteButtonAction() throws IOException
+    public void deleteButtonAction()
     {
         pressButtonAction(2);
     }

@@ -15,19 +15,19 @@ public class InitSessionViewController extends RegisteringPresentationController
 
     /* FXML */
     @FXML
-    public void exitButtonAction() throws IOException
+    public void exitButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void registerButtonAction() throws IOException
+    public void registerButtonAction()
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void logInButtonAction() throws IOException
+    public void logInButtonAction()
     {
         pressButtonAction(2);
     }

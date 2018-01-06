@@ -11,6 +11,12 @@ public class LogOutWarningViewController extends PopUpController
 
     }
 
+    /**
+     * Método plantilla de pulsado de botón.
+     *
+     * Método plantilla que ejecuta su código cuando cualquier botón de la vista
+     * del controlador se pulsa.
+     */
     protected void pressButtonTemplateAction()
     {
         popUpStage.close();
@@ -19,13 +25,13 @@ public class LogOutWarningViewController extends PopUpController
     /* FXML */
 
     @FXML
-    public void logOutButtonAction() throws IOException
+    public void logOutButtonAction()
     {
         super.yesButtonAction();
     }
 
     @FXML
-    public void cancelButtonAction() throws IOException
+    public void cancelButtonAction()
     {
         super.noButtonAction();
     }

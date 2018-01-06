@@ -44,19 +44,19 @@ public class GameOverViewController extends PopUpController
     }
 
     @FXML
-    public void mainMenuButtonAction() throws IOException
+    public void mainMenuButtonAction()
     {
         pressButtonAction(0);
     }
 
     @FXML
-    public void resetGameButtonAction() throws IOException
+    public void resetGameButtonAction()
     {
         pressButtonAction(1);
     }
 
     @FXML
-    public void newGameButtonAction() throws IOException
+    public void newGameButtonAction()
     {
         pressButtonAction(2);
     }
