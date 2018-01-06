@@ -127,7 +127,7 @@ public abstract class Action implements DeepCopyable
     /* VALIDATION METHODS */
 
     /**
-     * Código válido
+     * Código válido.
      *
      * Comprueba si el código de la acción es válido.
      *
@@ -142,7 +142,7 @@ public abstract class Action implements DeepCopyable
     /* CLONING METHODS */
 
     /**
-     * Copiar acción
+     * Copiar acción.
      *
      * Hace copia profunda de la acción.
      *
