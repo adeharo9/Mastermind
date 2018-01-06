@@ -24,7 +24,13 @@ public abstract class Player implements DeepCopyable, Serializable
     protected Role role;
 
     /* PRIVATE METHODS */
-
+    /**
+     * Validar id.
+     *
+     * Comprueba si el id no es nulo.
+     *
+     * @throws NullPointerException Si el id es null.
+     */
     private static boolean isValidId(final String id) throws NullPointerException
     {
         return id != null;
@@ -32,18 +38,39 @@ public abstract class Player implements DeepCopyable, Serializable
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora por defecto.
+     *
+     * Instancia un jugador con un identificador aleatorio.
+     */
     protected Player ()
     {
         this.id = Utils.autoID();
         this.role = null;
     }
 
+    /**
+     * Constructora con id.
+     *
+     * Instancia un jugador con un identificador dado.
+     *
+     * @param id Identificador del jugador.
+     * @throws IllegalArgumentException Si el id dado no es válido.
+     */
     protected Player(final String id) throws IllegalArgumentException
     {
         this.id = id;
         this.role = null;
     }
 
+    /**
+     * Constructora por copia.
+     *
+     * Instancia un jugador por copia a partir de otro dado.
+     *
+     * @param player Jugador a copiar.
+     * @throws IllegalArgumentException El jugador dado no es válido.
+     */
     protected Player(final Player player) throws IllegalArgumentException, NullPointerException
     {
         this.id = player.getId();
