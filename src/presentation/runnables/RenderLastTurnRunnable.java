@@ -9,7 +9,7 @@ import presentation.controllers.PresentationController;
  * con la información del último turno, con el objetivo de no renderizar el tablero completo
  * cada vez que se juega un nuevo turno.
  *
- * @author Alejandro de Haro
+ * @author Rafael Ramírez
  */
 
 public class RenderLastTurnRunnable implements Runnable

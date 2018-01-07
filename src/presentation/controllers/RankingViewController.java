@@ -12,6 +12,10 @@ import util.UncheckedCast;
 
 import java.util.List;
 
+/**
+ * @author Alex Sánchez
+ */
+
 public class RankingViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

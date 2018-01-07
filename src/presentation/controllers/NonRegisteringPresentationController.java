@@ -1,5 +1,9 @@
 package presentation.controllers;
 
+/**
+ * @author Alejandro de Haro
+ */
+
 public class NonRegisteringPresentationController extends PresentationController
 {
     /**

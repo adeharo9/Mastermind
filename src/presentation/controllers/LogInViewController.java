@@ -6,6 +6,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import util.Constants;
 
+/**
+ * @author Rafael Ramírez
+ */
+
 public class LogInViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

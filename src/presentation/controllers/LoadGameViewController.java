@@ -13,6 +13,10 @@ import javafx.scene.layout.Priority;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Alex Sánchez
+ */
+
 public class LoadGameViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;

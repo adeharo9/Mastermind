@@ -7,6 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+/**
+ * @author Alejandro de Haro
+ */
+
 public class ShowCodeViewController extends NonRegisteringPresentationController
 {
     /* ATTRIBUTES */

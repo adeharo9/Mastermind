@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * @author Alejandro de Haro
+ */
+
 public class LoadingViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;

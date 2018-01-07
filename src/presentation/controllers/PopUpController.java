@@ -1,5 +1,9 @@
 package presentation.controllers;
 
+/**
+ * @author Alejandro de Haro
+ */
+
 public abstract class PopUpController extends RegisteringPresentationController
 {
     /**

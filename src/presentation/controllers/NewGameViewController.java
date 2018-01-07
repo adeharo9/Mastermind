@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
+/**
+ * @author Rafael Ramírez
+ */
+
 public class NewGameViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

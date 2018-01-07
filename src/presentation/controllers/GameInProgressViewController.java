@@ -18,6 +18,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alejandro de Haro
+ */
+
 public class GameInProgressViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

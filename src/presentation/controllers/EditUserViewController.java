@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import util.Constants;
 
+/**
+ * @author Alex Sánchez
+ */
+
 public class EditUserViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

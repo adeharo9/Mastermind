@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+/**
+ * @author Alex Sánchez
+ */
+
 public class SaveGameViewController extends PopUpController {
 
     @FXML private TextField gameIdTextField;

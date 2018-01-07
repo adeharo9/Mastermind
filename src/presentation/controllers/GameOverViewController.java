@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * @author Rafael Ramírez
+ */
+
 public class GameOverViewController extends PopUpController
 {
     /* ATTRIBUTES */

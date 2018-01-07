@@ -2,6 +2,10 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
+/**
+ * @author Rafael Ramírez
+ */
+
 public class PauseViewController extends RegisteringPresentationController
 {
     /* CONSTRUCTORS */

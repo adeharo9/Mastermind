@@ -2,6 +2,9 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
+/**
+ * @author Alejandro de Haro
+ */
 
 public class InitSessionViewController extends RegisteringPresentationController
 {
