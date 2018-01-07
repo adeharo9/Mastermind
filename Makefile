@@ -265,4 +265,4 @@ samples:
 
 .PHONY: $(ZIP)
 $(ZIP):
-	$(ZIP) $(ZOPTIONS) $(ZIP_FILE) $(DOC_DIR) $(SRC_DIR) $(TST_DIR) Makefile
+	$(ZIP) $(ZOPTIONS) $(ZIP_FILE) $(DOC_DIR) $(SRC_DIR) $(TST_DIR) $(SAMPLES_DIR) Makefile
