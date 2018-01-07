@@ -5,6 +5,9 @@ DOC_DIR = ./docs
 TST_DIR = ./test
 DRIVER_DIR = testing
 JUNIT_DIR = testing
+SAMPLES_DIR = ./samples
+PLAYERS_DIR = ./players
+RANKING_DIR = ./ranking
 
 PRESENTATION_DIR = /presentation
 VIEWS_DIR = $(PRESENTATION_DIR)/views
@@ -181,6 +184,9 @@ JUNITS = \
 	[FILEPATH]/drivers/JUnitDriverDomainController.[EXT] \
 	[FILEPATH]/drivers/JUnitDriverPlayerController.[EXT]
 
+.PHONY: default
+default: $(BIN_FILES)
+
 $(BIN_FILES): | $(BIN_DIR) $(RESOURCES_TARGET) $(VIEWS_TARGET) $(STYLES_TARGET)
 	$(JC) $(JFLAGS) $(SRC_FILES)
 
@@ -202,30 +208,61 @@ $(STYLES_TARGET):
 	mkdir -p $(STYLES_TARGET)
 	cp -rf $(SRC_DIR)$(STYLES_DIR)/* $(STYLES_TARGET)
 
+.PHONY: all
 all: zip jar
 
-default: $(BIN_FILES)
+.PHONY: clean
+clean: clean-bin clean-jar clean-zip
 
-clean:
+.PHONY: clean-bin
+clean-bin:
 	$(RM)r $(BIN_DIR)
+
+.PHONY: clean-jar
+clean-jar:
 	$(RM) $(JAR_FILE)
+
+.PHONY: clean-players
+clean-players:
+	$(RM)r $(PLAYERS_DIR)
+
+.PHONY: clean-ranking
+clean-ranking:
+	$(RM)r $(RANKING_DIR)
+
+.PHONY: clean-zip
+clean-zip:
 	$(RM) $(ZIP_FILE)
 
+.PHONY: examples
 examples:
 	$(shell cd ./test/testgames/scripts;./TestGenerateExamplesTG.bash > /dev/null 2>&1)
 
+.PHONY: jar
 jar: $(JAR_FILE)
 
+.PHONY: purge
+purge: clean clean-players clean-ranking
+
+.PHONY: run
 run: $(BIN_FILES)
 	$(JV) -cp $(BIN_CLASSPATH) $(MAIN_CLASS)
 
+.PHONY: run-drivers
 run-drivers: $(BIN_FILES)
 	$(foreach DRIVER_FILE, $(DRIVER_FILES), $(JV) -cp $(BIN_CLASSPATH) $(DRIVER_FILE);)
 
+.PHONY: run-junits
 run-junits: $(BIN_FILES)
 	$(foreach JUNIT_FILE, $(JUNIT_FILES), $(JV) -cp $(BIN_CLASSPATH) $(JUNIT_FILE);)
 
+.PHONY: run-tests
 run-tests: run-drivers run-junits
 
+.PHONY: samples
+samples:
+	cp -rf $(SAMPLES_DIR)/* .
+
+.PHONY: $(ZIP)
 $(ZIP):
 	$(ZIP) $(ZOPTIONS) $(ZIP_FILE) $(DOC_DIR) $(SRC_DIR) $(TST_DIR) Makefile
