@@ -154,6 +154,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @param lastTurn Último turno de la partida.
      * @param isFirstTurn Indica si es el primer turno.
+     * @return Código de colores del algoritmo.
      */
     private Code getCodeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws IllegalArgumentException
     {
@@ -313,6 +314,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      * @param maxDepth Límite máximo de la permutación.
      * @param colorCollection Colores posibles.
      * @param aux Lista auxiliar de colores.
+     * @param visited Lista de colores ya visitados.
      */
     private void combine(final int currDepth, final int maxDepth, final Collection<Color> colorCollection, ArrayList<Color> aux, final Map<Color, Boolean> visited)
     {
@@ -369,6 +371,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
+     * @return Corrección del código de colores.
      */
     @SuppressWarnings("Duplicates")
     private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
@@ -425,6 +428,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      * del cual se desarrollará el algoritmo.
      *
      * @param difficulty Dificultad de la partida.
+     * @return Primera jugada del jugador CPU.
      * @throws IllegalArgumentException Si el objeto esperado no se corresponde con el parámetro enviado.
      */
     private Code getInitialGuess(Difficulty difficulty) throws IllegalArgumentException

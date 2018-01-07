@@ -25,7 +25,7 @@ public class Ranking implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
 
     /**
-     * Constructora de Raniking.
+     * Constructora de Ranking.
      *
      * Instancia un ranking vacío pero evitando NullPointerException.
      */
@@ -37,9 +37,11 @@ public class Ranking implements DeepCopyable, Serializable
      /* CONSTRUCTION METHODS */
 
     /**
-     * Constructora por defecto de Raniking.
+     * Constructora por copia de Ranking.
      *
-     * Instancia un ranking vacío.
+     * Instancia un ranking copia de otro.
+     *
+     * @param ranking Ranking a copiar.
      */
     public Ranking(final Ranking ranking)
     {
@@ -48,6 +50,7 @@ public class Ranking implements DeepCopyable, Serializable
 
     /**
      * Constructora de ranking por lista de jugadores y puntuación.
+     *
      * @param topTen Lista de los 10 o menos (en caso que no se hayan jugado todavía 10 partidas)
      *              mejores jugadores y puntos respectivos ordenados por este último.
      */

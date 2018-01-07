@@ -38,6 +38,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el nombre de columnas es válido.
      *
      * @param nColumns Nombre de columnas a validar.
+     * @return Devuelve true si  el número de columnas es válido.
      */
     private static boolean isValidNColumns(final int nColumns)
     {
@@ -50,6 +51,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el nombre de máximos intentos es válido.
      *
      * @param maxAttempts Nombre de máximos intentos a validar.
+     * @return Devuelve true si el número de máximos intentos es válido.
      */
     private static boolean isValidMaxAttempts(final int maxAttempts)
     {
@@ -62,6 +64,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si los turnos del tablero son válidos.
      *
      * @param turnSet Conjunto de turnos a validar.
+     * @return Devuelve true si el conjunto de turnos es válido.
      * @throws NullPointerException Si alguno de los turnos es null.
      */
     private static boolean isValidTurnSet(final Collection<Turn> turnSet) throws NullPointerException
@@ -86,6 +89,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el código de colores es válido.
      *
      * @param code Código de colores a validar.
+     * @return Devuelve true si el código es válido.
      */
     private boolean isValidCode(final Code code) throws NullPointerException
     {

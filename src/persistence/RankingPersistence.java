@@ -27,6 +27,7 @@ public class RankingPersistence extends AbstractPersistence
      * Indica si el ranking existe
      * en la capa de datos.
      *
+     * @return True si el archivo de ranking existe.
      */
     public boolean exists()
     {
@@ -65,6 +66,7 @@ public class RankingPersistence extends AbstractPersistence
      *
      * Devuelve el ranking.
      *
+     * @return Ranking cargado.
      * @throws IOException Si el ranking no existe en la capa de persistencia.
      * @throws ClassNotFoundException Si la definición del objeto no se corresponde a la leída en el documento.
      */

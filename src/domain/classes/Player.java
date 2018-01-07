@@ -29,6 +29,8 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Comprueba si el id no es nulo.
      *
+     * @param id ID a comprobar.
+     * @return Devuelve true si el id es válido.
      * @throws NullPointerException Si el id es null.
      */
     private static boolean isValidId(final String id) throws NullPointerException
@@ -91,6 +93,7 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Devuelve el identificador del jugador.
      *
+     * @return Identificador del jugador.
      */
     public final String getId()
     {
@@ -102,6 +105,7 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Devuelve el rol del jugador.
      *
+     * @return Rol del jugador.
      */
     public final Role getRole()
     {
@@ -191,6 +195,7 @@ public abstract class Player implements DeepCopyable, Serializable
      * Permite al jugador realizar una acción como code maker.
      *
      * @param difficulty Dificultad de la partida.
+     * @return Acción de code maker con el código de la jugada.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */
@@ -204,6 +209,7 @@ public abstract class Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @param lastTurn Último turno de la partida.
      * @param isFirstTurn Indica si se trata del primer turno.
+     * @return Acción de code breaker con el código de la jugada.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */
@@ -217,6 +223,7 @@ public abstract class Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
+     * @return Acción de code maker en modo corrección con el código de la corrección.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */

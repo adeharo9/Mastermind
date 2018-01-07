@@ -35,6 +35,7 @@ public class Code implements DeepCopyable, Serializable
          * Calcula el código hash.
          *
          * @param code Código de colores.
+         * @return Devuelve el hash ordenado del código de colores.
          */
         private static long calcOrderedHash(List<Color> code)
         {
@@ -55,6 +56,7 @@ public class Code implements DeepCopyable, Serializable
      * Calcula el código hash.
      *
      * @param code Código de colores.
+     * @return Devuelve el hash desordenado del código de colores.
      */
         private static long calcUnorderedHash(Collection<Color> code)
         {
@@ -115,7 +117,7 @@ public class Code implements DeepCopyable, Serializable
      * @throws IllegalArgumentException Si el código de colores no es válido.
      * @throws NullPointerException Si el código de colores está vacío.
      */
-        protected final <C extends  Collection<Color>> void setCodePins(final C codePins) throws IllegalArgumentException, NullPointerException
+        protected final void setCodePins(final Collection<Color> codePins) throws IllegalArgumentException, NullPointerException
         {
             boolean b = Utils.isValidCollection(codePins);
             if(!b) throw new IllegalArgumentException();
@@ -179,6 +181,7 @@ public class Code implements DeepCopyable, Serializable
      *
      * Comprueba si los códigos son iguales tanto en colores como en posición de colores.
      *
+     * @param o Objeto a comparar con el código actual.
      * @return true si son iguales, en cualquier otro caso falso.
      */
         public boolean orderedEquals(final Object o)
@@ -195,6 +198,7 @@ public class Code implements DeepCopyable, Serializable
      *
      * Comprueba si los códigos son iguales solo en posición.
      *
+     * @param o Objeto a comparar con el código actual.
      * @return true si son iguales, en cualquier otro caso falso.
      */
         public boolean unorderedEquals(final Object o)
@@ -211,6 +215,7 @@ public class Code implements DeepCopyable, Serializable
      *
      * Comprueba si los códigos son iguales solo en colores.
      *
+     * @param o Objeto a comparar con el código actual.
      * @return true si son iguales, en cualquier otro caso falso.
      */
         @Override
@@ -224,6 +229,7 @@ public class Code implements DeepCopyable, Serializable
      *
      * Comprueba si los códigos son iguales.
      *
+     * @param o Objeto a comparar con el código actual.
      * @return true si son iguales, en cualquier otro caso falso.
      */
         public boolean hardEquals(final Object o)

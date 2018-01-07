@@ -110,6 +110,7 @@ public class CodeCorrect extends Action implements DeepCopyable
      * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
+     * @return Corrección del código de colores.
      */
     @SuppressWarnings("Duplicates")
     private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)

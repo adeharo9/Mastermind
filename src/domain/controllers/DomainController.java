@@ -261,8 +261,8 @@ public class DomainController
      * con los controladores necesarios.
      *
      * @param id Nombre de la partida que se quiere cargar.
-     * @exception IOException
-     * @exception ClassNotFoundException
+     * @throws IOException En caso que la partida no pueda cargarse por algún motivo.
+     * @throws ClassNotFoundException En caso que el archivo cargado no contuviese una partida.
      */
 
     private void loadGame(String id) throws IOException, ClassNotFoundException

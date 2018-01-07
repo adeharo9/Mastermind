@@ -65,6 +65,7 @@ public class GamePersistence extends AbstractPersistence
      *
      * @param id Identificador de la partida.
      * @param player Identificador del jugador al que pertenece la partida.
+     * @return Partida identificada por id.
      * @throws IOException Si el objeto no existe en la capa de persistencia.
      * @throws ClassNotFoundException Si la definición del objeto no se corresponde a la leída en el documento.
      */

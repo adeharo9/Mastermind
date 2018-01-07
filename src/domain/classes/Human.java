@@ -31,6 +31,9 @@ public class Human extends Player implements DeepCopyable, Serializable
      * Contraseña válida.
      *
      * Comprueba si la contraseña dada es válida.
+     *
+     * @param password Contraseña.
+     * @return Devuelve true si la contraseña es válida.
      */
     private static boolean isValidPassword(final String password)
     {
@@ -234,6 +237,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * Obtiene el código de colores introducido por el usuario.
      *
      * @param difficulty Dificultad de la partida.
+     * @return Código de colores introducido por el usuario.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */
@@ -256,6 +260,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * Obtiene el código de nombre de colores introducido por el usuario.
      *
      * @param difficulty Dificultad de la partida.
+     * @return Código de nombre de colores introducido por el usuario.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */

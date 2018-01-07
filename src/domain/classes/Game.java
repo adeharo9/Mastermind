@@ -38,6 +38,7 @@ public class Game implements DeepCopyable, Serializable
      * Comprueba que el identificador de la partida no está vacío.
      *
      * @param id Identificador de partida.
+     * @return Devuelve true si el id de la partida es válido.
      */
     private static boolean isValidId(final String id)
     {
@@ -50,6 +51,7 @@ public class Game implements DeepCopyable, Serializable
      * Comprueba que el tiempo de la partida es válido.
      *
      * @param time Tiempo.
+     * @return Devuelve true si el tiempo de la partida es válido.
      */
     private static boolean isValidTime(final long time)
     {
@@ -59,9 +61,10 @@ public class Game implements DeepCopyable, Serializable
     /**
      * Validar jugadores.
      *
-     * Comprueba que los diferentes jugadores son válidos..
+     * Comprueba que los diferentes jugadores son válidos.
      *
      * @param players Lista de jugadores.
+     * @return Devuelve true si los jugadores son válidos.
      * @throws NullPointerException Si alguno de los jugadores están vacíos.
      */
     @Deprecated
