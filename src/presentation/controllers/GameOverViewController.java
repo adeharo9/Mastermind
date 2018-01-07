@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
+ * Controlador de vista de juego finalizado.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de juego finalizado.
+ *
  * @author Rafael Ramírez
  */
 

@@ -9,6 +9,10 @@ import javafx.scene.paint.Color;
 import util.Constants;
 
 /**
+ * Controlador de vista de edición de usuario.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de edición de usuario.
+ *
  * @author Alex Sánchez
  */
 

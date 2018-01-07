@@ -13,6 +13,10 @@ import util.UncheckedCast;
 import java.util.List;
 
 /**
+ * Controlador de vista de ranking.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de ranking.
+ *
  * @author Alex Sánchez
  */
 

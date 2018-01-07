@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Controlador de vista de tablero de juego.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de tablero de juego.
+ *
  * @author Alejandro de Haro
  */
 

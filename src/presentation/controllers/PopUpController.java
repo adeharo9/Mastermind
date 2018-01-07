@@ -1,6 +1,10 @@
 package presentation.controllers;
 
 /**
+ * Controlador de vista genérica de popup.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista genérica de popup.
+ *
  * @author Alejandro de Haro
  */
 

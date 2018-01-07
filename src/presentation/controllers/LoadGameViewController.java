@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Controlador de vista de cargar partida.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de cargar partida.
+ *
  * @author Alex Sánchez
  */
 

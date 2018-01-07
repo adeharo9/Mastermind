@@ -7,6 +7,10 @@ import javafx.scene.control.TextField;
 import util.Constants;
 
 /**
+ * Controlador de vista de menú de registro.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de menú de registro.
+ *
  * @author Alex Sánchez
  */
 

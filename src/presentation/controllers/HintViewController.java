@@ -6,6 +6,10 @@ import javafx.scene.control.Label;
 import util.Constants;
 
 /**
+ * Controlador de vista de pista.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de pista.
+ *
  * @author Rafael Ramírez
  */
 

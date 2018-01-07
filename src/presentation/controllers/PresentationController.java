@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Controlador de presentación.
+ *
+ * Clase encargada de definir un marco común para todos los controladores de presentación.
+ *
  * @author Alejandro de Haro
  */
 

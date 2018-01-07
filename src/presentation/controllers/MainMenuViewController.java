@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 
 /**
+ * Controlador de vista de menú principal.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de menú principal.
+ *
  * @author Alejandro de Haro
  */
 

@@ -1,6 +1,10 @@
 package presentation.controllers;
 
 /**
+ * Controlador de controladores no registrantes.
+ *
+ * Clase encargada de gestionar los controladores no registrantes.
+ *
  * @author Alejandro de Haro
  */
 

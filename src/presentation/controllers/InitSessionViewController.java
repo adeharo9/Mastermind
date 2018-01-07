@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 
 /**
+ * Controlador de vista de inicio de sesión/registro.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de inicio de sesión/registro.
+ *
  * @author Alejandro de Haro
  */
 

@@ -3,6 +3,10 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 
 /**
+ * Controlador de vista de menú de pausa.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de menú de pausa.
+ *
  * @author Rafael Ramírez
  */
 

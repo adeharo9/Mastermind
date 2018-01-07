@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 /**
+ * Controlador de vista de guardado de partida.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de guardado de partida.
+ *
  * @author Alex Sánchez
  */
 

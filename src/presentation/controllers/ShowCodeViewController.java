@@ -8,6 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
+ * Controlador de vista de código de solución.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de código de solución.
+ *
  * @author Alejandro de Haro
  */
 

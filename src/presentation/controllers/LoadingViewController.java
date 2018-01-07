@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
+ * Controlador de vista de carga.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de carga.
+ *
  * @author Alejandro de Haro
  */
 
