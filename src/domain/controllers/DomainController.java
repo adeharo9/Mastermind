@@ -251,7 +251,7 @@ public class DomainController
     {
         savedGames.clear();
         Player loggedPlayer = loggedPlayerController.getPlayer();
-        savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
+        savedGames = playerPersistence.loadSavedGames(loggedPlayer.getUsername());
     }
 
     /**
@@ -268,7 +268,7 @@ public class DomainController
     private void loadGame(String id) throws IOException, ClassNotFoundException
     {
         Player loggedPlayer = loggedPlayerController.getPlayer();
-        String player = loggedPlayer.getId();
+        String player = loggedPlayer.getUsername();
         Game game = gamePersistence.load(id, player);
         gameController.setGameByReference(game);
         boardController.setBoardByReference(game.getBoard());
@@ -349,7 +349,7 @@ public class DomainController
     {
         Game game = gameController.getGame();
         String gameId = gameController.getId();
-        String playerId = loggedPlayerController.getId();
+        String playerId = loggedPlayerController.getUsername();
 
         gamePersistence.save(game, playerId);
         playerPersistence.savePlayerGame(gameId, playerId);
@@ -382,7 +382,7 @@ public class DomainController
 
     private void deleteGame(final String gameId) throws IOException
     {
-        String playerId = loggedPlayerController.getId();
+        String playerId = loggedPlayerController.getUsername();
         gamePersistence.setPlayerPath(playerId + "/");
         gamePersistence.delete(gameId);
 
@@ -402,10 +402,10 @@ public class DomainController
     public void renameUsername(final String username) throws IOException
     {
         Player loggedPlayer = loggedPlayerController.getPlayer();
-        String player = loggedPlayer.getId();
+        String player = loggedPlayer.getUsername();
 
         playerPersistence.renamePlayer(player, username);
-        loggedPlayer.setId(username);
+        loggedPlayer.setUsername(username);
         playerPersistence.delete(username);
         playerPersistence.save(loggedPlayer);
     }
@@ -434,10 +434,15 @@ public class DomainController
 
         Player loggedPlayer = loggedPlayerController.getPlayer();
         loggedPlayer.setPassword(newPassword);
-        String username = loggedPlayerController.getId();
+        String username = loggedPlayerController.getUsername();
         deleteUser(username);
 
-        Player player = loggedPlayerController.newHuman(username, newPassword);
+        //Player player = loggedPlayerController.newHuman(username, newPassword);
+        Player player = loggedPlayerController.getPlayer();
+
+        player.setUsername(username);
+        player.setPassword(newPassword);
+
 
         playerPersistence.save(player);
     }
@@ -689,7 +694,7 @@ public class DomainController
 
     private void updateRanking()
     {
-        String playerId = loggedPlayerController.getId();
+        String playerId = loggedPlayerController.getUsername();
         int points = gameController.getPoints();
 
         if(ranking.toTopTen(points))
@@ -848,7 +853,7 @@ public class DomainController
 
     private void showUsername() throws InterruptedException
     {
-        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, loggedPlayerController.getId()));
+        runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, loggedPlayerController.getUsername()));
     }
 
     /**

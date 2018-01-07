@@ -20,7 +20,8 @@ public abstract class Player implements DeepCopyable, Serializable
 {
     /* ATTRIBUTES */
 
-    protected String id;
+    protected final String id;
+    protected String username;
     protected Role role;
 
     /* PRIVATE METHODS */
@@ -48,6 +49,7 @@ public abstract class Player implements DeepCopyable, Serializable
     protected Player ()
     {
         this.id = Utils.autoID();
+        this.username = this.id;
         this.role = null;
     }
 
@@ -56,12 +58,13 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Instancia un jugador con un identificador dado.
      *
-     * @param id Identificador del jugador.
+     * @param username Identificador del jugador.
      * @throws IllegalArgumentException Si el id dado no es válido.
      */
-    protected Player(final String id) throws IllegalArgumentException
+    protected Player(final String username) throws IllegalArgumentException
     {
-        this.id = id;
+        this.id = Utils.autoID();
+        this.username = username;
         this.role = null;
     }
 
@@ -75,7 +78,8 @@ public abstract class Player implements DeepCopyable, Serializable
      */
     protected Player(final Player player) throws IllegalArgumentException, NullPointerException
     {
-        this.id = player.getId();
+        this.id = player.id;
+        this.username = player.getUsername();
         this.role = player.getRole();
     }
 
@@ -89,15 +93,27 @@ public abstract class Player implements DeepCopyable, Serializable
     /* GET METHODS */
 
     /**
-     * Getter del id.
+     * Getter del ID de jugador.
      *
-     * Devuelve el identificador del jugador.
+     * Devuelve el ID del jugador.
      *
-     * @return Identificador del jugador.
+     * @return ID del jugador.
      */
     public final String getId()
     {
         return id;
+    }
+
+    /**
+     * Getter del nombre de usuario.
+     *
+     * Devuelve el nombre de usuario del jugador.
+     *
+     * @return Nombre de usuario del jugador.
+     */
+    public final String getUsername()
+    {
+        return username;
     }
 
     /**
@@ -119,11 +135,11 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Establece el identificador del jugador.
      *
-     * @param id Identificador del jugador.
+     * @param username Identificador del jugador.
      */
-    public void setId(String id)
+    public void setUsername(String username)
     {
-        this.id = id;
+        this.username = username;
     }
 
     /**
@@ -165,7 +181,7 @@ public abstract class Player implements DeepCopyable, Serializable
      */
     public boolean isValid()
     {
-        return isValidId(id);
+        return isValidId(username);
     }
 
     /**

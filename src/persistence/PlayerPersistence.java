@@ -118,7 +118,7 @@ public class PlayerPersistence extends AbstractPersistence
      */
     public void save(Object player) throws IOException
     {
-        String playerId = ((Player) player).getId();
+        String playerId = ((Player) player).getUsername();
         setPlayerPath(playerId + "/");
 
         super.save(playerId, player);

@@ -164,10 +164,22 @@ public class PlayerController
      *
      * @return nombre del jugador.
      */
-
     public String getId()
     {
         return player.getId();
+    }
+
+    /**
+     * Getter del nombre de usuario del jugador.
+     *
+     * Devuelve el nombre de usuario del jugador
+     * asociado al controlador.
+     *
+     * @return Nombre de usuario del jugador.
+     */
+    public String getUsername()
+    {
+        return player.getUsername();
     }
 
     /**

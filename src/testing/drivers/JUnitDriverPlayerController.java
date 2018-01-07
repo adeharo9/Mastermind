@@ -37,14 +37,14 @@ public class JUnitDriverPlayerController {
         playerController.setPlayerByReference(player);
 
         testedPlayerController = playerController;
-        assertEquals(testedPlayerController.getId(), id);
+        assertEquals(testedPlayerController.getUsername(), id);
     }
 
     private void testGetsAndSets()
     {
         Player player = testedPlayerController.getPlayer();
         assertNotNull(player);
-        String id = testedPlayerController.getId();
+        String id = testedPlayerController.getUsername();
         assertNotNull(id);
 
         assertNull(testedPlayerController.getRole());
@@ -59,9 +59,9 @@ public class JUnitDriverPlayerController {
     private void testNewHumanAndNewCPU()
     {
         testedPlayerController.newHuman("alex", "1234");
-        assertEquals(testedPlayerController.getId(), "alex");
+        assertEquals(testedPlayerController.getUsername(), "alex");
         testedPlayerController.newCPU("cpu");
-        assertEquals(testedPlayerController.getId(), "cpu");
+        assertEquals(testedPlayerController.getUsername(), "cpu");
     }
 
     @SuppressWarnings("Duplicates")

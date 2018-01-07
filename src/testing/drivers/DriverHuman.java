@@ -41,7 +41,7 @@ public class DriverHuman {
 
     private void testGetsAndSets()
     {
-        String id = testedHuman.getId();
+        String id = testedHuman.getUsername();
         String password = testedHuman.getPassword();
 
         testedHuman.setPassword("4321");

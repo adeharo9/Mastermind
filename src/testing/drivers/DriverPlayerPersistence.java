@@ -58,7 +58,7 @@ public class DriverPlayerPersistence {
         try
         {
             playerLoaded = playerPersistence.load(this.id);
-            idPlayer = playerLoaded.getId();
+            idPlayer = playerLoaded.getUsername();
         }
         catch(IOException | ClassNotFoundException e)
         {

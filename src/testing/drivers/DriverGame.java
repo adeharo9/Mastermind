@@ -97,7 +97,7 @@ public class DriverGame {
 
         ioUtils.printOutLn("If the setters and getters have worked correctly, the data input has been:\n" +
                             "Id: " + testedGame.getId() + "\nPoints: " + testedGame.getPoints() + "\nPlayers: " +
-                            testedGame.getPlayers().get(0).getId() + " " + testedGame.getPlayers().get(1).getId());
+                            testedGame.getPlayers().get(0).getUsername() + " " + testedGame.getPlayers().get(1).getUsername());
 
         testedGame.setPoints(1000);
         if(testedGame.getPoints() != 1000){ioUtils.printOutLn("Error in setPoints!\n");}
