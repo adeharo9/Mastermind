@@ -10,7 +10,7 @@
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" textAlignment="CENTER" />
+          <Button mnemonicParsing="false" onAction="#exitButtonAction" text="Exit" textAlignment="CENTER" />
         </items>
       </ToolBar>
       <Label styleClass="title" text="MASTERMIND">
@@ -23,8 +23,8 @@
       </Label>
       <VBox alignment="CENTER" layoutX="260.0" layoutY="124.0" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="logInButton" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
-            <Button fx:id="registerButton" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" textAlignment="CENTER" />
+            <Button layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" textAlignment="CENTER" />
+            <Button layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" textAlignment="CENTER" />
          </children>
       </VBox>
    </children>

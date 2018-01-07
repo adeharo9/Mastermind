@@ -7,7 +7,7 @@
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
+          <Button mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
         </items>
       </ToolBar>
       <VBox alignment="CENTER" spacing="30.0" VBox.vgrow="ALWAYS">
@@ -40,7 +40,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="updatePasswordButton" mnemonicParsing="false" onAction="#updatePasswordButtonAction" text="Update Password" />
+                  <Button mnemonicParsing="false" onAction="#updatePasswordButtonAction" text="Update Password" />
                </children>
             </VBox>
          </children>

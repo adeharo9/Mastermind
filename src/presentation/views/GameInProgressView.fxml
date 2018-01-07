@@ -20,7 +20,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="30.0">
                      <children>
-                      <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseButtonAction" text="Menu" textAlignment="CENTER" />
+                      <Button mnemonicParsing="false" onAction="#pauseButtonAction" text="Menu" textAlignment="CENTER" />
                         <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpButtonAction" text="Help" />
                      </children>
                   </HBox>
