@@ -76,6 +76,7 @@ public class NewGameViewController extends RegisteringPresentationController
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial Player vs. CPU.
      */
     @FXML
+    @SuppressWarnings("ConstantConditions")
     public void playerVsCPURadioButtonAction()
     {
         disabled = false;
@@ -89,6 +90,7 @@ public class NewGameViewController extends RegisteringPresentationController
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial Player vs. Player.
      */
     @FXML
+    @SuppressWarnings("ConstantConditions")
     public void playerVsPlayerRadioButtonAction()
     {
         disabled = true;
@@ -102,6 +104,7 @@ public class NewGameViewController extends RegisteringPresentationController
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón radial CPU vs. CPU.
      */
     @FXML
+    @SuppressWarnings("ConstantConditions")
     public void cpuVsCPURadioButtonAction()
     {
         disabled = true;

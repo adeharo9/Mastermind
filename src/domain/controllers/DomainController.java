@@ -982,6 +982,7 @@ public class DomainController
      * @throws InterruptedException el threat actual ha sido interrumpido
      */
 
+    @SuppressWarnings("ConstantConditions")
     public synchronized void exe() throws InterruptedException
     {
         int returnState;
