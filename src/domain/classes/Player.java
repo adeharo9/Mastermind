@@ -197,9 +197,8 @@ public abstract class Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @return Acción de code maker con el código de la jugada.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
-    public abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException;
+    public abstract Action codeMake(final Difficulty difficulty) throws ReservedKeywordException;
 
     /**
      * Acción como code breaker.
@@ -211,9 +210,8 @@ public abstract class Player implements DeepCopyable, Serializable
      * @param isFirstTurn Indica si se trata del primer turno.
      * @return Acción de code breaker con el código de la jugada.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
-    public abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException;
+    public abstract Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException;
 
     /**
      * Acción como code correct.
@@ -225,7 +223,6 @@ public abstract class Player implements DeepCopyable, Serializable
      * @param solution Código de colores que representa la solución.
      * @return Acción de code maker en modo corrección con el código de la corrección.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
-    public abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException, InterruptedException;
+    public abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
 }

@@ -178,12 +178,11 @@ public class Human extends Player implements DeepCopyable, Serializable
      *
      * @param difficulty Dificultad de la partida.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
     @Override
-    public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
+    public Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
-        List<Color> colorList = codeInputByUser(difficulty);
+        List<Color> colorList = codeInputByUser();
         Code code = new Code(colorList);
 
         return new CodeMake(code);
@@ -198,12 +197,11 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param lastTurn Último turno de la partida.
      * @param isFirstTurn Indica si se trata del primer turno.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
     @Override
-    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
+    public Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
-        List<Color> colorList = codeInputByUser(difficulty);
+        List<Color> colorList = codeInputByUser();
         Code code = new Code(colorList);
 
         return new CodeBreak(code);
@@ -218,12 +216,11 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param c Código introducido a corregir.
      * @param s Código de colores que representa la solución.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
     @Override
-    public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException, InterruptedException
+    public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException
     {
-        List<Color> colorList = codeInputByUser(difficulty);
+        List<Color> colorList = codeInputByUser();
         Code code = new Code(colorList);
 
         return new CodeCorrect(code);
@@ -236,11 +233,10 @@ public class Human extends Player implements DeepCopyable, Serializable
      *
      * Obtiene el código de colores introducido por el usuario.
      *
-     * @param difficulty Dificultad de la partida.
      * @return Código de colores introducido por el usuario.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      */
-    private List<Color> codeInputByUser(Difficulty difficulty) throws ReservedKeywordException
+    private List<Color> codeInputByUser() throws ReservedKeywordException
     {
         List<String> code = readCode();
         List<Color> colorList = new ArrayList<>(code.size());

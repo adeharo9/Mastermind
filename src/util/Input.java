@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public abstract class Input
 {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static ArrayList<String> buffer = new ArrayList<>();
 
     private static boolean isEmpty()
@@ -20,7 +20,7 @@ public abstract class Input
 
         if(isEmpty())
         {
-            buffer = new ArrayList<>(Arrays.asList(scanner.nextLine().split(" ")));
+            buffer = new ArrayList<>(Arrays.asList(SCANNER.nextLine().split(" ")));
         }
 
         if(!isEmpty())
