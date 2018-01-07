@@ -40,6 +40,8 @@ public enum View
      *
      * Crea una vista con el valor
      * del parametro de entrada.
+     *
+     * @param viewFile Archivo .fxml de la vista.
      */
 
     View(final String viewFile)

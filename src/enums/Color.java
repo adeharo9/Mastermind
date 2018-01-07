@@ -258,6 +258,8 @@ public enum Color
      * Devuelve una lista de colores aleatorios.
      *
      * @param colorSet Lista de colores
+     * @param <T> Tipo de set del set de colores.
+     * @param <S> Tipo de elementos del set de colores.
      * @throws IllegalArgumentException Parametro no valido.
      * @return Lista de colores aleatorios.
      */
