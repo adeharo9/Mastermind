@@ -459,10 +459,35 @@ public class DomainController
         playerPersistence.delete(username);
     }
 
+    /**
+     * Borrar ficheros de configuracion
+     *
+     * Borra el fichero de configuracion del
+     * usuario pasado por parametro.
+     *
+     * @param username Nombre de usuario cuyos ficheros se van a borrar
+     * @exception IOException Error al introducir el parametro.
+     */
+
+    @Deprecated
     private void deleteConfigFile(final String username) throws IOException
     {
         playerPersistence.deleteConfigFile(username);
     }
+
+    /**
+     * Jugar
+     *
+     * Se ejecuta la accion que corresponde
+     * al jugador del controlador que se pasa
+     * como parametro
+     *
+     * @param playerController Controlador de jugador con los datos del jugador actual cargados
+     * @exception IllegalArgumentException Parametro no valido
+     * @exception ReservedKeywordException Se introduce un valor que indica un retroceso en los menus
+     * @exception IllegalActionException Accion no valida
+     * @exception InterruptedException Threat que se esta ejecutando es interrumpido
+     */
 
     private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
@@ -483,10 +508,34 @@ public class DomainController
         }
     }
 
+    /**
+     * Jugar como CodeBreaker
+     *
+     * Se ejecuta un turno como
+     * CodeBreaker.
+     *
+     * @exception IllegalArgumentException Algun parametro no es valido.
+     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @exception IllegalActionException Accion no valida.
+     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
+     */
+
     private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         play(codeBreakerController);
     }
+
+    /**
+     * Jugar como Corrector
+     *
+     * Se ejecuta un turno como
+     * Corrector de codigo.
+     *
+     * @exception IllegalArgumentException Algun parametro no es valido.
+     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @exception IllegalActionException Accion no valida.
+     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
+     */
 
     private void playCodeCorrecter() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
@@ -494,11 +543,32 @@ public class DomainController
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
 
+    /**
+     * Jugar como CodeMaker
+     *
+     * Se ejecuta un turno como
+     * CodeMaker.
+     *
+     * @exception IllegalArgumentException Algun parametro no es valido.
+     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @exception IllegalActionException Accion no valida.
+     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
+     */
+
     private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
     {
         play(codeMakerController);
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
     }
+
+    /**Generar pista
+     *
+     * Se crea una pista segun el
+     * codigo solucion de la partida
+     * actual.
+     *
+     * @exception GameNotStartedException La partida no ha comenzado o no tiene solucion.
+     */
 
     private String generateHint() throws GameNotStartedException
     {
@@ -547,6 +617,13 @@ public class DomainController
 
     /* USER INTERACTION METHODS */
 
+    /**
+     * Actualizar Tablero
+     *
+     * Se actualizan los valores
+     * del tablero de la partida actual.
+     */
+
     private void updateBoard()
     {
         Turn lastTurn = boardController.getLastTurn();
@@ -572,6 +649,17 @@ public class DomainController
         }
     }
 
+    /**
+     * Cargar Ranking de puntuaciones.
+     *
+     * Obtiene de los controladores de
+     * persistencia la lista de mejores
+     * puntuaciones.
+     *
+     * @exception IOException Error en entrada de parametros.
+     * @exception ClassNotFoundException Un objeto no se ha creado correctamente.
+     */
+
     private void loadRanking() throws IOException, ClassNotFoundException
     {
         if(rankingPersistence.exists())
@@ -579,6 +667,16 @@ public class DomainController
             ranking = rankingPersistence.load();
         }
     }
+
+    /**
+     * Guardar Ranking de puntuaciones.
+     *
+     * Borra la antigua lista de mejores
+     * puntuaciones y guarda una nueva.
+     *
+     * @exception IOException Error en entrada de parametros.
+     * @exception ClassNotFoundException Un objeto no se ha creado correctamente.
+     */
 
     private void saveRanking() throws IOException, ClassNotFoundException
     {
@@ -588,6 +686,15 @@ public class DomainController
         }
         rankingPersistence.save(ranking);
     }
+
+    /**
+     * Actualizar Ranking de puntuaciones.
+     *
+     * Compara una puntuacion con el resto
+     * de puntuaciones del ranking y la
+     * coloca en la posicion correcta si es
+     * necesario.
+     */
 
     private void updateRanking()
     {
@@ -599,6 +706,15 @@ public class DomainController
             ranking.addToTopTen(playerId, points);
         }
     }
+
+    /**
+     * runOnGUIThreadAndWait
+     *
+     * Carga un threat y manda la orden
+     * de esperar.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void runOnGUIThreadAndWait(final Runnable runnable) throws InterruptedException
     {
@@ -612,75 +728,218 @@ public class DomainController
         PresentationController.clearThreadHasFinished();
     }
 
+    /**
+     * Actualizar vista
+     *
+     * Manda al threat la vista que
+     * debe cargar.
+     *
+     * @param view Vista para cargar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void updateView(final View view) throws InterruptedException
     {
         runOnGUIThreadAndWait(new UpdateViewRunnable(presentationController, view.getViewFile()));
     }
+
+    /**
+     * Ejecuta un pop up
+     *
+     * Manda al threat la informacion
+     * necesaria para cargar el pop up
+     * correspondiente.
+     *
+     * @param popUpWindowStyle Estilo del popUp.
+     * @param view Vista para cargar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void popUpView(final PopUpWindowStyle popUpWindowStyle, final View view) throws InterruptedException
     {
         runOnGUIThreadAndWait(new PopUpViewRunnable(presentationController, popUpWindowStyle, view.getViewFile()));
     }
 
+    /**
+     * Muestra mensaje de error.
+     *
+     * Manda el mensaje al threat.
+     *
+     * @param message Mensaje para mostrar.
+     */
+
     private void errorMessage(final String message)
     {
         Platform.runLater(new ProcessInfoRunnable(presentationController, message));
     }
+
+    /**
+     * Mensaje y espera
+     *
+     * Manda el mensaje pasado como
+     * parametro al threat y manda la orden de esperar.
+     *
+     * @param message Mensaje para mostrar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void showMessageAndWait(final String message) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
     }
 
+    /**
+     * Muestra pista.
+     *
+     * Manda la pista al threat.
+     *
+     * @param message Mensaje pista para mostrar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void showHint(final String message) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
     }
+
+    /**
+     * Muestra la puntuacion final
+     *
+     * Manda la puntuacion final al threat.
+     *
+     * @param message Mensaje puntuacion para mostrar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void showScore(final String message) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, message));
     }
 
+    /**
+     * Muestra informacion.
+     *
+     * Pasa el texto de informacion al threat.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void showInfo() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.INFO_MESSAGE));
     }
+
+    /**
+     * Muestra partidas guardadas
+     *
+     * Manda al threat la lista de
+     * partidas guardadas que se pueden
+     * cargar.
+     *
+     * @param savedGames Lista de partidas para mostrar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void showLoadedGames(final Set<String> savedGames) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ShowLoadedGamesRunnable(presentationController, savedGames));
     }
 
+    /**
+     * Mostrar nombre de usuario.
+     *
+     * Manda al threat el nombre del usuario
+     * actual.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void showUsername() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, loggedPlayerController.getId()));
     }
+
+    /**
+     * Mostrar campo de texto de cambio de nombre.
+     *
+     * Manda al threat el campo de
+     * cambio de nombre de usuario.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void showRenameUsernameTextField() throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, Constants.EDIT_USERNAME));
     }
 
+    /**
+     * Mostrar ranking.
+     *
+     * Manda al threat la lista de nombres
+     * y puntuaciones que forman el ranking.
+     *
+     * @param topTen Lista de jugadores y puntuaciones para mostrar.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
     {
         runOnGUIThreadAndWait(new ProcessInfoRunnable(presentationController, topTen));
     }
+
+    /**
+     * Renderizar tablero
+     *
+     * Manda al threat la dificultad de
+     * la partida para establecer el tamaño
+     * de tablero.
+     *
+     * @param difficulty Dificultad de la partida.
+     */
 
     private void renderBoard(final Difficulty difficulty)
     {
         Platform.runLater(new RenderBoardRunnable(presentationController, difficulty));
     }
 
+    /**
+     * Renderizar ultimo turno
+     *
+     * Manda al threat el ultimo turno
+     * jugado.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void renderLastTurn() throws InterruptedException
     {
         Platform.runLater(new RenderLastTurnRunnable(presentationController, false));
     }
 
+    /**
+     * Renderizar ultimo turno y esperar.
+     *
+     * Manda al threat el ultimo turno jugado
+     * y manda la orden de esperar.
+     *
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
+
     private void renderLastTurnBlocking() throws InterruptedException
     {
         runOnGUIThreadAndWait(new RenderLastTurnRunnable(presentationController, true));
     }
+
+    /**
+     * Actualizar runnable del tablero.
+     *
+     * Actualiza el ejecutable segun la accion
+     * que se vaya a hacer.
+     *
+     * @param playingAction Accion del jugador que va a jugar.
+     * @return runnable del tablero.
+     */
 
     private Runnable getUpdateBoardRunnable(final PlayingAction playingAction)
     {
@@ -703,6 +962,16 @@ public class DomainController
 
         return runnable;
     }
+
+    /**
+     * Actualizar tablero
+     *
+     * Actualiza el tablero segun la
+     * proxima accion que se vaya a hacer.
+     *
+     * @param playingAction Proxima accion del jugador.
+     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     */
 
     private void updateBoardTo(final PlayingAction playingAction) throws InterruptedException
     {

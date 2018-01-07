@@ -188,15 +188,6 @@ public class GameController
         game.setPoints(newPoints);
     }
 
-    /*public void pointsEndGame()
-    {
-        int newpoints = game.getPoints();
-        long modify = game.getTime();
-        newpoints = newpoints + ((int)System.currentTimeMillis()-(int)modify) * Constants.POINTS_TIME;
-        if (newpoints<0) newpoints = 0;
-        game.setPoints(newpoints);
-    }*/
-
     /**
      * Calculo de puntos por pista
      *
