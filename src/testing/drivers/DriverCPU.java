@@ -1,6 +1,9 @@
 package testing.drivers;
 
-import domain.classes.*;
+import domain.classes.Action;
+import domain.classes.CPU;
+import domain.classes.Code;
+import domain.classes.Turn;
 import enums.Color;
 import enums.Difficulty;
 import util.Utils;
