@@ -10,9 +10,6 @@ import java.io.IOException;
 
 public class DriverRenames {
 
-    private PlayerPersistence playerPersistence;
-    private DomainController domainController;
-
     private DriverRenames()
     {
 
@@ -40,8 +37,8 @@ public class DriverRenames {
 
     public void testRenameUsername() throws IOException
     {
-        playerPersistence = new PlayerPersistence();
-        domainController = new DomainController();
+        PlayerPersistence playerPersistence = new PlayerPersistence();
+        DomainController domainController = new DomainController();
 
         ioUtils.printOutLn("Introduce a id:");
         String idPlayer = ioUtils.input();

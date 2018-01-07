@@ -85,7 +85,7 @@ public class DriverGamePersistence
     {
         ioUtils.printOutLn("Test loadGame");
         ioUtils.printOutLn("The function works correctly if the id introduced previously is: ");
-        Game result = null;
+        Game result;
         try
         {
             result = (Game) gP.load(gameID);
