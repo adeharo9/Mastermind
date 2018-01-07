@@ -67,7 +67,6 @@ public class Game implements DeepCopyable, Serializable
      * @return Devuelve true si los jugadores son válidos.
      * @throws NullPointerException Si alguno de los jugadores están vacíos.
      */
-    @Deprecated
     private static boolean isValidPlayers(final List<Player> players) throws NullPointerException
     {
         boolean b = true;

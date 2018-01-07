@@ -468,8 +468,6 @@ public class DomainController
      * @param username Nombre de usuario cuyos ficheros se van a borrar
      * @exception IOException Error al introducir el parametro.
      */
-
-    @Deprecated
     private void deleteConfigFile(final String username) throws IOException
     {
         playerPersistence.deleteConfigFile(username);

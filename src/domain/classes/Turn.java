@@ -155,11 +155,8 @@ public class Turn extends Code implements DeepCopyable, Serializable
      *
      * @param correction Lista de colores representativa de la corrección.
      * @return Devuelve true si el tamaño de la lista es igual que el tamaño del código asociado.
-     * @throws NullPointerException En caso de que correction sea nulo
-     * @deprecated En próximas revisiones se eliminará dado que no hay suficientes llamadas como para
-     * mantener un método específico para esta función.
+     * @throws NullPointerException En caso de que correction sea nulo.
      */
-    @Deprecated
     private boolean isValid(final List<Color> correction) throws NullPointerException
     {
         return super.size() == correction.size();
