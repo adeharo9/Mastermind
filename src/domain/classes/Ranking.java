@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * las 10 mejores puntuaciones o menos (en caso que no se
  * hayan jugado 10 partidas) con el id del jugador que la ha conseguido.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 public class Ranking implements Serializable
 {

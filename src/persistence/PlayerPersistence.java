@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * PlayerPersistence.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public class PlayerPersistence extends AbstractPersistence

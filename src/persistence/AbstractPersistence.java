@@ -5,7 +5,7 @@ import java.nio.file.FileAlreadyExistsException;
 /**
  * AbstractPersistence.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public abstract class AbstractPersistence

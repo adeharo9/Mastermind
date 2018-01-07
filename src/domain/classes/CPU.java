@@ -13,7 +13,7 @@ import java.util.*;
  *
  * Esta clase representa la CPU como un posible jugador de la partida.
  *
- * @author Alex, Rafael, Alejandro de Haro
+ * @author Alex Sánchez, Alejandro de Haro, Rafael Ramírez
  */
 public class CPU extends Player implements DeepCopyable, Serializable
 {

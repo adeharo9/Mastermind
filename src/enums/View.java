@@ -5,7 +5,7 @@ package enums;
  *
  * Diferentes vistas del programa.
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum View

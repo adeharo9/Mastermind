@@ -5,7 +5,7 @@ package enums;
  *
  * Estilos para objetos de las vistas.
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum StyleClass

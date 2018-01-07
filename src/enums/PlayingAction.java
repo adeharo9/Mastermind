@@ -5,7 +5,7 @@ package enums;
  *
  * Tipos de acciones que se pueden realizar en una partida.
  *
- * @author Rafael
+ * @author Rafael Ramírez
  */
 
 public enum PlayingAction

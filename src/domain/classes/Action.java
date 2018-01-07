@@ -15,7 +15,7 @@ import java.util.Set;
  * Esta clase representa el rol de una acción realizada
  * por el jugador.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public abstract class Action implements DeepCopyable

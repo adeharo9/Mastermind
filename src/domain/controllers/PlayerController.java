@@ -8,7 +8,7 @@ import exceptions.ReservedKeywordException;
 /**
  * PlayerController.
  *
- * @author Alejandro de Haro, Alex
+ * @author Alejandro de Haro, Alex Sánchez
  */
 
 public class PlayerController

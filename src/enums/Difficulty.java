@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * Dificultades que puede tener una partida.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public enum Difficulty implements Serializable

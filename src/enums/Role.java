@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * Roles que puede tener un jugador.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public enum Role implements Serializable

@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * Colores que pueden tener las fichas de los codigos
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum Color

@@ -12,7 +12,7 @@ import util.DeepCopyable;
  * Esta clase representa el rol de una acción realizada
  * por el jugador para intentar averiguar el código.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public class CodeBreak extends Action implements DeepCopyable

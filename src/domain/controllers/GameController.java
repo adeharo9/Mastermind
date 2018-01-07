@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * GameController.
  *
- * @author Alejandro de Haro, Rafael
+ * @author Alejandro de Haro, Rafael Ramírez
  */
 
 public class GameController
