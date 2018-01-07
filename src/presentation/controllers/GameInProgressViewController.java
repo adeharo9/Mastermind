@@ -481,6 +481,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
      * Método de gestión de botón Show Code.
      *
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón Show Code.
+     * @throws IOException En caso que la vista definida en el estilo predefinido no pueda ser cargada
+     * por algún motivo.
      */
     @FXML
     public void showCodeButtonAction() throws IOException
