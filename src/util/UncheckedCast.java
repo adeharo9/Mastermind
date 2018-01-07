@@ -1,25 +1,27 @@
 package util;
 
 /**
- * Clase de casteo sin comprobación
+ * Unchecked class class.
  *
- * Silencia los avisos del compilador y los concentra en un único punto del código,
- * aumentando la explicidad con que se realizan estos casteos.
+ * Silences compiler warnings about unchecked casts spread throughout the code
+ * and concentrates them in a unique point of the code, at the same time increasing
+ * explicitly the usage of unchecked casts when used.
  *
  * @author Alejandro de Haro
  */
-
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class UncheckedCast
 {
     /**
-     * Casteo sin comprobación
+     * Unchecked cast.
      *
-     * Silencia los avisos del compilador y los concentra en un único punto del código,
-     * aumentando la explicidad con que se realizan estos casteos.
+     * Silences compiler warnings about unchecked casts spread throughout the code
+     * and concentrates them in a unique point of the code, at the same time increasing
+     * explicitly the usage of unchecked casts when used.
      *
-     * @param object Objeto origen
-     * @param <T> Tipo objetivo
-     * @return Objeto casteado a tipo T
+     * @param object Cast origin type object.
+     * @param <T> Cast destination type.
+     * @return Casted object from original type to type T
      */
     @SuppressWarnings("unchecked")
     public static <T> T cast(final Object object)
