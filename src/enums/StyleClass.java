@@ -1,5 +1,13 @@
 package enums;
 
+/**
+ * enum StyleClass.
+ *
+ * Estilos para objetos de las vistas.
+ *
+ * @author Alejandro
+ */
+
 public enum StyleClass
 {
     BACKGROUND ("background"),
@@ -26,10 +34,25 @@ public enum StyleClass
 
     private final String stringId;
 
+    /**
+     * Creadora.
+     *
+     * Crea un StyleClass con el valor
+     * del parametro de entrada.
+     */
+
     StyleClass(final String stringId)
     {
         this.stringId = stringId;
     }
+
+    /**
+     * Getter id.
+     *
+     * Devuelve el stringId del StyleClass.
+     *
+     * @return Id.
+     */
 
     @Override
     public String toString()

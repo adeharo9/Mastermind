@@ -8,6 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * enum Color.
+ *
+ * Colores que pueden tener las fichas de los codigos
+ *
+ * @author Alejandro
+ */
+
 public enum Color
 {
     RED(0, "R", "Red", "color-red"),
@@ -46,6 +54,18 @@ public enum Color
         }
     }
 
+    /**
+     * Constructora
+     *
+     * Crea un Color con los parametros
+     * de entrada.
+     *
+     * @param id valor numerico.
+     * @param strId letra.
+     * @param strDescription Nombre del color.
+     * @param cssStyleClass Estilo css del color.
+     */
+
     Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
     {
         this.id = id;
@@ -53,6 +73,17 @@ public enum Color
         this.strDescription = strDescription;
         this.cssStyleClass = cssStyleClass;
     }
+
+    /**
+     * Getter color por id.
+     *
+     * Devuelve uel color segun el id
+     * del parametro de entrada.
+     *
+     * @param id id del color.
+     * @return Color.
+     * @exception IllegalArgumentException Parametro no valido.
+     */
 
     public static Color getColor(final int id) throws IllegalArgumentException
     {
@@ -63,6 +94,17 @@ public enum Color
         return color;
     }
 
+    /**
+     * Getter color por id letra.
+     *
+     * Devuelve el color segun el id letra
+     * del parametro de entrada.
+     *
+     * @param strId Id letra del color
+     * @return Color.
+     * @exception IllegalArgumentException Parametro no valido.
+     */
+
     public static Color getColor(final String strId) throws IllegalArgumentException
     {
         Color color = STR_2_COLOR.get(strId);
@@ -71,6 +113,17 @@ public enum Color
 
         return color;
     }
+
+    /**
+     * De estilo a color.
+     *
+     * Devuelve el color correspondiente al
+     * estilo del parametro de entrada.
+     *
+     * @param style Estilo que corresponde a un color
+     * @return Color.
+     * @exception IllegalArgumentException Parametro no valido
+     */
 
     public static Color getColorByStyle(final String style) throws IllegalArgumentException
     {
@@ -81,25 +134,68 @@ public enum Color
         return color;
     }
 
+    /**
+     * Getter id.
+     *
+     * Devuelve un id de un color.
+     *
+     * @return id de color
+     */
+
     public int getId()
     {
         return id;
     }
+
+    /**
+     * Getter ID letra.
+     *
+     * Devuelve un id formato letra de un color.
+     *
+     * @return id letra de color.
+     */
 
     public String getStrId()
     {
         return strId;
     }
 
+    /**
+     * Getter StrDescription.
+     *
+     * Devuelve el parametro strDescription.
+     *
+     * @return nombre del color.
+     */
+
     public String getStrDescription()
     {
         return strDescription;
     }
 
+    /**
+     * Getter CSS.
+     *
+     * Devuelve el parametro cssStyleClass
+     *
+     * @return color segun el estilo css.
+     */
+
     public String getCssStyleClass()
     {
         return cssStyleClass;
     }
+
+    /**
+     * Getter lista de colores para crear codigos.
+     *
+     * Devuelve una lista de colores posibles para
+     * crear codigos, segun la dificultad el tamaño varia.
+     *
+     * @param difficulty Dificultad de la partida.
+     * @return Lista de colores.
+     * @exception IllegalArgumentException Parametro no valido.
+     */
 
     public static Set<Color> getValues(final Difficulty difficulty) throws IllegalArgumentException
     {
@@ -115,6 +211,15 @@ public enum Color
         return colorSet;
     }
 
+    /**
+     * Getter correccion completa.
+     *
+     * Devuelve una lista de colores, uno negro, otro blanco
+     * y otro vacio.
+     *
+     * @return Lista de colores de correccion.
+     */
+
     public static Set<Color> getFullCorrectionValues()
     {
         Set<Color> colorSet = new HashSet<>();
@@ -126,6 +231,14 @@ public enum Color
 
         return colorSet;
     }
+
+    /**
+     * Getter correccion.
+     *
+     * Devuelve una lista de colores, uno negro y otro blanco.
+     *
+     * @return Lista de colores de correccion.
+     */
 
     public static Set<Color> getCorrectionValues()
     {
@@ -139,6 +252,16 @@ public enum Color
         return colorSet;
     }
 
+    /**
+     * Lista de colores aleatorios.
+     *
+     * Devuelve una lista de colores aleatorios.
+     *
+     * @param colorSet Lista de colores
+     * @exception IllegalArgumentException Parametro no valido.
+     * @return lista de colores aleatorios.
+     */
+
     public static <T extends Set<S>, S> S getRandomColor(final T colorSet) throws IllegalArgumentException
     {
         if(colorSet.isEmpty()) throw new IllegalArgumentException();
@@ -149,6 +272,15 @@ public enum Color
 
         return colorArray.get(rand);
     }
+
+    /**
+     * Getter de Color aleatorio.
+     *
+     * Devuelve un color aleatorio entre una lista de colores.
+     *
+     * @param upperBound Numero de colores entre los que escoger.
+     * @return Color aleatorio.
+     */
 
     public static Color getRandomColor(final int upperBound) throws IllegalArgumentException
     {

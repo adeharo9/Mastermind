@@ -31,6 +31,7 @@ public abstract class Action implements DeepCopyable
      *
      * Constructora de acción vacía.
      */
+
     protected Action()
     {
 

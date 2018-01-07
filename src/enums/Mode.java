@@ -1,5 +1,13 @@
 package enums;
 
+/**
+ * enum Mode.
+ *
+ * Modos de juego que tienen las partidas.
+ *
+ * @author Alex
+ */
+
 public enum Mode
 {
     HUMAN_VS_HUMAN,

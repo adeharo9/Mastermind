@@ -1,5 +1,13 @@
 package enums;
 
+/**
+ * enum View.
+ *
+ * Diferentes vistas del programa.
+ *
+ * @author Alejandro
+ */
+
 public enum View
 {
     CLOSE_PROGRAM_WARNING_VIEW ("CloseProgramWarningView.fxml"),
@@ -27,10 +35,26 @@ public enum View
 
     private final String viewFile;
 
+    /**
+     * Creadora.
+     *
+     * Crea una vista con el valor
+     * del parametro de entrada.
+     */
+
     View(final String viewFile)
     {
         this.viewFile = viewFile;
     }
+
+    /**
+     * Getter viewFile.
+     *
+     * Devuelve el nombre del archivo
+     * que contiene la vista.
+     *
+     * @return nombre del archivo de la vista.
+     */
 
     public String getViewFile()
     {

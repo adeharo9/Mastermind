@@ -1,5 +1,13 @@
 package enums;
 
+/**
+ * enum State.
+ *
+ * Estados del programa.
+ *
+ * @author Alejandro
+ */
+
 public enum State
 {
     HINT_MENU,

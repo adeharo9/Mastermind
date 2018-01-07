@@ -3,11 +3,28 @@ package enums;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * enum Role.
+ *
+ * Roles que puede tener un jugador.
+ *
+ * @author Alex
+ */
+
 public enum Role implements Serializable
 {
     CODE_MAKER,
     CODE_BREAKER,
     WATCHER;
+
+    /**
+     * Rol aleatorio.
+     *
+     * Devuelve un rol aleatorio.
+     *
+     * @return Rol.
+     * @exception IllegalArgumentException Parametro no valido.
+     */
 
     public static Role autoRole() throws IllegalArgumentException
     {
@@ -28,6 +45,16 @@ public enum Role implements Serializable
 
         return role;
     }
+
+    /**
+     * Rol complementario.
+     *
+     * Devuelve el rol complementario al del
+     * parametro de entrada.
+     *
+     * @param role Rol.
+     * @return CODE_MAKER si role es CODE_BREAKER, y a la inversa.
+     */
 
     public static Role complementaryRole(Role role) throws IllegalArgumentException
     {

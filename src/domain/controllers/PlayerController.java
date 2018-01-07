@@ -19,6 +19,12 @@ public class PlayerController
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora por defecto.
+     *
+     * Constructora de acción vacía.
+     */
+
     public PlayerController()
     {
 

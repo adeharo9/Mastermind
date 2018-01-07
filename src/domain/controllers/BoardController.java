@@ -25,6 +25,12 @@ public class BoardController
 
     /* CONSTRUCTION METHODS */
 
+    /**
+     * Constructora por defecto.
+     *
+     * Constructora de acción vacía.
+     */
+
     public BoardController()
     {
         //this.board = new Board();
