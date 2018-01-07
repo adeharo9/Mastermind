@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * Colores que pueden tener las fichas de los codigos
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum Color
@@ -82,7 +82,7 @@ public enum Color
      *
      * @param id id del color.
      * @return Color.
-     * @exception IllegalArgumentException Parametro no valido.
+     * @throws IllegalArgumentException Parametro no valido.
      */
 
     public static Color getColor(final int id) throws IllegalArgumentException
@@ -102,7 +102,7 @@ public enum Color
      *
      * @param strId Id letra del color
      * @return Color.
-     * @exception IllegalArgumentException Parametro no valido.
+     * @throws IllegalArgumentException Parametro no valido.
      */
 
     public static Color getColor(final String strId) throws IllegalArgumentException
@@ -122,7 +122,7 @@ public enum Color
      *
      * @param style Estilo que corresponde a un color
      * @return Color.
-     * @exception IllegalArgumentException Parametro no valido
+     * @throws IllegalArgumentException Parametro no valido
      */
 
     public static Color getColorByStyle(final String style) throws IllegalArgumentException
@@ -194,7 +194,7 @@ public enum Color
      *
      * @param difficulty Dificultad de la partida.
      * @return Lista de colores.
-     * @exception IllegalArgumentException Parametro no valido.
+     * @throws IllegalArgumentException Parametro no valido.
      */
 
     public static Set<Color> getValues(final Difficulty difficulty) throws IllegalArgumentException
@@ -258,8 +258,10 @@ public enum Color
      * Devuelve una lista de colores aleatorios.
      *
      * @param colorSet Lista de colores
-     * @exception IllegalArgumentException Parametro no valido.
-     * @return lista de colores aleatorios.
+     * @param <T> Tipo de set del set de colores.
+     * @param <S> Tipo de elementos del set de colores.
+     * @throws IllegalArgumentException Parametro no valido.
+     * @return Lista de colores aleatorios.
      */
 
     public static <T extends Set<S>, S> S getRandomColor(final T colorSet) throws IllegalArgumentException

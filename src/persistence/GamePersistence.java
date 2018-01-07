@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * GamePersistence.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public class GamePersistence extends AbstractPersistence

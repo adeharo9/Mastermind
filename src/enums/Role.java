@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * Roles que puede tener un jugador.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public enum Role implements Serializable
@@ -23,7 +23,7 @@ public enum Role implements Serializable
      * Devuelve un rol aleatorio.
      *
      * @return Rol.
-     * @exception IllegalArgumentException Parametro no valido.
+     * @throws IllegalArgumentException Parametro no valido.
      */
 
     public static Role autoRole() throws IllegalArgumentException

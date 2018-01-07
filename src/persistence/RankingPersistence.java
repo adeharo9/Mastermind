@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * RankingPersistence.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public class RankingPersistence extends AbstractPersistence

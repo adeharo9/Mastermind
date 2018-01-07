@@ -5,7 +5,7 @@ package enums;
  *
  * Diferentes vistas del programa.
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum View
@@ -40,6 +40,8 @@ public enum View
      *
      * Crea una vista con el valor
      * del parametro de entrada.
+     *
+     * @param viewFile Archivo .fxml de la vista.
      */
 
     View(final String viewFile)

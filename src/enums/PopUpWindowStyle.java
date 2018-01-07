@@ -8,7 +8,7 @@ import util.Constants;
  *
  * Estilos de las vistas de popUp.
  *
- * @author Rafael
+ * @author Rafael Ramírez
  */
 
 public enum PopUpWindowStyle

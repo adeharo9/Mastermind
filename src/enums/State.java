@@ -5,7 +5,7 @@ package enums;
  *
  * Estados del programa.
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum State

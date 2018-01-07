@@ -5,7 +5,7 @@ package enums;
  *
  * Estilos para objetos de las vistas.
  *
- * @author Alejandro
+ * @author Alejandro de Haro
  */
 
 public enum StyleClass
@@ -39,6 +39,8 @@ public enum StyleClass
      *
      * Crea un StyleClass con el valor
      * del parametro de entrada.
+     *
+     * @param stringId ID de la clase de estilo.
      */
 
     StyleClass(final String stringId)

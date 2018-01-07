@@ -2,6 +2,14 @@ package util;
 
 import enums.Difficulty;
 
+/**
+ * Constantes del juego.
+ *
+ * Contenedor de las distintas constantes de configuración del juego.
+ *
+ * @author Alejandro de Haro, Alex Sánchez, Rafael Ramírez
+ */
+
 public final class Constants
 {
     /* NUMBER OF COLORS ALLOWED */

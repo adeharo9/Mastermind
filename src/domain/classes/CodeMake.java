@@ -14,7 +14,7 @@ import util.DeepCopyable;
  * y es el encargado de realizar la corrección de las diferentes
  * acciones.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public class CodeMake extends Action implements DeepCopyable

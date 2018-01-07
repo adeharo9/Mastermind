@@ -66,7 +66,7 @@ public class BoardController
      * pasa a ser el del parametro introducido.
      *
      * @param board Tablero
-     * @exception IllegalArgumentException si el tablero introducido no es valido.
+     * @throws IllegalArgumentException si el tablero introducido no es valido.
      */
 
     public void setBoardByReference(Board board) throws IllegalArgumentException
@@ -174,7 +174,7 @@ public class BoardController
      * parametro es correcta.
      *
      * @param action Accion
-     * @exception IllegalActionException La acción no es valida
+     * @throws IllegalActionException La acción no es valida
      */
 
     public void checkAction(Action action) throws IllegalActionException

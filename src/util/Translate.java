@@ -5,6 +5,15 @@ import enums.Mode;
 import enums.Role;
 import enums.State;
 
+/**
+ * Clase abstracta de métodos de traducción.
+ *
+ * Contiene los métodos de traducción necesarios para interpretar de forma
+ * correcta el input del usuario en formato texto e interpretarlo en el formato
+ * interno del programa.
+ *
+ * @author Alejandro de Haro
+ */
 public abstract class Translate
 {
     /* PRIVATE METHODS */

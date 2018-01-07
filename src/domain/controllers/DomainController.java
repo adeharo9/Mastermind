@@ -116,9 +116,9 @@ public class DomainController
      *
      * @param username Nombre del usuario.
      * @param password Contraseña del usuario.
-     * @exception IOException Entrada de parametros incorrecta.
-     * @exception WrongPasswordException La contraseña no coincide con el nombre de usuario.
-     * @exception ClassNotFoundException Error en la creacion del objeto player.
+     * @throws IOException Entrada de parametros incorrecta.
+     * @throws WrongPasswordException La contraseña no coincide con el nombre de usuario.
+     * @throws ClassNotFoundException Error en la creacion del objeto player.
      */
 
     private void logInUser(String username, String password) throws IOException, WrongPasswordException, ClassNotFoundException
@@ -141,8 +141,8 @@ public class DomainController
      * @param username Nombre de nuevo usuario.
      * @param password Contraseña de nuevo usuario.
      * @param confirmPassword Contraseña de validacion.
-     * @exception IOException Entrada de parametros incorrecta.
-     * @exception PasswordMismatchException password y confirmPassword son diferentes
+     * @throws IOException Entrada de parametros incorrecta.
+     * @throws PasswordMismatchException password y confirmPassword son diferentes
      */
 
     private void registerUser(final String username, final String password, final String confirmPassword) throws IOException, PasswordMismatchException
@@ -244,7 +244,7 @@ public class DomainController
      * lista con todas las partidas guardadas por
      * el jugador actual.
      *
-     * @exception IOException La lista de partidas no se ha cargado correctamente.
+     * @throws IOException La lista de partidas no se ha cargado correctamente.
      */
 
     private void loadSavedGamesList() throws IOException
@@ -342,7 +342,7 @@ public class DomainController
      * Guarda la partida actual en un archivo
      * binario.
      *
-     * @exception IOException La partida no se ha guardado correctamente.
+     * @throws IOException La partida no se ha guardado correctamente.
      */
 
     private void saveGame() throws IOException
@@ -419,9 +419,9 @@ public class DomainController
      * @param oldPassword Contraseña actual
      * @param newPassword Contraseña nueva
      * @param confirmNewPassword Comprobacion de la nueva contraseña
-     * @exception IOException Error al introducir los parametros.
-     * @exception WrongPasswordException Contraseña actual no coincide con la pasada por parametro oldPassword.
-     * @exception PasswordMismatchException newPassword y confirmNewPassword no coinciden
+     * @throws IOException Error al introducir los parametros.
+     * @throws WrongPasswordException Contraseña actual no coincide con la pasada por parametro oldPassword.
+     * @throws PasswordMismatchException newPassword y confirmNewPassword no coinciden
      */
 
     private void changePassword(final String oldPassword, final String newPassword, final String confirmNewPassword) throws IOException, WrongPasswordException, PasswordMismatchException
@@ -449,7 +449,7 @@ public class DomainController
      * que el parametro introducido.
      *
      * @param username Nombre de usuario que se va a borrar.
-     * @exception IOException Error al introducir el parametro.
+     * @throws IOException Error al introducir el parametro.
      */
 
     private void deleteUser(final String username) throws IOException
@@ -478,9 +478,9 @@ public class DomainController
      * como parametro
      *
      * @param playerController Controlador de jugador con los datos del jugador actual cargados
-     * @exception IllegalArgumentException Parametro no valido
-     * @exception ReservedKeywordException Se introduce un valor que indica un retroceso en los menus
-     * @exception IllegalActionException Accion no valida
+     * @throws IllegalArgumentException Parametro no valido
+     * @throws ReservedKeywordException Se introduce un valor que indica un retroceso en los menus
+     * @throws IllegalActionException Accion no valida
      */
 
     private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
@@ -508,9 +508,9 @@ public class DomainController
      * Se ejecuta un turno como
      * CodeBreaker.
      *
-     * @exception IllegalArgumentException Algun parametro no es valido.
-     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
-     * @exception IllegalActionException Accion no valida.
+     * @throws IllegalArgumentException Algun parametro no es valido.
+     * @throws ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @throws IllegalActionException Accion no valida.
      */
 
     private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
@@ -524,9 +524,9 @@ public class DomainController
      * Se ejecuta un turno como
      * Corrector de codigo.
      *
-     * @exception IllegalArgumentException Algun parametro no es valido.
-     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
-     * @exception IllegalActionException Accion no valida.
+     * @throws IllegalArgumentException Algun parametro no es valido.
+     * @throws ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @throws IllegalActionException Accion no valida.
      */
 
     private void playCodeCorrecter() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
@@ -541,9 +541,9 @@ public class DomainController
      * Se ejecuta un turno como
      * CodeMaker.
      *
-     * @exception IllegalArgumentException Algun parametro no es valido.
-     * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
-     * @exception IllegalActionException Accion no valida.
+     * @throws IllegalArgumentException Algun parametro no es valido.
+     * @throws ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
+     * @throws IllegalActionException Accion no valida.
      */
 
     private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
@@ -559,7 +559,7 @@ public class DomainController
      * actual.
      *
      * @return String de la pista.
-     * @exception GameNotStartedException La partida no ha comenzado o no tiene solucion.
+     * @throws GameNotStartedException La partida no ha comenzado o no tiene solucion.
      */
 
     private String generateHint() throws GameNotStartedException
@@ -648,8 +648,8 @@ public class DomainController
      * persistencia la lista de mejores
      * puntuaciones.
      *
-     * @exception IOException Error en entrada de parametros.
-     * @exception ClassNotFoundException Un objeto no se ha creado correctamente.
+     * @throws IOException Error en entrada de parametros.
+     * @throws ClassNotFoundException Un objeto no se ha creado correctamente.
      */
 
     private void loadRanking() throws IOException, ClassNotFoundException
@@ -666,7 +666,7 @@ public class DomainController
      * Borra la antigua lista de mejores
      * puntuaciones y guarda una nueva.
      *
-     * @exception IOException Error en entrada de parametros.
+     * @throws IOException Error en entrada de parametros.
      */
 
     private void saveRanking() throws IOException
@@ -705,7 +705,7 @@ public class DomainController
      * de esperar.
      *
      * @param runnable Código a ejecutar en el thread.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void runOnGUIThreadAndWait(final Runnable runnable) throws InterruptedException
@@ -727,7 +727,7 @@ public class DomainController
      * debe cargar.
      *
      * @param view Vista para cargar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void updateView(final View view) throws InterruptedException
@@ -744,7 +744,7 @@ public class DomainController
      *
      * @param popUpWindowStyle Estilo del popUp.
      * @param view Vista para cargar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void popUpView(final PopUpWindowStyle popUpWindowStyle, final View view) throws InterruptedException
@@ -772,7 +772,7 @@ public class DomainController
      * parametro al threat y manda la orden de esperar.
      *
      * @param message Mensaje para mostrar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showMessageAndWait(final String message) throws InterruptedException
@@ -786,7 +786,7 @@ public class DomainController
      * Manda la pista al threat.
      *
      * @param message Mensaje pista para mostrar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showHint(final String message) throws InterruptedException
@@ -800,7 +800,7 @@ public class DomainController
      * Manda la puntuacion final al threat.
      *
      * @param message Mensaje puntuacion para mostrar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showScore(final String message) throws InterruptedException
@@ -813,7 +813,7 @@ public class DomainController
      *
      * Pasa el texto de informacion al threat.
      *
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showInfo() throws InterruptedException
@@ -829,7 +829,7 @@ public class DomainController
      * cargar.
      *
      * @param savedGames Lista de partidas para mostrar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showLoadedGames(final Set<String> savedGames) throws InterruptedException
@@ -843,7 +843,7 @@ public class DomainController
      * Manda al threat el nombre del usuario
      * actual.
      *
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showUsername() throws InterruptedException
@@ -857,7 +857,7 @@ public class DomainController
      * Manda al threat el campo de
      * cambio de nombre de usuario.
      *
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showRenameUsernameTextField() throws InterruptedException
@@ -872,7 +872,7 @@ public class DomainController
      * y puntuaciones que forman el ranking.
      *
      * @param topTen Lista de jugadores y puntuaciones para mostrar.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void showRanking(List<Pair<String, Integer>> topTen) throws InterruptedException
@@ -913,7 +913,7 @@ public class DomainController
      * Manda al threat el ultimo turno jugado
      * y manda la orden de esperar.
      *
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
+     * @throws InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
     private void renderLastTurnBlocking() throws InterruptedException

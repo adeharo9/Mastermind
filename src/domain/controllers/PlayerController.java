@@ -8,7 +8,7 @@ import exceptions.ReservedKeywordException;
 /**
  * PlayerController.
  *
- * @author Alejandro de Haro, Alex
+ * @author Alejandro de Haro, Alex Sánchez
  */
 
 public class PlayerController
@@ -114,7 +114,7 @@ public class PlayerController
      * del controlador como el jugador pasado por parametro.
      *
      * @param player objeto jugador.
-     * @exception IllegalArgumentException parametro no valido.
+     * @throws IllegalArgumentException parametro no valido.
      */
 
     public void setPlayerByReference(final Player player) throws IllegalArgumentException
@@ -132,7 +132,7 @@ public class PlayerController
      * del controlador como el rol pasado por parametro.
      *
      * @param role rol del jugador.
-     * @exception IllegalArgumentException parametro no valido.
+     * @throws IllegalArgumentException parametro no valido.
      */
 
     public void setRole(final Role role) throws IllegalArgumentException
@@ -237,7 +237,7 @@ public class PlayerController
      *
      * @param difficulty Dificultad de la partida.
      * @return accion de escribir un codigo de solucion.
-     * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
+     * @throws ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
      */
     private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
@@ -254,7 +254,7 @@ public class PlayerController
      * @param lastTurn Ultimo turno jugado.
      * @param isFirstTurn True si es el primer turno de la partida.
      * @return accion de escribir un codigo de respuesta.
-     * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
+     * @throws ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
      */
     private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
@@ -270,7 +270,7 @@ public class PlayerController
      * @param code Codigo respuesta.
      * @param solution Codigo solucion.
      * @return accion de correccion del jugador actual
-     * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
+     * @throws ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
      */
     private Action codeCorrect(final Code code, final Code solution) throws ReservedKeywordException
     {

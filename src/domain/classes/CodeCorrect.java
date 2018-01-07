@@ -15,7 +15,7 @@ import java.util.List;
  * Esta clase representa el rol de una acción realizada
  * por el jugador para corregir una jugada.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 public class CodeCorrect extends Action implements DeepCopyable
 {

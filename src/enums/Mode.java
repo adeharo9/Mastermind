@@ -5,7 +5,7 @@ package enums;
  *
  * Modos de juego que tienen las partidas.
  *
- * @author Alex
+ * @author Alex Sánchez
  */
 
 public enum Mode
