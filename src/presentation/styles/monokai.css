@@ -16,7 +16,6 @@
 
     monokai-none: transparent;
 
-    /*background-color: linear-gradient(monokai-black 0%, monokai-black 25%, #5a5a5a);*/
     background-color: monokai-black;
 
     text-color: monokai-white;
@@ -118,56 +117,56 @@
 .color-red
 {
     -fx-fill: monokai-red;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-red;
     -fx-stroke-width: 1;
 }
 
 .color-green
 {
     -fx-fill: monokai-green;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-green;
     -fx-stroke-width: 1;
 }
 
 .color-blue
 {
     -fx-fill: monokai-blue;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-blue;
     -fx-stroke-width: 1;
 }
 
 .color-orange
 {
     -fx-fill: monokai-orange;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-orange;
     -fx-stroke-width: 1;
 }
 
 .color-purple
 {
     -fx-fill: monokai-purple;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-purple;
     -fx-stroke-width: 1;
 }
 
 .color-yellow
 {
     -fx-fill: monokai-yellow;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-yellow;
     -fx-stroke-width: 1;
 }
 
 .color-cyan
 {
     -fx-fill: monokai-cyan;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-cyan;
     -fx-stroke-width: 1;
 }
 
 .color-magenta
 {
     -fx-fill: monokai-magenta;
-    -fx-stroke: monokai-white;
+    -fx-stroke: monokai-magenta;
     -fx-stroke-width: 1;
 }
 
