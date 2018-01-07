@@ -13,7 +13,7 @@ import util.Constants;
 
 public enum PopUpWindowStyle
 {
-    GAME_OVER (250, 250, "Game Over", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
+    GAME_OVER (300, 280, "Game Over", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
     INFO (250, 100, "Mastermind", Constants.ICON_FILE, Modality.NONE),
     INFO_HARD (300, 100, "Mastermind", Constants.ICON_FILE, Modality.NONE),
     INTERACTION(250, 100, "Mastermind", Constants.ICON_FILE, Modality.APPLICATION_MODAL),

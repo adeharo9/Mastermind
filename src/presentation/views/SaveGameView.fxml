@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+
 <VBox prefHeight="99.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameViewController">
    <children>
       <VBox spacing="5.0">
@@ -13,11 +17,10 @@
             <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="8.0" prefWidth="220.0" />
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0">
+      <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0" spacing="30.0">
          <children>
-            <Button minWidth="60.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
-            <Separator prefWidth="30.0" visible="false" />
-            <Button minWidth="60.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
+            <Button mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
+            <Button mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
          </children>
       </HBox>
    </children>

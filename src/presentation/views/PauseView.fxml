@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
+
 <VBox prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
    <children>
       <ToolBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="400.0" styleClass="toolbar">
@@ -10,10 +14,10 @@
           <Button mnemonicParsing="false" onAction="#continueButtonAction" text="Continue" />
         </items>
       </ToolBar>
-      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="30.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="400.0" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="25.0" prefWidth="123.0" text="Save" />
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuButtonAction" prefHeight="25.0" prefWidth="123.0" text="Main Menu" />
+            <Button mnemonicParsing="false" onAction="#saveButtonAction" prefWidth="123.0" text="Save" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuButtonAction" prefWidth="123.0" text="Main Menu" />
          </children>
       </VBox>
    </children>
