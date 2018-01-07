@@ -16,9 +16,9 @@ import java.util.Set;
 public class PlayerPersistence extends AbstractPersistence
 {
 
-    protected final static String PLAYERS_PATH = "players/";
-    protected final static String CONFIG_FILE = "config.cfg";
-    protected String playerPath;
+    private final static String PLAYERS_PATH = "players/";
+    private final static String CONFIG_FILE = "config.cfg";
+    private String playerPath;
 
     /**
      * Setter del playerPath.
@@ -41,7 +41,7 @@ public class PlayerPersistence extends AbstractPersistence
      * @param playerId Identificador del jugador.
      * @return Path del directorio de config.cfg
      */
-    protected String getConfigFilePath(String playerId)
+    private String getConfigFilePath(String playerId)
     {
         setPlayerPath(playerId + "/");
         return  BASE_PATH + PLAYERS_PATH + playerPath + CONFIG_FILE;

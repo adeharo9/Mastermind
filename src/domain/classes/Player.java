@@ -218,11 +218,10 @@ public abstract class Player implements DeepCopyable, Serializable
      *
      * Permite al jugador corregir la acción de otro jugador.
      *
-     * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
      * @return Acción de code maker en modo corrección con el código de la corrección.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      */
-    public abstract Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException;
+    public abstract Action codeCorrect(final Code code, final Code solution) throws ReservedKeywordException;
 }

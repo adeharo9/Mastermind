@@ -1,7 +1,10 @@
 package presentation.controllers;
 
 import domain.controllers.DomainController;
-import enums.*;
+import enums.Color;
+import enums.Difficulty;
+import enums.PopUpWindowStyle;
+import enums.View;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

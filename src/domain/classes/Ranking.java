@@ -1,7 +1,6 @@
 package domain.classes;
 
 import util.Constants;
-import util.DeepCopyable;
 import util.Pair;
 
 import java.io.Serializable;

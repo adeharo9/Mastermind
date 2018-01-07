@@ -13,9 +13,9 @@ import java.io.IOException;
 
 public class GamePersistence extends AbstractPersistence
 {
-    protected final static String PLAYER_PATH = "players/";
-    protected final static String GAME_PATH = "games/";
-    protected String playerPath;
+    private final static String PLAYER_PATH = "players/";
+    private final static String GAME_PATH = "games/";
+    private String playerPath;
 
     public GamePersistence()
     {

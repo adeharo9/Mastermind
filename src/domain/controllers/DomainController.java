@@ -380,7 +380,7 @@ public class DomainController
      * @throws IOException nombre introducido incorrecto
      */
 
-    public void deleteGame(final String gameId) throws IOException
+    private void deleteGame(final String gameId) throws IOException
     {
         String playerId = loggedPlayerController.getId();
         gamePersistence.setPlayerPath(playerId + "/");
@@ -481,10 +481,9 @@ public class DomainController
      * @exception IllegalArgumentException Parametro no valido
      * @exception ReservedKeywordException Se introduce un valor que indica un retroceso en los menus
      * @exception IllegalActionException Accion no valida
-     * @exception InterruptedException Threat que se esta ejecutando es interrumpido
      */
 
-    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void play(PlayerController playerController) throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         Action action;
 
@@ -512,10 +511,9 @@ public class DomainController
      * @exception IllegalArgumentException Algun parametro no es valido.
      * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
      * @exception IllegalActionException Accion no valida.
-     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
      */
 
-    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void playCodeBreaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeBreakerController);
     }
@@ -529,10 +527,9 @@ public class DomainController
      * @exception IllegalArgumentException Algun parametro no es valido.
      * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
      * @exception IllegalActionException Accion no valida.
-     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
      */
 
-    private void playCodeCorrecter() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void playCodeCorrecter() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeMakerController);
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
@@ -547,10 +544,9 @@ public class DomainController
      * @exception IllegalArgumentException Algun parametro no es valido.
      * @exception ReservedKeywordException Se ha introducido un valor que se usa para moverse atras en los menus.
      * @exception IllegalActionException Accion no valida.
-     * @exception InterruptedException El threat que se esta ejecutando ha sido interrumpido.
      */
 
-    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException, InterruptedException
+    private void playCodeMaker() throws IllegalArgumentException, ReservedKeywordException, IllegalActionException
     {
         play(codeMakerController);
         if(!boardController.isFirstTurn()) gameController.pointsEndTurn();
@@ -986,6 +982,7 @@ public class DomainController
      * @throws InterruptedException el threat actual ha sido interrumpido
      */
 
+    @SuppressWarnings("ConstantConditions")
     public synchronized void exe() throws InterruptedException
     {
         int returnState;

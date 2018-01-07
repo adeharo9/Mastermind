@@ -2,7 +2,7 @@ package exceptions;
 
 public abstract class AbstractException extends Exception
 {
-    protected final String message;
+    private final String message;
 
     public AbstractException()
     {

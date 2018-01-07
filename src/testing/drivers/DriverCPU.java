@@ -1,6 +1,9 @@
 package testing.drivers;
 
-import domain.classes.*;
+import domain.classes.Action;
+import domain.classes.CPU;
+import domain.classes.Code;
+import domain.classes.Turn;
 import enums.Color;
 import enums.Difficulty;
 import util.Utils;
@@ -89,7 +92,7 @@ public class DriverCPU {
         {
             lastTurn = new Turn(action.getCode());
             Action codeCorrect;
-            codeCorrect = testedCPU.codeCorrect(Difficulty.MEDIUM, action.getCode(), solution);
+            codeCorrect = testedCPU.codeCorrect(action.getCode(), solution);
 
             Code correction = codeCorrect.getCode();
             lastTurn.setCorrection(correction);
