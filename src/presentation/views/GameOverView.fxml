@@ -23,17 +23,17 @@
             </HBox>
             <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                <children>
-                <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuButtonAction" text="Main Menu" textAlignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#mainMenuButtonAction" text="Main Menu" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="resetGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetGameButtonAction" text="Reset Game">
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#resetGameButtonAction" text="Reset Game">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="newGameButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameButtonAction" text="New Game" />
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#newGameButtonAction" text="New Game" />
                </children>
             </VBox>
          </children>

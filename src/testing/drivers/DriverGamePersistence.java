@@ -28,7 +28,7 @@ public class DriverGamePersistence
         ioUtils.printOutLn("Test saveGame");
         ioUtils.printOutLn("Introduce difficulty (h: hard, m: medium, e: easy):");
         String input = ioUtils.input();
-        Difficulty difficulty = null;
+        Difficulty difficulty;
         switch(input)
         {
             case "h":
@@ -53,7 +53,7 @@ public class DriverGamePersistence
                 "2. HUMAN_VS_CPU\n" +
                 "3. CPU_VS_CPU");
         input = ioUtils.input();
-        Mode mode = null;
+        Mode mode;
         switch(input)
         {
             case "1":
@@ -73,7 +73,7 @@ public class DriverGamePersistence
 
         try
         {
-            //gP.save(test);
+            gP.save(test.getId(), test);
         }
         catch (Exception e)
         {
@@ -88,7 +88,7 @@ public class DriverGamePersistence
         Game result = null;
         try
         {
-            //result = gP.load(gameID);
+            result = (Game) gP.load(gameID);
             ioUtils.printOutLn(result.getId());
         }
         catch (Exception e)

@@ -33,7 +33,6 @@ public final class Constants
     public static final int POINTS_WHITE = 35;
     public static final int POINTS_BLACK = 75;
     public static final int POINTS_ROUND = -10;
-    public static final int POINTS_TIME = -1;
     public static final int POINTS_CLUE = -150;
 
     /* DIRECTORIES */
@@ -46,7 +45,6 @@ public final class Constants
 
     /* GUI CONSTANTS */
     public static final int LOADING_TIME_MS = 1250;
-    public static final int ERROR_MESSAGE_TIME_MS = 2000;
 
     /* GENERAL MESSAGES */
 

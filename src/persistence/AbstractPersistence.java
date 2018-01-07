@@ -21,6 +21,7 @@ public abstract class AbstractPersistence
      * en la capa de datos.
      *
      * @param key Identificador del objeto.
+     * @return True si el objeto existe.
      */
     public abstract boolean exists(String key);
 
@@ -30,6 +31,7 @@ public abstract class AbstractPersistence
      * Devuelve el path del directorio en el
      * cual se encuentra el objeto correspondiente.
      *
+     * @return Path del directorio del objeto correspondiente.
      */
     public abstract String getDirPath();
 
@@ -40,6 +42,7 @@ public abstract class AbstractPersistence
      * cual se encuentra el objeto identificado por key.
      *
      * @param key Identificador del objeto.
+     * @return Path del fichero del objeto identificado por key.
      */
     public String getFilePath(String key)
     {
@@ -53,6 +56,7 @@ public abstract class AbstractPersistence
      *
      * @param key Identificador del objeto.
      * @throws IOException Si el objeto no existe en la capa de persistencia.
+     * @return Objeto identificado por key.
      * @throws ClassNotFoundException Si la definición del objeto no se corresponde a la leída en el documento.
      */
     public Object load(String key) throws IOException, ClassNotFoundException
@@ -89,12 +93,13 @@ public abstract class AbstractPersistence
         File gameDirectory = new File(getDirPath());
         File gameFile = new File(getFilePath(objectName));
 
-        b = gameDirectory.mkdirs();
+        gameDirectory.mkdirs();
 
         b = gameFile.exists();
         if(b) throw new FileAlreadyExistsException(getFilePath(objectName));
 
         b = gameFile.createNewFile();
+        if(!b) throw new IOException();
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
         oos.writeObject(object);

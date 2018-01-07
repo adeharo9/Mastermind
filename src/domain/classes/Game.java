@@ -2,10 +2,8 @@ package domain.classes;
 
 import enums.Difficulty;
 import enums.Mode;
-import enums.Role;
 import util.Constants;
 import util.DeepCopyable;
-import util.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +36,7 @@ public class Game implements DeepCopyable, Serializable
      * Comprueba que el identificador de la partida no está vacío.
      *
      * @param id Identificador de partida.
+     * @return Devuelve true si el id de la partida es válido.
      */
     private static boolean isValidId(final String id)
     {
@@ -50,6 +49,7 @@ public class Game implements DeepCopyable, Serializable
      * Comprueba que el tiempo de la partida es válido.
      *
      * @param time Tiempo.
+     * @return Devuelve true si el tiempo de la partida es válido.
      */
     private static boolean isValidTime(final long time)
     {
@@ -59,12 +59,12 @@ public class Game implements DeepCopyable, Serializable
     /**
      * Validar jugadores.
      *
-     * Comprueba que los diferentes jugadores son válidos..
+     * Comprueba que los diferentes jugadores son válidos.
      *
      * @param players Lista de jugadores.
+     * @return Devuelve true si los jugadores son válidos.
      * @throws NullPointerException Si alguno de los jugadores están vacíos.
      */
-    @Deprecated
     private static boolean isValidPlayers(final List<Player> players) throws NullPointerException
     {
         boolean b = true;
@@ -141,47 +141,6 @@ public class Game implements DeepCopyable, Serializable
     }
 
     /* CONSTRUCTION METHODS */
-
-    /**
-     * Constructora aleatoria.
-     *
-     * Instancia una partida con un identificador aleatorio.
-     */
-    @Deprecated
-    public Game() throws IllegalArgumentException, NullPointerException
-    {
-        this.id = Utils.autoID();
-        setTime();
-        setPoints(Constants.POINTS_INIT);
-        mode = null;
-
-        board = null;
-        players = new ArrayList<>();
-    }
-
-    /**
-     * Constructora por dificultad y modo.
-     *
-     * Instancia una partida con un identificador aleatorio,
-     * con la dificultad y modo dados.
-     *
-     * @param difficulty Dificultad de la partida.
-     * @param mode Modo de juego.
-     * @throws IllegalArgumentException Si el modo no es válido.
-     * @throws NullPointerException Si el modo es nulo.
-     */
-    @Deprecated
-    public Game(final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
-    {
-        this.id = Utils.autoID();
-        setTime();
-        setPoints(Constants.POINTS_INIT);
-        setMode(mode);
-
-        board = null;
-        players = new ArrayList<>();
-
-    }
 
     /**
      * Constructora por id, dificultad y modo.

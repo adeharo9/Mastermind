@@ -32,7 +32,7 @@ public class DriverBoard {
     private void testConstructors()
     {
         Board board = new Board(Difficulty.EASY);
-        Difficulty difficulty = null;
+        Difficulty difficulty;
         ioUtils.printOutLn("Introduce a difficulty (introduce h if you want hard " +
                 "difficulty, m if you want medium and e if you want easy): ");
         String diff = ioUtils.input();

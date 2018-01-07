@@ -64,6 +64,7 @@ public class JUnitDriverPlayerController {
         assertEquals(testedPlayerController.getId(), "cpu");
     }
 
+    @SuppressWarnings("Duplicates")
     private void testPlayCodeMaker() {
         boolean isFirstTurn = true;
         testing.stubs.StubPlayer player = new testing.stubs.StubPlayer();
@@ -93,6 +94,7 @@ public class JUnitDriverPlayerController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private void testPlayCodeBreaker()
     {
         boolean isFirstTurn = true;
@@ -123,6 +125,7 @@ public class JUnitDriverPlayerController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private void testPlayWatcher()
     {
         boolean isFirstTurn = true;

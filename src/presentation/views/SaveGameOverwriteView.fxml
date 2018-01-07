@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <VBox alignment="CENTER" prefHeight="125.0" prefWidth="250.0" spacing="30.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SaveGameOverwriteViewController">
    <children>
-      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="14.0" styleClass="text" text="Are you sure you want to overwrite?" />
+      <Label layoutX="14.0" layoutY="14.0" styleClass="text" text="Are you sure you want to overwrite?" />
       <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0" spacing="30.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="overwriteButton" minWidth="60.0" mnemonicParsing="false" onAction="#overwriteButtonAction" text="Overwrite" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonAction" prefWidth="60.0" text="Cancel" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#overwriteButtonAction" text="Overwrite" />
+            <Button mnemonicParsing="false" onAction="#cancelButtonAction" prefWidth="60.0" text="Cancel" />
          </children>
       </HBox>
    </children>

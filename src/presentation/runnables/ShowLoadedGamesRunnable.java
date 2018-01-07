@@ -19,8 +19,8 @@ import java.util.Set;
 
 public class ShowLoadedGamesRunnable implements Runnable
 {
-    private PresentationController presentationController;
-    private Set<String> savedGames;
+    private final PresentationController presentationController;
+    private final Set<String> savedGames;
 
     /**
      * Constructora por defecto.

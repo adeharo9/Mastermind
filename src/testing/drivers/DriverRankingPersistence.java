@@ -10,8 +10,6 @@ import java.util.LinkedList;
 
 public class DriverRankingPersistence {
 
-    private Ranking ranking;
-
     public static void main(String[] args){
         DriverRankingPersistence driverRankingPersistence = new DriverRankingPersistence();
         driverRankingPersistence.exe();
@@ -53,7 +51,6 @@ public class DriverRankingPersistence {
         {
             ioUtils.printOutLn("The ranking has saved correctly!");
             ioUtils.endLine();
-            this.ranking = ranking;
         }
         else
         {

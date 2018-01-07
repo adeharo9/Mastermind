@@ -32,21 +32,21 @@ public enum Color
 
     public static final int SIZE = WHITE.getId() + 1;
 
-    private static HashMap<Integer, Color> int2Color = new HashMap<>();
-    private static HashMap<String, Color> str2Color = new HashMap<>();
-    private static HashMap<String, Color> style2Color = new HashMap<>();
+    private static final HashMap<Integer, Color> INT_2_COLOR = new HashMap<>();
+    private static final HashMap<String, Color> STR_2_COLOR = new HashMap<>();
+    private static final HashMap<String, Color> STYLE_2_COLOR = new HashMap<>();
 
     static
     {
         for(final Color color : Color.values())
         {
-            int2Color.put(color.id, color);
-            str2Color.put(color.strId, color);
-            style2Color.put(color.cssStyleClass, color);
+            INT_2_COLOR.put(color.id, color);
+            STR_2_COLOR.put(color.strId, color);
+            STYLE_2_COLOR.put(color.cssStyleClass, color);
         }
     }
 
-    private Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
+    Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
     {
         this.id = id;
         this.strId = strId;
@@ -56,7 +56,7 @@ public enum Color
 
     public static Color getColor(final int id) throws IllegalArgumentException
     {
-        Color color = int2Color.get(id);
+        Color color = INT_2_COLOR.get(id);
 
         if(color == null) throw new IllegalArgumentException();
 
@@ -65,7 +65,7 @@ public enum Color
 
     public static Color getColor(final String strId) throws IllegalArgumentException
     {
-        Color color = str2Color.get(strId);
+        Color color = STR_2_COLOR.get(strId);
 
         if(color == null) throw new IllegalArgumentException();
 
@@ -74,7 +74,7 @@ public enum Color
 
     public static Color getColorByStyle(final String style) throws IllegalArgumentException
     {
-        Color color = style2Color.get(style);
+        Color color = STYLE_2_COLOR.get(style);
 
         if(color == null) throw new IllegalArgumentException();
 

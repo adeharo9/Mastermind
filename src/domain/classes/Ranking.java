@@ -16,7 +16,7 @@ import java.util.LinkedList;
  *
  * @author Alex
  */
-public class Ranking implements DeepCopyable, Serializable
+public class Ranking implements Serializable
 {
     /* ATTRIBUTES */
 
@@ -25,7 +25,7 @@ public class Ranking implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
 
     /**
-     * Constructora de Raniking.
+     * Constructora de Ranking.
      *
      * Instancia un ranking vacío pero evitando NullPointerException.
      */
@@ -34,20 +34,9 @@ public class Ranking implements DeepCopyable, Serializable
         topTen = new LinkedList<>();
     }
 
-     /* CONSTRUCTION METHODS */
-
-    /**
-     * Constructora por defecto de Raniking.
-     *
-     * Instancia un ranking vacío.
-     */
-    public Ranking(final Ranking ranking)
-    {
-
-    }
-
     /**
      * Constructora de ranking por lista de jugadores y puntuación.
+     *
      * @param topTen Lista de los 10 o menos (en caso que no se hayan jugado todavía 10 partidas)
      *              mejores jugadores y puntos respectivos ordenados por este último.
      */
@@ -82,11 +71,10 @@ public class Ranking implements DeepCopyable, Serializable
      * Consulta si el jugador identificado por idPlayer junto con la
      * puntuación que ha conseguido, están en el top ten.
      *
-     * @param idPlayer Id del jugador que ha realizado la partida.
      * @param points Puntuación que el jugador ha conseguido.
      * @return True si debe estar en el top ten, en cualquier otro caso false.
      */
-    public boolean toTopTen(final String idPlayer, final Integer points)
+    public boolean toTopTen(final Integer points)
     {
         return (topTen.size() < Constants.RANKING_SIZE) || (points > topTen.getLast().second);
     }
@@ -140,20 +128,5 @@ public class Ranking implements DeepCopyable, Serializable
         }
 
         return left;
-    }
-
-    /* CLONING METHODS */
-
-    /**
-     * Copia de objeto.
-     *
-     * Devuelve una copia profunda del objeto actual.
-     *
-     * @return Copia profunda del objeto actual.
-     */
-    @Override
-    public Ranking deepCopy()
-    {
-        return new Ranking(this);
     }
 }

@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.VBox?>
 <VBox alignment="CENTER" prefHeight="125.0" prefWidth="250.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.ExitCurrentGameWarningViewController">
    <children>
-      <Label fx:id="warningMessageLabel" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="157.0" styleClass="text" text="Are you sure you want to exit" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="157.0" styleClass="text" text="Are you sure you want to exit" textAlignment="CENTER" wrapText="true" />
       <Label styleClass="text" text="the current game?" />
       <HBox alignment="CENTER" layoutX="50.0" layoutY="61.0" spacing="30.0">
          <children>
-            <Button fx:id="exitGameButton" mnemonicParsing="false" onAction="#exitGameButtonAction" text="Exit Game" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#exitGameButtonAction" text="Exit Game" />
+            <Button mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
          </children>
          <padding>
             <Insets top="15.0" />

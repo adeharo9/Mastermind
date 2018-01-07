@@ -23,12 +23,9 @@ class JUnitDriverDomainController
     private StubPresentationController presentationController = new StubPresentationController();
     private Role role = Role.CODE_BREAKER;
     private Mode mode = Mode.HUMAN_VS_HUMAN;
-    private StubPlayerController codeMakerController = new StubPlayerController();
-    private StubPlayerController codeBreakerController = new StubPlayerController();
     private StubBoardController boardController = new StubBoardController();
     private StubGameController gameController = new StubGameController();
     private Difficulty difficulty = Difficulty.EASY;
-    private List<String> savedGames;
     private StubGamePersistence gamePersistence = new StubGamePersistence();
 
     public static void main(String[] args)
@@ -129,6 +126,9 @@ class JUnitDriverDomainController
         playerController1.setRole(role);
         playerController2.setRole(Role.complementaryRole(role));
 
+        StubPlayerController codeMakerController;
+        StubPlayerController codeBreakerController = playerController2;
+
         switch (role)
         {
             case CODE_MAKER:
@@ -157,7 +157,7 @@ class JUnitDriverDomainController
     private void testLoadSavedGameList()
     {
         StubPlayer loggedPlayer = loggedPlayerController.getPlayer();
-        savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
+        List<String> savedGames = playerPersistence.loadSavedGames(loggedPlayer.getId());
 
         for(int i = 0; i < savedGames.size(); ++i)
         {

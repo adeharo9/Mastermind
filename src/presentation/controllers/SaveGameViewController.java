@@ -40,19 +40,6 @@ public class SaveGameViewController extends PopUpController {
     /* FXML */
 
     /**
-     * Método de captura de inicialización de JavaFX.
-     *
-     * Método a ejecutar cuando todos los campos fxml han sido construidos
-     * e inicializados, implementado con la finalidad de no bloquear el controlador
-     * de dominio.
-     */
-    @FXML
-    @Override
-    public void initialize()
-    {
-    }
-
-    /**
      * Método de gestión de botón Save.
      *
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón Save.

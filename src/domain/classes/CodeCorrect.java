@@ -96,7 +96,7 @@ public class CodeCorrect extends Action implements DeepCopyable
     public void checkAction(final Difficulty difficulty, final Code code, final Code solution) throws IllegalActionException
     {
         checkPinsInRange(difficulty, true, Color.getFullCorrectionValues());
-        Code correction = getCodeCorrect(difficulty, code, solution);
+        Code correction = getCodeCorrect(code, solution);
 
         boolean b = correction.unorderedEquals(this.code);
         if(!b) throw new IllegalActionException("Wrong correction");
@@ -107,12 +107,12 @@ public class CodeCorrect extends Action implements DeepCopyable
      *
      * Obtiene la corrección del código de colores introducidos.
      *
-     * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
+     * @return Corrección del código de colores.
      */
     @SuppressWarnings("Duplicates")
-    private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
+    private Code getCodeCorrect(final Code code, final Code solution)
     {
         int size = code.size();
 

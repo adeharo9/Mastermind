@@ -10,7 +10,7 @@
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
+          <Button mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
         </items>
       </ToolBar>
       <Label styleClass="title" text="MASTERMIND">
@@ -28,7 +28,7 @@
             <PasswordField fx:id="confirmPasswordPasswordField" promptText="Confirm Password" style="-fx-max-width: 200;" />
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="logInButton" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+                  <Button mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
                </children>
             </VBox>
             <Label fx:id="errorLabel" styleClass="error-label" visible="false" />

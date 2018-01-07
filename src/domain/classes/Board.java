@@ -38,6 +38,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el nombre de columnas es válido.
      *
      * @param nColumns Nombre de columnas a validar.
+     * @return Devuelve true si  el número de columnas es válido.
      */
     private static boolean isValidNColumns(final int nColumns)
     {
@@ -50,6 +51,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el nombre de máximos intentos es válido.
      *
      * @param maxAttempts Nombre de máximos intentos a validar.
+     * @return Devuelve true si el número de máximos intentos es válido.
      */
     private static boolean isValidMaxAttempts(final int maxAttempts)
     {
@@ -62,6 +64,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si los turnos del tablero son válidos.
      *
      * @param turnSet Conjunto de turnos a validar.
+     * @return Devuelve true si el conjunto de turnos es válido.
      * @throws NullPointerException Si alguno de los turnos es null.
      */
     private static boolean isValidTurnSet(final Collection<Turn> turnSet) throws NullPointerException
@@ -86,6 +89,7 @@ public class Board implements DeepCopyable, Serializable
      * Comprueba si el código de colores es válido.
      *
      * @param code Código de colores a validar.
+     * @return Devuelve true si el código es válido.
      */
     private boolean isValidCode(final Code code) throws NullPointerException
     {
@@ -93,24 +97,6 @@ public class Board implements DeepCopyable, Serializable
     }
 
     /* CONSTRUCTION METHODS */
-
-    /*/**
-     * Constructor de tablero por defecto.
-     *
-     * Instancia un tablero vacío y no válido
-     * sin previa inicialización usando los setters
-     * públicos disponibles
-     */
-    /*@Deprecated
-    public Board ()
-    {
-        nColumns = -1;
-        maxAttempts = -1;
-        difficulty = null;
-
-        solution = null;
-        turnSet = new ArrayList<>();
-    }*/
 
     /**
      * Constructor de tablero por dificultad.
@@ -159,61 +145,6 @@ public class Board implements DeepCopyable, Serializable
     }
 
     /* SET METHODS */
-
-    /*/**
-     * Setter de número de columnas.
-     *
-     * Indica el número de columnas del tablero (es decir, el número
-     * de pines que se pueden poner por fila y por jugada).
-     *
-     * @param nColumns Número de columnas.
-     * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
-     * @deprecated En siguientes revisiones dicho valor será final.
-     */
-    /*@Deprecated
-    public void setNColumns(final int nColumns) throws IllegalArgumentException
-    {
-        boolean b = isValidNColumns(nColumns);
-        if(!b) throw new IllegalArgumentException();
-
-        this.nColumns = nColumns;
-    }*/
-
-    /*/**
-     * Setter del valor máximo de intentos antes de terminar el juego.
-     *
-     * Indica el número máximo de turnos que se pueden jugar antes de que
-     * termine el juego.
-     *
-     * @param maxAttempts Número máximo de intentos.
-     * @throws IllegalArgumentException En caso de que sea igual o inferior a 0.
-     * @deprecated En siguientes revisiones dicho valor será final.
-     */
-    /*@Deprecated
-    public void setMaxAttempts(final int maxAttempts) throws IllegalArgumentException
-    {
-        boolean b = isValidMaxAttempts(maxAttempts);
-        if(!b) throw new IllegalArgumentException();
-
-        this.maxAttempts = maxAttempts;
-    }*/
-
-    /*/** Setter de dificultad.
-     *
-     * Indica la dificultad del tablero.
-     *
-     * @param difficulty Dificultad del tablero.
-     * @throws IllegalArgumentException En caso de que la dificultad no sea válida.
-     * @deprecated En siguientes revisiones dicho valor será final.
-     */
-    /*@Deprecated
-    public void setDifficulty(final Difficulty difficulty) throws IllegalArgumentException
-    {
-        boolean b = difficulty != null;
-        if(!b) throw new IllegalArgumentException();
-
-        this.difficulty = difficulty;
-    }*/
 
     /**
      * Setter de código del tablero (solución a la partida)
@@ -453,13 +384,13 @@ public class Board implements DeepCopyable, Serializable
         boolean b;
 
         b = isValidNColumns(nColumns);
-        if(!b) return b;
+        if(!b) return false;
 
         b = isValidMaxAttempts(maxAttempts);
-        if(!b) return b;
+        if(!b) return false;
 
         b = difficulty != null;
-        if(!b) return b;
+        if(!b) return false;
 
         b = turnSet != null;
 

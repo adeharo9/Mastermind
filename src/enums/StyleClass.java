@@ -26,7 +26,7 @@ public enum StyleClass
 
     private final String stringId;
 
-    private StyleClass(final String stringId)
+    StyleClass(final String stringId)
     {
         this.stringId = stringId;
     }

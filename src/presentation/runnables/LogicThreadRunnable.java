@@ -15,7 +15,7 @@ import domain.controllers.DomainController;
 
 public class LogicThreadRunnable implements Runnable
 {
-    private DomainController domainController;
+    private final DomainController domainController;
 
     /**
      * Constructora por defecto.
@@ -27,7 +27,7 @@ public class LogicThreadRunnable implements Runnable
      * @param domainController Controlador de dominio sobre el que
      *                         ejecutar la lógica del juego.
      */
-    public LogicThreadRunnable(DomainController domainController)
+    public LogicThreadRunnable(final DomainController domainController)
     {
         this.domainController = domainController;
     }

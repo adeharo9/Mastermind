@@ -56,7 +56,7 @@ public class DriverRanking {
 
        String id = ioUtils.input();
        int points = Integer.parseInt(ioUtils.input());
-       if(rankingTest.toTopTen(id, points))
+       if(rankingTest.toTopTen(points))
        {
            rankingTest.addToTopTen(id, points);
        }
@@ -91,7 +91,7 @@ public class DriverRanking {
        ioUtils.printOutLn("Introduce a pair of id and point: ");
        String id = ioUtils.input();
        int points = Integer.parseInt(ioUtils.input());
-       if(rankingTest.toTopTen(id, points))
+       if(rankingTest.toTopTen(points))
        {
            ioUtils.printOutLn("This pair should be in the top ten");
        }

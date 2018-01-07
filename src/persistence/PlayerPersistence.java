@@ -35,11 +35,11 @@ public class PlayerPersistence extends AbstractPersistence
     /**
      * Getter del directorio config.
      *
-     * Devuelve el path del directorio config.cfg
+     * Devuelve el path del directorio de config.cfg
      * del jugador identificador por playerId.
      *
      * @param playerId Identificador del jugador.
-     *
+     * @return Path del directorio de config.cfg
      */
     protected String getConfigFilePath(String playerId)
     {
@@ -85,6 +85,7 @@ public class PlayerPersistence extends AbstractPersistence
      * Indica si el directorio del jugador identificado por playerPath existe
      * en la capa de datos.
      *
+     * @return True si el directorio del jugador existe.
      */
     public boolean existsDir()
     {
@@ -210,6 +211,7 @@ public class PlayerPersistence extends AbstractPersistence
      * del jugador identificado por playerId.
      *
      * @param playerId Identificador del jugador.
+     * @return Conjunto de identificadores de las partidas del jugador con ID playerId.
      * @throws IOException Si el jugador no tiene ninguna partida guardada.
      */
     public Set<String> loadSavedGames(String playerId) throws IOException
@@ -263,9 +265,8 @@ public class PlayerPersistence extends AbstractPersistence
      * del jugador identificado por username.
      *
      * @param username Identificador del jugador.
-     * @throws IOException Si el jugador no tiene ninguna partida guardada.
      */
-    public void deleteConfigFile(final String username) throws IOException
+    public void deleteConfigFile(final String username)
     {
         String configFilePath = getConfigFilePath(username);
 

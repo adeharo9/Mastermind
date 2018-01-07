@@ -39,8 +39,9 @@ public class BoardController
      * un tablero de dificultad especificada
      *
      * @param difficulty Dificultad del tablero creado
-     * @exception IllegalArgumentException si la dificultad introducida no es valida.
-     * @exception NullPointerException si la dificultad es nula.
+     * @return Tablero.
+     * @throws IllegalArgumentException si la dificultad introducida no es valida.
+     * @throws NullPointerException si la dificultad es nula.
      */
 
     public Board newBoard(Difficulty difficulty) throws IllegalArgumentException, NullPointerException
@@ -71,19 +72,6 @@ public class BoardController
     }
 
     /* GET METHODS */
-
-    /**
-     * Getter del tablero.
-     *
-     * Devuelve el tablero cargado en el  controlador.
-     *
-     * @return tablero asociado al controlador
-     */
-
-    public Board getBoard()
-    {
-        return board;
-    }
 
     /**
      * Getter de la dificultad del tablero.

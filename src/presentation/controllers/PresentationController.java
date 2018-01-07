@@ -35,8 +35,6 @@ public abstract class PresentationController
     protected static Stage mainStage;
     protected static Stage popUpStage;
 
-    protected static Stage currentStage;
-
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
     private static volatile boolean threadFinished = false;

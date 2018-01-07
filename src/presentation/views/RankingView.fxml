@@ -10,12 +10,12 @@
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
-          <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
+          <Button mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
         </items>
       </ToolBar>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
          <content>
-            <VBox fx:id="rankingVBox" alignment="CENTER" spacing="30.0" styleClass="background">
+            <VBox alignment="CENTER" spacing="30.0" styleClass="background">
                <children>
                   <HBox>
                      <children>

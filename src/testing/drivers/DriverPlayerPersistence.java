@@ -12,7 +12,6 @@ import java.util.Set;
 public class DriverPlayerPersistence {
 
     private String id;
-    private String game;
 
     public static void main(String[] args)
     {
@@ -75,7 +74,6 @@ public class DriverPlayerPersistence {
         PlayerPersistence playerPersistence = new PlayerPersistence();
         ioUtils.printOutLn("Introduce a id of a game: ");
         String idGame = ioUtils.input();
-        this.game = idGame;
         try
         {
             playerPersistence.savePlayerGame(idGame, this.id);
