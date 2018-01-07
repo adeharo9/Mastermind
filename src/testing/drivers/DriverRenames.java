@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class DriverRenames {
 
-    PlayerPersistence playerPersistence;
-    DomainController domainController;
+    private PlayerPersistence playerPersistence;
+    private DomainController domainController;
 
     private DriverRenames()
     {

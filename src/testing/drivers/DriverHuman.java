@@ -22,7 +22,7 @@ public class DriverHuman {
         driverHuman.exe();
     }
 
-    private void exe() throws InterruptedException
+    private void exe()
     {
         testConstructors();
         testGetsAndSets();

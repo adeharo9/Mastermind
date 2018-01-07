@@ -348,7 +348,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      *
      * @param difficulty Dificultad de la partida.
      */
-    protected void generateCombinations(final Difficulty difficulty)
+    private void generateCombinations(final Difficulty difficulty)
     {
         int numPins = Constants.getNumPinsByDifficulty(difficulty);
         Collection<Color> colorCollection = Color.getValues(difficulty);

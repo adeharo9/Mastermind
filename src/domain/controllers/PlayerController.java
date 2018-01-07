@@ -15,7 +15,7 @@ public class PlayerController
 {
     /* ATTRIBUTES */
 
-    protected Player player;
+    private Player player;
 
     /* CONSTRUCTION METHODS */
 
@@ -191,12 +191,11 @@ public class PlayerController
      * @param solution Codigo solucion.
      * @param isFirstTurn True si es el primer turno de la partida.
      * @return accion de escribir un codigo de respuesta.
-     * @exception IllegalArgumentException
-     * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
-     * @exception InterruptedException El threat activo es interrumpido.
+     * @throws  IllegalArgumentException En caso que el rol del jugador no sea correcto.
+     * @throws  ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
      */
 
-    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution, final boolean isFirstTurn) throws IllegalArgumentException, ReservedKeywordException, InterruptedException
+    public final Action play(final Difficulty difficulty, final Turn lastTurn, final Code solution, final boolean isFirstTurn) throws IllegalArgumentException, ReservedKeywordException
     {
         Action action;
 
