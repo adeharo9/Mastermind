@@ -39,7 +39,7 @@
          <content>
             <VBox alignment="TOP_CENTER" styleClass="background">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="487.0" prefWidth="420.0" styleClass="background" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="turnsScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="487.0" prefWidth="420.0" styleClass="background" VBox.vgrow="ALWAYS">
                      <content>
                         <VBox fx:id="boardVBox" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" styleClass="background">
                            <padding>

@@ -7,6 +7,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,7 @@ public class GameInProgressViewController extends RegisteringPresentationControl
     @FXML private Button showCodeButton;
     @FXML private Button finishTurnButton;
     @FXML private Label errorLabel;
+    @FXML private ScrollPane turnsScrollPane;
 
     private GridPane turnsGridPane;
     private GridPane userChoiceGridPane;
@@ -451,6 +453,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         helpButton.setVisible(false);
         showCodeButton.setVisible(false);
         finishTurnButton.setVisible(true);
+
+        turnsScrollPane.vvalueProperty().bind(boardVBox.heightProperty());
 
         endAction();
     }
