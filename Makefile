@@ -236,8 +236,7 @@ clean-zip:
 	$(RM) $(ZIP_FILE)
 
 .PHONY: examples
-examples:
-	$(shell cd ./test/testgames/scripts;./TestGenerateExamplesTG.bash > /dev/null 2>&1)
+examples: old-examples
 
 .PHONY: jar
 jar: $(JAR_FILE)
@@ -294,15 +293,13 @@ run: $(BIN_FILES)
 	$(JV) -cp $(BIN_CLASSPATH) $(MAIN_CLASS)
 
 .PHONY: run-drivers
-run-drivers: $(BIN_FILES)
-	$(foreach DRIVER_FILE, $(DRIVER_FILES), $(JV) -cp $(BIN_CLASSPATH) $(DRIVER_FILE);)
+run-drivers: old-run-drivers
 
 .PHONY: run-junits
-run-junits: $(BIN_FILES)
-	$(foreach JUNIT_FILE, $(JUNIT_FILES), $(JV) -cp $(BIN_CLASSPATH) $(JUNIT_FILE);)
+run-junits: old-run-junits
 
 .PHONY: run-tests
-run-tests: run-drivers run-junits
+run-tests: old-run-tests
 
 .PHONY: samples
 samples:
