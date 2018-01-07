@@ -567,6 +567,7 @@ public class DomainController
      * codigo solucion de la partida
      * actual.
      *
+     * @return String de la pista.
      * @exception GameNotStartedException La partida no ha comenzado o no tiene solucion.
      */
 
@@ -713,6 +714,7 @@ public class DomainController
      * Carga un threat y manda la orden
      * de esperar.
      *
+     * @param runnable Código a ejecutar en el thread.
      * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
