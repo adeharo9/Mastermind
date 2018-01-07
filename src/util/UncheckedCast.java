@@ -5,6 +5,8 @@ package util;
  *
  * Silencia los avisos del compilador y los concentra en un único punto del código,
  * aumentando la explicidad con que se realizan estos casteos.
+ *
+ * @author Alejandro de Haro
  */
 
 public abstract class UncheckedCast

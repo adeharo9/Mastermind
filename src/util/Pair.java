@@ -9,6 +9,8 @@ import java.io.Serializable;
  *
  * @param <T1> Tipo del primer elemento del par.
  * @param <T2> Tipo del segundo elemento del par.
+ *
+ * @author Alejandro de Haro
  */
 
 public class Pair<T1 extends Serializable, T2 extends Serializable> implements Serializable
