@@ -46,7 +46,7 @@ public enum Color
         }
     }
 
-    private Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
+    Color(final int id, final String strId, final String strDescription, final String cssStyleClass)
     {
         this.id = id;
         this.strId = strId;

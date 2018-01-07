@@ -17,7 +17,7 @@ public enum PopUpWindowStyle
     private final String iconFile;
     private final Modality modality;
 
-    private PopUpWindowStyle(final int width, final int height, final String title, final String iconFile, final Modality modality)
+    PopUpWindowStyle(final int width, final int height, final String title, final String iconFile, final Modality modality)
     {
         this.width = width;
         this.height = height;
