@@ -152,21 +152,6 @@ public abstract class Action implements DeepCopyable
         }
     }
 
-    /* VALIDATION METHODS */
-
-    /**
-     * Código válido.
-     *
-     * Comprueba si el código de la acción es válido.
-     *
-     * @return true si no es null, en cualquier otro caso false.
-     */
-
-    public boolean isValid()
-    {
-        return code != null;
-    }
-
     /* CLONING METHODS */
 
     /**

@@ -56,7 +56,7 @@ public class LoadGameViewController extends RegisteringPresentationController
         deleteButton.setOnAction((actionEvent) ->
             {
                 PresentationController.gameId = gameId;
-                pressButtonAction(2);
+                deleteButtonAction();
             }
         );
 
@@ -171,7 +171,6 @@ public class LoadGameViewController extends RegisteringPresentationController
      *
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón Delete.
      */
-    @FXML
     public void deleteButtonAction()
     {
         pressButtonAction(2);

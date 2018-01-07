@@ -141,7 +141,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
     @Override
     public Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution)
     {
-        Code correction = getCodeCorrect(difficulty, code, solution);
+        Code correction = getCodeCorrect(code, solution);
         return new CodeCorrect(correction);
     }
 
@@ -192,7 +192,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
             {
                 Code solution = codeIterator.next();
 
-                correction = getCodeCorrect(difficulty, solution, currentGuess);
+                correction = getCodeCorrect(solution, currentGuess);
 
                 if(!correction.unorderedEquals(lastCorrection))
                 {
@@ -209,7 +209,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
 
                 for (final Code solution : solutions)
                 {
-                    correction = getCodeCorrect(difficulty, solution, guess);
+                    correction = getCodeCorrect(solution, guess);
 
                     if (coincidencesByCorrection.containsKey(correction))
                     {
@@ -368,13 +368,12 @@ public class CPU extends Player implements DeepCopyable, Serializable
      *
      * Obtiene la corrección del código de colores introducidos.
      *
-     * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
      * @return Corrección del código de colores.
      */
     @SuppressWarnings("Duplicates")
-    private Code getCodeCorrect(final Difficulty difficulty, final Code code, final Code solution)
+    private Code getCodeCorrect(final Code code, final Code solution)
     {
         int size = code.size();
 

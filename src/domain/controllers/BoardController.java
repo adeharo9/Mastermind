@@ -74,19 +74,6 @@ public class BoardController
     /* GET METHODS */
 
     /**
-     * Getter del tablero.
-     *
-     * Devuelve el tablero cargado en el  controlador.
-     *
-     * @return tablero asociado al controlador
-     */
-
-    public Board getBoard()
-    {
-        return board;
-    }
-
-    /**
      * Getter de la dificultad del tablero.
      *
      * Devuelve la dificultad del tablero

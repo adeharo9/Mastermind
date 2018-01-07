@@ -98,7 +98,8 @@ public abstract class AbstractPersistence
         b = gameFile.exists();
         if(b) throw new FileAlreadyExistsException(getFilePath(objectName));
 
-        gameFile.createNewFile();
+        b = gameFile.createNewFile();
+        if(!b) throw new IOException();
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
         oos.writeObject(object);

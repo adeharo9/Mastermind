@@ -464,9 +464,8 @@ public class DomainController
      * usuario pasado por parametro.
      *
      * @param username Nombre de usuario cuyos ficheros se van a borrar
-     * @exception IOException Error al introducir el parametro.
      */
-    private void deleteConfigFile(final String username) throws IOException
+    private void deleteConfigFile(final String username)
     {
         playerPersistence.deleteConfigFile(username);
     }
@@ -697,7 +696,7 @@ public class DomainController
         String playerId = loggedPlayerController.getId();
         int points = gameController.getPoints();
 
-        if(ranking.toTopTen(playerId, points))
+        if(ranking.toTopTen(points))
         {
             ranking.addToTopTen(playerId, points);
         }

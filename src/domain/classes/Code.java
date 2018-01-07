@@ -237,8 +237,7 @@ public class Code implements DeepCopyable, Serializable
 
             final Code code = (Code) o;
 
-            if (this.size != code.size) return false;
-            return getCodePins() != null ? getCodePins().equals(code.getCodePins()) : code.getCodePins() == null;
+            return this.size == code.size && ((getCodePins() != null) ? getCodePins().equals(code.getCodePins()) : (code.getCodePins() == null));
         }
 
     /**
