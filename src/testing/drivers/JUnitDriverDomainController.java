@@ -78,7 +78,7 @@ class JUnitDriverDomainController
         playerPersistence.save(player);
     }
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings("UnusedAssignment")
     private void testNewGame()
     {
         boolean passedTest1 = false;
