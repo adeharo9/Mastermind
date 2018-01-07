@@ -2,6 +2,14 @@ package presentation.controllers;
 
 import javafx.fxml.FXML;
 
+/**
+ * Controlador de vista de sobreescritura al guardar partida.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de sobreescritura al guardar partida.
+ *
+ * @author Alex Sánchez
+ */
+
 public class SaveGameOverwriteViewController extends PopUpController
 {
     /**

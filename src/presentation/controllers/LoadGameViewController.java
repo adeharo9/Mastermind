@@ -13,6 +13,14 @@ import javafx.scene.layout.Priority;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controlador de vista de cargar partida.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de cargar partida.
+ *
+ * @author Alex Sánchez
+ */
+
 public class LoadGameViewController extends RegisteringPresentationController
 {
     @FXML private Label errorLabel;

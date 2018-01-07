@@ -6,6 +6,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import util.Constants;
 
+/**
+ * Controlador de vista de inicio de sesión.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de inicio de sesión.
+ *
+ * @author Rafael Ramírez
+ */
+
 public class LogInViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

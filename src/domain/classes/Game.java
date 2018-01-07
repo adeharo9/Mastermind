@@ -410,7 +410,7 @@ public class Game implements DeepCopyable, Serializable
      *
      * Devuelve los jugadores de la partida.
      *
-     * @return List<Player> players.
+     * @return players.
      */
     public List<Player> getPlayers()
     {

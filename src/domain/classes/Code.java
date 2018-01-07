@@ -131,7 +131,7 @@ public class Code implements DeepCopyable, Serializable
      *
      * Devuelve el código de colores.
      *
-     * @return List<Color> codePins.
+     * @return codePins.
      */
         public final List<Color> getCodePins()
         {

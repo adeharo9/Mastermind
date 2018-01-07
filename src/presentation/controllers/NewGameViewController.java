@@ -3,6 +3,14 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
+/**
+ * Controlador de vista de partida nueva.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de partida nueva.
+ *
+ * @author Rafael Ramírez
+ */
+
 public class NewGameViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */

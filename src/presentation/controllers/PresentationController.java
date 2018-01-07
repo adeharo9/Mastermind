@@ -17,7 +17,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
+
+/**
+ * Controlador de presentación.
+ *
+ * Clase encargada de definir un marco común para todos los controladores de presentación.
+ *
+ * @author Alejandro de Haro
+ */
 
 public abstract class PresentationController
 {
@@ -29,8 +36,6 @@ public abstract class PresentationController
     protected static Stage popUpStage;
 
     protected static Stage currentStage;
-    protected final static Stack<Stage> NON_FOCUS_STAGE_STACK = new Stack<>();
-    protected final static Stack<Stage> FOCUS_STAGE_STACK = new Stack<>();
 
     private static final DomainController DOMAIN_CONTROLLER = new DomainController();
 
@@ -53,10 +58,15 @@ public abstract class PresentationController
     protected static List<List<Color>> corrections = new ArrayList<>();
     protected static List<Color> currentTurn = new ArrayList<>();
 
-    private static volatile PlayingAction playingAction;
-
     /* PROTECTED METHODS */
 
+    /**
+     * Sincronización con controlador de dominio.
+     *
+     * Sincroniza el controlador de presentación con el de dominio
+     * y notifica a este último de que presentación ha terminado de realizar
+     * las tareas para las que había sido bloqueado.
+     */
     protected void endAction()
     {
         PresentationController.threadFinished = true;
@@ -92,15 +102,12 @@ public abstract class PresentationController
         endAction();
     }
 
-    private void newStage()
-    {
-        FOCUS_STAGE_STACK.push(currentStage);
-        currentStage = new Stage();
-        currentStage.setOnCloseRequest((WindowEvent event) ->
-                currentStage = FOCUS_STAGE_STACK.pop()
-        );
-    }
-
+    /**
+     * Registro en controlador de dominio.
+     *
+     * Registra el controlador de presentación actual en el controlador de dominio
+     * como controlador de presentación vigente con el que éste puede interactuar.
+     */
     protected void registerToDomainController()
     {
         DOMAIN_CONTROLLER.setPresentationController(this);
@@ -108,6 +115,15 @@ public abstract class PresentationController
 
     /* GUI ELEMENT METHODS */
 
+    /**
+     * Generación de pin de color.
+     *
+     * Genera un pin del color indicado con su estilo CSS y
+     * un tamaño por defecto.
+     *
+     * @param color Color del pin a generar.
+     * @return Pin correctamente configurado.
+     */
     protected Circle getNewPin(final Color color)
     {
         Circle pin = new Circle();
@@ -120,11 +136,28 @@ public abstract class PresentationController
 
     /* PRIVATE METHODS */
 
+    /**
+     * Setter de archivo de vista actual.
+     *
+     * Permite modificar el archivo de vista que hay cargado en un momento dado
+     * en la ventana gestionada por el controlador de presentación.
+     *
+     * @param currentViewFile Archivo fxml de vista.
+     */
     private void setCurrentViewFile(final String currentViewFile)
     {
         this.currentViewFile = currentViewFile;
     }
 
+    /**
+     * Gestor de carga de vista.
+     *
+     * Carga la vista indicada por parámetro y configura su controlador.
+     *
+     * @param viewFile Archivo fxml de vista a cargar.
+     * @return Raíz de la estructura que contiene todos los elementos de la vista.
+     * @throws IOException En caso que la vista no pueda ser cargada por algún motivo.
+     */
     private Parent loadView(final String viewFile) throws IOException
     {
         this.currentViewFile = viewFile;
@@ -142,11 +175,25 @@ public abstract class PresentationController
 
     /* SET METHODS */
 
+    /**
+     * Setter de stage principal.
+     *
+     * Modifica el stage mostrado en la ventana principal.
+     *
+     * @param mainStage Stage a mostrar en la ventana principal.
+     */
     public void setMainStage(final Stage mainStage)
     {
         PresentationController.mainStage = mainStage;
     }
 
+    /**
+     * Limpiado de flag de sincronización con controlador de dominio.
+     *
+     * Limpia el flag consultado por el controlador de dominio para determinar si
+     * una notificación desbloqueante ha sido producida por el controlador de
+     * presentación o no.
+     */
     public static void clearThreadHasFinished()
     {
         PresentationController.threadFinished = false;
@@ -154,71 +201,158 @@ public abstract class PresentationController
 
     /* GET METHODS */
 
+    /**
+     * Getter de estado de retorno.
+     *
+     * Retorna el estado de retorno indicado por los diferentes controladores de presentación.
+     *
+     * @return Valor del estado de retorno.
+     */
     public static int getReturnState()
     {
         return PresentationController.returnState;
     }
 
+    /**
+     * Getter de modo de juego.
+     *
+     * Retorna el modo de juego indicado por los controladores de presentación correspondientes.
+     *
+     * @return Valor del modo de juego.
+     */
     public static int getMode()
     {
         return PresentationController.mode;
     }
 
+    /**
+     * Getter de dificultad de juego.
+     *
+     * Retorna la dificultad de juego indicado por los controladores de presentación correspondientes.
+     *
+     * @return Valor de la dificultad de juego.
+     */
     public static int getDifficulty()
     {
         return PresentationController.difficulty;
     }
 
+    /**
+     * Getter de rol de juego.
+     *
+     * Retorna el rol de juego indicado por los controladores de presentación correspondientes.
+     *
+     * @return Valor del rol de juego.
+     */
     public static int getRole()
     {
         return PresentationController.role;
     }
 
+    /**
+     * Getter de nombre de usuario.
+     *
+     * Retorna el nombre de usuario indicado por los controladores de presentación correspondientes.
+     *
+     * @return Nombre de usuario.
+     */
     public static String getUsername()
     {
         return PresentationController.username;
     }
 
+    /**
+     * Getter de contraseña.
+     *
+     * Retorna la contraseña indicada por los controladores de presentación correspondientes.
+     *
+     * @return Contraseña.
+     */
     public static String getPassword()
     {
         return PresentationController.password;
     }
 
+    /**
+     * Getter de contraseña de confirmación.
+     *
+     * Retorna la contraseña de confirmación indicada por los controladores de presentación correspondientes.
+     *
+     * @return Contraseña de confirmación.
+     */
     public static String getConfirmPassword()
     {
         return PresentationController.confirmPassword;
     }
 
+    /**
+     * Getter de nueva contraseña.
+     *
+     * Retorna la nueva contraseña indicada por los controladores de presentación correspondientes.
+     *
+     * @return Nueva contraseña.
+     */
     public static String getNewPassword()
     {
         return PresentationController.newPassword;
     }
 
+    /**
+     * Getter de contraseña actual.
+     *
+     * Retorna la contraseña actual indicada por los controladores de presentación correspondientes.
+     *
+     * @return Contraseña actual.
+     */
     public static String getCurrentPassword()
     {
         return PresentationController.currentPassword;
     }
 
+    /**
+     * Getter de ID de juego.
+     *
+     * Retorna el ID de juego indicado por los controladores de presentación correspondientes.
+     *
+     * @return Valor del ID de juego.
+     */
     public static String getGameId()
     {
         return PresentationController.gameId;
     }
 
+    /**
+     * Getter de turno actual.
+     *
+     * Retorna el turno actual de juego para poder ser usado por controladores
+     * de jugadores.
+     *
+     * @return Último turno jugado.
+     */
     public static List<Color> getCurrentTurn()
     {
         return PresentationController.currentTurn;
     }
 
+    /**
+     * Getter de controlador de dominio.
+     *
+     * Retorna el controlador de dominio instanciado para la ejecución actual.
+     *
+     * @return Controlador de dominio.
+     */
     public DomainController getDomainController()
     {
         return PresentationController.DOMAIN_CONTROLLER;
     }
 
-    public static boolean isColorSelector(final PlayingAction playingAction)
-    {
-        return PresentationController.playingAction == playingAction;
-    }
-
+    /**
+     * Getter de flag de sincronización con controlador de dominio.
+     *
+     * Retorna el valor del flag de sincronización con el controlador de dominio.
+     *
+     * @return Flag de sincronización.
+     */
     public static boolean threadHasFinished()
     {
         return PresentationController.threadFinished;
@@ -237,6 +371,14 @@ public abstract class PresentationController
 
     }
 
+    /**
+     * Inicializado de ventana.
+     *
+     * Inicializa la ventana de juego al iniciar la ejecución del programa.
+     *
+     * @throws IOException En caso que la vista inicial no pueda ser cargada.
+     * @throws NullPointerException En caso que el stage de la ventana no haya sido correctamente cargado.
+     */
     public void initView() throws IOException, NullPointerException
     {
         Parent root = loadView(View.LOADING_VIEW.getViewFile());
@@ -257,6 +399,14 @@ public abstract class PresentationController
         mainStage.show();
     }
 
+    /**
+     * Actualización de vista.
+     *
+     * Actualiza la vista a mostrar en la ventana gestionada por el controlador de presentación.
+     *
+     * @param viewFile Archivo .fxml de vista a cargar.
+     * @throws IOException En caso que la vista no pueda ser cargada por algún motivo.
+     */
     public void updateView(final String viewFile) throws IOException
     {
         if(currentViewFile == null || !currentViewFile.equals(viewFile))
@@ -271,6 +421,22 @@ public abstract class PresentationController
         }
     }
 
+    /**
+     * Generación de stage de popup.
+     *
+     * Genera un stage de popup adecuadamente configurado según los parámetros
+     * de entrada para ser mostrado un la ventana gestionada por el controlador
+     * de presentación.
+     *
+     * @param viewFile Archivo .fxml de vista a ser cargada en el popup.
+     * @param width Ancho de ventana de popup.
+     * @param height Alto de ventana de popup.
+     * @param title Título de la ventana de popup.
+     * @param iconPath Favicon de la ventana de popup.
+     * @param modality Ventana bloqueante o no bloqueante de otras ventanas.
+     * @param closingEventHandler Gestor de eventos al cerrar la ventana de popup.
+     * @throws IOException En caso que la vista no pueda ser cargada por algún motivo.
+     */
     private void newPopUpStage(final String viewFile, final int width, final int height, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
     {
         popUpStage = new Stage();
@@ -290,6 +456,16 @@ public abstract class PresentationController
         popUpStage.show();
     }
 
+    /**
+     * Generación de ventana de popup.
+     *
+     * Genera una ventana de popup adecuadamente configurada según los parámetros de entrada
+     * de configuraciones predefinidas.
+     *
+     * @param popUpWindowStyle Configuración predefinida a cargar.
+     * @param viewFile Archivo .fxml de vista a cargar.
+     * @throws IOException En caso que la vista no pueda ser cargada por algún motivo.
+     */
     public void popUpWindow(final PopUpWindowStyle popUpWindowStyle, final String viewFile) throws IOException
     {
         String title = popUpWindowStyle.getTitle();
@@ -328,6 +504,14 @@ public abstract class PresentationController
 
     }
 
+    /**
+     * Método plantilla de visualización de partidas guardadas.
+     *
+     * Plantilla para visualización del listado de partidas guardadas.
+     * Por defecto, no realiza ninguna acción.
+     *
+     * @param savedGames Lista de partidas guardadas.
+     */
     public void showLoadedGames(final Set<String> savedGames)
     {
 
@@ -335,31 +519,76 @@ public abstract class PresentationController
 
     /* BOARD METHODS */
 
+    /**
+     * Setter de código de solución.
+     *
+     * Guarda el código de solución indicado como parámetro en el controlador
+     * de presentación para su posterior consulta.
+     *
+     * @param solution Código de solución.
+     */
     public void setSolution(List<Color> solution)
     {
         PresentationController.solution = solution;
     }
 
+    /**
+     * Setter de códigos de turnos.
+     *
+     * Guarda los códigos de los turnos indicados como parámetro en el
+     * controlador de presentación para su posterior consulta.
+     *
+     * @param codes Códigos de turnos jugados.
+     */
     public void setCodes(List<List<Color>> codes)
     {
         PresentationController.codes = codes;
     }
 
+    /**
+     * Setter de códigos de correcciones de turnos.
+     *
+     * Guarda los códigos de las correcciones de turnos indicadas como
+     * parámetro en el controlador de presentación para su posterior
+     * consulta.
+     *
+     * @param corrections Códigos de correcciones de turnos jugados.
+     */
     public void setCorrections(List<List<Color>> corrections)
     {
         PresentationController.corrections = corrections;
     }
 
+    /**
+     * Añadir código.
+     *
+     * Añade un código a la lista de códigos jugados.
+     *
+     * @param code Código a añadir.
+     */
     public void addCode(List<Color> code)
     {
         PresentationController.codes.add(code);
     }
 
+    /**
+     * Añadir corrección.
+     *
+     * Añade una corrección a la lista de correciones de turnos jugados.
+     *
+     * @param correction Corrección a añadir.
+     */
     public void addCorrection(List<Color> correction)
     {
         PresentationController.corrections.add(correction);
     }
 
+    /**
+     * Limpiado de estructuras de estado de juego.
+     *
+     * Borra y reinicializa todas las estructuras de almacenamiento
+     * del estado actual del juego (solución, turnos y correcciones).
+     */
     public void clear()
     {
         PresentationController.solution.clear();
@@ -367,26 +596,56 @@ public abstract class PresentationController
         PresentationController.corrections.clear();
     }
 
+    /**
+     * Renderizado de tablero vacío.
+     *
+     * Interfaz para interactuar con las subclases adecuadas.
+     *
+     * @param difficulty Dificultad del tablero a visualizar.
+     */
     public void renderBoard(final Difficulty difficulty)
     {
         throw new RuntimeException("You should not be executing this method from here");
     }
 
+    /**
+     * Renderizado de último turno.
+     *
+     * Interfaz para interactuar con las subclases adecuadas.
+     *
+     * @param renderFinishTurnButton Booleano de renderizado del botón de finalización
+     *                               de turno.
+     */
     public void renderLastTurn(final boolean renderFinishTurnButton)
     {
         throw new RuntimeException("You should not be executing this method from here");
     }
 
+    /**
+     * Actualización de tablero a jugador code breaker.
+     *
+     * Interfaz para interactuar con las subclases adecuadas.
+     */
     public void updateToCodeBreakerBoard()
     {
         throw new RuntimeException("You should not be executing this method from here");
     }
 
+    /**
+     * Actualización de tablero a jugador code maker en modo corrección.
+     *
+     * Interfaz para interactuar con las subclases adecuadas.
+     */
     public void updateToCodeCorrecterBoard()
     {
         throw new RuntimeException("You should not be executing this method from here");
     }
 
+    /**
+     * Actualización de tablero a jugador code maker en modo generación.
+     *
+     * Interfaz para interactuar con las subclases adecuadas.
+     */
     public void updateToCodeMakerBoard()
     {
         throw new RuntimeException("You should not be executing this method from here");

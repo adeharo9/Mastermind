@@ -18,6 +18,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador de vista de tablero de juego.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de tablero de juego.
+ *
+ * @author Alejandro de Haro
+ */
+
 public class GameInProgressViewController extends RegisteringPresentationController
 {
     /* ATTRIBUTES */
@@ -37,6 +45,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* PRIVATE METHODS */
 
+    /**
+     * Método de generación de unidad de tablero de corrección.
+     *
+     * Método encargado de generar un conjunto de pines contenedores de la solución
+     * especificada por parámetro con las alineaciones y colores correctos.
+     *
+     * @param correction Corrección sobre la que construir la unidad de visualización de corrección.
+     * @return Unidad de visualización correctamente inicializada.
+     */
     private GridPane getNewCorrectionGridPane(final List<Color> correction)
     {
         int column = 0;
@@ -56,6 +73,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         return correctionGridPane;
     }
 
+    /**
+     * Método de generación de unidad corrección vacía.
+     *
+     * Método encargado de generar una unidad de visualización con nElements
+     * pines vacíos.
+     *
+     * @param nElements Número de pines vacíos de la unidad.
+     * @return Unidad de visualización correctamente inicializada.
+     */
     private List<Color> getEmptyCorrection(int nElements)
     {
         List<Color> colorList = new ArrayList<>(nElements);
@@ -70,6 +96,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* RENDERING METHODS */
 
+    /**
+     * Método de renderizado de turno.
+     *
+     * Método encargado de generar y dar color a los pines correspondientes al turno
+     * indicado por parámetro.
+     *
+     * @param row Número de turno a renderizar.
+     */
     private void renderTurn(final int row)
     {
         int column = 0;
@@ -99,6 +133,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
     }
 
+    /**
+     * Método de renderizado del contenedor de opción de usuario
+     *
+     * Método encargado de generar y visualizar correctamente los pines
+     * que sirven de contenedor al usuario para indicar su jugada. Configura
+     * las interacciones drag and drop.
+     */
     private void renderUserChoiceContainer()
     {
         int numPins = Constants.getNumPinsByDifficulty(boardDifficulty);
@@ -128,6 +169,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         userChoiceGridPane.add(correctionGridPane, numPins, 0);
     }
 
+    /**
+     * Renderizado de selectores de color.
+     *
+     * Genera y visualiza los selectores de color que el usuario utiliza para
+     * realizar su jugada. Configura las interacciones drag and drop.
+     *
+     * @param colorList Lista de colores de los selectores.
+     */
     private void renderColorSelectors(final List<Color> colorList)
     {
         int column = 0;
@@ -150,6 +199,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
 
     /* DRAG AND DROP METHODS */
 
+    /**
+     * Detección de drag.
+     *
+     * Inicia la acción de drag and drop y copia los datos de color del pin
+     * indicado al dragboard de intercambio de información.
+     *
+     * @param event Evento de mouse que dispara el método.
+     * @param pin Pin sobre el que se está efectuando drag.
+     */
     private void dragDetected(final MouseEvent event, final Circle pin)
     {
         Dragboard dragboard = pin.startDragAndDrop(TransferMode.COPY_OR_MOVE);
@@ -164,6 +222,15 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         event.consume();
     }
 
+    /**
+     * Drag sobre objeto.
+     *
+     * Prepara el pin de destino para aceptar la información contenida en el dragboard
+     * cuando el usuario haga drop.
+     *
+     * @param event Evento de mouse que dispara el método.
+     * @param pin Pin sobre el que se efectuará drop.
+     */
     private void dragOver(final DragEvent event, final Circle pin)
     {
         Dragboard dragboard = event.getDragboard();
@@ -176,6 +243,14 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         event.consume();
     }
 
+    /**
+     * Drop sobre objeto
+     *
+     * Copia la información necesaria del dragboard al pin de destino.
+     *
+     * @param event Evento de mouse que dispara el método.
+     * @param pin Pin sobre el que se efectua drop.
+     */
     private void dragDropped(final DragEvent event, final Circle pin)
     {
         boolean dragCompleted = false;
@@ -233,6 +308,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         errorLabel.setText(message);
     }
 
+    /**
+     * Renderizado de tablero
+     *
+     * Genera y visualiza un tablero con todos los turnos que haya
+     * cargados en el controlador de presentación, previamente
+     * introducidos por el controlador de dominio.
+     */
     private void renderAllTurns()
     {
         for(int index = 0; index < codes.size(); ++index)
@@ -241,6 +323,16 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         }
     }
 
+    /**
+     * Renderizado de último turno.
+     *
+     * Genera y visualiza el último turno introducido con la finalidad
+     * de no tener que actualizar el tablero completo cada vez que se
+     * juega un turno.
+     *
+     * @param renderFinishTurnButton Booleano de renderizado del botón de finalización
+     *                               de turno.
+     */
     public  void renderLastTurn(final boolean renderFinishTurnButton)
     {
         if(!codes.isEmpty())
@@ -251,18 +343,37 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         finishTurnButton.setVisible(renderFinishTurnButton);
     }
 
+    /**
+     * Renderizado de selector de colores de corrección.
+     *
+     * Genera y visualiza los selectores de colores de corrección
+     * de jugada.
+     */
     private void renderCorrectionColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getCorrectionValues());
         renderColorSelectors(colorList);
     }
 
+    /**
+     * Renderizado de selector de colores de jugada.
+     *
+     * Genera y visualiza los selectores de colores de jugada.
+     */
     private void renderCodeColorSelectors()
     {
         List<Color> colorList = new ArrayList<>(Color.getValues(boardDifficulty));
         renderColorSelectors(colorList);
     }
 
+    /**
+     * Renderizado de tablero vacío.
+     *
+     * Genera y visualiza un tablero vacío sin los correspondientes
+     * selectores de colores.
+     *
+     * @param difficulty Dificultad del tablero a visualizar.
+     */
     @Override
     public void renderBoard(final Difficulty difficulty)
     {
@@ -272,6 +383,12 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         renderUserChoiceContainer();
     }
 
+    /**
+     * Actualización de tablero a jugador code breaker.
+     *
+     * Adapta los selectores de color del tablero actual y los
+     * botones de la vista a un jugador de tipo code breaker.
+     */
     @Override
     public void updateToCodeBreakerBoard()
     {
@@ -281,6 +398,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         showCodeButton.setVisible(false);
     }
 
+    /**
+     * Actualización de tablero a jugador code maker en modo corrección.
+     *
+     * Adapta los selectores de color del tablero actual y los
+     * botones de la vista a un jugador de tipo code maker en modo corrección
+     * de jugada.
+     */
     @Override
     public void updateToCodeCorrecterBoard()
     {
@@ -290,6 +414,13 @@ public class GameInProgressViewController extends RegisteringPresentationControl
         showCodeButton.setVisible(true);
     }
 
+    /**
+     * Actualización de tablero a jugador code maker en modo generación.
+     *
+     * Adapta los selectores de color del tablero actual y los
+     * botones de la vista a un jugador de tipo code maker en modo generación
+     * de código de tablero.
+     */
     @Override
     public void updateToCodeMakerBoard()
     {
@@ -350,6 +481,8 @@ public class GameInProgressViewController extends RegisteringPresentationControl
      * Método de gestión de botón Show Code.
      *
      * Método de gestión de las acciones a llevar a cabo al pulsar el botón Show Code.
+     * @throws IOException En caso que la vista definida en el estilo predefinido no pueda ser cargada
+     * por algún motivo.
      */
     @FXML
     public void showCodeButtonAction() throws IOException

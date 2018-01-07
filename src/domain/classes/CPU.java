@@ -470,7 +470,7 @@ public class CPU extends Player implements DeepCopyable, Serializable
      * Devuelve el HashSet que contiene las posibles
      * soluciones de la partida.
      *
-     * @return HashSet<Code> solutions.
+     * @return solutions.
      */
     protected HashSet<Code> getSolutions()
     {

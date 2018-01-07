@@ -3,6 +3,14 @@ package presentation.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * Controlador de vista de información.
+ *
+ * Clase encargada de gestionar los distintos elementos de la vista de información.
+ *
+ * @author Rafael Ramírez
+ */
+
 public class InfoViewController extends RegisteringPresentationController
 {
     @FXML private Label infoLabel;
