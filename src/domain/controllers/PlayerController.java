@@ -48,10 +48,9 @@ public class PlayerController
      * como parametro.
      *
      * @param id Nombre de jugador.
-     * @return jugador con contraseña mastermind.
      */
 
-    public Player newHuman(final String id)
+    public void newHuman(final String id)
     {
         newHuman(id, "mastermind");
     }
@@ -79,13 +78,11 @@ public class PlayerController
      * Crea un jugador CPU
      *
      * @param id Nombre de jugador CPU.
-     * @return jugador CPU nuevo.
      */
 
-    public Player newCPU(final String id)
+    public void newCPU(final String id)
     {
         player = new CPU(id);
-        return player;
     }
 
     /* INSTANCE CONTROL METHODS */
@@ -227,7 +224,6 @@ public class PlayerController
         return action;
     }
 
-    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     /**
      * CodeMake
      *
@@ -237,15 +233,12 @@ public class PlayerController
      * @param difficulty Dificultad de la partida.
      * @return accion de escribir un codigo de solucion.
      * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
-     * @exception InterruptedException El threat activo es interrumpido.
      */
-
-    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
+    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
         return player.codeMake(difficulty);
     }
 
-    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     /**
      * CodeBreak
      *
@@ -257,30 +250,24 @@ public class PlayerController
      * @param isFirstTurn True si es el primer turno de la partida.
      * @return accion de escribir un codigo de respuesta.
      * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
-     * @exception InterruptedException El threat activo es interrumpido.
      */
-
-    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
+    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
         return player.codeBreak(difficulty, lastTurn, isFirstTurn);
     }
 
-    private Action codeCorrect(final Code code, final Code solution) throws ReservedKeywordException
     /**
      * CodeCorrect
      *
      * Devuelve la accion de correccion segun
      * los parametros de entrada.
      *
-     * @param difficulty Dificultad de la partida
      * @param code Codigo respuesta.
      * @param solution Codigo solucion.
      * @return accion de correccion del jugador actual
      * @exception ReservedKeywordException Input de un valor utilizado para retroceder en los menus.
-     * @exception InterruptedException El threat activo es interrumpido.
      */
-
-    private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException, InterruptedException
+    private Action codeCorrect(final Code code, final Code solution) throws ReservedKeywordException
     {
         return player.codeCorrect(code, solution);
     }
