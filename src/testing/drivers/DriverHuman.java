@@ -36,8 +36,7 @@ public class DriverHuman {
     {
         Human human = new Human();
         Human humanWithId = new Human(Utils.autoID());
-        Human humanWithIdAndPass = new Human(Utils.autoID(), "1234");
-        this.testedHuman = humanWithIdAndPass;
+        this.testedHuman = new Human(Utils.autoID(), "1234");
     }
 
     private void testGetsAndSets()

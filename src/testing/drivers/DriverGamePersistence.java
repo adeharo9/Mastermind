@@ -8,7 +8,6 @@ import util.ioUtils;
 
 public class DriverGamePersistence
 {
-    private String gameID;
     private GamePersistence gP = new GamePersistence();
 
     public static void main(String args[])
@@ -46,7 +45,6 @@ public class DriverGamePersistence
 
         ioUtils.printOutLn("Introduce game id:");
         String game = ioUtils.input();
-        gameID = game;
 
         ioUtils.printOutLn("Choose a mode:\n" +
                 "1. HUMAN_VS_HUMAN\n" +

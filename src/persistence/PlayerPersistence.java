@@ -267,7 +267,7 @@ public class PlayerPersistence extends AbstractPersistence
      * @param username Identificador del jugador.
      * @throws IOException Si el jugador no tiene ninguna partida guardada.
      */
-    public void deleteConfigFile(final String username) throws IOException
+    public void deleteConfigFile(final String username)
     {
         String configFilePath = getConfigFilePath(username);
 

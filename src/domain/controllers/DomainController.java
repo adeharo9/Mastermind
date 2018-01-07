@@ -365,7 +365,7 @@ public class DomainController
      * @exception IOException Error al introducir el parametro.
      */
 
-    private void renameGame(final String gameId) throws IOException
+    private void renameGame(final String gameId)
     {
         Game game = gameController.getGame();
         game.setId(gameId);
@@ -401,7 +401,7 @@ public class DomainController
      * @throws ClassNotFoundException Error al crear el objeto Player
      */
 
-    public void renameUsername(final String username) throws IOException, ClassNotFoundException
+    public void renameUsername(final String username) throws IOException
     {
         Player loggedPlayer = loggedPlayerController.getPlayer();
         String player = loggedPlayer.getId();
@@ -677,7 +677,7 @@ public class DomainController
      * @exception ClassNotFoundException Un objeto no se ha creado correctamente.
      */
 
-    private void saveRanking() throws IOException, ClassNotFoundException
+    private void saveRanking() throws IOException
     {
         if(rankingPersistence.exists())
         {
@@ -908,11 +908,9 @@ public class DomainController
      *
      * Manda al threat el ultimo turno
      * jugado.
-     *
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
-    private void renderLastTurn() throws InterruptedException
+    private void renderLastTurn()
     {
         Platform.runLater(new RenderLastTurnRunnable(presentationController, false));
     }
@@ -970,10 +968,9 @@ public class DomainController
      * proxima accion que se vaya a hacer.
      *
      * @param playingAction Proxima accion del jugador.
-     * @exception InterruptedException El threat que se estaba ejecutando ha sido interrumpido.
      */
 
-    private void updateBoardTo(final PlayingAction playingAction) throws InterruptedException
+    private void updateBoardTo(final PlayingAction playingAction)
     {
         Runnable runnable = getUpdateBoardRunnable(playingAction);
 
@@ -1026,7 +1023,7 @@ public class DomainController
                                 saveRanking();
                             }
                         }
-                        catch (IOException | ClassNotFoundException e)
+                        catch (IOException e)
                         {
                             errorMessage(Constants.RANKING_LOAD_ERROR);
                         }
@@ -1084,7 +1081,7 @@ public class DomainController
                     {
                         renameUsername(username);
                     }
-                    catch(IOException | ClassNotFoundException e)
+                    catch(IOException e)
                     {
                         errorMessage(Constants.USERNAME_ALREADY_EXISTS);
                     }

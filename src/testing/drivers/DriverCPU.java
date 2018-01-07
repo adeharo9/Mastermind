@@ -22,8 +22,7 @@ public class DriverCPU {
 
     private void exe()
     {
-        CPU cpu = new CPU(Utils.autoID());
-        this.testedCPU = cpu;
+        this.testedCPU = new CPU(Utils.autoID());
 
         testCodeMake();
         testCodeBreak();

@@ -39,7 +39,8 @@ public class DriverRenames {
        }
     }
 
-    public void testRenameUsername() throws IOException, ClassNotFoundException, WrongPasswordException {
+    public void testRenameUsername() throws IOException, ClassNotFoundException
+    {
         playerPersistence = new PlayerPersistence();
         domainController = new DomainController();
 

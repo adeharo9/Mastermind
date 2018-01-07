@@ -31,9 +31,9 @@ public class PlayerController
 
     /* INSTANTIATION METHODS */
 
-    public Player newHuman(final String id)
+    public void newHuman(final String id)
     {
-        return newHuman(id, "mastermind");
+        newHuman(id, "mastermind");
     }
 
     public Player newHuman(final String id, final String password)
@@ -42,10 +42,9 @@ public class PlayerController
         return player;
     }
 
-    public Player newCPU(final String id)
+    public void newCPU(final String id)
     {
         player = new CPU(id);
-        return player;
     }
 
     /* INSTANCE CONTROL METHODS */

@@ -76,8 +76,7 @@ public class DriverGame {
 
         ioUtils.printOutLn("Now, introduce a id of a game:");
         String id = ioUtils.input();
-        Game gameWithDifficultyAndId = new Game(id, difficulty, modeGame);
-        this.testedGame = gameWithDifficultyAndId;
+        this.testedGame = new Game(id, difficulty, modeGame);
     }
 
     private void testGetsAndSets()

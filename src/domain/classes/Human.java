@@ -264,7 +264,7 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      * @throws InterruptedException Si se interrumpe la ejecución.
      */
-    private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException, InterruptedException
+    private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {
         int returnState;
 
