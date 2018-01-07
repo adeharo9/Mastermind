@@ -172,10 +172,7 @@ public class Turn extends Code implements DeepCopyable, Serializable
      *
      * @return Devuelve true si el tamaño de la corrección es igual que el tamaño del código asociado.
      * @throws NullPointerException En caso de que la corrección sea nula.
-     * @deprecated En próximas revisiones se eliminará dado que no hay suficientes llamadas como para
-     * mantener un método específico para esta función.
      */
-    @Deprecated
     @Override
     public boolean isValid() throws NullPointerException
     {

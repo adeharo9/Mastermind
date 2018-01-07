@@ -146,47 +146,6 @@ public class Game implements DeepCopyable, Serializable
     /* CONSTRUCTION METHODS */
 
     /**
-     * Constructora aleatoria.
-     *
-     * Instancia una partida con un identificador aleatorio.
-     */
-    @Deprecated
-    public Game() throws IllegalArgumentException, NullPointerException
-    {
-        this.id = Utils.autoID();
-        setTime();
-        setPoints(Constants.POINTS_INIT);
-        mode = null;
-
-        board = null;
-        players = new ArrayList<>();
-    }
-
-    /**
-     * Constructora por dificultad y modo.
-     *
-     * Instancia una partida con un identificador aleatorio,
-     * con la dificultad y modo dados.
-     *
-     * @param difficulty Dificultad de la partida.
-     * @param mode Modo de juego.
-     * @throws IllegalArgumentException Si el modo no es válido.
-     * @throws NullPointerException Si el modo es nulo.
-     */
-    @Deprecated
-    public Game(final Difficulty difficulty, final Mode mode) throws IllegalArgumentException, NullPointerException
-    {
-        this.id = Utils.autoID();
-        setTime();
-        setPoints(Constants.POINTS_INIT);
-        setMode(mode);
-
-        board = null;
-        players = new ArrayList<>();
-
-    }
-
-    /**
      * Constructora por id, dificultad y modo.
      *
      * Instancia una partida con el identificador,

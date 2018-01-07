@@ -6,6 +6,7 @@ import domain.classes.Human;
 import domain.classes.Player;
 import enums.Difficulty;
 import enums.Mode;
+import util.Utils;
 import util.ioUtils;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class DriverGame {
     private void testConstructors()
     {
         ioUtils.printOutLn("Test of the constructors of Game");
-        Game randomGame = new Game();
         ioUtils.printOutLn("Introduce the difficulty of the Game (h: hard, m: medium, e:easy). For example: e");
         String dif = ioUtils.input();
         Difficulty difficulty = null;
@@ -72,7 +72,7 @@ public class DriverGame {
                 throw new IllegalArgumentException("Error in the input");
         }
 
-        Game gameWithDifficulty = new Game(difficulty, modeGame);
+        Game gameWithDifficulty = new Game(Utils.autoID(), difficulty, modeGame);
 
         ioUtils.printOutLn("Now, introduce a id of a game:");
         String id = ioUtils.input();
@@ -117,7 +117,7 @@ public class DriverGame {
     {
         if(!testedGame.isValid()){ioUtils.printOutLn("Error in isValid(). It detects as invalid a game that is valid.\n");}
 
-        testedGame = new Game();
+        testedGame = new Game(Utils.autoID(), Difficulty.EASY, Mode.HUMAN_VS_CPU);
 
         if(testedGame.isValid()){ioUtils.printOutLn("Error in isValid(). It detects as valid a game that is invalid.\n");}
     }
