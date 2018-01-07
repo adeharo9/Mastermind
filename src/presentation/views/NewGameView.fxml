@@ -34,7 +34,8 @@
                      <children>
                         <RadioButton layoutX="164.0" layoutY="95.0" mnemonicParsing="false" onAction="#playerVsCPURadioButtonAction" onMouseEntered="#playerVsCPURadioButtonOnMouseEntered" onMouseExited="#playerVsCPURadioButtonOnMouseExited" selected="true" text="Player vs CPU">
                            <toggleGroup>
-                              <ToggleGroup />
+                              <!--suppress JavaFxUnresolvedFxIdReference -->
+                              <ToggleGroup fx:id="gameMode" />
                            </toggleGroup></RadioButton>
                         <RadioButton layoutX="271.0" layoutY="95.0" mnemonicParsing="false" onAction="#cpuVsCPURadioButtonAction" onMouseEntered="#cpuVsCPURadioButtonOnMouseEntered" onMouseExited="#cpuVsCPURadioButtonOnMouseExited" prefHeight="17.0" prefWidth="93.0" text="CPU vs CPU" toggleGroup="$gameMode" GridPane.columnIndex="2" />
                         <RadioButton layoutX="50.0" layoutY="95.0" mnemonicParsing="false" onAction="#playerVsPlayerRadioButtonAction" onMouseEntered="#playerVsPlayerRadioButtonOnMouseEntered" onMouseExited="#playerVsPlayerRadioButtonOnMouseExited" text="Player vs Player" toggleGroup="$gameMode" GridPane.columnIndex="1" />
@@ -61,7 +62,8 @@
                      <children>
                         <RadioButton layoutX="274.0" layoutY="203.0" mnemonicParsing="false" onAction="#hardRadioButtonAction" text="Hard" GridPane.columnIndex="2" HBox.hgrow="ALWAYS">
                            <toggleGroup>
-                              <ToggleGroup />
+                              <!--suppress JavaFxUnresolvedFxIdReference -->
+                              <ToggleGroup fx:id="difficulltyMode" />
                            </toggleGroup></RadioButton>
                         <RadioButton layoutX="167.0" layoutY="203.0" mnemonicParsing="false" onAction="#mediumRadioButtonAction" text="Medium" toggleGroup="$difficulltyMode" GridPane.columnIndex="1" HBox.hgrow="ALWAYS" />
                         <RadioButton layoutX="50.0" layoutY="203.0" mnemonicParsing="false" onAction="#easyRadioButtonAction" selected="true" text="Easy" toggleGroup="$difficulltyMode" HBox.hgrow="ALWAYS" />
@@ -87,7 +89,8 @@
                      <children>
                         <RadioButton layoutX="50.0" layoutY="203.0" mnemonicParsing="false" onAction="#codeMakerRadioButtonAction" text="Code Maker" GridPane.columnIndex="1">
                            <toggleGroup>
-                              <ToggleGroup />
+                              <!--suppress JavaFxUnresolvedFxIdReference -->
+                              <ToggleGroup fx:id="roleMode" />
                            </toggleGroup>
                         </RadioButton>
                         <RadioButton layoutX="167.0" layoutY="203.0" mnemonicParsing="false" onAction="#codeBreakerRadioButtonAction" selected="true" text="Code Breaker" toggleGroup="$roleMode" />
