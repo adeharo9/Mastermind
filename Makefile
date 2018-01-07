@@ -8,6 +8,7 @@ JUNIT_DIR = testing
 SAMPLES_DIR = ./samples
 PLAYERS_DIR = ./players
 RANKING_DIR = ./ranking
+OLD_DIR = ./old
 
 PRESENTATION_DIR = /presentation
 VIEWS_DIR = $(PRESENTATION_DIR)/views
@@ -240,6 +241,50 @@ examples:
 
 .PHONY: jar
 jar: $(JAR_FILE)
+
+.PHONY: old
+old:
+	cd $(OLD_DIR) && make
+
+.PHONY: old-all
+old-all:
+	cd $(OLD_DIR) && make all
+
+.PHONY: old-default
+old-default:
+	cd $(OLD_DIR) && make default
+
+.PHONY: old-clean
+old-clean:
+	cd $(OLD_DIR) && make clean
+
+.PHONY: old-examples
+old-examples:
+	cd $(OLD_DIR) && make examples
+
+.PHONY: old-jar
+old-jar:
+	cd $(OLD_DIR) && make jar
+
+.PHONY: old-run
+old-run:
+	cd $(OLD_DIR) && make run
+
+.PHONY: old-run-drivers
+old-run-drivers:
+	cd $(OLD_DIR) && make run-drivers
+
+.PHONY: old-run-junits
+old-run-junits:
+	cd $(OLD_DIR) && make run-junits
+
+.PHONY: old-run-tests
+old-run-tests:
+	cd $(OLD_DIR) && make run-tests
+
+.PHONY: old-$(ZIP)
+old-$(ZIP):
+	cd $(OLD_DIR) && make $(ZIP)
 
 .PHONY: purge
 purge: clean clean-players clean-ranking
