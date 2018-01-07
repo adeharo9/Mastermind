@@ -262,7 +262,6 @@ public class Human extends Player implements DeepCopyable, Serializable
      * @param difficulty Dificultad de la partida.
      * @return Código de nombre de colores introducido por el usuario.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
-     * @throws InterruptedException Si se interrumpe la ejecución.
      */
     private List<String> readCode(Difficulty difficulty) throws ReservedKeywordException
     {

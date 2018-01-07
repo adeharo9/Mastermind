@@ -384,13 +384,13 @@ public class Board implements DeepCopyable, Serializable
         boolean b;
 
         b = isValidNColumns(nColumns);
-        if(!b) return b;
+        if(!b) return false;
 
         b = isValidMaxAttempts(maxAttempts);
-        if(!b) return b;
+        if(!b) return false;
 
         b = difficulty != null;
-        if(!b) return b;
+        if(!b) return false;
 
         b = turnSet != null;
 

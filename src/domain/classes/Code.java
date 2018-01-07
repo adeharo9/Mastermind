@@ -1,8 +1,6 @@
 package domain.classes;
 
 import enums.Color;
-import enums.Difficulty;
-import util.Constants;
 import util.DeepCopyable;
 import util.Utils;
 
@@ -221,7 +219,7 @@ public class Code implements DeepCopyable, Serializable
         @Override
         public boolean equals(final Object o)
         {
-            return unorderedEquals(o);
+            return o != null && getClass() == o.getClass() && unorderedEquals(o);
         }
 
     /**

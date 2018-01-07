@@ -2,10 +2,8 @@ package domain.classes;
 
 import enums.Difficulty;
 import enums.Mode;
-import enums.Role;
 import util.Constants;
 import util.DeepCopyable;
-import util.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

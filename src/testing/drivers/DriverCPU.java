@@ -6,7 +6,6 @@ import enums.Difficulty;
 import util.Utils;
 import util.ioUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DriverCPU {
@@ -31,23 +30,23 @@ public class DriverCPU {
     private void testCodeMake()
     {
         Action action;
-        List<Color> code = new ArrayList<>();
+        List<Color> code;
 
         action = testedCPU.codeMake(Difficulty.EASY);
         code = action.getCode().getCodePins();
         ioUtils.printOutLn("Code solution generate for a easy game (forbidden repeated colors): ");
-        for(int i = 0; i < code.size(); ++i)
+        for(Color aCode : code)
         {
-            ioUtils.printOutLn(code.get(i).getStrDescription());
+            ioUtils.printOutLn(aCode.getStrDescription());
         }
         ioUtils.endLine();
 
         action = testedCPU.codeMake(Difficulty.MEDIUM);
         code = action.getCode().getCodePins();
         ioUtils.printOutLn("Code solution generate for a medium game: ");
-        for(int i = 0; i < code.size(); ++i)
+        for(Color aCode : code)
         {
-            ioUtils.printOutLn(code.get(i).getStrDescription());
+            ioUtils.printOutLn(aCode.getStrDescription());
         }
         ioUtils.endLine();
 
@@ -56,16 +55,16 @@ public class DriverCPU {
         action = testedCPU.codeMake(Difficulty.HARD);
         code = action.getCode().getCodePins();
         ioUtils.printOutLn("Code solution generate for a hard game: ");
-        for(int i = 0; i < code.size(); ++i)
+        for (Color aCode : code)
         {
-            ioUtils.printOutLn(code.get(i).getStrDescription());
+            ioUtils.printOutLn(aCode.getStrDescription());
         }
         ioUtils.endLine();
     }
 
     private void testCodeBreak()
     {
-        List<Color> code = new ArrayList<>();
+        List<Color> code;
         Action action = testedCPU.codeBreak(Difficulty.MEDIUM, null, true);
 
         ioUtils.printOutLn("------------------------------------------------------------------" +
@@ -77,11 +76,11 @@ public class DriverCPU {
         ioUtils.endLine();
 
         code = action.getCode().getCodePins();
-        Turn lastTurn = new Turn(action.getCode());
+        Turn lastTurn;
         ioUtils.printOutLn("First solution generate by the algorithm: ");
-        for(int i = 0; i < code.size(); ++i)
+        for (Color aCode : code)
         {
-            ioUtils.printOutLn(code.get(i).getStrDescription());
+            ioUtils.printOutLn(aCode.getStrDescription());
         }
         ioUtils.endLine();
 
@@ -89,7 +88,7 @@ public class DriverCPU {
         while(count < 7)
         {
             lastTurn = new Turn(action.getCode());
-            Action codeCorrect = new CodeCorrect();
+            Action codeCorrect;
             codeCorrect = testedCPU.codeCorrect(Difficulty.MEDIUM, action.getCode(), solution);
 
             Code correction = codeCorrect.getCode();
@@ -98,8 +97,9 @@ public class DriverCPU {
             action = testedCPU.codeBreak(Difficulty.MEDIUM, lastTurn, false);
             code = action.getCode().getCodePins();
             ioUtils.printOutLn("Solution " + Integer.toString(count) + " generate by the algorithm: ");
-            for (int i = 0; i < code.size(); ++i) {
-                ioUtils.printOutLn(code.get(i).getStrDescription());
+            for (Color aCode : code)
+            {
+                ioUtils.printOutLn(aCode.getStrDescription());
             }
             ioUtils.endLine();
             ++count;

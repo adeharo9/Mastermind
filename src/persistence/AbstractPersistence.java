@@ -93,12 +93,12 @@ public abstract class AbstractPersistence
         File gameDirectory = new File(getDirPath());
         File gameFile = new File(getFilePath(objectName));
 
-        b = gameDirectory.mkdirs();
+        gameDirectory.mkdirs();
 
         b = gameFile.exists();
         if(b) throw new FileAlreadyExistsException(getFilePath(objectName));
 
-        b = gameFile.createNewFile();
+        gameFile.createNewFile();
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(gameFile));
         oos.writeObject(object);

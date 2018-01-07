@@ -3,7 +3,6 @@ package testing.drivers;
 import domain.classes.Human;
 import domain.classes.Player;
 import domain.controllers.DomainController;
-import exceptions.WrongPasswordException;
 import persistence.PlayerPersistence;
 import util.ioUtils;
 

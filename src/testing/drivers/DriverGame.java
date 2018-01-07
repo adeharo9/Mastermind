@@ -35,7 +35,7 @@ public class DriverGame {
         ioUtils.printOutLn("Test of the constructors of Game");
         ioUtils.printOutLn("Introduce the difficulty of the Game (h: hard, m: medium, e:easy). For example: e");
         String dif = ioUtils.input();
-        Difficulty difficulty = null;
+        Difficulty difficulty;
         switch(dif)
         {
             case "e":
@@ -56,7 +56,7 @@ public class DriverGame {
                 "2. HUMAN_VS_CPU\n" +
                 "3. CPU_VS_CPU");
         int mode = Integer.parseInt(ioUtils.input());
-        Mode modeGame = null;
+        Mode modeGame;
         switch(mode)
         {
             case 1:

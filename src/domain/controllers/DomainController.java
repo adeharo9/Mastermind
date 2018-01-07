@@ -362,7 +362,6 @@ public class DomainController
      * por el nombre del parametro introducido
      *
      * @param gameId Nombre de la partida
-     * @exception IOException Error al introducir el parametro.
      */
 
     private void renameGame(final String gameId)
@@ -398,7 +397,6 @@ public class DomainController
      *
      * @param username Nombre de usuario nuevo.
      * @throws IOException Nombre introducido incorrecto
-     * @throws ClassNotFoundException Error al crear el objeto Player
      */
 
     public void renameUsername(final String username) throws IOException
@@ -674,7 +672,6 @@ public class DomainController
      * puntuaciones y guarda una nueva.
      *
      * @exception IOException Error en entrada de parametros.
-     * @exception ClassNotFoundException Un objeto no se ha creado correctamente.
      */
 
     private void saveRanking() throws IOException
