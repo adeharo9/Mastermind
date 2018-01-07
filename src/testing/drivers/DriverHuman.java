@@ -59,7 +59,7 @@ public class DriverHuman {
         if(!testedHuman.checkPassword("4321")){ioUtils.printOutLn("Error in checkPassword function!");}
     }
 
-    private void testCodeMake() throws InterruptedException
+    private void testCodeMake()
     {
         ioUtils.printOutLn("Test codeMake function:\n");
         try
@@ -72,7 +72,7 @@ public class DriverHuman {
         }
     }
 
-    private void testCodeBreak() throws InterruptedException
+    private void testCodeBreak()
     {
         ioUtils.printOutLn("Test codeBreak function:\n");
         testedHuman.setRole(Role.CODE_BREAKER);
@@ -107,7 +107,7 @@ public class DriverHuman {
 
         try
         {
-            testedHuman.codeCorrect(Difficulty.EASY, code, solution);
+            testedHuman.codeCorrect(code, solution);
         }
         catch (ReservedKeywordException e)
         {

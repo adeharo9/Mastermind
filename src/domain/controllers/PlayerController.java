@@ -100,7 +100,7 @@ public class PlayerController
                 }
                 else
                 {
-                    action = codeCorrect(difficulty, lastTurn.getCode(), solution);
+                    action = codeCorrect(lastTurn.getCode(), solution);
                 }
                 break;
             case CODE_BREAKER:
@@ -116,19 +116,19 @@ public class PlayerController
         return action;
     }
 
-    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException, InterruptedException
+    private Action codeMake(final Difficulty difficulty) throws ReservedKeywordException
     {
         return player.codeMake(difficulty);
     }
 
-    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException, InterruptedException
+    private Action codeBreak(final Difficulty difficulty, final Turn lastTurn, final boolean isFirstTurn) throws ReservedKeywordException
     {
         return player.codeBreak(difficulty, lastTurn, isFirstTurn);
     }
 
-    private Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution) throws ReservedKeywordException, InterruptedException
+    private Action codeCorrect(final Code code, final Code solution) throws ReservedKeywordException
     {
-        return player.codeCorrect(difficulty, code, solution);
+        return player.codeCorrect(code, solution);
     }
 
     /* VALIDATION METHODS */

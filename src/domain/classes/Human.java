@@ -212,13 +212,12 @@ public class Human extends Player implements DeepCopyable, Serializable
      *
      * Permite al jugador de tipo humano corregir la acción de otro jugador.
      *
-     * @param difficulty Dificultad de la partida.
      * @param c Código introducido a corregir.
      * @param s Código de colores que representa la solución.
      * @throws ReservedKeywordException Si se espera un tipo objeto pero se pretende ir hacia atrás.
      */
     @Override
-    public Action codeCorrect(final Difficulty difficulty, final Code c, final Code s) throws ReservedKeywordException
+    public Action codeCorrect(final Code c, final Code s) throws ReservedKeywordException
     {
         List<Color> colorList = codeInputByUser();
         Code code = new Code(colorList);

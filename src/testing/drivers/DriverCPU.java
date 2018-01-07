@@ -89,7 +89,7 @@ public class DriverCPU {
         {
             lastTurn = new Turn(action.getCode());
             Action codeCorrect;
-            codeCorrect = testedCPU.codeCorrect(Difficulty.MEDIUM, action.getCode(), solution);
+            codeCorrect = testedCPU.codeCorrect(action.getCode(), solution);
 
             Code correction = codeCorrect.getCode();
             lastTurn.setCorrection(correction);

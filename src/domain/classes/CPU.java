@@ -134,12 +134,11 @@ public class CPU extends Player implements DeepCopyable, Serializable
      *
      * Permite al jugador de tipo corregir la acción de otro jugador.
      *
-     * @param difficulty Dificultad de la partida.
      * @param code Código introducido a corregir.
      * @param solution Código de colores que representa la solución.
      */
     @Override
-    public Action codeCorrect(final Difficulty difficulty, final Code code, final Code solution)
+    public Action codeCorrect(final Code code, final Code solution)
     {
         Code correction = getCodeCorrect(code, solution);
         return new CodeCorrect(correction);
