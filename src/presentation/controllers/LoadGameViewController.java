@@ -18,7 +18,7 @@ import java.util.Set;
  *
  * Clase encargada de gestionar los distintos elementos de la vista de cargar partida.
  *
- * @author Alex Sánchez
+ * @author Alejandro de Haro
  */
 
 public class LoadGameViewController extends RegisteringPresentationController
