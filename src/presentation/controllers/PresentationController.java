@@ -438,7 +438,7 @@ public abstract class PresentationController
      * @param closingEventHandler Gestor de eventos al cerrar la ventana de popup.
      * @throws IOException En caso que la vista no pueda ser cargada por algún motivo.
      */
-    private void newPopUpStage(final String viewFile, final int width, final int height, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
+    private void newPopUpStage(final String viewFile, final double width, final double height, final String title, final String iconPath, final Modality modality, final EventHandler<WindowEvent> closingEventHandler) throws IOException
     {
         popUpStage = new Stage();
 
@@ -471,8 +471,8 @@ public abstract class PresentationController
     {
         String title = popUpWindowStyle.getTitle();
         String iconPath = Constants.RESOURCES_PATH + popUpWindowStyle.getIconFile();
-        int width = popUpWindowStyle.getWidth();
-        int height = popUpWindowStyle.getHeight();
+        double width = popUpWindowStyle.getWidth();
+        double height = popUpWindowStyle.getHeight();
         Modality modality = popUpWindowStyle.getModality();
         EventHandler<WindowEvent> closingEventHandler;
 
