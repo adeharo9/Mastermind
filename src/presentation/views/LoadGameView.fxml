@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="420.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LoadGameViewController">
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="398.0" styleClass="toolbar">
@@ -18,7 +20,7 @@
       </ToolBar>
       <VBox alignment="CENTER" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="560.0" prefViewportWidth="395.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" prefViewportHeight="560.0" prefViewportWidth="395.0" styleClass="scroll-bar" VBox.vgrow="ALWAYS">
                <content>
                   <VBox alignment="CENTER_LEFT" prefHeight="482.0" prefWidth="398.0" spacing="30.0" styleClass="background">
                      <children>
