@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="420.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameInProgressViewController">
+<VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="460.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.GameInProgressViewController">
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
         <items>
@@ -38,7 +38,7 @@
          <content>
             <VBox alignment="TOP_CENTER" styleClass="background">
                <children>
-                  <ScrollPane fx:id="turnsScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="487.0" prefWidth="420.0" styleClass="background" VBox.vgrow="ALWAYS">
+                  <ScrollPane fx:id="turnsScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="487.0" prefWidth="460.0" styleClass="background" VBox.vgrow="ALWAYS">
                      <content>
                         <VBox fx:id="boardVBox" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" styleClass="background">
                            <padding>
@@ -47,7 +47,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <VBox fx:id="nonScrollableVBox" alignment="TOP_CENTER" prefHeight="63.0" prefWidth="420.0" spacing="30.0">
+                  <VBox fx:id="nonScrollableVBox" alignment="TOP_CENTER" prefHeight="63.0" prefWidth="460.0" spacing="30.0">
                      <children>
                         <Button fx:id="finishTurnButton" mnemonicParsing="false" onAction="#finishTurnButtonAction" text="Finish Turn">
                            <VBox.margin>
