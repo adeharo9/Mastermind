@@ -52,6 +52,7 @@ public class LoadGameViewController extends RegisteringPresentationController
         GridPane.setHgrow(gameIdButton, Priority.ALWAYS);
 
         Button deleteButton = new Button("Delete");
+        deleteButton.setAlignment(Pos.CENTER);
         deleteButton.setOnAction((actionEvent) ->
             {
                 PresentationController.gameId = gameId;
