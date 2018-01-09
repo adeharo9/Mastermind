@@ -3,14 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
-<VBox prefHeight="600.0" prefWidth="420.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
+<VBox prefHeight="650.0" prefWidth="460.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.PauseViewController">
    <children>
-      <ToolBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="420.0" styleClass="toolbar">
+      <ToolBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="460.0" styleClass="toolbar">
         <items>
           <Button mnemonicParsing="false" onAction="#continueButtonAction" text="Continue" />
         </items>
       </ToolBar>
-      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="420.0" spacing="15.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="650.0" prefWidth="460.0" spacing="15.0" VBox.vgrow="ALWAYS">
          <children>
             <Button mnemonicParsing="false" onAction="#saveButtonAction" prefWidth="123.0" text="Save" />
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mainMenuButtonAction" prefWidth="123.0" text="Main Menu" />
