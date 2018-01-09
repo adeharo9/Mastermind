@@ -14,10 +14,10 @@ import util.Constants;
 
 public enum PopUpWindowStyle
 {
-    GAME_OVER (300, 280, "Game Over", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
-    INFO (250, 100, "Mastermind", Constants.ICON_FILE, Modality.NONE),
-    INFO_HARD (300, 100, "Mastermind", Constants.ICON_FILE, Modality.NONE),
-    INTERACTION(250, 100, "Mastermind", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
+    GAME_OVER (Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE, "Game Over", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
+    INFO (Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE, "Mastermind", Constants.ICON_FILE, Modality.NONE),
+    INFO_HARD (300, Control.USE_COMPUTED_SIZE, "Mastermind", Constants.ICON_FILE, Modality.NONE),
+    INTERACTION(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE, "Mastermind", Constants.ICON_FILE, Modality.APPLICATION_MODAL),
     WARNING (Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE, "Warning", Constants.WARNING_ICON_FILE, Modality.APPLICATION_MODAL);
 
     private final double width;
