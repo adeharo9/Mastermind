@@ -60,7 +60,7 @@ public class LoadGameViewController extends RegisteringPresentationController
         );
 
         GridPane gridPane = new GridPane();
-        GridPane.setHalignment(deleteButton, HPos.RIGHT);
+        //GridPane.setHalignment(deleteButton, HPos.RIGHT);
 
         gridPane.add(gameIdButton, 0, 0);
         gridPane.add(deleteButton, 1, 0);
