@@ -57,6 +57,7 @@ public class EditUserViewController extends RegisteringPresentationController
         {
             case Constants.EDIT_USERNAME:
                 newUsernameTextField.setVisible(true);
+                newUsernameTextField.requestFocus();
                 editButton.setVisible(false);
                 doneButton.setVisible(true);
                 exceptionsLabel.setVisible(false);

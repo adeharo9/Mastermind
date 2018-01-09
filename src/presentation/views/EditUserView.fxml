@@ -29,9 +29,12 @@
                   <Label styleClass="text" text="Current username:" textFill="#cfcfcf" />
                   <Label fx:id="usernameLabel" prefHeight="20.0" prefWidth="158.0" styleClass="text" textFill="#cfcfcf" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" right="10.0" />
                      </GridPane.margin></Label>
-                  <TextField fx:id="newUsernameTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="161.0" promptText="New username" visible="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="newUsernameTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="161.0" promptText="New username" visible="false" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin></TextField>
                   <Button fx:id="doneButton" mnemonicParsing="false" onAction="#doneButtonAction" text="Done" visible="false" GridPane.columnIndex="2" />
                   <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonAction" text="Edit" GridPane.columnIndex="2" GridPane.columnSpan="2" />
                </children>
