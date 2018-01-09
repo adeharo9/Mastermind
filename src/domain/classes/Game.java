@@ -40,7 +40,7 @@ public class Game implements DeepCopyable, Serializable
      */
     private static boolean isValidId(final String id)
     {
-        return !id.isEmpty();
+        return true;
     }
 
     /**
