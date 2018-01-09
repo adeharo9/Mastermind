@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?package views?>
-
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="420.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.LogInViewController">
    <children>
       <ToolBar layoutX="118.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" styleClass="toolbar">
@@ -25,7 +29,7 @@
          <children>
             <TextField fx:id="usernameTextField" promptText="Username" style="-fx-max-width: 200; -fx-translate-y: 0;" />
             <PasswordField fx:id="passwordPasswordField" promptText="Password" style="-fx-max-width: 200;" />
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#logInButtonAction" text="Log In" />
                </children>

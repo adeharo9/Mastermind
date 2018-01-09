@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="420.0" styleClass="background" stylesheets="@../styles/monokai.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.NewGameViewController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="420.0" styleClass="toolbar">
@@ -10,7 +13,7 @@
             <Button mnemonicParsing="false" onAction="#backButtonAction" text="Back" textAlignment="CENTER" />
          </items>
       </ToolBar>
-      <VBox alignment="CENTER" layoutX="37.0" layoutY="86.0" maxWidth="-Infinity" prefWidth="340.0" spacing="75.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" layoutX="37.0" layoutY="86.0" maxWidth="-Infinity" spacing="75.0" VBox.vgrow="ALWAYS">
          <children>
             <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="30.0">
                <children>
@@ -37,7 +40,7 @@
                               <!--suppress JavaFxUnresolvedFxIdReference -->
                               <ToggleGroup fx:id="gameMode" />
                            </toggleGroup></RadioButton>
-                        <RadioButton layoutX="271.0" layoutY="95.0" mnemonicParsing="false" onAction="#cpuVsCPURadioButtonAction" onMouseEntered="#cpuVsCPURadioButtonOnMouseEntered" onMouseExited="#cpuVsCPURadioButtonOnMouseExited" prefHeight="17.0" prefWidth="93.0" text="CPU vs CPU" toggleGroup="$gameMode" GridPane.columnIndex="2" />
+                        <RadioButton layoutX="271.0" layoutY="95.0" mnemonicParsing="false" onAction="#cpuVsCPURadioButtonAction" onMouseEntered="#cpuVsCPURadioButtonOnMouseEntered" onMouseExited="#cpuVsCPURadioButtonOnMouseExited" text="CPU vs CPU" toggleGroup="$gameMode" GridPane.columnIndex="2" />
                         <RadioButton layoutX="50.0" layoutY="95.0" mnemonicParsing="false" onAction="#playerVsPlayerRadioButtonAction" onMouseEntered="#playerVsPlayerRadioButtonOnMouseEntered" onMouseExited="#playerVsPlayerRadioButtonOnMouseExited" text="Player vs Player" toggleGroup="$gameMode" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
